@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Making Sense Bali — static data generator (runs on the mini).
+  Install: see tools/makingsense-sync/SETUP.md
+  Edit the paths/keys below to match your mini, then:
+    cp com.fabcity.makingsense-sync.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.fabcity.makingsense-sync.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.fabcity.makingsense-sync</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/fablabbali/makingsensebali/tools/makingsense-sync/generate.py</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>MSB_REPO_DIR</key>     <string>/Users/fablabbali/makingsensebali</string>
+    <!-- mini → NAS rsync source for approved profiles (set up the SSH key first) -->
+    <key>MSB_NAS_RSYNC_SRC</key><string>fablabbali@tx-nas-bali:/volume1/docker/aq-reporter/data/profiles/</string>
+    <key>MSB_NAS_PHOTOS_SRC</key><string>fablabbali@tx-nas-bali:/volume1/docker/aq-reporter/data/profile_photos/</string>
+    <key>MSB_NARRATIVE</key>    <string>1</string>
+    <key>MSB_EXO_URL</key>      <string>http://127.0.0.1:52415/v1/chat/completions</string>
+
+    <!-- External air-quality networks (best-effort; each skips cleanly if unset).
+         AQICN gives the official KLHK government monitor + WAQI aggregator;
+         PurpleAir gives the known Bali community sensors. OpenAQ is left here
+         but is effectively empty in Bali (both island stations long offline). -->
+    <!-- <key>MSB_AQICN_TOKEN</key>  <string>your-waqi-token</string> -->
+    <!-- <key>MSB_PURPLEAIR_KEY</key><string>your-purpleair-read-key</string> -->
+    <!-- <key>MSB_PURPLEAIR_IDS</key><string>36601,46949</string> -->
+    <!-- <key>MSB_OPENAQ_KEY</key>   <string>...</string> -->
+  </dict>
+
+  <!-- Run every 15 minutes. -->
+  <key>StartInterval</key>
+  <integer>900</integer>
+
+  <!-- Also run shortly after load/login. -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/fablabbali/makingsensebali/tools/makingsense-sync/sync.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/fablabbali/makingsensebali/tools/makingsense-sync/sync.log</string>
+</dict>
+</plist>

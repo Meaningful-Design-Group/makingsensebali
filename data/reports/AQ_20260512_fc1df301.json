@@ -1,0 +1,46 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Other observation — Bukit, Bali",
+  "description": "I see trash in the street",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260512_fc1df301.json",
+  "latitude": -8.827109,
+  "longitude": 115.157091,
+  "geolocation": {
+    "lat": -8.827109,
+    "lon": 115.157091
+  },
+  "locality": "Ungasan",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "source:whatsapp",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-05-12T00:00:00+00:00",
+  "observation_type": "eyewitness",
+  "pollution_category": "other",
+  "data_source": "whatsapp",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-05-12T00:00:00+00:00",
+    "reported_timestamp": "2026-05-12T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Ungasan",
+    "kecamatan": "Kuta Selatan",
+    "kabupaten": "Badung"
+  }
+}

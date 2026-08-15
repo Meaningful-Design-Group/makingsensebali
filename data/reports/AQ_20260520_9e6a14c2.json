@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Vehicle observation — Bukit, Bali",
+  "description": "Illegal landfill",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260520_9e6a14c2.json",
+  "latitude": -8.789683,
+  "longitude": 115.162496,
+  "geolocation": {
+    "lat": -8.789683,
+    "lon": 115.162496
+  },
+  "locality": "Jimbaran",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "vehicle",
+    "source:whatsapp",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-05-20T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "vehicle",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.8,
+    "indicators": [
+      "motorbike smoke",
+      "motorbike",
+      "dirt road"
+    ],
+    "description": "A motorbike is parked on a dirt road with visible smoke coming from it.",
+    "severity": "low",
+    "model_version": "mlx:Phi-3.5-vision-instruct-4bit"
+  },
+  "data_source": "whatsapp",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-05-20T00:00:00+00:00",
+    "reported_timestamp": "2026-05-20T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Jimbaran",
+    "kecamatan": "Kuta Selatan",
+    "kabupaten": "Badung"
+  }
+}

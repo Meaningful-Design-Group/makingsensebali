@@ -1,0 +1,61 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Construction observation — Bali, Bali",
+  "description": "Construction site burning trash regularly.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260812_222947d0.json",
+  "latitude": -8.670005,
+  "longitude": 115.162793,
+  "geolocation": {
+    "lat": -8.670005,
+    "lon": 115.162793
+  },
+  "locality": "Kerobokan Kelod",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "construction",
+    "source:telegram",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-12T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "construction",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.7,
+    "indicators": [
+      "visible smoke plume",
+      "active construction site",
+      "concrete pillar",
+      "workers"
+    ],
+    "description": "Construction activity is underway with visible smoke rising in the background.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260812_222947d0.jpg",
+  "data_source": "telegram",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-12T00:00:00+00:00",
+    "reported_timestamp": "2026-08-12T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Kerobokan Kelod",
+    "kecamatan": "Kuta Utara",
+    "kabupaten": "Badung"
+  }
+}

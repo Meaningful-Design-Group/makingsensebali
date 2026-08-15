@@ -1,0 +1,226 @@
+{
+  "generated_at": "2026-08-15T03:06:09.325822+00:00",
+  "count": 11,
+  "sensors": [
+    {
+      "id": "sck-19236",
+      "rawId": 19236,
+      "source": "smartcitizen",
+      "sourceLabel": "Smart Citizen",
+      "name": "Ungasan Kit - TEST",
+      "lat": -8.81983,
+      "lng": 115.16657,
+      "lastReading": "2026-08-15T03:05:21Z",
+      "reading": {
+        "pm25": 10.1,
+        "pm10": 10.1,
+        "temp": 28.26,
+        "rh": 72.82,
+        "noise": 50.46
+      },
+      "detailsUrl": "https://smartcitizen.me/kits/19236",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "sck-19600",
+      "rawId": 19600,
+      "source": "smartcitizen",
+      "sourceLabel": "Smart Citizen",
+      "name": "SCK-TWO@Jimbaran-2025",
+      "lat": -8.79351,
+      "lng": 115.14472,
+      "lastReading": "2026-06-17T17:15:19Z",
+      "reading": {
+        "pm25": 1.6,
+        "pm10": 1.6,
+        "temp": 23.21,
+        "rh": 58.32,
+        "noise": 35.69
+      },
+      "detailsUrl": "https://smartcitizen.me/kits/19600",
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
+    },
+    {
+      "id": "sck-19618",
+      "rawId": 19618,
+      "source": "smartcitizen",
+      "sourceLabel": "Smart Citizen",
+      "name": "SCK-THREE@Jimbaran-2025",
+      "lat": -8.79533,
+      "lng": 115.14784,
+      "lastReading": "2026-07-25T07:26:35Z",
+      "reading": {
+        "pm25": 0.3,
+        "pm10": 0.3,
+        "temp": 24.3,
+        "rh": 61.42,
+        "noise": 25.7
+      },
+      "detailsUrl": "https://smartcitizen.me/kits/19618",
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
+    },
+    {
+      "id": "sck-19651",
+      "rawId": 19651,
+      "source": "smartcitizen",
+      "sourceLabel": "Smart Citizen",
+      "name": "Bali DIY Node — Office",
+      "lat": -8.79314,
+      "lng": 115.14467,
+      "lastReading": "2026-06-15T02:48:20Z",
+      "reading": {
+        "pm25": 6.0,
+        "pm10": 6.0,
+        "temp": 27.68451,
+        "rh": 59.994,
+        "noise": null
+      },
+      "detailsUrl": "https://smartcitizen.me/kits/19651",
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor"
+    },
+    {
+      "id": "airgradient-77247",
+      "rawId": 77247,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Tonja - Nafas",
+      "lat": -8.632781,
+      "lng": 115.229004,
+      "offline": false,
+      "lastReading": "2026-08-15T03:05:49.000Z",
+      "reading": {
+        "pm25": 17.3,
+        "pm10": 18.3,
+        "temp": 28.5,
+        "rh": 55
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-195778",
+      "rawId": 195778,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Umadawa",
+      "lat": -8.492994479130525,
+      "lng": 115.30036092298013,
+      "offline": false,
+      "lastReading": "2026-08-15T03:20:19.000Z",
+      "reading": {
+        "pm25": 39.5,
+        "pm10": 47.8,
+        "temp": 30.1,
+        "rh": 49
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-195872",
+      "rawId": 195872,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Kuwum, Bali",
+      "lat": -8.661245,
+      "lng": 115.16204,
+      "offline": false,
+      "lastReading": "2026-08-15T03:05:55.000Z",
+      "reading": {
+        "pm25": 15.8,
+        "pm10": 16.8,
+        "temp": 29.3,
+        "rh": 55
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-196524",
+      "rawId": 196524,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Tabanan",
+      "lat": -8.59456160873381,
+      "lng": 115.12636083931227,
+      "offline": false,
+      "lastReading": "2026-08-15T03:05:42.000Z",
+      "reading": {
+        "pm25": 24.3,
+        "pm10": 24.3,
+        "temp": 31.8,
+        "rh": 47
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-197980",
+      "rawId": 197980,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Padang2 Uluwatu",
+      "lat": -8.811206,
+      "lng": 115.102523,
+      "offline": false,
+      "lastReading": "2026-08-15T03:05:26.000Z",
+      "reading": {
+        "pm25": 10.8,
+        "pm10": 11.2,
+        "temp": 28.1,
+        "rh": 56
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-201082",
+      "rawId": 201082,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Pantai Nyanyi",
+      "lat": -8.6158136,
+      "lng": 115.1116163,
+      "offline": false,
+      "lastReading": "2026-08-15T03:05:48.000Z",
+      "reading": {
+        "pm25": 26.5,
+        "pm10": 27.5,
+        "temp": 29.1,
+        "rh": 55
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-203693",
+      "rawId": 203693,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Raya Pererenan dan Tumbakbayuh",
+      "lat": -8.6322931,
+      "lng": 115.1335655,
+      "offline": false,
+      "lastReading": "2026-08-15T03:11:48.000Z",
+      "reading": {
+        "pm25": 31.0,
+        "pm10": 36.0,
+        "temp": null,
+        "rh": null
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    }
+  ]
+}

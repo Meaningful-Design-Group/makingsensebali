@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Proyek bakar sampah",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260723_71ed0d2f.json",
+  "latitude": -8.670005,
+  "longitude": 115.162793,
+  "geolocation": {
+    "lat": -8.670005,
+    "lon": 115.162793
+  },
+  "locality": "Kerobokan Kelod",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:whatsapp",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-07-23T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.6,
+    "indicators": [
+      "smoke plume",
+      "nighttime setting",
+      "haze"
+    ],
+    "description": "Smoke is visible rising from an area near a large structure at night.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260723_71ed0d2f.jpg",
+  "data_source": "whatsapp",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-07-23T00:00:00+00:00",
+    "reported_timestamp": "2026-07-23T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Kerobokan Kelod",
+    "kecamatan": "Kuta Utara",
+    "kabupaten": "Badung"
+  }
+}
