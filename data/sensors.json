@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-15T04:40:37.932131+00:00",
-  "count": 14,
+  "generated_at": "2026-08-15T04:55:43.170438+00:00",
+  "count": 12,
   "sensors": [
     {
       "id": "sck-19236",
@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-08-15T04:37:25Z",
+      "lastReading": "2026-08-15T04:52:25Z",
       "reading": {
-        "pm25": 7.2,
-        "pm10": 7.2,
-        "temp": 28.87,
-        "rh": 70.4,
-        "noise": 50.34
+        "pm25": 7.7,
+        "pm10": 7.7,
+        "temp": 28.58,
+        "rh": 71.66,
+        "noise": 48.56
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
@@ -83,67 +83,6 @@
       "exclusion_reason": "indoor"
     },
     {
-      "id": "aqicn--519205",
-      "rawId": -519205,
-      "source": "aqicn",
-      "sourceLabel": "AQICN",
-      "name": "Kabupaten Badung Sempidi",
-      "lat": -8.603890419006348,
-      "lng": 115.1780014038086,
-      "lastReading": "2026-08-15T04:00:00Z",
-      "reading": {
-        "pm25": 7.7,
-        "pm10": null,
-        "temp": null,
-        "rh": null,
-        "aqi": 44,
-        "pm25_from_aqi": true
-      },
-      "detailsUrl": "https://aqicn.org/station/@519205",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
-    },
-    {
-      "id": "purpleair-36601",
-      "rawId": 36601,
-      "source": "purpleair",
-      "sourceLabel": "PurpleAir",
-      "indoor": false,
-      "name": "Jimbaran by Lumi Clinic",
-      "lat": -8.791219,
-      "lng": 115.1674,
-      "lastReading": "2026-08-15T04:38:34+00:00",
-      "reading": {
-        "pm25": 0.7,
-        "pm10": null,
-        "temp": 34.4,
-        "rh": 49
-      },
-      "detailsUrl": "https://map.purpleair.com/?select=36601",
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
-    },
-    {
-      "id": "purpleair-46949",
-      "rawId": 46949,
-      "source": "purpleair",
-      "sourceLabel": "PurpleAir",
-      "indoor": false,
-      "name": "Klungkung by Lumi Clinic",
-      "lat": -8.533623,
-      "lng": 115.39973,
-      "lastReading": "2026-08-15T04:38:37+00:00",
-      "reading": {
-        "pm25": 44.6,
-        "pm10": null,
-        "temp": 31.7,
-        "rh": 60
-      },
-      "detailsUrl": "https://map.purpleair.com/?select=46949",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
-    },
-    {
       "id": "airgradient-77247",
       "rawId": 77247,
       "source": "airgradient",
@@ -152,12 +91,12 @@
       "lat": -8.632781,
       "lng": 115.229004,
       "offline": false,
-      "lastReading": "2026-08-15T04:39:51.000Z",
+      "lastReading": "2026-08-15T04:54:51.000Z",
       "reading": {
-        "pm25": 15.5,
-        "pm10": 16.2,
-        "temp": 29.7,
-        "rh": 50
+        "pm25": 20.5,
+        "pm10": 21.3,
+        "temp": 29.8,
+        "rh": 49
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -172,12 +111,12 @@
       "lat": -8.492994479130525,
       "lng": 115.30036092298013,
       "offline": false,
-      "lastReading": "2026-08-15T04:40:24.000Z",
+      "lastReading": "2026-08-15T04:55:21.000Z",
       "reading": {
-        "pm25": 26.3,
-        "pm10": 27.3,
-        "temp": 30.0,
-        "rh": 50
+        "pm25": 24.8,
+        "pm10": 26.7,
+        "temp": 30.3,
+        "rh": 49
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -192,10 +131,10 @@
       "lat": -8.661245,
       "lng": 115.16204,
       "offline": false,
-      "lastReading": "2026-08-15T04:39:56.000Z",
+      "lastReading": "2026-08-15T04:54:56.000Z",
       "reading": {
-        "pm25": 31.3,
-        "pm10": 32.3,
+        "pm25": 18.0,
+        "pm10": 19.0,
         "temp": 30.6,
         "rh": 50
       },
@@ -212,12 +151,12 @@
       "lat": -8.59456160873381,
       "lng": 115.12636083931227,
       "offline": false,
-      "lastReading": "2026-08-15T04:39:40.000Z",
+      "lastReading": "2026-08-15T04:55:41.000Z",
       "reading": {
-        "pm25": 22.7,
-        "pm10": 22.7,
-        "temp": 34.7,
-        "rh": 41
+        "pm25": 20.0,
+        "pm10": 23.0,
+        "temp": 34.9,
+        "rh": 40
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -232,10 +171,10 @@
       "lat": -8.811206,
       "lng": 115.102523,
       "offline": false,
-      "lastReading": "2026-08-15T04:40:28.000Z",
+      "lastReading": "2026-08-15T04:55:29.000Z",
       "reading": {
-        "pm25": 6.5,
-        "pm10": 6.5,
+        "pm25": 7.8,
+        "pm10": 9.0,
         "temp": 28.8,
         "rh": 55
       },
@@ -252,11 +191,31 @@
       "lat": -8.6158136,
       "lng": 115.1116163,
       "offline": false,
-      "lastReading": "2026-08-15T04:39:51.000Z",
+      "lastReading": "2026-08-15T04:54:51.000Z",
       "reading": {
-        "pm25": 25.5,
-        "pm10": 26.8,
+        "pm25": 23.8,
+        "pm10": 23.8,
         "temp": 29.8,
+        "rh": 53
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-203332",
+      "rawId": 203332,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Sibang Eco Village Car Park",
+      "lat": -8.574738,
+      "lng": 115.214613,
+      "offline": false,
+      "lastReading": "2026-08-15T04:55:30.000Z",
+      "reading": {
+        "pm25": 27.0,
+        "pm10": 27.2,
+        "temp": 30.2,
         "rh": 52
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -272,10 +231,10 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-08-15T04:31:48.000Z",
+      "lastReading": "2026-08-15T04:51:48.000Z",
       "reading": {
-        "pm25": 22.0,
-        "pm10": 23.0,
+        "pm25": 21.0,
+        "pm10": 22.0,
         "temp": null,
         "rh": null
       },
