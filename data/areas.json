@@ -1,69 +1,128 @@
 {
-  "generated_at": "2026-08-15T03:06:12.468574+00:00",
+  "generated_at": "2026-08-15T03:52:46.022689+00:00",
   "areas": [
     {
-      "locality": "Bali",
-      "lat": -7.483762,
-      "lon": 99.601036,
-      "report_count": 37,
+      "locality": "Jimbaran",
+      "lat": -8.789683,
+      "lon": 115.162496,
+      "report_count": 10,
       "categories": {
-        "burning": 25,
-        "none": 6,
-        "other": 4,
-        "vehicle": 1,
-        "construction": 1
-      },
-      "top_tags": [
-        "open burning",
-        "open fire",
-        "burning debris",
-        "smoke plume",
-        "intense orange glow",
-        "construction site"
-      ],
-      "max_severity": "high",
-      "pm25": null,
-      "summary": null
-    },
-    {
-      "locality": "Bukit",
-      "lat": -8.804531,
-      "lon": 115.15705,
-      "report_count": 24,
-      "categories": {
-        "none": 11,
-        "burning": 5,
-        "other": 3,
+        "none": 3,
         "trash": 3,
-        "construction": 1,
+        "burning": 2,
+        "other": 1,
         "vehicle": 1
       },
       "top_tags": [
-        "smoke rising",
         "various types of waste",
-        "open burning",
-        "open burning area",
-        "dry ground debris",
-        "dry dusty ground"
+        "no visible smoke",
+        "no visible fire",
+        "no airborne particulates",
+        "pile of garbage",
+        "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 10.1,
+      "pm25": 7.7,
       "summary": null
     },
     {
       "locality": "Kerobokan",
-      "lat": -8.656152,
-      "lon": 115.164031,
+      "lat": -8.652651,
+      "lon": 115.162566,
+      "report_count": 6,
+      "categories": {
+        "burning": 4,
+        "none": 2
+      },
+      "top_tags": [
+        "smoke rising",
+        "burning trash",
+        "trash pile",
+        "dense white smoke",
+        "smoke plume rising",
+        "dense foliage"
+      ],
+      "max_severity": "medium",
+      "pm25": 21.4,
+      "summary": null
+    },
+    {
+      "locality": "Kerobokan Kelod",
+      "lat": -8.670005,
+      "lon": 115.162793,
+      "report_count": 22,
+      "categories": {
+        "burning": 18,
+        "none": 2,
+        "construction": 1,
+        "vehicle": 1
+      },
+      "top_tags": [
+        "open burning",
+        "smoke plume",
+        "intense orange glow",
+        "construction site",
+        "smoke/haze",
+        "visible flames"
+      ],
+      "max_severity": "high",
+      "pm25": 21.4,
+      "summary": null
+    },
+    {
+      "locality": "Pangkung Karung",
+      "lat": -8.546333,
+      "lon": 115.098279,
       "report_count": 1,
       "categories": {
         "burning": 1
       },
       "top_tags": [
-        "localized smoke plume",
-        "smoke rising from ground"
+        "thick smoke plume",
+        "open burning",
+        "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 24.4,
+      "pm25": null,
+      "summary": null
+    },
+    {
+      "locality": "Tibubeneng",
+      "lat": -8.647173,
+      "lon": 115.150768,
+      "report_count": 2,
+      "categories": {
+        "burning": 2
+      },
+      "top_tags": [
+        "open fire",
+        "burning debris",
+        "smoke"
+      ],
+      "max_severity": "medium",
+      "pm25": 23.2,
+      "summary": null
+    },
+    {
+      "locality": "Ungasan",
+      "lat": -8.827109,
+      "lon": 115.157091,
+      "report_count": 5,
+      "categories": {
+        "burning": 3,
+        "other": 1,
+        "none": 1
+      },
+      "top_tags": [
+        "smoke rising",
+        "very dark image",
+        "indistinct glow",
+        "open burning",
+        "pile of trash",
+        "large pile of mixed trash"
+      ],
+      "max_severity": "medium",
+      "pm25": 7.7,
       "summary": null
     }
   ]
