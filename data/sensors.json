@@ -223,26 +223,6 @@
       "exclusion_reason": null
     },
     {
-      "id": "airgradient-203693",
-      "rawId": 203693,
-      "source": "airgradient",
-      "sourceLabel": "AirGradient",
-      "name": "Raya Pererenan dan Tumbakbayuh",
-      "lat": -8.6322931,
-      "lng": 115.1335655,
-      "offline": false,
-      "lastReading": "2026-08-17T21:17:41.000Z",
-      "reading": {
-        "pm25": 45.5,
-        "pm10": 57.5,
-        "temp": null,
-        "rh": null
-      },
-      "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
-    },
-    {
       "id": "airgradient-203848",
       "rawId": 203848,
       "source": "airgradient",
@@ -253,9 +233,9 @@
       "offline": false,
       "lastReading": "2026-08-17T21:20:48.000Z",
       "reading": {
-        "pm25": 43.8,
-        "pm10": 53.8,
-        "temp": 21.3,
+        "pm25": 42.0,
+        "pm10": 50.8,
+        "temp": 21.6,
         "rh": 67
       },
       "detailsUrl": "https://www.airgradient.com/map/",
