@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T15:12:14.613188+00:00",
+  "generated_at": "2026-08-18T15:26:44.396600+00:00",
   "areas": [
     {
       "locality": "Jimbaran",
@@ -7,22 +7,22 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
       },
       "top_tags": [
         "various types of waste",
-        "discarded plastic bottle",
-        "scattered litter",
-        "dry grassy ground",
         "no visible smoke",
-        "no visible fire"
+        "no visible fire",
+        "no airborne particulates",
+        "pile of garbage",
+        "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 18.0,
+      "pm25": 22.5,
       "summary": null
     },
     {
@@ -38,12 +38,12 @@
         "smoke rising",
         "burning trash",
         "trash pile",
-        "localized smoke plume",
-        "smoke rising from ground",
-        "smoke plume"
+        "dense white smoke",
+        "smoke plume rising",
+        "dense foliage"
       ],
       "max_severity": "medium",
-      "pm25": 37.5,
+      "pm25": 43.9,
       "summary": null
     },
     {
@@ -60,13 +60,13 @@
       "top_tags": [
         "open burning",
         "smoke plume",
-        "construction site",
         "intense orange glow",
-        "open fire",
-        "burning debris"
+        "construction site",
+        "smoke/haze",
+        "visible flames"
       ],
       "max_severity": "high",
-      "pm25": 37.5,
+      "pm25": 43.9,
       "summary": null
     },
     {
@@ -100,7 +100,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 42.6,
+      "pm25": 56.1,
       "summary": null
     },
     {
@@ -110,19 +110,19 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
-        "open burning",
-        "pile of trash",
         "very dark image",
         "indistinct glow",
-        "open burning area"
+        "open burning",
+        "pile of trash",
+        "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 18.0,
+      "pm25": 22.5,
       "summary": null
     }
   ]
