@@ -39,8 +39,8 @@
         "rh": 62
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-195872",
@@ -179,8 +179,8 @@
         "rh": 68
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-204185",
@@ -216,7 +216,7 @@
         "pm25": 27.2,
         "pm10": 27.8,
         "temp": 27.6,
-        "rh": 56
+        "rh": 57
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
