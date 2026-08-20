@@ -259,8 +259,8 @@
         "rh": 66
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": true,
-      "exclusion_reason": "outlier_high"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-204185",
@@ -313,10 +313,10 @@
       "offline": false,
       "lastReading": "2026-08-20T15:02:35.000Z",
       "reading": {
-        "pm25": 27.7,
-        "pm10": 27.7,
-        "temp": 27.0,
-        "rh": 51
+        "pm25": 25.7,
+        "pm10": 27.0,
+        "temp": 26.9,
+        "rh": 49
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
