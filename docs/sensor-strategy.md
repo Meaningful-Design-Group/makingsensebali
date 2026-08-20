@@ -486,6 +486,41 @@ Why 5 minutes and not 15: AirGradient publishes every 2–5 minutes and a
 burning plume is a 10–30 minute event. The site cadence is too coarse to
 catch one.
 
+**Raised `MSB_HTTP_TIMEOUT` to 60 s in the GitHub Actions workflow too**, since
+it runs the same `generate.py` and carries the same default.
+
+### Still broken: three publishers racing, and `history.json` is latched empty
+
+Chasing the empty history file turned up something larger. **Three independent
+jobs publish `sensors.json` / `history.json` / `areas.json` to this repo**, on
+overlapping ~15-minute schedules:
+
+| Committer | Where it runs |
+|---|---|
+| `makingsense-sync[bot]` | GitHub Actions — the *declared* owner of these files |
+| `Tomas Diez <fablabbali@fabalabbali.local>` | the Mac mini in Bali — the launchd job the Action was written to replace, still running |
+| `AQ Bot <bot@fab.city>` | the `aq-sensor-sync` container on the NAS |
+
+They collide, and the tie-break is inverted. `publish()` commits first, then
+runs `git pull --rebase --strategy-option=ours`. In a rebase, `ours` is the
+branch being rebased **onto** — the upstream — not your own work. So on any
+conflicting hunk the version already on `origin` wins and the fresh one is
+silently discarded.
+
+`history.json` therefore latched: once an empty `{"sensors": {}}` reached
+`origin`, every later write conflicted with it and lost. All three publishers
+currently commit an empty history while their own logs report "4 kit
+histories". The site's charts are blank for that reason — not because the kits
+are down.
+
+Not fixed here, because the resolution is a decision rather than a patch:
+**pick one writer.** The GitHub Action is the obvious candidate — it already
+declares ownership of these three files and is immune to the Bali power cuts
+and network drops it was written to survive. That means switching off the
+mini's launchd job (which cannot be done from the NAS) and reducing the
+`aq-sensor-sync` container to running only the archiver. Until then the
+flapping continues.
+
 ---
 
 ## 7. What to do next, in order
@@ -503,6 +538,9 @@ catch one.
 5. **Then, and only then, buy CO** — three DGS-CO in proper radiation
    shields, at Kuwum and two other chronic sites.
 6. Baseline Kerobokan separately. Do not carry Ungasan's numbers across.
+7. **Pick a single writer for the sensor files** and turn off the other two
+   (section 6). Everything on this list depends on the published data being
+   trustworthy, and right now it flaps every fifteen minutes.
 
 The sensors are not the constraint. Coverage, storage and labels are.
 
