@@ -26,3 +26,9 @@ venv/
 
 # Secrets — never commit any env file (vision.env, *.env, etc.)
 *.env
+
+# Per-node credentials - device tokens are WRITE credentials, never commit them.
+# Each firmware folder keeps a gitignored secrets.h; secrets.h.example is tracked.
+secrets.h
+**/secrets.h
+*.bak
