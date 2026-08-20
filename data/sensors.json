@@ -90,9 +90,9 @@
       "name": "Kabupaten Badung Sempidi",
       "lat": -8.603890419006348,
       "lng": 115.1780014038086,
-      "lastReading": "2026-08-20T12:00:00Z",
+      "lastReading": "2026-08-20T13:00:00Z",
       "reading": {
-        "pm25": 10.6,
+        "pm25": 10.3,
         "pm10": null,
         "temp": null,
         "rh": null,
@@ -112,12 +112,12 @@
       "name": "Jimbaran by Lumi Clinic",
       "lat": -8.791219,
       "lng": 115.1674,
-      "lastReading": "2026-08-20T13:04:23+00:00",
+      "lastReading": "2026-08-20T13:20:24+00:00",
       "reading": {
-        "pm25": 0.7,
+        "pm25": 0.6,
         "pm10": null,
-        "temp": 29.4,
-        "rh": 65
+        "temp": 28.9,
+        "rh": 66
       },
       "detailsUrl": "https://map.purpleair.com/?select=36601",
       "excluded_from_avg": true,
@@ -132,9 +132,9 @@
       "name": "Klungkung by Lumi Clinic",
       "lat": -8.533623,
       "lng": 115.39973,
-      "lastReading": "2026-08-20T13:03:42+00:00",
+      "lastReading": "2026-08-20T13:19:42+00:00",
       "reading": {
-        "pm25": 33.9,
+        "pm25": 36.3,
         "pm10": null,
         "temp": 29.4,
         "rh": 63
@@ -375,29 +375,9 @@
       "lastReading": "2026-08-20T13:15:33.000Z",
       "reading": {
         "pm25": 32.7,
-        "pm10": 37.5,
-        "temp": 27.1,
+        "pm10": 38.3,
+        "temp": 27.0,
         "rh": 48
-      },
-      "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
-    },
-    {
-      "id": "airgradient-204628",
-      "rawId": 204628,
-      "source": "airgradient",
-      "sourceLabel": "AirGradient",
-      "name": "Sibang22",
-      "lat": -8.57065776243817,
-      "lng": 115.21116301576197,
-      "offline": false,
-      "lastReading": "2026-08-20T12:59:14.000Z",
-      "reading": {
-        "pm25": 35.0,
-        "pm10": 41.7,
-        "temp": 27.9,
-        "rh": 54
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
