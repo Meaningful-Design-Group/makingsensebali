@@ -10,15 +10,15 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-08-20T08:29:35Z",
+      "lastReading": "2026-08-20T08:51:38Z",
       "reading": {
-        "pm25": 11.1,
-        "pm10": 11.1,
-        "temp": 28.8,
-        "rh": 67.92,
-        "noise": 50.05
+        "pm25": 9.6,
+        "pm10": 9.6,
+        "temp": 28.22,
+        "rh": 70.3,
+        "noise": 52.07
       },
-      "detailsUrl": "https://aqicn.org/station/@519205",
+      "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
       "exclusion_reason": null
     },
@@ -38,7 +38,7 @@
         "temp": 33.3,
         "rh": 50
       },
-      "detailsUrl": "https://map.purpleair.com/?select=36601",
+      "detailsUrl": "https://smartcitizen.me/kits/19600",
       "excluded_from_avg": true,
       "exclusion_reason": "indoor_suspected"
     },
@@ -58,9 +58,29 @@
         "temp": 31.1,
         "rh": 52
       },
-      "detailsUrl": "https://map.purpleair.com/?select=46949",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "detailsUrl": "https://smartcitizen.me/kits/19618",
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
+    },
+    {
+      "id": "sck-19651",
+      "rawId": 19651,
+      "source": "smartcitizen",
+      "sourceLabel": "Smart Citizen",
+      "name": "Bali DIY Node — Office",
+      "lat": -8.79314,
+      "lng": 115.14467,
+      "lastReading": "2026-06-15T02:48:20Z",
+      "reading": {
+        "pm25": 6.0,
+        "pm10": 6.0,
+        "temp": 27.68451,
+        "rh": 59.994,
+        "noise": null
+      },
+      "detailsUrl": "https://smartcitizen.me/kits/19651",
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor"
     },
     {
       "id": "airgradient-77247",
