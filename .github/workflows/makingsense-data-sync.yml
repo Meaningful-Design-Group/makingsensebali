@@ -54,6 +54,11 @@ jobs:
         env:
           MSB_REPO_DIR: ${{ github.workspace }}
           MSB_NARRATIVE: "0"                              # no exo narrative in the cloud
+          # api.smartcitizen.me answered in 21-32s from Bali on 2026-08-20, so the
+          # 20s default timed out EVERY Smart Citizen call and our own kits silently
+          # dropped out of sensors.json while history.json went empty. Presented as
+          # dead hardware; the kits were online the whole time.
+          MSB_HTTP_TIMEOUT: "60"
           # MSB_NAS_RSYNC_SRC deliberately unset -> reports pull is skipped,
           # existing data/reports/ is left untouched.
           MSB_AQICN_TOKEN: ${{ secrets.MSB_AQICN_TOKEN }} # KLHK / WAQI (optional; secret)
