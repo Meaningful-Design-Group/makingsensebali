@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:42:00.161269+00:00",
+  "generated_at": "2026-08-20T14:58:07.769466+00:00",
   "areas": [
     {
       "locality": "Jimbaran",
@@ -22,7 +22,7 @@
         "no visible fire"
       ],
       "max_severity": "high",
-      "pm25": 12.8,
+      "pm25": 12.7,
       "summary": null
     },
     {
@@ -43,7 +43,7 @@
         "burning trash"
       ],
       "max_severity": "medium",
-      "pm25": 38.9,
+      "pm25": 38.3,
       "summary": null
     },
     {
@@ -54,8 +54,8 @@
       "categories": {
         "burning": 21,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
@@ -66,7 +66,7 @@
         "burning debris"
       ],
       "max_severity": "high",
-      "pm25": 38.9,
+      "pm25": 38.3,
       "summary": null
     },
     {
@@ -83,7 +83,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 28.2,
+      "pm25": 26.2,
       "summary": null
     },
     {
@@ -100,7 +100,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 33.6,
+      "pm25": 34.1,
       "summary": null
     },
     {
@@ -122,7 +122,7 @@
         "open burning area"
       ],
       "max_severity": "medium",
-      "pm25": 12.8,
+      "pm25": 12.7,
       "summary": null
     }
   ]
