@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T04:32:46.154813+00:00",
+  "generated_at": "2026-08-21T04:44:00.317893+00:00",
   "areas": [
     {
       "locality": "Jimbaran",
@@ -15,14 +15,14 @@
       },
       "top_tags": [
         "various types of waste",
-        "no visible smoke",
-        "no visible fire",
-        "no airborne particulates",
-        "pile of garbage",
-        "uncollected"
+        "large amount of trash",
+        "smoke visible",
+        "motorbike smoke",
+        "motorbike",
+        "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 12.6,
+      "pm25": 11.1,
       "summary": null
     },
     {
@@ -35,15 +35,15 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
+        "smoke rising from ground",
         "smoke rising",
         "burning trash",
         "trash pile",
-        "dense white smoke",
-        "smoke plume rising",
         "dense foliage"
       ],
       "max_severity": "medium",
-      "pm25": 34.3,
+      "pm25": 33.8,
       "summary": null
     },
     {
@@ -54,19 +54,19 @@
       "categories": {
         "burning": 21,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "open burning",
         "smoke plume",
-        "intense orange glow",
         "open fire",
         "construction site",
-        "construction debris"
+        "intense orange glow",
+        "plume of smoke"
       ],
       "max_severity": "high",
-      "pm25": 34.3,
+      "pm25": 33.8,
       "summary": null
     },
     {
@@ -83,7 +83,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 43.8,
+      "pm25": 42.7,
       "summary": null
     },
     {
@@ -100,7 +100,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 35.6,
+      "pm25": 34.6,
       "summary": null
     },
     {
@@ -115,14 +115,14 @@
       },
       "top_tags": [
         "smoke rising",
-        "very dark image",
-        "indistinct glow",
-        "open burning",
-        "pile of trash",
-        "large pile of mixed trash"
+        "open burning area",
+        "dry ground debris",
+        "large pile of mixed trash",
+        "visible smoke rising from the waste",
+        "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 12.6,
+      "pm25": 11.1,
       "summary": null
     }
   ]
