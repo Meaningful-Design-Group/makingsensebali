@@ -165,6 +165,43 @@ constexpr uint8_t PCF8563_ADDR = 0x51;
 constexpr uint8_t HM3301_SELECT_I2C_CMD = 0x88;
 
 // ============================================================================
+// TYPES — all of them, here, before the first function definition
+//
+// This block is deliberately up here rather than next to the code that uses
+// it. The Arduino IDE auto-generates forward declarations for every function
+// in a .ino and injects them immediately before the FIRST function definition
+// in the file. Any struct defined after that point does not exist yet as far
+// as those generated prototypes are concerned, and you get a wall of
+// "'EnvReading' was not declared in this scope" that points at a line which
+// is obviously fine when you read it.
+//
+// Keeping every type above the first function is the only reliable fix. If
+// you add a new struct that appears in a function signature, add it HERE.
+// ============================================================================
+
+// HM3301 frame. See the driver section for the byte layout and the caveat
+// about the bin[] fields.
+struct PmReading {
+  uint16_t pm1 = 0, pm25 = 0, pm10 = 0;          // atmospheric, µg/m³
+  uint16_t pm1cf = 0, pm25cf = 0, pm10cf = 0;    // CF=1, µg/m³
+  uint16_t bin[6] = {0, 0, 0, 0, 0, 0};          // UNVERIFIED — see driver notes
+  bool     valid = false;
+};
+
+// BME680 output plus the derived open IAQ approximation.
+struct EnvReading {
+  float tempC = NAN, rh = NAN, pressureKPa = NAN, gasOhm = NAN, iaq = NAN;
+  bool  valid = false;
+};
+
+// PCF8563 wall clock. `valid` is false when the RTC reports lost integrity.
+struct DateTimeRTC {
+  uint16_t year = 2000;
+  uint8_t  month = 1, day = 1, hour = 0, minute = 0, second = 0;
+  bool     valid = false;
+};
+
+// ============================================================================
 // DISPLAY
 // ============================================================================
 
@@ -201,12 +238,8 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C oled(U8G2_R0, U8X8_PIN_NONE);
 // build anything on them until someone checks against a reference.
 // ============================================================================
 
-struct PmReading {
-  uint16_t pm1 = 0, pm25 = 0, pm10 = 0;          // atmospheric, µg/m³
-  uint16_t pm1cf = 0, pm25cf = 0, pm10cf = 0;    // CF=1, µg/m³
-  uint16_t bin[6] = {0, 0, 0, 0, 0, 0};          // see caveat above
-  bool     valid = false;
-};
+// (struct PmReading is defined in the TYPES block near the top of the file —
+//  it has to be, or the IDE's generated prototypes can't see it.)
 
 bool hm3301Present = false;
 uint32_t hm3301Fails = 0;   // consecutive failed reads, surfaced on the system page
@@ -248,10 +281,7 @@ bool hm3301Read(PmReading &r) {
 Adafruit_BME680 bme;
 bool bmePresent = false;
 
-struct EnvReading {
-  float tempC = NAN, rh = NAN, pressureKPa = NAN, gasOhm = NAN, iaq = NAN;
-  bool  valid = false;
-};
+// (struct EnvReading is defined in the TYPES block near the top.)
 
 // Clean-air gas-resistance reference for the IAQ approximation, learned at
 // runtime. Persisted to NVS (see baselineSave) because it takes 24-48h of
@@ -342,11 +372,7 @@ void bmeBegin() {
 // you would have a beautiful time series and no idea when any of it happened.
 // ============================================================================
 
-struct DateTimeRTC {
-  uint16_t year = 2000;
-  uint8_t  month = 1, day = 1, hour = 0, minute = 0, second = 0;
-  bool     valid = false;   // false when the RTC reports lost integrity
-};
+// (struct DateTimeRTC is defined in the TYPES block near the top.)
 
 inline uint8_t bcd2dec(uint8_t b) { return (uint8_t)((b >> 4) * 10 + (b & 0x0F)); }
 inline uint8_t dec2bcd(uint8_t d) { return (uint8_t)(((d / 10) << 4) | (d % 10)); }
@@ -760,12 +786,17 @@ void drawFooterHint() {
   oled.drawStr(128 - w, 63, f);
 }
 
-void valueOrDash(char* buf, size_t n, float v, int dp, const char* suffix = "") {
-  if (isnan(v)) snprintf(buf, n, "--%s", suffix);
-  else {
+// No default arguments anywhere in a .ino. The IDE copies the default into
+// its generated prototype AND leaves it on the definition, which the compiler
+// rejects as a redefined default argument. (The suffix parameter this used to
+// have was never passed by any call site, so it is simply gone.)
+void valueOrDash(char* buf, size_t n, float v, int dp) {
+  if (isnan(v)) {
+    snprintf(buf, n, "--");
+  } else {
     char t[16];
     dtostrf(v, 0, dp, t);
-    snprintf(buf, n, "%s%s", t, suffix);
+    snprintf(buf, n, "%s", t);
   }
 }
 

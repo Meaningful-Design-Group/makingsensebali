@@ -65,6 +65,29 @@ For the HM3301 that's inherited from `diy_node.ino`: Seeed's library uses
 non-standard `u8`/`u16`/`u32` type aliases and won't compile against a modern
 arduino-esp32 core. The frame decode is the same proven code.
 
+### If you see "Multiple libraries were found for SD.h"
+
+Harmless. The IDE picks the ESP32 core's `SD`, which is the right one. To
+silence it, delete the stray `~/Library/Arduino15/libraries/SD` (the AVR-era
+copy) — nothing in this sketch wants it.
+
+### Two rules if you edit this sketch
+
+The Arduino IDE auto-generates a forward declaration for every function in a
+`.ino` and injects them **immediately before the first function definition**.
+That produces two failure modes that look nothing like their cause:
+
+1. **Every struct must be defined above the first function.** There's a
+   `TYPES` block near the top for exactly this. Put a new struct anywhere
+   below and you get `'YourType' was not declared in this scope` pointing at
+   a line that is obviously fine.
+2. **No default arguments on top-level functions.** The IDE copies the
+   default into the generated prototype and leaves it on the definition;
+   the compiler rejects the redefinition.
+
+`tools/ino_check.py` in this repo reproduces the IDE's preprocessing and
+catches both offline, which plain `g++` cannot.
+
 ## Feature flags
 
 At the top of the sketch:
@@ -203,8 +226,12 @@ it if the temperature number matters — buried sensors have been measured
 ## Status
 
 Compile-checked across all seven feature-flag combinations with `-Wall
--Wextra -Wformat=2` against stub headers, and the HM3301 frame decode is
-unit-tested offline against a synthetic packet (offsets, big-endian assembly,
-and checksum rejection of a corrupted frame).
+-Wextra -Wformat=2` against stub headers, **and** through
+`tools/ino_check.py`, which reproduces the Arduino IDE's prototype injection.
+That second check exists because the first one shipped a sketch that built
+fine as plain C++ and failed in the IDE — it's the difference between
+"compiles" and "compiles the way you'll actually build it". The HM3301 frame
+decode is separately unit-tested offline against a synthetic packet (offsets,
+big-endian assembly, and checksum rejection of a corrupted frame).
 
 **Not yet run on hardware.** The v5 enclosure also has no display window cut.
