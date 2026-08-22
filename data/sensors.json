@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T21:44:29.793378+00:00",
+  "generated_at": "2026-08-22T21:59:18.547113+00:00",
   "count": 17,
   "sensors": [
     {
@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-08-22T21:42:18Z",
+      "lastReading": "2026-08-22T21:58:21Z",
       "reading": {
-        "pm25": 9.6,
-        "pm10": 9.6,
-        "temp": 23.45,
-        "rh": 80.75,
-        "noise": 30.66
+        "pm25": 9.7,
+        "pm10": 9.8,
+        "temp": 23.31,
+        "rh": 80.67,
+        "noise": 32.54
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
@@ -83,67 +83,6 @@
       "exclusion_reason": "indoor"
     },
     {
-      "id": "aqicn--519205",
-      "rawId": -519205,
-      "source": "aqicn",
-      "sourceLabel": "AQICN",
-      "name": "Kabupaten Badung Sempidi",
-      "lat": -8.603890419006348,
-      "lng": 115.1780014038086,
-      "lastReading": "2026-08-22T21:00:00Z",
-      "reading": {
-        "pm25": 8.6,
-        "pm10": null,
-        "temp": null,
-        "rh": null,
-        "aqi": 46,
-        "pm25_from_aqi": true
-      },
-      "detailsUrl": "https://aqicn.org/station/@519205",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
-    },
-    {
-      "id": "purpleair-36601",
-      "rawId": 36601,
-      "source": "purpleair",
-      "sourceLabel": "PurpleAir",
-      "indoor": false,
-      "name": "Jimbaran by Lumi Clinic",
-      "lat": -8.791219,
-      "lng": 115.1674,
-      "lastReading": "2026-08-22T21:45:34+00:00",
-      "reading": {
-        "pm25": 0.4,
-        "pm10": null,
-        "temp": 28.9,
-        "rh": 61
-      },
-      "detailsUrl": "https://map.purpleair.com/?select=36601",
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
-    },
-    {
-      "id": "purpleair-46949",
-      "rawId": 46949,
-      "source": "purpleair",
-      "sourceLabel": "PurpleAir",
-      "indoor": false,
-      "name": "Klungkung by Lumi Clinic",
-      "lat": -8.533623,
-      "lng": 115.39973,
-      "lastReading": "2026-08-22T21:44:51+00:00",
-      "reading": {
-        "pm25": 46.6,
-        "pm10": null,
-        "temp": 27.8,
-        "rh": 65
-      },
-      "detailsUrl": "https://map.purpleair.com/?select=46949",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
-    },
-    {
       "id": "airgradient-77247",
       "rawId": 77247,
       "source": "airgradient",
@@ -152,12 +91,12 @@
       "lat": -8.632781,
       "lng": 115.229004,
       "offline": false,
-      "lastReading": "2026-08-22T21:43:44.000Z",
+      "lastReading": "2026-08-22T21:58:44.000Z",
       "reading": {
-        "pm25": 52.2,
-        "pm10": 66.7,
-        "temp": 26.0,
-        "rh": 56
+        "pm25": 47.0,
+        "pm10": 56.8,
+        "temp": 25.9,
+        "rh": 57
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -172,11 +111,11 @@
       "lat": -8.492994479130525,
       "lng": 115.30036092298013,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:06.000Z",
+      "lastReading": "2026-08-22T21:59:06.000Z",
       "reading": {
-        "pm25": 41.7,
-        "pm10": 49.8,
-        "temp": 24.4,
+        "pm25": 42.7,
+        "pm10": 50.8,
+        "temp": 24.3,
         "rh": 62
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -192,11 +131,11 @@
       "lat": -8.661245,
       "lng": 115.16204,
       "offline": false,
-      "lastReading": "2026-08-22T21:43:33.000Z",
+      "lastReading": "2026-08-22T21:58:33.000Z",
       "reading": {
-        "pm25": 48.3,
-        "pm10": 58.8,
-        "temp": 27.9,
+        "pm25": 59.8,
+        "pm10": 70.2,
+        "temp": 27.7,
         "rh": 55
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -212,12 +151,12 @@
       "lat": -8.59456160873381,
       "lng": 115.12636083931227,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:11.000Z",
+      "lastReading": "2026-08-22T21:59:12.000Z",
       "reading": {
-        "pm25": 52.0,
-        "pm10": 66.0,
-        "temp": 24.6,
-        "rh": 62
+        "pm25": 50.5,
+        "pm10": 63.2,
+        "temp": 25.0,
+        "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -232,10 +171,10 @@
       "lat": -8.811206,
       "lng": 115.102523,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:14.000Z",
+      "lastReading": "2026-08-22T21:59:15.000Z",
       "reading": {
-        "pm25": 14.2,
-        "pm10": 15.8,
+        "pm25": 9.2,
+        "pm10": 9.3,
         "temp": 26.9,
         "rh": 57
       },
@@ -252,11 +191,11 @@
       "lat": -8.6158136,
       "lng": 115.1116163,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:03.000Z",
+      "lastReading": "2026-08-22T21:59:03.000Z",
       "reading": {
-        "pm25": 81.0,
-        "pm10": 84.0,
-        "temp": 24.3,
+        "pm25": 63.0,
+        "pm10": 71.5,
+        "temp": 24.2,
         "rh": 63
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -272,11 +211,11 @@
       "lat": -8.574738,
       "lng": 115.214613,
       "offline": false,
-      "lastReading": "2026-08-22T21:43:48.000Z",
+      "lastReading": "2026-08-22T21:58:48.000Z",
       "reading": {
-        "pm25": 48.3,
-        "pm10": 59.3,
-        "temp": 24.1,
+        "pm25": 51.0,
+        "pm10": 62.3,
+        "temp": 23.9,
         "rh": 63
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -292,12 +231,12 @@
       "lat": -8.639718800071547,
       "lng": 115.13980229563802,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:19.000Z",
+      "lastReading": "2026-08-22T21:58:19.000Z",
       "reading": {
-        "pm25": 47.7,
-        "pm10": 60.0,
-        "temp": 26.4,
-        "rh": 57
+        "pm25": 47.8,
+        "pm10": 59.3,
+        "temp": 26.3,
+        "rh": 58
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -312,10 +251,10 @@
       "lat": -8.532428350421988,
       "lng": 115.23403561026724,
       "offline": false,
-      "lastReading": "2026-08-22T21:43:54.000Z",
+      "lastReading": "2026-08-22T21:58:54.000Z",
       "reading": {
-        "pm25": 45.7,
-        "pm10": 55.7,
+        "pm25": 44.8,
+        "pm10": 54.3,
         "temp": 22.8,
         "rh": 69
       },
@@ -332,11 +271,11 @@
       "lat": -8.5677498,
       "lng": 115.2126491,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:01.000Z",
+      "lastReading": "2026-08-22T21:59:01.000Z",
       "reading": {
-        "pm25": 56.2,
-        "pm10": 67.3,
-        "temp": 24.5,
+        "pm25": 50.8,
+        "pm10": 63.0,
+        "temp": 24.3,
         "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -352,11 +291,11 @@
       "lat": -8.64472227054609,
       "lng": 115.1254933477104,
       "offline": false,
-      "lastReading": "2026-08-22T21:43:57.000Z",
+      "lastReading": "2026-08-22T21:58:58.000Z",
       "reading": {
-        "pm25": 45.7,
-        "pm10": 56.0,
-        "temp": 25.5,
+        "pm25": 49.8,
+        "pm10": 62.8,
+        "temp": 25.4,
         "rh": 62
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -372,12 +311,12 @@
       "lat": -8.583793,
       "lng": 115.13047,
       "offline": false,
-      "lastReading": "2026-08-22T21:44:20.000Z",
+      "lastReading": "2026-08-22T21:58:21.000Z",
       "reading": {
-        "pm25": 53.2,
-        "pm10": 65.5,
+        "pm25": 49.8,
+        "pm10": 60.8,
         "temp": 24.8,
-        "rh": 62
+        "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -392,9 +331,9 @@
       "lat": -8.6025,
       "lng": 115.08976,
       "offline": false,
-      "lastReading": "2026-08-22T21:43:59.000Z",
+      "lastReading": "2026-08-22T21:58:59.000Z",
       "reading": {
-        "pm25": 49.5,
+        "pm25": 49.2,
         "pm10": 61.5,
         "temp": 25.1,
         "rh": 61
