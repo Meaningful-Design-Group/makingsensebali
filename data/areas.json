@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T12:24:41.415766+00:00",
+  "generated_at": "2026-08-22T12:40:46.634280+00:00",
   "areas": [
     {
       "locality": "Jimbaran",
@@ -22,7 +22,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 13.7,
+      "pm25": 15.2,
       "summary": null
     },
     {
@@ -43,7 +43,7 @@
         "dense foliage"
       ],
       "max_severity": "medium",
-      "pm25": 26.8,
+      "pm25": 24.0,
       "summary": null
     },
     {
@@ -54,8 +54,8 @@
       "categories": {
         "burning": 21,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "open burning",
@@ -66,7 +66,7 @@
         "plume of smoke"
       ],
       "max_severity": "high",
-      "pm25": 26.8,
+      "pm25": 24.0,
       "summary": null
     },
     {
@@ -100,7 +100,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 27.6,
+      "pm25": 24.8,
       "summary": null
     },
     {
@@ -122,7 +122,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 13.7,
+      "pm25": 15.2,
       "summary": null
     }
   ]
