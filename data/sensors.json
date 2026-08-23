@@ -294,9 +294,9 @@
       "offline": false,
       "lastReading": "2026-08-23T23:07:42.000Z",
       "reading": {
-        "pm25": 17.5,
-        "pm10": 19.5,
-        "temp": 26.6,
+        "pm25": 28.3,
+        "pm10": 28.3,
+        "temp": 26.7,
         "rh": 58
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -312,12 +312,12 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-08-23T22:57:38.000Z",
+      "lastReading": "2026-08-23T23:12:38.000Z",
       "reading": {
-        "pm25": 21.0,
-        "pm10": 22.0,
-        "temp": 22.7,
-        "rh": 93
+        "pm25": 35.0,
+        "pm10": 45.0,
+        "temp": 22.9,
+        "rh": 92
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -340,8 +340,8 @@
         "rh": 69
       },
       "detailsUrl": "https://baliair.pages.dev",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-204185",
