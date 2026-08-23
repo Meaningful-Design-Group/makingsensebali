@@ -234,14 +234,14 @@
       "offline": false,
       "lastReading": "2026-08-23T04:48:25.000Z",
       "reading": {
-        "pm25": 7.3,
-        "pm10": 7.3,
-        "temp": 29.0,
+        "pm25": 4.0,
+        "pm10": 4.8,
+        "temp": 29.2,
         "rh": 49
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     },
     {
       "id": "airgradient-201082",
@@ -280,8 +280,8 @@
         "rh": 46
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-203333",
