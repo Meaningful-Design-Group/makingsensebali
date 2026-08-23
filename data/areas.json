@@ -41,8 +41,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "none": 3,
         "trash": 3,
+        "none": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -56,7 +56,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 5.6,
+      "pm25": 6.3,
       "summary": null
     },
     {
@@ -78,7 +78,7 @@
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 13.9,
+      "pm25": 13.7,
       "summary": null
     },
     {
@@ -101,7 +101,7 @@
         "plume of smoke"
       ],
       "max_severity": "high",
-      "pm25": 13.9,
+      "pm25": 13.7,
       "summary": null
     },
     {
@@ -145,8 +145,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "other": 1,
-        "none": 1
+        "none": 1,
+        "other": 1
       },
       "top_tags": [
         "smoke rising",
@@ -157,7 +157,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 5.6,
+      "pm25": 6.3,
       "summary": null
     }
   ]
