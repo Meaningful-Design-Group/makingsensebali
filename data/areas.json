@@ -2,6 +2,40 @@
   "generated_at": "2026-08-23T01:39:18.449765+00:00",
   "areas": [
     {
+      "locality": "Buwit",
+      "lat": -8.604197,
+      "lon": 115.121058,
+      "report_count": 1,
+      "categories": {
+        "none": 1
+      },
+      "top_tags": [
+        "lush tropical foliage",
+        "palm fronds",
+        "clear air"
+      ],
+      "max_severity": "low",
+      "pm25": 34.7,
+      "summary": null
+    },
+    {
+      "locality": "Cemagi",
+      "lat": -8.63249,
+      "lon": 115.109925,
+      "report_count": 2,
+      "categories": {
+        "burning": 2
+      },
+      "top_tags": [
+        "plume of smoke",
+        "smoke rising from field area",
+        "distant smoke"
+      ],
+      "max_severity": "medium",
+      "pm25": 33.5,
+      "summary": null
+    },
+    {
       "locality": "Jimbaran",
       "lat": -8.789683,
       "lon": 115.162496,
@@ -29,9 +63,9 @@
       "locality": "Kerobokan",
       "lat": -8.652651,
       "lon": 115.162566,
-      "report_count": 7,
+      "report_count": 10,
       "categories": {
-        "burning": 5,
+        "burning": 8,
         "none": 2
       },
       "top_tags": [
@@ -50,15 +84,14 @@
       "locality": "Kerobokan Kelod",
       "lat": -8.670005,
       "lon": 115.162793,
-      "report_count": 25,
+      "report_count": 26,
       "categories": {
-        "burning": 21,
+        "burning": 22,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
-        "open burning",
         "smoke plume",
         "intense orange glow",
         "open fire",
