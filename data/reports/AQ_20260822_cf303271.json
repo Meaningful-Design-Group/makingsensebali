@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "None observation — Bali, Bali",
+  "description": "Air quality here is very bad all day every day but especially in the night and early morning. Several houses around burn trash every day",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260822_cf303271.json",
+  "latitude": -8.604197,
+  "longitude": 115.121058,
+  "geolocation": {
+    "lat": -8.604197,
+    "lon": 115.121058
+  },
+  "locality": "Buwit",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-22T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "none",
+  "ai_analysis": {
+    "detected": false,
+    "confidence": 1.0,
+    "indicators": [
+      "lush tropical foliage",
+      "palm fronds",
+      "clear air"
+    ],
+    "description": "A view of dense tropical foliage overlooking a body of water.",
+    "severity": "low",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260822_cf303271.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-22T00:00:00+00:00",
+    "reported_timestamp": "2026-08-22T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Buwit",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}
