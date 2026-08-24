@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T02:32:17.431769+00:00",
+  "generated_at": "2026-08-24T02:47:30.042438+00:00",
   "areas": [
     {
       "locality": "Buwit",
@@ -15,7 +15,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 23.3,
+      "pm25": 17.4,
       "summary": null
     },
     {
@@ -32,7 +32,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 17.7,
+      "pm25": 17.1,
       "summary": null
     },
     {
@@ -49,11 +49,11 @@
       },
       "top_tags": [
         "various types of waste",
-        "discarded plastic bottle",
-        "scattered litter",
-        "dry grassy ground",
-        "no visible smoke",
-        "no visible fire"
+        "large amount of trash",
+        "smoke visible",
+        "motorbike smoke",
+        "motorbike",
+        "dirt road"
       ],
       "max_severity": "high",
       "pm25": null,
@@ -69,15 +69,15 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
-        "localized smoke plume",
         "smoke plume",
-        "visible fire",
-        "rising smoke"
+        "smoke rising from ground",
+        "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 15.3,
+      "pm25": 14.6,
       "summary": null
     },
     {
@@ -88,8 +88,8 @@
       "categories": {
         "burning": 22,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -97,10 +97,10 @@
         "open fire",
         "construction site",
         "intense orange glow",
-        "burning debris"
+        "plume of smoke"
       ],
       "max_severity": "high",
-      "pm25": 15.3,
+      "pm25": 14.6,
       "summary": null
     },
     {
@@ -117,7 +117,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 56.7,
+      "pm25": 19.2,
       "summary": null
     },
     {
@@ -134,7 +134,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 14.5,
+      "pm25": 13.4,
       "summary": null
     },
     {
@@ -149,11 +149,11 @@
       },
       "top_tags": [
         "smoke rising",
-        "open burning",
-        "pile of trash",
-        "very dark image",
-        "indistinct glow",
-        "open burning area"
+        "open burning area",
+        "dry ground debris",
+        "large pile of mixed trash",
+        "visible smoke rising from the waste",
+        "dark debris"
       ],
       "max_severity": "medium",
       "pm25": null,
