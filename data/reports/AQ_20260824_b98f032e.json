@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260824_b98f032e.json",
+  "latitude": -8.629207,
+  "longitude": 115.126202,
+  "geolocation": {
+    "lat": -8.629207,
+    "lon": 115.126202
+  },
+  "locality": "Munggu",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-24T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.9,
+    "indicators": [
+      "plume of smoke",
+      "smoke rising from structures",
+      "haze"
+    ],
+    "description": "Smoke is visible rising above the buildings in the background.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260824_b98f032e.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-24T00:00:00+00:00",
+    "reported_timestamp": "2026-08-24T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Munggu",
+    "kecamatan": "Mengwi",
+    "kabupaten": "Badung"
+  }
+}
