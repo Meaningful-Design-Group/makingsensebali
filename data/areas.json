@@ -15,7 +15,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 35.1,
+      "pm25": 32.9,
       "summary": null
     },
     {
@@ -56,7 +56,7 @@
         "no visible fire"
       ],
       "max_severity": "high",
-      "pm25": 5.2,
+      "pm25": null,
       "summary": null
     },
     {
@@ -69,6 +69,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "localized smoke plume",
@@ -88,8 +89,8 @@
       "categories": {
         "burning": 22,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -156,7 +157,7 @@
         "open burning area"
       ],
       "max_severity": "medium",
-      "pm25": 5.2,
+      "pm25": null,
       "summary": null
     }
   ]
