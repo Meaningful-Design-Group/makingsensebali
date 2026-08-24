@@ -83,6 +83,27 @@
       "exclusion_reason": "indoor"
     },
     {
+      "id": "aqicn--519205",
+      "rawId": -519205,
+      "source": "aqicn",
+      "sourceLabel": "AQICN",
+      "name": "Kabupaten Badung Sempidi",
+      "lat": -8.603890419006348,
+      "lng": 115.1780014038086,
+      "lastReading": "2026-08-24T18:00:00Z",
+      "reading": {
+        "pm25": 6.5,
+        "pm10": null,
+        "temp": null,
+        "rh": null,
+        "aqi": 46,
+        "pm25_from_aqi": true
+      },
+      "detailsUrl": "https://aqicn.org/station/@519205",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
       "id": "airgradient-77247",
       "rawId": 77247,
       "source": "airgradient",
@@ -113,9 +134,9 @@
       "offline": false,
       "lastReading": "2026-08-24T19:00:15.000Z",
       "reading": {
-        "pm25": 19.0,
-        "pm10": 20.0,
-        "temp": 25.3,
+        "pm25": 11.3,
+        "pm10": 14.5,
+        "temp": 25.4,
         "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
