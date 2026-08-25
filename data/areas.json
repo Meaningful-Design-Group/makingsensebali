@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T14:42:47.879785+00:00",
+  "generated_at": "2026-08-25T14:59:26.505129+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 17.1,
+      "pm25": 13.8,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 16.1,
+      "pm25": 12.3,
       "summary": null
     },
     {
@@ -48,7 +48,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 16.5,
+      "pm25": 11.6,
       "summary": null
     },
     {
@@ -57,8 +57,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "none": 3,
         "trash": 3,
+        "none": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -87,12 +87,13 @@
       "top_tags": [
         "smoke rising",
         "burning trash",
+        "localized smoke plume",
         "smoke plume",
         "smoke rising from ground",
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 13.2,
+      "pm25": 9.2,
       "summary": null
     },
     {
@@ -115,7 +116,7 @@
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 13.2,
+      "pm25": 9.2,
       "summary": null
     },
     {
@@ -127,15 +128,15 @@
         "burning": 2
       },
       "top_tags": [
-        "plume of smoke",
-        "smoke rising from structures",
-        "haze",
         "thick smoke plume",
         "visible fire source",
-        "open burning"
+        "open burning",
+        "plume of smoke",
+        "smoke rising from structures",
+        "haze"
       ],
       "max_severity": "high",
-      "pm25": 15.5,
+      "pm25": 10.8,
       "summary": null
     },
     {
@@ -152,7 +153,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 10.8,
+      "pm25": 6.5,
       "summary": null
     },
     {
@@ -169,7 +170,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 13.8,
+      "pm25": 16.0,
       "summary": null
     },
     {
@@ -186,7 +187,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 13.6,
+      "pm25": 10.0,
       "summary": null
     },
     {
@@ -196,8 +197,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "other": 1,
-        "none": 1
+        "none": 1,
+        "other": 1
       },
       "top_tags": [
         "smoke rising",
