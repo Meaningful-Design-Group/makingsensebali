@@ -265,6 +265,10 @@ Jangan lewati langkah. Masing-masing mengisolasi kelas bug yang berbeda.
 
 **Tahap 4 — PCB cetakan (opsional, untuk produksi batch).** Setelah sebuah desain berjalan andal di tahap 3 selama beberapa bulan, tata letak papan pembawa khusus di KiCad dan milling pada printer PCB Fab Lab Bali. Ini adalah tahap "kami berkomitmen memasang 20 unit ini", bukan rakitan pertama.
 
+### Rakitan yang mengambil jalan lain
+
+[`node-v2/`](node-v2/) mendokumentasikan node generasi kedua milik Fab Lab Bali sendiri — elektronik XIAO + HM3301 + BME680 yang sama, diletakkan sejajar di satu lantai sasis di dalam cangkang segitiga yang ringkas. Node itu dibangun, dipasang, dan diuji berdampingan dengan SCK, lalu gagal pada dua hal: radio ESP32 memanaskan BME680 lewat dinding sekat, dan lubang masuk udara di bagian bawah terlambat menangkap puncak PM yang nyata. Kedua mode kegagalan itu ditulis lengkap di sana, beserta apa yang harus dilakukan V3 terhadapnya. Baca dulu sebelum Anda merancang cangkang sendiri — itu cara termurah untuk tidak mengulang dua kesalahan tersebut. "V2" di sana menghitung generasi node dan tidak ada hubungannya dengan `enclosure/archive/v2-lantern/`.
+
 ## Catatan penerapan Bali
 
 Alasan kampanye ini ada adalah datanya, bukan firmware-nya. Tanggapi bagian ini dengan serius.
