@@ -19,8 +19,8 @@
         "noise": 36.86
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "sck-19600",
@@ -112,12 +112,12 @@
       "name": "Jimbaran by Lumi Clinic",
       "lat": -8.791219,
       "lng": 115.1674,
-      "lastReading": "2026-08-25T13:32:55+00:00",
+      "lastReading": "2026-08-25T13:48:55+00:00",
       "reading": {
-        "pm25": 0.5,
+        "pm25": 0.4,
         "pm10": null,
         "temp": 30.0,
-        "rh": 57
+        "rh": 58
       },
       "detailsUrl": "https://map.purpleair.com/?select=36601",
       "excluded_from_avg": true,
@@ -132,12 +132,12 @@
       "name": "Klungkung by Lumi Clinic",
       "lat": -8.533623,
       "lng": 115.39973,
-      "lastReading": "2026-08-25T13:32:13+00:00",
+      "lastReading": "2026-08-25T13:50:13+00:00",
       "reading": {
-        "pm25": 13.1,
+        "pm25": 12.2,
         "pm10": null,
         "temp": 29.4,
-        "rh": 61
+        "rh": 62
       },
       "detailsUrl": "https://map.purpleair.com/?select=46949",
       "excluded_from_avg": false,
@@ -174,9 +174,9 @@
       "offline": false,
       "lastReading": "2026-08-25T13:45:43.000Z",
       "reading": {
-        "pm25": 34.7,
-        "pm10": 39.5,
-        "temp": 26.2,
+        "pm25": 33.2,
+        "pm10": 41.2,
+        "temp": 26.0,
         "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -237,7 +237,7 @@
         "pm25": 4.3,
         "pm10": 4.3,
         "temp": 27.8,
-        "rh": 54
+        "rh": 55
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": true,
@@ -260,8 +260,8 @@
         "rh": 59
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": true,
-      "exclusion_reason": "outlier_high"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-203332",
@@ -294,10 +294,10 @@
       "offline": false,
       "lastReading": "2026-08-25T13:45:12.000Z",
       "reading": {
-        "pm25": 25.8,
-        "pm10": 28.0,
-        "temp": 28.3,
-        "rh": 53
+        "pm25": 23.0,
+        "pm10": 23.5,
+        "temp": 28.2,
+        "rh": 54
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
