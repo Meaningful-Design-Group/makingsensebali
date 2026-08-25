@@ -265,6 +265,10 @@ Do not skip steps. Each one isolates a different class of bug.
 
 **Stage 4 — Printed PCB (optional, for batch builds).** Once a design has run reliably in stage 3 for a few months, layout a custom carrier board in KiCad and mill it on Fab Lab Bali's PCB printer. This is the "we're committing to deploying 20 of these" stage, not the first build.
 
+### A build that went the other way
+
+[`node-v2/`](node-v2/) documents Fab Lab Bali's own second-generation node — the same XIAO + HM3301 + BME680 electronics, laid side by side on one floor inside a compact triangular shell. It was built, deployed, and co-located against an SCK, and it failed on two counts: the ESP32's radio heated the BME680 through the divider wall, and a bottom-mounted air intake lagged real PM peaks. Both failure modes are written up there, with what a V3 has to do about them. Read it before designing a shell of your own — it's the cheapest way to not repeat those two mistakes. Its "V2" counts node generations and has nothing to do with `enclosure/archive/v2-lantern/`.
+
 ## Bali deployment notes
 
 The reason the campaign exists is the data, not the firmware. Take this part seriously.
