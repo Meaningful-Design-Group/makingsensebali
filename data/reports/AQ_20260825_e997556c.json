@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "A small-scale incinerator operates regularly from Monday to Saturday, generally from around 9:00 AM to 5:00 PM, producing heavy smoke emissions, at times including visible black smoke. Depending on the wind direction, the smoke disperses into the surrounding area.\r\n\r\nToday, 25 August 2026, the main wind direction is downstream/westerly according to the wind monitoring app. However, intermittent changes in wind direction occasionally carry smoke into the surrounding area, sometimes several hundre",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260825_e997556c.json",
+  "latitude": -8.599524,
+  "longitude": 115.09401,
+  "geolocation": {
+    "lat": -8.599524,
+    "lon": 115.09401
+  },
+  "locality": "Belalang",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-25T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.9,
+    "indicators": [
+      "plume of smoke",
+      "open burning"
+    ],
+    "description": "Smoke is visible rising in the background of a rural road.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260825_e997556c.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-25T00:00:00+00:00",
+    "reported_timestamp": "2026-08-25T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Belalang",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}
