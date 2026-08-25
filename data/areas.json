@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T09:41:47.724215+00:00",
+  "generated_at": "2026-08-25T09:50:04.981758+00:00",
   "areas": [
     {
       "locality": "Buwit",
@@ -15,7 +15,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 18.4,
+      "pm25": 23.8,
       "summary": null
     },
     {
@@ -28,12 +28,12 @@
       },
       "top_tags": [
         "plume of smoke",
-        "smoke rising from field area",
-        "distant smoke"
+        "distant smoke",
+        "smoke rising from field area"
       ],
       "max_severity": "medium",
-      "pm25": 15.7,
-      "summary": "Smoke is visible rising above residential buildings near rice fields, with reports of both medium and"
+      "pm25": 23.6,
+      "summary": null
     },
     {
       "locality": "Jimbaran",
@@ -49,14 +49,14 @@
       },
       "top_tags": [
         "various types of waste",
-        "large amount of trash",
-        "smoke visible",
-        "motorbike smoke",
-        "motorbike",
-        "dirt road"
+        "no visible smoke",
+        "no visible fire",
+        "no airborne particulates",
+        "pile of garbage",
+        "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 6.0,
+      "pm25": 5.9,
       "summary": null
     },
     {
@@ -69,15 +69,15 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
-        "smoke rising from ground",
-        "trash pile"
+        "localized smoke plume",
+        "trash pile",
+        "wooden building"
       ],
       "max_severity": "medium",
-      "pm25": 14.9,
+      "pm25": 11.8,
       "summary": null
     },
     {
@@ -88,19 +88,19 @@
       "categories": {
         "burning": 24,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
         "open burning",
         "open fire",
-        "plume of smoke",
         "construction debris",
+        "intense orange glow",
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 14.9,
+      "pm25": 11.8,
       "summary": null
     },
     {
@@ -117,7 +117,7 @@
         "haze"
       ],
       "max_severity": "medium",
-      "pm25": 15.4,
+      "pm25": 21.4,
       "summary": null
     },
     {
@@ -134,7 +134,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 11.9,
+      "pm25": 10.8,
       "summary": null
     },
     {
@@ -151,7 +151,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 35.0,
+      "pm25": 25.2,
       "summary": null
     },
     {
@@ -168,7 +168,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 14.0,
+      "pm25": 14.6,
       "summary": null
     },
     {
@@ -183,14 +183,14 @@
       },
       "top_tags": [
         "smoke rising",
-        "open burning area",
-        "dry ground debris",
-        "large pile of mixed trash",
-        "visible smoke rising from the waste",
-        "dark debris"
+        "very dark image",
+        "indistinct glow",
+        "open burning",
+        "pile of trash",
+        "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 6.0,
+      "pm25": 5.9,
       "summary": null
     }
   ]
