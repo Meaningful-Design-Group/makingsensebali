@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-08-25T09:50:04.981758+00:00",
+  "generated_at": "2026-08-25T10:12:59.625989+00:00",
   "areas": [
+    {
+      "locality": "Belalang",
+      "lat": -8.599524,
+      "lon": 115.09401,
+      "report_count": 1,
+      "categories": {
+        "burning": 1
+      },
+      "top_tags": [
+        "plume of smoke",
+        "open burning"
+      ],
+      "max_severity": "medium",
+      "pm25": 31.2,
+      "summary": null
+    },
     {
       "locality": "Buwit",
       "lat": -8.604197,
@@ -15,7 +31,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 23.8,
+      "pm25": 25.1,
       "summary": null
     },
     {
@@ -28,11 +44,11 @@
       },
       "top_tags": [
         "plume of smoke",
-        "distant smoke",
-        "smoke rising from field area"
+        "smoke rising from field area",
+        "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 23.6,
+      "pm25": 23.8,
       "summary": null
     },
     {
@@ -49,14 +65,14 @@
       },
       "top_tags": [
         "various types of waste",
-        "no visible smoke",
-        "no visible fire",
-        "no airborne particulates",
-        "pile of garbage",
-        "uncollected"
+        "large amount of trash",
+        "smoke visible",
+        "motorbike smoke",
+        "motorbike",
+        "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 5.9,
+      "pm25": 6.1,
       "summary": null
     },
     {
@@ -69,16 +85,15 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
-        "localized smoke plume",
         "smoke plume",
-        "localized smoke plume",
-        "trash pile",
-        "wooden building"
+        "smoke rising from ground",
+        "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 11.8,
+      "pm25": 13.9,
       "summary": null
     },
     {
@@ -89,36 +104,39 @@
       "categories": {
         "burning": 24,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
         "open burning",
         "open fire",
+        "plume of smoke",
         "construction debris",
-        "intense orange glow",
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 11.8,
+      "pm25": 13.9,
       "summary": null
     },
     {
       "locality": "Munggu",
       "lat": -8.629207,
       "lon": 115.126202,
-      "report_count": 1,
+      "report_count": 2,
       "categories": {
-        "burning": 1
+        "burning": 2
       },
       "top_tags": [
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
-      "max_severity": "medium",
-      "pm25": 21.4,
+      "max_severity": "high",
+      "pm25": 22.5,
       "summary": null
     },
     {
@@ -135,7 +153,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 10.8,
+      "pm25": 13.2,
       "summary": null
     },
     {
@@ -152,7 +170,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 25.2,
+      "pm25": 32.8,
       "summary": null
     },
     {
@@ -169,7 +187,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 14.6,
+      "pm25": 20.6,
       "summary": null
     },
     {
@@ -184,14 +202,14 @@
       },
       "top_tags": [
         "smoke rising",
-        "very dark image",
-        "indistinct glow",
-        "open burning",
-        "pile of trash",
-        "large pile of mixed trash"
+        "open burning area",
+        "dry ground debris",
+        "large pile of mixed trash",
+        "visible smoke rising from the waste",
+        "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 5.9,
+      "pm25": 6.1,
       "summary": null
     }
   ]
