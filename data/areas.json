@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T17:49:46.279778+00:00",
+  "generated_at": "2026-08-25T17:54:42.573219+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 23.3,
+      "pm25": 25.6,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 18.7,
+      "pm25": 20.5,
       "summary": null
     },
     {
@@ -44,11 +44,11 @@
       },
       "top_tags": [
         "plume of smoke",
-        "smoke rising from field area",
-        "distant smoke"
+        "distant smoke",
+        "smoke rising from field area"
       ],
       "max_severity": "medium",
-      "pm25": 14.8,
+      "pm25": 16.9,
       "summary": null
     },
     {
@@ -57,22 +57,22 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
       },
       "top_tags": [
         "various types of waste",
-        "large amount of trash",
-        "smoke visible",
-        "motorbike smoke",
-        "motorbike",
-        "dirt road"
+        "no visible smoke",
+        "no visible fire",
+        "no airborne particulates",
+        "pile of garbage",
+        "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 7.0,
+      "pm25": 6.5,
       "summary": null
     },
     {
@@ -85,15 +85,15 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
-        "smoke rising from ground",
-        "trash pile"
+        "localized smoke plume",
+        "trash pile",
+        "wooden building"
       ],
       "max_severity": "medium",
-      "pm25": 8.2,
+      "pm25": 8.4,
       "summary": null
     },
     {
@@ -104,19 +104,19 @@
       "categories": {
         "burning": 24,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
         "open burning",
         "open fire",
-        "plume of smoke",
         "construction debris",
+        "intense orange glow",
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 8.2,
+      "pm25": 8.4,
       "summary": null
     },
     {
@@ -128,15 +128,15 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
-      "pm25": 13.5,
+      "pm25": 15.3,
       "summary": null
     },
     {
@@ -153,7 +153,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 6.2,
+      "pm25": 6.5,
       "summary": null
     },
     {
@@ -170,7 +170,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 42.2,
+      "pm25": 42.0,
       "summary": null
     },
     {
@@ -187,7 +187,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 8.1,
+      "pm25": 10.2,
       "summary": null
     },
     {
@@ -197,19 +197,19 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
-        "open burning area",
-        "dry ground debris",
-        "large pile of mixed trash",
-        "visible smoke rising from the waste",
-        "dark debris"
+        "very dark image",
+        "indistinct glow",
+        "open burning",
+        "pile of trash",
+        "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 7.0,
+      "pm25": 6.5,
       "summary": null
     }
   ]
