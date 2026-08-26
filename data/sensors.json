@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-26T13:47:15.891295+00:00",
-  "count": 21,
+  "generated_at": "2026-08-26T14:03:54.858713+00:00",
+  "count": 22,
   "sensors": [
     {
       "id": "sck-19236",
@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-08-26T13:44:17Z",
+      "lastReading": "2026-08-26T14:03:17Z",
       "reading": {
-        "pm25": 9.1,
-        "pm10": 9.1,
-        "temp": 24.75,
-        "rh": 77.56,
-        "noise": 38.17
+        "pm25": 8.1,
+        "pm10": 8.1,
+        "temp": 24.72,
+        "rh": 78.09,
+        "noise": 36.0
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
@@ -112,12 +112,12 @@
       "name": "Jimbaran by Lumi Clinic",
       "lat": -8.791219,
       "lng": 115.1674,
-      "lastReading": "2026-08-26T13:45:23+00:00",
+      "lastReading": "2026-08-26T14:03:25+00:00",
       "reading": {
-        "pm25": 0.7,
+        "pm25": 0.6,
         "pm10": null,
-        "temp": 30.6,
-        "rh": 57
+        "temp": 30.0,
+        "rh": 58
       },
       "detailsUrl": "https://map.purpleair.com/?select=36601",
       "excluded_from_avg": true,
@@ -132,9 +132,9 @@
       "name": "Klungkung by Lumi Clinic",
       "lat": -8.533623,
       "lng": 115.39973,
-      "lastReading": "2026-08-26T13:46:51+00:00",
+      "lastReading": "2026-08-26T14:00:53+00:00",
       "reading": {
-        "pm25": 17.5,
+        "pm25": 18.3,
         "pm10": null,
         "temp": 28.9,
         "rh": 58
@@ -152,11 +152,11 @@
       "lat": -8.632781,
       "lng": 115.229004,
       "offline": false,
-      "lastReading": "2026-08-26T13:46:31.000Z",
+      "lastReading": "2026-08-26T14:03:32.000Z",
       "reading": {
-        "pm25": 32.5,
-        "pm10": 35.0,
-        "temp": 27.4,
+        "pm25": 25.7,
+        "pm10": 28.2,
+        "temp": 27.3,
         "rh": 56
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -212,12 +212,12 @@
       "lat": -8.59456160873381,
       "lng": 115.12636083931227,
       "offline": false,
-      "lastReading": "2026-08-26T13:46:14.000Z",
+      "lastReading": "2026-08-26T14:03:14.000Z",
       "reading": {
-        "pm25": 51.5,
-        "pm10": 65.7,
-        "temp": 27.3,
-        "rh": 57
+        "pm25": 47.3,
+        "pm10": 59.0,
+        "temp": 27.1,
+        "rh": 58
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -232,11 +232,11 @@
       "lat": -8.50498,
       "lng": 115.25379,
       "offline": false,
-      "lastReading": "2026-08-26T13:46:35.000Z",
+      "lastReading": "2026-08-26T14:03:36.000Z",
       "reading": {
-        "pm25": 50.2,
-        "pm10": 62.2,
-        "temp": 26.5,
+        "pm25": 51.5,
+        "pm10": 62.5,
+        "temp": 26.3,
         "rh": 58
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -252,12 +252,12 @@
       "lat": -8.811206,
       "lng": 115.102523,
       "offline": false,
-      "lastReading": "2026-08-26T13:47:07.000Z",
+      "lastReading": "2026-08-26T14:03:07.000Z",
       "reading": {
-        "pm25": 12.7,
-        "pm10": 12.7,
-        "temp": 27.8,
-        "rh": 55
+        "pm25": 9.0,
+        "pm10": 9.0,
+        "temp": 27.7,
+        "rh": 56
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -272,12 +272,32 @@
       "lat": -8.6158136,
       "lng": 115.1116163,
       "offline": false,
-      "lastReading": "2026-08-26T13:46:20.000Z",
+      "lastReading": "2026-08-26T14:03:21.000Z",
       "reading": {
-        "pm25": 43.2,
-        "pm10": 51.2,
+        "pm25": 44.2,
+        "pm10": 53.5,
         "temp": 26.5,
         "rh": 60
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "excluded_from_avg": false,
+      "exclusion_reason": null
+    },
+    {
+      "id": "airgradient-203332",
+      "rawId": 203332,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Sibang Eco Village Car Park",
+      "lat": -8.574738,
+      "lng": 115.214613,
+      "offline": false,
+      "lastReading": "2026-08-26T14:03:42.000Z",
+      "reading": {
+        "pm25": 52.0,
+        "pm10": 66.0,
+        "temp": 23.3,
+        "rh": 70
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -314,9 +334,9 @@
       "offline": false,
       "lastReading": "2026-08-26T13:49:55.000Z",
       "reading": {
-        "pm25": 25.0,
-        "pm10": 26.0,
-        "temp": 23.8,
+        "pm25": 26.0,
+        "pm10": 30.0,
+        "temp": 23.6,
         "rh": 83
       },
       "detailsUrl": "https://www.airgradient.com/map/",
