@@ -72,7 +72,7 @@
         "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 7.0,
+      "pm25": 6.5,
       "summary": null
     },
     {
@@ -85,6 +85,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "localized smoke plume",
@@ -105,8 +106,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -210,7 +211,7 @@
         "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 7.0,
+      "pm25": 6.5,
       "summary": null
     }
   ]
