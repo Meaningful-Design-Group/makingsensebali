@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T10:33:00.632782+00:00",
+  "generated_at": "2026-08-26T10:48:12.073080+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 42.2,
+      "pm25": 42.0,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 38.4,
+      "pm25": 38.2,
       "summary": null
     },
     {
@@ -48,7 +48,7 @@
         "smoke rising from field area"
       ],
       "max_severity": "medium",
-      "pm25": 38.9,
+      "pm25": 36.6,
       "summary": null
     },
     {
@@ -72,7 +72,7 @@
         "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 15.6,
+      "pm25": 15.3,
       "summary": null
     },
     {
@@ -85,6 +85,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "localized smoke plume",
@@ -94,7 +95,7 @@
         "wooden building"
       ],
       "max_severity": "medium",
-      "pm25": 32.9,
+      "pm25": 33.6,
       "summary": null
     },
     {
@@ -105,8 +106,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -117,7 +118,7 @@
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 32.9,
+      "pm25": 33.6,
       "summary": null
     },
     {
@@ -137,7 +138,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 37.3,
+      "pm25": 36.5,
       "summary": null
     },
     {
@@ -154,7 +155,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 29.7,
+      "pm25": 34.8,
       "summary": null
     },
     {
@@ -171,7 +172,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 35.3,
+      "pm25": 46.2,
       "summary": null
     },
     {
@@ -188,7 +189,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 36.6,
+      "pm25": 34.7,
       "summary": null
     },
     {
@@ -210,7 +211,7 @@
         "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 15.6,
+      "pm25": 15.3,
       "summary": null
     }
   ]
