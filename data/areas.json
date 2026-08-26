@@ -48,7 +48,7 @@
         "smoke rising from field area"
       ],
       "max_severity": "medium",
-      "pm25": 13.8,
+      "pm25": 14.4,
       "summary": null
     },
     {
@@ -72,7 +72,7 @@
         "uncollected"
       ],
       "max_severity": "high",
-      "pm25": null,
+      "pm25": 5.5,
       "summary": null
     },
     {
@@ -85,6 +85,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
@@ -104,8 +105,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -136,7 +137,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 12.6,
+      "pm25": 13.3,
       "summary": null
     },
     {
@@ -209,7 +210,7 @@
         "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 5.5,
       "summary": null
     }
   ]
