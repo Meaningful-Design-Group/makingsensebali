@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T19:38:52.625440+00:00",
+  "generated_at": "2026-08-26T19:55:30.517225+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 47.9,
+      "pm25": 45.9,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 41.1,
+      "pm25": 47.4,
       "summary": null
     },
     {
@@ -48,7 +48,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 40.2,
+      "pm25": 47.9,
       "summary": null
     },
     {
@@ -72,7 +72,7 @@
         "no visible fire"
       ],
       "max_severity": "high",
-      "pm25": 6.2,
+      "pm25": 8.1,
       "summary": null
     },
     {
@@ -85,7 +85,6 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
@@ -93,7 +92,7 @@
         "rising smoke"
       ],
       "max_severity": "medium",
-      "pm25": 28.1,
+      "pm25": 41.6,
       "summary": null
     },
     {
@@ -104,8 +103,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
@@ -116,7 +115,7 @@
         "intense orange glow"
       ],
       "max_severity": "high",
-      "pm25": 28.1,
+      "pm25": 41.6,
       "summary": null
     },
     {
@@ -136,7 +135,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 36.5,
+      "pm25": 43.3,
       "summary": null
     },
     {
@@ -153,7 +152,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 17.1,
+      "pm25": 31.1,
       "summary": null
     },
     {
@@ -170,7 +169,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 46.8,
+      "pm25": 44.7,
       "summary": null
     },
     {
@@ -187,7 +186,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 28.3,
+      "pm25": 37.0,
       "summary": null
     },
     {
@@ -209,7 +208,7 @@
         "open burning area"
       ],
       "max_severity": "medium",
-      "pm25": 6.2,
+      "pm25": 8.1,
       "summary": null
     }
   ]
