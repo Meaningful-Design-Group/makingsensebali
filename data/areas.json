@@ -57,8 +57,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "none": 3,
         "trash": 3,
+        "none": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -85,7 +85,6 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
@@ -104,8 +103,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
@@ -128,12 +127,12 @@
         "burning": 2
       },
       "top_tags": [
-        "plume of smoke",
-        "smoke rising from structures",
-        "haze",
         "thick smoke plume",
         "visible fire source",
-        "open burning"
+        "open burning",
+        "plume of smoke",
+        "smoke rising from structures",
+        "haze"
       ],
       "max_severity": "high",
       "pm25": 58.7,
@@ -197,8 +196,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "other": 1,
-        "none": 1
+        "none": 1,
+        "other": 1
       },
       "top_tags": [
         "smoke rising",
