@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-08-27T12:37:53Z",
+      "lastReading": "2026-08-27T12:53:56Z",
       "reading": {
-        "pm25": 14.0,
-        "pm10": 14.0,
-        "temp": 25.15,
-        "rh": 75.38,
-        "noise": 42.16
+        "pm25": 15.3,
+        "pm10": 15.3,
+        "temp": 25.11,
+        "rh": 75.82,
+        "noise": 46.63
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
@@ -280,8 +280,8 @@
         "rh": 60
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-203332",
@@ -332,12 +332,12 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-08-27T12:39:52.000Z",
+      "lastReading": "2026-08-27T12:54:52.000Z",
       "reading": {
-        "pm25": 36.0,
-        "pm10": 45.0,
-        "temp": 24.1,
-        "rh": 80
+        "pm25": 43.0,
+        "pm10": 55.0,
+        "temp": 23.9,
+        "rh": 81
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -380,8 +380,8 @@
         "rh": 56
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-204186",
