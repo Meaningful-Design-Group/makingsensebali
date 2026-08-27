@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-08-27T12:22:53Z",
+      "lastReading": "2026-08-27T12:37:53Z",
       "reading": {
         "pm25": 14.0,
         "pm10": 14.0,
-        "temp": 25.35,
-        "rh": 75.63,
-        "noise": 45.98
+        "temp": 25.15,
+        "rh": 75.38,
+        "noise": 42.16
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
@@ -332,12 +332,12 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-08-27T12:24:53.000Z",
+      "lastReading": "2026-08-27T12:39:52.000Z",
       "reading": {
-        "pm25": 38.0,
-        "pm10": 48.0,
-        "temp": 24.3,
-        "rh": 78
+        "pm25": 36.0,
+        "pm10": 45.0,
+        "temp": 24.1,
+        "rh": 80
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -360,8 +360,8 @@
         "rh": 65
       },
       "detailsUrl": "https://baliair.pages.dev",
-      "excluded_from_avg": true,
-      "exclusion_reason": "outlier_high"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-204185",
