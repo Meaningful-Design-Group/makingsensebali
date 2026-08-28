@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T15:04:59.603259+00:00",
+  "generated_at": "2026-08-28T15:20:19.572315+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 82.8,
+      "pm25": 81.6,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 27.8,
+      "pm25": 25.8,
       "summary": null
     },
     {
@@ -48,7 +48,7 @@
         "low visibility"
       ],
       "max_severity": "high",
-      "pm25": 66.6,
+      "pm25": 65.3,
       "summary": null
     },
     {
@@ -65,7 +65,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 72.6,
+      "pm25": 71.7,
       "summary": null
     },
     {
@@ -82,7 +82,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 68.7,
+      "pm25": 67.7,
       "summary": null
     },
     {
@@ -91,8 +91,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -106,7 +106,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 27.8,
+      "pm25": 25.8,
       "summary": null
     },
     {
@@ -127,7 +127,7 @@
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 46.6,
+      "pm25": 45.4,
       "summary": null
     },
     {
@@ -150,7 +150,7 @@
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 46.6,
+      "pm25": 45.4,
       "summary": null
     },
     {
@@ -162,15 +162,15 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
-      "pm25": 65.5,
+      "pm25": 64.3,
       "summary": null
     },
     {
@@ -187,7 +187,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 49.0,
+      "pm25": 47.0,
       "summary": null
     },
     {
@@ -204,7 +204,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 95.7,
+      "pm25": 95.5,
       "summary": null
     },
     {
@@ -221,7 +221,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 52.1,
+      "pm25": 51.5,
       "summary": null
     },
     {
@@ -231,8 +231,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
@@ -243,7 +243,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 27.8,
+      "pm25": 25.8,
       "summary": null
     }
   ]
