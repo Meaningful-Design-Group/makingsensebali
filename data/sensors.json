@@ -257,7 +257,7 @@
         "pm25": 8.3,
         "pm10": 8.3,
         "temp": 29.1,
-        "rh": 51
+        "rh": 50
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -440,8 +440,8 @@
         "rh": 44
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-205216",
