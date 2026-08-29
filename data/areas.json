@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T10:38:40.012764+00:00",
+  "generated_at": "2026-08-29T10:53:52.321965+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 46.4,
+      "pm25": 48.3,
       "summary": null
     },
     {
@@ -44,13 +44,13 @@
       },
       "top_tags": [
         "atmospheric haze",
-        "smoke plume rising from trees",
-        "visible smoke",
         "dense smoke",
-        "low visibility"
+        "low visibility",
+        "smoke plume rising from trees",
+        "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 44.9,
+      "pm25": 42.4,
       "summary": null
     },
     {
@@ -67,7 +67,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 47.6,
+      "pm25": 46.2,
       "summary": null
     },
     {
@@ -84,7 +84,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 48.3,
+      "pm25": 46.4,
       "summary": null
     },
     {
@@ -96,14 +96,14 @@
         "burning": 2
       },
       "top_tags": [
-        "thick white smoke",
-        "smoke rising from ground level",
         "active flames",
         "smoke plume",
-        "burning trash"
+        "burning trash",
+        "thick white smoke",
+        "smoke rising from ground level"
       ],
       "max_severity": "medium",
-      "pm25": 44.9,
+      "pm25": 45.6,
       "summary": null
     },
     {
@@ -112,8 +112,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -140,6 +140,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
@@ -147,7 +148,7 @@
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 44.0,
+      "pm25": 40.2,
       "summary": null
     },
     {
@@ -158,8 +159,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -170,7 +171,7 @@
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 44.0,
+      "pm25": 40.2,
       "summary": null
     },
     {
@@ -182,15 +183,15 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
-      "pm25": 46.4,
+      "pm25": 44.8,
       "summary": null
     },
     {
@@ -207,7 +208,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 51.1,
+      "pm25": 41.0,
       "summary": null
     },
     {
@@ -224,7 +225,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 47.5,
+      "pm25": 47.8,
       "summary": null
     },
     {
@@ -240,12 +241,12 @@
         "wisps of white smoke",
         "localized smoke plume",
         "dense tropical foliage",
-        "faint smoke plumes",
-        "localized smoke",
-        "plastic waste"
+        "plastic waste",
+        "garbage container",
+        "litter in concrete bin"
       ],
       "max_severity": "medium",
-      "pm25": 53.5,
+      "pm25": 54.0,
       "summary": null
     },
     {
@@ -262,7 +263,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 48.8,
+      "pm25": 45.7,
       "summary": null
     },
     {
@@ -272,8 +273,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
