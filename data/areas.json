@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T00:14:32.395881+00:00",
+  "generated_at": "2026-08-29T00:29:52.234100+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 124.3,
+      "pm25": 110.2,
       "summary": null
     },
     {
@@ -38,17 +38,19 @@
       "locality": "Buduk",
       "lat": -8.609345,
       "lon": 115.159463,
-      "report_count": 1,
+      "report_count": 2,
       "categories": {
-        "burning": 1
+        "burning": 2
       },
       "top_tags": [
-        "dense smoke",
         "atmospheric haze",
-        "low visibility"
+        "dense smoke",
+        "low visibility",
+        "smoke plume rising from trees",
+        "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 121.6,
+      "pm25": 104.6,
       "summary": null
     },
     {
@@ -65,7 +67,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 121.6,
+      "pm25": 104.7,
       "summary": null
     },
     {
@@ -82,7 +84,26 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 116.0,
+      "pm25": 99.6,
+      "summary": null
+    },
+    {
+      "locality": "Gubug",
+      "lat": -8.554706,
+      "lon": 115.097262,
+      "report_count": 2,
+      "categories": {
+        "burning": 2
+      },
+      "top_tags": [
+        "active flames",
+        "smoke plume",
+        "burning trash",
+        "thick white smoke",
+        "smoke rising from ground level"
+      ],
+      "max_severity": "medium",
+      "pm25": 138.6,
       "summary": null
     },
     {
@@ -127,7 +148,7 @@
         "rising smoke"
       ],
       "max_severity": "medium",
-      "pm25": 91.7,
+      "pm25": 74.4,
       "summary": null
     },
     {
@@ -150,7 +171,7 @@
         "intense orange glow"
       ],
       "max_severity": "high",
-      "pm25": 91.7,
+      "pm25": 74.4,
       "summary": null
     },
     {
@@ -170,7 +191,7 @@
         "haze"
       ],
       "max_severity": "high",
-      "pm25": 109.5,
+      "pm25": 92.8,
       "summary": null
     },
     {
@@ -187,7 +208,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 108.9,
+      "pm25": 75.3,
       "summary": null
     },
     {
@@ -204,7 +225,28 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 155.5,
+      "pm25": 135.0,
+      "summary": null
+    },
+    {
+      "locality": "Sudimara",
+      "lat": -8.574604,
+      "lon": 115.080595,
+      "report_count": 3,
+      "categories": {
+        "burning": 2,
+        "trash": 1
+      },
+      "top_tags": [
+        "wisps of white smoke",
+        "localized smoke plume",
+        "dense tropical foliage",
+        "plastic waste",
+        "garbage container",
+        "litter in concrete bin"
+      ],
+      "max_severity": "medium",
+      "pm25": 104.8,
       "summary": null
     },
     {
