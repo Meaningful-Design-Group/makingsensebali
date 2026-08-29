@@ -44,10 +44,10 @@
       },
       "top_tags": [
         "atmospheric haze",
-        "dense smoke",
-        "low visibility",
         "smoke plume rising from trees",
-        "visible smoke"
+        "visible smoke",
+        "dense smoke",
+        "low visibility"
       ],
       "max_severity": "high",
       "pm25": 45.3,
@@ -96,11 +96,11 @@
         "burning": 2
       },
       "top_tags": [
+        "thick white smoke",
+        "smoke rising from ground level",
         "active flames",
         "smoke plume",
-        "burning trash",
-        "thick white smoke",
-        "smoke rising from ground level"
+        "burning trash"
       ],
       "max_severity": "medium",
       "pm25": 46.4,
@@ -112,8 +112,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "none": 3,
         "trash": 3,
+        "none": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -140,7 +140,6 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "localized smoke plume",
@@ -160,8 +159,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
@@ -184,15 +183,15 @@
         "burning": 2
       },
       "top_tags": [
-        "plume of smoke",
-        "smoke rising from structures",
-        "haze",
         "thick smoke plume",
         "visible fire source",
-        "open burning"
+        "open burning",
+        "plume of smoke",
+        "smoke rising from structures",
+        "haze"
       ],
       "max_severity": "high",
-      "pm25": 47.1,
+      "pm25": 47.0,
       "summary": null
     },
     {
@@ -242,9 +241,9 @@
         "wisps of white smoke",
         "localized smoke plume",
         "dense tropical foliage",
-        "plastic waste",
-        "garbage container",
-        "litter in concrete bin"
+        "faint smoke plumes",
+        "localized smoke",
+        "plastic waste"
       ],
       "max_severity": "medium",
       "pm25": 48.3,
@@ -274,8 +273,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "other": 1,
-        "none": 1
+        "none": 1,
+        "other": 1
       },
       "top_tags": [
         "smoke rising",
