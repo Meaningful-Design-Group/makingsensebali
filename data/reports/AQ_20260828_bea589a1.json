@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Trash observation — Bali, Bali",
+  "description": "Disini tempat sampah di kumpulkan dan di bakar!! Di samping jalan dan tidak jauh dari sekolah dasar",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260828_bea589a1.json",
+  "latitude": -8.574604,
+  "longitude": 115.080595,
+  "geolocation": {
+    "lat": -8.574604,
+    "lon": 115.080595
+  },
+  "locality": "Sudimara",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "trash",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-28T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "trash",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.85,
+    "indicators": [
+      "plastic waste",
+      "garbage container",
+      "litter in concrete bin"
+    ],
+    "description": "A concrete container filled with household trash and plastic waste alongside a street in Bali.",
+    "severity": "low",
+    "model_version": "gemini:gemini-flash-lite-latest (fallback; primary openai down)"
+  },
+  "photo_path": "photos/AQ_20260828_bea589a1.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-28T00:00:00+00:00",
+    "reported_timestamp": "2026-08-28T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Sudimara",
+    "kecamatan": "Tabanan",
+    "kabupaten": "Tabanan"
+  }
+}
