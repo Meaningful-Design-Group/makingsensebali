@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T05:24:43.165878+00:00",
+  "generated_at": "2026-08-30T05:37:55.093312+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 22.5,
+      "pm25": 22.9,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 10.2,
+      "pm25": 9.3,
       "summary": null
     },
     {
@@ -44,13 +44,13 @@
       },
       "top_tags": [
         "atmospheric haze",
-        "smoke plume rising from trees",
-        "visible smoke",
         "dense smoke",
-        "low visibility"
+        "low visibility",
+        "smoke plume rising from trees",
+        "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 22.0,
+      "pm25": 21.1,
       "summary": null
     },
     {
@@ -67,7 +67,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 22.2,
+      "pm25": 22.0,
       "summary": null
     },
     {
@@ -80,11 +80,11 @@
       },
       "top_tags": [
         "plume of smoke",
-        "smoke rising from field area",
-        "distant smoke"
+        "distant smoke",
+        "smoke rising from field area"
       ],
       "max_severity": "medium",
-      "pm25": 22.1,
+      "pm25": 21.7,
       "summary": null
     },
     {
@@ -103,7 +103,7 @@
         "burning trash"
       ],
       "max_severity": "medium",
-      "pm25": 22.8,
+      "pm25": 22.9,
       "summary": null
     },
     {
@@ -112,22 +112,22 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
       },
       "top_tags": [
         "various types of waste",
-        "discarded plastic bottle",
-        "scattered litter",
-        "dry grassy ground",
         "no visible smoke",
-        "no visible fire"
+        "no visible fire",
+        "no airborne particulates",
+        "pile of garbage",
+        "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 10.2,
+      "pm25": 9.3,
       "summary": null
     },
     {
@@ -142,13 +142,13 @@
       "top_tags": [
         "smoke rising",
         "burning trash",
-        "localized smoke plume",
         "smoke plume",
-        "visible fire",
-        "rising smoke"
+        "localized smoke plume",
+        "trash pile",
+        "wooden building"
       ],
       "max_severity": "medium",
-      "pm25": 22.6,
+      "pm25": 19.5,
       "summary": null
     },
     {
@@ -165,13 +165,13 @@
       "top_tags": [
         "smoke plume",
         "open burning",
-        "open fire",
         "construction debris",
-        "construction site",
-        "intense orange glow"
+        "open fire",
+        "intense orange glow",
+        "construction site"
       ],
       "max_severity": "high",
-      "pm25": 22.6,
+      "pm25": 19.5,
       "summary": null
     },
     {
@@ -183,15 +183,15 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
-      "pm25": 22.2,
+      "pm25": 20.8,
       "summary": null
     },
     {
@@ -208,7 +208,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 20.9,
+      "pm25": 18.1,
       "summary": null
     },
     {
@@ -241,12 +241,12 @@
         "wisps of white smoke",
         "localized smoke plume",
         "dense tropical foliage",
-        "faint smoke plumes",
-        "localized smoke",
-        "large plume of smoke"
+        "plastic waste",
+        "garbage container",
+        "litter in concrete bin"
       ],
       "max_severity": "medium",
-      "pm25": 24.0,
+      "pm25": 24.7,
       "summary": null
     },
     {
@@ -263,7 +263,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 22.8,
+      "pm25": 20.7,
       "summary": null
     },
     {
@@ -273,19 +273,19 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
-        "open burning",
-        "pile of trash",
         "very dark image",
         "indistinct glow",
-        "open burning area"
+        "open burning",
+        "pile of trash",
+        "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 10.2,
+      "pm25": 9.3,
       "summary": null
     }
   ]
