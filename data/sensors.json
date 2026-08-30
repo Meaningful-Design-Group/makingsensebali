@@ -90,13 +90,13 @@
       "name": "Kabupaten Badung Sempidi",
       "lat": -8.603890419006348,
       "lng": 115.1780014038086,
-      "lastReading": "2026-08-30T07:00:00Z",
+      "lastReading": "2026-08-30T08:00:00Z",
       "reading": {
-        "pm25": 11.5,
+        "pm25": 11.3,
         "pm10": null,
         "temp": null,
         "rh": null,
-        "aqi": 48,
+        "aqi": 47,
         "pm25_from_aqi": true
       },
       "detailsUrl": "https://aqicn.org/station/@519205",
@@ -112,12 +112,12 @@
       "name": "Jimbaran by Lumi Clinic",
       "lat": -8.791219,
       "lng": 115.1674,
-      "lastReading": "2026-08-30T08:03:36+00:00",
+      "lastReading": "2026-08-30T08:21:36+00:00",
       "reading": {
-        "pm25": 2.3,
+        "pm25": 2.2,
         "pm10": null,
-        "temp": 33.9,
-        "rh": 49
+        "temp": 33.3,
+        "rh": 50
       },
       "detailsUrl": "https://map.purpleair.com/?select=36601",
       "excluded_from_avg": true,
@@ -132,9 +132,9 @@
       "name": "Klungkung by Lumi Clinic",
       "lat": -8.533623,
       "lng": 115.39973,
-      "lastReading": "2026-08-30T08:03:07+00:00",
+      "lastReading": "2026-08-30T08:21:09+00:00",
       "reading": {
-        "pm25": 7.9,
+        "pm25": 7.7,
         "pm10": null,
         "temp": 35.0,
         "rh": 35
@@ -254,9 +254,9 @@
       "offline": false,
       "lastReading": "2026-08-30T08:11:32.000Z",
       "reading": {
-        "pm25": 16.5,
-        "pm10": 16.5,
-        "temp": 29.0,
+        "pm25": 16.2,
+        "pm10": 17.2,
+        "temp": 28.9,
         "rh": 54
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -294,10 +294,10 @@
       "offline": false,
       "lastReading": "2026-08-30T08:11:29.000Z",
       "reading": {
-        "pm25": 29.2,
-        "pm10": 33.0,
-        "temp": 30.5,
-        "rh": 48
+        "pm25": 26.0,
+        "pm10": 28.7,
+        "temp": 30.1,
+        "rh": 49
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -457,7 +457,7 @@
         "pm25": 22.5,
         "pm10": 24.3,
         "temp": 31.2,
-        "rh": 39
+        "rh": 40
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
