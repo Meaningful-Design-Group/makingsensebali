@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T01:33:33.729721+00:00",
+  "generated_at": "2026-08-30T01:50:41.584972+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 61.0,
+      "pm25": 61.4,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 19.3,
+      "pm25": 17.5,
       "summary": null
     },
     {
@@ -50,7 +50,7 @@
         "low visibility"
       ],
       "max_severity": "high",
-      "pm25": 44.3,
+      "pm25": 44.1,
       "summary": null
     },
     {
@@ -67,7 +67,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 57.7,
+      "pm25": 57.1,
       "summary": null
     },
     {
@@ -84,7 +84,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 59.7,
+      "pm25": 60.1,
       "summary": null
     },
     {
@@ -96,11 +96,11 @@
         "burning": 2
       },
       "top_tags": [
+        "thick white smoke",
+        "smoke rising from ground level",
         "active flames",
         "smoke plume",
-        "burning trash",
-        "thick white smoke",
-        "smoke rising from ground level"
+        "burning trash"
       ],
       "max_severity": "medium",
       "pm25": 52.8,
@@ -127,7 +127,7 @@
         "no visible fire"
       ],
       "max_severity": "high",
-      "pm25": 19.3,
+      "pm25": 17.5,
       "summary": null
     },
     {
@@ -140,7 +140,6 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "localized smoke plume",
@@ -149,7 +148,7 @@
         "rising smoke"
       ],
       "max_severity": "medium",
-      "pm25": 43.4,
+      "pm25": 48.8,
       "summary": null
     },
     {
@@ -160,8 +159,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
@@ -172,7 +171,7 @@
         "intense orange glow"
       ],
       "max_severity": "high",
-      "pm25": 43.4,
+      "pm25": 48.8,
       "summary": null
     },
     {
@@ -192,7 +191,7 @@
         "haze"
       ],
       "max_severity": "high",
-      "pm25": 56.0,
+      "pm25": 57.1,
       "summary": null
     },
     {
@@ -209,7 +208,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 36.1,
+      "pm25": 40.0,
       "summary": null
     },
     {
@@ -226,7 +225,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 48.1,
+      "pm25": 45.8,
       "summary": null
     },
     {
@@ -247,7 +246,7 @@
         "plastic waste"
       ],
       "max_severity": "medium",
-      "pm25": 66.9,
+      "pm25": 66.5,
       "summary": null
     },
     {
@@ -264,7 +263,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 43.2,
+      "pm25": 49.4,
       "summary": null
     },
     {
@@ -286,7 +285,7 @@
         "open burning area"
       ],
       "max_severity": "medium",
-      "pm25": 19.3,
+      "pm25": 17.5,
       "summary": null
     }
   ]
