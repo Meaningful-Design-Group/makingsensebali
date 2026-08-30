@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T01:50:41.584972+00:00",
+  "generated_at": "2026-08-30T02:07:04.524112+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 61.4,
+      "pm25": 45.7,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 17.5,
+      "pm25": 16.2,
       "summary": null
     },
     {
@@ -50,7 +50,7 @@
         "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 44.1,
+      "pm25": 39.8,
       "summary": null
     },
     {
@@ -67,7 +67,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 57.1,
+      "pm25": 44.1,
       "summary": null
     },
     {
@@ -84,7 +84,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 60.1,
+      "pm25": 44.9,
       "summary": null
     },
     {
@@ -96,14 +96,14 @@
         "burning": 2
       },
       "top_tags": [
-        "thick white smoke",
-        "smoke rising from ground level",
         "active flames",
         "smoke plume",
-        "burning trash"
+        "burning trash",
+        "thick white smoke",
+        "smoke rising from ground level"
       ],
       "max_severity": "medium",
-      "pm25": 48.5,
+      "pm25": 40.7,
       "summary": null
     },
     {
@@ -127,7 +127,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 17.5,
+      "pm25": 16.2,
       "summary": null
     },
     {
@@ -140,6 +140,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
@@ -147,7 +148,7 @@
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 48.8,
+      "pm25": 39.6,
       "summary": null
     },
     {
@@ -158,8 +159,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -170,7 +171,7 @@
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 48.8,
+      "pm25": 39.6,
       "summary": null
     },
     {
@@ -190,7 +191,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 57.1,
+      "pm25": 44.1,
       "summary": null
     },
     {
@@ -207,7 +208,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 40.0,
+      "pm25": 40.1,
       "summary": null
     },
     {
@@ -224,16 +225,16 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 45.8,
+      "pm25": 40.5,
       "summary": null
     },
     {
       "locality": "Sudimara",
       "lat": -8.574604,
       "lon": 115.080595,
-      "report_count": 3,
+      "report_count": 4,
       "categories": {
-        "burning": 2,
+        "burning": 3,
         "trash": 1
       },
       "top_tags": [
@@ -245,7 +246,7 @@
         "litter in concrete bin"
       ],
       "max_severity": "medium",
-      "pm25": 66.5,
+      "pm25": 50.3,
       "summary": null
     },
     {
@@ -262,7 +263,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 49.4,
+      "pm25": 40.4,
       "summary": null
     },
     {
@@ -284,7 +285,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 17.5,
+      "pm25": 16.2,
       "summary": null
     }
   ]
