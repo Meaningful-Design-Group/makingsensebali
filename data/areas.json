@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T21:09:20.762276+00:00",
+  "generated_at": "2026-08-30T21:24:32.209973+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 43.6,
+      "pm25": 45.0,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 15.5,
+      "pm25": 13.6,
       "summary": null
     },
     {
@@ -67,7 +67,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 43.1,
+      "pm25": 43.7,
       "summary": null
     },
     {
@@ -84,7 +84,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 43.1,
+      "pm25": 43.4,
       "summary": null
     },
     {
@@ -101,7 +101,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 41.4,
+      "pm25": 42.1,
       "summary": null
     },
     {
@@ -113,12 +113,15 @@
         "burning": 3
       },
       "top_tags": [
+        "active flames",
+        "smoke plume",
+        "burning trash",
         "thick white smoke",
         "smoke rising from ground level",
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 39.4,
+      "pm25": 41.3,
       "summary": null
     },
     {
@@ -142,7 +145,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 15.5,
+      "pm25": 13.6,
       "summary": null
     },
     {
@@ -155,6 +158,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
@@ -173,8 +177,8 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -205,7 +209,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 42.2,
+      "pm25": 43.0,
       "summary": null
     },
     {
@@ -222,7 +226,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 38.8,
+      "pm25": 40.0,
       "summary": null
     },
     {
@@ -239,7 +243,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 38.4,
+      "pm25": 40.8,
       "summary": null
     },
     {
@@ -260,7 +264,7 @@
         "litter in concrete bin"
       ],
       "max_severity": "medium",
-      "pm25": 41.3,
+      "pm25": 43.2,
       "summary": null
     },
     {
@@ -277,7 +281,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 41.0,
+      "pm25": 42.8,
       "summary": null
     },
     {
@@ -299,7 +303,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 15.5,
+      "pm25": 13.6,
       "summary": null
     }
   ]
