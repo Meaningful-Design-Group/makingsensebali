@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T09:35:08.608176+00:00",
+  "generated_at": "2026-08-31T09:44:22.297843+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -14,7 +14,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 39.6,
+      "pm25": 45.9,
       "summary": null
     },
     {
@@ -31,7 +31,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 10.3,
+      "pm25": 9.4,
       "summary": null
     },
     {
@@ -43,15 +43,15 @@
         "burning": 3
       },
       "top_tags": [
-        "open fire in barrel",
-        "burning debris",
-        "smoke",
         "burning trash pile",
         "smoke rising",
-        "open burning"
+        "open burning",
+        "burning trash",
+        "ash pile",
+        "smoke residue"
       ],
       "max_severity": "medium",
-      "pm25": 53.0,
+      "pm25": 47.9,
       "summary": null
     },
     {
@@ -66,12 +66,12 @@
         "atmospheric haze",
         "dense smoke",
         "low visibility",
-        "smoke plume rising from trees",
-        "visible smoke",
-        "thick smoke"
+        "thick smoke",
+        "burning trash",
+        "pile of waste"
       ],
       "max_severity": "high",
-      "pm25": 29.7,
+      "pm25": 35.8,
       "summary": null
     },
     {
@@ -88,7 +88,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 36.6,
+      "pm25": 41.1,
       "summary": null
     },
     {
@@ -101,11 +101,11 @@
       },
       "top_tags": [
         "plume of smoke",
-        "smoke rising from field area",
-        "distant smoke"
+        "distant smoke",
+        "smoke rising from field area"
       ],
       "max_severity": "medium",
-      "pm25": 37.3,
+      "pm25": 42.2,
       "summary": null
     },
     {
@@ -122,7 +122,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 29.9,
+      "pm25": 34.3,
       "summary": null
     },
     {
@@ -138,7 +138,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 55.7,
+      "pm25": 41.0,
       "summary": null
     },
     {
@@ -150,15 +150,15 @@
         "burning": 3
       },
       "top_tags": [
-        "active flames",
-        "smoke plume",
-        "burning trash",
         "thick white smoke",
         "smoke rising from ground level",
-        "localized smoke plume"
+        "localized smoke plume",
+        "hazy sky",
+        "smoke near tree line",
+        "active flames"
       ],
       "max_severity": "medium",
-      "pm25": 46.5,
+      "pm25": 40.8,
       "summary": null
     },
     {
@@ -175,14 +175,14 @@
       },
       "top_tags": [
         "various types of waste",
-        "large amount of trash",
-        "smoke visible",
-        "motorbike smoke",
-        "motorbike",
-        "dirt road"
+        "no visible smoke",
+        "no visible fire",
+        "no airborne particulates",
+        "pile of garbage",
+        "uncollected"
       ],
       "max_severity": "high",
-      "pm25": 10.3,
+      "pm25": 9.4,
       "summary": null
     },
     {
@@ -197,13 +197,13 @@
       "top_tags": [
         "smoke rising",
         "burning debris",
+        "small fire",
+        "trash pile",
         "dense foliage",
-        "dirt path",
-        "scattered litter",
-        "thick smoke"
+        "dirt path"
       ],
       "max_severity": "medium",
-      "pm25": 53.0,
+      "pm25": 47.9,
       "summary": null
     },
     {
@@ -216,15 +216,15 @@
         "none": 2
       },
       "top_tags": [
-        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "smoke plume",
-        "smoke rising from ground",
-        "trash pile"
+        "localized smoke plume",
+        "trash pile",
+        "wooden building"
       ],
       "max_severity": "medium",
-      "pm25": 29.6,
+      "pm25": 32.8,
       "summary": null
     },
     {
@@ -235,19 +235,19 @@
       "categories": {
         "burning": 25,
         "none": 2,
-        "vehicle": 1,
-        "construction": 1
+        "construction": 1,
+        "vehicle": 1
       },
       "top_tags": [
         "smoke plume",
         "open burning",
-        "open fire",
         "construction debris",
-        "plume of smoke",
+        "open fire",
+        "intense orange glow",
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 29.6,
+      "pm25": 32.8,
       "summary": null
     },
     {
@@ -267,7 +267,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 36.4,
+      "pm25": 40.0,
       "summary": null
     },
     {
@@ -284,7 +284,7 @@
         "green fields"
       ],
       "max_severity": "low",
-      "pm25": 30.1,
+      "pm25": 29.2,
       "summary": null
     },
     {
@@ -301,7 +301,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 55.7,
+      "pm25": 41.0,
       "summary": null
     },
     {
@@ -322,7 +322,7 @@
         "litter in concrete bin"
       ],
       "max_severity": "medium",
-      "pm25": 62.2,
+      "pm25": 52.2,
       "summary": null
     },
     {
@@ -339,7 +339,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 30.9,
+      "pm25": 34.2,
       "summary": null
     },
     {
@@ -354,14 +354,14 @@
       },
       "top_tags": [
         "smoke rising",
-        "open burning area",
-        "dry ground debris",
-        "large pile of mixed trash",
-        "visible smoke rising from the waste",
-        "dark debris"
+        "very dark image",
+        "indistinct glow",
+        "open burning",
+        "pile of trash",
+        "large pile of mixed trash"
       ],
       "max_severity": "medium",
-      "pm25": 10.3,
+      "pm25": 9.4,
       "summary": null
     }
   ]
