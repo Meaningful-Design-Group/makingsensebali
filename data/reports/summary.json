@@ -1,19 +1,22 @@
 {
-  "line": "Today: 10 reports \u2014 9 burning trash and 1 clear.",
+  "line": "Today: 18 reports \u2014 15 burning trash, 1 clear, 1 construction dust, and 1 trash piles.",
   "today": {
-    "total": 10,
+    "total": 18,
     "by_category": {
       "none": 1,
-      "burning": 9
-    }
-  },
-  "week": {
-    "total": 27,
-    "by_category": {
-      "burning": 24,
-      "none": 2,
+      "burning": 15,
+      "construction": 1,
       "trash": 1
     }
   },
-  "generated_at": "2026-08-31T04:27:56.410283+00:00"
+  "week": {
+    "total": 35,
+    "by_category": {
+      "burning": 30,
+      "none": 2,
+      "trash": 2,
+      "construction": 1
+    }
+  },
+  "generated_at": "2026-08-31T11:04:44.059973+00:00"
 }

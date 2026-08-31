@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260831_a56da4bd.json",
+  "latitude": -8.673961,
+  "longitude": 115.182911,
+  "geolocation": {
+    "lat": -8.673961,
+    "lon": 115.182911
+  },
+  "locality": "Padangsambian Kelod",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:telegram",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-31T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.85,
+    "indicators": [
+      "smoke rising among plants",
+      "dense tropical foliage",
+      "ground debris"
+    ],
+    "description": "Smoke is visible rising through dense tropical foliage and ground debris.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260831_a56da4bd.jpg",
+  "data_source": "telegram",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-31T00:00:00+00:00",
+    "reported_timestamp": "2026-08-31T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Padangsambian Kelod",
+    "kecamatan": "Denpasar Barat",
+    "kabupaten": "Denpasar"
+  }
+}
