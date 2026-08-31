@@ -11,9 +11,9 @@
       },
       "top_tags": [
         "open burning",
+        "plume of smoke",
         "pile of trash",
-        "smoke rising",
-        "plume of smoke"
+        "smoke rising"
       ],
       "max_severity": "medium",
       "pm25": 55.6,
@@ -45,6 +45,9 @@
         "burning": 3
       },
       "top_tags": [
+        "open fire in barrel",
+        "burning debris",
+        "smoke",
         "burning trash pile",
         "smoke rising",
         "open burning",
@@ -53,7 +56,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 52.2,
+      "pm25": 49.8,
       "summary": null
     },
     {
@@ -152,6 +155,9 @@
         "burning": 3
       },
       "top_tags": [
+        "active flames",
+        "smoke plume",
+        "burning trash",
         "thick white smoke",
         "smoke rising from ground level",
         "active flames",
@@ -169,8 +175,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -205,7 +211,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 52.2,
+      "pm25": 49.8,
       "summary": null
     },
     {
@@ -218,9 +224,9 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
-        "localized smoke plume",
         "smoke plume",
         "visible fire",
         "rising smoke"
@@ -237,10 +243,11 @@
       "categories": {
         "burning": 28,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
+        "open burning",
         "smoke plume",
         "open burning",
         "open fire",
@@ -281,12 +288,12 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
       "pm25": 53.9,
@@ -375,8 +382,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
