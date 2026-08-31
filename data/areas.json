@@ -1,20 +1,22 @@
 {
-  "generated_at": "2026-08-31T10:51:19.997211+00:00",
+  "generated_at": "2026-08-31T11:06:37.189488+00:00",
   "areas": [
     {
       "locality": "Belalang",
       "lat": -8.599524,
       "lon": 115.09401,
-      "report_count": 1,
+      "report_count": 2,
       "categories": {
-        "burning": 1
+        "burning": 2
       },
       "top_tags": [
+        "open burning",
         "plume of smoke",
-        "open burning"
+        "pile of trash",
+        "smoke rising"
       ],
       "max_severity": "medium",
-      "pm25": 38.7,
+      "pm25": 43.0,
       "summary": null
     },
     {
@@ -31,7 +33,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 14.7,
+      "pm25": 13.1,
       "summary": null
     },
     {
@@ -51,7 +53,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 41.0,
+      "pm25": 43.8,
       "summary": null
     },
     {
@@ -64,8 +66,6 @@
       },
       "top_tags": [
         "atmospheric haze",
-        "smoke plume rising from trees",
-        "visible smoke",
         "dense smoke",
         "low visibility",
         "smoke plume rising from trees",
@@ -73,7 +73,7 @@
         "thick smoke"
       ],
       "max_severity": "high",
-      "pm25": 34.5,
+      "pm25": 35.8,
       "summary": null
     },
     {
@@ -90,7 +90,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 36.9,
+      "pm25": 39.2,
       "summary": null
     },
     {
@@ -107,7 +107,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 36.2,
+      "pm25": 39.0,
       "summary": null
     },
     {
@@ -124,7 +124,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 31.8,
+      "pm25": 35.0,
       "summary": null
     },
     {
@@ -140,7 +140,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 44.4,
+      "pm25": 45.4,
       "summary": null
     },
     {
@@ -160,7 +160,7 @@
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 40.0,
+      "pm25": 42.1,
       "summary": null
     },
     {
@@ -169,8 +169,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -184,7 +184,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 14.7,
+      "pm25": 13.1,
       "summary": null
     },
     {
@@ -205,7 +205,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 41.0,
+      "pm25": 43.8,
       "summary": null
     },
     {
@@ -221,36 +221,55 @@
         "localized smoke plume",
         "smoke rising",
         "burning trash",
-        "localized smoke plume",
         "smoke plume",
         "smoke rising from ground",
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 33.0,
+      "pm25": 33.5,
       "summary": null
     },
     {
       "locality": "Kerobokan Kelod",
       "lat": -8.670005,
       "lon": 115.162793,
-      "report_count": 29,
+      "report_count": 32,
       "categories": {
-        "burning": 25,
+        "burning": 28,
         "none": 2,
         "vehicle": 1,
         "construction": 1
       },
       "top_tags": [
-        "smoke plume",
         "open burning",
+        "smoke plume",
         "open fire",
         "construction debris",
         "plume of smoke",
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 33.0,
+      "pm25": 33.5,
+      "summary": null
+    },
+    {
+      "locality": "Mas",
+      "lat": -8.540942,
+      "lon": 115.271769,
+      "report_count": 2,
+      "categories": {
+        "construction": 1,
+        "burning": 1
+      },
+      "top_tags": [
+        "building under construction",
+        "concrete pillars",
+        "potential dust",
+        "smoke plumes",
+        "hazy atmosphere"
+      ],
+      "max_severity": "medium",
+      "pm25": 68.2,
       "summary": null
     },
     {
@@ -262,32 +281,36 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
-      "pm25": 35.6,
+      "pm25": 37.9,
       "summary": null
     },
     {
       "locality": "Padangsambian Kelod",
       "lat": -8.673961,
       "lon": 115.182911,
-      "report_count": 1,
+      "report_count": 2,
       "categories": {
-        "none": 1
+        "none": 1,
+        "burning": 1
       },
       "top_tags": [
         "cloudy sky",
         "residential building",
-        "green fields"
+        "green fields",
+        "smoke rising among plants",
+        "dense tropical foliage",
+        "ground debris"
       ],
-      "max_severity": "low",
-      "pm25": 33.6,
+      "max_severity": "medium",
+      "pm25": 31.2,
       "summary": null
     },
     {
@@ -304,28 +327,28 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 44.4,
+      "pm25": 45.4,
       "summary": null
     },
     {
       "locality": "Sudimara",
       "lat": -8.574604,
       "lon": 115.080595,
-      "report_count": 4,
+      "report_count": 5,
       "categories": {
         "burning": 3,
-        "trash": 1
+        "trash": 2
       },
       "top_tags": [
+        "plastic waste",
         "wisps of white smoke",
         "localized smoke plume",
         "dense tropical foliage",
-        "faint smoke plumes",
-        "localized smoke",
-        "large plume of smoke"
+        "garbage container",
+        "litter in concrete bin"
       ],
-      "max_severity": "medium",
-      "pm25": 44.6,
+      "max_severity": "high",
+      "pm25": 48.7,
       "summary": null
     },
     {
@@ -342,7 +365,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 34.8,
+      "pm25": 36.2,
       "summary": null
     },
     {
@@ -352,8 +375,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
@@ -364,7 +387,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 14.7,
+      "pm25": 13.1,
       "summary": null
     }
   ]
