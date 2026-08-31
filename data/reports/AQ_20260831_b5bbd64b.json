@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Construction observation — Bali, Bali",
+  "description": "Bad photo cuz I don't wanna go outside right now. The fire is small but the whole area is smoky from other fires. \r\nMy windows are closed, I have AC and a purifier on and I can smell it",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260831_b5bbd64b.json",
+  "latitude": -8.540942,
+  "longitude": 115.271769,
+  "geolocation": {
+    "lat": -8.540942,
+    "lon": 115.271769
+  },
+  "locality": "Mas",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "construction",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-31T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "construction",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.7,
+    "indicators": [
+      "building under construction",
+      "concrete pillars",
+      "potential dust"
+    ],
+    "description": "A partially built concrete structure is visible amidst surrounding greenery.",
+    "severity": "low",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260831_b5bbd64b.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-31T00:00:00+00:00",
+    "reported_timestamp": "2026-08-31T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Mas",
+    "kecamatan": "Ubud",
+    "kabupaten": "Gianyar"
+  }
+}

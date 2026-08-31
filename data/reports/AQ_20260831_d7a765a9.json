@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "This is jalan cempaka, behind Mahendra mini mart",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260831_d7a765a9.json",
+  "latitude": -8.540942,
+  "longitude": 115.271769,
+  "geolocation": {
+    "lat": -8.540942,
+    "lon": 115.271769
+  },
+  "locality": "Mas",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-31T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.8,
+    "indicators": [
+      "smoke plumes",
+      "hazy atmosphere"
+    ],
+    "description": "Smoke is visible rising above dense banana plants in a rural setting.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260831_d7a765a9.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-31T00:00:00+00:00",
+    "reported_timestamp": "2026-08-31T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Mas",
+    "kecamatan": "Ubud",
+    "kabupaten": "Gianyar"
+  }
+}

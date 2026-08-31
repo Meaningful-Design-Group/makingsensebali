@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Trash observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260831_1f0ca1bc.json",
+  "latitude": -8.574604,
+  "longitude": 115.080595,
+  "geolocation": {
+    "lat": -8.574604,
+    "lon": 115.080595
+  },
+  "locality": "Sudimara",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "trash",
+    "source:web",
+    "severity:high",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-31T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "trash",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "large pile of mixed garbage",
+      "unmanaged dump site",
+      "plastic waste"
+    ],
+    "description": "A large, unmanaged pile of mixed household trash is dumped on a hillside.",
+    "severity": "high",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260831_1f0ca1bc.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-31T00:00:00+00:00",
+    "reported_timestamp": "2026-08-31T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Sudimara",
+    "kecamatan": "Tabanan",
+    "kabupaten": "Tabanan"
+  }
+}
