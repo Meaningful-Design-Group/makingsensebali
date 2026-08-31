@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T22:47:13.304160+00:00",
+  "generated_at": "2026-08-31T23:02:26.230907+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -11,12 +11,12 @@
       },
       "top_tags": [
         "open burning",
+        "plume of smoke",
         "pile of trash",
-        "smoke rising",
-        "plume of smoke"
+        "smoke rising"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 76.0,
       "summary": null
     },
     {
@@ -33,7 +33,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 11.0,
+      "pm25": 11.7,
       "summary": null
     },
     {
@@ -45,6 +45,9 @@
         "burning": 3
       },
       "top_tags": [
+        "open fire in barrel",
+        "burning debris",
+        "smoke",
         "burning trash pile",
         "smoke rising",
         "open burning",
@@ -53,7 +56,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 77.3,
       "summary": null
     },
     {
@@ -73,7 +76,7 @@
         "thick smoke"
       ],
       "max_severity": "high",
-      "pm25": null,
+      "pm25": 67.7,
       "summary": null
     },
     {
@@ -90,7 +93,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": null,
+      "pm25": 70.6,
       "summary": null
     },
     {
@@ -107,7 +110,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 65.8,
       "summary": null
     },
     {
@@ -124,7 +127,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 75.6,
       "summary": null
     },
     {
@@ -140,7 +143,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 71.2,
       "summary": null
     },
     {
@@ -152,6 +155,9 @@
         "burning": 3
       },
       "top_tags": [
+        "active flames",
+        "smoke plume",
+        "burning trash",
         "thick white smoke",
         "smoke rising from ground level",
         "active flames",
@@ -160,7 +166,7 @@
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 68.7,
       "summary": null
     },
     {
@@ -184,7 +190,7 @@
         "no visible fire"
       ],
       "max_severity": "high",
-      "pm25": 11.0,
+      "pm25": 11.7,
       "summary": null
     },
     {
@@ -205,7 +211,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 77.3,
       "summary": null
     },
     {
@@ -218,6 +224,7 @@
         "none": 2
       },
       "top_tags": [
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
         "localized smoke plume",
@@ -226,7 +233,7 @@
         "rising smoke"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 72.6,
       "summary": null
     },
     {
@@ -237,8 +244,8 @@
       "categories": {
         "burning": 28,
         "none": 2,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "smoke plume",
@@ -249,7 +256,7 @@
         "intense orange glow"
       ],
       "max_severity": "high",
-      "pm25": null,
+      "pm25": 72.6,
       "summary": null
     },
     {
@@ -269,7 +276,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 62.5,
       "summary": null
     },
     {
@@ -289,7 +296,7 @@
         "haze"
       ],
       "max_severity": "high",
-      "pm25": null,
+      "pm25": 72.8,
       "summary": null
     },
     {
@@ -310,7 +317,7 @@
         "ground debris"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 88.0,
       "summary": null
     },
     {
@@ -327,7 +334,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 71.2,
       "summary": null
     },
     {
@@ -348,7 +355,7 @@
         "unmanaged dump site"
       ],
       "max_severity": "high",
-      "pm25": null,
+      "pm25": 66.2,
       "summary": null
     },
     {
@@ -365,7 +372,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": null,
+      "pm25": 68.6,
       "summary": null
     },
     {
@@ -387,7 +394,7 @@
         "open burning area"
       ],
       "max_severity": "medium",
-      "pm25": 11.0,
+      "pm25": 11.7,
       "summary": null
     }
   ]
