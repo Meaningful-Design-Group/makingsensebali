@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260831_32fa6a44.json",
+  "latitude": -8.563197,
+  "longitude": 115.132243,
+  "geolocation": {
+    "lat": -8.563197,
+    "lon": 115.132243
+  },
+  "locality": "Kediri",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-08-31T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.85,
+    "indicators": [
+      "smoke rising from metal container",
+      "open fire smoke"
+    ],
+    "description": "Smoke is visible rising from a metal container near a Balinese temple structure.",
+    "severity": "low",
+    "model_version": "gemini:gemini-flash-lite-latest (fallback; primary openai down)"
+  },
+  "photo_path": "photos/AQ_20260831_32fa6a44.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-08-31T00:00:00+00:00",
+    "reported_timestamp": "2026-08-31T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Kediri",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}
