@@ -237,11 +237,11 @@ button.btn{font-family:var(--mono)}
         <p data-i18n="idx.act.survey.p">Eight questions about the environment where you live. Your answers decide where the next sensors go. The campaign starts with you.</p>
         <div class="go" data-i18n="idx.act.survey.go">Open the survey →</div>
       </a>
-      <a class="actcard build rv" id="act-build" href="https://airtable.com/appwQPP3ywSp4uu25/pag1mi3F086XPIlBy/form" target="_blank" rel="noopener">
-        <div class="n" data-i18n="idx.act.build.n">03 · An afternoon</div>
-        <h3 data-i18n="idx.act.build.h3">Build a sensor</h3>
-        <p data-i18n="idx.act.build.p">Come to Fab Lab Bali, assemble a low-cost air node, and put it on your roof or your classroom wall. Become a point on the map.</p>
-        <div class="go" data-i18n="idx.act.build.go">Join a workshop →</div>
+      <a class="actcard build rv" id="act-build" href="https://github.com/Meaningful-Design-Group/makingsensebali/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
+        <div class="n" data-i18n="idx.act.build.n">03 · Open source</div>
+        <h3 data-i18n="idx.act.build.h3">Contribute hardware or software</h3>
+        <p data-i18n="idx.act.build.p">Enclosures, firmware, translations, or a fix to the dashboard. The designs and the code are public, licensed for reuse, and the guide tells you where to start.</p>
+        <div class="go" data-i18n="idx.act.build.go">Read the contributing guide →</div>
       </a>
     </div>
   </div>
@@ -250,13 +250,19 @@ button.btn{font-family:var(--mono)}
 <section class="more" id="more">
   <div class="more-wrap">
     <div class="kicker2 rv" data-i18n="idx.more.kicker">Go deeper — if you want</div>
-    <h2 class="rv" data-i18n-html="idx.more.h2">The map shows you <em>what.</em> When you want the why, and the raw numbers — two doors.</h2>
+    <h2 class="rv" data-i18n-html="idx.more.h2">The map shows you <em>what.</em> When you want the why, and the raw numbers — three doors.</h2>
     <div class="doors">
       <a class="door rv" href="about.html">
         <div class="dn" data-i18n="idx.more.about.dn">About the campaign</div>
         <h3 data-i18n="idx.more.about.h3">Why we listen before we measure</h3>
         <p data-i18n="idx.more.about.p">The method, the seven phases, the people who answer for this, and how Bali fits a global lineage — Making Sense, Smart Citizen, Fab City.</p>
         <div class="go" data-i18n="idx.more.about.go">Read about Making Sense Bali →</div>
+      </a>
+      <a class="door rv" href="https://baliairdispatch.com/" target="_blank" rel="noopener">
+        <div class="dn" data-i18n="idx.more.dispatch.dn">Bali Air Dispatch · independent</div>
+        <h3 data-i18n="idx.more.dispatch.h3">The whole island, every network</h3>
+        <p data-i18n="idx.more.dispatch.p">A separate community effort reading seven sensor networks island-wide, with an evidence brief and a solutions guide. Our resident reports appear on their map.</p>
+        <div class="go" data-i18n="idx.more.dispatch.go">Open Bali Air Dispatch →</div>
       </a>
       <a class="door rv" href="dashboard/">
         <div class="dn" data-i18n="idx.more.data.dn">The data view · for analysts</div>
@@ -516,7 +522,16 @@ function initMap(){
   if(typeof L==='undefined'){ return; }
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([-8.66,115.16],10);
   window._map=map;
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'© OpenStreetMap · © CARTO'}).addTo(map);
+  /* Basemap. CARTO now requires an API key: without one it still returns HTTP
+     200 with a PNG, but every tile is stamped "API KEY REQUIRED". A curl check
+     passes while the map is visibly defaced, which is how this went unnoticed.
+     Default below is keyless OpenStreetMap, which supports z19 — the copy
+     promises "pinch into your own banjar", so deep zoom has to keep working.
+     To use a keyed provider, set TILE_URL/TILE_ATTR from that provider's own
+     documentation. Do not guess the query-parameter name. */
+  var TILE_URL  = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var TILE_ATTR = '© OpenStreetMap';
+  L.tileLayer(TILE_URL,{maxZoom:19,attribution:TILE_ATTR}).addTo(map);
   renderGlows();
   /* sensor pins — colour = air quality */
   var pts=[];
