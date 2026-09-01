@@ -20,7 +20,11 @@ venv/
 .claude/
 
 # Regenerable CAD meshes / slicer gcode (sources kept: .step .bgcode .png .py)
+# STL — build files ARE published for hardware, ignored everywhere else.
+# A blanket *.stl silently blocked adding any new enclosure build file;
+# the v5 STLs only survived because git mv keeps tracked files tracked.
 *.stl
+!hardware/**/*.stl
 *.gcode
 *.3mf
 
