@@ -1,0 +1,9 @@
+part_number,name,type,quantity,material_or_spec,source_file,supplier,part_id,unit_cost,currency,local_sourcing_notes,notes
+1,Main Body,Production,1,TODO,stl/Main_Body.stl,3D printed,,,IDR,,Chassis
+2,Main Body Cover,Production,1,TODO,stl/Main_Body_Cover.stl,3D printed,,,IDR,,Top cover / shroud
+3,HM Cover and Mainboard Mount,Production,1,TODO,stl/HM_Cover_and_Mainboard_Mount.stl,3D printed,,,IDR,,HM3301 cover + board mount
+4,Body Air Outlet,Production,1,TODO,stl/Body_Air_Outlet.stl,3D printed,,,IDR,,Air outlet
+5,BME Cover,Production,1,TODO,stl/BME_Cover.stl,3D printed,,,IDR,,BME680 cover
+6,Body Bracket,Production,1,TODO,stl/Body_Bracket.stl,3D printed,,,IDR,,Mounting bracket
+7,TODO screws,Standard,TODO,TODO ISO designation,,TODO,,TODO,IDR,Widely available,Sizes and counts unknown
+8,TODO gasket or seal,Standard,TODO,TODO,,TODO,,TODO,IDR,,If any
