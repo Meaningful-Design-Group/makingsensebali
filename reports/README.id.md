@@ -36,7 +36,7 @@ yang dapat di-deploy di rumah untuk lanskap Fab City 2026.
 | | |
 |---|---|
 | **Deployment referensi** | Making Sense Bali · Bali, Indonesia · fase pilot, Q2 2026 |
-| **Dijalankan oleh** | [Fab Lab Bali](https://fablabbali.com) sebagai lapisan pelaporan dari [Making Sense Bali](https://mdg-bali.github.io/makingsensebali/) |
+| **Dijalankan oleh** | [Fab Lab Bali](https://fablabbali.com) sebagai lapisan pelaporan dari [Making Sense Bali](https://makingsense.fablabbali.com/) |
 | **Kit replikasi** | Tersedia — lihat [REPLICATION.md](REPLICATION.md) |
 | **Rencana berikutnya** | Pelapor Barcelona · Fab Lab Barcelona · 2026 H2 |
 | **Lapisan federasi** | PLANETAI · direncanakan, infrastruktur belum dibangun |

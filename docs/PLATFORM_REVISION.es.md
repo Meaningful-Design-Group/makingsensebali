@@ -11,7 +11,7 @@
 
 ## 1. Por qué esta revisión
 
-El panel actual en `mdg-bali.github.io/makingsensebali/dashboard/` funciona como una vista *instantánea*: un mapa de sensores con sus últimas lecturas, una lista de reportes ciudadanos representados como tarjetas, unos cuantos paneles de referencia. Demuestra que la campaña existe. Todavía no ayuda a nadie a *interpretar* qué está pasando a nivel ambiental en Bali.
+El panel actual en `makingsense.fablabbali.com/dashboard/` funciona como una vista *instantánea*: un mapa de sensores con sus últimas lecturas, una lista de reportes ciudadanos representados como tarjetas, unos cuantos paneles de referencia. Demuestra que la campaña existe. Todavía no ayuda a nadie a *interpretar* qué está pasando a nivel ambiental en Bali.
 
 El cambio que aporta esta revisión: de "cuál es la lectura actual de PM2.5 en este pin" a "**qué cambió en este barrio durante el último día, y está conectado con lo que la gente está reportando?**" Esa pregunta es la que convierte un panel en una herramienta que un coordinador de banjar, un analista del Dinas Kesehatan o un padre o madre preocupado por el asma de su hijo puede usar de verdad.
 

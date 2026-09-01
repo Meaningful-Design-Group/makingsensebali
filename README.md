@@ -8,7 +8,25 @@ Making Sense Bali combines open-hardware environmental sensors, public data from
 
 The campaign is hosted and accountable to **[Fab Lab Bali](https://fablabbali.com)**, the local fabrication laboratory in Denpasar, as part of the **Fab City Bali** chapter of the global [Fab City](https://fab.city/) network. Methodologically the work descends from the **[Making Sense](https://making-sense.eu/)** project (EU Horizon 2020, Fab Lab Barcelona / IAAC and partners, 2015–2017) and uses the **[Smart Citizen Kit](https://smartcitizen.me/)** platform, co-founded by Tomas Diez and Alex Posada at Fab Lab Barcelona / IAAC in 2012. Making Sense Bali is led by Tomas Diez — Smart Citizen co-founder, now resident in Bali — and runs as an independent bioregional instance, in close relationship with the original projects.
 
-Live: **[mdg-bali.github.io/makingsensebali](https://mdg-bali.github.io/makingsensebali/)**
+Live: **[makingsense.fablabbali.com](https://makingsense.fablabbali.com/)**
+
+
+## Related work in Bali
+
+**[Bali Air Dispatch](https://baliairdispatch.com/)** — a live island-wide register of
+PM2.5, reading across seven sensor networks, with an evidence brief, a solutions guide and
+a data review of the island's garbage fires. It is a **separate and independent effort**,
+and Fab Lab Bali and Meaningful Design Group are listed collaborators.
+
+The two projects fit together rather than overlap. Making Sense Bali collects and moderates
+resident reports and runs open-hardware nodes; Bali Air Dispatch aggregates the island's
+sensor networks and renders our reports layer on its map — the dashed circles, sized by
+count, fading over thirty days. Its [community WhatsApp
+group](https://chat.whatsapp.com/EyttUDMLFSd8meFwtm2eHa) is also the source of
+[`docs/community-knowledge.md`](docs/community-knowledge.md).
+
+
+New here? **[How to contribute](CONTRIBUTING.md)**.
 
 ---
 
@@ -16,7 +34,7 @@ Live: **[mdg-bali.github.io/makingsensebali](https://mdg-bali.github.io/makingse
 
 Three surfaces, one campaign:
 
-1. **The public site** at `mdg-bali.github.io/makingsensebali/` — the campaign's home: methodology, status, the live dashboard, the matters-of-concern survey, the residents' reports, attribution to the broader network.
+1. **The public site** at `makingsense.fablabbali.com/` — the campaign's home: methodology, status, the live dashboard, the matters-of-concern survey, the residents' reports, attribution to the broader network.
 
 2. **The live dashboard** at `/dashboard/` — real-time environmental sensor readings aggregated from multiple open networks: Smart Citizen Kit deployments operated by the campaign, OpenAQ stations in Bali, Sensor.Community devices, PurpleAir (when configured). PM2.5, PM10, temperature, humidity, noise. Each pin shows source, last reading, links to the original platform.
 

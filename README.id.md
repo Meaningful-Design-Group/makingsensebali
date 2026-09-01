@@ -8,7 +8,24 @@ Making Sense Bali memadukan sensor lingkungan perangkat keras terbuka, data publ
 
 Kampanye ini diselenggarakan dan bertanggung jawab kepada **[Fab Lab Bali](https://fablabbali.com)**, laboratorium fabrikasi lokal di Denpasar, sebagai bagian dari chapter **Fab City Bali** dalam jaringan global [Fab City](https://fab.city/). Secara metodologis, pekerjaan ini berasal dari proyek **[Making Sense](https://making-sense.eu/)** (EU Horizon 2020, Fab Lab Barcelona / IAAC dan mitra, 2015–2017) serta menggunakan platform **[Smart Citizen Kit](https://smartcitizen.me/)**, yang ikut didirikan oleh Tomas Diez dan Alex Posada di Fab Lab Barcelona / IAAC pada tahun 2012. Making Sense Bali dipimpin oleh Tomas Diez — salah satu pendiri Smart Citizen, kini berdomisili di Bali — dan berjalan sebagai instance bioregional independen, dalam hubungan erat dengan proyek-proyek aslinya.
 
-Live: **[mdg-bali.github.io/makingsensebali](https://mdg-bali.github.io/makingsensebali/)**
+Live: **[makingsense.fablabbali.com](https://makingsense.fablabbali.com/)**
+
+
+## Pekerjaan terkait di Bali
+
+**[Bali Air Dispatch](https://baliairdispatch.com/)** — register PM2.5 langsung untuk
+seluruh pulau, membaca tujuh jaringan sensor, dengan ringkasan bukti, panduan solusi, dan
+tinjauan data tentang pembakaran sampah di Bali. Ini adalah **upaya yang terpisah dan
+independen**; Fab Lab Bali dan Meaningful Design Group tercatat sebagai kolaborator.
+
+Kedua proyek saling melengkapi, bukan tumpang tindih. Making Sense Bali mengumpulkan dan
+memoderasi laporan warga serta menjalankan node perangkat keras terbuka; Bali Air Dispatch
+menggabungkan jaringan sensor se-pulau dan menampilkan lapisan laporan kami di petanya.
+[Grup WhatsApp komunitasnya](https://chat.whatsapp.com/EyttUDMLFSd8meFwtm2eHa) juga menjadi
+sumber [`docs/community-knowledge.id.md`](docs/community-knowledge.id.md).
+
+
+Baru di sini? **[Cara berkontribusi](CONTRIBUTING.id.md)**.
 
 ---
 
@@ -16,7 +33,7 @@ Live: **[mdg-bali.github.io/makingsensebali](https://mdg-bali.github.io/makingse
 
 Tiga permukaan, satu kampanye:
 
-1. **Situs publik** di `mdg-bali.github.io/makingsensebali/` — beranda kampanye: metodologi, status, dashboard live, survei matters-of-concern, laporan warga, atribusi kepada jaringan yang lebih luas.
+1. **Situs publik** di `makingsense.fablabbali.com/` — beranda kampanye: metodologi, status, dashboard live, survei matters-of-concern, laporan warga, atribusi kepada jaringan yang lebih luas.
 
 2. **Dashboard live** di `/dashboard/` — pembacaan sensor lingkungan secara real-time yang diagregasi dari berbagai jaringan terbuka: penyebaran Smart Citizen Kit yang dioperasikan oleh kampanye, stasiun OpenAQ di Bali, perangkat Sensor.Community, PurpleAir (saat dikonfigurasi). PM2.5, PM10, suhu, kelembapan, kebisingan. Setiap pin menampilkan sumber, pembacaan terakhir, dan tautan ke platform aslinya.
 
