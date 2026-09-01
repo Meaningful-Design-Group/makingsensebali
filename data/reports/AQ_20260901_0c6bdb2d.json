@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "None observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260901_0c6bdb2d.json",
+  "latitude": -8.723773,
+  "longitude": 115.178418,
+  "geolocation": {
+    "lat": -8.723773,
+    "lon": 115.178418
+  },
+  "locality": "Kuta",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-01T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "none",
+  "ai_analysis": {
+    "detected": false,
+    "confidence": 1.0,
+    "indicators": [
+      "Clear blue sky",
+      "Building facade",
+      "Overhead utility wires"
+    ],
+    "description": "A close-up view of an old building facade under a clear blue sky.",
+    "severity": "low",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260901_0c6bdb2d.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-01T00:00:00+00:00",
+    "reported_timestamp": "2026-09-01T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Kuta",
+    "kecamatan": "Kuta",
+    "kabupaten": "Badung"
+  }
+}
