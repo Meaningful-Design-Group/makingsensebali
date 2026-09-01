@@ -20,7 +20,9 @@
 //   5. Set OPENAQ_PROXY_BASE in data.js to that URL + '/openaq'
 
 const ALLOWED_ORIGINS = [
-  'https://mdg-bali.github.io',
+  'https://makingsense.fablabbali.com',        // canonical site
+  'https://meaningful-design-group.github.io', // GitHub Pages fallback
+  'https://mdg-bali.github.io',                // retired 2026-09-01, kept harmlessly
   'http://localhost',     // any localhost port for dev
   'http://127.0.0.1',
 ];
