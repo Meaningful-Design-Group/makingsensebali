@@ -273,7 +273,7 @@ const DICTIONARIES = {
     'idx.act.build.p':          'Enclosures, firmware, translations, or a fix to the dashboard. The designs and the code are public, licensed for reuse, and the guide tells you where to start.',
     'idx.act.build.go':         'Read the contributing guide →',
     'idx.more.kicker':          'Go deeper — if you want',
-    'idx.more.h2':              'The map shows you <em>what.</em> When you want the why, and the raw numbers — two doors.',
+    'idx.more.h2':              'The map shows you <em>what.</em> When you want the why, and the raw numbers — three doors.',
     'idx.more.about.dn':        'About the campaign',
     'idx.more.about.h3':        'Why we listen before we measure',
     'idx.more.about.p':         'The method, the seven phases, the people who answer for this, and how Bali fits a global lineage — Making Sense, Smart Citizen, Fab City.',
@@ -282,6 +282,10 @@ const DICTIONARIES = {
     'idx.more.data.h3':         'Every reading, every standard',
     'idx.more.data.p':          'Raw sensor history, WHO and EPA thresholds, network coverage, reports by category, and open downloads with citation guidance.',
     'idx.more.data.go':         'Open the data dashboard →',
+    'idx.more.dispatch.dn':      'Bali Air Dispatch · independent',
+    'idx.more.dispatch.h3':      'The whole island, every network',
+    'idx.more.dispatch.p':       'A separate community effort reading seven sensor networks island-wide, with an evidence brief and a solutions guide. Our resident reports appear on their map.',
+    'idx.more.dispatch.go':      'Open Bali Air Dispatch →',
     'idx.foot':                 'Making Sense Bali — led by <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · open hardware: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · methodology: EU Making Sense · part of <a href="https://fab.city">Fab City</a> + Murmurations · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">source &amp; contribute on GitHub</a>.<br>Low-cost sensors, ±10–15% from regulatory-grade — trends and relative magnitudes are reliable.',
 
     // ===== about.html (abt.*) =====
@@ -594,7 +598,7 @@ const DICTIONARIES = {
     'idx.act.build.p':          'Wadah sensor, firmware, terjemahan, atau perbaikan pada dasbor. Desain dan kodenya terbuka, berlisensi untuk digunakan ulang, dan panduannya menunjukkan dari mana memulai.',
     'idx.act.build.go':         'Baca panduan kontribusi →',
     'idx.more.kicker':          'Telusuri lebih dalam — jika Anda mau',
-    'idx.more.h2':              'Peta menunjukkan <em>apa.</em> Saat Anda ingin alasannya, dan angka mentahnya — dua pintu.',
+    'idx.more.h2':              'Peta menunjukkan <em>apa.</em> Saat Anda ingin alasannya, dan angka mentahnya — tiga pintu.',
     'idx.more.about.dn':        'Tentang kampanye',
     'idx.more.about.h3':        'Mengapa kami mendengar sebelum mengukur',
     'idx.more.about.p':         'Metodenya, tujuh fasenya, orang-orang yang bertanggung jawab, dan bagaimana Bali masuk ke silsilah global — Making Sense, Smart Citizen, Fab City.',
@@ -603,6 +607,10 @@ const DICTIONARIES = {
     'idx.more.data.h3':         'Setiap pembacaan, setiap standar',
     'idx.more.data.p':          'Riwayat sensor mentah, ambang WHO dan EPA, cakupan jaringan, laporan per kategori, dan unduhan terbuka dengan panduan sitasi.',
     'idx.more.data.go':         'Buka dasbor data →',
+    'idx.more.dispatch.dn':      'Bali Air Dispatch · independen',
+    'idx.more.dispatch.h3':      'Seluruh pulau, semua jaringan',
+    'idx.more.dispatch.p':       'Upaya komunitas terpisah yang membaca tujuh jaringan sensor se-pulau, dengan ringkasan bukti dan panduan solusi. Laporan warga kami tampil di peta mereka.',
+    'idx.more.dispatch.go':      'Buka Bali Air Dispatch →',
     'idx.foot':                 'Making Sense Bali — dipimpin oleh <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · perangkat keras terbuka: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · metodologi: EU Making Sense · bagian dari <a href="https://fab.city">Fab City</a> + Murmurations · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">source &amp; contribute on GitHub</a>.<br>Sensor murah, ±10–15% dari kelas regulator — tren dan besaran relatif tetap dapat diandalkan.',
 
     // ===== about.html (abt.*) =====
@@ -769,7 +777,7 @@ const DICTIONARIES = {
     'idx.act.build.p':          'Carcasas, firmware, traducciones o un arreglo en el panel. Los diseños y el código son públicos, con licencia para reutilizarse, y la guía te dice por dónde empezar.',
     'idx.act.build.go':         'Leer la guía de contribución →',
     'idx.more.kicker':          'Profundiza — si quieres',
-    'idx.more.h2':              'El mapa te muestra el <em>qué.</em> Cuando quieras el porqué, y los números crudos — dos puertas.',
+    'idx.more.h2':              'El mapa te muestra el <em>qué.</em> Cuando quieras el porqué, y los números crudos — tres puertas.',
     'idx.more.about.dn':        'Sobre la campaña',
     'idx.more.about.h3':        'Por qué escuchamos antes de medir',
     'idx.more.about.p':         'El método, las siete fases, las personas que responden por esto, y cómo Bali encaja en un linaje global — Making Sense, Smart Citizen, Fab City.',
@@ -778,6 +786,10 @@ const DICTIONARIES = {
     'idx.more.data.h3':         'Cada lectura, cada estándar',
     'idx.more.data.p':          'Historial de sensores en crudo, umbrales de la OMS y la EPA, cobertura de la red, reportes por categoría, y descargas abiertas con guía de citación.',
     'idx.more.data.go':         'Abrir el panel de datos →',
+    'idx.more.dispatch.dn':      'Bali Air Dispatch · independiente',
+    'idx.more.dispatch.h3':      'Toda la isla, todas las redes',
+    'idx.more.dispatch.p':       'Un esfuerzo comunitario independiente que lee siete redes de sensores en toda la isla, con un informe de evidencia y una guía de soluciones. Nuestros reportes vecinales aparecen en su mapa.',
+    'idx.more.dispatch.go':      'Abrir Bali Air Dispatch →',
     'idx.foot':                 'Making Sense Bali — liderado por <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · hardware abierto: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · metodología: EU Making Sense · parte de <a href="https://fab.city">Fab City</a> + Murmurations · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">source &amp; contribute on GitHub</a>.<br>Sensores de bajo costo, ±10–15% respecto al grado regulatorio — las tendencias y magnitudes relativas son confiables.',
 
     // ===== about.html (abt.*) =====
