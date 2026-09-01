@@ -25,6 +25,8 @@ WhatsApp](https://chat.whatsapp.com/EyttUDMLFSd8meFwtm2eHa) es también la fuent
 [`docs/community-knowledge.md`](docs/community-knowledge.md).
 
 
+¿Nuevo por aquí? **[Cómo contribuir](CONTRIBUTING.es.md)**.
+
 ---
 
 ## Cómo se ve Making Sense Bali

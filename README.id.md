@@ -25,6 +25,8 @@ menggabungkan jaringan sensor se-pulau dan menampilkan lapisan laporan kami di p
 sumber [`docs/community-knowledge.id.md`](docs/community-knowledge.id.md).
 
 
+Baru di sini? **[Cara berkontribusi](CONTRIBUTING.id.md)**.
+
 ---
 
 ## Seperti apa wujud Making Sense Bali

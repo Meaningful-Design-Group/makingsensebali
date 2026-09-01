@@ -26,6 +26,8 @@ group](https://chat.whatsapp.com/EyttUDMLFSd8meFwtm2eHa) is also the source of
 [`docs/community-knowledge.md`](docs/community-knowledge.md).
 
 
+New here? **[How to contribute](CONTRIBUTING.md)**.
+
 ---
 
 ## What Making Sense Bali looks like
