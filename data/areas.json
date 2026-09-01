@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T09:42:59.672240+00:00",
+  "generated_at": "2026-09-01T09:58:20.105449+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -12,14 +12,14 @@
       },
       "top_tags": [
         "open burning",
-        "visible smoke plume",
-        "smoke rising from background",
+        "plume of smoke",
         "pile of trash",
         "smoke rising",
-        "clear air"
+        "active flames",
+        "rising smoke"
       ],
       "max_severity": "medium",
-      "pm25": 34.2,
+      "pm25": 30.5,
       "summary": null
     },
     {
@@ -48,15 +48,15 @@
         "burning": 3
       },
       "top_tags": [
-        "burning trash pile",
-        "smoke rising",
-        "open burning",
         "open fire in barrel",
         "burning debris",
-        "smoke"
+        "smoke",
+        "burning trash pile",
+        "smoke rising",
+        "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 31.2,
+      "pm25": 38.6,
       "summary": null
     },
     {
@@ -70,13 +70,13 @@
       "top_tags": [
         "thick smoke",
         "atmospheric haze",
-        "smoke haze",
-        "ambient smoke in vegetation",
-        "suspected open burning",
-        "heavy haze"
+        "dense smoke",
+        "low visibility",
+        "smoke plume rising from trees",
+        "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 26.7,
+      "pm25": 28.3,
       "summary": null
     },
     {
@@ -93,7 +93,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 31.1,
+      "pm25": 29.1,
       "summary": null
     },
     {
@@ -110,7 +110,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 30.8,
+      "pm25": 28.7,
       "summary": null
     },
     {
@@ -127,7 +127,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 26.1,
+      "pm25": 26.4,
       "summary": null
     },
     {
@@ -143,7 +143,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 39.6,
+      "pm25": 47.4,
       "summary": null
     },
     {
@@ -155,15 +155,15 @@
         "burning": 3
       },
       "top_tags": [
-        "thick white smoke",
-        "smoke rising from ground level",
         "active flames",
         "smoke plume",
         "burning trash",
+        "thick white smoke",
+        "smoke rising from ground level",
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 35.2,
+      "pm25": 43.1,
       "summary": null
     },
     {
@@ -180,11 +180,11 @@
       },
       "top_tags": [
         "various types of waste",
-        "discarded plastic bottle",
-        "scattered litter",
-        "dry grassy ground",
-        "no visible smoke",
-        "no visible fire"
+        "large amount of trash",
+        "smoke visible",
+        "motorbike smoke",
+        "motorbike",
+        "dirt road"
       ],
       "max_severity": "high",
       "pm25": 9.2,
@@ -208,28 +208,28 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 31.2,
+      "pm25": 38.6,
       "summary": null
     },
     {
       "locality": "Kerobokan",
       "lat": -8.652651,
       "lon": 115.162566,
-      "report_count": 11,
+      "report_count": 12,
       "categories": {
-        "burning": 8,
+        "burning": 9,
         "none": 3
       },
       "top_tags": [
+        "smoke plume",
+        "localized smoke plume",
         "smoke rising",
         "burning trash",
-        "localized smoke plume",
-        "smoke plume",
-        "visible fire",
-        "rising smoke"
+        "smoke rising from ground",
+        "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 24.4,
+      "pm25": 23.0,
       "summary": null
     },
     {
@@ -240,20 +240,40 @@
       "categories": {
         "burning": 30,
         "none": 4,
-        "construction": 1,
-        "vehicle": 1
+        "vehicle": 1,
+        "construction": 1
       },
       "top_tags": [
         "open burning",
         "smoke plume",
-        "open burning",
         "open fire",
         "construction debris",
-        "flames",
-        "construction site"
+        "plume of smoke",
+        "flames"
       ],
       "max_severity": "high",
-      "pm25": 24.4,
+      "pm25": 23.0,
+      "summary": null
+    },
+    {
+      "locality": "Kuta",
+      "lat": -8.723773,
+      "lon": 115.178418,
+      "report_count": 2,
+      "categories": {
+        "none": 1,
+        "burning": 1
+      },
+      "top_tags": [
+        "Clear blue sky",
+        "Building facade",
+        "Overhead utility wires",
+        "visible smoke plume",
+        "hazy atmosphere",
+        "localized burning"
+      ],
+      "max_severity": "medium",
+      "pm25": null,
       "summary": null
     },
     {
@@ -273,7 +293,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 30.2,
+      "pm25": 44.0,
       "summary": null
     },
     {
@@ -293,7 +313,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 29.7,
+      "pm25": 27.0,
       "summary": null
     },
     {
@@ -332,7 +352,7 @@
         "tropical foliage"
       ],
       "max_severity": "medium",
-      "pm25": 24.8,
+      "pm25": 29.6,
       "summary": null
     },
     {
@@ -349,7 +369,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 39.6,
+      "pm25": 47.4,
       "summary": null
     },
     {
@@ -366,7 +386,7 @@
         "roadside setting"
       ],
       "max_severity": "medium",
-      "pm25": 32.5,
+      "pm25": 42.9,
       "summary": null
     },
     {
@@ -400,11 +420,11 @@
         "wisps of white smoke",
         "localized smoke plume",
         "dense tropical foliage",
-        "large pile of mixed garbage",
-        "unmanaged dump site"
+        "garbage container",
+        "litter in concrete bin"
       ],
       "max_severity": "high",
-      "pm25": 43.4,
+      "pm25": 41.8,
       "summary": null
     },
     {
@@ -421,7 +441,28 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 32.4,
+      "pm25": 26.0,
+      "summary": null
+    },
+    {
+      "locality": "Tuban",
+      "lat": -8.746704,
+      "lon": 115.168369,
+      "report_count": 4,
+      "categories": {
+        "burning": 3,
+        "none": 1
+      },
+      "top_tags": [
+        "scattered debris",
+        "dry ground",
+        "dock area",
+        "visible smoke plume",
+        "burning activity",
+        "plume of white smoke"
+      ],
+      "max_severity": "medium",
+      "pm25": null,
       "summary": null
     },
     {
@@ -436,11 +477,11 @@
       },
       "top_tags": [
         "smoke rising",
-        "open burning",
-        "pile of trash",
-        "very dark image",
-        "indistinct glow",
-        "open burning area"
+        "open burning area",
+        "dry ground debris",
+        "large pile of mixed trash",
+        "visible smoke rising from the waste",
+        "dark debris"
       ],
       "max_severity": "medium",
       "pm25": 9.2,
