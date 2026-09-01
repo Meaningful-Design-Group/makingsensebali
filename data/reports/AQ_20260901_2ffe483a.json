@@ -1,0 +1,61 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260901_2ffe483a.json",
+  "latitude": -8.595249,
+  "longitude": 115.117696,
+  "geolocation": {
+    "lat": -8.595249,
+    "lon": 115.117696
+  },
+  "locality": "Pandak Gede",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:telegram",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-01T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "thick smoke plume",
+      "pile of burning debris",
+      "visible flames",
+      "tropical foliage"
+    ],
+    "description": "Smoke is rising from a pile of burning trash in a tropical setting.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260901_2ffe483a.jpg",
+  "data_source": "telegram",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-01T00:00:00+00:00",
+    "reported_timestamp": "2026-09-01T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Pandak Gede",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}
