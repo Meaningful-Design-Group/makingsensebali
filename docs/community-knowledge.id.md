@@ -4,7 +4,7 @@
 
 ### Basis pengetahuan tentang hidup dengan polusi udara di Bali
 
-*Disarikan dari sekitar 1.700 pesan di antara sekitar 218 warga dalam grup komunitas Bali Air Dispatch, 6 Mei – 19 Agustus 2026, dan diterbitkan di sini bersama perkakas yang dikontribusikan Making Sense Bali untuk masalah yang sama.*
+*Disarikan dari sekitar 2.900 pesan di antara sekitar 240 warga dalam grup komunitas Bali Air Dispatch, 6 Mei – 1 September 2026, dan diterbitkan di sini bersama perkakas yang dikontribusikan Making Sense Bali untuk masalah yang sama.*
 
 > ⚠️ **Catatan terjemahan.** Versi Bahasa Indonesia ini disiapkan dengan bantuan AI dan **belum ditinjau oleh penutur asli**. Jika ada kalimat yang janggal atau keliru, mohon perbaiki melalui *issue* atau *pull request* di repositori ini. Versi Inggris adalah rujukan sementara.
 
@@ -301,6 +301,61 @@ Pertanyaan yang belum terjawab dengan permintaan nyata di belakangnya. Masing-ma
 
 ---
 
+## 10. Apa yang berubah — 20 Agustus hingga 1 September 2026
+
+Dua minggu ketika perhatian grup bergeser dari *melindungi diri sendiri* ke *menghentikan sumbernya*. Bagian ini melanjutkan §5 (eskalasi), §6 (solusi sampah), dan §7 (advokasi), bukan mengulanginya.
+
+### 10.1 Ada dua anak tangga yang belum dipakai siapa pun
+
+§5 mencatat protokol sosialnya — tetangga, lalu banjar, lalu instansi lingkungan. Periode ini menambahkan dua anak tangga di atasnya, sekaligus alasan mengapa tangga bawah sering mentok.
+
+- **DLH / DLHK tingkat kabupaten.** Anak tangga pertama yang punya kewenangan hukum. Tiap kabupaten memiliki kantor dan situs resminya sendiri (`dlh.<kabupaten>kab.go.id`) — cari milik daerah Anda, jangan mengandalkan kontak yang diteruskan orang lain.
+- **SP4N-LAPOR** (`lapor.go.id`), sistem pengaduan nasional. Bisa diisi **secara anonim**, dilacak lewat nomor tiket, dan tersedia juga melalui SMS dan aplikasi. Anonimitas itulah intinya bagi siapa pun yang khawatir soal ruang lingkup visa, atau khawatir dikenali oleh tetangganya sendiri.
+
+> **Dan temuan yang membingkai ulang seluruh tangga ini.** Anggota yang mewawancarai tetangga, pihak sekolah, dan aparat desa *sebelum* mengadu semuanya melaporkan hal yang sama: warga tidak ingin membakar. Plastik yang dapat didaur ulang dan kertas bersih masih diambil. **Sampah residu — plastik kotor, popok, sampah rumah tangga campuran — tidak lagi punya jalur pengangkutan sejak sistem penerimaan di TPA berubah.** Banjar sering kali bersedia dan responsif, tetapi tetap tidak bisa menolong: tidak ada truk, tidak ada anggaran, tidak ada tempat membuang. Penegakan aturan tanpa jalur pembuangan hanya memindahkan apinya. Pengaduan yang hanya meminta penindakan lebih lemah daripada pengaduan yang meminta jalur pembuangan.
+
+**Struktur pengaduan yang layak dipakai ulang.** Surat salah satu anggota kepada DLH kabupaten diedarkan di grup. Yang membuatnya kuat: menjelaskan secara singkat kedudukan penulis di wilayah itu; menyajikan pengukuran beserta metodenya (lokasi sensor, jumlah hari, rata-rata, persentase hari yang melampaui pedoman PM2.5 24 jam WHO, ditambah pengukuran alat portabel saat pembakaran berlangsung); **menjelaskan mengapa warga membakar sebelum mengeluhkannya**, setelah berbicara lebih dulu dengan sekolah, banjar, dan desa; menyebut fasilitas secara spesifik, termasuk jam operasi yang teramati; mengajukan tujuh permintaan bernomor, salah satunya pemeriksaan *saat pembakaran sedang berlangsung*; menyatakan tegas bahwa surat itu tidak menyalahkan desa atau banjar; serta meminta kerahasiaan identitas dan tiga hal sebagai balasan — konfirmasi penerimaan, nama petugas yang menangani, dan langkah tindak lanjut.
+
+> **Jumlah lebih penting daripada kefasihan.** Kesimpulan kerja grup: banyak pengaduan terpisah, masing-masing dengan bukti dan susunan katanya sendiri, lebih berbobot daripada satu surat atau banyak salinan tangkapan layar yang sama. Beberapa anggota mengajukan pengaduan sendiri-sendiri atas isu yang sama, berdasarkan kesepakatan.
+
+### 10.2 Dua batasan yang khas pulau ini
+
+> ⚠️ **Warga negara asing: cari nasihat hukum sebelum mengorganisir.** Anggota berbeda pendapat soal batasnya; tidak ada yang menyangkal risikonya. Menggalang petisi, tampil sebagai wajah kampanye publik, atau dicantumkan sebagai penyelenggara dapat melampaui ruang lingkup KITAS/visa, dan iklim politiknya sensitif. Nasihat yang konsisten: konsultasikan dengan pengacara imigrasi, gunakan kanal resmi yang anonim bila ada, dan **biarkan warga Indonesia memimpin serta menjadi wajah dari apa pun yang bersifat publik.** Ini bukan sekadar perhitungan hukum — anggota menilai kampanye yang terbaca sebagai gerakan orang asing akan ditolak atas dasar itu saja, terlepas dari kekuatan buktinya.
+
+> **Layanan pihak ketiga tidak tersedia di mana-mana.** Sebagian banjar melarang perusahaan sampah, daur ulang, dan kompos dari luar, dan mewajibkan layanan mereka sendiri yang berbayar — satu kasus dilaporkan memakai iuran bulanan wajib yang terkait pembelian insinerator oleh banjar. "Pakai saja jasa swasta" bukan jawaban universal, dan memaksakannya bisa menimbulkan gesekan dengan banjar yang justru kerja samanya Anda butuhkan.
+
+Pembakaran jerami di sawah juga dilaporkan diperlakukan sebagai kegiatan pertanian yang dilindungi di setidaknya satu banjar. Itu percakapan yang berbeda dari pembakaran sampah, dan mencampuradukkan keduanya melemahkan dua-duanya.
+
+### 10.3 Kampanye — yang bertahan setelah diperdebatkan
+
+Melanjutkan §7. Banyak taktik diusulkan; berikut yang disepakati grup.
+
+- **Surat terbuka yang ditandatangani dokter-dokter Bali, diterbitkan oleh akun aktivis Indonesia yang mapan.** Usulan terkuat pada periode ini dan yang paling mendekati konsensus. Alasannya: lima puluh hingga seratus tanda tangan tenaga medis lokal memberi politisi sesuatu yang aman untuk ditindaklanjuti, dan siapa yang menyuarakan menentukan apakah pesannya didengar atau ditolak. Jalur yang diusulkan: bagian-bagian rumah sakit, negeri maupun swasta, serta organisasi profesi kedokteran.
+- **Media sosial lebih cepat daripada proses formal.** Anggota yang paham konteks lokal berargumen bahwa unggahan yang terlihat dan menandai pihak terkait menjangkau pengambil keputusan lebih cepat daripada petisi, karena memberi politisi alasan untuk terlibat. Halaman komunitas dengan pengikut besar lebih efektif daripada akun pribadi. Petisi dinilai lambat dan, bagi orang asing, berisiko untuk digalang.
+- **Buat angkanya bermakna.** Pembaca umum tidak tahu apakah 150 itu buruk. Angka yang sama, disandingkan dengan kota lain atau dengan pedoman WHO, langsung membuat skalanya terbaca. Anggota berulang kali menemukan inilah pembeda antara unggahan yang mengena dan yang tidak.
+- **Kanal lain yang dipakai:** grup WhatsApp orang tua murid (beberapa menjangkau 200+ orang tua), poster ber-QR menuju data langsung di area ramai, layar data langsung di kafe dan usaha, serta usulan baliho di persimpangan besar Canggu — ditaksir sekitar Rp 20 juta per minggu dan sempat diusulkan sebagai patungan grup, dengan kesepakatan mencoba kanal media sosial dulu dan menyimpan baliho sebagai langkah eskalasi.
+- **Bingkai pariwisata dan investasi** — pembatalan, ulasan, kepercayaan investor — dilaporkan benar-benar berpengaruh. Anggota terbelah soal apakah memakainya sebagai pesan utama itu bijak atau sekadar efektif.
+
+> ⚠️ **Disiplin kredibilitas, dipelajari di depan umum.** Sebuah grafik yang banyak dibagikan menyajikan satu pembacaan sesaat seolah-olah rata-rata 24 jam se-pulau. Kesalahan itu dikoreksi di dalam grup dalam hitungan jam. Jika materi kampanye terbukti melebih-lebihkan, seluruh basis buktinya jadi bisa dibantah — padahal satu-satunya aset nyata kampanye ini adalah angkanya tahan diuji. Sebut puncak sebagai puncak, cantumkan waktunya, dan gunakan kumpulan sensor yang konsisten untuk rata-rata.
+
+### 10.4 Sumber masalahnya, dan jurang dua tahun
+
+Melanjutkan §6. Solusi sisi sampah di sana tetap berlaku; yang ditambahkan periode ini adalah skala dan perbedaan pendapat.
+
+**Pemilahan organik tetap tuas tunggal terbesar** — kira-kira dua pertiga sampah rumah tangga. Anggota melaporkan upaya di semua skala: pengomposan rumah tangga dengan starter bakteri sejenis EM4 (satu anggota sedang menguji versi nyaris gratis untuk dibagikan ke tetangga), bak kompos tanam di sebuah sekolah setelah pemilahan organik menjadi syarat penerimaan di TPA, layanan komersial untuk sampah kebun, sisa makanan, dan organik skala usaha, serta **bank sampah** sebagai jalur murah bagi institusi yang enggan membayar layanan swasta. Maggot (black soldier fly) dan vermikompos disebut sebagai metode mapan yang tidak glamor tetapi tersedia.
+
+> **Insinerasi terpusat benar-benar diperdebatkan, dan datanya tidak menyelesaikan perdebatan itu.** Satu posisi: satu ton yang dibakar dalam tungku bersuhu tinggi yang dirancang baik menghasilkan polusi pembakaran tak sempurna jauh lebih sedikit daripada satu ton yang sama dibakar di ribuan titik api pinggir jalan. Posisi lain: fasilitas yang beroperasi di bawah standar membawa bahaya nanopartikelnya sendiri, dan anggota yang tinggal dekat fasilitas terpusat melaporkan bau plastik menyengat serta pembacaan tinggi pada jam operasi. Dua belas insinerator di satu kabupaten disegel Kementerian Lingkungan Hidup pada Februari 2026 dan kembali beroperasi kemudian setelah uji emisi.
+>
+> **Namun setidaknya dua anggota mendapati monitor mereka yang paling dekat dengan fasilitas terpusat justru membaca *lebih rendah* daripada monitor kedua yang berjarak beberapa kilometer**, dan menyimpulkan efek kumulatif dari kebakaran rumah tangga dan konstruksi yang tersebar mungkin lebih dominan. Tidak ada anggota yang mengklaim jaringan sensor saat ini mampu menetapkan sumber. Perlakukan klaim percaya diri tentang fasilitas tertentu — ke arah mana pun — sebagai belum terbukti.
+
+> **Pirolisis rumahan**, berulang kali diusulkan, berulang kali diberi catatan. Klaim pengurangan 98% dipersoalkan karena sangat bergantung pada kondisi pengukuran, dan plastik berklorin seperti PVC melepaskan dioksin pada suhu pembakaran tak sempurna. Menarik; belum menjadi solusi rumah tangga yang tervalidasi.
+
+**Jurang yang belum ada rencananya.** Fasilitas waste-to-energy sedang dibangun dengan pendanaan pusat dan baru diperkirakan beroperasi akhir 2027. Artinya ada sekitar dua tahun tanpa jalur sementara untuk sampah residu — persis kondisi yang melahirkan pembakaran saat ini. Usulan jangka pendek paling konkret dari grup adalah layanan pengumpulan dan pemilahan bersubsidi yang didanai swasta dan ditawarkan ke desa sebagai alternatif utuh: **sediakan jalurnya dulu, baru harapkan pembakarannya berhenti.**
+
+> **Dua kekosongan cakupan yang perlu disebut.** Anggota di Sanur melaporkan gejala selama berminggu-minggu nyaris tanpa cakupan sensor untuk menguatkannya, dan permintaan serupa datang dari Ubud dan Gianyar. Di mana tidak ada sensor, tidak ada bukti; dan tanpa bukti, sebuah pengaduan hanyalah anekdot. Inilah cara paling langsung bagi seorang warga untuk menyumbang pada eskalasi berikutnya.
+
+---
+
 ## Berkontribusi, dan catatan tentang dokumen ini
 
 Jika Anda anggota grup Bali Air Dispatch dan ada yang keliru, kurang lengkap, atau dinilai dengan tingkat keyakinan yang salah di sini, mohon dikoreksi — buka *issue* atau *pull request* di repositori ini, atau sampaikan di grup.
@@ -313,4 +368,4 @@ Jika Anda sudah menjalankan sensor di AirGradient, PurpleAir, Sensor.Community, 
 
 ---
 
-*Pengetahuan komunitas dikumpulkan dari grup Bali Air Dispatch, 6 Mei – 19 Agustus 2026, dan diterbitkan oleh Making Sense Bali di Fab Lab Bali, dalam chapter Fab City Bali. Temuan komunitas adalah milik orang-orang yang menghasilkannya. Kontribusi bersifat anonim secara rancangan.*
+*Pengetahuan komunitas dikumpulkan dari grup Bali Air Dispatch, 6 Mei – 1 September 2026, dan diterbitkan oleh Making Sense Bali di Fab Lab Bali, dalam chapter Fab City Bali. Temuan komunitas adalah milik orang-orang yang menghasilkannya. Kontribusi bersifat anonim secara rancangan.*
