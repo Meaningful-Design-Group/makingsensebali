@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T09:27:44.751429+00:00",
+  "generated_at": "2026-09-01T09:42:59.672240+00:00",
   "areas": [
     {
       "locality": "Belalang",
@@ -19,7 +19,7 @@
         "clear air"
       ],
       "max_severity": "medium",
-      "pm25": 23.7,
+      "pm25": 34.2,
       "summary": null
     },
     {
@@ -36,7 +36,7 @@
         "dark ash"
       ],
       "max_severity": "medium",
-      "pm25": 8.4,
+      "pm25": 9.2,
       "summary": null
     },
     {
@@ -56,7 +56,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 26.6,
+      "pm25": 31.2,
       "summary": null
     },
     {
@@ -76,7 +76,7 @@
         "heavy haze"
       ],
       "max_severity": "high",
-      "pm25": 22.4,
+      "pm25": 26.7,
       "summary": null
     },
     {
@@ -93,7 +93,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 23.6,
+      "pm25": 31.1,
       "summary": null
     },
     {
@@ -110,7 +110,7 @@
         "distant smoke"
       ],
       "max_severity": "medium",
-      "pm25": 23.3,
+      "pm25": 30.8,
       "summary": null
     },
     {
@@ -127,7 +127,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 20.2,
+      "pm25": 26.1,
       "summary": null
     },
     {
@@ -143,7 +143,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 32.1,
+      "pm25": 39.6,
       "summary": null
     },
     {
@@ -163,7 +163,7 @@
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 27.6,
+      "pm25": 35.2,
       "summary": null
     },
     {
@@ -172,8 +172,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -187,7 +187,7 @@
         "no visible fire"
       ],
       "max_severity": "high",
-      "pm25": 8.4,
+      "pm25": 9.2,
       "summary": null
     },
     {
@@ -208,7 +208,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 26.6,
+      "pm25": 31.2,
       "summary": null
     },
     {
@@ -229,7 +229,7 @@
         "rising smoke"
       ],
       "max_severity": "medium",
-      "pm25": 19.2,
+      "pm25": 24.4,
       "summary": null
     },
     {
@@ -244,6 +244,7 @@
         "vehicle": 1
       },
       "top_tags": [
+        "open burning",
         "smoke plume",
         "open burning",
         "open fire",
@@ -252,7 +253,7 @@
         "construction site"
       ],
       "max_severity": "high",
-      "pm25": 19.2,
+      "pm25": 24.4,
       "summary": null
     },
     {
@@ -272,7 +273,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 35.3,
+      "pm25": 30.2,
       "summary": null
     },
     {
@@ -284,15 +285,15 @@
         "burning": 2
       },
       "top_tags": [
-        "thick smoke plume",
-        "visible fire source",
-        "open burning",
         "plume of smoke",
         "smoke rising from structures",
-        "haze"
+        "haze",
+        "thick smoke plume",
+        "visible fire source",
+        "open burning"
       ],
       "max_severity": "high",
-      "pm25": 21.2,
+      "pm25": 29.7,
       "summary": null
     },
     {
@@ -313,7 +314,7 @@
         "ground debris"
       ],
       "max_severity": "medium",
-      "pm25": 16.4,
+      "pm25": 21.2,
       "summary": null
     },
     {
@@ -348,7 +349,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 32.1,
+      "pm25": 39.6,
       "summary": null
     },
     {
@@ -365,7 +366,7 @@
         "roadside setting"
       ],
       "max_severity": "medium",
-      "pm25": 35.8,
+      "pm25": 32.5,
       "summary": null
     },
     {
@@ -403,7 +404,7 @@
         "unmanaged dump site"
       ],
       "max_severity": "high",
-      "pm25": 30.7,
+      "pm25": 43.4,
       "summary": null
     },
     {
@@ -420,7 +421,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 21.3,
+      "pm25": 32.4,
       "summary": null
     },
     {
@@ -430,8 +431,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
         "smoke rising",
@@ -442,7 +443,7 @@
         "open burning area"
       ],
       "max_severity": "medium",
-      "pm25": 8.4,
+      "pm25": 9.2,
       "summary": null
     }
   ]
