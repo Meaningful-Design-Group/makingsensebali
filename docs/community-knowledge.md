@@ -4,7 +4,7 @@
 
 ### A working knowledge base on living with air pollution in Bali
 
-*Distilled from ~1,700 messages exchanged between ~218 residents in the Bali Air Dispatch community group, 6 May – 19 August 2026, and published here with the tooling Making Sense Bali contributes to the same problem.*
+*Distilled from ~2,900 messages exchanged between ~240 residents in the Bali Air Dispatch community group, 6 May – 1 September 2026, and published here with the tooling Making Sense Bali contributes to the same problem.*
 
 ---
 
@@ -299,6 +299,61 @@ Unanswered questions with real demand behind them. Each is a candidate for a pro
 
 ---
 
+## 10. What changed — 20 August to 1 September 2026
+
+Two weeks in which the group's attention moved from *protecting yourself* to *getting it stopped*. This section extends §5 (escalation), §6 (waste solutions) and §7 (advocacy) rather than repeating them.
+
+### 10.1 The ladder has two rungs nobody was using
+
+§5 documents the social protocol — neighbour, then banjar, then the environmental agency. This period added two rungs above it, and a reason the lower ones stall.
+
+- **DLH / DLHK at kabupaten level.** The first rung with statutory power. Each regency has its own office and its own official `dlh.<regency>kab.go.id` site — find yours rather than relying on a forwarded contact.
+- **SP4N-LAPOR** (`lapor.go.id`), the national complaints system. Filed **anonymously** if you wish, trackable by ticket, also reachable by SMS and app. The anonymity is the point for anyone worried about visa exposure or about being identified to their own neighbours.
+
+> **And the finding that reframes the whole ladder.** Members who interviewed their neighbours, schools and desa officials *before* complaining all reported the same thing: people do not want to burn. Recyclable plastic and clean paper are still collected. **Residual waste — dirty plastic, nappies, mixed household rubbish — has had no collection route since landfill acceptance changed.** Banjars were often willing and responsive, and still could not help: no trucks, no budget, nowhere to take it. Enforcement without a disposal route just moves the fire. A complaint that asks only for enforcement is weaker than one that asks for a disposal pathway.
+
+**A complaint structure worth reusing.** One member's submission to a regency DLH was circulated in the group. What made it strong: it established the writer's standing briefly; presented measurements with method (sensor location, days recorded, mean, share of days above the WHO 24-hour guideline, plus portable readings during active burning); **explained why people burn before complaining about it**, having spoken to the school, banjar and desa first; described facilities specifically, including observed operating hours; made seven numbered asks, one of which was an inspection *while burning is occurring*; stated explicitly that it was not blaming the desa or banjar; and requested confidentiality plus three things back — acknowledgement, the name of the handling officer, and the next step.
+
+> **Volume over eloquence.** The group's working conclusion: many separate complaints, each with its own evidence and wording, carry more weight than one letter or many copies of the same screenshot. Several members filed individually on the same issue by agreement.
+
+### 10.2 Two constraints specific to this island
+
+> ⚠️ **Foreign residents: take advice before organising.** Members disagreed on where the line sits; nobody disputed the risk. Organising petitions, fronting public campaigns or being named as an organiser may exceed KITAS/visa scope, and the political climate makes it sensitive. The consistent advice was to check with an immigration lawyer, use anonymous official channels where available, and **let Indonesian residents lead and front anything public.** This is not only a legal calculation — members judged that a campaign read as foreigner-driven would be dismissed on those grounds regardless of its evidence.
+
+> **Third-party services are not available everywhere.** Some banjars prohibit external waste, recycling and compost companies in favour of their own paid collection, in one reported case with a mandatory monthly fee tied to the banjar's purchase of an incinerator. "Just use a private collector" is not a universal answer, and attempting it can create friction with the banjar whose cooperation you need.
+
+Rice-field burning was also reported as treated as a protected agricultural activity in at least one banjar. It is a different conversation from waste burning, and conflating the two weakens both.
+
+### 10.3 Campaigning — what survived argument
+
+Extends §7. Many tactics were proposed; these are the ones the group converged on.
+
+- **An open letter signed by Balinese doctors, published by established Indonesian activist accounts.** The strongest proposal of the period and the closest to consensus. The reasoning: fifty to a hundred local medical signatures give politicians something they can safely act on, and authorship decides whether the message is heard or rejected. Suggested routes were hospital departments, public and private, and medical associations.
+- **Social media outpaces formal process.** Members with local experience argued a visible, tagged post reaches decision-makers faster than a petition, because it gives a politician a reason to engage. Community pages with large followings beat individual accounts. Petitions were judged slow and, for foreigners, risky to organise.
+- **Make the number mean something.** A general reader does not know whether 150 is bad. The same figure placed against other cities, or against the WHO guideline, makes the scale legible immediately. Members repeatedly found this the difference between a post that landed and one that didn't.
+- **Other channels used:** school parent networks (several reaching 200+ parents), posters with QR codes to live data in high-traffic areas, in-venue live displays in businesses, and a proposed billboard at a major Canggu junction — costed around IDR 20M/week and floated as a group crowdfund, with the consensus being to try social channels first and hold the billboard as escalation.
+- **The tourism and investment framing** — cancellations, reviews, investor confidence — was reported as having real traction. Members were divided on whether leading with it is wise or merely effective.
+
+> ⚠️ **The credibility discipline, learned in public.** A widely-shared graphic presented a single current reading as if it were a 24-hour island-wide average. It was corrected inside the group within the hour. If campaign material can be shown to overstate, the entire evidence base becomes contestable — and the numbers holding up is this campaign's only real asset. Label a peak as a peak, state when it was taken, and use consistent sensor sets for averages.
+
+### 10.4 The source, and the two-year gap
+
+Extends §6. The waste-side solutions listed there still stand; what this period added is scale and disagreement.
+
+**Organic separation remains the biggest single lever** — roughly two-thirds of household waste. Members reported working at every scale: household composting with an EM4-style bacterial starter (one trialling an almost-free version to hand to neighbours), in-ground compost bins installed at a school once organic separation became a condition of landfill acceptance, named commercial services for garden, food and commercial-scale organic waste, and **Bank Sampah depots** as the low-cost route for institutions unwilling to pay for private collection. Black soldier fly and vermicomposting were raised as established and unglamorous.
+
+> **Centralised incineration is genuinely contested, and the data does not settle it.** One position: a tonne burned in a well-designed high-temperature furnace produces far less incomplete-combustion pollution than the same tonne in thousands of roadside fires. The other: facilities operating below spec carry their own nanoparticle hazard, and members living near centralised facilities reported strong plastic odour and elevated readings during operating hours. Twelve incinerators in one regency were sealed by the Environment Ministry in February 2026 and reopened later in the year after emissions testing.
+>
+> **But at least two members found their monitor nearest a centralised facility reading *lower* than a second monitor kilometres away**, and concluded the cumulative effect of dispersed household and construction fires may dominate. Nobody in the group claimed the current network can attribute sources. Treat any confident claim about a specific facility — in either direction — as unproven.
+
+> **Home pyrolysis**, proposed repeatedly, qualified repeatedly. A claimed 98% reduction was challenged as depending entirely on measurement conditions, and chlorinated plastics such as PVC release dioxins at incomplete-combustion temperatures. Interesting; not a validated household solution.
+
+**The gap nobody has a plan for.** Waste-to-energy capacity is under construction with central funding and is not expected to deliver until late 2027. That leaves roughly two years with no interim route for residual waste — the exact condition that produced the current burning. The most concrete near-term proposal from the group was a privately funded, subsidised collection-and-sorting service offered to villages as a full alternative: **provide the route first, then expect the burning to stop.**
+
+> **Two coverage gaps worth naming.** Members in Sanur reported weeks of symptoms with almost no sensor coverage to corroborate them, and similar requests came from Ubud and Gianyar. Where there is no sensor there is no evidence, and where there is no evidence a complaint is an anecdote. This is the most direct way a resident can contribute to the next escalation.
+
+---
+
 ## Contributing, and a note on what this is
 
 If you are in the Bali Air Dispatch group and something here is wrong, incomplete, or attributed to the wrong kind of confidence, it should be corrected — open an issue or a pull request on this repository, or say so in the group.
@@ -311,4 +366,4 @@ If you have a sensor already running on AirGradient, PurpleAir, Sensor.Community
 
 ---
 
-*Community knowledge collected from the Bali Air Dispatch group, 6 May – 19 August 2026, and published by Making Sense Bali at Fab Lab Bali, within the Fab City Bali chapter. The community findings belong to the people who produced them. Contributions are anonymous by design.*
+*Community knowledge collected from the Bali Air Dispatch group, 6 May – 1 September 2026, and published by Making Sense Bali at Fab Lab Bali, within the Fab City Bali chapter. The community findings belong to the people who produced them. Contributions are anonymous by design.*
