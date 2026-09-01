@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "None observation — Bukit, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260901_243dc2d6.json",
+  "latitude": -8.746704,
+  "longitude": 115.168369,
+  "geolocation": {
+    "lat": -8.746704,
+    "lon": 115.168369
+  },
+  "locality": "Tuban",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-01T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "none",
+  "ai_analysis": {
+    "detected": false,
+    "confidence": 0.9,
+    "indicators": [
+      "dry ground",
+      "scattered debris",
+      "dock area"
+    ],
+    "description": "A dusty waterfront area with scattered debris and stacked materials.",
+    "severity": "low",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260901_243dc2d6.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-01T00:00:00+00:00",
+    "reported_timestamp": "2026-09-01T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Tuban",
+    "kecamatan": "Kuta",
+    "kabupaten": "Badung"
+  }
+}
