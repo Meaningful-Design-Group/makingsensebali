@@ -36,7 +36,7 @@ desplegable en casa, para el panorama Fab City de 2026.
 | | |
 |---|---|
 | **Despliegue de referencia** | Making Sense Bali · Bali, Indonesia · fase piloto, Q2 2026 |
-| **Operado por** | [Fab Lab Bali](https://fablabbali.com) como la capa de reportes de [Making Sense Bali](https://mdg-bali.github.io/makingsensebali/) |
+| **Operado por** | [Fab Lab Bali](https://fablabbali.com) como la capa de reportes de [Making Sense Bali](https://makingsense.fablabbali.com/) |
 | **Kit de replicación** | Disponible — consulta [REPLICATION.md](REPLICATION.md) |
 | **Próximo planificado** | Pelapor Barcelona · Fab Lab Barcelona · 2026 H2 |
 | **Capa de federación** | PLANETAI · planificada, infraestructura aún no construida |

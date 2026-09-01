@@ -11,7 +11,7 @@
 
 ## 1. Mengapa revisi ini
 
-Dasbor saat ini di `mdg-bali.github.io/makingsensebali/dashboard/` bekerja sebagai tampilan *snapshot*: peta sensor dengan pembacaan terbarunya, daftar laporan warga yang ditampilkan sebagai kartu, beberapa panel rujukan. Ini membuktikan bahwa kampanye ada. Ini belum membantu siapa pun untuk *menginterpretasikan* apa yang terjadi secara lingkungan di Bali.
+Dasbor saat ini di `makingsense.fablabbali.com/dashboard/` bekerja sebagai tampilan *snapshot*: peta sensor dengan pembacaan terbarunya, daftar laporan warga yang ditampilkan sebagai kartu, beberapa panel rujukan. Ini membuktikan bahwa kampanye ada. Ini belum membantu siapa pun untuk *menginterpretasikan* apa yang terjadi secara lingkungan di Bali.
 
 Pergeseran yang dihadirkan revisi ini: dari "berapa pembacaan PM2.5 saat ini di titik ini" menjadi "**apa yang berubah di lingkungan ini selama sehari terakhir, dan apakah itu terkait dengan apa yang dilaporkan orang?**" Pertanyaan itulah yang mengubah dasbor menjadi alat yang benar-benar dapat digunakan oleh koordinator banjar, analis Dinas Kesehatan, atau orang tua yang khawatir tentang asma anaknya.
 

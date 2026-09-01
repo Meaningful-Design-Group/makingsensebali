@@ -177,7 +177,7 @@ const DICTIONARIES = {
     'home.officials.csv_30d':           'Last 30 days CSV →',
     'home.officials.summary_pdf':       'Monthly summary PDF →',
     'home.officials.cite_title':        'How to cite Making Sense Bali data',
-    'home.officials.cite_body':         'Making Sense Bali (Fab Lab Bali, {{year}}). Open environmental sensor network and citizen reports, Bali, Indonesia. Retrieved from https://mdg-bali.github.io/makingsensebali/ on [date].',
+    'home.officials.cite_body':         'Making Sense Bali (Fab Lab Bali, {{year}}). Open environmental sensor network and citizen reports, Bali, Indonesia. Retrieved from https://makingsense.fablabbali.com/ on [date].',
     'home.officials.dashboard_link':    'Open the analytical dashboard →',
     'home.officials.contact':           'Direct engagement:',
 
@@ -499,7 +499,7 @@ const DICTIONARIES = {
     'home.officials.csv_30d':           'CSV 30 hari terakhir →',
     'home.officials.summary_pdf':       'Ringkasan bulanan PDF →',
     'home.officials.cite_title':        'Cara mensitasi data Making Sense Bali',
-    'home.officials.cite_body':         'Making Sense Bali (Fab Lab Bali, {{year}}). Jaringan sensor lingkungan terbuka dan laporan warga, Bali, Indonesia. Diakses dari https://mdg-bali.github.io/makingsensebali/ pada [tanggal].',
+    'home.officials.cite_body':         'Making Sense Bali (Fab Lab Bali, {{year}}). Jaringan sensor lingkungan terbuka dan laporan warga, Bali, Indonesia. Diakses dari https://makingsense.fablabbali.com/ pada [tanggal].',
     'home.officials.dashboard_link':    'Buka dasbor analitis →',
     'home.officials.contact':           'Engagement langsung:',
 
