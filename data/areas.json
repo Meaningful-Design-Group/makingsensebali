@@ -53,7 +53,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 20.3,
+      "pm25": 22.1,
       "summary": null
     },
     {
@@ -66,6 +66,8 @@
       },
       "top_tags": [
         "atmospheric haze",
+        "smoke plume rising from trees",
+        "visible smoke",
         "dense smoke",
         "low visibility",
         "smoke plume rising from trees",
@@ -140,7 +142,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 21.0,
+      "pm25": 22.2,
       "summary": null
     },
     {
@@ -169,8 +171,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "none": 3,
         "trash": 3,
+        "none": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -205,7 +207,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 20.3,
+      "pm25": 22.1,
       "summary": null
     },
     {
@@ -241,7 +243,6 @@
         "construction": 1
       },
       "top_tags": [
-        "open burning",
         "smoke plume",
         "open fire",
         "construction debris",
@@ -281,12 +282,12 @@
         "burning": 2
       },
       "top_tags": [
-        "plume of smoke",
-        "smoke rising from structures",
-        "haze",
         "thick smoke plume",
         "visible fire source",
-        "open burning"
+        "open burning",
+        "plume of smoke",
+        "smoke rising from structures",
+        "haze"
       ],
       "max_severity": "high",
       "pm25": 21.7,
@@ -327,7 +328,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 21.0,
+      "pm25": 22.2,
       "summary": null
     },
     {
@@ -375,8 +376,8 @@
       "report_count": 5,
       "categories": {
         "burning": 3,
-        "other": 1,
-        "none": 1
+        "none": 1,
+        "other": 1
       },
       "top_tags": [
         "smoke rising",
