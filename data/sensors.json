@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T13:00:30.473698+00:00",
+  "generated_at": "2026-09-03T13:15:47.499676+00:00",
   "count": 22,
   "sensors": [
     {
@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-09-03T12:56:57Z",
+      "lastReading": "2026-09-03T13:12:57Z",
       "reading": {
-        "pm25": 7.9,
-        "pm10": 7.9,
-        "temp": 24.82,
-        "rh": 78.81,
-        "noise": 38.37
+        "pm25": 8.2,
+        "pm10": 8.2,
+        "temp": 24.79,
+        "rh": 78.4,
+        "noise": 46.76
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "excluded_from_avg": false,
@@ -91,10 +91,10 @@
       "lat": -8.632781,
       "lng": 115.229004,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:22.000Z",
+      "lastReading": "2026-09-03T13:15:22.000Z",
       "reading": {
-        "pm25": 29.3,
-        "pm10": 31.5,
+        "pm25": 28.0,
+        "pm10": 31.2,
         "temp": 26.3,
         "rh": 60
       },
@@ -111,12 +111,12 @@
       "lat": -8.492994479130525,
       "lng": 115.30036092298013,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:11.000Z",
+      "lastReading": "2026-09-03T13:15:11.000Z",
       "reading": {
-        "pm25": 39.5,
-        "pm10": 46.7,
-        "temp": 25.5,
-        "rh": 60
+        "pm25": 37.3,
+        "pm10": 45.2,
+        "temp": 25.4,
+        "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -131,11 +131,11 @@
       "lat": -8.661245,
       "lng": 115.16204,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:02.000Z",
+      "lastReading": "2026-09-03T13:15:02.000Z",
       "reading": {
-        "pm25": 19.7,
-        "pm10": 19.7,
-        "temp": 27.9,
+        "pm25": 21.3,
+        "pm10": 21.7,
+        "temp": 28.0,
         "rh": 57
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -151,12 +151,12 @@
       "lat": -8.59456160873381,
       "lng": 115.12636083931227,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:38.000Z",
+      "lastReading": "2026-09-03T13:15:38.000Z",
       "reading": {
-        "pm25": 24.7,
-        "pm10": 26.7,
-        "temp": 27.8,
-        "rh": 55
+        "pm25": 35.5,
+        "pm10": 44.2,
+        "temp": 27.6,
+        "rh": 56
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -171,11 +171,11 @@
       "lat": -8.50498,
       "lng": 115.25379,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:31.000Z",
+      "lastReading": "2026-09-03T13:15:31.000Z",
       "reading": {
-        "pm25": 46.2,
-        "pm10": 55.5,
-        "temp": 26.7,
+        "pm25": 47.3,
+        "pm10": 58.5,
+        "temp": 26.6,
         "rh": 57
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -191,11 +191,11 @@
       "lat": -8.811206,
       "lng": 115.102523,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:37.000Z",
+      "lastReading": "2026-09-03T13:15:37.000Z",
       "reading": {
-        "pm25": 7.8,
-        "pm10": 7.8,
-        "temp": 27.7,
+        "pm25": 7.3,
+        "pm10": 8.3,
+        "temp": 27.6,
         "rh": 56
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -211,12 +211,12 @@
       "lat": -8.6158136,
       "lng": 115.1116163,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:22.000Z",
+      "lastReading": "2026-09-03T13:15:23.000Z",
       "reading": {
-        "pm25": 39.2,
-        "pm10": 46.3,
-        "temp": 26.5,
-        "rh": 59
+        "pm25": 37.5,
+        "pm10": 44.7,
+        "temp": 26.4,
+        "rh": 60
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -231,11 +231,11 @@
       "lat": -8.574738,
       "lng": 115.214613,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:21.000Z",
+      "lastReading": "2026-09-03T13:15:19.000Z",
       "reading": {
-        "pm25": 33.7,
-        "pm10": 39.7,
-        "temp": 26.4,
+        "pm25": 32.8,
+        "pm10": 38.0,
+        "temp": 26.3,
         "rh": 59
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -251,12 +251,12 @@
       "lat": -8.639718800071547,
       "lng": 115.13980229563802,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:33.000Z",
+      "lastReading": "2026-09-03T13:15:33.000Z",
       "reading": {
-        "pm25": 21.7,
-        "pm10": 22.0,
-        "temp": 28.3,
-        "rh": 54
+        "pm25": 21.5,
+        "pm10": 21.5,
+        "temp": 28.2,
+        "rh": 55
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -271,12 +271,12 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-09-03T12:58:49.000Z",
+      "lastReading": "2026-09-03T13:13:49.000Z",
       "reading": {
-        "pm25": 25.0,
-        "pm10": 30.0,
-        "temp": 24.4,
-        "rh": 82
+        "pm25": 21.0,
+        "pm10": 22.0,
+        "temp": 24.3,
+        "rh": 83
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -291,10 +291,10 @@
       "lat": -8.5677498,
       "lng": 115.2126491,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:22.000Z",
+      "lastReading": "2026-09-03T13:15:22.000Z",
       "reading": {
-        "pm25": 31.5,
-        "pm10": 34.0,
+        "pm25": 31.7,
+        "pm10": 34.2,
         "temp": 26.4,
         "rh": 58
       },
@@ -311,11 +311,11 @@
       "lat": -8.64472227054609,
       "lng": 115.1254933477104,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:10.000Z",
+      "lastReading": "2026-09-03T13:15:07.000Z",
       "reading": {
-        "pm25": 23.3,
-        "pm10": 25.7,
-        "temp": 27.1,
+        "pm25": 23.0,
+        "pm10": 24.0,
+        "temp": 27.0,
         "rh": 58
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -331,12 +331,12 @@
       "lat": -8.583793,
       "lng": 115.13047,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:33.000Z",
+      "lastReading": "2026-09-03T13:15:33.000Z",
       "reading": {
-        "pm25": 29.3,
-        "pm10": 30.5,
-        "temp": 26.8,
-        "rh": 58
+        "pm25": 37.8,
+        "pm10": 43.2,
+        "temp": 26.7,
+        "rh": 59
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -351,11 +351,11 @@
       "lat": -8.57065776243817,
       "lng": 115.21116301576197,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:03.000Z",
+      "lastReading": "2026-09-03T13:15:05.000Z",
       "reading": {
-        "pm25": 27.3,
-        "pm10": 28.2,
-        "temp": 26.3,
+        "pm25": 32.5,
+        "pm10": 37.0,
+        "temp": 26.2,
         "rh": 60
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -371,10 +371,10 @@
       "lat": -8.6025,
       "lng": 115.08976,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:17.000Z",
+      "lastReading": "2026-09-03T13:15:18.000Z",
       "reading": {
-        "pm25": 32.2,
-        "pm10": 35.0,
+        "pm25": 38.8,
+        "pm10": 44.8,
         "temp": 26.6,
         "rh": 59
       },
@@ -391,12 +391,12 @@
       "lat": -8.534967846418004,
       "lng": 115.27814260806699,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:30.000Z",
+      "lastReading": "2026-09-03T13:15:30.000Z",
       "reading": {
-        "pm25": 41.8,
-        "pm10": 49.8,
-        "temp": 28.0,
-        "rh": 53
+        "pm25": 42.5,
+        "pm10": 50.8,
+        "temp": 27.9,
+        "rh": 54
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "excluded_from_avg": false,
@@ -411,10 +411,10 @@
       "lat": -8.5453,
       "lng": 115.10704,
       "offline": false,
-      "lastReading": "2026-09-03T12:59:28.000Z",
+      "lastReading": "2026-09-03T13:15:29.000Z",
       "reading": {
-        "pm25": 38.7,
-        "pm10": 44.8,
+        "pm25": 38.5,
+        "pm10": 46.2,
         "temp": 26.7,
         "rh": 57
       },
@@ -431,11 +431,11 @@
       "lat": -8.53992,
       "lng": 115.26745,
       "offline": false,
-      "lastReading": "2026-09-03T13:00:05.000Z",
+      "lastReading": "2026-09-03T13:15:06.000Z",
       "reading": {
-        "pm25": 35.0,
-        "pm10": 39.3,
-        "temp": 27.7,
+        "pm25": 37.7,
+        "pm10": 45.0,
+        "temp": 27.6,
         "rh": 56
       },
       "detailsUrl": "https://www.airgradient.com/map/",
