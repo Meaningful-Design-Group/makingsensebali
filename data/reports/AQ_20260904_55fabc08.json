@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260904_55fabc08.json",
+  "latitude": -8.22713,
+  "longitude": 115.19192,
+  "geolocation": {
+    "lat": -8.22713,
+    "lon": 115.19192
+  },
+  "locality": "Bali",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:telegram",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-04T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.85,
+    "indicators": [
+      "smoke rising behind temple wall",
+      "haze near structure"
+    ],
+    "description": "Smoke is visible rising from behind the wall of a traditional Balinese temple near the beach.",
+    "severity": "medium",
+    "model_version": "gemini:gemini-flash-lite-latest (fallback; primary openai down)"
+  },
+  "photo_path": "photos/AQ_20260904_55fabc08.jpg",
+  "data_source": "telegram",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-04T00:00:00+00:00",
+    "reported_timestamp": "2026-09-04T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Bali",
+    "kecamatan": "",
+    "kabupaten": ""
+  }
+}
