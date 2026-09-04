@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260903_9f61520b.json",
+  "latitude": -8.599524,
+  "longitude": 115.09401,
+  "geolocation": {
+    "lat": -8.599524,
+    "lon": 115.09401
+  },
+  "locality": "Belalang",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:telegram",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-03T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.7,
+    "indicators": [
+      "localized smoke plume",
+      "smoke rising from roadside"
+    ],
+    "description": "A plume of smoke is visible near the roadside on a coastal road.",
+    "severity": "low",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260903_9f61520b.jpg",
+  "data_source": "telegram",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-03T00:00:00+00:00",
+    "reported_timestamp": "2026-09-03T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Belalang",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}

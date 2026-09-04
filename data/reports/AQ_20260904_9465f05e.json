@@ -1,0 +1,59 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "None observation — Bali, Bali",
+  "description": "Dia menyalakan api setiap sore dan pagi dan mengabaikan siapa pun yang berkomentar tentang hal itu.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260904_9465f05e.json",
+  "latitude": -8.63249,
+  "longitude": 115.109925,
+  "geolocation": {
+    "lat": -8.63249,
+    "lon": 115.109925
+  },
+  "locality": "Cemagi",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-04T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "none",
+  "ai_analysis": {
+    "detected": false,
+    "confidence": 1.0,
+    "indicators": [
+      "lush vegetation",
+      "clear blue sky",
+      "no visible smoke"
+    ],
+    "description": "A view of dense tropical foliage under a blue sky.",
+    "severity": "low",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260904_9465f05e.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-04T00:00:00+00:00",
+    "reported_timestamp": "2026-09-04T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Cemagi",
+    "kecamatan": "Mengwi",
+    "kabupaten": "Badung"
+  }
+}
