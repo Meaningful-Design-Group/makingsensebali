@@ -1,6 +1,23 @@
 {
-  "generated_at": "2026-09-06T02:03:12.285469+00:00",
+  "generated_at": "2026-09-06T02:18:23.697834+00:00",
   "areas": [
+    {
+      "locality": "Antiga Kelod",
+      "lat": -8.535779,
+      "lon": 115.485864,
+      "report_count": 1,
+      "categories": {
+        "none": 1
+      },
+      "top_tags": [
+        "clear sky",
+        "dense foliage",
+        "paved road"
+      ],
+      "max_severity": "low",
+      "pm25": null,
+      "summary": null
+    },
     {
       "locality": "Apuan",
       "lat": -8.373601,
@@ -40,38 +57,41 @@
       "locality": "Belalang",
       "lat": -8.599524,
       "lon": 115.09401,
-      "report_count": 9,
+      "report_count": 12,
       "categories": {
-        "burning": 8,
+        "burning": 11,
         "none": 1
       },
       "top_tags": [
         "open burning",
+        "smoke rising from roadside",
+        "plume of white smoke",
+        "thick smoke plume",
         "plume of smoke",
-        "pile of trash",
-        "smoke rising",
-        "active flames",
-        "rising smoke"
+        "pile of trash"
       ],
       "max_severity": "medium",
-      "pm25": 52.5,
+      "pm25": 47.6,
       "summary": null
     },
     {
       "locality": "Benoa",
       "lat": -8.803327,
       "lon": 115.209695,
-      "report_count": 1,
+      "report_count": 2,
       "categories": {
-        "burning": 1
+        "burning": 2
       },
       "top_tags": [
         "charred ground",
         "burnt debris",
-        "dark ash"
+        "dark ash",
+        "small smoke plumes",
+        "open burning",
+        "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 5.6,
+      "pm25": null,
       "summary": null
     },
     {
@@ -91,7 +111,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 37.8,
+      "pm25": 38.3,
       "summary": null
     },
     {
@@ -111,7 +131,7 @@
         "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 57.2,
+      "pm25": 45.6,
       "summary": null
     },
     {
@@ -128,7 +148,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 58.1,
+      "pm25": 46.4,
       "summary": null
     },
     {
@@ -149,7 +169,7 @@
         "haze"
       ],
       "max_severity": "medium",
-      "pm25": 60.9,
+      "pm25": 47.7,
       "summary": null
     },
     {
@@ -166,7 +186,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 55.1,
+      "pm25": 42.1,
       "summary": null
     },
     {
@@ -182,7 +202,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 36.8,
+      "pm25": 34.2,
       "summary": null
     },
     {
@@ -202,7 +222,7 @@
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 37.8,
+      "pm25": 38.3,
       "summary": null
     },
     {
@@ -226,7 +246,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 5.6,
+      "pm25": null,
       "summary": null
     },
     {
@@ -247,7 +267,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 37.8,
+      "pm25": 38.3,
       "summary": null
     },
     {
@@ -268,7 +288,7 @@
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 59.9,
+      "pm25": 41.9,
       "summary": null
     },
     {
@@ -291,7 +311,7 @@
         "flames"
       ],
       "max_severity": "high",
-      "pm25": 59.9,
+      "pm25": 41.9,
       "summary": null
     },
     {
@@ -332,7 +352,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 26.8,
+      "pm25": 20.8,
       "summary": null
     },
     {
@@ -353,7 +373,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 57.9,
+      "pm25": 43.7,
       "summary": null
     },
     {
@@ -374,27 +394,27 @@
         "ground debris"
       ],
       "max_severity": "medium",
-      "pm25": 52.2,
+      "pm25": 36.3,
       "summary": null
     },
     {
       "locality": "Pandak Gede",
       "lat": -8.595249,
       "lon": 115.117696,
-      "report_count": 6,
+      "report_count": 7,
       "categories": {
-        "burning": 6
+        "burning": 7
       },
       "top_tags": [
         "open burning",
+        "thick smoke plume",
         "smoke rising",
         "burning debris",
-        "thick smoke plume",
         "pile of burning debris",
         "visible flames"
       ],
       "max_severity": "high",
-      "pm25": 53.8,
+      "pm25": 47.3,
       "summary": null
     },
     {
@@ -411,7 +431,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 36.8,
+      "pm25": 34.2,
       "summary": null
     },
     {
@@ -428,7 +448,7 @@
         "roadside setting"
       ],
       "max_severity": "medium",
-      "pm25": 28.5,
+      "pm25": 21.1,
       "summary": null
     },
     {
@@ -445,7 +465,7 @@
         "burning waste"
       ],
       "max_severity": "medium",
-      "pm25": 26.8,
+      "pm25": 20.8,
       "summary": null
     },
     {
@@ -478,7 +498,7 @@
         "agricultural burning"
       ],
       "max_severity": "medium",
-      "pm25": 26.5,
+      "pm25": 21.3,
       "summary": null
     },
     {
@@ -499,7 +519,7 @@
         "litter in concrete bin"
       ],
       "max_severity": "high",
-      "pm25": 48.0,
+      "pm25": 40.6,
       "summary": null
     },
     {
@@ -516,7 +536,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 60.5,
+      "pm25": 43.3,
       "summary": null
     },
     {
@@ -559,7 +579,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 5.6,
+      "pm25": null,
       "summary": null
     }
   ]
