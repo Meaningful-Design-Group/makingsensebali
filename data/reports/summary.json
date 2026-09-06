@@ -1,20 +1,21 @@
 {
-  "line": "Today: 4 reports \u2014 4 burning trash.",
+  "line": "Today: 6 reports \u2014 4 burning trash and 2 trash piles.",
   "today": {
-    "total": 4,
+    "total": 6,
     "by_category": {
-      "burning": 4
+      "burning": 4,
+      "trash": 2
     }
   },
   "week": {
-    "total": 67,
+    "total": 69,
     "by_category": {
       "burning": 54,
       "none": 9,
       "construction": 1,
-      "trash": 2,
+      "trash": 4,
       "industrial": 1
     }
   },
-  "generated_at": "2026-09-06T02:14:58.809673+00:00"
+  "generated_at": "2026-09-06T07:21:09.327218+00:00"
 }
