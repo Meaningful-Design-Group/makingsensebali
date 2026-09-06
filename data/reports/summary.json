@@ -1,23 +1,20 @@
 {
-  "line": "Today: 10 reports \u2014 7 burning trash, 1 trash piles, 1 industrial pollution, and 1 clear.",
+  "line": "Today: 4 reports \u2014 4 burning trash.",
   "today": {
-    "total": 10,
+    "total": 4,
     "by_category": {
-      "burning": 7,
-      "trash": 1,
-      "industrial": 1,
-      "none": 1
+      "burning": 4
     }
   },
   "week": {
-    "total": 68,
+    "total": 67,
     "by_category": {
-      "burning": 55,
-      "trash": 3,
-      "none": 8,
+      "burning": 54,
+      "none": 9,
       "construction": 1,
+      "trash": 2,
       "industrial": 1
     }
   },
-  "generated_at": "2026-09-04T15:12:05.210101+00:00"
+  "generated_at": "2026-09-06T02:14:58.809673+00:00"
 }
