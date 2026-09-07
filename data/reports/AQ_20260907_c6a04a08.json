@@ -1,0 +1,61 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Directly at Pantai Karang  they burn trash almost daily.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260907_c6a04a08.json",
+  "latitude": -8.694647,
+  "longitude": 115.260584,
+  "geolocation": {
+    "lat": -8.694647,
+    "lon": 115.260584
+  },
+  "locality": "Sanur",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:high",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-07T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "thick smoke",
+      "open burning",
+      "mixed waste",
+      "fire"
+    ],
+    "description": "A pile of mixed trash is actively burning, producing thick smoke.",
+    "severity": "high",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260907_c6a04a08.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-07T00:00:00+00:00",
+    "reported_timestamp": "2026-09-07T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Sanur",
+    "kecamatan": "Denpasar Selatan",
+    "kabupaten": "Denpasar"
+  }
+}
