@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T10:03:37.258909+00:00",
+  "generated_at": "2026-09-07T10:18:52.848281+00:00",
   "areas": [
     {
       "locality": "Antiga Kelod",
@@ -71,7 +71,7 @@
         "pile of trash"
       ],
       "max_severity": "medium",
-      "pm25": 35.5,
+      "pm25": 31.7,
       "summary": null
     },
     {
@@ -91,7 +91,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 18.7,
+      "pm25": 31.3,
       "summary": null
     },
     {
@@ -107,7 +107,7 @@
         "green plants"
       ],
       "max_severity": "low",
-      "pm25": 24.9,
+      "pm25": 23.5,
       "summary": null
     },
     {
@@ -127,7 +127,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 37.9,
+      "pm25": 40.6,
       "summary": null
     },
     {
@@ -147,7 +147,7 @@
         "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 20.5,
+      "pm25": 22.0,
       "summary": null
     },
     {
@@ -164,7 +164,7 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 24.9,
+      "pm25": 23.5,
       "summary": null
     },
     {
@@ -185,7 +185,7 @@
         "haze"
       ],
       "max_severity": "medium",
-      "pm25": 24.3,
+      "pm25": 22.2,
       "summary": null
     },
     {
@@ -202,7 +202,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 17.8,
+      "pm25": 21.9,
       "summary": null
     },
     {
@@ -218,7 +218,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 36.5,
+      "pm25": 41.6,
       "summary": null
     },
     {
@@ -238,7 +238,7 @@
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 37.9,
+      "pm25": 40.6,
       "summary": null
     },
     {
@@ -262,7 +262,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 18.7,
+      "pm25": 31.3,
       "summary": null
     },
     {
@@ -283,7 +283,7 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 37.9,
+      "pm25": 40.6,
       "summary": null
     },
     {
@@ -304,30 +304,30 @@
         "trash pile"
       ],
       "max_severity": "medium",
-      "pm25": 12.1,
+      "pm25": 17.5,
       "summary": null
     },
     {
       "locality": "Kerobokan Kelod",
       "lat": -8.670005,
       "lon": 115.162793,
-      "report_count": 36,
+      "report_count": 37,
       "categories": {
-        "burning": 30,
+        "burning": 31,
         "none": 4,
         "vehicle": 1,
         "construction": 1
       },
       "top_tags": [
-        "open burning",
         "smoke plume",
+        "open burning",
         "open fire",
         "construction debris",
         "plume of smoke",
         "flames"
       ],
       "max_severity": "high",
-      "pm25": 12.1,
+      "pm25": 17.5,
       "summary": null
     },
     {
@@ -368,7 +368,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 33.0,
+      "pm25": 28.9,
       "summary": null
     },
     {
@@ -389,7 +389,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 20.6,
+      "pm25": 22.0,
       "summary": null
     },
     {
@@ -429,7 +429,7 @@
         "ground debris"
       ],
       "max_severity": "medium",
-      "pm25": 12.5,
+      "pm25": 21.4,
       "summary": null
     },
     {
@@ -449,7 +449,7 @@
         "visible flames"
       ],
       "max_severity": "high",
-      "pm25": 32.1,
+      "pm25": 29.6,
       "summary": null
     },
     {
@@ -466,7 +466,7 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 36.5,
+      "pm25": 41.6,
       "summary": null
     },
     {
@@ -483,7 +483,25 @@
         "roadside setting"
       ],
       "max_severity": "medium",
-      "pm25": 32.5,
+      "pm25": 30.4,
+      "summary": null
+    },
+    {
+      "locality": "Sanur",
+      "lat": -8.694647,
+      "lon": 115.260584,
+      "report_count": 1,
+      "categories": {
+        "burning": 1
+      },
+      "top_tags": [
+        "thick smoke",
+        "open burning",
+        "mixed waste",
+        "fire"
+      ],
+      "max_severity": "high",
+      "pm25": null,
       "summary": null
     },
     {
@@ -500,7 +518,7 @@
         "burning waste"
       ],
       "max_severity": "medium",
-      "pm25": 33.0,
+      "pm25": 28.9,
       "summary": null
     },
     {
@@ -533,7 +551,7 @@
         "agricultural burning"
       ],
       "max_severity": "medium",
-      "pm25": 29.4,
+      "pm25": 27.3,
       "summary": null
     },
     {
@@ -554,7 +572,7 @@
         "litter in concrete bin"
       ],
       "max_severity": "high",
-      "pm25": 48.1,
+      "pm25": 42.0,
       "summary": null
     },
     {
@@ -571,7 +589,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 17.8,
+      "pm25": 19.6,
       "summary": null
     },
     {
@@ -614,7 +632,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 18.7,
+      "pm25": 31.3,
       "summary": null
     }
   ]
