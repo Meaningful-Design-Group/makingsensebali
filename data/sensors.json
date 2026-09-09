@@ -436,11 +436,11 @@
         "pm25": 3.3,
         "pm10": 4.3,
         "temp": 27.7,
-        "rh": 59
+        "rh": 57
       },
       "detailsUrl": "https://www.airgradient.com/map/",
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-206638",
