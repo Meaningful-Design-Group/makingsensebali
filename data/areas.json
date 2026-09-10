@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T09:58:21.143970+00:00",
+  "generated_at": "2026-09-10T10:13:34.071102+00:00",
   "areas": [
     {
       "locality": "Antiga Kelod",
@@ -57,9 +57,9 @@
       "locality": "Belalang",
       "lat": -8.599524,
       "lon": 115.09401,
-      "report_count": 13,
+      "report_count": 14,
       "categories": {
-        "burning": 12,
+        "burning": 13,
         "none": 1
       },
       "top_tags": [
@@ -67,8 +67,8 @@
         "smoke rising from roadside",
         "plume of white smoke",
         "thick smoke plume",
-        "plume of smoke",
-        "pile of trash"
+        "thick smoke",
+        "plume of smoke"
       ],
       "max_severity": "medium",
       "pm25": 36.8,
@@ -91,7 +91,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 14.4,
+      "pm25": 15.1,
       "summary": null
     },
     {
@@ -112,7 +112,7 @@
         "Waste burning"
       ],
       "max_severity": "medium",
-      "pm25": 36.9,
+      "pm25": 36.1,
       "summary": null
     },
     {
@@ -132,7 +132,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 37.2,
+      "pm25": 41.8,
       "summary": null
     },
     {
@@ -152,7 +152,7 @@
         "visible smoke"
       ],
       "max_severity": "high",
-      "pm25": 36.7,
+      "pm25": 35.8,
       "summary": null
     },
     {
@@ -169,28 +169,29 @@
         "clear air"
       ],
       "max_severity": "low",
-      "pm25": 37.7,
+      "pm25": 35.1,
       "summary": null
     },
     {
       "locality": "Cemagi",
       "lat": -8.63249,
       "lon": 115.109925,
-      "report_count": 4,
+      "report_count": 6,
       "categories": {
-        "burning": 3,
-        "none": 1
+        "burning": 4,
+        "none": 1,
+        "other": 1
       },
       "top_tags": [
         "plume of smoke",
+        "open burning",
         "smoke rising from field area",
         "distant smoke",
         "smoke plume",
-        "open burning",
         "haze"
       ],
       "max_severity": "medium",
-      "pm25": 38.7,
+      "pm25": 34.3,
       "summary": null
     },
     {
@@ -207,7 +208,7 @@
         "motorcycle riders"
       ],
       "max_severity": "medium",
-      "pm25": 34.8,
+      "pm25": 33.5,
       "summary": null
     },
     {
@@ -223,7 +224,7 @@
         "open burning"
       ],
       "max_severity": "medium",
-      "pm25": 35.8,
+      "pm25": 42.1,
       "summary": null
     },
     {
@@ -243,7 +244,7 @@
         "localized smoke plume"
       ],
       "max_severity": "medium",
-      "pm25": 38.3,
+      "pm25": 41.7,
       "summary": null
     },
     {
@@ -267,7 +268,7 @@
         "dirt road"
       ],
       "max_severity": "high",
-      "pm25": 14.4,
+      "pm25": 15.1,
       "summary": null
     },
     {
@@ -288,37 +289,37 @@
         "thick smoke"
       ],
       "max_severity": "medium",
-      "pm25": 40.0,
+      "pm25": 43.5,
       "summary": null
     },
     {
       "locality": "Kerobokan",
       "lat": -8.652651,
       "lon": 115.162566,
-      "report_count": 12,
+      "report_count": 15,
       "categories": {
-        "burning": 9,
-        "none": 3
+        "burning": 11,
+        "none": 4
       },
       "top_tags": [
+        "smoke rising",
         "smoke plume",
         "localized smoke plume",
-        "smoke rising",
         "burning trash",
-        "smoke rising from ground",
-        "trash pile"
+        "open burning",
+        "smoke rising from ground"
       ],
       "max_severity": "medium",
-      "pm25": 32.3,
+      "pm25": 29.3,
       "summary": null
     },
     {
       "locality": "Kerobokan Kelod",
       "lat": -8.670005,
       "lon": 115.162793,
-      "report_count": 37,
+      "report_count": 38,
       "categories": {
-        "burning": 31,
+        "burning": 32,
         "none": 4,
         "vehicle": 1,
         "construction": 1
@@ -332,7 +333,7 @@
         "flames"
       ],
       "max_severity": "high",
-      "pm25": 32.3,
+      "pm25": 29.3,
       "summary": null
     },
     {
@@ -357,6 +358,24 @@
       "summary": null
     },
     {
+      "locality": "Kutuh",
+      "lat": -8.82744,
+      "lon": 115.186088,
+      "report_count": 1,
+      "categories": {
+        "burning": 1
+      },
+      "top_tags": [
+        "large fire",
+        "thick smoke",
+        "burning debris",
+        "smoke plume"
+      ],
+      "max_severity": "high",
+      "pm25": 15.1,
+      "summary": null
+    },
+    {
       "locality": "Mas",
       "lat": -8.540942,
       "lon": 115.271769,
@@ -373,7 +392,7 @@
         "hazy atmosphere"
       ],
       "max_severity": "medium",
-      "pm25": 37.7,
+      "pm25": 43.0,
       "summary": null
     },
     {
@@ -394,7 +413,7 @@
         "open burning"
       ],
       "max_severity": "high",
-      "pm25": 35.8,
+      "pm25": 31.2,
       "summary": null
     },
     {
@@ -434,27 +453,27 @@
         "ground debris"
       ],
       "max_severity": "medium",
-      "pm25": 28.6,
+      "pm25": 26.7,
       "summary": null
     },
     {
       "locality": "Pandak Gede",
       "lat": -8.595249,
       "lon": 115.117696,
-      "report_count": 7,
+      "report_count": 10,
       "categories": {
-        "burning": 7
+        "burning": 10
       },
       "top_tags": [
         "open burning",
         "thick smoke plume",
+        "smoke rising from ground",
+        "open burning suspected",
         "smoke rising",
-        "burning debris",
-        "pile of burning debris",
-        "visible flames"
+        "burning debris"
       ],
       "max_severity": "high",
-      "pm25": 36.1,
+      "pm25": 35.3,
       "summary": null
     },
     {
@@ -471,7 +490,27 @@
         "waste area"
       ],
       "max_severity": "medium",
-      "pm25": 33.4,
+      "pm25": 40.3,
+      "summary": null
+    },
+    {
+      "locality": "Pelaga",
+      "lat": -8.302414,
+      "lon": 115.219889,
+      "report_count": 2,
+      "categories": {
+        "burning": 2
+      },
+      "top_tags": [
+        "smoke haze",
+        "low-lying smoke",
+        "vegetation backdrop",
+        "smoke rising",
+        "open fire pit",
+        "rustic hut"
+      ],
+      "max_severity": "medium",
+      "pm25": null,
       "summary": null
     },
     {
@@ -488,7 +527,7 @@
         "wisps of smoke"
       ],
       "max_severity": "medium",
-      "pm25": 40.8,
+      "pm25": 43.2,
       "summary": null
     },
     {
@@ -505,7 +544,7 @@
         "roadside setting"
       ],
       "max_severity": "medium",
-      "pm25": 40.8,
+      "pm25": 46.0,
       "summary": null
     },
     {
@@ -523,7 +562,7 @@
         "fire"
       ],
       "max_severity": "high",
-      "pm25": 32.0,
+      "pm25": 22.7,
       "summary": null
     },
     {
@@ -540,7 +579,23 @@
         "burning waste"
       ],
       "max_severity": "medium",
-      "pm25": 37.7,
+      "pm25": 43.0,
+      "summary": null
+    },
+    {
+      "locality": "Seminyak",
+      "lat": -8.689859,
+      "lon": 115.166778,
+      "report_count": 1,
+      "categories": {
+        "burning": 1
+      },
+      "top_tags": [
+        "thick smoke plume",
+        "smoke rising from ground level"
+      ],
+      "max_severity": "medium",
+      "pm25": 25.3,
       "summary": null
     },
     {
@@ -573,7 +628,7 @@
         "agricultural burning"
       ],
       "max_severity": "medium",
-      "pm25": 38.6,
+      "pm25": 39.6,
       "summary": null
     },
     {
@@ -598,6 +653,22 @@
       "summary": null
     },
     {
+      "locality": "Sulangai",
+      "lat": -8.354069,
+      "lon": 115.211341,
+      "report_count": 1,
+      "categories": {
+        "burning": 1
+      },
+      "top_tags": [
+        "smoke haze",
+        "wisps of smoke among trees"
+      ],
+      "max_severity": "low",
+      "pm25": null,
+      "summary": null
+    },
+    {
       "locality": "Tibubeneng",
       "lat": -8.647173,
       "lon": 115.150768,
@@ -611,7 +682,7 @@
         "smoke"
       ],
       "max_severity": "medium",
-      "pm25": 35.0,
+      "pm25": 29.9,
       "summary": null
     },
     {
@@ -636,6 +707,22 @@
       "summary": null
     },
     {
+      "locality": "Tumbakbayuh",
+      "lat": -8.6192,
+      "lon": 115.142626,
+      "report_count": 1,
+      "categories": {
+        "none": 1
+      },
+      "top_tags": [
+        "no visible smoke",
+        "clear air"
+      ],
+      "max_severity": "low",
+      "pm25": 33.2,
+      "summary": null
+    },
+    {
       "locality": "Ungasan",
       "lat": -8.827109,
       "lon": 115.157091,
@@ -654,7 +741,7 @@
         "dark debris"
       ],
       "max_severity": "medium",
-      "pm25": 14.4,
+      "pm25": 15.1,
       "summary": null
     }
   ]
