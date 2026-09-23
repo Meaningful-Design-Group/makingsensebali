@@ -1,0 +1,11 @@
+# Sovereign-store ingest (ingest.py) — runtime dependencies
+# Install:  pip install -r requirements.txt
+
+# HTTP client for the worker-proxy calls.
+requests>=2.31.0
+
+# Postgres / TimescaleDB driver. psycopg2-binary is the classic choice and what
+# ingest.py prefers. ingest.py also transparently supports psycopg v3 — if you'd
+# rather use that, comment the line below and uncomment the psycopg one.
+psycopg2-binary>=2.9.0
+# psycopg[binary]>=3.1.0
