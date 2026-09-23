@@ -2,10 +2,13 @@
 
 Retired enclosure designs, kept because the failures are the most reusable
 knowledge in this repository. Every requirement in
-[`../bayu-v6/`](../bayu-v6/) exists because one of these designs taught it.
+[`../bayu-v7/`](../bayu-v7/) exists because one of these designs taught it.
 
 **None of these is the current design.** Build
-[Bayu Sensor Enclosure v6](../bayu-v6/).
+[Bayu Sensor Enclosure v7](../bayu-v7/).
+
+Note that [`../bayu-v6/`](../bayu-v6/) is also superseded but is *not* in here: units
+are in the field and it still needs its assembly steps findable.
 
 | Iteration | Retired because | Files |
 |---|---|---|
@@ -20,9 +23,13 @@ knowledge in this repository. Every requirement in
 
 ## Naming
 
-**One sequence: the enclosure line.** v1 → v5 ("pine cone") → **v6 "Bayu"**,
-the current design. Versions are bare numbers; *Bayu* is the design's name,
-not a restart of the count. A design that supersedes v5 is v6.
+**One sequence: the enclosure line.** v1 → v5 ("pine cone") → v6 "Bayu" →
+**v7**, the current design. Versions are bare numbers; *Bayu* is the design's
+name, not a restart of the count. A design that supersedes v5 is v6.
+
+Fab Lab Bali runs a second, unrelated counting for whole-node generations:
+v6 is their **Node V3.1** and v7 is their **Node V3.2**. See the mapping table
+in [`../README.md`](../README.md).
 
 The Node line (V1, V2) is a separate design track that shares electronics
 and firmware. Node V2's shell is filed here because it is retired, but its
