@@ -1,0 +1,64 @@
+{
+  "event_id": "3fe34482d5d6",
+  "hub": "Serangan",
+  "hub_slug": "serangan",
+  "hub_coord": {
+    "lat": -8.72,
+    "lng": 115.23,
+    "coord_status": "APPROX"
+  },
+  "detected_at": "2026-06-01T05:15:26.827695+00:00",
+  "pm25": 45.0,
+  "threshold": 35.0,
+  "who_24h_pm25": 15.0,
+  "radius_km": 5.0,
+  "sustain_min": 60.0,
+  "forecast": {
+    "available": false,
+    "note": "Aurora subscribe TODO",
+    "hub": "Serangan"
+  },
+  "advisory_text": "PERINGATAN KUALITAS UDARA — Serangan\nSensor warga menunjukkan PM2.5 sekitar 45 µg/m³, di atas ambang komunitas 35 µg/m³. Kelompok rentan (anak-anak, lansia, ibu hamil, penderita asma/jantung) sebaiknya mengurangi aktivitas di luar dan memakai masker (N95/KN95 bila ada). Tutup jendela dan nyalakan penyaring udara di dalam ruangan jika tersedia.\n\nAIR QUALITY ADVISORY — Serangan\nCommunity sensors show PM2.5 around 45 µg/m³, above the community threshold of 35 µg/m³. Vulnerable groups (children, the elderly, pregnant people, those with asthma/heart conditions) should limit outdoor activity and wear a well-fitting mask (N95/KN95 if available). Close windows and run an indoor air filter if you have one.",
+  "advisory_model": "no-exo:fallback-template",
+  "filters": [
+    {
+      "id": "corsi_rosenthal_box",
+      "name": "Corsi-Rosenthal Box",
+      "url": "https://cleanaircrew.org/box-fan-filters/",
+      "type": "particulate_air_filter",
+      "fabricable_with": [
+        "hand_tools",
+        "no_power_tools",
+        "tape",
+        "cardboard"
+      ]
+    },
+    {
+      "id": "nukit_open_air_purifier",
+      "name": "Nukit Open Air Purifier (Tempest / Brisa)",
+      "url": "https://github.com/opennukit/Nukit-Open-Air-Purifier",
+      "type": "particulate_air_filter",
+      "fabricable_with": [
+        "laser_cutter",
+        "pc_fans",
+        "soldering",
+        "12v_psu"
+      ]
+    },
+    {
+      "id": "diy_box_fan_single",
+      "name": "Single-filter box-fan purifier (taped MERV filter)",
+      "url": "https://aghealth.ucdavis.edu/news/corsi-rosenthal-box-diy-box-fan-air-filter-covid-19-and-wildfire-smoke",
+      "type": "particulate_air_filter",
+      "fabricable_with": [
+        "hand_tools",
+        "no_power_tools",
+        "tape"
+      ]
+    }
+  ],
+  "status": "pending_approval",
+  "approved_at": null,
+  "delivered_at": null,
+  "dry_run": true
+}

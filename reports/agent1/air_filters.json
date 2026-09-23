@@ -1,0 +1,47 @@
+{
+  "_comment": "OSHWA/OKH-style open-hardware air-filter (and one sensing companion) shortlist for Agent-1. Agent-1 picks 2-3 entries fabricable on current Fab Lab Bali inventory by matching `fabricable_with` tags. Specs below are summarised from the linked open documentation; anything not independently verified for the Bali context is flagged 'verify'. NOTE: the Corsi-Rosenthal Box, Nukit, and the simple single-filter box-fan are particulate AIR FILTERS (the advisory's mitigation hardware); AirGradient is an open MONITOR included as a sensing companion to corroborate/track PM2.5 around a hub, NOT a filter. MERV-13 filters and 50/60Hz box fans are import items in Indonesia — local availability is the main fabrication unknown (flagged).",
+  "version": "0.1",
+  "updated_at": "2026-06-01",
+  "filters": [
+    {
+      "id": "corsi_rosenthal_box",
+      "name": "Corsi-Rosenthal Box",
+      "url": "https://cleanaircrew.org/box-fan-filters/",
+      "ref_url": "https://en.wikipedia.org/wiki/Corsi%E2%80%93Rosenthal_Box",
+      "type": "particulate_air_filter",
+      "bom_summary": "1x 20-inch box fan + 4-5x 20x20-inch MERV-13 HVAC filters forming a cube, duct tape, cardboard shroud. ~600-800 CFM, ~USD 65 in materials (US pricing).",
+      "fabricable_with": ["hand_tools", "no_power_tools", "tape", "cardboard"],
+      "notes": "Widely documented open design (Corsi & Rosenthal, 2020); peer-reviewed performance characterisation exists (Aerosol Sci. & Tech. 2022). Lowest-skill build. verify: MERV-13 filter + 50Hz box-fan local availability/pricing in Bali; a single-filter variant (see diy_box_fan_single) is cheaper if filters are scarce."
+    },
+    {
+      "id": "nukit_open_air_purifier",
+      "name": "Nukit Open Air Purifier (Tempest / Brisa)",
+      "url": "https://github.com/opennukit/Nukit-Open-Air-Purifier",
+      "ref_url": "https://filterboxbuilder.com",
+      "type": "particulate_air_filter",
+      "bom_summary": "Laser-cut frame (DXF provided) + 1x 2x20x20-inch MERV-13 furnace filter + 140mm PC fans + 12V PSU + 5.5mm barrel-to-4pin-PWM adapter + fan grills. Wall, hanging, or tower variants.",
+      "fabricable_with": ["laser_cutter", "pc_fans", "soldering", "12v_psu"],
+      "notes": "Open hardware, GPLv3 (design by Naomi Wu). Parametric web builder at FilterBoxBuilder.com generates cut files. Good fit for a fab lab with a laser cutter; quieter per CADR than the box fan. verify: 140mm fan + MERV-13 (2-inch) stock locally; DXF assumes North American 20x20 filter sizing."
+    },
+    {
+      "id": "diy_box_fan_single",
+      "name": "Single-filter box-fan purifier (taped MERV filter)",
+      "url": "https://aghealth.ucdavis.edu/news/corsi-rosenthal-box-diy-box-fan-air-filter-covid-19-and-wildfire-smoke",
+      "ref_url": "https://www.tandfonline.com/doi/full/10.1080/02786826.2022.2054674",
+      "type": "particulate_air_filter",
+      "bom_summary": "1x box fan + 1x 20x20-inch MERV-13 (or highest MERV available) filter taped to the intake side. Lower CADR than the cube but far fewer filters.",
+      "fabricable_with": ["hand_tools", "no_power_tools", "tape"],
+      "notes": "The minimal precursor to the Corsi-Rosenthal cube; documented by UC Davis Western Center for Ag Health & Safety. Listed as the lowest-BOM fallback when MERV-13 filters are scarce/expensive in Bali. verify: airflow drops markedly with a single high-MERV filter — confirm acceptable CADR for the target room size."
+    },
+    {
+      "id": "airgradient_open_monitor",
+      "name": "AirGradient DIY Open Air Quality Monitor (sensing companion, not a filter)",
+      "url": "https://www.airgradient.com/open-airgradient/instructions/",
+      "ref_url": "https://github.com/airgradienthq/arduino",
+      "type": "open_sensor_companion",
+      "bom_summary": "Open-hardware PM2.5/CO2/temp/RH monitor: ESP-based D1 Mini + PMS5003 PM sensor (+ CO2/SHT modules on Pro), AirGradient PCB (KiCad/Gerber open) or PCB-free wiring, 3D-printed enclosure (STEP files open).",
+      "fabricable_with": ["soldering", "3d_printer", "pcb_order", "esp_microcontroller"],
+      "notes": "MIT-licensed open hardware; full schematics, KiCad files, and enclosure STEP files published. Included as a corroborating/low-cost sensing node around a hub to validate the PM2.5 trigger and extend coverage — it is NOT mitigation hardware, so Agent-1 should pair it with at least one actual filter in any advisory. Data can post to any backend (relevant to the sovereign-store plan)."
+    }
+  ]
+}

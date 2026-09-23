@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LaunchAgent: keep the AQ vision worker draining the queue on the Mac mini.
+  Survives reboot/crash so citizen-report photos always get analyzed.
+
+  Install (edit the two paths first — repo location and python):
+    cp com.fabcity.aqvision-worker.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.fabcity.aqvision-worker.plist
+  Tail logs:
+    tail -f /tmp/aqvision-worker.err.log
+
+  Depends on: Ollama running (com.fabcity.ollama) and the NAS share mounted
+  at AQ_REPO. Reads canonical config from vision.env in EnvironmentVariables
+  below — keep this in sync with ai_infra/vision.env.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.fabcity.aqvision-worker</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/python3</string>
+        <string>/Users/tomas/smartcitizenbali/reports/m1_vision_worker.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/tomas/smartcitizenbali/reports</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>AQ_VISION_BACKEND</key>
+        <string>ollama</string>
+        <key>AQ_VISION_FALLBACK</key>
+        <string>haiku</string>
+        <key>AQ_OLLAMA_ENDPOINT</key>
+        <string>http://localhost:11434</string>
+        <key>AQ_OLLAMA_MODEL</key>
+        <string>llama3.2-vision</string>
+        <key>AQ_VISION_TIMEOUT</key>
+        <string>45</string>
+        <key>AQ_REPO</key>
+        <string>/Volumes/aq-reporter</string>
+        <key>ANTHROPIC_API_KEY</key>
+        <string>REPLACE_WITH_KEY_OR_REMOVE_TO_DISABLE_FALLBACK</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/aqvision-worker.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/aqvision-worker.err.log</string>
+</dict>
+</plist>
