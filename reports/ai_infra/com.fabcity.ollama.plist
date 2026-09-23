@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LaunchAgent: keep Ollama alive on the Mac mini and bound to the LAN.
+  This is the durability fix — without supervision, a reboot or crash
+  silently kills the reporter's vision backend (the original outage).
+
+  Install (on the mini, as the logged-in user):
+    cp com.fabcity.ollama.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.fabcity.ollama.plist
+  Verify:
+    curl -s http://localhost:11434/api/tags | head
+
+  OLLAMA_HOST=0.0.0.0 so other home infra (open-webui on the NAS, the
+  gateway) can reach it on the LAN, not just localhost.
+  Adjust the ollama path if `which ollama` differs (Apple Silicon brew:
+  /opt/homebrew/bin/ollama).
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.fabcity.ollama</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/ollama</string>
+        <string>serve</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>OLLAMA_HOST</key>
+        <string>0.0.0.0:11434</string>
+        <!-- 16 GB mini shared with exo: unload the vision model 5 min after a
+             report so it doesn't permanently co-reside with exo's text model. -->
+        <key>OLLAMA_KEEP_ALIVE</key>
+        <string>5m</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/ollama.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/ollama.err.log</string>
+</dict>
+</plist>
