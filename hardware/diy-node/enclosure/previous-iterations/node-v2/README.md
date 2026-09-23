@@ -10,7 +10,7 @@
 > Two of the three design goals were met. The third was not: the enclosure heats its own
 > temperature sensor and its underside intake lags real pollution peaks. **Don't print this
 > shell for a deployment.** Read [Evaluation](#evaluation--what-the-field-test-showed) first,
-> then build [the pine cone](../enclosure/) instead. This folder is kept because a design that
+> then build [Bayu v7](../../bayu-v7/) instead. This folder is kept because a design that
 > failed for two nameable reasons is worth more to the next builder than one that merely worked.
 
 > **Naming, so nobody loses a day to it.** "V2" here is the second generation of the *whole
@@ -41,7 +41,7 @@
 
 ## Why it was built
 
-Reference-grade air-quality stations cost more than any banjar, school or neighbourhood group in Bali will ever raise on its own. The campaign's own tier table puts them at [USD 5,000–25,000+](../README.md#where-this-fits--the-campaigns-sensor-tiers). Assembling something from cheap modular sensors is the obvious alternative, and it is what this whole folder tree is about.
+Reference-grade air-quality stations cost more than any banjar, school or neighbourhood group in Bali will ever raise on its own. The campaign's own tier table puts them at [USD 5,000–25,000+](../../../README.md#where-this-fits--the-campaigns-sensor-tiers). Assembling something from cheap modular sensors is the obvious alternative, and it is what this whole folder tree is about.
 
 The hard part is not the electronics. It is the box.
 
@@ -72,7 +72,7 @@ Goals 1 and 2 held up. Goal 3 did not — see the evaluation.
 
 ## Where the form came from
 
-The compartment layout is taken directly from the enclosure architecture of the **Smart Citizen Kit station (SCK 2.3)** — the source document names modularity, cleanness and minimalism as what it took from it. Note that the campaign's own calibration backbone is the **SCK 2.1** ([tier table](../README.md#where-this-fits--the-campaigns-sensor-tiers)); 2.3 is a later kit, so this is a borrowing from the product line rather than from the exact station Node V2 was later measured against.
+The compartment layout is taken directly from the enclosure architecture of the **Smart Citizen Kit station (SCK 2.3)** — the source document names modularity, cleanness and minimalism as what it took from it. Note that the campaign's own calibration backbone is the **SCK 2.1** ([tier table](../../../README.md#where-this-fits--the-campaigns-sensor-tiers)); 2.3 is a later kit, so this is a borrowing from the product line rather than from the exact station Node V2 was later measured against.
 
 | | |
 |---|---|
@@ -129,7 +129,7 @@ Machine-readable version with sourcing columns: **[`bom.csv`](bom.csv)**.
 | 9 | Machine screw M3 × 14 mm | Flat head, carbon steel (NINDEJIN) | 2 | 500 | 1,000 |
 | | | | | **Total** | **Rp 1,253,800** |
 
-The source document gives these figures without saying where or when the parts were bought, so treat them as one build's cost in Indonesia rather than a price list. The parent README's [sourcing note](../README.md#choosing-between-them) is the better guide for anyone ordering: the HM3301 is the cost driver, and going direct from Seeed usually beats local retail for a batch. Any equivalent flat-head machine screw substitutes for the branded ones.
+The source document gives these figures without saying where or when the parts were bought, so treat them as one build's cost in Indonesia rather than a price list. The parent README's [sourcing note](../../../README.md#choosing-between-them) is the better guide for anyone ordering: the HM3301 is the cost driver, and going direct from Seeed usually beats local retail for a batch. Any equivalent flat-head machine screw substitutes for the branded ones.
 
 <!-- TODO: where and when the parts were bought, and whether these are retail or distributor prices. -->
 <!-- TODO: USD equivalent + the IDR/USD rate on the purchase date, so the figure stays comparable to the USD costs quoted in ../README.md. -->
@@ -177,7 +177,7 @@ Every external interface is concentrated on the white bottom plate, which keeps 
 
 Tools: soldering iron, screwdriver to match your screws, wire cutters and strippers, heat gun or lighter for the heat-shrink. <!-- TODO: build time. The source document doesn't record one; the parent README's ~3 hours is for a different build. -->
 
-1. **Print the shell** in PETG, not PLA — [PLA softens at Bali rooftop temperatures](../README.md#basic--xiao-esp32-s3--bme680-usd-1525). <!-- TODO: layer height, wall count, infill, nozzle/bed temperature, print orientation, support needs, print time. None of this is in the source document and all of it is needed to reprint the part. -->
+1. **Print the shell** in PETG, not PLA — [PLA softens at Bali rooftop temperatures](../../../README.md#basic--xiao-esp32-s3--bme680-usd-1525). <!-- TODO: layer height, wall count, infill, nozzle/bed temperature, print orientation, support needs, print time. None of this is in the source document and all of it is needed to reprint the part. -->
 2. **Build the mainboard.** Solder the XIAO to the centre of the 3 × 7 cm perfboard, the two Grove/JST sockets either side, and the screw terminal. Then run the underside buses point-to-point: red and black in parallel for power, the two I²C lines in parallel to both sockets.
 3. **Fit the base-plate hardware.** Solder the DC jack's leads, sleeve the joints with heat-shrink, and mount the SMA pigtail. Do this before anything else goes in the shell — the plate is easier to work on empty.
 4. **Mount the dust sensor.** HM3301 into the left bay, four M2 × 6 screws into the chassis bosses, intake fan facing the circular grille.
@@ -189,11 +189,11 @@ Tools: soldering iron, screwdriver to match your screws, wire cutters and stripp
 
 > Steps 2, 5 and 7 are the three that most need a photo taken from directly above with the parts labelled. The two mainboard photos above cover step 2 reasonably; steps 5 and 7 currently rely on one general interior shot. <!-- TODO: photograph steps 5 and 7. -->
 
-**Before deploying**, coat the soldered side of the perfboard with silicone conformal coating, masking the sensor openings and the USB-C connector. Bali runs above 80% relative humidity most of the year and uncoated boards corrode inside 6–12 months; the reasoning and the product are in [the parent README](../README.md#bali-deployment-notes).
+**Before deploying**, coat the soldered side of the perfboard with silicone conformal coating, masking the sensor openings and the USB-C connector. Bali runs above 80% relative humidity most of the year and uncoated boards corrode inside 6–12 months; the reasoning and the product are in [the parent README](../../../README.md#bali-deployment-notes).
 
 ## Firmware and data flow
 
-Node V2 runs the campaign's shared DIY-node sketch with no code changes beyond the per-device Smart Citizen token: **[`../firmware/diy_node/`](../firmware/diy_node/)**. The same file targets both the XIAO ESP32-S3 and the ESP32-C3 — pin mapping for D4/D5 resolves per board variant, so nothing in it is chip-specific.
+Node V2 runs the campaign's shared DIY-node sketch with no code changes beyond the per-device Smart Citizen token: **[`../firmware/diy_node/`](../../../firmware/diy_node/)**. The same file targets both the XIAO ESP32-S3 and the ESP32-C3 — pin mapping for D4/D5 resolves per board variant, so nothing in it is chip-specific.
 
 Every 60 seconds the XIAO addresses each sensor in turn over I²C, packs the readings as JSON, and publishes over Wi-Fi via MQTT on port 8883 to `mqtt.smartcitizen.me`, where the campaign dashboard reads them. The connection is TLS but **certificate validation is off** in this firmware version (`net.setInsecure()`) — fine for a workshop kit, not for a node whose data goes into a policy argument. The sketch says as much where it happens.
 
@@ -211,7 +211,7 @@ Smart Citizen global-catalogue channel IDs this node publishes on:
 
 ![System integration diagram](img/12-system-integration-diagram.png)
 
-> **Documentation vs. code, flagged.** The source document describes raw readings being "filtered through a local calibration calculation to eliminate chassis error" before publishing. **There is no such function in the linked firmware.** It publishes temperature and humidity raw, plus an explicitly uncalibrated on-device IAQ approximation. Two reasons this matters: the described function doesn't exist, and if someone adds it, it works against the campaign's stated policy that [corrections live in the dashboard processing layer, not the firmware](../README.md#the-calibration-chain) — firmware corrections are unauditable, dashboard corrections are versioned. The self-heating the evaluation found is a real error that wants a real correction; the place for it is the pipeline. <!-- TODO: delete this claim from circulation, or point at whatever code actually implements it. -->
+> **Documentation vs. code, flagged.** The source document describes raw readings being "filtered through a local calibration calculation to eliminate chassis error" before publishing. **There is no such function in the linked firmware.** It publishes temperature and humidity raw, plus an explicitly uncalibrated on-device IAQ approximation. Two reasons this matters: the described function doesn't exist, and if someone adds it, it works against the campaign's stated policy that [corrections live in the dashboard processing layer, not the firmware](../../../README.md#the-calibration-chain) — firmware corrections are unauditable, dashboard corrections are versioned. The self-heating the evaluation found is a real error that wants a real correction; the place for it is the pipeline. <!-- TODO: delete this claim from circulation, or point at whatever code actually implements it. -->
 
 ## Evaluation — what the field test showed
 
@@ -228,7 +228,11 @@ Neither failure announces itself. Both produce plausible-looking data. That is t
 1. **Intake from the top or open sides, not the bottom.** The downward-facing inlet is disproved. V3 goes back to a vertical airflow path.
 2. **Get the BME680 out of the main compartment.** It needs to sit outside the electronics bay, under a multi-louvered solar radiation shield, so it reads ambient air instead of the microcontroller's exhaust.
 
-Both of these are already solved in [the current v5 pine-cone enclosure](../enclosure/), which puts every breathing slot in a scale's rain shadow and runs a chimney from a low intake at the BME680's level to a high exhaust under the cap. If V3 is a new design rather than an adoption of v5, that folder is the thing to read first.
+Both were solved in the v5 pine cone, which put every breathing slot in a scale's rain shadow and ran a chimney from a low intake at the BME680's level to a high exhaust under the cap.
+
+**V3 went a different way, and neither requirement survived the trip.** Fab Lab Bali's V3 generation — [`../../bayu-v6/`](../../bayu-v6/) (= Node V3.1) and [`../../bayu-v7/`](../../bayu-v7/) (= Node V3.2, current) — returned to a compact horizontal body. It fixes a third airflow problem this evaluation did not catch, exhaust re-suction, with a duct that carries the PM outflow sideways. But its intake is still on the underside, and the BME680 still sits in the same sealed volume as the radio, under a flat cover with no radiation shield. Requirement 1 and requirement 2 above are both unmet.
+
+That may turn out not to matter — the V3 body is a different shape and its internal volume is not V2's — but nobody has measured it. Until a V3 unit is co-located against an SCK, the two failures documented here should be assumed to carry over.
 
 There is a third lesson the evaluation implies without stating: **compactness and thermal isolation are in direct conflict**, and V2 chose compactness without pricing the trade. A shell that houses a radio and a temperature sensor in one sealed volume will report the radio's temperature. Either separate them physically, or accept that the temperature channel is diagnostic rather than ambient and say so on the dashboard.
 
@@ -236,12 +240,12 @@ There is a third lesson the evaluation implies without stating: **compactness an
 
 | What | Where |
 |---|---|
-| Firmware (shared with the whole DIY node family) | [`../firmware/diy_node/`](../firmware/diy_node/) |
+| Firmware (shared with the whole DIY node family) | [`../firmware/diy_node/`](../../../firmware/diy_node/) |
 | Bill of materials, machine-readable | [`bom.csv`](bom.csv) |
 | Photos, renders and diagrams | [`img/`](img/) |
 | Enclosure files, Node V2 | [Google Drive folder](https://drive.google.com/file/d/1OdK7mdnLc2XkGRntHOQXK7PGmcP8E4bJ/view?usp=sharing) — **not yet in this repo** |
 | SCK station reference paper | [HardwareX 6 (2019)](https://www.sciencedirect.com/science/article/pii/S2468067219300203) |
-| Current recommended enclosure | [`../enclosure/`](../enclosure/) |
+| Current recommended enclosure | [`../../bayu-v7/`](../../bayu-v7/) |
 
 ## What this documentation is still missing
 
