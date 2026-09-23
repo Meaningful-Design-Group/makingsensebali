@@ -1,0 +1,62 @@
+# ============================================================================
+# Sovereign local time-series store — TimescaleDB service SNIPPET
+# Making Sense Bali / PLANETAI node
+# ============================================================================
+#
+# THIS IS A SNIPPET, NOT A STANDALONE STACK. Do NOT `docker compose up` this file
+# blind, and do NOT auto-apply it. Merge this `timescaledb` service into the NAS
+# aq-reporter compose (or run it as a sibling) at deploy time, by hand.
+#
+# SECURITY / SOVEREIGNTY POSTURE
+#   - The port is bound to 127.0.0.1 ONLY (loopback), never 0.0.0.0. The DB is
+#     reachable from the host and from containers on the shared docker network,
+#     but is NOT exposed to the LAN or the internet. The raw citizen-sensor data
+#     stays on the node — that is the whole point (CARE: raw stays local).
+#   - POSTGRES_PASSWORD comes from ${TIMESCALE_PASSWORD}, which is injected at
+#     deploy from a NAS-side env file OUTSIDE git (e.g. /volume2/.../.timescale.env,
+#     loaded via `env_file:` or `docker compose --env-file`). The placeholder below
+#     is NOT a real secret and no real secret is committed to this repo.
+#
+# NETWORK
+#   This service joins the existing `aq-reporter` network (same network the bot /
+#   vision-worker / future ingest + Agent-1 containers use) so the ingest (ingest.py)
+#   and Agent-1 can reach it as host `timescaledb` on port 5432. Loopback publishing
+#   is only for host-side psql / one-off admin; container-to-container traffic goes
+#   over the docker network, not the published port.
+# ----------------------------------------------------------------------------
+
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: msb-timescaledb
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: msb
+      POSTGRES_USER: msb
+      # Placeholder ONLY. Real value injected at deploy from a non-git NAS env
+      # file (see header). Never commit the real password.
+      POSTGRES_PASSWORD: ${TIMESCALE_PASSWORD}
+    ports:
+      # 127.0.0.1 ONLY — loopback, not 0.0.0.0. Host-side psql / admin only.
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - msb_timescale_data:/var/lib/postgresql/data
+    networks:
+      - aq-reporter
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U msb -d msb"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  # Named volume so sensor history survives container recreation. This volume IS
+  # the sovereign copy — back it up (NAS snapshot) like any authoritative store.
+  msb_timescale_data:
+
+networks:
+  # External: the network is created/owned by the main aq-reporter compose; this
+  # snippet only joins it. If you run this standalone, drop `external: true` and
+  # let compose create it.
+  aq-reporter:
+    external: true

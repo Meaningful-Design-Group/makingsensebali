@@ -30,3 +30,16 @@ venv/
 
 # Secrets — never commit any env file (vision.env, *.env, etc.)
 *.env
+
+# Enclosure R&D outputs — regenerate from tools/*.py (see enclosure/DESIGN_LOG.md)
+hardware/diy-node/enclosure/**/*.step
+hardware/diy-node/enclosure/**/*.bgcode
+hardware/diy-node/enclosure/**/*.png
+hardware/kit1-hex/**/*.step
+hardware/kit1-enclosure/**/*.step
+# scratch and third-party reference dumps
+hardware/diy-node/enclosure/_b64_tmp.txt
+hardware/diy-node/enclosure/ref_*/
+hardware/kit1-hex/ref_seeed/
+Claude outputs/
+*.bundle

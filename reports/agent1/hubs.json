@@ -1,0 +1,21 @@
+{
+  "_comment": "Agent-1 hub anchors (multi-banjar). Each hub runs the trigger independently: PM2.5 sensors within AQ_RADIUS_KM of {lat,lng} are checked for a sustained exceedance. Add a hub by appending an object with name/lat/lng. Coordinates flagged APPROX must be field-confirmed before the hub goes live in production.",
+  "hubs": [
+    {
+      "name": "Bukit / Fab Lab Bali",
+      "slug": "bukit_fablab",
+      "lat": -8.79,
+      "lng": 115.16,
+      "coord_status": "confirmed",
+      "note": "Anchored on Jimbaran (matches BALI_LOCALITIES 'jimbaran' in index.html). Fab Lab Bali pilot hub."
+    },
+    {
+      "name": "Serangan",
+      "slug": "serangan",
+      "lat": -8.72,
+      "lng": 115.23,
+      "coord_status": "APPROX",
+      "note": "APPROX coordinate — Serangan island, SE of Sanur/Nusa Dua. Placed between Sanur (-8.69,115.26) and Nusa Dua (-8.80,115.23) from BALI_LOCALITIES. CONFIRM exact banjar anchor with Tomas before production."
+    }
+  ]
+}
