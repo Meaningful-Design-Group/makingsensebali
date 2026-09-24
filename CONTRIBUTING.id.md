@@ -35,7 +35,7 @@ bukan *bug* — kirim surel ke tomas@fab.city, jangan buka *issue* publik.
 *sumber dan ekspor, selalu*: sertakan `.step` atau `.scad` bersama `.stl`, agar lab
 berikutnya bisa memodifikasi, bukan sekadar mencetak. Kontribusi ekspor-saja tetap
 diterima tetapi ditandai belum lengkap. Mulai dari `hardware/diy-node/enclosure/` — desain
-saat ini `bayu-v6/`, dan `previous-iterations/` menjelaskan kesalahan tiap desain lama.
+saat ini `bayu-v7/`, dan `previous-iterations/` menjelaskan kesalahan tiap desain lama.
 
 **Firmware dan perkakas.** `hardware/diy-node/firmware/`, `tools/`, `worker/`. Catatan
 integrasi Smart Citizen ada di `docs/`. Jika menambah kanal sensor, baca dulu aturan
@@ -90,7 +90,7 @@ komersial, dan perbaikan pada desainnya kembali ke proyek.
 ## Peta repositori
 
 ```
-hardware/diy-node/     wadah (bayu-v6 yang terkini), firmware, perkakas
+hardware/diy-node/     wadah (bayu-v7 yang terkini), firmware, perkakas
 dashboard/             dasbor sensor langsung
 docs/                  metodologi, pengetahuan komunitas, catatan platform
 reports/               alur laporan dan dasbor moderasi
