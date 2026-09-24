@@ -37,7 +37,7 @@ yang dapat di-deploy di rumah untuk lanskap Fab City 2026.
 |---|---|
 | **Deployment referensi** | Making Sense Bali · Bali, Indonesia · fase pilot, Q2 2026 |
 | **Dijalankan oleh** | [Fab Lab Bali](https://fablabbali.com) sebagai lapisan pelaporan dari [Making Sense Bali](https://makingsense.fablabbali.com/) |
-| **Kit replikasi** | Tersedia — lihat [REPLICATION.md](REPLICATION.md) |
+| **Kit replikasi** | Tersedia — lihat [REPLICATION.md](../REPLICATION.md) |
 | **Rencana berikutnya** | Pelapor Barcelona · Fab Lab Barcelona · 2026 H2 |
 | **Lapisan federasi** | PLANETAI · direncanakan, infrastruktur belum dibangun |
 
@@ -140,7 +140,8 @@ yang dimiliki oleh sebuah rumah tangga. Tidak ada API proprietary di jalurnya, t
 vendor yang dapat men-deplatform kampanye ini. Bagi sebuah node Fab City, itu bukan
 sekadar kebetulan — itulah intinya.
 
-Untuk detail arsitektur, lihat [ARCHITECTURE.md](ARCHITECTURE.md).
+Untuk detail arsitektur, lihat bagian-bagian di atas.
+<!-- TODO: ARCHITECTURE.md is referenced here and in the tree diagram below but has never existed in this repo. Either write it or drop the reference. -->
 Untuk deployment, lihat [DEPLOY.md](DEPLOY.md).
 
 ---
@@ -167,7 +168,7 @@ mana pun melalui dasbor.
 ## Replikasi
 
 Jika Anda menjalankan node Fab City, sebuah Fab Lab, atau kampanye penginderaan komunitas dan
-Anda ingin deployment Anda sendiri, baca **[REPLICATION.md](REPLICATION.md)**.
+Anda ingin deployment Anda sendiri, baca **[REPLICATION.md](../REPLICATION.md)**.
 
 Anda akan memerlukan:
 

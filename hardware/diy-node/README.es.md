@@ -267,7 +267,7 @@ No te saltes pasos. Cada uno aísla una clase distinta de error.
 
 ### Un montaje que fue por el otro camino
 
-[`node-v2/`](node-v2/) documenta el nodo de segunda generación del propio Fab Lab Bali — la misma electrónica XIAO + HM3301 + BME680, dispuesta lado a lado sobre un mismo piso dentro de una carcasa triangular compacta. Se construyó, se desplegó y se colocó junto a un SCK, y falló en dos frentes: la radio del ESP32 calentó el BME680 a través del tabique, y una toma de aire inferior llegó tarde a los picos reales de PM. Los dos modos de fallo están escritos allí, junto con lo que una V3 tiene que hacer al respecto. Léelo antes de diseñar una carcasa propia — es la forma más barata de no repetir esos dos errores. Su "V2" cuenta generaciones de nodo y no tiene nada que ver con `enclosure/archive/v2-lantern/`.
+[`enclosure/node-v2/`](enclosure/node-v2/) documenta el nodo de segunda generación del propio Fab Lab Bali — la misma electrónica XIAO + HM3301 + BME680, dispuesta lado a lado sobre un mismo piso dentro de una carcasa triangular compacta. Se construyó, se desplegó y se colocó junto a un SCK, y falló en dos frentes: la radio del ESP32 calentó el BME680 a través del tabique, y una toma de aire inferior llegó tarde a los picos reales de PM. Los dos modos de fallo están escritos allí, junto con lo que una V3 tiene que hacer al respecto. Léelo antes de diseñar una carcasa propia — es la forma más barata de no repetir esos dos errores. Su "V2" cuenta generaciones de nodo y no tiene nada que ver con `enclosure/archive/v2-lantern/`.
 
 ## Notas de despliegue en Bali
 

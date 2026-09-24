@@ -148,7 +148,8 @@ Sunting `index.html` dan `dashboard/index.html`:
 - Perbarui bounding box dan pusat peta di `data.js` (`BALI_BOUNDS`, `BALI_CENTER`)
 - Perbarui `murmurations.json` dengan nama org, lokasi, mitra, dan tag Anda
 
-Panduan penyesuaian rinci: [docs/web-presence.md](docs/web-presence.md).
+Panduan penyesuaian rinci: belum ditulis.
+<!-- TODO: docs/web-presence.md is referenced here but does not exist. -->
 
 ### Langkah 4 — Sebarkan Smart Citizen Kits
 
@@ -157,7 +158,7 @@ Panduan penyesuaian rinci: [docs/web-presence.md](docs/web-presence.md).
 - Sebarkan — kantor kampanye, Fab Lab tuan rumah, lokasi mitra, rumah Anda
 - Perbarui `data.js` `KNOWN_BALI_SCK_IDS` → `KNOWN_[YOURCITY]_SCK_IDS` dengan ID perangkat Anda
 
-Panduan rinci: [docs/sensors.md](docs/sensors.md).
+Panduan rinci: [docs/sensor-strategy.md](docs/sensor-strategy.md).
 
 **Alternatif lebih murah — node DIY workshop.** Untuk kepadatan spasial 5× per dolar dibanding SCK, folder [`hardware/diy-node/`](hardware/diy-node/) mendokumentasikan dua tingkat: Basic ~$15–25 (XIAO ESP32-S3 + BME680, kualitas udara dalam ruangan + iklim + VOC, tanpa PM) dan Plus ~$35–60 (Basic + Grove HM3301, menambah PM1/2.5/10). Fidelitas lebih rendah dari SCK, rakitan setengah hari di Fab Lab tuan rumah Anda, dapat diakses peserta non-teknis. Node DIY bukan pengganti SCK — keduanya adalah node kepadatan spasial yang dirujuk terhadap kalibrasi SCK. Lihat `hardware/diy-node/README.md` untuk strategi tingkat lengkap.
 

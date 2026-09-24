@@ -148,7 +148,8 @@ Edita `index.html` y `dashboard/index.html`:
 - Actualiza el bounding box y el centro del mapa en `data.js` (`BALI_BOUNDS`, `BALI_CENTER`)
 - Actualiza `murmurations.json` con el nombre de tu org, ubicación, socios y etiquetas
 
-Guía de personalización detallada: [docs/web-presence.md](docs/web-presence.md).
+Guía de personalización detallada: aún no escrita.
+<!-- TODO: docs/web-presence.md is referenced here but does not exist. -->
 
 ### Paso 4 — Despliega los Smart Citizen Kits
 
@@ -157,7 +158,7 @@ Guía de personalización detallada: [docs/web-presence.md](docs/web-presence.md
 - Despliégalas — oficina de la campaña, Fab Lab anfitrión, ubicación de un socio, tu casa
 - Actualiza en `data.js` `KNOWN_BALI_SCK_IDS` → `KNOWN_[YOURCITY]_SCK_IDS` con tus IDs de dispositivo
 
-Guía detallada: [docs/sensors.md](docs/sensors.md).
+Guía detallada: [docs/sensor-strategy.md](docs/sensor-strategy.md).
 
 **Alternativa más barata — nodos DIY de taller.** Para 5× de densidad espacial por dólar respecto al SCK, la carpeta [`hardware/diy-node/`](hardware/diy-node/) documenta dos niveles: un Basic de ~$15–25 (XIAO ESP32-S3 + BME680, calidad del aire interior + clima + VOC, sin PM) y un Plus de ~$35–60 (Basic + Grove HM3301, añade PM1/2.5/10). Menor fidelidad que el SCK, montaje de medio día en tu Fab Lab anfitrión, accesible para participantes sin perfil técnico. Los nodos DIY no son un reemplazo del SCK — son nodos de densidad espacial referenciados contra la calibración del SCK. Mira `hardware/diy-node/README.md` para la estrategia de niveles completa.
 
