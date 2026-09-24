@@ -119,6 +119,33 @@ select{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:8px 1
 
 .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
 .rv.in{opacity:1;transform:none}
+/* ---------- mobile ---------- */
+@media(max-width:640px){
+  /* Tap targets: nav links were 13–17 px tall, the chart toggles 29 px. */
+  .bar{padding:10px 5vw}
+  /* The 640 px rule hid a.lbl, which left "Data view" as an empty, unlabelled
+     13 px link. Let the bar wrap instead and keep the words. */
+  .bar{flex-wrap:wrap;row-gap:6px}
+  .bar-nav{flex-wrap:wrap;gap:4px 16px;justify-content:flex-end}
+  .bar-nav a.lbl{display:inline-block}
+  .bar-nav{gap:4px 16px}
+  .bar-nav a{padding:12px 0;display:inline-block}
+  .bar-nav a.here{padding-bottom:10px}
+  .langtoggle button{padding:12px 13px}
+  .toggle button{padding:12px 14px}
+  .head{padding:19vh 6vw 7vh}
+  .sec{padding:7vh 6vw}
+  .panel,.band-card,.col{padding:18px 16px}
+  .panel-top{gap:10px}
+  /* A 120 px label column plus a 38 px value column left ~150 px for the bar
+     on a 360 px screen, so every bar looked the same length. */
+  .cat{grid-template-columns:86px 1fr 34px;gap:9px;font-size:11px}
+  .scale-row{font-size:11px;gap:9px}
+  .chart-foot{gap:10px;font-size:10px}
+  .dl{gap:10px}
+  .dl .btn{width:100%;justify-content:center}
+  .cite{font-size:14px;padding:13px 14px}
+}
 @media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
