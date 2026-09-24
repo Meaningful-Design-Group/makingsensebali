@@ -375,10 +375,18 @@ button.btn{font-family:var(--mono)}
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script src="./data.js"></script>
-<script src="./peaks.js"></script>
-<script src="./near.js"></script>
-<script src="./i18n.js"></script>
+<!-- ?v= is a cache buster, and it is load-bearing. GitHub Pages serves both
+     the HTML and these scripts with max-age=600, and they are separate objects:
+     for ten minutes after a deploy a returning visitor can be handed new HTML
+     against an old script. That is not hypothetical - it happened on 2026-09-24,
+     when index.html's live upgrade called a function the cached near.js did not
+     have yet, threw, was swallowed by its own catch, and the page quietly went
+     on showing the stale snapshot. BUMP THIS STRING whenever any of these files
+     changes. -->
+<script src="./data.js?v=20260924a"></script>
+<script src="./peaks.js?v=20260924a"></script>
+<script src="./near.js?v=20260924a"></script>
+<script src="./i18n.js?v=20260924a"></script>
 <script>
 var D=window.SCB_DATA||{}, P=window.SCB_PEAKS||{};
 var S={sensors:[],reports:[]};
@@ -770,6 +778,13 @@ function renderLivePins(sensors){
 
 function upgradeFromLive(){
   var N=window.SCB_NEAR; if(!N) return;
+  /* Guard against a cache-skewed near.js. The scripts carry a ?v= for exactly
+     this, but a stale one must fail in the open rather than throw inside the
+     promise and leave the page silently on yesterday's snapshot. */
+  if(typeof N.islandMedian!=='function'){
+    console.warn('[near] near.js is older than this page expects (cache skew); staying on the snapshot');
+    return;
+  }
   N.load().then(function(data){
     _near.data=data;
     setText('map-sensors', data.sensors.length||'—');
