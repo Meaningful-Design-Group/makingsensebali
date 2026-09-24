@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bali Fab City — locally productive, globally connected</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Bali Fab City is Bali's node of the global Fab City network — a movement of cities and citizens becoming locally productive and globally connected. Home of the Bali Fab City Index.">
+
+<!--
+  TYPEFACE NOTE
+  The intended Fab City display face is *Circular Std Medium* (not web-licensed
+  for this mockup). Figtree (Google Fonts) is the approved fallback and is used
+  throughout — headings and body. Swap to Circular on production licensing.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+
+<meta property="og:title" content="Bali Fab City — locally productive, globally connected">
+<meta property="og:description" content="Bali's node of the global Fab City network. Home of the Bali Fab City Index.">
+<meta property="og:type" content="website">
+
+<style>
+  :root{
+    /* ---- Fab City brand tokens (exact hexes — do not alter) ---- */
+    --ink:#1E1E1E;      /* primary text + monochrome Fab City mark */
+    --paper:#F7F5F1;    /* warm off-white — NEVER pure #fff */
+    --red:#E62038;      /* scale marker (sparing) */
+    --green:#00A057;    /* Bali accent — the through-line */
+    --blue:#20388D;     /* scale marker (sparing) */
+
+    /* derived, AA-safe working values */
+    --ink-70:rgba(30,30,30,.70);
+    --ink-55:rgba(30,30,30,.55);
+    --ink-40:rgba(30,30,30,.40);
+    --ink-12:rgba(30,30,30,.12);
+    --ink-07:rgba(30,30,30,.07);
+    --paper-2:#EFEBE3;  /* slightly deeper panel paper */
+    --paper-3:#E7E2D8;
+    --green-ink:#006B3A; /* darker green — AA for small text on paper (≈5.1:1) */
+    --blue-ink:#20388D;  /* AA on paper (≈8:1) */
+    --red-ink:#C8122A;   /* darker red — AA for small text on paper (≈4.7:1) */
+
+    --maxw:1280px;
+    --gutter:clamp(20px,5vw,40px);
+    --safe:40px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Figtree',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    font-feature-settings:"ss01","cv01";
+  }
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--green);color:var(--paper)}
+
+  /* ---------- reduced-motion guard ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.001ms!important;animation-iteration-count:1!important;
+      transition-duration:.001ms!important;scroll-behavior:auto!important;
+    }
+  }
+
+  /* ---------- focus ---------- */
+  :focus{outline:none}
+  :focus-visible{outline:2.5px solid var(--green-ink);outline-offset:3px;border-radius:2px}
+
+  .skip-link{
+    position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
+    padding:12px 18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;z-index:3000;
+  }
+  .skip-link:focus{left:0}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+
+  /* ---------- mono microcopy helper ---------- */
+  .mono{
+    font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+    letter-spacing:.04em;
+  }
+  .eyebrow{
+    font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-55);display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow .tick{width:18px;height:1.5px;background:var(--ink-40);display:inline-block}
+
+  /* ---------- LIVE / PLANNED status tag (reused throughout) ---------- */
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;flex:none;
+    font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+    padding:3px 8px 3px 7px;border-radius:3px;line-height:1.1;white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .tag .tdot{width:6px;height:6px;border-radius:50%;flex:none}
+  /* LIVE — running now: solid green dot, filled chip */
+  .tag.live{color:var(--green-ink);background:rgba(0,160,87,.12);border:1px solid rgba(0,160,87,.40)}
+  .tag.live .tdot{background:var(--green);animation:blink 2.4s infinite}
+  /* PLANNED — represented, not built: hollow ink dot, dashed chip */
+  .tag.planned{color:var(--ink-70);background:transparent;border:1px dashed var(--ink-40)}
+  .tag.planned .tdot{background:transparent;border:1.5px solid var(--ink-55);width:7px;height:7px}
+  /* DEV — in development: blue, sparing */
+  .tag.dev{color:var(--blue-ink);background:rgba(32,56,141,.08);border:1px solid rgba(32,56,141,.32)}
+  .tag.dev .tdot{background:var(--blue);width:7px;height:7px}
+
+  /* ================= MOCKUP BADGE ================= */
+  .mockbadge{
+    position:fixed;right:14px;bottom:14px;z-index:2500;
+    background:var(--ink);color:var(--paper);
+    font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    padding:8px 12px;border-radius:2px;display:flex;align-items:center;gap:8px;
+    box-shadow:0 6px 22px rgba(30,30,30,.22);
+  }
+  .mockbadge b{color:var(--green);font-weight:700}
+  .mockbadge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2.4s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* ================= HEADER ================= */
+  header.site{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(247,245,241,.82);backdrop-filter:blur(14px) saturate(1.2);
+    border-bottom:1px solid var(--ink-12);
+  }
+  .barrow{
+    max-width:var(--maxw);margin:0 auto;padding:18px var(--safe);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  /* monochrome wordmark — no fabricated colored logo */
+  .mark{display:flex;align-items:flex-end;gap:14px;position:relative}
+  .mark .fc{
+    font-weight:800;font-size:23px;letter-spacing:.16em;line-height:.9;
+    color:var(--ink);text-transform:uppercase;
+  }
+  .mark .loc{
+    font-weight:500;font-size:13px;letter-spacing:.04em;color:var(--ink-70);
+    padding-left:14px;border-left:1px solid var(--ink-12);line-height:1.1;
+    padding-bottom:1px;
+  }
+  .mark .loc b{display:block;color:var(--ink);font-weight:600;font-size:14px}
+  .tbd{
+    font-size:9px;letter-spacing:.05em;color:var(--ink-40);font-weight:500;
+    position:absolute;left:0;top:100%;margin-top:5px;white-space:nowrap;
+  }
+
+  nav.primary{display:flex;align-items:center;gap:4px}
+  nav.primary a{
+    font-size:13px;font-weight:500;color:var(--ink-70);padding:8px 11px;border-radius:3px;
+    transition:color .2s,background .2s;
+  }
+  nav.primary a:hover{color:var(--ink);background:var(--ink-07)}
+  nav.primary a.cta{
+    color:var(--paper);background:var(--ink);font-weight:600;
+  }
+  nav.primary a.cta:hover{background:var(--green-ink)}
+
+  .netline{
+    border-top:1px solid var(--ink-07);background:var(--paper);
+  }
+  .netline .inner{
+    max-width:var(--maxw);margin:0 auto;padding:8px var(--safe);
+    display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-55);
+    letter-spacing:.02em;
+  }
+  .netdot{width:7px;height:7px;border-radius:50%;background:var(--green);position:relative;flex:none}
+  .netdot::after{
+    content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--green);
+    animation:ping 2.6s ease-out infinite;
+  }
+  @keyframes ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+  .netline b{color:var(--ink);font-weight:600}
+
+  /* mobile nav */
+  .navtoggle{display:none;background:none;border:1px solid var(--ink-12);border-radius:3px;padding:9px 11px;cursor:pointer}
+  .navtoggle span{display:block;width:18px;height:2px;background:var(--ink);margin:3px 0}
+
+  /* ================= HERO ================= */
+  .hero{padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,64px)}
+  .hero-top{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(30px,5vw,72px);align-items:center}
+  h1.display{
+    font-weight:800;letter-spacing:-.025em;line-height:.92;
+    font-size:clamp(46px,8.5vw,108px);color:var(--ink);
+  }
+  h1.display em{font-style:normal;color:var(--green-ink)}
+  .hero-lead{
+    font-size:clamp(17px,1.7vw,21px);line-height:1.5;color:var(--ink-70);
+    margin-top:26px;max-width:50ch;font-weight:400;
+  }
+  .hero-lead b{color:var(--ink);font-weight:600}
+  .claim{
+    font-size:clamp(15px,1.5vw,18px);line-height:1.4;font-weight:500;
+    color:var(--ink);border-left:3px solid var(--green);padding-left:18px;
+    margin-top:30px;max-width:46ch;font-style:italic;
+  }
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;
+    padding:12px 20px;border-radius:30px;transition:background .2s,border-color .2s,color .2s;
+  }
+  .btn .ar{transition:transform .2s}
+  .btn:hover .ar{transform:translateX(3px)}
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:var(--green-ink)}
+  .btn-ghost{border:1px solid var(--ink-12);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--green);color:var(--green-ink)}
+
+  /* ---------- hero stat card: the headline Index number ---------- */
+  .herostat{
+    background:var(--paper-2);border:1px solid var(--ink-12);border-radius:6px;
+    overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 40px -28px rgba(30,30,30,.4);
+  }
+  .hs-head{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    padding:14px 20px;border-bottom:1px solid var(--ink-12);background:var(--paper);
+  }
+  .hs-head .lbl{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-55)}
+  .hs-head .lbl b{color:var(--green-ink)}
+  .hs-body{padding:26px 26px 22px;text-align:center;
+    background:radial-gradient(circle at 50% 24%,rgba(0,160,87,.07),transparent 64%);}
+  .hs-num{
+    font-weight:800;letter-spacing:-.03em;line-height:.82;color:var(--green-ink);
+    font-size:clamp(76px,11vw,128px);font-variant-numeric:tabular-nums;
+    display:inline-flex;align-items:baseline;gap:4px;
+  }
+  .hs-num .of{font-size:.26em;font-weight:700;color:var(--ink-40);letter-spacing:0}
+  .hs-cap{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--ink);margin-top:8px}
+  .hs-sub{font-size:12.5px;line-height:1.5;color:var(--ink-70);margin-top:8px;max-width:34ch;margin-inline:auto}
+  .hs-foot{
+    display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
+    padding:13px 20px;border-top:1px solid var(--ink-12);background:var(--paper);
+    font-size:11px;letter-spacing:.02em;color:var(--ink-55);
+  }
+  .hs-foot a{color:var(--green-ink);font-weight:600}
+  .hs-foot a:hover{text-decoration:underline;text-underline-offset:2px}
+
+  /* ================= GENERIC SECTION ================= */
+  section.block{padding:clamp(56px,7vw,104px) 0;border-top:1px solid var(--ink-12)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(30px,4vw,52px)}
+  .sec-head .h2wrap{max-width:64ch}
+  h2.sec{font-weight:800;letter-spacing:-.022em;line-height:1;font-size:clamp(30px,4.4vw,54px);color:var(--ink);margin-top:14px}
+  h2.sec em{font-style:normal;color:var(--green-ink)}
+  .sec-sub{font-size:clamp(15px,1.4vw,17px);line-height:1.55;color:var(--ink-70);margin-top:16px;max-width:64ch}
+  .sec-sub b{color:var(--ink);font-weight:600}
+  .sec-num{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ink-40)}
+
+  /* ---- section header "more" affordance ---- */
+  .sec-more{
+    display:inline-flex;align-items:center;gap:8px;flex:none;
+    font-size:12.5px;font-weight:600;letter-spacing:.02em;color:var(--green-ink);
+    border:1px solid rgba(0,160,87,.4);border-radius:30px;padding:9px 16px;
+    transition:background .2s;white-space:nowrap;align-self:flex-end;
+  }
+  .sec-more:hover{background:rgba(0,160,87,.08)}
+  .sec-more .ar{transition:transform .2s}
+  .sec-more:hover .ar{transform:translateX(3px)}
+
+  /* ================= 01 · THE BALI FAB CITY INDEX (signature feature) ================= */
+  /* green-accented section band: the Index is a city/section application */
+  .index-block{background:linear-gradient(180deg,var(--paper),var(--paper-2) 70%);}
+  .idx-card{
+    background:var(--paper);border:1px solid var(--ink-12);border-radius:8px;overflow:hidden;
+    box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 22px 54px -34px rgba(0,107,58,.4);
+  }
+  .idx-top{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+    padding:16px 24px;border-bottom:1px solid var(--ink-12);
+    background:linear-gradient(90deg,rgba(0,160,87,.08),transparent 60%);
+  }
+  .idx-top .ttl{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .idx-top .ttl .gd{width:9px;height:9px;border-radius:50%;background:var(--green);flex:none}
+  /* version chip: v0.1 → v0.2 → v1 */
+  .vchip{display:inline-flex;align-items:center;gap:0;border:1px solid var(--ink-12);border-radius:30px;overflow:hidden;background:var(--paper)}
+  .vchip span{font-size:10px;font-weight:700;letter-spacing:.06em;padding:5px 11px;color:var(--ink-40);border-right:1px solid var(--ink-12)}
+  .vchip span:last-child{border-right:none}
+  .vchip span.now{background:rgba(0,160,87,.12);color:var(--green-ink)}
+  .vchip span.arr{padding:5px 6px;color:var(--ink-40)}
+
+  .idx-body{display:grid;grid-template-columns:1.05fr 1fr;gap:0}
+  .idx-explain{padding:clamp(24px,3vw,34px);border-right:1px solid var(--ink-12)}
+  .idx-explain .lead{font-size:clamp(15px,1.5vw,17.5px);line-height:1.6;color:var(--ink);font-weight:400}
+  .idx-explain .lead b{font-weight:700}
+  .idx-explain .lead .gn{color:var(--green-ink);font-weight:700}
+  /* the 0 / 100 endpoints */
+  .idx-ends{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden;margin-top:22px}
+  .idx-end{background:var(--paper-2);padding:15px 17px}
+  .idx-end .e0{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--ink-40);font-variant-numeric:tabular-nums}
+  .idx-end .e100{color:var(--green-ink)}
+  .idx-end .et{font-size:11.5px;line-height:1.45;color:var(--ink-70);margin-top:6px}
+  .idx-end .et b{color:var(--ink);font-weight:600}
+  /* the pledge callout */
+  .pledge{
+    margin-top:22px;display:flex;align-items:center;gap:14px;
+    background:rgba(0,160,87,.08);border:1px solid rgba(0,160,87,.3);border-radius:6px;padding:16px 18px;
+  }
+  .pledge .py{
+    flex:none;font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--green-ink);
+    font-variant-numeric:tabular-nums;line-height:1;
+  }
+  .pledge p{font-size:13px;line-height:1.5;color:var(--ink)}
+  .pledge p b{color:var(--green-ink);font-weight:700}
+
+  /* right column: the score + trajectory + pillars */
+  .idx-score{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:0}
+  .idx-score .scorehead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+  .idx-score .bignum{
+    font-weight:800;letter-spacing:-.03em;line-height:.82;color:var(--green-ink);
+    font-size:clamp(60px,8vw,92px);font-variant-numeric:tabular-nums;
+    display:inline-flex;align-items:baseline;gap:3px;
+  }
+  .idx-score .bignum .of{font-size:.28em;font-weight:700;color:var(--ink-40);letter-spacing:0}
+  .idx-score .scbadges{display:flex;flex-direction:column;gap:6px;align-items:flex-end;padding-bottom:8px}
+  .idx-score .sclab{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink);margin-top:4px}
+
+  /* trajectory: 2014 baseline → today → 2054 pledge target */
+  .traj{margin-top:24px}
+  .traj .tlab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-55);font-weight:600;margin-bottom:12px}
+  .traj-track{position:relative;height:46px}
+  .traj-bar{position:absolute;left:0;right:0;top:20px;height:6px;border-radius:4px;background:var(--ink-12);overflow:hidden}
+  /* filled portion = progress so far (baseline → today) */
+  .traj-fill{position:absolute;left:0;top:0;bottom:0;width:21%;background:linear-gradient(90deg,var(--green-ink),var(--green));border-radius:4px;
+    transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+  /* the 50% pledge marker */
+  .traj-target{position:absolute;top:8px;bottom:8px;left:50%;width:2px;background:var(--green-ink);}
+  .traj-target::after{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%);width:0;height:0;
+    border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--green-ink)}
+  .traj-node{position:absolute;top:13px;width:13px;height:13px;border-radius:50%;background:var(--paper);border:3px solid var(--green-ink);transform:translateX(-50%);z-index:2}
+  .traj-node.base{border-color:var(--ink-40)}
+  .traj-pt{position:absolute;font-size:10px;font-weight:700;color:var(--ink);transform:translateX(-50%);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .traj-pt.top{top:-2px}
+  .traj-pt.bot{bottom:-2px;color:var(--ink-55);font-weight:600;letter-spacing:.02em}
+  .traj-note{font-size:11.5px;color:var(--ink-55);line-height:1.5;margin-top:16px}
+  .traj-note b{color:var(--ink);font-weight:600}
+
+  /* four pillars: reuse the radar, framed as "the four dimensions" */
+  .pillars-wrap{margin-top:26px;padding-top:24px;border-top:1px solid var(--ink-12);display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:22px;align-items:center}
+  .radar-cell{display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .radar-cell svg{width:100%;max-width:200px;height:auto;overflow:visible}
+  .radar-caption{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-55);margin-top:10px;text-align:center}
+  .radar-caption b{color:var(--ink);display:block;font-size:10.5px;letter-spacing:.08em;margin-top:3px}
+  .pilllist{display:flex;flex-direction:column;gap:11px}
+  .pill{display:flex;align-items:flex-start;gap:11px}
+  .pill .pdot{flex:none;width:11px;height:11px;border-radius:2px;margin-top:3px}
+  .pill .pt{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2}
+  .pill .pd{font-size:11.5px;color:var(--ink-70);line-height:1.4;margin-top:2px}
+
+  .idx-foot{
+    padding:15px 24px;border-top:1px solid var(--ink-12);
+    background:var(--paper-2);font-size:12px;letter-spacing:.01em;color:var(--ink-70);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;line-height:1.5;
+  }
+  .idx-foot b{color:var(--ink);font-weight:600}
+  .idx-foot .fdot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+
+  /* ================= 02 · WHAT IS WHAT (plain definitions) ================= */
+  .defs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .def-card{background:var(--paper);padding:24px 24px;display:flex;flex-direction:column;position:relative;transition:background .25s}
+  .def-card:hover{background:var(--paper-2)}
+  .def-card .dno{font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--ink-40)}
+  .def-card h3{font-size:18px;font-weight:800;letter-spacing:-.01em;color:var(--ink);margin-top:12px;line-height:1.15;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .def-card h3 .gn{color:var(--green-ink)}
+  .def-card p{font-size:13.5px;line-height:1.55;color:var(--ink-70);margin-top:10px;flex:1}
+  .def-card p b{color:var(--ink);font-weight:600}
+  .def-card .dlink{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:12.5px;font-weight:600;color:var(--green-ink);align-self:flex-start}
+  .def-card .dlink .ar{transition:transform .2s}
+  .def-card .dlink:hover{text-decoration:underline;text-underline-offset:3px}
+  .def-card .dlink:hover .ar{transform:translateX(3px)}
+
+  /* ================= 03 · THE NETWORK (timeline + programs) ================= */
+  /* ---- Fab Lab Bali timeline (4 real milestones) ---- */
+  .timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:8px;list-style:none}
+  .timeline::before{content:"";position:absolute;left:0;right:0;top:40px;height:2px;background:var(--ink-12)}
+  .tnode{padding-right:22px;position:relative}
+  .tnode .yr{font-size:13px;font-weight:800;letter-spacing:.02em;color:var(--ink);display:flex;align-items:center;min-height:20px}
+  .tnode .dot{width:13px;height:13px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink-40);margin:14px 0 0;position:relative;z-index:2}
+  .tnode.accent .dot{border-color:var(--green);background:rgba(0,160,87,.12)}
+  .tnode .te{margin-top:18px}
+  .tnode .te h4{font-size:14px;font-weight:700;color:var(--ink);line-height:1.2}
+  .tnode .te p{font-size:12px;color:var(--ink-70);line-height:1.45;margin-top:6px}
+  .tnode .te p a{color:var(--green-ink);font-weight:600;text-decoration:underline;text-decoration-color:rgba(0,160,87,.4);text-underline-offset:2px}
+  .tnode .te p a:hover{text-decoration-color:var(--green-ink)}
+
+  /* founding partners strip */
+  .founders{
+    display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;
+    margin-top:26px;padding:16px 20px;border:1px solid var(--ink-12);border-radius:6px;background:var(--paper-2);
+  }
+  .founders .fl{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-55);flex:none}
+  .founders .fp{font-size:13px;font-weight:600;color:var(--ink)}
+  .founders .fsep{color:var(--ink-40)}
+
+  /* ---- major programs / projects ---- */
+  .prog-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:clamp(34px,4vw,52px);padding-top:clamp(28px,3.5vw,40px);border-top:1px solid var(--ink-12)}
+  .prog-modes{font-size:10.5px;letter-spacing:.06em;color:var(--ink-40);text-transform:uppercase;font-weight:600}
+  .progs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden;margin-top:20px}
+  .prog{background:var(--paper);padding:22px 22px;display:flex;flex-direction:column}
+  .prog .pk{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-55)}
+  .prog h4{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--ink);margin-top:11px;line-height:1.15}
+  .prog p{font-size:12.5px;line-height:1.55;color:var(--ink-70);margin-top:10px}
+  .proglist{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .proglist li{font-size:12px;line-height:1.45;color:var(--ink-70);padding-left:15px;position:relative}
+  .proglist li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green)}
+  .proglist li b{color:var(--ink);font-weight:700}
+  .prog-link{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:12.5px;font-weight:600;color:var(--green-ink);align-self:flex-start}
+  .prog-link .ar{transition:transform .2s}
+  .prog-link:hover{text-decoration:underline;text-underline-offset:3px}
+  .prog-link:hover .ar{transform:translateX(3px)}
+
+  .tlin{font-size:12.5px;color:var(--ink-55);margin-top:30px;border-top:1px solid var(--ink-12);padding-top:18px;max-width:80ch;line-height:1.6}
+  .tlin b{color:var(--ink);font-weight:600}
+  .tlin a{color:var(--green-ink);font-weight:600;text-decoration:underline;text-decoration-color:rgba(0,160,87,.4);text-underline-offset:2px}
+  .tlin a:hover{text-decoration-color:var(--green-ink)}
+
+  /* ---- ecosystem graph (folded into network) ---- */
+  .eco-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,3vw,40px);align-items:start;margin-top:clamp(34px,4vw,52px);padding-top:clamp(28px,3.5vw,40px);border-top:1px solid var(--ink-12)}
+  .ecograph{background:var(--paper-2);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .ecograph .etop{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;border-bottom:1px solid var(--ink-12);background:var(--paper)}
+  .ecograph .etop .t{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-70)}
+  .ecograph svg{display:block;width:100%;height:auto}
+  .eco-side h3{font-size:18px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
+  .eco-side p.ei{font-size:13px;line-height:1.55;color:var(--ink-70);margin-top:8px;margin-bottom:16px}
+  .eco-actors{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .actor{background:var(--paper);padding:14px 15px}
+  .actor .ak{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40);font-weight:700}
+  .actor .av{font-size:13.5px;font-weight:600;color:var(--ink);margin-top:4px;line-height:1.25}
+  .actor .ad{font-size:11.5px;color:var(--ink-70);margin-top:3px;line-height:1.35}
+
+  /* ================= 04 · MAKING SENSE BALI ================= */
+  .ms-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,3vw,40px);align-items:start}
+  .map-panel{background:var(--paper-2);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .map-panel .maptop{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;border-bottom:1px solid var(--ink-12);background:var(--paper)}
+  .map-panel .maptop .t{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-70)}
+  .map-panel .maptop .live{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--green-ink);font-weight:600}
+  .map-panel .maptop .live i{width:7px;height:7px;border-radius:50%;background:var(--green);font-style:normal;animation:blink 2.4s infinite}
+  .baliwrap{position:relative;background:linear-gradient(180deg,#ECEAE2,#E4E0D6)}
+  .baliwrap svg{display:block;width:100%;height:auto}
+  .maplegend{display:flex;gap:18px;padding:11px 18px;border-top:1px solid var(--ink-12);background:var(--paper);flex-wrap:wrap}
+  .maplegend span{font-size:11px;color:var(--ink-70);display:inline-flex;align-items:center;gap:7px}
+  .maplegend i{width:9px;height:9px;border-radius:50%;font-style:normal;flex:none}
+  .maplegend i.pin{border-radius:1px;width:8px;height:8px;transform:rotate(45deg)}
+
+  .ms-side{display:flex;flex-direction:column;gap:18px}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .stat{background:var(--paper);padding:16px 14px;text-align:left}
+  .stat .num{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1}
+  .stat .num span{font-size:13px;font-weight:600;color:var(--ink-55)}
+  .stat .lab{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-55);margin-top:6px;font-weight:600}
+  .stat.alert .num{color:var(--red-ink)}
+
+  /* response agent flow */
+  .agent{background:var(--paper-2);border:1px solid var(--ink-12);border-radius:6px;padding:20px}
+  .agent .at{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-70);margin-bottom:6px}
+  .agent .asub{font-size:12.5px;color:var(--ink-55);line-height:1.4;margin-bottom:16px}
+  .flow{display:flex;flex-direction:column;gap:0}
+  .fstep{display:flex;gap:13px;align-items:flex-start;position:relative;padding-bottom:16px}
+  .fstep:last-child{padding-bottom:0}
+  .fstep .ico{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1.5px solid var(--ink-12);font-size:13px;font-weight:700;color:var(--ink);z-index:2}
+  .fstep:not(:last-child)::before{content:"";position:absolute;left:14.5px;top:30px;bottom:0;width:1.5px;background:var(--ink-12)}
+  .fstep.hot .ico{border-color:var(--red);color:var(--red-ink);background:rgba(230,32,56,.06)}
+  .fstep.act .ico{border-color:var(--green);color:var(--green-ink);background:rgba(0,160,87,.08)}
+  .fstep .ft{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.25}
+  .fstep .fd{font-size:12px;color:var(--ink-70);line-height:1.45;margin-top:3px}
+  .fstep .fd b{color:var(--ink);font-weight:600}
+  .pill-link{display:inline-flex;align-items:center;gap:8px;margin-top:4px;font-size:13px;font-weight:600;color:var(--green-ink);border:1px solid rgba(0,160,87,.4);border-radius:30px;padding:9px 16px;transition:background .2s}
+  .pill-link:hover{background:rgba(0,160,87,.08)}
+  .pill-link .ar{transition:transform .2s}
+  .pill-link:hover .ar{transform:translateX(3px)}
+
+  /* ================= 05 · HOW WE MEASURE — the multiscalar instrument (DEMOTED) ================= */
+  .instrument{
+    background:var(--paper-2);border:1px solid var(--ink-12);border-radius:6px;
+    overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 40px -28px rgba(30,30,30,.4);
+  }
+  .instr-head{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    padding:14px 20px;border-bottom:1px solid var(--ink-12);background:var(--paper);
+  }
+  .instr-head .lbl{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-55)}
+  .instr-head .lbl b{color:var(--green-ink)}
+
+  /* scale selector — nested zoom */
+  .scales{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+    border-bottom:1px solid var(--ink-12);
+  }
+  .scale-btn{
+    appearance:none;background:none;border:none;border-right:1px solid var(--ink-12);
+    padding:14px 8px 13px;cursor:pointer;text-align:center;position:relative;
+    font-family:inherit;color:var(--ink-55);transition:background .25s,color .25s;
+  }
+  .scale-btn:last-child{border-right:none}
+  .scale-btn:hover{background:var(--ink-07);color:var(--ink)}
+  .scale-btn .ring{
+    display:block;margin:0 auto 8px;border-radius:50%;border:2px solid currentColor;
+    transition:transform .3s,border-color .3s;
+  }
+  .scale-btn .sname{font-size:12px;font-weight:600;letter-spacing:.02em;display:block}
+  .scale-btn .ssub{
+    font-size:9.5px;font-weight:600;letter-spacing:.01em;color:var(--ink-70);
+    display:block;margin-top:3px;line-height:1.15;
+    overflow-wrap:break-word;word-break:normal;hyphens:none;padding-inline:1px;
+  }
+  .scale-btn .sidx{font-size:9.5px;letter-spacing:.16em;color:var(--ink-40);display:block;margin-top:2px}
+  .scale-btn[aria-selected="true"] .ssub{color:var(--green-ink)}
+  .scale-btn[aria-selected="true"]{color:var(--green-ink);background:var(--paper-2)}
+  .scale-btn[aria-selected="true"] .ring{border-color:var(--green);background:rgba(0,160,87,.10)}
+  .scale-btn[aria-selected="true"]::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--green);
+  }
+
+  .instr-body{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:0}
+  .instr-body .radar-cell{
+    padding:22px;border-right:1px solid var(--ink-12);
+    background:radial-gradient(circle at 50% 42%,rgba(0,160,87,.06),transparent 62%);
+  }
+  .instr-body .radar-cell svg{max-width:220px}
+  .instr-body .radar-caption{margin-top:14px;font-size:10.5px;letter-spacing:.14em}
+  .instr-body .radar-caption b{font-size:11px;letter-spacing:.1em}
+
+  .readout{padding:22px 24px;display:flex;flex-direction:column;gap:0}
+  .ro-scale{
+    font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1;
+    color:var(--ink);display:flex;align-items:baseline;gap:10px;
+  }
+  .ro-scale small{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--green-ink)}
+  .ro-desc{font-size:14px;line-height:1.5;color:var(--ink-70);margin-top:10px;min-height:42px}
+  .ro-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink-12);margin-top:18px;border:1px solid var(--ink-12);border-radius:4px;overflow:hidden}
+  .ro-cell{background:var(--paper-2);padding:13px 15px}
+  .ro-cell .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-55);font-weight:600}
+  .ro-cell .v{font-size:14.5px;font-weight:600;color:var(--ink);margin-top:5px;line-height:1.25}
+  .ro-cell .v.num{font-size:22px;letter-spacing:-.01em}
+  .ro-cell .v.num span{font-size:12px;font-weight:500;color:var(--ink-55)}
+
+  .sov{
+    margin-top:16px;display:flex;align-items:center;gap:11px;
+    background:rgba(0,160,87,.08);border:1px solid rgba(0,160,87,.28);border-radius:4px;
+    padding:12px 15px;
+  }
+  .sov .lock{flex:none;width:24px;height:24px}
+  .sov .lock svg{width:100%;height:100%;stroke:var(--green-ink);fill:none;stroke-width:1.6}
+  .sov p{font-size:12.5px;line-height:1.4;color:var(--ink)}
+  .sov p b{color:var(--green-ink);font-weight:700}
+
+  /* ---------- PKC substrate: the floor the matryoshka rests on ---------- */
+  .substrate{
+    display:flex;align-items:center;gap:14px;
+    padding:13px 20px;border-top:1px solid var(--ink-12);
+    background:linear-gradient(180deg,var(--paper-3),var(--paper-2));
+    position:relative;
+  }
+  .substrate::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:2px;
+    background:repeating-linear-gradient(90deg,var(--ink-40) 0 6px,transparent 6px 11px);
+    opacity:.5;
+  }
+  .substrate .core{
+    flex:none;width:30px;height:30px;border-radius:50%;
+    background:var(--ink);display:grid;place-items:center;position:relative;
+  }
+  .substrate .core::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--paper)}
+  .substrate .core::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px dashed var(--ink-40)}
+  .substrate .stxt{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .substrate .stxt .sh{font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--ink);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .substrate .stxt .sd{font-size:11px;line-height:1.4;color:var(--ink-70)}
+  .substrate .stxt .sd b{color:var(--ink);font-weight:600}
+
+  /* banjar ↔ desa zoom (within Community only) */
+  .subscale{display:none;align-items:center;gap:0;margin-top:14px;border:1px solid var(--ink-12);border-radius:4px;overflow:hidden}
+  .subscale[data-show="true"]{display:inline-flex}
+  .subscale .sub-btn{appearance:none;font-family:inherit;cursor:pointer;background:var(--paper);border:none;border-right:1px solid var(--ink-12);padding:7px 13px;font-size:11px;font-weight:600;letter-spacing:.02em;color:var(--ink-55);transition:background .2s,color .2s;display:flex;align-items:center;gap:7px}
+  .subscale .sub-btn:last-child{border-right:none}
+  .subscale .sub-btn .sr{width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+  .subscale .sub-btn[aria-pressed="true"]{background:rgba(0,160,87,.10);color:var(--green-ink)}
+  .subscale .sub-btn[aria-pressed="true"] .sr{background:var(--green);border-color:var(--green)}
+  .subscale .sub-btn:hover{color:var(--ink);background:var(--ink-07)}
+  .subnote{font-size:11px;color:var(--ink-55);line-height:1.4;margin-top:10px}
+  .subnote b{color:var(--ink);font-weight:600}
+
+  .fadein{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+  .fadein.in{opacity:1;transform:none}
+
+  /* the PKC + federations explainer (kept, secondary) */
+  .measure-detail{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden;margin-top:20px}
+  .fed{background:var(--paper);padding:22px 22px;display:flex;flex-direction:column;position:relative}
+  .fed .fhead{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .fed .fno{font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--ink-40)}
+  .fed h3{font-size:18px;font-weight:800;letter-spacing:-.01em;color:var(--ink);margin-top:10px;line-height:1.1}
+  .fed h3 small{display:block;font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--green-ink);margin-top:4px;text-transform:none}
+  .fed h3 small.plan{color:var(--ink-55)}
+  .fed p{font-size:13px;line-height:1.55;color:var(--ink-70);margin-top:11px;flex:1}
+  .fed p b{color:var(--ink);font-weight:600}
+  .fed .fmeta{font-size:11px;letter-spacing:.02em;color:var(--ink-55);margin-top:16px;padding-top:13px;border-top:1px solid var(--ink-12)}
+  .fed .fmeta b{color:var(--ink);font-weight:600}
+  .dataflow{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+  .dataflow .df{display:flex;align-items:center;gap:9px;font-size:11.5px;line-height:1.3;color:var(--ink)}
+  .dataflow .df .arrow{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700}
+  .dataflow .df.up .arrow{color:var(--green-ink);border:1.5px solid rgba(0,160,87,.4)}
+  .dataflow .df.stay .arrow{color:var(--blue-ink);border:1.5px solid rgba(32,56,141,.35)}
+  .dataflow .df b{font-weight:600}
+
+  /* ================= 06 · OPEN DATA · TRI HITA KARANA ================= */
+  .thk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .thk{background:var(--paper);padding:24px 22px;position:relative;transition:background .25s}
+  .thk:hover{background:var(--paper-2)}
+  .thk .gly{font-size:30px;line-height:1;color:var(--green-ink);font-weight:300}
+  .thk .nm{font-size:21px;font-weight:800;letter-spacing:-.01em;color:var(--ink);margin-top:10px}
+  .thk .nm small{font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--ink-55);display:block;margin-top:2px;text-transform:uppercase}
+  .thk .def{font-size:13px;color:var(--ink-70);line-height:1.45;margin-top:10px}
+  .thk .ind{margin-top:14px;padding-top:13px;border-top:1px solid var(--ink-12);font-size:12px;color:var(--ink)}
+  .thk .ind b{font-weight:700}
+  .thk .ind .ival{color:var(--green-ink);font-weight:700;font-variant-numeric:tabular-nums}
+  .thk-note{font-size:12.5px;color:var(--ink-55);margin-top:18px;display:flex;align-items:center;gap:9px}
+  .thk-note i{width:7px;height:7px;border-radius:50%;background:var(--blue);font-style:normal;flex:none}
+  .thk-note b{color:var(--blue-ink);font-weight:600}
+
+  /* ================= 07 · GET INVOLVED ================= */
+  .involve{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden}
+  .inv{background:var(--paper);padding:28px 26px;display:flex;flex-direction:column}
+  .inv .iv-ico{width:38px;height:38px;border-radius:8px;background:rgba(0,160,87,.1);display:grid;place-items:center;color:var(--green-ink)}
+  .inv .iv-ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .inv h3{font-size:18px;font-weight:800;letter-spacing:-.01em;color:var(--ink);margin-top:16px;line-height:1.15}
+  .inv p{font-size:13px;line-height:1.55;color:var(--ink-70);margin-top:9px;flex:1}
+  .inv p b{color:var(--ink);font-weight:600}
+  .inv .iv-act{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;font-weight:600;color:var(--green-ink);align-self:flex-start;border:1px solid rgba(0,160,87,.4);border-radius:30px;padding:10px 17px;transition:background .2s}
+  .inv .iv-act:hover{background:rgba(0,160,87,.08)}
+  .inv .iv-act .ar{transition:transform .2s}
+  .inv .iv-act:hover .ar{transform:translateX(3px)}
+
+  /* ================= FOOTER ================= */
+  footer.site{background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,88px) 0 32px;border-top:none}
+  footer.site .claim2{
+    font-size:clamp(22px,3.4vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.12;
+    max-width:24ch;color:var(--paper);
+  }
+  footer.site .claim2 em{font-style:normal;color:var(--green)}
+  .footgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px;margin-top:48px;padding-top:40px;border-top:1px solid rgba(247,245,241,.16)}
+  .footcol h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,245,241,.5);font-weight:600;margin-bottom:14px}
+  .footcol p,.footcol a{font-size:13.5px;line-height:1.7;color:rgba(247,245,241,.78);display:block}
+  .footcol a:hover{color:var(--green)}
+  .footcol .partner{font-weight:500;color:var(--paper)}
+  .foot-mark{display:flex;align-items:flex-end;gap:13px;margin-bottom:18px}
+  .foot-mark .fc{font-weight:800;font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper)}
+  .foot-mark .loc{font-size:12px;color:rgba(247,245,241,.7);padding-left:13px;border-left:1px solid rgba(247,245,241,.2);padding-bottom:1px}
+  .foot-mark .loc b{display:block;color:var(--paper);font-weight:600;font-size:13px}
+  .sov-foot{font-size:12.5px;color:rgba(247,245,241,.66);line-height:1.6;margin-top:14px;max-width:46ch}
+  .sov-foot b{color:var(--green)}
+  .footbottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid rgba(247,245,241,.12);font-size:11px;letter-spacing:.04em;color:rgba(247,245,241,.5)}
+  .footbottom .mk{display:inline-flex;align-items:center;gap:8px}
+  .footbottom .mk b{color:var(--green);font-weight:700}
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width:1080px){
+    .defs{grid-template-columns:repeat(2,1fr)}
+    .progs{grid-template-columns:1fr}
+    .involve{grid-template-columns:1fr}
+    .timeline{grid-template-columns:repeat(2,1fr);gap:8px 0}
+    .timeline::before{display:none}
+    .tnode{margin-bottom:24px;padding-right:24px}
+  }
+  @media (max-width:960px){
+    .idx-body{grid-template-columns:1fr}
+    .idx-explain{border-right:none;border-bottom:1px solid var(--ink-12)}
+  }
+  @media (max-width:900px){
+    .hero-top{grid-template-columns:1fr;gap:40px;align-items:start}
+    .ms-grid,.eco-grid{grid-template-columns:1fr}
+    .footgrid{grid-template-columns:1fr 1fr}
+    .measure-detail{grid-template-columns:1fr}
+    .pillars-wrap{grid-template-columns:1fr;gap:18px;justify-items:center;text-align:left}
+    .pillars-wrap .pilllist{width:100%}
+  }
+  @media (max-width:720px){
+    :root{--safe:20px}
+    nav.primary{
+      display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);
+      border-bottom:1px solid var(--ink-12);flex-direction:column;align-items:stretch;
+      padding:10px var(--safe) 16px;gap:2px;
+    }
+    nav.primary.open{display:flex}
+    nav.primary a{padding:12px 4px;border-bottom:1px solid var(--ink-07)}
+    nav.primary a.cta{margin-top:8px;text-align:center;border-bottom:none}
+    .navtoggle{display:block}
+    .barrow{position:relative}
+    .instr-body{grid-template-columns:1fr}
+    .instr-body .radar-cell{border-right:none;border-bottom:1px solid var(--ink-12)}
+    .scales{grid-template-columns:repeat(5,1fr)}
+    .scale-btn .sname{font-size:10.5px}
+    .scale-btn{padding:11px 4px}
+    .scale-btn .ssub{font-size:9px;letter-spacing:0;line-height:1.2;margin-top:3px}
+    .sec-head{align-items:flex-start}
+    .sec-more{align-self:flex-start}
+    .thk-grid,.defs{grid-template-columns:1fr 1fr}
+    .stat-row{grid-template-columns:1fr 1fr 1fr}
+    .ro-grid,.idx-ends{grid-template-columns:1fr}
+    .substrate{flex-wrap:wrap}
+    .subscale{flex-wrap:wrap}
+    .idx-score .scorehead{flex-direction:column;align-items:flex-start;gap:8px}
+    .idx-score .scbadges{align-items:flex-start}
+  }
+  @media (max-width:520px){
+    .eco-actors,.thk-grid,.defs{grid-template-columns:1fr}
+    .timeline{grid-template-columns:1fr;gap:0}
+    .tnode{margin-bottom:20px;padding-right:0}
+    .footgrid{grid-template-columns:1fr}
+    h1.display{font-size:clamp(40px,13vw,60px)}
+    .mark .loc{padding-left:10px}
+    .netline .inner{font-size:10.5px}
+    .founders{flex-direction:column;align-items:flex-start;gap:6px}
+    .founders .fsep{display:none}
+  }
+  /* narrowest: keep the 5-up scale selector legible — "Desa Adat" must not crowd neighbours */
+  @media (max-width:400px){
+    .scale-btn{padding:11px 2px 12px}
+    .scale-btn .sname{font-size:9.5px;letter-spacing:0;hyphens:auto}
+    .scale-btn .ssub{font-size:8.5px;letter-spacing:0;line-height:1.2;margin-top:4px;max-width:100%;margin-inline:auto}
+    .scale-btn[data-scale="0"] .ssub{white-space:normal;word-spacing:100vw}
+    .scale-btn .sidx{margin-top:3px}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to content</a>
+
+<!-- persistent mockup badge -->
+<div class="mockbadge" role="note" aria-label="This is a mockup with illustrative data">
+  <span class="dot" aria-hidden="true"></span> Mockup <b>·</b> illustrative data
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <div class="barrow">
+    <a class="mark" href="#hero" aria-label="Fab City — Bali">
+      <span class="fc">Fab&nbsp;City</span>
+      <span class="loc">·<b>Bali</b></span>
+      <span class="tbd" aria-hidden="true">logo lockup + color = naming-architecture decision (TBD)</span>
+    </a>
+    <button class="navtoggle" aria-expanded="false" aria-controls="primarynav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary" id="primarynav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#index">The Index</a>
+      <a href="#network">What we do</a>
+      <a href="#measure">How we measure</a>
+      <a class="cta" href="#involve">Get involved</a>
+    </nav>
+  </div>
+  <div class="netline">
+    <div class="inner">
+      <span class="netdot" aria-hidden="true"></span>
+      Part of the <b>Fab City</b> global network — a movement of <b>50+ cities</b> working to become locally productive by <b>2054</b>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<main>
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div id="about">
+        <span class="eyebrow"><span class="tick" aria-hidden="true"></span>Bali's node of the global Fab City network</span>
+        <h1 class="display">Bali<br>Fab&nbsp;City<em>.</em></h1>
+        <p class="hero-lead">
+          A Balinese node of <b>Fab City</b> — a global movement of cities and citizens working to become
+          <b>locally productive and globally connected</b>. We make more of what we use here on the island,
+          and share what we learn with the world.
+        </p>
+        <p class="claim">"We are a distributed movement redesigning the relationship between production and place."</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#index">See the Bali Fab City Index <span class="ar" aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" href="#about" onclick="document.getElementById('whatiswhat').scrollIntoView({behavior:'smooth'});return false;">What is this? <span class="ar" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <!-- ===== HERO STAT: the headline Index number ===== -->
+      <aside class="herostat" aria-label="Bali Fab City Index headline figure">
+        <div class="hs-head">
+          <span class="lbl"><b>Bali Fab City Index</b></span>
+          <span class="tag dev"><span class="tdot" aria-hidden="true"></span> v0.1 · in dev</span>
+        </div>
+        <div class="hs-body">
+          <div class="hs-num mono">21<span class="of">/ 100</span></div>
+          <div class="hs-cap">of what Bali uses, it can make &amp; regenerate locally</div>
+          <p class="hs-sub">0 = imports almost everything · 100 = locally productive &amp; circular. The Fab City pledge is <b>50% by 2054</b>.</p>
+        </div>
+        <div class="hs-foot">
+          <span>Illustrative · developed with <b style="color:var(--ink)">PlanetAI</b></span>
+          <span aria-hidden="true">·</span>
+          <a href="#index">How it works ↓</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · THE BALI FAB CITY INDEX (signature feature) ============ -->
+<section class="block index-block" id="index">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">01 — Our signature measure</span>
+        <h2 class="sec">The Bali Fab City <em>Index.</em></h2>
+        <p class="sec-sub">
+          One simple number for a big question: <b>how much of what Bali consumes can it also make and regenerate locally?</b>
+          The Index runs from <b>0</b> (imports almost everything) to <b>100</b> (locally productive and circular).
+          It is how we hold ourselves to the Fab City pledge — <b>50% self-sufficiency by 2054</b>.
+        </p>
+      </div>
+    </div>
+
+    <article class="idx-card">
+      <div class="idx-top">
+        <span class="ttl"><span class="gd" aria-hidden="true"></span> Bali Fab City Index</span>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <span class="tag dev"><span class="tdot" aria-hidden="true"></span> v0.1 · developed with PlanetAI · illustrative</span>
+          <span class="vchip" aria-label="Version roadmap: v0.1 now, evolving to v1">
+            <span class="now">v0.1</span><span class="arr" aria-hidden="true">→</span><span>v0.2</span><span class="arr" aria-hidden="true">→</span><span>v1</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="idx-body">
+        <!-- LEFT: plain explanation + endpoints + pledge -->
+        <div class="idx-explain">
+          <p class="lead">
+            Today, like most islands, <b>Bali imports most of what it consumes</b> — food, materials, energy, products.
+            The Index measures the share it could instead <span class="gn">make, repair and regenerate close to home</span>,
+            using local skill, local materials and shared open designs. A higher score means a more self-reliant,
+            more resilient island — and less carried in by ship and plane.
+          </p>
+
+          <div class="idx-ends">
+            <div class="idx-end">
+              <div class="e0 mono">0</div>
+              <div class="et"><b>Imports almost everything.</b> Production happens elsewhere; the island depends on what arrives.</div>
+            </div>
+            <div class="idx-end">
+              <div class="e0 e100 mono">100</div>
+              <div class="et"><b>Locally productive &amp; circular.</b> Most needs are met on-island; materials cycle, little is wasted.</div>
+            </div>
+          </div>
+
+          <div class="pledge">
+            <span class="py mono">50%</span>
+            <p>The <b>Fab City pledge</b>: every member commits to producing <b>half of what it consumes by 2054</b>. Bali's Index tracks the journey there.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: score + trajectory + four pillars (radar) -->
+        <div class="idx-score">
+          <div class="scorehead">
+            <div>
+              <div class="bignum mono">21<span class="of">/ 100</span></div>
+              <div class="sclab">Bali's score today</div>
+            </div>
+            <div class="scbadges">
+              <span class="tag dev"><span class="tdot" aria-hidden="true"></span> v0.1</span>
+              <span style="font-size:10.5px;color:var(--ink-55);letter-spacing:.02em">in development · evolving over versions</span>
+            </div>
+          </div>
+
+          <!-- trajectory: 2014 baseline → today → 2054 pledge -->
+          <div class="traj">
+            <div class="tlab">Trajectory to the 2054 pledge</div>
+            <div class="traj-track" role="img" aria-label="Trajectory: from a 2014 baseline of about 9 out of 100, to roughly 21 today, toward the 50 out of 100 pledge target for 2054.">
+              <div class="traj-bar"><div class="traj-fill" id="trajFill"></div></div>
+              <!-- 50% pledge target marker -->
+              <div class="traj-target" aria-hidden="true"></div>
+              <!-- baseline node (2014) -->
+              <div class="traj-node base" style="left:9%" aria-hidden="true"></div>
+              <div class="traj-pt top" style="left:9%">9</div>
+              <div class="traj-pt bot" style="left:9%">2014</div>
+              <!-- today node -->
+              <div class="traj-node" style="left:21%" aria-hidden="true"></div>
+              <div class="traj-pt top" style="left:21%">21</div>
+              <div class="traj-pt bot" style="left:21%">today</div>
+              <!-- target -->
+              <div class="traj-pt top" style="left:50%;color:var(--green-ink)">50</div>
+              <div class="traj-pt bot" style="left:50%;color:var(--green-ink);font-weight:700">2054</div>
+            </div>
+            <p class="traj-note">From a <b>2014 baseline</b> to <b>today</b>, climbing toward the <b>50/100 pledge</b>. Numbers illustrative — the v0.1 method and Bali's data are still being built.</p>
+          </div>
+
+          <!-- four pillars / dimensions (reuse radar) -->
+          <div class="pillars-wrap">
+            <div class="radar-cell">
+              <svg viewBox="0 0 240 240" role="img" aria-labelledby="radar-title radar-desc">
+                <title id="radar-title">The four dimensions of the Index</title>
+                <desc id="radar-desc">Radar of the four dimensions: Environmental, Social, Economic and Governance, shown for Bali at the current version.</desc>
+                <!-- grid rings -->
+                <g stroke="rgba(30,30,30,.16)" fill="none" stroke-width="1">
+                  <polygon points="120,40 200,120 120,200 40,120"></polygon>
+                  <polygon points="120,60 180,120 120,180 60,120"></polygon>
+                  <polygon points="120,80 160,120 120,160 80,120"></polygon>
+                  <polygon points="120,100 140,120 120,140 100,120"></polygon>
+                </g>
+                <!-- axes -->
+                <g stroke="rgba(30,30,30,.16)" stroke-width="1">
+                  <line x1="120" y1="120" x2="120" y2="40"></line>
+                  <line x1="120" y1="120" x2="200" y2="120"></line>
+                  <line x1="120" y1="120" x2="120" y2="200"></line>
+                  <line x1="120" y1="120" x2="40" y2="120"></line>
+                </g>
+                <!-- data polygon -->
+                <polygon id="radar-shape-idx" points="120,70 165,120 120,170 75,120"
+                  fill="rgba(0,160,87,.18)" stroke="#00A057" stroke-width="2.5"
+                  stroke-linejoin="round"></polygon>
+                <g fill="#00A057">
+                  <circle cx="120" cy="70" r="3.5"></circle>
+                  <circle cx="165" cy="120" r="3.5"></circle>
+                  <circle cx="120" cy="170" r="3.5"></circle>
+                  <circle cx="75" cy="120" r="3.5"></circle>
+                </g>
+                <!-- labels -->
+                <g font-family="Figtree" font-size="11" font-weight="600" fill="#1E1E1E" text-anchor="middle">
+                  <text x="120" y="28">Environmental</text>
+                  <text x="222" y="124" text-anchor="start">Social</text>
+                  <text x="120" y="222">Economic</text>
+                  <text x="18" y="124" text-anchor="end">Governance</text>
+                </g>
+              </svg>
+              <div class="radar-caption">The four dimensions<b>illustrative · v0.1</b></div>
+            </div>
+            <div class="pilllist">
+              <div class="pill"><span class="pdot" style="background:var(--green)" aria-hidden="true"></span><div><div class="pt">Environmental</div><div class="pd">Clean air and water, waste kept in cycles, regenerated land and reef.</div></div></div>
+              <div class="pill"><span class="pdot" style="background:var(--blue)" aria-hidden="true"></span><div><div class="pt">Social</div><div class="pd">Skills, wellbeing, and communities able to make and repair for themselves.</div></div></div>
+              <div class="pill"><span class="pdot" style="background:var(--red)" aria-hidden="true"></span><div><div class="pt">Economic</div><div class="pd">Local livelihoods and value created on-island, not extracted from it.</div></div></div>
+              <div class="pill"><span class="pdot" style="background:var(--ink)" aria-hidden="true"></span><div><div class="pt">Governance</div><div class="pd">Decisions made locally — the desa adat and Tri Hita Karana hold the keys.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="idx-foot">
+        <span class="fdot" aria-hidden="true"></span>
+        <span>Developed in the <b>PLANETAI</b> research project. The methodology and Bali's data are <b>still being built</b> — this is an early, evolving version. See <a href="#measure" style="color:var(--green-ink);font-weight:600">how we measure it ↓</a></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 02 · WHAT IS WHAT (plain definitions) ============ -->
+<section class="block" id="whatiswhat">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">02 — In plain terms</span>
+        <h2 class="sec">What is <em>what.</em></h2>
+        <p class="sec-sub">A few names you will see across this site, explained simply.</p>
+      </div>
+    </div>
+
+    <div class="defs">
+      <article class="def-card">
+        <span class="dno mono">01</span>
+        <h3>Fab City</h3>
+        <p>A <b>global movement of 50+ cities</b> working to make more of what they consume locally — and to share open designs worldwide — with a shared goal: <b>50% local production by 2054</b>.</p>
+        <a class="dlink" href="https://fab.city/" target="_blank" rel="noopener">fab.city <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+      <article class="def-card">
+        <span class="dno mono">02</span>
+        <h3><span class="gn">Bali Fab City</span></h3>
+        <p>Bali's <b>node</b> of that global network — the island's home for the movement. <b>This site</b> is its public front door.</p>
+        <a class="dlink" href="#network">What we do <span class="ar" aria-hidden="true">→</span></a>
+      </article>
+      <article class="def-card">
+        <span class="dno mono">03</span>
+        <h3>Fab Lab Bali</h3>
+        <p>The <b>workshop where it happens</b> in Jimbaran — a place to design, make and repair, and host global fabrication courses on the island.</p>
+        <a class="dlink" href="https://www.fablabbali.com" target="_blank" rel="noopener">fablabbali.com <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+      <article class="def-card">
+        <span class="dno mono">04</span>
+        <h3>Making Sense Bali <span class="tag live" style="margin-left:0"><span class="tdot" aria-hidden="true"></span> Live</span></h3>
+        <p>A <b>citizen environmental-reporting project</b>: residents send a photo over WhatsApp, a local AI reads it, and the issue goes back to the community to act on.</p>
+        <a class="dlink" href="#makingsense">See it live <span class="ar" aria-hidden="true">→</span></a>
+      </article>
+      <article class="def-card">
+        <span class="dno mono">05</span>
+        <h3>PLANETAI</h3>
+        <p>The <b>research engine behind the Index</b>. It gathers data across different scales — from a neighbourhood to the whole planet — and keeps Bali's raw data in Bali.</p>
+        <a class="dlink" href="#measure">How we measure <span class="ar" aria-hidden="true">→</span></a>
+      </article>
+      <article class="def-card">
+        <span class="dno mono">06</span>
+        <h3>The <span class="gn">Fab City Index</span></h3>
+        <p>The score at the top of this page: <b>how much Bali can make and regenerate locally</b>, on a scale of 0 to 100.</p>
+        <a class="dlink" href="#index">See the Index <span class="ar" aria-hidden="true">↑</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · WHAT WE DO / THE NETWORK ============ -->
+<section class="block" id="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">03 — The network made tangible</span>
+        <h2 class="sec">What we do — <em>Fab Lab Bali.</em></h2>
+        <p class="sec-sub">Bali Fab City grew out of a design practice, two convenings on the island, and a lab that now hosts the world's fabrication academies in Jimbaran. This is the network you can visit.</p>
+      </div>
+      <a class="sec-more" href="https://www.fablabbali.com" target="_blank" rel="noopener">
+        fablabbali.com <span class="ar" aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <ol class="timeline">
+      <li class="tnode">
+        <div class="yr mono">2019</div>
+        <div class="dot" aria-hidden="true"></div>
+        <div class="te"><h4>Meaningful Design Group conceived</h4><p>The design practice (<a href="https://meaningful-design.org" target="_blank" rel="noopener">meaningful-design.org</a>) that seeds the lab is conceptually created.</p></div>
+      </li>
+      <li class="tnode">
+        <div class="yr mono">2022</div>
+        <div class="dot" aria-hidden="true"></div>
+        <div class="te"><h4>Bali Fab Fest + Fab Island Challenge</h4><p>Jimbaran. Local and global innovation communities convene to prototype meaningful interventions for Bali's emerging regenerative economy. <a href="https://fab.city/resources/fab-challenge-report-2022/" target="_blank" rel="noopener">Report ↗</a></p></div>
+      </li>
+      <li class="tnode">
+        <div class="yr mono">2023</div>
+        <div class="dot" aria-hidden="true"></div>
+        <div class="te"><h4>Fab Lab Bali opens</h4><p>At Jimbaran HUB (J-Loft 2C, Jl. Karang Mas). Founded by <b>Meaningful Design Group</b>, <b>Cast Foundation</b>, <b>Habibie Center</b> &amp; <b>Jimbaran Hijau</b>.</p></div>
+      </li>
+      <li class="tnode accent">
+        <div class="yr mono">2026 <span class="tag live" style="margin-left:5px"><span class="tdot" aria-hidden="true"></span> Live</span></div>
+        <div class="dot" aria-hidden="true"></div>
+        <div class="te"><h4>Making Sense Bali</h4><p>The citizen environmental-reporting project launches — the network's first live campaign with residents.</p></div>
+      </li>
+    </ol>
+
+    <!-- founding partners -->
+    <div class="founders" aria-label="Founding partners of Fab Lab Bali">
+      <span class="fl">Founded by</span>
+      <span class="fp">Meaningful Design Group</span><span class="fsep" aria-hidden="true">·</span>
+      <span class="fp">Cast Foundation</span><span class="fsep" aria-hidden="true">·</span>
+      <span class="fp">Habibie Center</span><span class="fsep" aria-hidden="true">·</span>
+      <span class="fp">Jimbaran Hijau</span>
+    </div>
+
+    <!-- major programs / projects -->
+    <div class="prog-head">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span>Programs &amp; projects</span>
+      <span class="prog-modes mono">on the Jimbaran lab</span>
+    </div>
+    <div class="progs">
+      <article class="prog">
+        <div class="pk">Capability building</div>
+        <h4>Global academies, hosted in Bali</h4>
+        <p>The lab hosts the international fabrication academies on the island:</p>
+        <ul class="proglist">
+          <li><b>Fab Academy</b> — MIT Center for Bits and Atoms / Neil Gershenfeld; "How to Make (Almost) Anything".</li>
+          <li><b>Fabricademy</b> — digital fabrication, textiles &amp; biology (Textile Academy / Fab Foundation).</li>
+          <li><b>MDDI</b> — Master in Design for Distributed Innovation (Fab City / IAAC).</li>
+        </ul>
+      </article>
+      <article class="prog">
+        <div class="pk">Action research</div>
+        <h4>Green Hydrogen Village</h4>
+        <p>In-house research toward open, accessible, safe green-hydrogen energy for Bali's coastal communities — clean-energy community development and ecosystem regeneration.</p>
+        <a class="prog-link" href="https://www.fablabbali.com/programs/green-hydrogen-village" target="_blank" rel="noopener">Programme detail <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+      <article class="prog">
+        <div class="pk">Experimentation</div>
+        <h4>Fab Island Challenge</h4>
+        <p>The challenge-based experimentation event (with Bali Fab Fest, 2022) that convened global and local communities at Jimbaran to prototype regenerative interventions.</p>
+        <a class="prog-link" href="https://fab.city/resources/fab-challenge-report-2022/" target="_blank" rel="noopener">Challenge report <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+
+    <p class="tlin">
+      Part of the global <b>Fab Lab network</b> (<a href="https://fablabs.io" target="_blank" rel="noopener">fablabs.io</a>) and <b>Fab City</b>, working in three modes —
+      <b>capability building · facilitating experimentations · enabling innovations</b>. More at <a href="https://www.fablabbali.com" target="_blank" rel="noopener">fablabbali.com ↗</a>.
+    </p>
+
+    <!-- ecosystem graph (folded in: who holds the node) -->
+    <div class="eco-grid">
+      <div class="ecograph">
+        <div class="etop"><span class="t">Who holds the node</span><span class="t mono">the ecosystem</span></div>
+        <svg viewBox="0 0 560 380" role="img" aria-label="Node graph of Bali's Fab City ecosystem: Fab Lab Bali at the centre connected to banjar / desa adat, schools, NGOs, universities, government and makers.">
+          <g stroke="rgba(30,30,30,.22)" stroke-width="1.4">
+            <line x1="280" y1="190" x2="140" y2="90"/>
+            <line x1="280" y1="190" x2="420" y2="92"/>
+            <line x1="280" y1="190" x2="120" y2="200"/>
+            <line x1="280" y1="190" x2="448" y2="196"/>
+            <line x1="280" y1="190" x2="160" y2="300"/>
+            <line x1="280" y1="190" x2="400" y2="300"/>
+            <line x1="280" y1="190" x2="280" y2="60"/>
+            <line x1="280" y1="190" x2="280" y2="330"/>
+          </g>
+          <g stroke="rgba(0,160,87,.4)" stroke-width="1.4" stroke-dasharray="4 4">
+            <line x1="140" y1="90" x2="280" y2="60"/>
+            <line x1="160" y1="300" x2="280" y2="330"/>
+            <line x1="420" y1="92" x2="448" y2="196"/>
+          </g>
+          <g font-family="Figtree" font-weight="600" font-size="11" fill="#1E1E1E" text-anchor="middle">
+            <g><circle cx="140" cy="90" r="26" fill="#F7F5F1" stroke="#20388D" stroke-width="1.8"/><text x="140" y="87">banjar /</text><text x="140" y="100">desa adat</text></g>
+            <g><circle cx="420" cy="92" r="26" fill="#F7F5F1" stroke="#00A057" stroke-width="1.8"/><text x="420" y="89">Jimbaran</text><text x="420" y="102" font-size="9" fill="#827a6a">Hijau</text></g>
+            <g><circle cx="120" cy="200" r="24" fill="#F7F5F1" stroke="#1E1E1E" stroke-width="1.6"/><text x="120" y="204">Schools</text></g>
+            <g><circle cx="448" cy="196" r="26" fill="#F7F5F1" stroke="#1E1E1E" stroke-width="1.6"/><text x="448" y="193">Udayana</text><text x="448" y="206" font-size="9" fill="#827a6a">Univ.</text></g>
+            <g><circle cx="160" cy="300" r="24" fill="#F7F5F1" stroke="#00A057" stroke-width="1.8"/><text x="160" y="304">NGOs</text></g>
+            <g><circle cx="400" cy="300" r="24" fill="#F7F5F1" stroke="#1E1E1E" stroke-width="1.6"/><text x="400" y="304">Makers</text></g>
+            <g><circle cx="280" cy="60" r="24" fill="#F7F5F1" stroke="#20388D" stroke-width="1.8"/><text x="280" y="58">Govt</text><text x="280" y="71" font-size="9" fill="#827a6a">DLH / BRIDA</text></g>
+            <g><circle cx="280" cy="330" r="24" fill="#F7F5F1" stroke="#1E1E1E" stroke-width="1.6"/><text x="280" y="334">CAST</text></g>
+          </g>
+          <g>
+            <circle cx="280" cy="190" r="40" fill="#00A057"/>
+            <text x="280" y="184" font-family="Figtree" font-weight="800" font-size="13" fill="#F7F5F1" text-anchor="middle">Fab Lab</text>
+            <text x="280" y="200" font-family="Figtree" font-weight="800" font-size="13" fill="#F7F5F1" text-anchor="middle">Bali</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="eco-side">
+        <h3>A node is its relationships.</h3>
+        <p class="ei">Bali Fab City is the people and places that make it real — the lab, the customary villages, schools, NGOs, universities, government and makers, coordinated in the open.</p>
+        <div class="eco-actors">
+          <div class="actor"><div class="ak">Anchor</div><div class="av">Fab Lab Bali</div><div class="ad">Jimbaran lab · hosts &amp; is accountable for the node</div></div>
+          <div class="actor"><div class="ak">Customary</div><div class="av">Banjar / Desa adat</div><div class="ad">Local authority · data sign-off &amp; ground truth</div></div>
+          <div class="actor"><div class="ak">Knowledge</div><div class="av">Udayana University</div><div class="ad">Public-health &amp; engineering research partners</div></div>
+          <div class="actor"><div class="ak">Civil society</div><div class="av">NGOs &amp; schools</div><div class="ad">Sungai Watch-type orgs · community campaigns</div></div>
+          <div class="actor"><div class="ak">Government</div><div class="av">DLH · BRIDA Bali</div><div class="ad">Provincial environment &amp; innovation agencies</div></div>
+          <div class="actor"><div class="ak">Network</div><div class="av">CAST · Meaningful Design</div><div class="ad">Programme &amp; design partners across the network</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · MAKING SENSE BALI ============ -->
+<section class="block" id="makingsense">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">04 — One project on the network</span>
+        <h2 class="sec">Making Sense <em>Bali</em>. <span class="tag live" style="vertical-align:middle;margin-left:6px"><span class="tdot" aria-hidden="true"></span> Live</span></h2>
+        <p class="sec-sub">A live citizen environmental-reporting project. Residents send a photo over WhatsApp, a local AI reads it, and the issue goes back to the community to act on — one of the first things Bali Fab City is doing on the ground.</p>
+      </div>
+      <a class="sec-more" href="https://mdg-bali.github.io/smartcitizenbali/" target="_blank" rel="noopener">
+        Live map <span class="ar" aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="ms-grid">
+      <!-- Bali map (inline SVG) -->
+      <div class="map-panel">
+        <div class="maptop">
+          <span class="t">Reports &amp; sensors · live layer</span>
+          <span class="live"><i aria-hidden="true"></i> streaming</span>
+        </div>
+        <div class="baliwrap">
+          <svg viewBox="0 0 600 360" role="img" aria-label="Stylised map of Bali with sensor pins and citizen report dots concentrated around the Bukit peninsula and Jimbaran.">
+            <defs>
+              <radialGradient id="rep" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#E62038" stop-opacity=".55"/>
+                <stop offset="100%" stop-color="#E62038" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <path d="M70,150 C95,120 150,108 200,112 C250,116 285,100 330,104 C390,108 450,120 500,128
+                     C535,134 555,150 540,168 C525,184 500,188 470,190 C455,191 445,196 440,206
+                     C438,212 432,214 426,212 C416,208 408,214 404,222 C400,231 392,238 382,236
+                     C372,234 366,242 360,250 C353,260 340,262 330,256 C322,251 312,254 308,262
+                     C303,272 292,274 284,268 C276,262 266,266 262,256 C258,247 248,244 240,248
+                     C228,254 214,250 206,240 C198,231 184,230 174,236 C162,243 146,240 140,228
+                     C134,217 120,214 110,206 C96,196 78,190 70,174 C66,166 66,158 70,150 Z"
+                  fill="#CFC9BB" stroke="#1E1E1E" stroke-width="1.4" stroke-opacity=".55"/>
+            <path d="M300,256 C306,266 304,280 312,290 C320,300 338,302 350,296
+                     C362,290 364,278 358,270 C352,262 340,260 330,256 C320,252 308,250 300,256 Z"
+                  fill="#C6BFAE" stroke="#1E1E1E" stroke-width="1.4" stroke-opacity=".55"/>
+            <g font-family="Figtree" font-size="10.5" font-weight="600" fill="#1E1E1E" fill-opacity=".62">
+              <text x="262" y="172">Denpasar</text>
+              <text x="206" y="148">Canggu</text>
+              <text x="300" y="318">Bukit</text>
+              <text x="252" y="282">Jimbaran</text>
+              <text x="186" y="196">Ubud</text>
+            </g>
+            <circle cx="320" cy="280" r="52" fill="url(#rep)"/>
+            <circle cx="270" cy="262" r="34" fill="url(#rep)"/>
+            <circle cx="268" cy="178" r="30" fill="url(#rep)"/>
+            <g fill="#E62038">
+              <circle cx="318" cy="282" r="3.6"/><circle cx="332" cy="276" r="3"/>
+              <circle cx="308" cy="290" r="3"/><circle cx="328" cy="292" r="2.6"/>
+              <circle cx="272" cy="266" r="3.4"/><circle cx="260" cy="258" r="2.8"/>
+              <circle cx="284" cy="270" r="2.6"/><circle cx="266" cy="180" r="3.2"/>
+              <circle cx="276" cy="170" r="2.6"/><circle cx="252" cy="174" r="2.6"/>
+              <circle cx="215" cy="152" r="2.8"/>
+            </g>
+            <g fill="#00A057" stroke="#F7F5F1" stroke-width="1.2">
+              <rect x="264" y="172" width="9" height="9" rx="1.5" transform="rotate(45 268.5 176.5)"/>
+              <rect x="250" y="256" width="9" height="9" rx="1.5" transform="rotate(45 254.5 260.5)"/>
+              <rect x="316" y="276" width="9" height="9" rx="1.5" transform="rotate(45 320.5 280.5)"/>
+              <rect x="208" y="146" width="9" height="9" rx="1.5" transform="rotate(45 212.5 150.5)"/>
+            </g>
+            <g font-family="Figtree" font-size="9" font-weight="600" fill="#006B3A">
+              <text x="276" y="166">SCK 19236</text>
+              <text x="328" y="276">node · Bukit</text>
+            </g>
+          </svg>
+        </div>
+        <div class="maplegend">
+          <span><i class="pin" style="background:var(--green)" aria-hidden="true"></i> open-hardware sensor</span>
+          <span><i style="background:var(--red)" aria-hidden="true"></i> citizen report (anonymised)</span>
+          <span><i style="background:rgba(230,32,56,.35)" aria-hidden="true"></i> report density</span>
+        </div>
+      </div>
+
+      <!-- side: stats + response agent -->
+      <div class="ms-side">
+        <div class="stat-row">
+          <div class="stat">
+            <div class="num mono">7</div>
+            <div class="lab">Active sensors</div>
+          </div>
+          <div class="stat">
+            <div class="num mono">214</div>
+            <div class="lab">Reports · 30d</div>
+          </div>
+          <div class="stat alert">
+            <div class="num mono">23<span>µg/m³</span></div>
+            <div class="lab">Median PM2.5</div>
+          </div>
+        </div>
+
+        <div class="agent">
+          <div class="at">Air-quality response agent</div>
+          <div class="asub">When the network detects elevated PM2.5 — open waste-burning is the dominant source in Bali right now — the loop closes automatically.</div>
+          <div class="flow">
+            <div class="fstep hot">
+              <span class="ico" aria-hidden="true">!</span>
+              <div>
+                <div class="ft">Detect — PM2.5 spike</div>
+                <div class="fd">Bukit cluster reads <b>148 µg/m³</b> during evening burning. Sensor + report dots agree.</div>
+              </div>
+            </div>
+            <div class="fstep">
+              <span class="ico" aria-hidden="true">2</span>
+              <div>
+                <div class="ft">Decide — local AI on-cluster</div>
+                <div class="fd">Gemma-4 vision (self-hosted) classifies the photos as <b>open burning</b>, not haze. Raw image never leaves Bali.</div>
+              </div>
+            </div>
+            <div class="fstep act">
+              <span class="ico" aria-hidden="true">↻</span>
+              <div>
+                <div class="ft">Respond — back to the desa adat</div>
+                <div class="fd">Bilingual <b>EN / ID</b> advisory to the <b>Desa Adat</b> (banjar WhatsApp groups within it), plus an <b>open-hardware air-filter design</b> (Corsi-Rosenthal, parts list in IDR) to build locally.</div>
+              </div>
+            </div>
+          </div>
+          <a class="pill-link" href="https://mdg-bali.github.io/smartcitizenbali/" target="_blank" rel="noopener">
+            Open the live map <span class="ar" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <p style="font-size:12.5px;color:var(--ink-55);line-height:1.5">
+          The bot speaks <b style="color:var(--ink)">English, Bahasa Indonesia &amp; Spanish</b>. Methodology descends from the
+          <b style="color:var(--ink)">Making Sense</b> EU project (Fab Lab Barcelona / IAAC) on the Smart Citizen Kit platform.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · HOW WE MEASURE — the multiscalar instrument (DEMOTED) ============ -->
+<section class="block" id="measure">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">05 — How we measure it · PlanetAI</span>
+        <h2 class="sec">How the Index is <em>computed.</em></h2>
+        <p class="sec-sub">
+          The Index is built by <b>PlanetAI</b>, the research engine behind it. It reads Bali across <b>five scales</b> —
+          from a single community to the whole planet — and it is <b>sovereign by design</b>:
+          your data stays in Bali, and only an approved, anonymised summary is ever shared upward.
+          Try the scales below.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== THE MULTISCALAR INSTRUMENT (now a "how we measure" explainer) ===== -->
+    <div class="instrument" id="instrument">
+      <div class="instr-head">
+        <span class="lbl">Multiscalar reading · <b>PlanetAI</b></span>
+        <span class="lbl mono">5 scales · 1 sovereign floor</span>
+      </div>
+
+      <!-- scale selector: Community → Planet (nested zoom) -->
+      <div class="scales" role="tablist" aria-label="Select a scale of observation">
+        <button class="scale-btn" role="tab" id="tab-community" aria-controls="panel-scale" aria-selected="true" data-scale="0" tabindex="0">
+          <span class="ring" style="width:14px;height:14px" aria-hidden="true"></span>
+          <span class="sname">Community</span><span class="ssub">Desa Adat</span><span class="sidx mono">01</span>
+        </button>
+        <button class="scale-btn" role="tab" id="tab-city" aria-controls="panel-scale" aria-selected="false" data-scale="1" tabindex="-1">
+          <span class="ring" style="width:20px;height:20px" aria-hidden="true"></span>
+          <span class="sname">City</span><span class="ssub" aria-hidden="true">&nbsp;</span><span class="sidx mono">02</span>
+        </button>
+        <button class="scale-btn" role="tab" id="tab-region" aria-controls="panel-scale" aria-selected="false" data-scale="2" tabindex="-1">
+          <span class="ring" style="width:26px;height:26px" aria-hidden="true"></span>
+          <span class="sname">Region</span><span class="ssub" aria-hidden="true">&nbsp;</span><span class="sidx mono">03</span>
+        </button>
+        <button class="scale-btn" role="tab" id="tab-bioregion" aria-controls="panel-scale" aria-selected="false" data-scale="3" tabindex="-1">
+          <span class="ring" style="width:32px;height:32px" aria-hidden="true"></span>
+          <span class="sname">Bioregion</span><span class="ssub" aria-hidden="true">&nbsp;</span><span class="sidx mono">04</span>
+        </button>
+        <button class="scale-btn" role="tab" id="tab-planet" aria-controls="panel-scale" aria-selected="false" data-scale="4" tabindex="-1">
+          <span class="ring" style="width:38px;height:38px" aria-hidden="true"></span>
+          <span class="sname">Planet</span><span class="ssub" aria-hidden="true">&nbsp;</span><span class="sidx mono">05</span>
+        </button>
+      </div>
+
+      <div class="instr-body" id="panel-scale" role="tabpanel" aria-labelledby="tab-community">
+        <!-- radar -->
+        <div class="radar-cell">
+          <svg viewBox="0 0 240 240" role="img" aria-labelledby="radar2-title radar2-desc">
+            <title id="radar2-title">Four-dimension radar for the selected scale</title>
+            <desc id="radar2-desc">Four dimensions — Environmental, Social, Economic, Governance — read at the selected scale.</desc>
+            <g stroke="rgba(30,30,30,.16)" fill="none" stroke-width="1">
+              <polygon points="120,40 200,120 120,200 40,120"></polygon>
+              <polygon points="120,60 180,120 120,180 60,120"></polygon>
+              <polygon points="120,80 160,120 120,160 80,120"></polygon>
+              <polygon points="120,100 140,120 120,140 100,120"></polygon>
+            </g>
+            <g stroke="rgba(30,30,30,.16)" stroke-width="1">
+              <line x1="120" y1="120" x2="120" y2="40"></line>
+              <line x1="120" y1="120" x2="200" y2="120"></line>
+              <line x1="120" y1="120" x2="120" y2="200"></line>
+              <line x1="120" y1="120" x2="40" y2="120"></line>
+            </g>
+            <polygon id="radar-shape" points="120,70 165,120 120,170 75,120"
+              fill="rgba(0,160,87,.18)" stroke="#00A057" stroke-width="2.5"
+              stroke-linejoin="round" style="transition:all .55s cubic-bezier(.2,.7,.2,1)"></polygon>
+            <g id="radar-dots" fill="#00A057">
+              <circle cx="120" cy="70" r="3.5"></circle>
+              <circle cx="165" cy="120" r="3.5"></circle>
+              <circle cx="120" cy="170" r="3.5"></circle>
+              <circle cx="75" cy="120" r="3.5"></circle>
+            </g>
+            <!-- PKC core: the sovereign floor at the centre of every scale (planned) -->
+            <g aria-hidden="true">
+              <circle cx="120" cy="120" r="10" fill="none" stroke="#1E1E1E" stroke-width="1.2" stroke-dasharray="3 3" stroke-opacity=".55"></circle>
+              <circle cx="120" cy="120" r="4.5" fill="#1E1E1E"></circle>
+              <circle cx="120" cy="120" r="1.8" fill="#F7F5F1"></circle>
+            </g>
+            <g font-family="Figtree" font-size="11" font-weight="600" fill="#1E1E1E" text-anchor="middle">
+              <text x="120" y="28">Environmental</text>
+              <text x="222" y="124" text-anchor="start">Social</text>
+              <text x="120" y="222">Economic</text>
+              <text x="18" y="124" text-anchor="end">Governance</text>
+            </g>
+          </svg>
+          <div class="radar-caption">The four dimensions<b>illustrative scores</b><span style="display:block;font-size:10px;font-weight:600;letter-spacing:.04em;color:var(--ink-70);margin-top:6px;text-transform:none">centre ◦ = your sovereign record <span style="font-weight:500;color:var(--ink-55)">(planned)</span></span></div>
+        </div>
+
+        <!-- readout -->
+        <div class="readout">
+          <div class="ro-scale fadein in" id="ro-scale">Community · Desa&nbsp;Adat <small id="ro-zoom">scale 01 / 05</small></div>
+          <p class="ro-desc fadein in" id="ro-desc">The Balinese customary village — the local decision-making unit. The instrument reads what one desa adat makes, wastes, and decides; the <b>banjar</b> is the smaller neighbourhood within it.</p>
+          <div class="ro-grid">
+            <div class="ro-cell">
+              <div class="k">Example indicator</div>
+              <div class="v" id="ro-indicator">Household waste self-managed</div>
+            </div>
+            <div class="ro-cell">
+              <div class="k">Reading</div>
+              <div class="v num" id="ro-value">31<span>%</span></div>
+            </div>
+            <div class="ro-cell">
+              <div class="k">Data source</div>
+              <div class="v" id="ro-source">Banjar ledger + DIY sensor nodes</div>
+            </div>
+            <div class="ro-cell">
+              <div class="k">What is shared up</div>
+              <div class="v" id="ro-fed">An approved summary ↑</div>
+            </div>
+          </div>
+          <div class="sov">
+            <span class="lock" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+            </span>
+            <p id="ro-sov"><b>Your data stays in Bali.</b> The desa adat signs off (Tri Hita Karana) — raw data stays put, only an approved summary is shared with the wider network.</p>
+          </div>
+
+          <!-- banjar ↔ desa zoom: appears only at Community scale (a finer view, not a tier) -->
+          <div class="subscale" id="subscale" data-show="false" role="group" aria-label="Zoom within Community">
+            <button type="button" class="sub-btn" data-sub="desa" aria-pressed="true">
+              <span class="sr" aria-hidden="true"></span> Desa adat
+            </button>
+            <button type="button" class="sub-btn" data-sub="banjar" aria-pressed="false">
+              <span class="sr" aria-hidden="true"></span> Banjar
+            </button>
+          </div>
+          <p class="subnote" id="subnote" hidden>The <b>banjar</b> is the smaller neighbourhood nested within a <b>desa adat</b> — a closer view of the same Community scale, not a separate level.</p>
+        </div>
+      </div>
+
+      <!-- ===== SOVEREIGNTY SUBSTRATE: the floor the matryoshka rests on ===== -->
+      <div class="substrate" role="note" aria-label="Sovereignty floor beneath every scale">
+        <span class="core" aria-hidden="true"></span>
+        <div class="stxt">
+          <div class="sh">
+            Your own record — the sovereign floor
+            <span class="tag planned"><span class="tdot" aria-hidden="true"></span> Planned</span>
+          </div>
+          <div class="sd"><b>You own your record.</b> The ground every scale above rests on — not a sixth scale, the floor beneath them all.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- secondary detail: discovery + learning, kept honest with LIVE / PLANNED -->
+    <div class="measure-detail">
+      <article class="fed">
+        <div class="fhead">
+          <span class="fno mono">A — Discovery</span>
+          <span class="tag live"><span class="tdot" aria-hidden="true"></span> Live</span>
+        </div>
+        <h3>Murmurations<small>finding each other in the network</small></h3>
+        <p>Bali publishes a simple <b>public profile</b> so other Fab Cities can find it. Bandung, Barcelona, Amsterdam: <b>peers, not a head office</b>. This part is live today.</p>
+        <div class="fmeta">Node id · <b>bali.fab.city</b> · profile published</div>
+      </article>
+
+      <article class="fed">
+        <div class="fhead">
+          <span class="fno mono">B — Learning</span>
+          <span class="tag planned"><span class="tdot" aria-hidden="true"></span> Planned</span>
+        </div>
+        <h3>Flower<small class="plan">learning together without pooling data</small></h3>
+        <p>How the network can <b>learn from everyone without collecting anyone's raw data</b>. Only the lessons (model updates) travel; the data itself stays home. Planned for this node.</p>
+        <div class="dataflow" aria-label="What moves and what stays">
+          <div class="df up"><span class="arrow" aria-hidden="true">↑</span> <span><b>Lessons</b> (model updates) are shared</span></div>
+          <div class="df stay"><span class="arrow" aria-hidden="true">⦿</span> <span><b>Raw data never leaves</b> the source</span></div>
+        </div>
+        <div class="fmeta">Needs · <b>a bioregion server + a peer node</b></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · OPEN DATA · TRI HITA KARANA ============ -->
+<section class="block" id="data">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">06 — Where the data comes from</span>
+        <h2 class="sec">Bali Satu Data — organised by <em>cosmology.</em></h2>
+        <p class="sec-sub">The Index is grounded in Bali's own open data, read through Bali's own categories — the six dimensions of <b>Tri Hita Karana</b>. The taxonomy is local because the territory is.</p>
+      </div>
+    </div>
+
+    <div class="thk-grid">
+      <article class="thk">
+        <div class="gly" aria-hidden="true">◇</div>
+        <div class="nm">Jana<small>society · people</small></div>
+        <div class="def">Population, livelihoods, the social fabric of banjar and desa.</div>
+        <div class="ind"><b>Indicator —</b> Local employment in production <span class="ival">62%</span></div>
+      </article>
+      <article class="thk">
+        <div class="gly" aria-hidden="true">☉</div>
+        <div class="nm">Atma<small>wellbeing · spirit</small></div>
+        <div class="def">Health, ritual life, the inner balance the cosmology centres.</div>
+        <div class="ind"><b>Indicator —</b> Days PM2.5 below WHO guideline <span class="ival">41%</span></div>
+      </article>
+      <article class="thk">
+        <div class="gly" aria-hidden="true">▦</div>
+        <div class="nm">Jagat<small>territory · world</small></div>
+        <div class="def">Land use, the built environment, the shared world of place.</div>
+        <div class="ind"><b>Indicator —</b> Land under customary tenure <span class="ival">34%</span></div>
+      </article>
+      <article class="thk">
+        <div class="gly" aria-hidden="true">❦</div>
+        <div class="nm">Wana<small>forest</small></div>
+        <div class="def">Forest cover, agroforestry, the green canopy of the highlands.</div>
+        <div class="ind"><b>Indicator —</b> Forest cover retained, 5yr <span class="ival">−3%</span></div>
+      </article>
+      <article class="thk">
+        <div class="gly" aria-hidden="true">≈</div>
+        <div class="nm">Danu<small>water</small></div>
+        <div class="def">Subak irrigation, springs, lakes — the freshwater that orders the island.</div>
+        <div class="ind"><b>Indicator —</b> Subak systems active <span class="ival">1,200+</span></div>
+      </article>
+      <article class="thk">
+        <div class="gly" aria-hidden="true">∿</div>
+        <div class="nm">Segara<small>sea · coast</small></div>
+        <div class="def">Reef, coast and the Coral Triangle — where the bioregion meets the sea.</div>
+        <div class="ind"><b>Indicator —</b> Coastal water quality (clean) <span class="ival">58%</span></div>
+      </article>
+    </div>
+    <p class="thk-note">
+      <i aria-hidden="true"></i> Read through <b>Bali's own cosmology</b> · sign-off is the <b>Desa Adat's</b> (Tri Hita Karana authority) · indicators illustrative, sourced toward Bali Satu Data.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 07 · GET INVOLVED ============ -->
+<section class="block" id="involve">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h2wrap">
+        <span class="sec-num">07 — Get involved</span>
+        <h2 class="sec">Be part of <em>Bali Fab City.</em></h2>
+        <p class="sec-sub">Whether you live here, build here, or want to work with the network — there is a way in.</p>
+      </div>
+    </div>
+
+    <div class="involve">
+      <article class="inv">
+        <span class="iv-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </span>
+        <h3>Report an issue</h3>
+        <p>See burning, dumping or polluted water? <b>Send a photo over WhatsApp</b> to Making Sense Bali — it goes straight to your community.</p>
+        <a class="iv-act" href="https://mdg-bali.github.io/smartcitizenbali/" target="_blank" rel="noopener">Report via Making Sense Bali <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+      <article class="inv">
+        <span class="iv-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18"/><path d="M9 21v-6h6v6"/></svg>
+        </span>
+        <h3>Visit or join Fab Lab Bali</h3>
+        <p>Come to the lab in <b>Jimbaran</b> to make, repair and learn — or enrol in a global fabrication course hosted on the island.</p>
+        <a class="iv-act" href="https://www.fablabbali.com" target="_blank" rel="noopener">fablabbali.com <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+      <article class="inv">
+        <span class="iv-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M9.2 10 6.6 7.4M14.8 10l2.6-2.6M9.2 14l-2.6 2.6M14.8 14l2.6 2.6"/></svg>
+        </span>
+        <h3>Partner with the network</h3>
+        <p>Government, university, NGO or company? <b>Bring a project, a dataset or a question</b> to Bali Fab City and the wider Fab City network.</p>
+        <a class="iv-act" href="https://fab.city/" target="_blank" rel="noopener">Explore Fab City <span class="ar" aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <p class="claim2">"We are a distributed movement redesigning the relationship between <em>production and place.</em>"</p>
+
+    <div class="footgrid">
+      <div class="footcol">
+        <div class="foot-mark">
+          <span class="fc">Fab&nbsp;City</span>
+          <span class="loc">·<b>Bali</b></span>
+        </div>
+        <p>Bali's node of the <b style="color:var(--paper)">Fab City</b> global network · the Index is measured with <b style="color:var(--paper)">PLANETAI</b>.</p>
+        <p class="sov-foot">
+          <b>Sovereign by design.</b> Bali's raw data stays in Bali; only approved summaries are shared upward. The <b>Desa Adat</b> holds the sign-off (Tri Hita Karana).
+        </p>
+      </div>
+
+      <div class="footcol">
+        <h5>Founding partners</h5>
+        <span class="partner">Meaningful Design Group</span>
+        <span class="partner">Cast Foundation</span>
+        <span class="partner">Habibie Center</span>
+        <span class="partner">Jimbaran Hijau</span>
+      </div>
+
+      <div class="footcol">
+        <h5>Network &amp; links</h5>
+        <a href="https://fab.city/" target="_blank" rel="noopener">fab.city ↗</a>
+        <a href="https://www.fablabbali.com" target="_blank" rel="noopener">fablabbali.com ↗</a>
+        <a href="https://mdg-bali.github.io/smartcitizenbali/" target="_blank" rel="noopener">Making Sense Bali — live map ↗</a>
+        <a href="#index">The Bali Fab City Index</a>
+      </div>
+    </div>
+
+    <div class="footbottom">
+      <span class="mk"><b>Mockup</b> · illustrative data · Designed using Fab City Branding 2026</span>
+      <span class="mono">part of the Fab City global network · measured with PLANETAI</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- mobile nav ---------------- */
+  var toggle = document.querySelector('.navtoggle');
+  var nav = document.getElementById('primarynav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){ nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  /* ---------------- trajectory bar fill (Index hero) ---------------- */
+  var trajFill = document.getElementById('trajFill');
+  if(trajFill){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      trajFill.style.width = '21%';
+    } else if('IntersectionObserver' in window){
+      var tio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ trajFill.style.width = '21%'; tio.unobserve(en.target); }
+        });
+      },{threshold:.4});
+      trajFill.style.width = '9%';   // start at baseline, animate to today
+      tio.observe(trajFill);
+    } else {
+      trajFill.style.width = '21%';
+    }
+  }
+
+  /* ---------------- multiscalar selector data (How we measure) ----------------
+     Radar points map to a 240x240 viewBox, centre (120,120).
+     Axis max reach: Env=top(120,40) Soc=right(200,120) Eco=bottom(120,200) Gov=left(40,120).
+     Score 0..1 → distance from centre (max 80px). */
+  var CX=120, CY=120, R=80;
+  function pt(axis, s){
+    s = Math.max(0, Math.min(1, s));
+    if(axis==='env') return [CX, CY - R*s];
+    if(axis==='soc') return [CX + R*s, CY];
+    if(axis==='eco') return [CX, CY + R*s];
+    return [CX - R*s, CY]; // gov
+  }
+
+  var SCALES = [
+    {
+      name:'Community · Desa&nbsp;Adat', zoom:'scale 01 / 05',
+      desc:'The Balinese customary village — the local decision-making unit. The instrument reads what one desa adat makes, wastes, and decides; the <b>banjar</b> is the smaller neighbourhood within it.',
+      indicator:'Household waste self-managed', value:'31', unit:'%',
+      source:'Banjar ledger + DIY sensor nodes',
+      fed:'An approved summary ↑',
+      sov:'<b>Your data stays in Bali.</b> The desa adat signs off (Tri Hita Karana) — raw data stays put, only an approved summary is shared with the wider network.',
+      scores:{env:.45,soc:.78,eco:.30,gov:.62}
+    },
+    {
+      name:'City', zoom:'scale 02 / 05',
+      desc:'Denpasar and its conurbation — Canggu to Sanur. Where the waste policy, the traffic and the villa boom collide.',
+      indicator:'Local circular material flow', value:'18', unit:'%',
+      source:'Bali Satu Data + Smart Citizen network',
+      fed:'City profile ↑',
+      sov:'<b>Held locally:</b> raw city data stays under local control (DLH-governed) · only an approved summary is shared with the network.',
+      scores:{env:.34,soc:.60,eco:.42,gov:.50}
+    },
+    {
+      name:'Region', zoom:'scale 03 / 05',
+      desc:'The province of Bali — eight regencies, the subak watersheds, the island as one administrative whole.',
+      indicator:'Provincial self-sufficiency (food)', value:'46', unit:'%',
+      source:'BRIDA Bali + provincial statistics',
+      fed:'Regional summary ↑',
+      sov:'<b>Held locally:</b> provincial datasets stay under Bali Satu Data · only the Index summary is shared.',
+      scores:{env:.50,soc:.55,eco:.48,gov:.58}
+    },
+    {
+      name:'Bioregion', zoom:'scale 04 / 05',
+      desc:'The Indo-Pacific Coral Triangle — Bali within the marine and ecological system it actually belongs to, beyond borders.',
+      indicator:'Reef &amp; coastal health (composite)', value:'52', unit:'%',
+      source:'Coral Triangle obs. + Segara indicators',
+      fed:'Bioregion summary ↑',
+      sov:'<b>Held locally:</b> peer nodes share approved summaries only · no node hands over its raw data.',
+      scores:{env:.62,soc:.40,eco:.38,gov:.45}
+    },
+    {
+      name:'Planet', zoom:'scale 05 / 05',
+      desc:'One of many Fab Cities worldwide. Bali contributes a comparable signal toward the 2054 self-sufficiency pledge.',
+      indicator:'Fab City Index · journey to 2054', value:'21', unit:'/100',
+      source:'Fab City network · Murmurations',
+      fed:'Planetary aggregate ↑',
+      sov:'<b>Held locally:</b> the planet sees only shared summaries · every raw observation stays in its own place.',
+      scores:{env:.55,soc:.50,eco:.30,gov:.52}
+    }
+  ];
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.scale-btn'));
+  var shape = document.getElementById('radar-shape');
+  var dotsG = document.getElementById('radar-dots');
+  var dots = dotsG ? Array.prototype.slice.call(dotsG.querySelectorAll('circle')) : [];
+
+  var elScale=document.getElementById('ro-scale');
+  var elDesc=document.getElementById('ro-desc');
+  var elInd=document.getElementById('ro-indicator');
+  var elVal=document.getElementById('ro-value');
+  var elSrc=document.getElementById('ro-source');
+  var elFed=document.getElementById('ro-fed');
+  var elSov=document.getElementById('ro-sov');
+  var panel=document.getElementById('panel-scale');
+  var subscale=document.getElementById('subscale');
+  var subnote=document.getElementById('subnote');
+
+  function setScale(i, focus){
+    var d = SCALES[i];
+    if(!d) return;
+
+    // banjar ↔ desa zoom is a sub-view of Community only (scale 0)
+    if(subscale){ subscale.setAttribute('data-show', i===0 ? 'true' : 'false'); }
+    if(subnote){ subnote.hidden = (i!==0); }
+    Array.prototype.slice.call(document.querySelectorAll('.subscale .sub-btn')).forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-sub')==='desa' ? 'true':'false');
+    });
+
+    // radar geometry
+    var e=pt('env',d.scores.env), s=pt('soc',d.scores.soc), c=pt('eco',d.scores.eco), g=pt('gov',d.scores.gov);
+    var poly = e[0]+','+e[1]+' '+s[0]+','+s[1]+' '+c[0]+','+c[1]+' '+g[0]+','+g[1];
+    if(shape) shape.setAttribute('points', poly);
+    if(dots.length===4){
+      var pts=[e,s,c,g];
+      for(var k=0;k<4;k++){ dots[k].setAttribute('cx',pts[k][0]); dots[k].setAttribute('cy',pts[k][1]); }
+    }
+
+    // readout — brief fade for "alive" feel (guarded by reduced-motion CSS)
+    var faders=[elScale,elDesc];
+    faders.forEach(function(el){ if(el){el.classList.remove('in');} });
+
+    window.requestAnimationFrame(function(){
+      if(elScale){ elScale.innerHTML = d.name + ' <small id="ro-zoom">'+d.zoom+'</small>'; }
+      if(elDesc){ elDesc.innerHTML = d.desc; }
+      if(elInd){ elInd.innerHTML = d.indicator; }
+      if(elVal){ elVal.innerHTML = d.value + '<span>'+d.unit+'</span>'; }
+      if(elSrc){ elSrc.textContent = d.source; }
+      if(elFed){ elFed.innerHTML = d.fed; }
+      if(elSov){ elSov.innerHTML = d.sov; }
+      window.setTimeout(function(){ faders.forEach(function(el){ if(el){el.classList.add('in');} }); }, 20);
+    });
+
+    // tab state
+    tabs.forEach(function(t,ti){
+      var sel = ti===i;
+      t.setAttribute('aria-selected', sel?'true':'false');
+      t.setAttribute('tabindex', sel?'0':'-1');
+    });
+    if(panel && tabs[i]) panel.setAttribute('aria-labelledby', tabs[i].id);
+    if(focus && tabs[i]) tabs[i].focus();
+  }
+
+  tabs.forEach(function(t,i){
+    t.addEventListener('click', function(){ setScale(i,false); });
+    t.addEventListener('keydown', function(e){
+      var n=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home') n=0;
+      else if(e.key==='End') n=tabs.length-1;
+      if(n!==null){ e.preventDefault(); setScale(n,true); }
+    });
+  });
+
+  /* ---- banjar ↔ desa sub-view (within Community only) ---- */
+  var subBtns = Array.prototype.slice.call(document.querySelectorAll('.subscale .sub-btn'));
+  var SUBVIEW = {
+    desa:{
+      ind:'Household waste self-managed', val:'31', unit:'%',
+      src:'Banjar ledger + DIY sensor nodes',
+      sov:'<b>Your data stays in Bali.</b> The desa adat signs off (Tri Hita Karana) — raw data stays put, only an approved summary is shared with the wider network.'
+    },
+    banjar:{
+      ind:'Waste self-managed · this banjar', val:'27', unit:'%',
+      src:'Single banjar ledger + node SCK 19236',
+      sov:'<b>Banjar</b> readings roll up to its <b>Desa Adat</b>, which signs off (Tri Hita Karana) before any summary is shared.'
+    }
+  };
+  subBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var key = b.getAttribute('data-sub');
+      var v = SUBVIEW[key]; if(!v) return;
+      subBtns.forEach(function(o){ o.setAttribute('aria-pressed', o===b ? 'true':'false'); });
+      if(subnote){ subnote.hidden = false; }
+      if(elInd){ elInd.textContent = v.ind; }
+      if(elVal){ elVal.innerHTML = v.val + '<span>'+v.unit+'</span>'; }
+      if(elSrc){ elSrc.textContent = v.src; }
+      if(elSov){ elSov.innerHTML = v.sov; }
+    });
+  });
+
+  // init at Community
+  setScale(0,false);
+
+  /* ---------------- gentle scroll reveal (progressive, optional) ---------------- */
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:.18});
+    document.querySelectorAll('.fadein').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.fadein').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
