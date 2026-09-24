@@ -179,10 +179,8 @@ button.btn{font-family:var(--mono)}
 /* ---------- near me: sensors sorted by what they can actually tell you ---------- */
 .near{margin:26px 0 0;max-width:640px;border:1px solid rgba(0,0,0,.14);border-radius:12px;background:rgba(255,255,255,.62);backdrop-filter:blur(6px);overflow:hidden}
 .near[hidden]{display:none}
-.near-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(0,0,0,.1)}
+.near-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid rgba(0,0,0,.1)}
 .near-title{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
-.near-close{appearance:none;background:transparent;border:0;font-size:20px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:10px 12px;margin:-10px -12px;border-radius:4px}
-.near-close:hover{background:rgba(0,0,0,.07)}
 .near-tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(0,0,0,.1)}
 .near-tab{appearance:none;background:transparent;border:0;border-right:1px solid rgba(0,0,0,.08);
   padding:11px 4px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;
@@ -207,8 +205,16 @@ button.btn{font-family:var(--mono)}
 .nb-stale{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#a8763a}
 .nb-say{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-top:9px;max-width:52ch}
 .nb-cta{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid currentColor;padding:2px 0}
-.near-foot{padding:13px 16px;font-family:var(--mono);font-size:10px;line-height:1.75;letter-spacing:.03em;color:var(--ink-soft);background:rgba(0,0,0,.035)}
+.near-foot{padding:13px 16px 9px;font-family:var(--mono);font-size:10px;line-height:1.75;letter-spacing:.03em;color:var(--ink-soft);background:rgba(0,0,0,.035)}
 .near-foot a{text-decoration:underline;text-underline-offset:2px}
+/* The privacy promise sits with the thing that uses the location, not adrift
+   under the hero. Doubles as the status line when a fix fails. */
+.near-note{padding:0 16px 13px;font-family:var(--mono);font-size:9.5px;line-height:1.7;letter-spacing:.02em;color:var(--ink-soft);opacity:.85;background:rgba(0,0,0,.035)}
+/* A scope that cannot be filled until we know where the reader is. Tapping it
+   asks — the tabs ARE the location prompt, which is why the button whose only
+   job was to ask is gone. */
+.near-tab.needloc .tn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--teal);opacity:.95}
+.near-tab[aria-selected="true"].needloc .tn{color:#7fd0d0}
 
 /* Touch: a full-bleed map inside a scrolling page swallows the swipe. Leaflet
    is left inert until the reader deliberately taps in, which is also how they
@@ -286,20 +292,18 @@ button.btn{font-family:var(--mono)}
       </div>
     </div>
     <p class="subline rv in" data-i18n-html="idx.hero.subline">Every speck drifting on this screen is particulate matter: the air you actually breathe, made visible. <span id="hero-mood"></span></p>
-    <div class="hero-cta rv in">
-      <button class="btn btn-fill" id="geo" type="button" data-i18n="idx.hero.btn_show">◎ Show the air where I am</button>
-      <a class="btn btn-ghost" href="#act" data-i18n="idx.hero.btn_report">Report what you smell</a>
-    </div>
-    <div class="near rv in" id="near" hidden>
+    <div class="near rv in" id="near">
       <div class="near-head">
         <span class="near-title" id="near-title" data-i18n="near.title">Sensors around you</span>
-        <button class="near-close" id="near-close" type="button" aria-label="Close">&times;</button>
       </div>
       <div class="near-tabs" id="near-tabs" role="tablist"></div>
       <div class="near-body" id="near-body"></div>
       <p class="near-foot" id="near-foot"></p>
+      <p class="near-note" id="locnote" data-i18n="idx.locnote.default">Your coordinates never leave this browser. The page downloads every station in Bali and measures the distances here, on your device — nothing about where you are is sent anywhere.</p>
     </div>
-    <p class="locnote rv in" id="locnote" data-i18n="idx.locnote.default">Your coordinates never leave this browser. The page downloads every station in Bali and measures the distances here, on your device — nothing about where you are is sent anywhere.</p>
+    <div class="hero-cta rv in">
+      <a class="btn btn-fill" href="#act" data-i18n="idx.hero.btn_report">Report what you smell</a>
+    </div>
   </div>
   <div class="scrollcue"><span></span><span class="cuetext" data-i18n="idx.hero.scroll">scroll</span></div>
 </header>
@@ -417,10 +421,10 @@ button.btn{font-family:var(--mono)}
      have yet, threw, was swallowed by its own catch, and the page quietly went
      on showing the stale snapshot. BUMP THIS STRING whenever any of these files
      changes. -->
-<script src="./data.js?v=20260924b"></script>
-<script src="./peaks.js?v=20260924b"></script>
-<script src="./near.js?v=20260924b"></script>
-<script src="./i18n.js?v=20260924b"></script>
+<script src="./data.js?v=20260924c"></script>
+<script src="./peaks.js?v=20260924c"></script>
+<script src="./near.js?v=20260924c"></script>
+<script src="./i18n.js?v=20260924c"></script>
 <script>
 var D=window.SCB_DATA||{}, P=window.SCB_PEAKS||{};
 var S={sensors:[],reports:[]};
@@ -523,7 +527,7 @@ addEventListener('resize',function(){ size(); rebuildParticles(); });
    confidently wrong at exactly the moment somebody wants to know.
    See near.js for the scales and why MIDDLE is in there.                     */
 var NEAR_BUILD_URL='https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2';
-var _near={lat:null,lng:null,data:null,scale:null};
+var _near={lat:null,lng:null,data:null,scale:null,wanted:null};
 
 function nearEl(id){ return document.getElementById(id); }
 
@@ -531,43 +535,52 @@ function fmtKm(km){ return km<1 ? Math.round(km*1000)+' m' : (km<10?km.toFixed(1
 
 function renderNear(){
   var N=window.SCB_NEAR, box=nearEl('near'), tabs=nearEl('near-tabs'), body=nearEl('near-body'), foot=nearEl('near-foot');
-  if(!N||!box||!tabs||!body||!_near.data||_near.lat==null) return;
-  var res=N.bandsFor(_near.lat,_near.lng,_near.data.sensors);
-  var sums=res.bands.map(function(b){ return N.bandSummary(b); });
+  if(!N||!box||!tabs||!body||!_near.data) return;
+  var located=_near.lat!=null;
 
-  /* Opens on the banjar — 2 km. That is the tightest scope with any chance of
-     having sensors in it today (street is empty everywhere in Bali) and it is
-     the one whose answer a resident can act on. If it is genuinely empty, as it
-     is across the north, east and highlands, fall forward to the first scope
-     that has something rather than greeting somebody in Singaraja with a blank.
-     Once the reader picks a tab it is theirs, including an empty one — an empty
-     street scope is a finding, not a mis-tap. */
-  if(_near.scale==null){
-    var def=0; for(var d=0;d<res.bands.length;d++){ if(res.bands[d].id==='neighbourhood'){ def=d; break; } }
+  /* Without a position only the island scope can be computed. The other three
+     still render, showing a dot and asking for location when tapped — the tabs
+     ARE the prompt, which is why the button that did nothing else is gone. */
+  var res = located ? N.bandsFor(_near.lat,_near.lng,_near.data.sensors) : null;
+  var bands = res ? res.bands : N.SCALES.map(function(sc){
+    return { id:sc.id, maxKm:sc.maxKm,
+             sensors: sc.maxKm===Infinity ? _near.data.sensors.map(function(x){return {s:x,km:null};}) : [] };
+  });
+  var sums = bands.map(function(b){ return N.bandSummary(b); });
+  var islandIdx = bands.length-1;
+
+  if(!located){ _near.scale=islandIdx; }
+  else if(_near.scale==null){
+    /* Opens on the banjar — 2 km. The tightest scope with any chance of having
+       sensors today (street is empty everywhere in Bali) and the one whose
+       answer a resident can act on. Where it is genuinely empty, as across the
+       north, east and highlands, fall forward rather than greet somebody in
+       Singaraja with a blank. */
+    var def=0; for(var d=0;d<bands.length;d++){ if(bands[d].id==='neighbourhood'){ def=d; break; } }
     _near.scale=def;
-    if(sums[def].pm25==null){
-      for(var i=0;i<sums.length;i++){ if(sums[i].pm25!=null){ _near.scale=i; break; } }
-    }
+    if(sums[def].pm25==null){ for(var q=0;q<sums.length;q++){ if(sums[q].pm25!=null){ _near.scale=q; break; } } }
   }
-  var sel=Math.min(_near.scale,res.bands.length-1);
+  var sel=Math.min(_near.scale,bands.length-1);
 
-  tabs.innerHTML=res.bands.map(function(b,i){
-    var on=i===sel, n=sums[i].count;
-    return '<button type="button" role="tab" class="near-tab'+(n?'':' is-empty')+'" data-i="'+i+'"'+
-           ' aria-selected="'+(on?'true':'false')+'">'+
+  tabs.innerHTML=bands.map(function(b,i){
+    var on=i===sel, needloc=!located && b.id!=='island';
+    var n = needloc ? '·' : sums[i].count;
+    return '<button type="button" role="tab" class="near-tab'+(needloc?' needloc':(sums[i].count?'':' is-empty'))+'"'+
+           ' data-i="'+i+'" data-needloc="'+(needloc?'1':'')+'" aria-selected="'+(on?'true':'false')+'">'+
            '<span class="tl">'+esc(tr('near.tab.'+b.id))+'</span>'+
            '<span class="tn">'+n+'</span></button>';
   }).join('');
   tabs.querySelectorAll('.near-tab').forEach(function(btn){
-    btn.addEventListener('click', function(){ _near.scale=+btn.getAttribute('data-i'); renderNear(); });
+    btn.addEventListener('click', function(){
+      if(btn.getAttribute('data-needloc')){ _near.wanted=+btn.getAttribute('data-i'); locate(false); return; }
+      _near.scale=+btn.getAttribute('data-i'); renderNear();
+    });
   });
 
-  var b=res.bands[sel], sum=sums[sel], id=b.id;
+  var b=bands[sel], sum=sums[sel], id=b.id;
   var head='<div class="nb-top"><span class="nb-name">'+esc(tr('near.scale.'+id+'.name'))+'</span>'+
            '<span class="nb-range">'+esc(tr('near.scale.'+id+'.range'))+'</span></div>';
   if(!sum.count){
-    /* Only the street scope asks — it is the one that is empty for everybody
-       in Bali, and the one a node would actually fill. */
     var cta=(id==='street')
       ? '<a class="nb-cta" href="'+NEAR_BUILD_URL+'" target="_blank" rel="noopener">'+esc(tr('near.cta.build'))+'</a>' : '';
     body.innerHTML=head+'<p class="nb-say">'+esc(tr('near.scale.'+id+'.empty'))+'</p>'+cta;
@@ -580,18 +593,27 @@ function renderNear(){
     if(stale) line+='<span class="nb-stale">'+esc(tr('near.stale',{n:stale,h:N.FRESH_HOURS}))+'</span>';
     line+='</div>';
     var say=sum.pm25!=null ? tr('near.scale.'+id+'.has') : tr('near.nofresh',{h:N.FRESH_HOURS});
+    if(!located && id==='island') say = say+' '+tr('near.locate_hint');
     body.innerHTML=head+line+'<p class="nb-say">'+esc(say)+'</p>';
   }
 
-  /* The hero follows the selected scope: pick "my street" and the big number
-     is your street's or nothing at all, never quietly the island's. */
-  if(sum.pm25!=null) applyReading(sum.pm25,'near.scope.'+id,id!=='island');
+  /* The hero follows the selected scope: pick "my street" and the big number is
+     your street's or nothing at all, never quietly the island's. An empty scope
+     blanks the readout rather than leaving the previous scope's figure sitting
+     under a heading that no longer describes it — at hero scale, the dash IS
+     the finding. */
+  if(sum.pm25!=null){
+    applyReading(sum.pm25,'near.scope.'+(located?id:'island_live'),located&&id!=='island');
+  } else if(located){
+    applyReading(null,'near.scope.'+id);
+    setText('hero-verdict', tr('near.verdict.nosensor'));
+    setText('hero-mood','');
+  }
 
   var parts=[];
-  if(res.nearest) parts.push(tr('near.nearest',{km:fmtKm(res.nearest.km),name:res.nearest.s.name}));
+  if(located && res && res.nearest) parts.push(tr('near.nearest',{km:fmtKm(res.nearest.km),name:res.nearest.s.name}));
   parts.push(tr('near.foot',{boxes:_near.data.sensors.length}));
   foot.innerHTML=esc(parts.join(' '))+' <a href="https://baliairdispatch.com/api" target="_blank" rel="noopener">Bali Air Dispatch</a>.';
-  box.hidden=false;
 }
 
 /* Asking on arrival, not on a tap. The trade-off is real and worth stating:
@@ -607,38 +629,38 @@ function renderNear(){
    Refusal is not a dead end: the island figure still renders and the button
    stays live for whenever they change their mind.                            */
 function locate(auto){
-  var btn=nearEl('geo'), note=nearEl('locnote'), N=window.SCB_NEAR;
-  if(!navigator.geolocation){ if(!auto) note.textContent=tr('idx.geo.no_geo'); return; }
-  if(!N){ if(!auto) note.textContent=tr('near.err'); return; }
-  if(!auto){ btn.textContent=tr('idx.hero.btn_finding'); btn.disabled=true; }
+  var note=nearEl('locnote'), N=window.SCB_NEAR;
+  if(!navigator.geolocation){ if(!auto&&note) note.textContent=tr('idx.geo.no_geo'); return; }
+  if(!N) return;
+  if(!auto&&note) note.textContent=tr('idx.hero.btn_finding');
 
   /* High accuracy matters here and did not before: a 100 m band cannot be
      resolved from a coarse fix. It is safe to ask for — the coordinate is
      used locally and never transmitted. */
   navigator.geolocation.getCurrentPosition(function(pos){
     _near.lat=pos.coords.latitude; _near.lng=pos.coords.longitude;
+    if(_near.wanted!=null){ _near.scale=_near.wanted; _near.wanted=null; } else { _near.scale=null; }
     heroMapTo(_near.lat,_near.lng);
     /* Normally resolved already — the idle upgrade warmed it, so this is
        instant rather than a wait at the moment of most impatience. */
     N.load().then(function(data){
       _near.data=data;
-      btn.disabled=false; btn.textContent=tr('idx.hero.btn_here');
-      note.textContent=tr('idx.locnote.default');
+      if(note) note.textContent=tr('idx.locnote.default');
       renderNear();
       if(window._map) window._map.setView([_near.lat,_near.lng],13);
     }).catch(function(e){
       console.warn('[near] load failed:',e);
-      btn.disabled=false; btn.textContent=tr('idx.hero.btn_show');
-      if(!auto) note.textContent=tr('near.err');
+      if(!auto&&note) note.textContent=tr('near.err');
     });
-  }, function(){
-    btn.disabled=false; btn.textContent=tr('idx.hero.btn_show');
-    /* On an automatic attempt this is usually "not now", not an error, so the
-       page says nothing and carries on showing the island. */
-    if(!auto) note.textContent=tr('idx.geo.off');
+  }, function(err){
+    _near.wanted=null;
+    /* An automatic attempt coming back "no" is usually "not now", so the page
+       says nothing. A tap on a scope tab is a direct request, and going quiet
+       there would read as a broken button — so that one explains itself,
+       including the case where the browser has it blocked and will not ask. */
+    if(!auto&&note){ note.textContent = (err && err.code===1) ? tr('idx.geo.blocked') : tr('idx.geo.off'); }
   }, {enableHighAccuracy:true, timeout:12000, maximumAge:120000});
 }
-function useMyLocation(){ locate(false); }
 
 function autoLocate(){
   if(!navigator.geolocation) return;
@@ -648,9 +670,6 @@ function autoLocate(){
     locate(true);
   }).catch(function(){ locate(true); });
 }
-var geoBtn=document.getElementById('geo'); if(geoBtn) geoBtn.addEventListener('click', useMyLocation);
-var nearClose=document.getElementById('near-close');
-if(nearClose) nearClose.addEventListener('click', function(){ var b=nearEl('near'); if(b) b.hidden=true; });
 
 /* ---------- story TEXT (from the most notable real report) ---------- */
 var KNOWN_SCK=[19236,19600,19618,19651];
@@ -854,9 +873,9 @@ function upgradeFromLive(){
     _near.data=data;
     setText('map-sensors', data.sensors.length||'—');
     renderLivePins(data.sensors);
-    if(_near.scale!=null){ renderNear(); return; }   /* reader is driving — leave the hero */
-    var med=N.islandMedian(data.sensors);
-    if(med!=null) applyReading(med,'near.scope.island_live',false);
+    /* Paints the permanent panel too: with no position yet it shows the island
+       scope and three tabs waiting to be asked. */
+    renderNear();
   }).catch(function(e){ console.warn('[near] live upgrade unavailable, snapshot stands:', e); });
 }
 /* ---------- hero background map ---------- */
