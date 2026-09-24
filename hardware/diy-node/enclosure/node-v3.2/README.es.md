@@ -10,7 +10,7 @@ Carcasa de exterior impresa en 3D para el nodo DIY de calidad del aire de Making
 iteración que deja de usar tornillos.
 
 **Etapa:** imprimible, lista para campo a la espera de la co-ubicación. Todavía no está lista para replicación — no hay fuente CAD.
-**Reemplaza a:** [`../bayu-v6/`](../bayu-v6/) (= Node V3.1) y todo lo que hay en [`../previous-iterations/`](../previous-iterations/)
+**Reemplaza a:** [`../node-v3.1/`](../node-v3.1/) (= Node V3.1) y todo lo que hay en [`../previous-iterations/`](../previous-iterations/)
 **Licencia:** CERN-OHL-W-2.0 (hardware) · CC-BY-SA-4.0 (esta documentación)
 **Fuente:** *Dokumentasi Teknis: DIY Environmental Sensor Node V3*, Fab Lab Bali, septiembre de 2026. Traducido del indonesio.
 
@@ -39,12 +39,12 @@ Dos sistemas de nomenclatura chocaron en este árbol de carpetas y ambos siguen 
 
 | Este repo | Fab Lab Bali | Qué es |
 |---|---|---|
-| `bayu-v6/` | **Node V3.1** | Ensamble atornillado, soporte de pared separado. Reemplazado. |
-| `bayu-v7/` (aquí) | **Node V3.2** | Totalmente sin tornillos, montaje integrado. **Construya este.** |
+| `node-v3.1/` | **Node V3.1** | Ensamble atornillado, soporte de pared separado. Reemplazado. |
+| `node-v3.2/` (aquí) | **Node V3.2** | Totalmente sin tornillos, montaje integrado. **Construya este.** |
 
-`bayu-v6/` y Node V3.1 son los *mismos seis archivos STL* — verificado byte por byte, no
+`node-v3.1/` y Node V3.1 son los *mismos seis archivos STL* — verificado byte por byte, no
 inferido de los nombres de archivo. El repo recibió las mallas en septiembre de 2026 sin el
-documento que las describía; esta carpeta y [`../bayu-v6/`](../bayu-v6/) son ese
+documento que las describía; esta carpeta y [`../node-v3.1/`](../node-v3.1/) son ese
 documento, que llega tarde.
 
 El linaje de la carcasa cuenta v1-caja → v2-linterna → v3-calabaza → v4-columna → v5 piña →
@@ -75,7 +75,7 @@ rueden por un techo, no.
 ## Qué corrige y qué no corrige este diseño
 
 El nodo que reemplaza esta generación se co-ubicó junto a un Smart Citizen Kit y
-[falló dos veces](../previous-iterations/node-v2/README.es.md).
+[falló dos veces](../node-v2/README.es.md).
 Siendo francos sobre cuáles de esas fallas resuelve la V3.2:
 
 **Corregido — resucción del aire de salida.** En una carcasa compacta, el flujo de salida del
@@ -88,7 +88,7 @@ fuente, y la geometría indica que no se diseñó contra ninguna de las dos:
 
 1. **Entrada por la parte inferior.** La evaluación de la V2 encontró que la entrada orientada
    hacia abajo restringía la circulación, de modo que los picos de PM llegaban tarde y
-   aplanados. La entrada de la V3.2 sigue en la parte inferior del cuerpo ([`05-underside-intake-outflow.png`](../bayu-v6/img/05-underside-intake-outflow.png)).
+   aplanados. La entrada de la V3.2 sigue en la parte inferior del cuerpo ([`05-underside-intake-outflow.png`](../node-v3.1/img/05-underside-intake-outflow.png)).
    El primer requisito para la V3 en el informe de la V2 era *"entrada desde arriba o por los
    costados abiertos, no desde abajo."* Ese requisito no se cumple.
 2. **Autocalentamiento del BME680.** La evaluación de la V2 encontró que la radio Wi-Fi del
@@ -123,7 +123,7 @@ materiales.
 > **El Supermini y el XIAO no son compatibles pin a pin en el PCB DIY.** El I²C queda en D4/D5
 > para el XIAO y en D8/D9 para el Supermini. Revise [Cableado](#cableado) antes de calentar el cautín.
 
-![Opciones de mainboard en el compartimento](../bayu-v6/img/10-mainboard-options.png)
+![Opciones de mainboard en el compartimento](../node-v3.1/img/10-mainboard-options.png)
 
 **Sensor ambiental** — breakout Bosch BME680, o Seeed Grove BME680. Footprints distintos,
 así que imprima la cubierta correspondiente:
@@ -143,7 +143,7 @@ El aire exterior entra por la entrada inferior hacia el ventilador propio del HM
 ya medido sale por el ducto de extensión, que lo dirige hacia un costado y lejos de la entrada
 para que no se vuelva a medir de inmediato.
 
-![Entrada inferior y ducto de salida](../bayu-v6/img/05-underside-intake-outflow.png)
+![Entrada inferior y ducto de salida](../node-v3.1/img/05-underside-intake-outflow.png)
 
 Lea eso junto con [Qué corrige y qué no corrige este diseño](#qué-corrige-y-qué-no-corrige-este-diseño)
 — el ducto resuelve la resucción, no la restricción de la entrada.
@@ -185,7 +185,7 @@ Las piezas están exportadas en coordenadas de ensamble, no de impresión — la
 mínimo en Z negativo. Los slicers las bajan a la cama, pero los archivos no vienen
 preorientados para imprimir.
 
-![Las piezas impresas](../bayu-v6/img/11-printed-parts-v31.png)
+![Las piezas impresas](../node-v3.1/img/11-printed-parts-v31.png)
 
 ## Ajustes de impresión
 
@@ -229,7 +229,7 @@ Ver [`bom.csv`](bom.csv) para la versión legible por máquina en las columnas O
 
 **Sin precios.** La BoM de la V3.2 del documento fuente no tiene columna de precio, y la
 campaña no tiene una cotización vigente para esta construcción. La
-[BoM del Node V2](../previous-iterations/node-v2/bom.csv) trae precios en IDR de una compra
+[BoM del Node V2](../node-v2/bom.csv) trae precios en IDR de una compra
 anterior — úselos como orden de magnitud, no como cotización, y tenga en cuenta que la V2 usaba
 otra mainboard.
 
@@ -393,7 +393,7 @@ a Fab Lab Bali:
   Aquí se corrigió a 5 V. Seguir la tabla dejaría muertos el ventilador y el láser.
 - La sección de ensamblaje de la V3.1 nombra `V3.1_Top_Cover.stl` y `V3.1_Wall_Bracket_Separate.stl`;
   no existen tales archivos en ninguna de las dos publicaciones. Los nombres reales son
-  `TOP COVER.stl` y `BRACKET TO WALL.stl`. Documentado en [`../bayu-v6/`](../bayu-v6/).
+  `TOP COVER.stl` y `BRACKET TO WALL.stl`. Documentado en [`../node-v3.1/`](../node-v3.1/).
 
 ---
 

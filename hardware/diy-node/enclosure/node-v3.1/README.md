@@ -9,7 +9,7 @@ naming systems — see [Naming](#naming).*
 *Bayu* — wind. The first iteration of the V3 generation: compact body, hybrid
 electronics, LoRa option, assembled with screws.
 
-> **Status: superseded by [`../bayu-v7/`](../bayu-v7/) (= Node V3.2).**
+> **Status: superseded by [`../node-v3.2/`](../node-v3.2/) (= Node V3.2).**
 > v7 is the same body made screwless, with wall and pole mounting moulded into the back.
 > It removes 11 screws and one printed part from the build and needs no bracket.
 > **Build v7.** This folder stays because the STLs here are in the field already, and a
@@ -44,8 +44,8 @@ Two naming systems collided in this folder tree and both are still in use.
 
 | This repo | Fab Lab Bali | What it is |
 |---|---|---|
-| `bayu-v6/` (here) | **Node V3.1** | Screwed assembly, separate wall bracket. Superseded. |
-| `bayu-v7/` | **Node V3.2** | Full screwless, integrated mounting. Build this one. |
+| `node-v3.1/` (here) | **Node V3.1** | Screwed assembly, separate wall bracket. Superseded. |
+| `node-v3.2/` | **Node V3.2** | Full screwless, integrated mounting. Build this one. |
 
 These are the *same six STL files*, verified byte-for-byte against Fab Lab Bali's V3.1
 release, not inferred from filenames:
@@ -67,7 +67,7 @@ was never committed here.
 Meanwhile the enclosure lineage counts v1-box → v2-lantern → v3-gourd → v4-column →
 v5 pine cone → v6 → v7, and Fab Lab Bali counts whole-node generations V1 → V2 → V3.1 →
 V3.2. The countings are unrelated. This is also *not*
-[`../previous-iterations/node-v2/`](../previous-iterations/node-v2/), which is the second
+[`../node-v2/`](../node-v2/), which is the second
 generation of the whole node on a different shell entirely.
 
 ## Why the V3 generation exists
@@ -160,7 +160,7 @@ This fixes re-suction. It does **not** address the two failures found when the p
 node was co-located against a Smart Citizen Kit — the underside intake that flattened PM
 peaks, and the BME680 self-heating inside the electronics bay. Both are unchanged in v6 and
 in v7. See
-[v7's honest note on this](../bayu-v7/README.md#what-this-design-does-and-does-not-fix),
+[v7's honest note on this](../node-v3.2/README.md#what-this-design-does-and-does-not-fix),
 which covers the whole V3 generation.
 
 ## Body variants
@@ -173,7 +173,7 @@ which covers the whole V3 generation.
 Only the dual-antenna body is committed to this repo, as `stl/Main_Body.stl`. The
 single-antenna variant exists in the
 [upstream V3.1 release](https://drive.google.com/drive/folders/1vudckcW-5sOKlDBSPK77gQ5bCxbDxIM9);
-if you need it, prefer [v7](../bayu-v7/), which ships both.
+if you need it, prefer [v7](../node-v3.2/), which ships both.
 
 ## Printed parts
 
@@ -240,13 +240,13 @@ See [`bom.csv`](bom.csv) for the machine-readable version.
 > <!-- TODO: screw drive type; prices; wall-fixing spec for the bracket. -->
 
 **No prices.** The source document's V3 BoM has no price column. The
-[Node V2 BoM](../previous-iterations/node-v2/bom.csv) carries IDR prices from an earlier
+[Node V2 BoM](../node-v2/bom.csv) carries IDR prices from an earlier
 purchase on a different mainboard — order of magnitude only, not a quote.
 
 ## Wiring
 
 Identical across the whole V3 generation. Rather than duplicate it, see
-**[v7 § Wiring](../bayu-v7/README.md#wiring)** — three mainboard options, with schematics
+**[v7 § Wiring](../node-v3.2/README.md#wiring)** — three mainboard options, with schematics
 and breadboard views.
 
 > One correction carried there: the source document's Grove Shield table gives the HM3301
@@ -284,7 +284,7 @@ Conventional, screw-based. Every internal part is held by a plate and small scre
 the body on the bracket.
 
 There is no pole option on v6 — no integrated cable-tie path. If the site is a pole or a
-tree, use [v7](../bayu-v7/#mounting).
+tree, use [v7](../node-v3.2/#mounting).
 
 <!-- TODO: bracket fixing spec — screw size, spacing, plug type. Load rating. -->
 

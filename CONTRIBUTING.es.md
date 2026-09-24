@@ -35,7 +35,7 @@ seguridad, no un *bug*: escribe a tomas@fab.city en lugar de abrir un *issue* p�
 *fuente y exportación, siempre*: un `.step` o `.scad` junto al `.stl`, para que el
 siguiente laboratorio pueda modificar y no solo imprimir. Las contribuciones solo de
 exportación se aceptan, pero se marcan como incompletas. Empieza en
-`hardware/diy-node/enclosure/` — el diseño actual es `bayu-v7/`, y `previous-iterations/`
+`hardware/diy-node/enclosure/` — el diseño actual es `node-v3.2/`, y `previous-iterations/`
 explica qué falló en cada diseño retirado.
 
 **Firmware y herramientas.** `hardware/diy-node/firmware/`, `tools/`, `worker/`. Las notas
@@ -89,7 +89,7 @@ comercialmente, y las mejoras al diseño regresan al proyecto.
 ## Mapa del repositorio
 
 ```
-hardware/diy-node/     carcasas (bayu-v7 es la actual), firmware, herramientas
+hardware/diy-node/     carcasas (node-v3.2 es la actual), firmware, herramientas
 dashboard/             panel de sensores en vivo
 docs/                  metodología, conocimiento comunitario, notas de plataforma
 reports/               el pipeline de reportes y el panel de moderación

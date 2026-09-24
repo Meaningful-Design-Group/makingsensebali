@@ -9,7 +9,7 @@ Carcasa de exterior impresa en 3D para el nodo DIY de calidad del aire de Making
 *Bayu* — viento. La primera iteración de la generación V3: cuerpo compacto, electrónica
 híbrida, opción LoRa, ensamblado con tornillos.
 
-> **Estado: reemplazado por [`../bayu-v7/`](../bayu-v7/) (= Node V3.2).**
+> **Estado: reemplazado por [`../node-v3.2/`](../node-v3.2/) (= Node V3.2).**
 > v7 es el mismo cuerpo hecho sin tornillos, con el montaje a pared y a poste moldeado en la parte trasera.
 > Elimina 11 tornillos y una pieza impresa del armado y no necesita soporte.
 > **Construye la v7.** Esta carpeta se mantiene porque los STL de aquí ya están en campo, y
@@ -44,8 +44,8 @@ Dos sistemas de nomenclatura chocaron en este árbol de carpetas y ambos siguen 
 
 | Este repositorio | Fab Lab Bali | Qué es |
 |---|---|---|
-| `bayu-v6/` (aquí) | **Node V3.1** | Ensamblaje atornillado, soporte de pared aparte. Reemplazado. |
-| `bayu-v7/` | **Node V3.2** | Totalmente sin tornillos, montaje integrado. Construye esta. |
+| `node-v3.1/` (aquí) | **Node V3.1** | Ensamblaje atornillado, soporte de pared aparte. Reemplazado. |
+| `node-v3.2/` | **Node V3.2** | Totalmente sin tornillos, montaje integrado. Construye esta. |
 
 Estos son los *mismos seis archivos STL*, verificados byte a byte contra la publicación V3.1
 de Fab Lab Bali, no deducidos de los nombres de archivo:
@@ -67,7 +67,7 @@ antena simple que nunca se subió aquí.
 Mientras tanto, el linaje de la carcasa se cuenta v1-box → v2-lantern → v3-gourd → v4-column →
 v5 pine cone → v6 → v7, y Fab Lab Bali cuenta generaciones de nodo completo V1 → V2 → V3.1 →
 V3.2. Los dos conteos no tienen relación entre sí. Esto tampoco es
-[`../previous-iterations/node-v2/`](../previous-iterations/node-v2/), que es la segunda
+[`../node-v2/`](../node-v2/), que es la segunda
 generación del nodo completo sobre una carcasa totalmente distinta.
 
 ## Por qué existe la generación V3
@@ -160,7 +160,7 @@ Esto corrige la reaspiración. **No** resuelve las dos fallas encontradas cuando
 colocó junto a un Smart Citizen Kit — la toma inferior que aplanaba los picos de PM, y el
 autocalentamiento del BME680 dentro del compartimento de electrónica. Ambas siguen igual en la v6 y
 en la v7. Ver
-[la nota franca de la v7 sobre esto](../bayu-v7/README.es.md),
+[la nota franca de la v7 sobre esto](../node-v3.2/README.es.md),
 que cubre toda la generación V3.
 
 ## Variantes de cuerpo
@@ -173,7 +173,7 @@ que cubre toda la generación V3.
 Solo el cuerpo de antena doble está subido a este repositorio, como `stl/Main_Body.stl`. La
 variante de antena simple existe en la
 [publicación original V3.1](https://drive.google.com/drive/folders/1vudckcW-5sOKlDBSPK77gQ5bCxbDxIM9);
-si la necesitas, prefiere la [v7](../bayu-v7/), que incluye ambas.
+si la necesitas, prefiere la [v7](../node-v3.2/), que incluye ambas.
 
 ## Piezas impresas
 
@@ -241,13 +241,13 @@ Ver [`bom.csv`](bom.csv) para la versión legible por máquina.
 > <!-- TODO: tipo de huella del tornillo; precios; especificación de fijación a pared del soporte. -->
 
 **Sin precios.** La BoM de la V3 del documento fuente no tiene columna de precio. La
-[BoM del Node V2](../previous-iterations/node-v2/bom.csv) trae precios en IDR de una compra
+[BoM del Node V2](../node-v2/bom.csv) trae precios en IDR de una compra
 anterior sobre otra placa principal — solo como orden de magnitud, no como cotización.
 
 ## Cableado
 
 Idéntico en toda la generación V3. En vez de duplicarlo, ver
-**[v7 § Cableado](../bayu-v7/README.es.md)** — tres opciones de placa principal, con esquemáticos
+**[v7 § Cableado](../node-v3.2/README.es.md)** — tres opciones de placa principal, con esquemáticos
 y vistas de protoboard.
 
 > Una corrección que se traslada allí: la tabla del Grove Shield del documento fuente da al HM3301
@@ -285,7 +285,7 @@ Convencional, a base de tornillos. Cada pieza interna se sujeta con una placa y 
 el cuerpo en el soporte.
 
 En la v6 no hay opción de poste — no tiene paso integrado para amarres plásticos. Si el sitio es un
-poste o un árbol, usa la [v7](../bayu-v7/#mounting).
+poste o un árbol, usa la [v7](../node-v3.2/#mounting).
 
 <!-- TODO: especificación de fijación del soporte — medida de tornillo, separación, tipo de tarugo. Carga admisible. -->
 

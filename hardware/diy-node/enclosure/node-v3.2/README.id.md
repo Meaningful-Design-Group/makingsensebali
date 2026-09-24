@@ -10,7 +10,7 @@ Casing luar ruangan cetak 3D untuk node kualitas udara DIY Making Sense Bali.
 iterasi yang berhenti memakai sekrup.
 
 **Tahap:** siap cetak, siap lapangan sambil menunggu ko-lokasi. Belum siap replikasi — tidak ada sumber CAD.
-**Menggantikan:** [`../bayu-v6/`](../bayu-v6/) (= Node V3.1) dan semua isi [`../previous-iterations/`](../previous-iterations/)
+**Menggantikan:** [`../node-v3.1/`](../node-v3.1/) (= Node V3.1) dan semua isi [`../previous-iterations/`](../previous-iterations/)
 **Lisensi:** CERN-OHL-W-2.0 (perangkat keras) · CC-BY-SA-4.0 (dokumentasi ini)
 **Sumber:** *Dokumentasi Teknis: DIY Environmental Sensor Node V3*, Fab Lab Bali, September 2026. Dokumen ini adalah versi asli berbahasa Indonesia; versi Inggris dan Spanyol diterjemahkan darinya.
 
@@ -39,12 +39,12 @@ Dua sistem penamaan bertabrakan di pohon folder ini dan keduanya masih dipakai.
 
 | Repo ini | Fab Lab Bali | Apa ini |
 |---|---|---|
-| `bayu-v6/` | **Node V3.1** | Rakitan bersekrup, braket dinding terpisah. Sudah digantikan. |
-| `bayu-v7/` (di sini) | **Node V3.2** | Sepenuhnya tanpa sekrup, dudukan terintegrasi. **Bangun yang ini.** |
+| `node-v3.1/` | **Node V3.1** | Rakitan bersekrup, braket dinding terpisah. Sudah digantikan. |
+| `node-v3.2/` (di sini) | **Node V3.2** | Sepenuhnya tanpa sekrup, dudukan terintegrasi. **Bangun yang ini.** |
 
-`bayu-v6/` dan Node V3.1 adalah *enam berkas STL yang sama* — diverifikasi bita demi bita, bukan
+`node-v3.1/` dan Node V3.1 adalah *enam berkas STL yang sama* — diverifikasi bita demi bita, bukan
 disimpulkan dari nama berkas. Repo menerima mesh-nya pada September 2026 tanpa dokumen yang
-menjelaskannya; folder ini dan [`../bayu-v6/`](../bayu-v6/) adalah dokumen itu, yang datang
+menjelaskannya; folder ini dan [`../node-v3.1/`](../node-v3.1/) adalah dokumen itu, yang datang
 terlambat.
 
 Garis keturunan casing dihitung v1-kotak → v2-lentera → v3-labu → v4-kolom → v5 buah pinus →
@@ -75,7 +75,7 @@ menggelinding jatuh dari atap, tidak akan dibersihkan.
 ## Apa yang diperbaiki dan tidak diperbaiki desain ini
 
 Node yang digantikan generasi ini pernah diko-lokasikan dengan Smart Citizen Kit dan
-[gagal dua kali](../previous-iterations/node-v2/README.id.md).
+[gagal dua kali](../node-v2/README.id.md).
 Terus terang saja soal kegagalan mana yang ditangani V3.2:
 
 **Diperbaiki — hisap ulang gas buang.** Pada casing yang ringkas, aliran keluar sensor PM itu
@@ -88,7 +88,7 @@ dokumen sumber, dan geometrinya menunjukkan tidak satu pun dirancang untuk menga
 
 1. **Saluran masuk di sisi bawah.** Evaluasi V2 menemukan saluran masuk yang menghadap ke
    bawah membatasi sirkulasi, sehingga lonjakan PM datang terlambat dan mendatar. Saluran
-   masuk V3.2 masih berada di sisi bawah bodi ([`05-underside-intake-outflow.png`](../bayu-v6/img/05-underside-intake-outflow.png)).
+   masuk V3.2 masih berada di sisi bawah bodi ([`05-underside-intake-outflow.png`](../node-v3.1/img/05-underside-intake-outflow.png)).
    Syarat pertama untuk V3 dalam laporan V2 adalah *"saluran masuk dari atas atau dari sisi
    yang terbuka, bukan dari bawah."* Syarat itu tidak terpenuhi.
 2. **Pemanasan sendiri BME680.** Evaluasi V2 menemukan radio Wi-Fi ESP32 memanaskan BME680
@@ -122,7 +122,7 @@ material.
 > **Supermini dan XIAO tidak kompatibel pin di PCB DIY.** I²C jatuh di D4/D5
 > untuk XIAO dan D8/D9 untuk Supermini. Periksa [Pengkabelan](#pengkabelan) sebelum memanaskan solder.
 
-![Pilihan mainboard di dalam kompartemennya](../bayu-v6/img/10-mainboard-options.png)
+![Pilihan mainboard di dalam kompartemennya](../node-v3.1/img/10-mainboard-options.png)
 
 **Sensor lingkungan** — breakout Bosch BME680, atau Seeed Grove BME680. Footprint-nya
 berbeda, jadi cetak penutup yang sesuai:
@@ -142,7 +142,7 @@ Udara luar ditarik masuk melalui saluran masuk di sisi bawah oleh kipas HM3301 s
 yang sudah terukur keluar lewat saluran perpanjangan, yang mengarahkannya ke samping dan
 menjauh dari saluran masuk supaya tidak langsung terukur ulang.
 
-![Saluran masuk sisi bawah dan saluran buang](../bayu-v6/img/05-underside-intake-outflow.png)
+![Saluran masuk sisi bawah dan saluran buang](../node-v3.1/img/05-underside-intake-outflow.png)
 
 Baca itu bersama [Apa yang diperbaiki dan tidak diperbaiki desain ini](#apa-yang-diperbaiki-dan-tidak-diperbaiki-desain-ini)
 — saluran itu menyelesaikan hisap ulang, bukan pembatasan saluran masuk.
@@ -184,7 +184,7 @@ Bagian diekspor dalam koordinat rakitan, bukan koordinat cetak — sebagian besa
 minimum negatif. Slicer akan menjatuhkannya ke bed, tetapi berkasnya tidak diorientasikan
 lebih dulu untuk pencetakan.
 
-![Bagian-bagian cetak](../bayu-v6/img/11-printed-parts-v31.png)
+![Bagian-bagian cetak](../node-v3.1/img/11-printed-parts-v31.png)
 
 ## Pengaturan cetak
 
@@ -227,7 +227,7 @@ Lihat [`bom.csv`](bom.csv) untuk versi terbaca-mesin dalam kolom Open-Make milik
 | 9 | Cable tie | 20–30 cm, lebar 3–4 mm | 2 | Hanya untuk pemasangan di tiang |
 
 **Tanpa harga.** BoM V3.2 di dokumen sumber tidak punya kolom harga, dan kampanye ini tidak
-punya penawaran terkini untuk rakitan ini. [BoM Node V2](../previous-iterations/node-v2/bom.csv)
+punya penawaran terkini untuk rakitan ini. [BoM Node V2](../node-v2/bom.csv)
 memuat harga IDR dari pembelian sebelumnya — pakai sebagai orde besaran, bukan sebagai
 penawaran, dan catat bahwa V2 memakai mainboard yang berbeda.
 
@@ -391,7 +391,7 @@ dikembalikan ke Fab Lab Bali:
   Di sini dikoreksi menjadi 5 V. Mengikuti tabel itu akan membuat kipas dan lasernya mati.
 - Bagian perakitan V3.1 menyebut `V3.1_Top_Cover.stl` dan `V3.1_Wall_Bracket_Separate.stl`;
   berkas semacam itu tidak ada di rilis mana pun. Nama sebenarnya adalah `TOP COVER.stl` dan
-  `BRACKET TO WALL.stl`. Terdokumentasi di [`../bayu-v6/`](../bayu-v6/).
+  `BRACKET TO WALL.stl`. Terdokumentasi di [`../node-v3.1/`](../node-v3.1/).
 
 ---
 

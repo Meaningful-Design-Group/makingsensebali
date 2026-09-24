@@ -36,7 +36,7 @@ public issue.
 is *source and export, always*: a `.step` or `.scad` alongside the `.stl`, so
 the next lab can modify rather than only print. Export-only contributions will
 be accepted but flagged as incomplete. Start in
-`hardware/diy-node/enclosure/` — the current design is `bayu-v7/`, and
+`hardware/diy-node/enclosure/` — the current design is `node-v3.2/`, and
 `previous-iterations/` explains what each retired design got wrong.
 
 **Firmware and tooling.** `hardware/diy-node/firmware/`, `tools/`, `worker/`.
@@ -94,7 +94,7 @@ commercially, and improvements to the design come back.
 ## Repository map
 
 ```
-hardware/diy-node/     enclosures (bayu-v7 is current), firmware, tools
+hardware/diy-node/     enclosures (node-v3.2 is current), firmware, tools
 dashboard/             live sensor dashboard
 docs/                  methodology, community knowledge, platform notes
 reports/               the reports pipeline and moderation dashboard
