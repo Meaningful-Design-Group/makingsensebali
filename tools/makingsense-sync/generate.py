@@ -253,6 +253,7 @@ def fetch_sensors() -> list:
     out.extend(fetch_aqicn())
     out.extend(fetch_purpleair())
     out.extend(fetch_airgradient())
+    apply_humidity_correction(out)   # before flag_quality — see that docstring
     flag_quality(out)
     return out
 
@@ -480,6 +481,114 @@ def fetch_airgradient() -> list:
     except Exception as e:
         log(f"  AirGradient: FAILED {type(e).__name__}: {str(e)[:80]}")
     return out
+
+
+# ----------------------------------------------------------------------------
+# 1b. HUMIDITY CORRECTION — US-EPA 2021, Plantower networks only
+#
+# A Plantower module sizes particles optically, so humid air makes water-swollen
+# particles read as more mass than is really there. Bali sits at 55-80% RH and
+# the inflation is large: measured against Bali Air Dispatch on 2026-09-24,
+# across 34 physically co-located pairs (the same boxes in both datasets), this
+# site was publishing a median 2.5x their figure. 1.7x of that was this missing
+# correction; the rest was a stale snapshot.
+#
+# WHY ONLY TWO SOURCES. The equation is a Plantower-to-reference transfer
+# function, fitted to the PMS5003. It is not portable:
+#   AirGradient, PurpleAir  Plantower PMS5003          -> corrected
+#   Smart Citizen           Sensirion SEN5x            -> NOT corrected
+#   local (DIY node)        Seeed HM-3301              -> NOT corrected
+#   AQICN                   already a reference-scale AQI, converted back
+#                           to ug/m3 by _aqi_to_pm25   -> NOT corrected
+# Applying the 0.524 slope to a SEN55 would remove a Plantower bias the
+# Sensirion does not have. See the project note
+# "PM humidity correction: Smart Citizen vs AirGradient" (2026-09-12).
+#
+# Coefficients and bands are a straight port of Bali Air Dispatch's
+# epaCorrectPm25() in functions/api/live.js, deliberately rather than a second
+# implementation of the same paper: the two sites read many of the same physical
+# sensors and must not disagree about what they say.
+#
+# The raw figure is kept in reading.pm25_raw and pm25_corrected says whether
+# reading.pm25 actually had the correction applied, so this is always reversible
+# and auditable. Corrections get revised; raw does not.
+# ----------------------------------------------------------------------------
+CORRECTED_SOURCES = {"airgradient", "purpleair"}
+
+
+def _num(v):
+    """None, '', bools and lists must NOT coerce to a finite 0. float(None)
+    raises but float(False) is 0.0 and float('') raises — so reject by type
+    first. Without this a dead humidity channel would silently 'correct' at
+    RH=0%, which is the maximum-inflation case, and then claim it was
+    corrected."""
+    if v is None or isinstance(v, bool):
+        return None
+    if not isinstance(v, (int, float, str)):
+        return None
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return f if f == f and f not in (float("inf"), float("-inf")) else None
+
+
+def _epa_correct_pm25(raw, rh):
+    """US-EPA 2021 correction for Plantower sensors. Returns None unless BOTH
+    inputs are usable — a correction with a guessed humidity is not a
+    correction. Negative results clamp to 0, per the same guidance."""
+    a, h = _num(raw), _num(rh)
+    if a is None or h is None:
+        return None
+    if a < 30:
+        v = 0.524 * a - 0.0862 * h + 5.75
+    elif a < 50:
+        f = a / 20 - 1.5
+        v = (0.786 * f + 0.524 * (1 - f)) * a - 0.0862 * h + 5.75
+    elif a < 210:
+        v = 0.786 * a - 0.0862 * h + 5.75
+    elif a < 260:
+        f = a / 50 - 4.2
+        v = ((0.69 * f + 0.786 * (1 - f)) * a
+             - 0.0862 * h * (1 - f)
+             + 2.966 * f + 5.75 * (1 - f)
+             + 8.84e-4 * a * a * f)
+    else:
+        v = 2.966 + 0.69 * a + 8.84e-4 * a * a
+    return round(max(v, 0.0), 1)
+
+
+def apply_humidity_correction(sensors: list) -> None:
+    """Rewrite reading.pm25 in place for the Plantower networks, keeping the
+    uncorrected figure in reading.pm25_raw. Runs BEFORE flag_quality so the
+    indoor floor and the outlier bounds are judged against what we publish."""
+    done = shifts = 0
+    skipped_no_rh = 0
+    for s in sensors:
+        r = s.get("reading") or {}
+        if s.get("source") not in CORRECTED_SOURCES:
+            s["pm25_corrected"] = False
+            continue
+        raw = r.get("pm25")
+        corrected = _epa_correct_pm25(raw, r.get("rh"))
+        if corrected is None:
+            # Publish the raw value rather than nothing, but never claim it was
+            # corrected — a consumer reading pm25_corrected=False knows to treat
+            # it as a Plantower figure that runs high.
+            s["pm25_corrected"] = False
+            if raw is not None:
+                skipped_no_rh += 1
+            continue
+        r["pm25_raw"] = raw
+        r["pm25"] = corrected
+        s["pm25_corrected"] = True
+        done += 1
+        if raw:
+            shifts += 1
+    note = f"humidity correction: {done} corrected (US-EPA 2021, Plantower only)"
+    if skipped_no_rh:
+        note += f", {skipped_no_rh} left raw for want of a humidity reading"
+    log(note)
 
 
 # ----------------------------------------------------------------------------
