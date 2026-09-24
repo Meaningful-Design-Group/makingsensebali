@@ -1,37 +1,46 @@
+**English** · [Bahasa Indonesia](README.id.md) · [Español](README.es.md)
+
 # Previous iterations
 
 Retired enclosure designs, kept because the failures are the most reusable
-knowledge in this repository. Every requirement in
-[`../node-v3.2/`](../node-v3.2/) exists because one of these designs taught it.
+knowledge in this repository. Requirements in
+[`../node-v3.2/`](../node-v3.2/) exist because one of these designs taught them.
 
-**None of these is the current design.** Build
-[Bayu Sensor Enclosure v7](../node-v3.2/).
+> **None of these is the current design.** Build [`../node-v3.2/`](../node-v3.2/).
 
-Note that [`../node-v3.1/`](../node-v3.1/) is also superseded but is *not* in here: units
-are in the field and it still needs its assembly steps findable.
-
-| Iteration | Retired because | Files |
+| Iteration | What it was | Retired because |
 |---|---|---|
-| Node V2 (triangular shell, Fab Lab Bali) | Self-heating: the ESP32-C3 radio warmed the BME680 through the divider wall, so temperature read high and RH followed it down. Intake lag: the underside inlet restricted circulation, so PM spikes arrived late and flattened. Co-located against an SCK; failed twice. | TODO: move `Enclosure DIY Node V2.f3z` here from the standalone repo |
-| v5 "pine cone" | TODO — superseded by Bayu v6; state what it did well and what it didn't | TODO |
-| v1–v4 | TODO — one line each | TODO |
+| [v5 "pine cone"](README.v5-and-earlier.md) | Parametric OpenSCAD shell, ten overlapping leaves; rain shedding and ventilation were the same geometry. Source: [`enclosure.scad`](enclosure.scad) · STLs in [`stl/`](stl/) · renders in [`img/`](img/) | Superseded by the Fab Lab Bali V3 line, which is what Fab Lab Bali actually builds and deploys. v5 solved the airflow brief more convincingly than V3 does — see the note below. |
+| [`archive/`](archive/) — v1-box, v2-lantern, v3-gourd, v4-column | Four earlier shapes, each with its own notes | Each superseded by the next; kept as a record of what was tried |
 
-<!-- TODO: as each folder is moved in, add a row above and a short note inside
-     the folder saying what it taught. A retired design with no explanation is
-     just clutter; a retired design with its failure written down is a design
-     rationale. -->
+**Node V2 is not in here.** It lives at [`../node-v2/`](../node-v2/), a sibling of the
+current design, because it is a *node* generation rather than an enclosure iteration and
+because its field evaluation is still the most cited document in this tree.
+
+## The v5 note worth keeping
+
+v5 put every breathing slot in a scale's rain shadow and ran a chimney from a low intake at
+the BME680's level to a high exhaust under the cap. That is precisely the airflow topology
+Node V2's co-location asked for, and the V3 line — which supersedes v5 — does **not** carry
+it forward: V3 keeps an underside intake and leaves the BME680 beside the radio.
+
+So v5 is retired for good reasons (it is not what Fab Lab Bali builds, and it was never
+co-located either), but it is not simply worse than what replaced it. Anyone picking the
+airflow problem back up should read [`README.v5-and-earlier.md`](README.v5-and-earlier.md)
+and [`../../enclosure-research/DESIGN_LOG.md`](../../enclosure-research/DESIGN_LOG.md)
+before starting from scratch.
 
 ## Naming
 
-**One sequence: the enclosure line.** v1 → v5 ("pine cone") → v6 "Bayu" →
-**v7**, the current design. Versions are bare numbers; *Bayu* is the design's
-name, not a restart of the count. A design that supersedes v5 is v6.
+Two unrelated countings pass through this folder.
 
-Fab Lab Bali runs a second, unrelated counting for whole-node generations:
-v6 is their **Node V3.1** and v7 is their **Node V3.2**. See the mapping table
-in [`../README.md`](../README.md).
+- **The enclosure line**, which is what `archive/` and v5 belong to:
+  v1-box → v2-lantern → v3-gourd → v4-column → v5 "pine cone". It stops at v5.
+  Later designs in this repo were briefly numbered `bayu-v6` and `bayu-v7`; that scheme is
+  retired and those folders are now [`../node-v3.1/`](../node-v3.1/) and
+  [`../node-v3.2/`](../node-v3.2/). The mapping table is in [`../README.md`](../README.md).
+- **Fab Lab Bali's node generations**: Node V1 → V2 → V3.1 → V3.2. A separate track that
+  shares electronics and firmware.
 
-The Node line (V1, V2) is a separate design track that shares electronics
-and firmware. Node V2's shell is filed here because it is retired, but its
-numbering is not this sequence — do not read "Node V2" as older or newer
-than any enclosure version.
+Do not read `archive/v2-lantern/` and [`../node-v2/`](../node-v2/) as the same generation.
+They share a number and nothing else.

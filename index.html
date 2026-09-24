@@ -103,6 +103,8 @@ button.btn{font-family:var(--mono)}
 .act h2 em{font-style:italic;color:#e9a05a}
 .act-sub{font-size:17px;line-height:1.6;color:#b9b2a4;max-width:46ch;margin-top:22px}
 .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:60px}
+.act-note{margin-top:32px;max-width:780px;font-size:14px;line-height:1.75;color:#8b8578}
+.act-note a{color:#5fb6b6;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:820px){.acts{grid-template-columns:1fr}}
 .actcard{display:flex;flex-direction:column;gap:12px;padding:30px 26px 26px;border-radius:12px;background:#1e2024;border:1px solid #2c2f34;transition:transform .18s,background .2s;cursor:pointer}
 .actcard:hover{transform:translateY(-4px);background:#24262b}
@@ -237,13 +239,14 @@ button.btn{font-family:var(--mono)}
         <p data-i18n="idx.act.survey.p">Eight questions about the environment where you live. Your answers decide where the next sensors go. The campaign starts with you.</p>
         <div class="go" data-i18n="idx.act.survey.go">Open the survey →</div>
       </a>
-      <a class="actcard build rv" id="act-build" href="https://github.com/Meaningful-Design-Group/makingsensebali/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
-        <div class="n" data-i18n="idx.act.build.n">03 · Open source</div>
-        <h3 data-i18n="idx.act.build.h3">Contribute hardware or software</h3>
-        <p data-i18n="idx.act.build.p">Enclosures, firmware, translations, or a fix to the dashboard. The designs and the code are public, licensed for reuse, and the guide tells you where to start.</p>
-        <div class="go" data-i18n="idx.act.build.go">Read the contributing guide →</div>
+      <a class="actcard build rv" id="act-build" href="https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2" target="_blank" rel="noopener">
+        <div class="n" data-i18n="idx.act.build.n">03 · An afternoon</div>
+        <h3 data-i18n="idx.act.build.h3">Build a sensor</h3>
+        <p data-i18n="idx.act.build.p">Node V3.2, our current design: five 3D-printed parts that snap together without a single screw. Print it, hang it on a wall or a pole, and its readings join the map. Temperature and humidity have not been checked against a reference station yet.</p>
+        <div class="go" data-i18n="idx.act.build.go">Open the build guide →</div>
       </a>
     </div>
+      <p class="act-note rv" data-i18n-html="idx.act.note">Got a printer? The <a href="https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2/stl" target="_blank" rel="noopener">STL files</a> are right here. Prefer to fix code or translations? The <a href="https://github.com/Meaningful-Design-Group/makingsensebali/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contributing guide</a> says where to start. And if you work somewhere with a reference-grade air monitor — a university, a hospital, BMKG — <a href="mailto:fablabbali@gmail.com?subject=Co-location%20for%20Making%20Sense%20Bali">write to us</a>: one week of a sensor sitting beside yours is the one thing that would let us check every reading in this network.</p>
   </div>
 </section>
 

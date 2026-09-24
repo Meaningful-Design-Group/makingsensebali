@@ -1,9 +1,8 @@
 [English](README.md) · **Bahasa Indonesia** · [Español](README.es.md)
 
-# Bayu v6 — bodi V3 versi sekrup
+# Node V3.1 — bodi V3 versi sekrup
 
-*Fab Lab Bali menyebut desain ini **DIY Environmental Sensor Node V3.1**. Objek yang sama, dua
-sistem penamaan — lihat [Penamaan](#penamaan).*
+***DIY Environmental Sensor Node V3.1** milik Fab Lab Bali. Folder ini bernama `bayu-v6` sampai September 2026.*
 
 Rumah luar ruang cetak 3D untuk node kualitas udara DIY Making Sense Bali.
 *Bayu* — angin. Iterasi pertama dari generasi V3: bodi ringkas, elektronik
