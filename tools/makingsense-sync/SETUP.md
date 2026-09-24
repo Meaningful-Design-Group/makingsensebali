@@ -17,7 +17,7 @@ It is **fail-safe**: each stage is isolated; one failing never blocks the others
 
 1. **Clone the repo** somewhere stable:
    ```
-   git clone git@github.com:mdg-bali/makingsensebali.git ~/makingsensebali
+   git clone git@github.com:Meaningful-Design-Group/makingsensebali.git ~/makingsensebali
    ```
 
 2. **GitHub deploy key (push access)** — so the mini can push:

@@ -10,7 +10,7 @@
 // Sensors: BME680 (I2C 0x76) + Seeed Grove HM3301 (I2C 0x40)
 // Platform: publishes to mqtt.smartcitizen.me over TLS
 //
-// Repo: https://github.com/mdg-bali/makingsensebali
+// Repo: https://github.com/Meaningful-Design-Group/makingsensebali
 // License: MIT — every dependency below is MIT/permissive, no closed blobs.
 //   (This is the "open" firmware. The BSEC2/certified-IAQ revision is kept
 //   as a separate, parallel file in this repo — see /firmware/v2-bsec2/ —
