@@ -150,10 +150,16 @@ function dedupe(list){
   return out;
 }
 
-var _cache = null, _inflight = null;
+var _cache = null, _inflight = null, _fetchedAt = 0;
 
-function load(){
-  if (_cache) return Promise.resolve(_cache);
+// force=true drops the cached copy so the page can poll for a new reading.
+// Deliberately NOT cache-busted with a query parameter: the API is edge-cached
+// at s-maxage=300 and the browser holds it for max-age=60, so a plain fetch
+// after a minute costs an edge hit and after five a fresh origin read. Adding
+// ?t=<now> would bypass both and push every visitor's poll onto their origin,
+// which is a rude way to treat somebody else's free API.
+function load(force){
+  if (_cache && !force) return Promise.resolve(_cache);
   if (_inflight) return _inflight;
   _inflight = fetch(API + '/latest')
     .then(function(r){ if(!r.ok) throw new Error('latest HTTP '+r.status); return r.json(); })
@@ -164,6 +170,7 @@ function load(){
         records: rows.length,
         generatedAt: j.generated_at || null
       };
+      _fetchedAt = Date.now();
       _inflight = null;
       return _cache;
     }).catch(function(e){
@@ -210,6 +217,8 @@ window.SCB_NEAR = {
   SCALES: SCALES,
   FRESH_HOURS: FRESH_HOURS,
   load: load,
+  refresh: function(){ return load(true); },
+  fetchedAt: function(){ return _fetchedAt; },
   bandsFor: bandsFor,
   bandSummary: bandSummary,
   distanceKm: haversineKm,
