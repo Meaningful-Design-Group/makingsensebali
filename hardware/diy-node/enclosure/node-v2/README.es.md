@@ -11,7 +11,7 @@
 > sensor de temperatura, y su toma de aire inferior llega tarde a los picos reales de contaminación.
 > **No imprimas esta carcasa para un despliegue.** Lee primero
 > [Evaluación](#evaluación--qué-mostró-la-prueba-de-campo) y construye
-> [Bayu v7](../../bayu-v7/) en su lugar. Esta carpeta se conserva porque un diseño que falló por dos
+> [Bayu v7](../node-v3.2/) en su lugar. Esta carpeta se conserva porque un diseño que falló por dos
 > razones con nombre propio vale más para quien construya después que uno que simplemente funcionó.
 
 > **Sobre el nombre, para que nadie pierda un día con esto.** "V2" aquí es la segunda generación
@@ -42,7 +42,7 @@
 
 ## Por qué se construyó
 
-Una estación de calidad del aire de grado de referencia cuesta más de lo que cualquier banjar, escuela o grupo vecinal de Bali va a reunir por su cuenta. La propia tabla de niveles de la campaña las sitúa en [USD 5.000–25.000+](../../../README.es.md#dónde-encaja-esto--los-niveles-de-sensores-de-la-campaña). Armar algo con sensores modulares baratos es la alternativa evidente, y de eso trata todo este árbol de carpetas.
+Una estación de calidad del aire de grado de referencia cuesta más de lo que cualquier banjar, escuela o grupo vecinal de Bali va a reunir por su cuenta. La propia tabla de niveles de la campaña las sitúa en [USD 5.000–25.000+](../../README.es.md#dónde-encaja-esto--los-niveles-de-sensores-de-la-campaña). Armar algo con sensores modulares baratos es la alternativa evidente, y de eso trata todo este árbol de carpetas.
 
 Lo difícil no es la electrónica. Es la caja.
 
@@ -73,7 +73,7 @@ Los objetivos 1 y 2 se sostuvieron. El 3 no — ver la evaluación.
 
 ## De dónde salió la forma
 
-La distribución de compartimentos está tomada directamente de la arquitectura de carcasa de la **estación Smart Citizen Kit (SCK 2.3)** — el documento original nombra la modularidad, la limpieza y el minimalismo como lo que tomó de ella. Conviene notar que la columna vertebral de calibración de la propia campaña es el **SCK 2.1** ([tabla de niveles](../../../README.es.md#dónde-encaja-esto--los-niveles-de-sensores-de-la-campaña)); el 2.3 es un kit posterior, así que esto es un préstamo de la línea de producto y no de la estación exacta contra la que después se midió el Nodo V2.
+La distribución de compartimentos está tomada directamente de la arquitectura de carcasa de la **estación Smart Citizen Kit (SCK 2.3)** — el documento original nombra la modularidad, la limpieza y el minimalismo como lo que tomó de ella. Conviene notar que la columna vertebral de calibración de la propia campaña es el **SCK 2.1** ([tabla de niveles](../../README.es.md#dónde-encaja-esto--los-niveles-de-sensores-de-la-campaña)); el 2.3 es un kit posterior, así que esto es un préstamo de la línea de producto y no de la estación exacta contra la que después se midió el Nodo V2.
 
 | | |
 |---|---|
@@ -130,7 +130,7 @@ Versión legible por máquina, con columnas de aprovisionamiento: **[`bom.csv`](
 | 9 | Tornillo M3 × 14 mm | Cabeza plana, acero al carbono (NINDEJIN) | 2 | 500 | 1.000 |
 | | | | | **Total** | **Rp 1.253.800** |
 
-El documento original da estas cifras sin decir dónde ni cuándo se compraron las piezas, así que tómalas como el costo de un montaje en Indonesia y no como una lista de precios. La [nota de aprovisionamiento del README principal](../../../README.es.md) es mejor guía para quien vaya a pedir: el HM3301 es el que manda en el costo, y pedirlo directo a Seeed suele salir más barato que la venta local al público cuando es un lote. Cualquier tornillo de cabeza plana equivalente sustituye a los de marca.
+El documento original da estas cifras sin decir dónde ni cuándo se compraron las piezas, así que tómalas como el costo de un montaje en Indonesia y no como una lista de precios. La [nota de aprovisionamiento del README principal](../../README.es.md) es mejor guía para quien vaya a pedir: el HM3301 es el que manda en el costo, y pedirlo directo a Seeed suele salir más barato que la venta local al público cuando es un lote. Cualquier tornillo de cabeza plana equivalente sustituye a los de marca.
 
 <!-- TODO: dónde y cuándo se compraron las piezas, y si estos son precios minoristas o de distribuidor. -->
 <!-- TODO: equivalente en USD + el tipo de cambio IDR/USD en la fecha de compra, para que la cifra siga siendo comparable con los costos en USD citados en ../README.es.md. -->
@@ -178,7 +178,7 @@ Todas las interfaces externas se concentran en la placa blanca inferior, lo que 
 
 Herramientas: soldador, destornillador que corresponda a tus tornillos, alicate de corte y pelacables, pistola de calor o encendedor para el termorretráctil. <!-- TODO: tiempo de montaje. El documento original no registra ninguno; las ~3 horas del README principal son para otro montaje. -->
 
-1. **Imprime la carcasa** en PETG, no en PLA — [el PLA se ablanda a las temperaturas de un techo balinés](../../../README.es.md). <!-- TODO: altura de capa, número de perímetros, relleno, temperaturas de nozzle/cama, orientación de impresión, soportes, tiempo de impresión. Nada de esto está en el documento original y todo hace falta para reimprimir la pieza. -->
+1. **Imprime la carcasa** en PETG, no en PLA — [el PLA se ablanda a las temperaturas de un techo balinés](../../README.es.md). <!-- TODO: altura de capa, número de perímetros, relleno, temperaturas de nozzle/cama, orientación de impresión, soportes, tiempo de impresión. Nada de esto está en el documento original y todo hace falta para reimprimir la pieza. -->
 2. **Arma la placa base.** Suelda el XIAO al centro de la perfboard de 3 × 7 cm, los dos conectores Grove/JST a cada lado y la bornera de tornillo. Después traza los buses por debajo, punto a punto: rojo y negro en paralelo para la alimentación, las dos líneas I²C en paralelo hacia ambos conectores.
 3. **Monta el herraje de la placa inferior.** Suelda los cables del jack DC, aísla las uniones con termorretráctil y monta el pigtail SMA. Hazlo antes de que entre nada en la carcasa: la placa se trabaja mucho mejor vacía.
 4. **Monta el sensor de polvo.** HM3301 en la bahía izquierda, cuatro tornillos M2 × 6 en las torretas del chasis, ventilador de admisión mirando a la rejilla circular.
@@ -190,11 +190,11 @@ Herramientas: soldador, destornillador que corresponda a tus tornillos, alicate 
 
 > Los pasos 2, 5 y 7 son los tres que más necesitan una foto cenital con las piezas etiquetadas. Las dos fotos de la placa base cubren razonablemente el paso 2; los pasos 5 y 7 dependen hoy de una única foto general del interior. <!-- TODO: fotografiar los pasos 5 y 7. -->
 
-**Antes de desplegar**, recubre la cara soldada de la perfboard con recubrimiento conforme de silicona, enmascarando las aberturas de los sensores y el conector USB-C. Bali está por encima del 80% de humedad relativa buena parte del año y las placas sin recubrir se corroen en 6–12 meses; el razonamiento y el producto están en [el README principal](../../../README.es.md).
+**Antes de desplegar**, recubre la cara soldada de la perfboard con recubrimiento conforme de silicona, enmascarando las aberturas de los sensores y el conector USB-C. Bali está por encima del 80% de humedad relativa buena parte del año y las placas sin recubrir se corroen en 6–12 meses; el razonamiento y el producto están en [el README principal](../../README.es.md).
 
 ## Firmware y flujo de datos
 
-El Nodo V2 corre el sketch compartido de nodo DIY de la campaña sin más cambios de código que el token de Smart Citizen propio de cada dispositivo: **[`../firmware/diy_node/`](../../../firmware/diy_node/)**. El mismo archivo apunta tanto al XIAO ESP32-S3 como al ESP32-C3 — el mapeo de pines D4/D5 se resuelve por variante de placa, así que nada en él es específico de un chip.
+El Nodo V2 corre el sketch compartido de nodo DIY de la campaña sin más cambios de código que el token de Smart Citizen propio de cada dispositivo: **[`../firmware/diy_node/`](../../firmware/diy_node/)**. El mismo archivo apunta tanto al XIAO ESP32-S3 como al ESP32-C3 — el mapeo de pines D4/D5 se resuelve por variante de placa, así que nada en él es específico de un chip.
 
 Cada 60 segundos el XIAO direcciona cada sensor por turno vía I²C, empaqueta las lecturas como JSON y las publica por Wi-Fi vía MQTT en el puerto 8883 a `mqtt.smartcitizen.me`, donde las lee el tablero de la campaña. La conexión es TLS pero **la validación de certificado está desactivada** en esta versión del firmware (`net.setInsecure()`) — suficiente para un kit de taller, no para un nodo cuyos datos entran en un argumento de política pública. El propio sketch lo dice donde ocurre.
 
@@ -212,7 +212,7 @@ IDs de canal del catálogo global de Smart Citizen que publica este nodo:
 
 ![Diagrama de integración del sistema](img/12-system-integration-diagram.png)
 
-> **Documentación contra código, señalado.** El documento original describe lecturas brutas que se "filtran mediante una función de cálculo de calibración local para eliminar el error del chasis" antes de publicarse. **Esa función no existe en el firmware enlazado.** El firmware publica temperatura y humedad en bruto, más una aproximación de IAQ en el dispositivo explícitamente no calibrada. Dos razones por las que importa: la función descrita no existe, y si alguien la agrega, choca con la política declarada de la campaña de que [las correcciones viven en la capa de procesamiento del tablero, no en el firmware](../../../README.es.md) — las correcciones en firmware no son auditables, las del tablero quedan versionadas. El autocalentamiento que encontró la evaluación es un error real que sí pide una corrección real; su lugar es el pipeline de datos. <!-- TODO: retirar esta afirmación de circulación, o apuntar al código que realmente la implementa. -->
+> **Documentación contra código, señalado.** El documento original describe lecturas brutas que se "filtran mediante una función de cálculo de calibración local para eliminar el error del chasis" antes de publicarse. **Esa función no existe en el firmware enlazado.** El firmware publica temperatura y humedad en bruto, más una aproximación de IAQ en el dispositivo explícitamente no calibrada. Dos razones por las que importa: la función descrita no existe, y si alguien la agrega, choca con la política declarada de la campaña de que [las correcciones viven en la capa de procesamiento del tablero, no en el firmware](../../README.es.md) — las correcciones en firmware no son auditables, las del tablero quedan versionadas. El autocalentamiento que encontró la evaluación es un error real que sí pide una corrección real; su lugar es el pipeline de datos. <!-- TODO: retirar esta afirmación de circulación, o apuntar al código que realmente la implementa. -->
 
 ## Evaluación — qué mostró la prueba de campo
 
@@ -231,7 +231,7 @@ Ninguno de los dos fallos se anuncia. Los dos producen datos de apariencia veros
 
 Ambas cosas se resolvieron en la carcasa piña v5, que pone cada ranura de respiración en la sombra de lluvia de una escama y hace correr una chimenea desde una admisión baja a la altura del BME680 hasta un escape alto bajo la tapa.
 
-**La V3 tomó otro camino, y ninguno de los dos requisitos sobrevivió al viaje.** La generación V3 de Fab Lab Bali — [`../../bayu-v6/`](../../bayu-v6/) (= Node V3.1) y [`../../bayu-v7/`](../../bayu-v7/) (= Node V3.2, la vigente) — volvió a un cuerpo horizontal compacto. Corrige un tercer problema de flujo de aire que esta evaluación no detectó, la reaspiración del escape, con un conducto que lleva la salida del sensor PM hacia un costado. Pero su admisión sigue estando en la cara inferior, y el BME680 sigue alojado en el mismo volumen sellado que la radio, bajo una tapa plana sin escudo de radiación. Ni el requisito 1 ni el 2 se cumplen.
+**La V3 tomó otro camino, y ninguno de los dos requisitos sobrevivió al viaje.** La generación V3 de Fab Lab Bali — [`../../node-v3.1/`](../node-v3.1/) (= Node V3.1) y [`../../node-v3.2/`](../node-v3.2/) (= Node V3.2, la vigente) — volvió a un cuerpo horizontal compacto. Corrige un tercer problema de flujo de aire que esta evaluación no detectó, la reaspiración del escape, con un conducto que lleva la salida del sensor PM hacia un costado. Pero su admisión sigue estando en la cara inferior, y el BME680 sigue alojado en el mismo volumen sellado que la radio, bajo una tapa plana sin escudo de radiación. Ni el requisito 1 ni el 2 se cumplen.
 
 Puede que no importe — el cuerpo V3 tiene otra forma y su volumen interno no es el de la V2 — pero nadie lo ha medido. Hasta que una unidad V3 se co-ubique junto a un SCK, conviene asumir que las dos fallas documentadas aquí se mantienen.
 
@@ -241,12 +241,12 @@ Hay una tercera lección que la evaluación implica sin enunciar: **la compacida
 
 | Qué | Dónde |
 |---|---|
-| Firmware (compartido con toda la familia de nodos DIY) | [`../firmware/diy_node/`](../../../firmware/diy_node/) |
+| Firmware (compartido con toda la familia de nodos DIY) | [`../firmware/diy_node/`](../../firmware/diy_node/) |
 | Lista de materiales, legible por máquina | [`bom.csv`](bom.csv) |
 | Fotos, renders y diagramas | [`img/`](img/) |
 | Archivos de la carcasa Nodo V2 | [Carpeta de Google Drive](https://drive.google.com/file/d/1OdK7mdnLc2XkGRntHOQXK7PGmcP8E4bJ/view?usp=sharing) — **todavía no está en este repo** |
 | Artículo de referencia de la estación SCK | [HardwareX 6 (2019)](https://www.sciencedirect.com/science/article/pii/S2468067219300203) |
-| Carcasa recomendada actualmente | [`../../bayu-v7/`](../../bayu-v7/) |
+| Carcasa recomendada actualmente | [`../../node-v3.2/`](../node-v3.2/) |
 
 ## Qué le falta todavía a esta documentación
 

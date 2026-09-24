@@ -37,7 +37,7 @@ home-deployable kit for the 2026 Fab City landscape.
 |---|---|
 | **Reference deployment** | Making Sense Bali · Bali, Indonesia · pilot phase, Q2 2026 |
 | **Run by** | [Fab Lab Bali](https://fablabbali.com) as the reporting layer of [Making Sense Bali](https://makingsense.fablabbali.com/) |
-| **Replication kit** | Available — see [REPLICATION.md](REPLICATION.md) |
+| **Replication kit** | Available — see [REPLICATION.md](../REPLICATION.md) |
 | **Planned next** | Pelapor Barcelona · Fab Lab Barcelona · 2026 H2 |
 | **Federation layer** | PLANETAI · planned, infrastructure not yet built |
 
@@ -140,7 +140,8 @@ a household owns. No proprietary APIs in the path, no monthly SaaS bills, no
 vendor that can deplatform the campaign. For a Fab City node that's not
 incidental — it's the point.
 
-For architecture detail, see [ARCHITECTURE.md](ARCHITECTURE.md).
+For architecture detail, see the sections above.
+<!-- TODO: ARCHITECTURE.md is referenced here and in the tree diagram below but has never existed in this repo. Either write it or drop the reference. -->
 For deployment, see [DEPLOY.md](DEPLOY.md).
 
 ---
@@ -167,7 +168,7 @@ consent through the dashboard.
 ## Replicate it
 
 If you run a Fab City node, a Fab Lab, or a community sensing campaign and
-you want your own deployment, read **[REPLICATION.md](REPLICATION.md)**.
+you want your own deployment, read **[REPLICATION.md](../REPLICATION.md)**.
 
 You will need:
 

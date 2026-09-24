@@ -150,9 +150,9 @@ gets the whole stack with a single `git clone`.
 ├── docs/
 │   ├── methodology.md     Making Sense, adapted for bioregional deployment
 │   ├── phase-1-survey.md  running the matters-of-concern survey
-│   ├── sensors.md         deploying SCK + integrating OpenAQ / Sensor.Community
+│   ├── sensor-strategy.md deploying SCK + integrating OpenAQ / Sensor.Community
 │   ├── reports.md         operating the reports component
-│   ├── web-presence.md    customizing the campaign site
+│   ├── web-presence.md    customizing the campaign site  (TODO: not written)
 │   └── federation.md      Murmurations identity, future PLANETAI
 │
 ├── index.html             campaign home page

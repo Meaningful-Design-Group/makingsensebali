@@ -9,7 +9,7 @@ Rumah luar ruang cetak 3D untuk node kualitas udara DIY Making Sense Bali.
 *Bayu* — angin. Iterasi pertama dari generasi V3: bodi ringkas, elektronik
 hibrida, opsi LoRa, dirakit dengan sekrup.
 
-> **Status: digantikan oleh [`../bayu-v7/`](../bayu-v7/) (= Node V3.2).**
+> **Status: digantikan oleh [`../node-v3.2/`](../node-v3.2/) (= Node V3.2).**
 > v7 adalah bodi yang sama tanpa sekrup, dengan dudukan dinding dan tiang yang menyatu di bagian belakang.
 > Versi itu menghilangkan 11 sekrup dan satu bagian cetak dari proses perakitan serta tidak memerlukan braket.
 > **Bangun v7.** Folder ini tetap dipertahankan karena STL di sini sudah dipakai di lapangan, dan
@@ -44,8 +44,8 @@ Dua sistem penamaan bertabrakan di pohon folder ini dan keduanya masih dipakai.
 
 | Repo ini | Fab Lab Bali | Apa itu |
 |---|---|---|
-| `bayu-v6/` (di sini) | **Node V3.1** | Rakitan bersekrup, braket dinding terpisah. Sudah digantikan. |
-| `bayu-v7/` | **Node V3.2** | Sepenuhnya tanpa sekrup, dudukan terintegrasi. Bangun yang ini. |
+| `node-v3.1/` (di sini) | **Node V3.1** | Rakitan bersekrup, braket dinding terpisah. Sudah digantikan. |
+| `node-v3.2/` | **Node V3.2** | Sepenuhnya tanpa sekrup, dudukan terintegrasi. Bangun yang ini. |
 
 Berikut adalah *enam berkas STL yang sama*, diverifikasi bita per bita terhadap rilis V3.1
 Fab Lab Bali, bukan disimpulkan dari nama berkas:
@@ -67,7 +67,7 @@ tidak pernah dikomit di sini.
 Sementara itu garis keturunan rumah sensor terhitung v1-box → v2-lantern → v3-gourd → v4-column →
 v5 pine cone → v6 → v7, dan Fab Lab Bali menghitung generasi node secara utuh V1 → V2 → V3.1 →
 V3.2. Kedua penghitungan itu tidak berhubungan. Ini juga *bukan*
-[`../previous-iterations/node-v2/`](../previous-iterations/node-v2/), yang merupakan generasi
+[`../node-v2/`](../node-v2/), yang merupakan generasi
 kedua dari keseluruhan node pada cangkang yang sama sekali berbeda.
 
 ## Mengapa generasi V3 ada
@@ -160,7 +160,7 @@ Ini memperbaiki hisap balik. Ini **tidak** mengatasi dua kegagalan yang ditemuka
 sebelumnya dikolokasikan dengan Smart Citizen Kit — lubang masuk sisi bawah yang meratakan puncak
 PM, dan pemanasan sendiri BME680 di dalam bay elektronik. Keduanya tidak berubah di v6 maupun
 di v7. Lihat
-[catatan jujur v7 tentang hal ini](../bayu-v7/README.id.md),
+[catatan jujur v7 tentang hal ini](../node-v3.2/README.id.md),
 yang mencakup seluruh generasi V3.
 
 ## Varian bodi
@@ -173,7 +173,7 @@ yang mencakup seluruh generasi V3.
 Hanya bodi antena ganda yang dikomit ke repo ini, sebagai `stl/Main_Body.stl`. Varian
 antena tunggal ada di
 [rilis hulu V3.1](https://drive.google.com/drive/folders/1vudckcW-5sOKlDBSPK77gQ5bCxbDxIM9);
-jika Anda membutuhkannya, pilih [v7](../bayu-v7/), yang menyertakan keduanya.
+jika Anda membutuhkannya, pilih [v7](../node-v3.2/), yang menyertakan keduanya.
 
 ## Bagian cetak
 
@@ -241,13 +241,13 @@ Lihat [`bom.csv`](bom.csv) untuk versi yang terbaca mesin.
 > <!-- TODO: jenis alur sekrup; harga; spesifikasi pengikat dinding untuk braket. -->
 
 **Tanpa harga.** BoM V3 pada dokumen sumber tidak punya kolom harga.
-[BoM Node V2](../previous-iterations/node-v2/bom.csv) memuat harga IDR dari pembelian
+[BoM Node V2](../node-v2/bom.csv) memuat harga IDR dari pembelian
 sebelumnya pada papan utama yang berbeda — hanya sebagai orde besaran, bukan penawaran harga.
 
 ## Pengkabelan
 
 Sama untuk seluruh generasi V3. Alih-alih menduplikasinya, lihat
-**[v7 § Pengkabelan](../bayu-v7/README.id.md)** — tiga pilihan papan utama, lengkap dengan skematik
+**[v7 § Pengkabelan](../node-v3.2/README.id.md)** — tiga pilihan papan utama, lengkap dengan skematik
 dan tampilan breadboard.
 
 > Satu koreksi yang dibawa ke sana: tabel Grove Shield pada dokumen sumber memberi HM3301
@@ -285,7 +285,7 @@ Konvensional, berbasis sekrup. Setiap bagian internal ditahan oleh pelat dan sek
 gantungkan bodi pada braket tersebut.
 
 Tidak ada opsi tiang pada v6 — tidak ada jalur cable tie terintegrasi. Jika lokasinya berupa tiang
-atau pohon, gunakan [v7](../bayu-v7/#mounting).
+atau pohon, gunakan [v7](../node-v3.2/#mounting).
 
 <!-- TODO: spesifikasi pengikat braket — ukuran sekrup, jarak, jenis fischer. Kapasitas beban. -->
 

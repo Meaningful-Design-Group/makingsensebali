@@ -2,12 +2,12 @@
 
 Retired enclosure designs, kept because the failures are the most reusable
 knowledge in this repository. Every requirement in
-[`../bayu-v7/`](../bayu-v7/) exists because one of these designs taught it.
+[`../node-v3.2/`](../node-v3.2/) exists because one of these designs taught it.
 
 **None of these is the current design.** Build
-[Bayu Sensor Enclosure v7](../bayu-v7/).
+[Bayu Sensor Enclosure v7](../node-v3.2/).
 
-Note that [`../bayu-v6/`](../bayu-v6/) is also superseded but is *not* in here: units
+Note that [`../node-v3.1/`](../node-v3.1/) is also superseded but is *not* in here: units
 are in the field and it still needs its assembly steps findable.
 
 | Iteration | Retired because | Files |

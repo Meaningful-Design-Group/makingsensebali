@@ -10,7 +10,7 @@ naming systems — see [Naming](#naming-read-this-before-you-search-the-repo).*
 iteration that stops using screws.
 
 **Stage:** printable, field-ready pending co-location. Not yet replication-ready — no CAD source.
-**Supersedes:** [`../bayu-v6/`](../bayu-v6/) (= Node V3.1) and everything in [`../previous-iterations/`](../previous-iterations/)
+**Supersedes:** [`../node-v3.1/`](../node-v3.1/) (= Node V3.1) and everything in [`../previous-iterations/`](../previous-iterations/)
 **Licence:** CERN-OHL-W-2.0 (hardware) · CC-BY-SA-4.0 (this documentation)
 **Source:** *Dokumentasi Teknis: DIY Environmental Sensor Node V3*, Fab Lab Bali, September 2026. Translated from Indonesian.
 
@@ -39,12 +39,12 @@ Two naming systems collided in this folder tree and both are still in use.
 
 | This repo | Fab Lab Bali | What it is |
 |---|---|---|
-| `bayu-v6/` | **Node V3.1** | Screwed assembly, separate wall bracket. Superseded. |
-| `bayu-v7/` (here) | **Node V3.2** | Full screwless, integrated mounting. **Build this one.** |
+| `node-v3.1/` | **Node V3.1** | Screwed assembly, separate wall bracket. Superseded. |
+| `node-v3.2/` (here) | **Node V3.2** | Full screwless, integrated mounting. **Build this one.** |
 
-`bayu-v6/` and Node V3.1 are the *same six STL files* — verified byte-for-byte, not
+`node-v3.1/` and Node V3.1 are the *same six STL files* — verified byte-for-byte, not
 inferred from filenames. The repo received the meshes in September 2026 without the
-document that described them; this folder and [`../bayu-v6/`](../bayu-v6/) are that
+document that described them; this folder and [`../node-v3.1/`](../node-v3.1/) are that
 document, arriving late.
 
 The enclosure lineage counts v1-box → v2-lantern → v3-gourd → v4-column → v5 pine cone →
@@ -75,7 +75,7 @@ roll off a roof does not.
 ## What this design does and does not fix
 
 The node this generation replaces was co-located against a Smart Citizen Kit and
-[failed twice](../previous-iterations/node-v2/README.md#evaluation--what-the-field-test-showed).
+[failed twice](../node-v2/README.md#evaluation--what-the-field-test-showed).
 Being straight about which of those failures V3.2 addresses:
 
 **Fixed — exhaust re-suction.** On a compact enclosure the PM sensor's own outflow gets
@@ -88,7 +88,7 @@ document, and the geometry says neither was designed against:
 
 1. **Underside intake.** V2's evaluation found the downward-facing inlet restricted
    circulation, so PM spikes arrived late and flattened. V3.2's intake is still on the
-   underside of the body ([`05-underside-intake-outflow.png`](../bayu-v6/img/05-underside-intake-outflow.png)).
+   underside of the body ([`05-underside-intake-outflow.png`](../node-v3.1/img/05-underside-intake-outflow.png)).
    The V2 write-up's first requirement for V3 was *"intake from the top or open sides, not
    the bottom."* That requirement is not met.
 2. **BME680 self-heating.** V2's evaluation found the ESP32's Wi-Fi radio heating the
@@ -122,7 +122,7 @@ materials.
 > **The Supermini and the XIAO are not pin-compatible on the DIY PCB.** I²C lands on D4/D5
 > for the XIAO and D8/D9 for the Supermini. Check [Wiring](#wiring) before you heat the iron.
 
-![Mainboard options in the bay](../bayu-v6/img/10-mainboard-options.png)
+![Mainboard options in the bay](../node-v3.1/img/10-mainboard-options.png)
 
 **Environmental sensor** — Bosch BME680 breakout, or Seeed Grove BME680. Different
 footprints, so print the matching cover:
@@ -142,7 +142,7 @@ Outside air is drawn in through the underside inlet to the HM3301's own fan. Mea
 leaves through the extension duct, which directs it sideways and away from the inlet so it
 is not immediately re-measured.
 
-![Underside intake and outflow duct](../bayu-v6/img/05-underside-intake-outflow.png)
+![Underside intake and outflow duct](../node-v3.1/img/05-underside-intake-outflow.png)
 
 Read that alongside [What this design does and does not fix](#what-this-design-does-and-does-not-fix)
 — the duct solves re-suction, not intake restriction.
@@ -183,7 +183,7 @@ features on the back face — the 2 mm is the wall bracket, absorbed into the bo
 Parts are exported in assembly coordinates, not print coordinates — most have a negative Z
 minimum. Slicers drop them to the bed, but the files are not pre-oriented for printing.
 
-![The printed parts](../bayu-v6/img/11-printed-parts-v31.png)
+![The printed parts](../node-v3.1/img/11-printed-parts-v31.png)
 
 ## Print settings
 
@@ -225,7 +225,7 @@ See [`bom.csv`](bom.csv) for the machine-readable version in the repo's Open-Mak
 | 9 | Cable ties | 20–30 cm, 3–4 mm wide | 2 | Pole mounting only |
 
 **No prices.** The source document's V3.2 BoM has no price column, and the campaign does
-not have a current quote for this build. The [Node V2 BoM](../previous-iterations/node-v2/bom.csv)
+not have a current quote for this build. The [Node V2 BoM](../node-v2/bom.csv)
 carries IDR prices from an earlier purchase — use them as an order of magnitude, not as a
 quote, and note that V2 used a different mainboard.
 
@@ -389,7 +389,7 @@ back to Fab Lab Bali:
   Corrected to 5 V here. Following the table would leave the fan and laser dead.
 - The V3.1 assembly section names `V3.1_Top_Cover.stl` and `V3.1_Wall_Bracket_Separate.stl`;
   no such files exist in either release. The real names are `TOP COVER.stl` and
-  `BRACKET TO WALL.stl`. Documented in [`../bayu-v6/`](../bayu-v6/).
+  `BRACKET TO WALL.stl`. Documented in [`../node-v3.1/`](../node-v3.1/).
 
 ---
 
