@@ -46,3 +46,9 @@ Claude outputs/
 *.bundle
 # Node tooling, if anyone runs a local test harness from the repo root
 node_modules/
+# Firmware secrets. These were NOT ignored, which is how a `git add -A` on
+# 2026-09-24 committed two of them to a public repo. The .example files are
+# the ones that belong in git.
+secrets.h
+!secrets.h.example
+**/secrets.h
