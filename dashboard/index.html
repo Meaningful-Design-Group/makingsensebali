@@ -165,7 +165,7 @@ select{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:8px 1
     <div class="kicker rv in">The data view · for analysts &amp; policymakers</div>
     <h1 class="rv in">Every reading. Every <em>standard.</em></h1>
     <p class="rv in">The numbers behind the map — raw sensor history, international health thresholds, network coverage, and open downloads. Nothing hidden, nothing rounded for comfort. Low-cost sensors carry ±10–15% on absolute values; trends and relative magnitudes are reliable.</p>
-    <div class="asof rv in">Network snapshot · as of 4 Jun 2026, 17:55 WITA · auto-refreshes every 15 min</div>
+    <div class="asof rv in" id="asof">Network snapshot · reading…</div>
   </div>
 </header>
 
@@ -306,7 +306,28 @@ function withTimeout(p,ms){ return Promise.race([p, new Promise(function(_,rej){
 function firstHist(hist){ var ks=Object.keys(hist); for(var i=0;i<ks.length;i++){ if(hist[ks[i]]&&hist[ks[i]].h24&&hist[ks[i]].h24.length>=3) return hist[ks[i]]; } return null; }
 function renderChartPairs(pairs){ renderChart(pairs.map(function(p){ return {value:p[1], recordedAt:p[0]}; })); }
 
+/* The snapshot's real age, from the file itself. This line used to be static
+   text reading "as of 4 Jun 2026, 17:55 WITA · auto-refreshes every 15 min" —
+   hardcoded in June and still on the page in September, next to a refresh
+   promise the sync does not keep: the workflow asks GitHub for a quarter-hour
+   cron and gets roughly one run every two to five hours. Say the age instead,
+   and promise nothing. */
+function showAsOf(iso){
+  var el=document.getElementById('asof'); if(!el) return;
+  if(!iso){ el.textContent='Network snapshot · age unknown'; return; }
+  var t=new Date(iso), h=(Date.now()-t.getTime())/3600000;
+  var when=t.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Makassar'});
+  var age = h<1 ? Math.max(1,Math.round(h*60))+' min old'
+                : (h<48 ? Math.round(h)+' h old' : Math.round(h/24)+' days old');
+  el.textContent='Network snapshot · '+when+' WITA · '+age;
+}
+
 async function boot(){
+  try{
+    var base=(D.dataBaseUrl?D.dataBaseUrl():'../data');
+    var meta=await fetch(base+'/sensors.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;});
+    showAsOf(meta&&meta.generated_at);
+  }catch(_){ showAsOf(null); }
   var sensors=[]; try{ sensors=(await (D.fetchSensorsFast?D.fetchSensorsFast():[]))||[]; }catch(_){}
   var act=activeS(sensors), med=median(act.filter(function(s){return !s.excluded_from_avg;}).map(function(s){return s.reading.pm25;}));
   setT('m-median', med!=null?(Math.round(med*10)/10).toFixed(1):'–');

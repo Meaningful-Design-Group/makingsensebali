@@ -152,9 +152,20 @@ button.btn{font-family:var(--mono)}
 .near-title{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
 .near-close{appearance:none;background:transparent;border:0;font-size:20px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:10px 12px;margin:-10px -12px;border-radius:4px}
 .near-close:hover{background:rgba(0,0,0,.07)}
-.near-bands{list-style:none;margin:0;padding:0}
-.nb{padding:15px 16px;border-bottom:1px solid rgba(0,0,0,.08)}
-.nb:last-child{border-bottom:0}
+.near-tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(0,0,0,.1)}
+.near-tab{appearance:none;background:transparent;border:0;border-right:1px solid rgba(0,0,0,.08);
+  padding:11px 4px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-family:var(--mono);transition:background .18s,color .18s}
+.near-tab:last-child{border-right:0}
+.near-tab:hover{background:rgba(0,0,0,.05)}
+.near-tab .tl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.near-tab .tn{font-family:var(--serif);font-size:17px;line-height:1;color:var(--ink)}
+.near-tab[aria-selected="true"]{background:var(--ink)}
+.near-tab[aria-selected="true"] .tl{color:rgba(246,239,225,.7)}
+.near-tab[aria-selected="true"] .tn{color:var(--paper)}
+.near-tab.is-empty .tn{color:var(--ink-soft);opacity:.5}
+.near-tab[aria-selected="true"].is-empty .tn{color:rgba(246,239,225,.55)}
+.near-body{padding:16px}
 .nb-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .nb-name{font-family:var(--serif);font-size:19px;line-height:1.15}
 .nb-range{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);opacity:.8}
@@ -164,8 +175,6 @@ button.btn{font-family:var(--mono)}
 .nb-count{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-soft)}
 .nb-stale{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#a8763a}
 .nb-say{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-top:9px;max-width:52ch}
-.nb--empty{background:rgba(0,0,0,.025)}
-.nb--empty .nb-name{color:var(--ink-soft)}
 .nb-cta{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid currentColor;padding:2px 0}
 .near-foot{padding:13px 16px;font-family:var(--mono);font-size:10px;line-height:1.75;letter-spacing:.03em;color:var(--ink-soft);background:rgba(0,0,0,.035)}
 .near-foot a{text-decoration:underline;text-underline-offset:2px}
@@ -252,7 +261,8 @@ button.btn{font-family:var(--mono)}
         <span class="near-title" id="near-title" data-i18n="near.title">Sensors around you</span>
         <button class="near-close" id="near-close" type="button" aria-label="Close">&times;</button>
       </div>
-      <ol class="near-bands" id="near-bands"></ol>
+      <div class="near-tabs" id="near-tabs" role="tablist"></div>
+      <div class="near-body" id="near-body"></div>
       <p class="near-foot" id="near-foot"></p>
     </div>
     <p class="locnote rv in" id="locnote" data-i18n="idx.locnote.default">Your coordinates never leave this browser. The page downloads every station in Bali and measures the distances here, on your device — nothing about where you are is sent anywhere.</p>
@@ -471,50 +481,63 @@ addEventListener('resize',function(){ size(); rebuildParticles(); });
    confidently wrong at exactly the moment somebody wants to know.
    See near.js for the scales and why MIDDLE is in there.                     */
 var NEAR_BUILD_URL='https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2';
-var _near={lat:null,lng:null,data:null};
+var _near={lat:null,lng:null,data:null,scale:null};
 
 function nearEl(id){ return document.getElementById(id); }
 
 function fmtKm(km){ return km<1 ? Math.round(km*1000)+' m' : (km<10?km.toFixed(1):Math.round(km))+' km'; }
 
 function renderNear(){
-  var N=window.SCB_NEAR, box=nearEl('near'), list=nearEl('near-bands'), foot=nearEl('near-foot');
-  if(!N||!box||!list||!_near.data||_near.lat==null) return;
+  var N=window.SCB_NEAR, box=nearEl('near'), tabs=nearEl('near-tabs'), body=nearEl('near-body'), foot=nearEl('near-foot');
+  if(!N||!box||!tabs||!body||!_near.data||_near.lat==null) return;
   var res=N.bandsFor(_near.lat,_near.lng,_near.data.sensors);
+  var sums=res.bands.map(function(b){ return N.bandSummary(b); });
 
-  list.innerHTML=res.bands.map(function(b){
-    var sum=N.bandSummary(b);
-    var name=tr('near.scale.'+b.id+'.name'), range=tr('near.scale.'+b.id+'.range');
-    var head='<div class="nb-top"><span class="nb-name">'+esc(name)+'</span><span class="nb-range">'+esc(range)+'</span></div>';
-    if(!sum.count){
-      var say=tr('near.scale.'+b.id+'.empty');
-      /* Only the tightest band asks. Micro and middle are both usually empty,
-         and two identical CTAs stacked reads as a banner, not as a point. */
-      var cta=(b.id==='micro')
-        ? '<a class="nb-cta" href="'+NEAR_BUILD_URL+'" target="_blank" rel="noopener">'+esc(tr('near.cta.build'))+'</a>' : '';
-      return '<li class="nb nb--empty">'+head+'<p class="nb-say">'+esc(say)+'</p>'+cta+'</li>';
-    }
-    var stale=sum.count-sum.freshCount;
-    var body='<div class="nb-body">';
-    body += sum.pm25!=null
-      ? '<span class="nb-val" style="color:'+bandColor(sum.pm25)+'">'+(Math.round(sum.pm25*10)/10).toFixed(1)+'<i>µg/m³</i></span>'
-      : '';
-    body += '<span class="nb-count">'+esc(tr(sum.count===1?'near.count_one':'near.count_many',{n:sum.count}))+'</span>';
-    if(stale) body += '<span class="nb-stale">'+esc(tr('near.stale',{n:stale,h:N.FRESH_HOURS}))+'</span>';
-    body += '</div>';
-    var say=sum.pm25!=null ? tr('near.scale.'+b.id+'.has') : tr('near.nofresh',{h:N.FRESH_HOURS});
-    return '<li class="nb">'+head+body+'<p class="nb-say">'+esc(say)+'</p></li>';
-  }).join('');
-
-  /* The hero number takes the tightest band that has something fresh to say,
-     and the scope line names that scale — so the big number is never quietly
-     island-wide while the reader thinks it is their street. */
-  var chosen=null;
-  for(var i=0;i<res.bands.length && !chosen;i++){
-    var sm=N.bandSummary(res.bands[i]);
-    if(sm.pm25!=null) chosen={pm:sm.pm25,id:res.bands[i].id};
+  /* Open on the tightest scope that has something fresh to say, so the panel
+     does not greet somebody in Singaraja with three empty tabs. Once they pick
+     one it is theirs, including an empty one — an empty street scope is a
+     finding, not a mis-tap. */
+  if(_near.scale==null){
+    _near.scale=res.bands.length-1;
+    for(var i=0;i<sums.length;i++){ if(sums[i].pm25!=null){ _near.scale=i; break; } }
   }
-  if(chosen) applyReading(chosen.pm,'near.scope.'+chosen.id,true);
+  var sel=Math.min(_near.scale,res.bands.length-1);
+
+  tabs.innerHTML=res.bands.map(function(b,i){
+    var on=i===sel, n=sums[i].count;
+    return '<button type="button" role="tab" class="near-tab'+(n?'':' is-empty')+'" data-i="'+i+'"'+
+           ' aria-selected="'+(on?'true':'false')+'">'+
+           '<span class="tl">'+esc(tr('near.tab.'+b.id))+'</span>'+
+           '<span class="tn">'+n+'</span></button>';
+  }).join('');
+  tabs.querySelectorAll('.near-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ _near.scale=+btn.getAttribute('data-i'); renderNear(); });
+  });
+
+  var b=res.bands[sel], sum=sums[sel], id=b.id;
+  var head='<div class="nb-top"><span class="nb-name">'+esc(tr('near.scale.'+id+'.name'))+'</span>'+
+           '<span class="nb-range">'+esc(tr('near.scale.'+id+'.range'))+'</span></div>';
+  if(!sum.count){
+    /* Only the street scope asks — it is the one that is empty for everybody
+       in Bali, and the one a node would actually fill. */
+    var cta=(id==='street')
+      ? '<a class="nb-cta" href="'+NEAR_BUILD_URL+'" target="_blank" rel="noopener">'+esc(tr('near.cta.build'))+'</a>' : '';
+    body.innerHTML=head+'<p class="nb-say">'+esc(tr('near.scale.'+id+'.empty'))+'</p>'+cta;
+  } else {
+    var stale=sum.count-sum.freshCount;
+    var line='<div class="nb-body">';
+    if(sum.pm25!=null) line+='<span class="nb-val" style="color:'+bandColor(sum.pm25)+'">'+
+      (Math.round(sum.pm25*10)/10).toFixed(1)+'<i>µg/m³</i></span>';
+    line+='<span class="nb-count">'+esc(tr(sum.count===1?'near.count_one':'near.count_many',{n:sum.count}))+'</span>';
+    if(stale) line+='<span class="nb-stale">'+esc(tr('near.stale',{n:stale,h:N.FRESH_HOURS}))+'</span>';
+    line+='</div>';
+    var say=sum.pm25!=null ? tr('near.scale.'+id+'.has') : tr('near.nofresh',{h:N.FRESH_HOURS});
+    body.innerHTML=head+line+'<p class="nb-say">'+esc(say)+'</p>';
+  }
+
+  /* The hero follows the selected scope: pick "my street" and the big number
+     is your street's or nothing at all, never quietly the island's. */
+  if(sum.pm25!=null) applyReading(sum.pm25,'near.scope.'+id,id!=='island');
 
   var parts=[];
   if(res.nearest) parts.push(tr('near.nearest',{km:fmtKm(res.nearest.km),name:res.nearest.s.name}));

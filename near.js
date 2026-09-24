@@ -52,11 +52,21 @@ var DUPLICATE_RADIUS_KM = 0.05;
 // we put a number on. Roughly 20 of 105 stations are stale at any moment.
 var FRESH_HOURS = 6;
 
+// Four scopes the reader picks between, NESTED rather than disjoint rings.
+// Nesting matters: with disjoint bands (<=100 m, 500 m - 2 km, 2-5 km) there is
+// a hole between 100 m and 500 m, and real sensors fall in it — Denpasar
+// centre's nearest station is 190 m away and would have appeared nowhere.
+// Nested, "my street / my banjar / my region / the island" is also how somebody
+// actually asks the question, and nothing can be silently dropped.
+//
+// maxKm is what the scope INCLUDES. The representativeness radius each scope is
+// named for is the separate thing the copy explains: a 2 km scope is
+// neighbourhood-scale, which the EPA siting taxonomy puts at 500 m - 2 km.
 var SCALES = [
-  { id:'micro',        maxKm:0.1 },
-  { id:'middle',       maxKm:0.5 },
-  { id:'neighbourhood',maxKm:2   },
-  { id:'urban',        maxKm:5   }
+  { id:'street',       maxKm:0.1      },
+  { id:'neighbourhood',maxKm:2        },
+  { id:'regional',     maxKm:5        },
+  { id:'island',       maxKm:Infinity }
 ];
 
 function haversineKm(lat1, lon1, lat2, lon2){
@@ -148,23 +158,20 @@ function load(){
   return _inflight;
 }
 
-// Sort every sensor into its scale. Returns one entry per scale, IN ORDER,
-// including empty ones — an empty micro band is the most important thing this
-// page can tell somebody, so it is never silently dropped.
+// Returns one entry per scope, IN ORDER, including empty ones — an empty
+// street scope is the most important thing this page can tell somebody in Bali,
+// so it is never silently dropped.
 function bandsFor(lat, lng, sensors){
   var withD = sensors.map(function(s){
     return { s: s, km: haversineKm(lat, lng, s.lat, s.lng) };
   }).sort(function(a,b){ return a.km - b.km; });
 
-  var bands = SCALES.map(function(sc, i){
-    var min = i === 0 ? 0 : SCALES[i-1].maxKm;
+  var bands = SCALES.map(function(sc){
     return {
-      id: sc.id, minKm: min, maxKm: sc.maxKm,
-      sensors: withD.filter(function(o){ return o.km > min && o.km <= sc.maxKm; })
+      id: sc.id, maxKm: sc.maxKm,
+      sensors: withD.filter(function(o){ return o.km <= sc.maxKm; })
     };
   });
-  // micro is inclusive at zero — a sensor you are standing under is yours
-  bands[0].sensors = withD.filter(function(o){ return o.km <= SCALES[0].maxKm; });
 
   return { bands: bands, nearest: withD.length ? withD[0] : null, all: withD };
 }
