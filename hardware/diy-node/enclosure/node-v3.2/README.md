@@ -1,9 +1,9 @@
 **English** · [Bahasa Indonesia](README.id.md) · [Español](README.es.md)
 
-# Bayu v7 — current canonical enclosure
+# Node V3.2 — current canonical enclosure
 
-*Fab Lab Bali calls this design **DIY Environmental Sensor Node V3.2**. Same object, two
-naming systems — see [Naming](#naming-read-this-before-you-search-the-repo).*
+*Fab Lab Bali's **DIY Environmental Sensor Node V3.2**. This folder was called `bayu-v7`
+until September 2026 — see [Naming](#naming-read-this-before-you-search-the-repo).*
 
 3D-printed outdoor housing for the Making Sense Bali DIY air quality node.
 *Bayu* — wind. The whole V3 generation is an airflow argument, and v7 is the

@@ -11,7 +11,7 @@
 > sensor de temperatura, y su toma de aire inferior llega tarde a los picos reales de contaminación.
 > **No imprimas esta carcasa para un despliegue.** Lee primero
 > [Evaluación](#evaluación--qué-mostró-la-prueba-de-campo) y construye
-> [Bayu v7](../node-v3.2/) en su lugar. Esta carpeta se conserva porque un diseño que falló por dos
+> [Node V3.2](../node-v3.2/) en su lugar. Esta carpeta se conserva porque un diseño que falló por dos
 > razones con nombre propio vale más para quien construya después que uno que simplemente funcionó.
 
 > **Sobre el nombre, para que nadie pierda un día con esto.** "V2" aquí es la segunda generación

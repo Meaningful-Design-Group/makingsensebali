@@ -1,9 +1,9 @@
 [English](README.md) · [Bahasa Indonesia](README.id.md) · **Español**
 
-# Bayu v7 — carcasa canónica actual
+# Node V3.2 — carcasa canónica actual
 
-*Fab Lab Bali llama a este diseño **DIY Environmental Sensor Node V3.2**. El mismo objeto, dos
-sistemas de nomenclatura — ver [Nomenclatura](#nomenclatura-lea-esto-antes-de-buscar-en-el-repo).*
+*El **DIY Environmental Sensor Node V3.2** de Fab Lab Bali. Esta carpeta se llamaba `bayu-v7`
+hasta septiembre de 2026 — ver [Nomenclatura](#nomenclatura-lea-esto-antes-de-buscar-en-el-repo).*
 
 Carcasa de exterior impresa en 3D para el nodo DIY de calidad del aire de Making Sense Bali.
 *Bayu* — viento. Toda la generación V3 es un argumento sobre el flujo de aire, y la v7 es la
