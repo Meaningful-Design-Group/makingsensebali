@@ -194,7 +194,7 @@ Herramientas: soldador, destornillador que corresponda a tus tornillos, alicate 
 
 ## Firmware y flujo de datos
 
-El Nodo V2 corre el sketch compartido de nodo DIY de la campaña sin más cambios de código que el token de Smart Citizen propio de cada dispositivo: **[`../firmware/diy_node/`](../../firmware/diy_node/)**. El mismo archivo apunta tanto al XIAO ESP32-S3 como al ESP32-C3 — el mapeo de pines D4/D5 se resuelve por variante de placa, así que nada en él es específico de un chip.
+El Nodo V2 corre el sketch compartido de nodo DIY de la campaña sin más cambios de código que el token de Smart Citizen propio de cada dispositivo: **[`../firmware/previous/diy_node_v1.1/`](../../firmware/previous/diy_node_v1.1/)**. El mismo archivo apunta tanto al XIAO ESP32-S3 como al ESP32-C3 — el mapeo de pines D4/D5 se resuelve por variante de placa, así que nada en él es específico de un chip.
 
 Cada 60 segundos el XIAO direcciona cada sensor por turno vía I²C, empaqueta las lecturas como JSON y las publica por Wi-Fi vía MQTT en el puerto 8883 a `mqtt.smartcitizen.me`, donde las lee el tablero de la campaña. La conexión es TLS pero **la validación de certificado está desactivada** en esta versión del firmware (`net.setInsecure()`) — suficiente para un kit de taller, no para un nodo cuyos datos entran en un argumento de política pública. El propio sketch lo dice donde ocurre.
 
@@ -241,7 +241,7 @@ Hay una tercera lección que la evaluación implica sin enunciar: **la compacida
 
 | Qué | Dónde |
 |---|---|
-| Firmware (compartido con toda la familia de nodos DIY) | [`../firmware/diy_node/`](../../firmware/diy_node/) |
+| Firmware (compartido con toda la familia de nodos DIY) | [`../firmware/previous/diy_node_v1.1/`](../../firmware/previous/diy_node_v1.1/) |
 | Lista de materiales, legible por máquina | [`bom.csv`](bom.csv) |
 | Fotos, renders y diagramas | [`img/`](img/) |
 | Archivos de la carcasa Nodo V2 | [Carpeta de Google Drive](https://drive.google.com/file/d/1OdK7mdnLc2XkGRntHOQXK7PGmcP8E4bJ/view?usp=sharing) — **todavía no está en este repo** |

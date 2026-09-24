@@ -2,7 +2,7 @@
 
 *Firmware for the XIAO + Seeed Expansion Base + Grove HM3301 + Grove BME680.*
 
-This is the local-first sibling of [`../diy_node/diy_node.ino`](../diy_node/diy_node.ino).
+This is the local-first sibling of [`../diy_node_v3/diy_node_v3.ino`](../diy_node_v3/diy_node_v3.ino).
 Same two sensors, opposite priorities. That one publishes to Smart Citizen and
 you read the numbers on a website; this one puts them on the OLED and writes
 them to the microSD, and needs no network at all.
@@ -61,7 +61,8 @@ Libraries: U8g2 (olikraus), Adafruit BME680 + Adafruit Unified Sensor.
 ArduinoJson / PubSubClient / WiFiManager only if you turn publishing on.
 
 The HM3301 and PCF8563 are driven directly over I²C with no vendor library.
-For the HM3301 that's inherited from `diy_node.ino`: Seeed's library uses
+For the HM3301 that's inherited from the original `diy_node.ino`
+(now [`../previous/diy_node_v1.1/`](../previous/diy_node_v1.1/)): Seeed's library uses
 non-standard `u8`/`u16`/`u32` type aliases and won't compile against a modern
 arduino-esp32 core. The frame decode is the same proven code.
 
@@ -214,8 +215,8 @@ against a slowly-learned clean-air baseline, weighted 75/25 with humidity, and
 inverted so lower is cleaner. The gas element needs **24–48 h of power-on**
 before the baseline means anything, and it's relative to this unit's own
 environment — not comparable between nodes. The baseline now persists to NVS
-so a power cut no longer resets it to zero (an improvement over
-`diy_node.ino`). If you ever need a defensible comparable index, that's the
+so a power cut no longer resets it to zero (an improvement over the
+original `diy_node.ino`). If you ever need a defensible comparable index, that's the
 trigger to integrate BSEC or co-locate with a reference, not this proxy.
 
 **Temperature** will read several degrees hot in a closed enclosure next to

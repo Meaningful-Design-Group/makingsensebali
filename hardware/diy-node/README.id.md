@@ -225,7 +225,7 @@ Berfungsi untuk kit Basic (BME680 saja) maupun Plus (BME680 + HM3301) — sketch
 
 **Sketch yang sama menjalankan Basic dan Plus.** Untuk Basic, init HM3301 saat boot mengembalikan "NOT FOUND", firmware mencatatnya sekali, dan melewati publikasi PM untuk setiap siklus. Tanpa perubahan kode — cukup jangan sambungkan HM3301 dan biarkan ketiga ID sensornya tetap 0 dalam blok konfigurasi.
 
-Sketch firmware produksi ada di [`firmware/diy_node/diy_node.ino`](firmware/diy_node/diy_node.ino). Ia:
+Sketch firmware produksi ada di [`firmware/diy_node_v3/diy_node_v3.ino`](firmware/diy_node_v3/diy_node_v3.ino). Ia:
 
 - Menghidupkan I²C dan menyelidiki kedua sensor saat boot
 - Terhubung ke WiFi dan menyinkronkan jam melalui NTP (platform memerlukan stempel waktu `recorded_at` yang sebenarnya)
