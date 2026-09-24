@@ -202,7 +202,7 @@ def fetch_local_store() -> list:
                 "temp": r.get("temp"), "rh": r.get("rh"), "noise": r.get("noise"),
             },
             "calibrated": bool(r.get("calibrated", False)),
-            "detailsUrl": "https://mdg-bali.github.io/makingsensebali/dashboard/",
+            "detailsUrl": "https://makingsense.fablabbali.com/dashboard/",
         })
     log(f"  local store: {len(out)} sovereign kit(s)")
     return out

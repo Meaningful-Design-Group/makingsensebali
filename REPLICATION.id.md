@@ -128,7 +128,7 @@ Sebelum kode atau perangkat keras apa pun:
 ### Langkah 2 — Fork repositori ini
 
 ```bash
-git clone https://github.com/mdg-bali/makingsensebali your-org/makingsense-yourplace
+git clone https://github.com/Meaningful-Design-Group/makingsensebali your-org/makingsense-yourplace
 cd makingsense-yourplace
 
 # Update the remote to your own GitHub org
@@ -290,7 +290,7 @@ Untuk saat ini, rancang dan operasikan instance Anda seolah-olah ia akan berfede
 
 ## 7. Di mana mendapatkan bantuan
 
-- **Repositori**: [github.com/mdg-bali/makingsensebali](https://github.com/mdg-bali/makingsensebali) — ajukan issue, usulkan pull request
+- **Repositori**: [github.com/Meaningful-Design-Group/makingsensebali](https://github.com/Meaningful-Design-Group/makingsensebali) — ajukan issue, usulkan pull request
 - **Percakapan replikasi**: [fablabbali@gmail.com](mailto:fablabbali@gmail.com) — inbox Fab Lab Bali. Hubungi sebelum memulai; panggilan singkat di awal menghemat berminggu-minggu menebak-nebak.
 - **Jaringan Fab City**: [fab.city](https://fab.city/) — untuk status chapter, perkenalan mitra
 - **Platform Smart Citizen**: [smartcitizen.me](https://smartcitizen.me/) — perangkat keras, penyiapan akun, pertanyaan sensor

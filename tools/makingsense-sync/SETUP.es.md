@@ -17,7 +17,7 @@ Es **a prueba de fallos**: cada etapa está aislada; un fallo nunca bloquea a la
 
 1. **Clona el repo** en algún lugar estable:
    ```
-   git clone git@github.com:mdg-bali/makingsensebali.git ~/makingsensebali
+   git clone git@github.com:Meaningful-Design-Group/makingsensebali.git ~/makingsensebali
    ```
 
 2. **GitHub deploy key (acceso de push)** — para que el mini pueda hacer push:

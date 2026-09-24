@@ -17,7 +17,7 @@ Ia bersifat **fail-safe**: setiap tahap terisolasi; satu kegagalan tidak pernah 
 
 1. **Kloning repo** di tempat yang stabil:
    ```
-   git clone git@github.com:mdg-bali/makingsensebali.git ~/makingsensebali
+   git clone git@github.com:Meaningful-Design-Group/makingsensebali.git ~/makingsensebali
    ```
 
 2. **GitHub deploy key (akses push)** — agar mini dapat mendorong:

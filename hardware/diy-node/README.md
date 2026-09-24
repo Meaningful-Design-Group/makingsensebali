@@ -225,19 +225,22 @@ Works for both Basic (BME680 alone) and Plus (BME680 + HM3301) kits — the test
 
 **Same sketch runs both Basic and Plus.** For Basic, the HM3301 init at boot returns "NOT FOUND", the firmware logs it once, and skips PM publishing for every cycle. No code changes — just don't connect the HM3301 and leave its three sensor IDs at 0 in the config block.
 
-The production firmware sketch is at [`firmware/diy_node/diy_node.ino`](firmware/diy_node/diy_node.ino). It:
+The production firmware sketch is at [`firmware/diy_node_v3/diy_node_v3.ino`](firmware/diy_node_v3/diy_node_v3.ino). It:
 
 - Brings up I²C and probes both sensors at boot
 - Connects to WiFi and syncs the clock via NTP (the platform requires real `recorded_at` timestamps)
 - Reads temp, humidity, PM1, PM2.5, PM10 every 60 seconds
 - Publishes one MQTT message per cycle to `device/sck/{DEVICE_TOKEN}/readings` on `mqtt.smartcitizen.me:8883` (TLS)
 - Payload shape matches the platform's documented format (`data` → `recorded_at` + `sensors[]`)
+- Takes WiFi, the Smart Citizen token and a node name through a captive portal, so no secrets live in the source and one image serves the fleet
+- Serves a status page on the local network — live readings, sensor health, last publish — so a node can be checked without a serial cable. See [`firmware/README.md`](firmware/README.md)
 
 Required Arduino libraries (install via Library Manager):
 
 - `Adafruit BME680 Library` (depends on `Adafruit Unified Sensor`) — note: **not** the BME280 library
 - `PubSubClient` by Nick O'Leary (MQTT) — only needed by the production sketch
 - `ArduinoJson` v7.x — only needed by the production sketch
+- `WiFiManager` by tzapu — only needed by the production sketch (tested with 2.0.17)
 
 The HM3301 is read directly over I²C — no external library needed. See note below on why.
 

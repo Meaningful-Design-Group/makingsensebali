@@ -225,7 +225,7 @@ Funciona tanto para los kits Basic (solo BME680) como Plus (BME680 + HM3301): el
 
 **El mismo sketch ejecuta Basic y Plus.** Para Basic, la inicialización del HM3301 al arrancar devuelve "NOT FOUND", el firmware lo registra una vez y omite la publicación de PM en cada ciclo. Sin cambios de código —simplemente no conectes el HM3301 y deja sus tres IDs de sensor en 0 en el bloque de configuración.
 
-El sketch de firmware de producción está en [`firmware/diy_node/diy_node.ino`](firmware/diy_node/diy_node.ino). Este:
+El sketch de firmware de producción está en [`firmware/diy_node_v3/diy_node_v3.ino`](firmware/diy_node_v3/diy_node_v3.ino). Este:
 
 - Arranca el I²C y sondea ambos sensores al arrancar
 - Se conecta al WiFi y sincroniza el reloj vía NTP (la plataforma requiere marcas de tiempo `recorded_at` reales)
