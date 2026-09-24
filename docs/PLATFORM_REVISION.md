@@ -43,7 +43,8 @@ Key existing wiring worth knowing about:
 - **`state.reports`** holds the current report list in the dashboard JS (populated by `fetchReports()` in data.js).
 - **`state.sensors`** holds sensors (BME680/HM3301 readings come in via the SC API as one device with multiple sensor types).
 - **Bali bounding box** is configured at `BALI_BOUNDS` / `BALI_CENTER` in data.js — the world-map pagination filters on this.
-- **Smart Citizen sensor IDs** the campaign uses today are documented in [`hardware/diy-node/firmware/diy_node/diy_node.ino`](../hardware/diy-node/firmware/diy_node/diy_node.ino) (174 = BMP280 Temp, 56 = SHT31 RH, 175 = BMP280 Pressure, 87/88/89 = PMS5003 PM2.5/10/1). The SC `/v0/sensors` endpoint is the authoritative source for new IDs as other kits come online.
+- **Smart Citizen sensor IDs** the campaign uses today are documented in [`hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino`](../hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino) (174 = BMP280 Temp, 56 = SHT31 RH, 175 = BMP280 Pressure, 87/88/89 = PMS5003 PM2.5/10/1). The SC `/v0/sensors` endpoint is the authoritative source for new IDs as other kits come online.
+<!-- TODO: the sensor IDs listed here (174, 56, 175, 87/88/89 — BMP280 / SHT31 / PMS5003) are NOT the ones in the linked sketch, which publishes 233-235 (HM3301 PM) and 237-241 (BME680 T/RH/pressure/gas/IAQ). Either this line describes different hardware and should say so, or it is stale. Check against hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino before citing it. -->
 
 Existing report rendering (`renderReportFeed()` in `dashboard/index.html` line 501) already iterates `state.reports` into an HTML feed — so the scaffold is there, the cards just need a redesign.
 

@@ -43,7 +43,8 @@ Cableado existente que conviene conocer:
 - **`state.reports`** contiene la lista de reportes actual en el JS del panel (poblada por `fetchReports()` en data.js).
 - **`state.sensors`** contiene los sensores (las lecturas de BME680/HM3301 llegan vía la API de SC como un dispositivo con múltiples tipos de sensor).
 - **El recuadro delimitador de Bali** está configurado en `BALI_BOUNDS` / `BALI_CENTER` en data.js — la paginación del mapa mundial filtra por esto.
-- **Los IDs de sensores de Smart Citizen** que usa la campaña hoy están documentados en [`hardware/diy-node/firmware/diy_node/diy_node.ino`](../hardware/diy-node/firmware/diy_node/diy_node.ino) (174 = BMP280 Temp, 56 = SHT31 RH, 175 = BMP280 Pressure, 87/88/89 = PMS5003 PM2.5/10/1). El endpoint `/v0/sensors` de SC es la fuente autoritativa para nuevos IDs a medida que otros kits entren en línea.
+- **Los IDs de sensores de Smart Citizen** que usa la campaña hoy están documentados en [`hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino`](../hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino) (174 = BMP280 Temp, 56 = SHT31 RH, 175 = BMP280 Pressure, 87/88/89 = PMS5003 PM2.5/10/1). El endpoint `/v0/sensors` de SC es la fuente autoritativa para nuevos IDs a medida que otros kits entren en línea.
+<!-- TODO: the sensor IDs listed here (174, 56, 175, 87/88/89 — BMP280 / SHT31 / PMS5003) are NOT the ones in the linked sketch, which publishes 233-235 (HM3301 PM) and 237-241 (BME680 T/RH/pressure/gas/IAQ). Either this line describes different hardware and should say so, or it is stale. Check against hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino before citing it. -->
 
 El renderizado de reportes existente (`renderReportFeed()` en `dashboard/index.html` línea 501) ya itera `state.reports` hacia un feed HTML — así que el andamiaje está ahí, las tarjetas solo necesitan un rediseño.
 

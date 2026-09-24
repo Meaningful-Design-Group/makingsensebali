@@ -193,7 +193,7 @@ Tools: soldering iron, screwdriver to match your screws, wire cutters and stripp
 
 ## Firmware and data flow
 
-Node V2 runs the campaign's shared DIY-node sketch with no code changes beyond the per-device Smart Citizen token: **[`../firmware/diy_node/`](../../firmware/diy_node/)**. The same file targets both the XIAO ESP32-S3 and the ESP32-C3 — pin mapping for D4/D5 resolves per board variant, so nothing in it is chip-specific.
+Node V2 runs the campaign's shared DIY-node sketch with no code changes beyond the per-device Smart Citizen token: **[`../firmware/previous/diy_node_v1.1/`](../../firmware/previous/diy_node_v1.1/)**. The same file targets both the XIAO ESP32-S3 and the ESP32-C3 — pin mapping for D4/D5 resolves per board variant, so nothing in it is chip-specific.
 
 Every 60 seconds the XIAO addresses each sensor in turn over I²C, packs the readings as JSON, and publishes over Wi-Fi via MQTT on port 8883 to `mqtt.smartcitizen.me`, where the campaign dashboard reads them. The connection is TLS but **certificate validation is off** in this firmware version (`net.setInsecure()`) — fine for a workshop kit, not for a node whose data goes into a policy argument. The sketch says as much where it happens.
 
@@ -240,7 +240,7 @@ There is a third lesson the evaluation implies without stating: **compactness an
 
 | What | Where |
 |---|---|
-| Firmware (shared with the whole DIY node family) | [`../firmware/diy_node/`](../../firmware/diy_node/) |
+| Firmware (shared with the whole DIY node family) | [`../firmware/previous/diy_node_v1.1/`](../../firmware/previous/diy_node_v1.1/) |
 | Bill of materials, machine-readable | [`bom.csv`](bom.csv) |
 | Photos, renders and diagrams | [`img/`](img/) |
 | Enclosure files, Node V2 | [Google Drive folder](https://drive.google.com/file/d/1OdK7mdnLc2XkGRntHOQXK7PGmcP8E4bJ/view?usp=sharing) — **not yet in this repo** |
