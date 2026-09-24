@@ -557,6 +557,8 @@ function useMyLocation(){
      used locally and never transmitted. */
   navigator.geolocation.getCurrentPosition(function(pos){
     _near.lat=pos.coords.latitude; _near.lng=pos.coords.longitude;
+    /* Normally resolved already — the idle upgrade warmed it, so the tap is
+       instant rather than a 64 KB wait at the moment of most impatience. */
     N.load().then(function(data){
       _near.data=data;
       btn.disabled=false; btn.textContent=tr('idx.hero.btn_here');
@@ -723,16 +725,63 @@ function initMap(){
   var TILE_ATTR = '© OpenStreetMap';
   L.tileLayer(TILE_URL,{maxZoom:19,attribution:TILE_ATTR}).addTo(map);
   renderGlows();
-  /* sensor pins — colour = air quality */
+  /* Pins live in their own layer so the live upgrade can replace them wholesale
+     rather than drawing a second set on top of the snapshot's. */
+  window._pinLayer = L.layerGroup().addTo(map);
   var pts=[];
   activeSensors().forEach(function(s){
     var col=bandColor(s.reading.pm25);
     var ex=s.excluded_from_avg;
-    L.circleMarker([s.lat,s.lng],{radius:9,color:'#fff',weight:2,fillColor:col,fillOpacity:ex?0.4:1,dashArray:ex?'2,3':null}).addTo(map)
+    L.circleMarker([s.lat,s.lng],{radius:9,color:'#fff',weight:2,fillColor:col,fillOpacity:ex?0.4:1,dashArray:ex?'2,3':null})
+      .addTo(window._pinLayer)
       .bindPopup('<b>'+(D.escapeHtml?D.escapeHtml(s.name):s.name)+'</b><br>PM2.5 '+(Math.round(s.reading.pm25*10)/10)+' µg/m³'+(ex?'<br><small>indoor / not counted in the average</small>':''));
     pts.push([s.lat,s.lng]);
   });
   if(pts.length){ try{ map.fitBounds(pts,{padding:[60,60],maxZoom:12}); }catch(_){ } }
+}
+
+/* ---------- live upgrade from Bali Air Dispatch ----------------------------
+   First paint uses data/sensors.json: 2.7 KB gzipped, same origin, TTFB 112 ms
+   from Bali, and it works with the API down. But that file is only as fresh as
+   the sync, and the sync asks GitHub for a quarter-hour cron and gets roughly
+   one run every two to five hours — so the page was presenting a morning-peak
+   snapshot as "right now".
+
+   So the snapshot paints, and then, at idle, the live figures replace it: 67
+   boxes against 40, humidity-corrected upstream, minutes old instead of hours.
+   It costs 7.2 KB brotli and about a quarter second, off the critical path.
+   Nothing blocks on it and a failure leaves the snapshot exactly as it was.
+   The reader's own scale selection always wins over this.                    */
+function renderLivePins(sensors){
+  if(!window._map || !window._pinLayer) return;
+  window._pinLayer.clearLayers();
+  var pts=[];
+  sensors.forEach(function(s){
+    if(s.pm25==null) return;
+    L.circleMarker([s.lat,s.lng],{radius:9,color:'#fff',weight:2,
+      fillColor:bandColor(s.pm25),fillOpacity:s.fresh?1:0.35,dashArray:s.fresh?null:'2,3'})
+      .addTo(window._pinLayer)
+      .bindPopup('<b>'+esc(s.name)+'</b><br>PM2.5 '+(Math.round(s.pm25*10)/10)+' µg/m³<br>'+
+        '<small>'+esc(s.sources.join(' · '))+(s.fresh?'':' · '+esc(tr('near.stale_pin')))+'</small>');
+    pts.push([s.lat,s.lng]);
+  });
+  if(pts.length){ try{ window._map.fitBounds(pts,{padding:[60,60],maxZoom:12}); }catch(_){ } }
+}
+
+function upgradeFromLive(){
+  var N=window.SCB_NEAR; if(!N) return;
+  N.load().then(function(data){
+    _near.data=data;
+    setText('map-sensors', data.sensors.length||'—');
+    renderLivePins(data.sensors);
+    if(_near.scale!=null){ renderNear(); return; }   /* reader is driving — leave the hero */
+    var med=N.islandMedian(data.sensors);
+    if(med!=null) applyReading(med,'near.scope.island_live',false);
+  }).catch(function(e){ console.warn('[near] live upgrade unavailable, snapshot stands:', e); });
+}
+function scheduleLiveUpgrade(){
+  if(window.requestIdleCallback) requestIdleCallback(upgradeFromLive,{timeout:3500});
+  else setTimeout(upgradeFromLive,1200);
 }
 
 /* ---------- boot ---------- */
@@ -755,7 +804,8 @@ function boot(){
     else if(act.length){ applyReading(median(act.map(function(x){return x.reading.pm25;})),'idx.scope.right_now',false); }
     initMap();
     loadStoryChart();
-  }).catch(function(){ initMap(); loadStoryChart(); });
+    scheduleLiveUpgrade();
+  }).catch(function(){ initMap(); loadStoryChart(); scheduleLiveUpgrade(); });
 
   loadReports().then(function(r){
     S.reports=r||[];

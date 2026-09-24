@@ -19,7 +19,19 @@ name: makingsense-data-sync
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # every 15 min (cron is UTC; interval-based so tz is irrelevant)
+    # Asked for every 15 minutes; GitHub delivered roughly one run every two to
+    # five hours (08:20, 05:59, 02:47, 22:48 WITA over 23-24 Sept 2026, every
+    # one of them "success"). Scheduled workflows are best-effort and are
+    # dropped hardest at the contended minutes, and */15 lands on :00 :15 :30
+    # :45 — the four busiest of the hour. Odd minutes are a mitigation, not a
+    # fix: GitHub guarantees nothing about schedule precision.
+    #
+    # The site no longer depends on this for the number it shows. The home page
+    # paints from the committed snapshot and then upgrades itself from the Bali
+    # Air Dispatch API at idle, so a late run costs first paint accuracy for a
+    # second or two rather than serving a morning peak all afternoon. This
+    # workflow's real job is the archive and the offline fallback.
+    - cron: "3,18,33,48 * * * *"   # cron is UTC; interval-based, so tz is irrelevant
   workflow_dispatch: {}       # manual "Run workflow" button in the Actions tab
 
 permissions:
