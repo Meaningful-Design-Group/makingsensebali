@@ -106,6 +106,32 @@ a{color:inherit;text-decoration:none}
 
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
 .rv.in{opacity:1;transform:none}
+/* ---------- mobile ---------- */
+@media(max-width:640px){
+  /* Tap targets: nav links and the language buttons were 19–29 px tall.
+     Padding lifts them toward the 44 px both platforms ask for. */
+  .bar{padding:10px 5vw}
+  /* The 640 px rule hid a.lbl, which left "Data view" as an empty, unlabelled
+     13 px link. Let the bar wrap instead and keep the words. */
+  .bar{flex-wrap:wrap;row-gap:6px}
+  .bar-nav{flex-wrap:wrap;gap:4px 16px;justify-content:flex-end}
+  .bar-nav a.lbl{display:inline-block}
+  .bar-nav{gap:4px 16px}
+  .bar-nav a{padding:12px 0;display:inline-block}
+  .langtoggle button{padding:12px 13px}
+  .open{padding:20vh 6vw 10vh;min-height:auto}
+  .sec,.quote-band,.close{padding-left:6vw;padding-right:6vw}
+  .sec{padding-top:9vh;padding-bottom:9vh}
+  .quote-band,.close{padding-top:10vh;padding-bottom:10vh}
+  .lsa,.two{gap:14px;margin-top:34px}
+  .beat,.card,.anc{padding:22px 20px}
+  .phases{margin-top:34px}
+  /* The phase number column ate a third of a 360 px screen. */
+  .ph{grid-template-columns:1fr;gap:6px;padding:16px 0 16px 18px}
+  .line-grid{margin-top:34px;gap:12px}
+  .close-cta .btn,.btn{width:100%;justify-content:center}
+  .foot{padding:32px 6vw 48px;line-height:1.85}
+}
 @media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>

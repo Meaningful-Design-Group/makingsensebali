@@ -52,6 +52,9 @@ a{color:inherit;text-decoration:none}
 @keyframes breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.025);opacity:.92}}
 .num-side{padding-bottom:14px}
 .unit{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+/* text-transform:uppercase turns the micro sign into a Greek capital Mu, so
+   µg/m³ was rendering as MG/M³. The unit opts out; the scope stays caps. */
+.unit .u{text-transform:none}
 .verdict{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(22px,2.9vw,34px);line-height:1.25;max-width:19ch;margin-top:6px}
 .subline{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:52ch;margin:26px 0 0}
 .subline b{color:var(--ink);font-weight:500}
@@ -142,6 +145,77 @@ button.btn{font-family:var(--mono)}
 .rep-cat{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500}
 .rep-desc{font-family:var(--serif);font-size:16.5px;line-height:1.4;color:var(--ink)}
 .rep-meta{font-family:var(--mono);font-size:11px;color:var(--ink-soft);white-space:nowrap}
+/* ---------- near me: sensors sorted by what they can actually tell you ---------- */
+.near{margin:26px 0 0;max-width:640px;border:1px solid rgba(0,0,0,.14);border-radius:12px;background:rgba(255,255,255,.62);backdrop-filter:blur(6px);overflow:hidden}
+.near[hidden]{display:none}
+.near-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(0,0,0,.1)}
+.near-title{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.near-close{appearance:none;background:transparent;border:0;font-size:20px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:10px 12px;margin:-10px -12px;border-radius:4px}
+.near-close:hover{background:rgba(0,0,0,.07)}
+.near-bands{list-style:none;margin:0;padding:0}
+.nb{padding:15px 16px;border-bottom:1px solid rgba(0,0,0,.08)}
+.nb:last-child{border-bottom:0}
+.nb-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.nb-name{font-family:var(--serif);font-size:19px;line-height:1.15}
+.nb-range{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);opacity:.8}
+.nb-body{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:9px}
+.nb-val{font-family:var(--serif);font-size:34px;line-height:1;color:var(--aq);transition:color .6s}
+.nb-val i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-left:7px}
+.nb-count{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-soft)}
+.nb-stale{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#a8763a}
+.nb-say{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-top:9px;max-width:52ch}
+.nb--empty{background:rgba(0,0,0,.025)}
+.nb--empty .nb-name{color:var(--ink-soft)}
+.nb-cta{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid currentColor;padding:2px 0}
+.near-foot{padding:13px 16px;font-family:var(--mono);font-size:10px;line-height:1.75;letter-spacing:.03em;color:var(--ink-soft);background:rgba(0,0,0,.035)}
+.near-foot a{text-decoration:underline;text-underline-offset:2px}
+
+/* Touch: a full-bleed map inside a scrolling page swallows the swipe. Leaflet
+   is left inert until the reader deliberately taps in, which is also how they
+   get their scroll back by tapping out. */
+.map-veil{position:absolute;inset:0;z-index:600;display:flex;align-items:center;justify-content:center;background:rgba(246,239,225,.28);cursor:pointer}
+.map-veil span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:rgba(246,239,225,.94);border:1px solid rgba(0,0,0,.14);border-radius:100px;padding:11px 20px}
+@media(hover:hover) and (pointer:fine){.map-veil{display:none}}
+
+/* ---------- mobile ---------- */
+@supports(height:100svh){.hero{min-height:100svh}}
+@media(max-width:720px){
+  /* The nav was display:none here, leaving a phone no way to reach About or
+     the data. It now sits on its own row: .bar-right has to wrap too, or the
+     nav stays trapped in that flex line and the last link falls off-screen.
+     The live badge goes — the hero states the same reading, much louder. */
+  .bar{padding:10px 5vw}
+  .bar-right{flex-wrap:wrap;justify-content:flex-end;gap:10px 14px}
+  .bar .live{display:none}
+  .bar-nav{display:flex;order:3;flex:0 0 100%;gap:18px;justify-content:flex-start;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .bar-nav::-webkit-scrollbar{display:none}
+  .bar-nav a{white-space:nowrap;padding:12px 0;opacity:.85}
+  .hero-inner{padding:126px 0 84px}
+}
+@media(max-width:520px){
+  .headline{font-size:clamp(40px,12.5vw,66px)}
+  .num{font-size:clamp(62px,22vw,112px)}
+  .readout{gap:14px;margin-top:28px}
+  .num-side{padding-bottom:4px}
+  .verdict{font-size:21px;max-width:none}
+  .subline{font-size:15px;margin-top:22px}
+  .hero-cta{gap:10px;margin-top:28px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .langtoggle button{padding:12px 13px}
+  .story,.reports,.island,.act,.more{padding-top:9vh;padding-bottom:9vh;padding-left:6vw;padding-right:6vw}
+  .story-line{margin-top:44px}
+  #map{height:58svh;min-height:300px}
+  .maptag{left:10px;right:10px;bottom:10px;font-size:9.5px;padding:10px 12px}
+  .actcard{padding:24px 20px 22px}
+  .actcard h3{font-size:24px}
+  .door{padding:26px 22px}
+  .door h3{font-size:25px}
+  .nb-val{font-size:29px}
+  .near{margin-top:22px}
+  .foot{padding:34px 6vw 48px;line-height:1.85}
+  .scrollcue{display:none}
+}
 @media(prefers-reduced-motion:reduce){.num{animation:none}.dot{animation:none}.scrollcue span{animation:none}.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
@@ -164,7 +238,7 @@ button.btn{font-family:var(--mono)}
     <div class="readout rv in">
       <div class="num" id="hero-num">–</div>
       <div class="num-side">
-        <div class="unit">µg/m³ · PM2.5 · <span id="loc-scope" data-i18n="idx.scope.reading">reading the network…</span></div>
+        <div class="unit"><span class="u">µg/m³</span> · PM2.5 · <span id="loc-scope" data-i18n="idx.scope.reading">reading the network…</span></div>
         <div class="verdict" id="hero-verdict" data-i18n="idx.verdict.reading">Reading the air across Bali…</div>
       </div>
     </div>
@@ -173,7 +247,15 @@ button.btn{font-family:var(--mono)}
       <button class="btn btn-fill" id="geo" type="button" data-i18n="idx.hero.btn_show">◎ Show the air where I am</button>
       <a class="btn btn-ghost" href="#act" data-i18n="idx.hero.btn_report">Report what you smell</a>
     </div>
-    <p class="locnote rv in" id="locnote" data-i18n="idx.locnote.default">Approximate only: rounded to ~1&nbsp;km, computed in your browser, never stored. We read the air within 3&nbsp;km of you.</p>
+    <div class="near rv in" id="near" hidden>
+      <div class="near-head">
+        <span class="near-title" id="near-title" data-i18n="near.title">Sensors around you</span>
+        <button class="near-close" id="near-close" type="button" aria-label="Close">&times;</button>
+      </div>
+      <ol class="near-bands" id="near-bands"></ol>
+      <p class="near-foot" id="near-foot"></p>
+    </div>
+    <p class="locnote rv in" id="locnote" data-i18n="idx.locnote.default">Your coordinates never leave this browser. The page downloads every station in Bali and measures the distances here, on your device — nothing about where you are is sent anywhere.</p>
   </div>
   <div class="scrollcue"><span></span><span class="cuetext" data-i18n="idx.hero.scroll">scroll</span></div>
 </header>
@@ -285,6 +367,7 @@ button.btn{font-family:var(--mono)}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="./data.js"></script>
 <script src="./peaks.js"></script>
+<script src="./near.js"></script>
 <script src="./i18n.js"></script>
 <script>
 var D=window.SCB_DATA||{}, P=window.SCB_PEAKS||{};
@@ -381,35 +464,95 @@ function mk(){ var spd=cur.count/120; return {x:Math.random()*W,y:Math.random()*
 function draw(){ if(!cv)return; ctx.clearRect(0,0,W,H); var c=cur.pcol; for(var i=0;i<parts.length;i++){ var p=parts[i]; p.x+=p.vx; p.y+=p.vy; if(p.x<-4)p.x=W+4; if(p.x>W+4)p.x=-4; if(p.y<-4)p.y=H+4; if(p.y>H+4)p.y=-4; ctx.beginPath(); ctx.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+p.a+')'; ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill(); } if(!reduce) requestAnimationFrame(draw); }
 addEventListener('resize',function(){ size(); rebuildParticles(); });
 
-/* ---------- geolocation : approximate, 3 km ---------- */
-function useMyLocation(){
-  var btn=document.getElementById('geo'), note=document.getElementById('locnote');
-  if(!navigator.geolocation){ note.textContent=tr('idx.geo.no_geo'); return; }
-  btn.textContent=tr('idx.hero.btn_finding'); btn.disabled=true;
-  navigator.geolocation.getCurrentPosition(function(pos){
-    var lat=Math.round(pos.coords.latitude*100)/100, lng=Math.round(pos.coords.longitude*100)/100;
-    var act=statSensors().map(function(s){return {s:s,km:dkm(lat,lng,s.lat,s.lng)};}).sort(function(x,y){return x.km-y.km;});
-    var within=act.filter(function(o){return o.km<=3;});
-    var reps=S.reports.filter(function(r){return typeof r.lat==='number'&&dkm(lat,lng,r.lat,r.lng)<=3;}).length;
-    btn.disabled=false; btn.textContent=tr('idx.hero.btn_here');
-    if(within.length){
-      var pm=within.reduce(function(t,o){return t+o.s.reading.pm25;},0)/within.length;
-      applyReading(pm,'idx.scope.within3',true);
-      note.textContent=tr('idx.geo.within3',{km:within[0].km.toFixed(1), reps:reps, s:(reps===1?'':'s')});
-      if(window._map) window._map.setView([pos.coords.latitude,pos.coords.longitude],13);
-    } else if(act.length){
-      var n=act[0];
-      applyReading(n.s.reading.pm25,'idx.scope.nearest',true,{km:Math.round(n.km)});
-      note.textContent=tr('idx.geo.nearest',{km:Math.round(n.km)});
-    } else {
-      note.textContent=tr('idx.geo.none');
+/* ---------- where I am : sensors sorted by representativeness scale ----------
+   Not a radius and an average. A reading represents an area, and how big that
+   area is depends on the scale of the sources around it. Bali's dominant PM2.5
+   source is open burning — intermittent, and a point — so a 2 km average is
+   confidently wrong at exactly the moment somebody wants to know.
+   See near.js for the scales and why MIDDLE is in there.                     */
+var NEAR_BUILD_URL='https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2';
+var _near={lat:null,lng:null,data:null};
+
+function nearEl(id){ return document.getElementById(id); }
+
+function fmtKm(km){ return km<1 ? Math.round(km*1000)+' m' : (km<10?km.toFixed(1):Math.round(km))+' km'; }
+
+function renderNear(){
+  var N=window.SCB_NEAR, box=nearEl('near'), list=nearEl('near-bands'), foot=nearEl('near-foot');
+  if(!N||!box||!list||!_near.data||_near.lat==null) return;
+  var res=N.bandsFor(_near.lat,_near.lng,_near.data.sensors);
+
+  list.innerHTML=res.bands.map(function(b){
+    var sum=N.bandSummary(b);
+    var name=tr('near.scale.'+b.id+'.name'), range=tr('near.scale.'+b.id+'.range');
+    var head='<div class="nb-top"><span class="nb-name">'+esc(name)+'</span><span class="nb-range">'+esc(range)+'</span></div>';
+    if(!sum.count){
+      var say=tr('near.scale.'+b.id+'.empty');
+      /* Only the tightest band asks. Micro and middle are both usually empty,
+         and two identical CTAs stacked reads as a banner, not as a point. */
+      var cta=(b.id==='micro')
+        ? '<a class="nb-cta" href="'+NEAR_BUILD_URL+'" target="_blank" rel="noopener">'+esc(tr('near.cta.build'))+'</a>' : '';
+      return '<li class="nb nb--empty">'+head+'<p class="nb-say">'+esc(say)+'</p>'+cta+'</li>';
     }
+    var stale=sum.count-sum.freshCount;
+    var body='<div class="nb-body">';
+    body += sum.pm25!=null
+      ? '<span class="nb-val" style="color:'+bandColor(sum.pm25)+'">'+(Math.round(sum.pm25*10)/10).toFixed(1)+'<i>µg/m³</i></span>'
+      : '';
+    body += '<span class="nb-count">'+esc(tr(sum.count===1?'near.count_one':'near.count_many',{n:sum.count}))+'</span>';
+    if(stale) body += '<span class="nb-stale">'+esc(tr('near.stale',{n:stale,h:N.FRESH_HOURS}))+'</span>';
+    body += '</div>';
+    var say=sum.pm25!=null ? tr('near.scale.'+b.id+'.has') : tr('near.nofresh',{h:N.FRESH_HOURS});
+    return '<li class="nb">'+head+body+'<p class="nb-say">'+esc(say)+'</p></li>';
+  }).join('');
+
+  /* The hero number takes the tightest band that has something fresh to say,
+     and the scope line names that scale — so the big number is never quietly
+     island-wide while the reader thinks it is their street. */
+  var chosen=null;
+  for(var i=0;i<res.bands.length && !chosen;i++){
+    var sm=N.bandSummary(res.bands[i]);
+    if(sm.pm25!=null) chosen={pm:sm.pm25,id:res.bands[i].id};
+  }
+  if(chosen) applyReading(chosen.pm,'near.scope.'+chosen.id,true);
+
+  var parts=[];
+  if(res.nearest) parts.push(tr('near.nearest',{km:fmtKm(res.nearest.km),name:res.nearest.s.name}));
+  parts.push(tr('near.foot',{boxes:_near.data.sensors.length}));
+  foot.innerHTML=esc(parts.join(' '))+' <a href="https://baliairdispatch.com/api" target="_blank" rel="noopener">Bali Air Dispatch</a>.';
+  box.hidden=false;
+}
+
+function useMyLocation(){
+  var btn=nearEl('geo'), note=nearEl('locnote'), N=window.SCB_NEAR;
+  if(!navigator.geolocation){ note.textContent=tr('idx.geo.no_geo'); return; }
+  if(!N){ note.textContent=tr('near.err'); return; }
+  btn.textContent=tr('idx.hero.btn_finding'); btn.disabled=true;
+
+  /* High accuracy matters here and did not before: a 100 m band cannot be
+     resolved from a coarse fix. It is safe to ask for — the coordinate is
+     used locally and never transmitted. */
+  navigator.geolocation.getCurrentPosition(function(pos){
+    _near.lat=pos.coords.latitude; _near.lng=pos.coords.longitude;
+    N.load().then(function(data){
+      _near.data=data;
+      btn.disabled=false; btn.textContent=tr('idx.hero.btn_here');
+      note.textContent=tr('idx.locnote.default');
+      renderNear();
+      if(window._map) window._map.setView([_near.lat,_near.lng],13);
+    }).catch(function(e){
+      console.warn('[near] load failed:',e);
+      btn.disabled=false; btn.textContent=tr('idx.hero.btn_show');
+      note.textContent=tr('near.err');
+    });
   }, function(){
     btn.disabled=false; btn.textContent=tr('idx.hero.btn_show');
     note.textContent=tr('idx.geo.off');
-  }, {enableHighAccuracy:false, timeout:9000, maximumAge:600000});
+  }, {enableHighAccuracy:true, timeout:12000, maximumAge:120000});
 }
 var geoBtn=document.getElementById('geo'); if(geoBtn) geoBtn.addEventListener('click', useMyLocation);
+var nearClose=document.getElementById('near-close');
+if(nearClose) nearClose.addEventListener('click', function(){ var b=nearEl('near'); if(b) b.hidden=true; });
 
 /* ---------- story TEXT (from the most notable real report) ---------- */
 var KNOWN_SCK=[19236,19600,19618,19651];
@@ -525,6 +668,27 @@ function initMap(){
   if(typeof L==='undefined'){ return; }
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([-8.66,115.16],10);
   window._map=map;
+  /* Touch: a full-width map inside a scrolling page eats the swipe, and the
+     reader gets stuck panning Bali when they wanted to read the next section.
+     Leaflet stays inert until they tap in; tapping outside gives it back. */
+  if(matchMedia('(hover:none)').matches){
+    map.dragging.disable(); map.touchZoom.disable(); map.doubleClickZoom.disable();
+    var veil=document.createElement('div');
+    veil.className='map-veil';
+    veil.innerHTML='<span data-i18n="idx.island.tap">Tap to explore the map</span>';
+    veil.addEventListener('click',function(){
+      map.dragging.enable(); map.touchZoom.enable(); map.doubleClickZoom.enable();
+      veil.remove();
+    });
+    document.getElementById('map').appendChild(veil);
+    if(window.SCB_I18N) window.SCB_I18N.applyTo(veil);
+    document.addEventListener('click',function(e){
+      if(!map.dragging.enabled()) return;
+      if(document.getElementById('map').contains(e.target)) return;
+      map.dragging.disable(); map.touchZoom.disable(); map.doubleClickZoom.disable();
+      if(!document.querySelector('.map-veil')) document.getElementById('map').appendChild(veil);
+    });
+  }
   /* Basemap. CARTO now requires an API key: without one it still returns HTTP
      200 with a PNG, but every tile is stamped "API KEY REQUIRED". A curl check
      passes while the map is visibly defaced, which is how this went unnoticed.
@@ -592,6 +756,7 @@ function reRenderI18n(){
   setText('map-reports', (S.reports.length||'0'));
   renderStory();
   renderReportsSummary();
+  renderNear();
   loadStoryChart();
 }
 function setupLangToggle(){
