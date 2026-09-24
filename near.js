@@ -30,8 +30,25 @@
 // DATA
 // ----
 // Bali Air Dispatch, https://baliairdispatch.com/api  (CORS: *, no key).
-//   GET /api/v1/stations  catalog with coordinates and provenance flags
 //   GET /api/v1/latest    most recent reading held for each station
+//
+// ONE request, deliberately. /latest already carries latitude, longitude, name,
+// source and both provenance flags, so /stations adds nothing this page needs
+// except days_of_data — which was only ever a dedupe tie-break, and recency
+// breaks ties better anyway.
+//
+// Measured from Bali, 2026-09-24, brotli on the wire:
+//   own data/sensors.json   2.7 KB   TTFB 112 ms   (same origin, Pages CDN)
+//   BAD /latest             7.2 KB   TTFB 258 ms
+//   BAD /stations           6.4 KB   TTFB 254 ms
+// So this is not a heavy dependency — it is seven kilobytes and a quarter
+// second. Dropping /stations halves the round trips and saves 6.4 KB, and the
+// caller warms this at idle so the button press itself costs nothing.
+//
+// (An earlier note here claimed the API served no compression. That was wrong:
+// Content-Encoding is not readable cross-origin and encodedBodySize is 0
+// without Timing-Allow-Origin, so the browser cannot see it. curl can — the
+// responses are brotli, 65 KB down to 7.)
 //
 // Readings originate from independent networks (Nafas, IQAir, PurpleAir,
 // AQICN, OpenAQ, AirGradient, Smart Citizen, Airly) and remain subject to
@@ -82,29 +99,24 @@ function usable(s){
     && !s.suspected_indoor && !s.suspected_malfunctioning;
 }
 
-// Join /stations (coordinates, provenance) with /latest (the reading).
-// Both are needed: /stations has no value, /latest has no days_of_data.
-function joinStations(stations, readings){
-  var byId = {};
-  readings.forEach(function(r){ byId[r.station_id] = r; });
-  return stations.filter(usable).map(function(s){
-    var r = byId[s.station_id] || null;
-    var ageH = r && typeof r.age_hours === 'number' ? r.age_hours : null;
+// Normalise /latest rows into what this page works with.
+function normalise(readings){
+  return readings.filter(usable).map(function(r){
+    var ageH = typeof r.age_hours === 'number' ? r.age_hours : null;
     return {
-      id: s.station_id,
-      name: s.name,
-      source: s.source,
-      lat: s.latitude,
-      lng: s.longitude,
-      type: s.type || null,
-      daysOfData: s.days_of_data || 0,
-      pm25: r && typeof r.pm25 === 'number' ? r.pm25 : null,
-      corrected: !!(r && r.pm25_corrected),
-      fromAqi: !!(r && r.pm25_from_aqi),
-      observedAt: r ? r.observed_at : null,
+      id: r.station_id,
+      name: r.name,
+      source: r.source,
+      lat: r.latitude,
+      lng: r.longitude,
+      pm25: typeof r.pm25 === 'number' ? r.pm25 : null,
+      pm25Raw: typeof r.pm25_raw === 'number' ? r.pm25_raw : null,
+      corrected: !!r.pm25_corrected,
+      fromAqi: !!r.pm25_from_aqi,
+      observedAt: r.observed_at || null,
       ageHours: ageH,
       fresh: ageH != null && ageH <= FRESH_HOURS,
-      sources: [s.source]
+      sources: [r.source]
     };
   });
 }
@@ -120,8 +132,12 @@ function dedupe(list){
       var o = out[i];
       if (haversineKm(s.lat, s.lng, o.lat, o.lng) <= DUPLICATE_RADIUS_KM){
         if (o.sources.indexOf(s.source) < 0) o.sources.push(s.source);
+        // Fresher wins; then the more recent observation. (This used to
+        // tie-break on days_of_data, which cost a whole second request.)
         var better = (s.fresh && !o.fresh) ||
-                     (s.fresh === o.fresh && s.daysOfData > o.daysOfData);
+                     (s.fresh === o.fresh &&
+                      (s.ageHours == null ? Infinity : s.ageHours) <
+                      (o.ageHours == null ? Infinity : o.ageHours));
         if (better){
           var keep = o.sources;
           out[i] = s; out[i].sources = keep;
@@ -139,22 +155,21 @@ var _cache = null, _inflight = null;
 function load(){
   if (_cache) return Promise.resolve(_cache);
   if (_inflight) return _inflight;
-  _inflight = Promise.all([
-    fetch(API + '/stations').then(function(r){ if(!r.ok) throw new Error('stations HTTP '+r.status); return r.json(); }),
-    fetch(API + '/latest').then(function(r){ if(!r.ok) throw new Error('latest HTTP '+r.status); return r.json(); })
-  ]).then(function(res){
-    var joined = joinStations(res[0].stations || [], res[1].readings || []);
-    _cache = {
-      sensors: dedupe(joined),
-      records: joined.length,
-      generatedAt: res[1].generated_at || null
-    };
-    _inflight = null;
-    return _cache;
-  }).catch(function(e){
-    _inflight = null;
-    throw e;
-  });
+  _inflight = fetch(API + '/latest')
+    .then(function(r){ if(!r.ok) throw new Error('latest HTTP '+r.status); return r.json(); })
+    .then(function(j){
+      var rows = normalise(j.readings || []);
+      _cache = {
+        sensors: dedupe(rows),
+        records: rows.length,
+        generatedAt: j.generated_at || null
+      };
+      _inflight = null;
+      return _cache;
+    }).catch(function(e){
+      _inflight = null;
+      throw e;
+    });
   return _inflight;
 }
 
@@ -198,8 +213,13 @@ window.SCB_NEAR = {
   bandsFor: bandsFor,
   bandSummary: bandSummary,
   distanceKm: haversineKm,
+  islandMedian: function(sensors){
+    var v = sensors.filter(function(s){ return s.fresh && s.pm25 != null; })
+                   .map(function(s){ return s.pm25; }).sort(function(a,b){ return a-b; });
+    return v.length ? v[Math.floor(v.length/2)] : null;
+  },
   _dedupe: dedupe,
-  _join: joinStations
+  _normalise: normalise
 };
 
 })();
