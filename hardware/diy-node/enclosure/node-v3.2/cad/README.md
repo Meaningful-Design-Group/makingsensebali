@@ -5,7 +5,7 @@
 Eight STLs are published in `../stl/`. **No editable source is here yet.**
 
 STL is a build file, not a source file: it is a triangle soup with no
-features, no parameters and no dimensions. A lab can print Bayu v7 from
+features, no parameters and no dimensions. A lab can print Node V3.2 from
 `../stl/` but cannot change a wall thickness, resize a sensor pocket, or
 adapt it to a different board — which is most of the reason to open-source
 an enclosure at all.

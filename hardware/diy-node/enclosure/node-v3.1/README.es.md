@@ -1,9 +1,8 @@
 [English](README.md) · [Bahasa Indonesia](README.id.md) · **Español**
 
-# Bayu v6 — el cuerpo V3 atornillado
+# Node V3.1 — el cuerpo V3 atornillado
 
-*Fab Lab Bali llama a este diseño **DIY Environmental Sensor Node V3.1**. El mismo objeto, dos
-sistemas de nomenclatura — ver [Nomenclatura](#nomenclatura).*
+*El **DIY Environmental Sensor Node V3.1** de Fab Lab Bali. Esta carpeta se llamaba `bayu-v6` hasta septiembre de 2026.*
 
 Carcasa de exterior impresa en 3D para el nodo DIY de calidad del aire de Making Sense Bali.
 *Bayu* — viento. La primera iteración de la generación V3: cuerpo compacto, electrónica

@@ -1,9 +1,9 @@
 [English](README.md) · **Bahasa Indonesia** · [Español](README.es.md)
 
-# Bayu v7 — casing kanonik saat ini
+# Node V3.2 — casing kanonik saat ini
 
-*Fab Lab Bali menyebut desain ini **DIY Environmental Sensor Node V3.2**. Objek yang sama, dua
-sistem penamaan — lihat [Penamaan](#penamaan-baca-ini-sebelum-menelusuri-repo).*
+***DIY Environmental Sensor Node V3.2** milik Fab Lab Bali. Folder ini bernama `bayu-v7`
+sampai September 2026 — lihat [Penamaan](#penamaan-baca-ini-sebelum-menelusuri-repo).*
 
 Casing luar ruangan cetak 3D untuk node kualitas udara DIY Making Sense Bali.
 *Bayu* — angin. Seluruh generasi V3 adalah argumen tentang aliran udara, dan v7 adalah

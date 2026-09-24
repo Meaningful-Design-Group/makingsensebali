@@ -11,7 +11,7 @@
 > sendiri, dan lubang masuk udara di bagian bawah terlambat menangkap puncak polusi yang nyata.
 > **Jangan cetak cangkang ini untuk penerapan di lapangan.** Baca dulu
 > [Evaluasi](#evaluasi--apa-yang-ditunjukkan-uji-lapangan), lalu bangun
-> [Bayu v7](../node-v3.2/) sebagai gantinya. Folder ini disimpan karena rancangan yang
+> [Node V3.2](../node-v3.2/) sebagai gantinya. Folder ini disimpan karena rancangan yang
 > gagal dengan dua alasan yang bisa disebutkan namanya lebih berharga bagi pembangun berikutnya
 > daripada rancangan yang sekadar berhasil.
 
