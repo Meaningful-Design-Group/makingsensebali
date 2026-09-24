@@ -9,7 +9,7 @@ design generations have happened. Tomas has rejected the last four. **None of th
 seven were ever printed.** That is the failure to break.
 
 Repo: `hardware/diy-node/enclosure/` · local: `~/Documents/Claude/Projects/MDG/smartcitizenbali/`
-Hardware being enclosed: https://github.com/mdg-bali/makingsensebali/tree/main/hardware/diy-node
+Hardware being enclosed: https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node
 
 ---
 

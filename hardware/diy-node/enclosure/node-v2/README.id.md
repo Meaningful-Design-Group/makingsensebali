@@ -195,7 +195,7 @@ Alat: solder, obeng yang sesuai dengan baut Anda, tang potong dan pengupas kabel
 
 ## Firmware dan alur data
 
-Node V2 menjalankan sketch DIY node bersama milik kampanye tanpa perubahan kode selain token Smart Citizen per perangkat: **[`../firmware/diy_node/`](../../firmware/diy_node/)**. Berkas yang sama menyasar XIAO ESP32-S3 maupun ESP32-C3 — pemetaan pin D4/D5 diselesaikan per varian board, jadi tidak ada di dalamnya yang khusus untuk satu chip.
+Node V2 menjalankan sketch DIY node bersama milik kampanye tanpa perubahan kode selain token Smart Citizen per perangkat: **[`../firmware/previous/diy_node_v1.1/`](../../firmware/previous/diy_node_v1.1/)**. Berkas yang sama menyasar XIAO ESP32-S3 maupun ESP32-C3 — pemetaan pin D4/D5 diselesaikan per varian board, jadi tidak ada di dalamnya yang khusus untuk satu chip.
 
 Setiap 60 detik XIAO mengalamati tiap sensor bergantian lewat I²C, mengemas pembacaannya sebagai JSON, dan mengirimkannya lewat Wi-Fi via MQTT di port 8883 ke `mqtt.smartcitizen.me`, tempat dasbor kampanye membacanya. Koneksinya memakai TLS tetapi **validasi sertifikat dimatikan** di versi firmware ini (`net.setInsecure()`) — cukup untuk kit lokakarya, tidak cukup untuk node yang datanya masuk ke argumen kebijakan. Sketch-nya sendiri menyatakan hal itu di tempat kejadiannya.
 
@@ -242,7 +242,7 @@ Ada pelajaran ketiga yang disiratkan evaluasi tanpa dinyatakan: **keringkasan da
 
 | Apa | Di mana |
 |---|---|
-| Firmware (dipakai bersama seluruh keluarga DIY node) | [`../firmware/diy_node/`](../../firmware/diy_node/) |
+| Firmware (dipakai bersama seluruh keluarga DIY node) | [`../firmware/previous/diy_node_v1.1/`](../../firmware/previous/diy_node_v1.1/) |
 | Bill of materials, terbaca mesin | [`bom.csv`](bom.csv) |
 | Foto, render, dan diagram | [`img/`](img/) |
 | Berkas enclosure Node V2 | [Folder Google Drive](https://drive.google.com/file/d/1OdK7mdnLc2XkGRntHOQXK7PGmcP8E4bJ/view?usp=sharing) — **belum ada di repo ini** |

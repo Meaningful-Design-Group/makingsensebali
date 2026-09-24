@@ -312,7 +312,7 @@ MESSAGES = {
             "anonymously.\n\n"
             "*What next?*\n"
             "  *1.* 📝 Report another issue\n"
-            "  *2.* ℹ️  Learn more → https://mdg-bali.github.io/makingsensebali/\n"
+            "  *2.* ℹ️  Learn more → https://makingsense.fablabbali.com/\n"
             "  *3.* 💬 Give feedback"
         ),
         "feedback_prompt": (
@@ -324,7 +324,7 @@ MESSAGES = {
             "🙏 Thank you for your feedback!\n\n"
             "*What next?*\n"
             "  *1.* 📝 Report another issue\n"
-            "  *2.* ℹ️  Learn more → https://mdg-bali.github.io/makingsensebali/\n"
+            "  *2.* ℹ️  Learn more → https://makingsense.fablabbali.com/\n"
             "  *3.* 💬 Give feedback"
         ),
         "cancel_confirmed": (
@@ -502,7 +502,7 @@ MESSAGES = {
             "secara anonim.\n\n"
             "*Apa selanjutnya?*\n"
             "  *1.* 📝 Laporkan masalah lain\n"
-            "  *2.* ℹ️  Pelajari lebih lanjut → https://mdg-bali.github.io/makingsensebali/\n"
+            "  *2.* ℹ️  Pelajari lebih lanjut → https://makingsense.fablabbali.com/\n"
             "  *3.* 💬 Beri masukan"
         ),
         "feedback_prompt": (
@@ -514,7 +514,7 @@ MESSAGES = {
             "🙏 Terima kasih atas masukan Anda!\n\n"
             "*Apa selanjutnya?*\n"
             "  *1.* 📝 Laporkan masalah lain\n"
-            "  *2.* ℹ️  Pelajari lebih lanjut → https://mdg-bali.github.io/makingsensebali/\n"
+            "  *2.* ℹ️  Pelajari lebih lanjut → https://makingsense.fablabbali.com/\n"
             "  *3.* 💬 Beri masukan"
         ),
         "cancel_confirmed": (
@@ -690,7 +690,7 @@ MESSAGES = {
             "publicarse de forma anónima.\n\n"
             "*¿Qué sigue?*\n"
             "  *1.* 📝 Reportar otro problema\n"
-            "  *2.* ℹ️  Saber más → https://mdg-bali.github.io/makingsensebali/\n"
+            "  *2.* ℹ️  Saber más → https://makingsense.fablabbali.com/\n"
             "  *3.* 💬 Dejar un comentario"
         ),
         "feedback_prompt": (
@@ -702,7 +702,7 @@ MESSAGES = {
             "🙏 ¡Gracias por tu opinión!\n\n"
             "*¿Qué sigue?*\n"
             "  *1.* 📝 Reportar otro problema\n"
-            "  *2.* ℹ️  Saber más → https://mdg-bali.github.io/makingsensebali/\n"
+            "  *2.* ℹ️  Saber más → https://makingsense.fablabbali.com/\n"
             "  *3.* 💬 Dejar un comentario"
         ),
         "cancel_confirmed": (

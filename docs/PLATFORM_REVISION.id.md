@@ -43,7 +43,8 @@ Pengkabelan yang sudah ada dan perlu diketahui:
 - **`state.reports`** menyimpan daftar laporan saat ini di JS dasbor (diisi oleh `fetchReports()` di data.js).
 - **`state.sensors`** menyimpan sensor (pembacaan BME680/HM3301 masuk via API SC sebagai satu perangkat dengan beberapa jenis sensor).
 - **Kotak pembatas Bali** dikonfigurasi di `BALI_BOUNDS` / `BALI_CENTER` di data.js — paginasi peta dunia memfilter berdasarkan ini.
-- **ID sensor Smart Citizen** yang digunakan kampanye hari ini didokumentasikan di [`hardware/diy-node/firmware/diy_node/diy_node.ino`](../hardware/diy-node/firmware/diy_node/diy_node.ino) (174 = BMP280 Temp, 56 = SHT31 RH, 175 = BMP280 Pressure, 87/88/89 = PMS5003 PM2.5/10/1). Endpoint SC `/v0/sensors` adalah sumber otoritatif untuk ID baru saat kit lain mulai aktif.
+- **ID sensor Smart Citizen** yang digunakan kampanye hari ini didokumentasikan di [`hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino`](../hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino) (174 = BMP280 Temp, 56 = SHT31 RH, 175 = BMP280 Pressure, 87/88/89 = PMS5003 PM2.5/10/1). Endpoint SC `/v0/sensors` adalah sumber otoritatif untuk ID baru saat kit lain mulai aktif.
+<!-- TODO: the sensor IDs listed here (174, 56, 175, 87/88/89 — BMP280 / SHT31 / PMS5003) are NOT the ones in the linked sketch, which publishes 233-235 (HM3301 PM) and 237-241 (BME680 T/RH/pressure/gas/IAQ). Either this line describes different hardware and should say so, or it is stale. Check against hardware/diy-node/firmware/diy_node_v3/diy_node_v3.ino before citing it. -->
 
 Rendering laporan yang ada (`renderReportFeed()` di `dashboard/index.html` baris 501) sudah melakukan iterasi `state.reports` menjadi umpan HTML — jadi kerangkanya sudah ada, kartunya hanya perlu didesain ulang.
 
