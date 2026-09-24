@@ -44,3 +44,5 @@ hardware/diy-node/enclosure-research/ref_*/
 hardware/kit1-hex/ref_seeed/
 Claude outputs/
 *.bundle
+# Node tooling, if anyone runs a local test harness from the repo root
+node_modules/
