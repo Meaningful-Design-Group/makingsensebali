@@ -10,7 +10,7 @@
 > Two of the three design goals were met. The third was not: the enclosure heats its own
 > temperature sensor and its underside intake lags real pollution peaks. **Don't print this
 > shell for a deployment.** Read [Evaluation](#evaluation--what-the-field-test-showed) first,
-> then build [Bayu v7](../node-v3.2/) instead. This folder is kept because a design that
+> then build [Node V3.2](../node-v3.2/) instead. This folder is kept because a design that
 > failed for two nameable reasons is worth more to the next builder than one that merely worked.
 
 > **Naming, so nobody loses a day to it.** "V2" here is the second generation of the *whole

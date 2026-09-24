@@ -1,9 +1,8 @@
 **English** · [Bahasa Indonesia](README.id.md) · [Español](README.es.md)
 
-# Bayu v6 — the screwed V3 body
+# Node V3.1 — the screwed V3 body
 
-*Fab Lab Bali calls this design **DIY Environmental Sensor Node V3.1**. Same object, two
-naming systems — see [Naming](#naming).*
+*Fab Lab Bali's **DIY Environmental Sensor Node V3.1**. This folder was called `bayu-v6` until September 2026.*
 
 3D-printed outdoor housing for the Making Sense Bali DIY air quality node.
 *Bayu* — wind. The first iteration of the V3 generation: compact body, hybrid
