@@ -78,7 +78,7 @@
 // does not provide.
 //
 // License: MIT. Every dependency above is MIT/BSD/permissive, no closed blobs.
-// Repo: https://github.com/mdg-bali/makingsensebali
+// Repo: https://github.com/Meaningful-Design-Group/makingsensebali
 
 #include <Wire.h>
 #include <SPI.h>

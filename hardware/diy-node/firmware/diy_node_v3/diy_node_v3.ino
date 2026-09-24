@@ -7,7 +7,7 @@
 // Sensors: BME680 (I2C 0x76/0x77) + Seeed Grove HM3301 (I2C 0x40)
 // Platform: publishes to mqtt.smartcitizen.me over TLS
 //
-// Repo: https://github.com/mdg-bali/makingsensebali
+// Repo: https://github.com/Meaningful-Design-Group/makingsensebali
 // License: MIT
 //
 // ---------------------------------------------------------------------------

@@ -128,7 +128,7 @@ Before any code or hardware:
 ### Step 2 — Fork this repository
 
 ```bash
-git clone https://github.com/mdg-bali/makingsensebali your-org/makingsense-yourplace
+git clone https://github.com/Meaningful-Design-Group/makingsensebali your-org/makingsense-yourplace
 cd makingsense-yourplace
 
 # Update the remote to your own GitHub org
@@ -290,7 +290,7 @@ For now, design and operate your instance as if it will federate. The Murmuratio
 
 ## 7. Where to get help
 
-- **Repository**: [github.com/mdg-bali/makingsensebali](https://github.com/mdg-bali/makingsensebali) — file issues, propose pull requests
+- **Repository**: [github.com/Meaningful-Design-Group/makingsensebali](https://github.com/Meaningful-Design-Group/makingsensebali) — file issues, propose pull requests
 - **Replication conversations**: [fablabbali@gmail.com](mailto:fablabbali@gmail.com) — the Fab Lab Bali inbox. Reach out before starting; a short call early saves weeks of guesswork.
 - **Fab City network**: [fab.city](https://fab.city/) — for chapter status, partner introductions
 - **Smart Citizen platform**: [smartcitizen.me](https://smartcitizen.me/) — hardware, account setup, sensor questions
