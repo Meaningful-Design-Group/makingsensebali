@@ -37,7 +37,7 @@ desplegable en casa, para el panorama Fab City de 2026.
 |---|---|
 | **Despliegue de referencia** | Making Sense Bali · Bali, Indonesia · fase piloto, Q2 2026 |
 | **Operado por** | [Fab Lab Bali](https://fablabbali.com) como la capa de reportes de [Making Sense Bali](https://makingsense.fablabbali.com/) |
-| **Kit de replicación** | Disponible — consulta [REPLICATION.md](REPLICATION.md) |
+| **Kit de replicación** | Disponible — consulta [REPLICATION.md](../REPLICATION.md) |
 | **Próximo planificado** | Pelapor Barcelona · Fab Lab Barcelona · 2026 H2 |
 | **Capa de federación** | PLANETAI · planificada, infraestructura aún no construida |
 
@@ -140,7 +140,8 @@ que un hogar posee. Sin APIs propietarias en la ruta, sin facturas mensuales de 
 ningún proveedor que pueda desplataformar la campaña. Para un nodo Fab City eso no es
 algo incidental — es el punto.
 
-Para el detalle de la arquitectura, consulta [ARCHITECTURE.md](ARCHITECTURE.md).
+Para el detalle de la arquitectura, consulta las secciones anteriores.
+<!-- TODO: ARCHITECTURE.md is referenced here and in the tree diagram below but has never existed in this repo. Either write it or drop the reference. -->
 Para el despliegue, consulta [DEPLOY.md](DEPLOY.md).
 
 ---
@@ -167,7 +168,7 @@ individual a través del panel.
 ## Replícalo
 
 Si operas un nodo Fab City, un Fab Lab, o una campaña comunitaria de sensado y
-quieres tu propio despliegue, lee **[REPLICATION.md](REPLICATION.md)**.
+quieres tu propio despliegue, lee **[REPLICATION.md](../REPLICATION.md)**.
 
 Vas a necesitar:
 

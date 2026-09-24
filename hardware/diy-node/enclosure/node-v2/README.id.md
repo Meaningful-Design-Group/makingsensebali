@@ -11,7 +11,7 @@
 > sendiri, dan lubang masuk udara di bagian bawah terlambat menangkap puncak polusi yang nyata.
 > **Jangan cetak cangkang ini untuk penerapan di lapangan.** Baca dulu
 > [Evaluasi](#evaluasi--apa-yang-ditunjukkan-uji-lapangan), lalu bangun
-> [sasis pine cone](../enclosure/) sebagai gantinya. Folder ini disimpan karena rancangan yang
+> [Bayu v7](../node-v3.2/) sebagai gantinya. Folder ini disimpan karena rancangan yang
 > gagal dengan dua alasan yang bisa disebutkan namanya lebih berharga bagi pembangun berikutnya
 > daripada rancangan yang sekadar berhasil.
 
@@ -43,7 +43,7 @@
 
 ## Mengapa dibangun
 
-Stasiun pemantau kualitas udara kelas rujukan harganya jauh di atas kemampuan banjar, sekolah, atau kelompok warga mana pun di Bali untuk mengumpulkannya secara swadaya. Tabel tier kampanye ini sendiri menaruhnya di [USD 5.000–25.000+](../README.id.md#di-mana-ini-cocok--tier-sensor-kampanye). Merakit sendiri dari sensor modular murah adalah alternatif yang jelas, dan itulah isi seluruh pohon folder ini.
+Stasiun pemantau kualitas udara kelas rujukan harganya jauh di atas kemampuan banjar, sekolah, atau kelompok warga mana pun di Bali untuk mengumpulkannya secara swadaya. Tabel tier kampanye ini sendiri menaruhnya di [USD 5.000–25.000+](../../README.id.md#di-mana-ini-cocok--tier-sensor-kampanye). Merakit sendiri dari sensor modular murah adalah alternatif yang jelas, dan itulah isi seluruh pohon folder ini.
 
 Bagian yang sulit bukan elektroniknya. Melainkan kotaknya.
 
@@ -74,7 +74,7 @@ Sasaran 1 dan 2 tercapai. Sasaran 3 tidak — lihat evaluasi.
 
 ## Dari mana bentuknya berasal
 
-Tata letak kompartemen diambil langsung dari arsitektur enclosure **stasiun Smart Citizen Kit (SCK 2.3)** — dokumen sumber menyebut modularitas, kebersihan, dan minimalisme sebagai yang diambil darinya. Perlu dicatat, tulang punggung kalibrasi kampanye sendiri adalah **SCK 2.1** ([tabel tier](../README.id.md#di-mana-ini-cocok--tier-sensor-kampanye)); 2.3 adalah kit yang lebih baru, jadi ini peminjaman dari lini produknya dan bukan dari stasiun persis yang kemudian menjadi pembanding Node V2.
+Tata letak kompartemen diambil langsung dari arsitektur enclosure **stasiun Smart Citizen Kit (SCK 2.3)** — dokumen sumber menyebut modularitas, kebersihan, dan minimalisme sebagai yang diambil darinya. Perlu dicatat, tulang punggung kalibrasi kampanye sendiri adalah **SCK 2.1** ([tabel tier](../../README.id.md#di-mana-ini-cocok--tier-sensor-kampanye)); 2.3 adalah kit yang lebih baru, jadi ini peminjaman dari lini produknya dan bukan dari stasiun persis yang kemudian menjadi pembanding Node V2.
 
 | | |
 |---|---|
@@ -131,7 +131,7 @@ Versi yang bisa dibaca mesin, lengkap dengan kolom sourcing: **[`bom.csv`](bom.c
 | 9 | Baut mesin M3 × 14 mm | Flat head, carbon steel (NINDEJIN) | 2 | 500 | 1.000 |
 | | | | | **Total** | **Rp 1.253.800** |
 
-Dokumen sumber memberikan angka-angka ini tanpa menyebutkan di mana dan kapan komponennya dibeli, jadi perlakukan sebagai biaya satu rakitan di Indonesia, bukan sebagai daftar harga. [Catatan sourcing di README induk](../README.id.md) adalah panduan yang lebih baik bagi siapa pun yang memesan: HM3301 adalah penentu biaya, dan memesan langsung dari Seeed biasanya lebih murah daripada eceran lokal untuk pembelian batch. Baut mesin flat head setara apa pun bisa menggantikan yang bermerek.
+Dokumen sumber memberikan angka-angka ini tanpa menyebutkan di mana dan kapan komponennya dibeli, jadi perlakukan sebagai biaya satu rakitan di Indonesia, bukan sebagai daftar harga. [Catatan sourcing di README induk](../../README.id.md) adalah panduan yang lebih baik bagi siapa pun yang memesan: HM3301 adalah penentu biaya, dan memesan langsung dari Seeed biasanya lebih murah daripada eceran lokal untuk pembelian batch. Baut mesin flat head setara apa pun bisa menggantikan yang bermerek.
 
 <!-- TODO: di mana dan kapan komponennya dibeli, dan apakah ini harga eceran atau distributor. -->
 <!-- TODO: setara USD + kurs IDR/USD pada tanggal pembelian, supaya angkanya bisa dibandingkan dengan biaya USD yang dikutip di ../README.id.md. -->
@@ -179,7 +179,7 @@ Seluruh antarmuka luar dikonsentrasikan pada pelat putih bagian bawah, yang menj
 
 Alat: solder, obeng yang sesuai dengan baut Anda, tang potong dan pengupas kabel, heat gun atau korek untuk heat-shrink. <!-- TODO: waktu perakitan. Dokumen sumber tidak mencatatnya; angka ~3 jam di README induk adalah untuk rakitan yang berbeda. -->
 
-1. **Cetak cangkang** dengan PETG, bukan PLA — [PLA melunak pada suhu atap rumah Bali](../README.id.md). <!-- TODO: layer height, jumlah dinding, infill, suhu nozzle/bed, orientasi cetak, kebutuhan support, waktu cetak. Tidak satu pun ada di dokumen sumber, dan semuanya dibutuhkan untuk mencetak ulang bagian ini. -->
+1. **Cetak cangkang** dengan PETG, bukan PLA — [PLA melunak pada suhu atap rumah Bali](../../README.id.md). <!-- TODO: layer height, jumlah dinding, infill, suhu nozzle/bed, orientasi cetak, kebutuhan support, waktu cetak. Tidak satu pun ada di dokumen sumber, dan semuanya dibutuhkan untuk mencetak ulang bagian ini. -->
 2. **Bangun mainboard.** Solder XIAO di tengah perfboard 3 × 7 cm, dua soket Grove/JST di kedua sisi, dan terminal blok ulir. Lalu jalankan bus di sisi bawah secara point-to-point: merah dan hitam paralel untuk daya, dua jalur I²C paralel ke kedua soket.
 3. **Pasang perangkat keras pelat bawah.** Solder kabel DC jack, lindungi sambungannya dengan heat-shrink, dan pasang pigtail SMA. Kerjakan ini sebelum apa pun masuk ke cangkang — pelatnya jauh lebih mudah dikerjakan saat kosong.
 4. **Pasang sensor debu.** HM3301 ke bilik kiri, empat baut M2 × 6 ke dudukan sasis, kipas hisap menghadap kisi-kisi lingkaran.
@@ -191,11 +191,11 @@ Alat: solder, obeng yang sesuai dengan baut Anda, tang potong dan pengupas kabel
 
 > Langkah 2, 5, dan 7 adalah tiga langkah yang paling membutuhkan foto dari atas dengan bagian-bagiannya diberi label. Dua foto mainboard di atas sudah cukup menutupi langkah 2; langkah 5 dan 7 saat ini hanya mengandalkan satu foto interior yang umum. <!-- TODO: foto langkah 5 dan 7. -->
 
-**Sebelum dipasang di lapangan**, lapisi sisi solder perfboard dengan silicone conformal coating, tutupi dulu lubang sensor dan konektor USB-C. Kelembapan relatif Bali di atas 80% hampir sepanjang tahun dan papan tanpa lapisan berkarat dalam 6–12 bulan; alasan dan produknya ada di [README induk](../README.id.md).
+**Sebelum dipasang di lapangan**, lapisi sisi solder perfboard dengan silicone conformal coating, tutupi dulu lubang sensor dan konektor USB-C. Kelembapan relatif Bali di atas 80% hampir sepanjang tahun dan papan tanpa lapisan berkarat dalam 6–12 bulan; alasan dan produknya ada di [README induk](../../README.id.md).
 
 ## Firmware dan alur data
 
-Node V2 menjalankan sketch DIY node bersama milik kampanye tanpa perubahan kode selain token Smart Citizen per perangkat: **[`../firmware/diy_node/`](../firmware/diy_node/)**. Berkas yang sama menyasar XIAO ESP32-S3 maupun ESP32-C3 — pemetaan pin D4/D5 diselesaikan per varian board, jadi tidak ada di dalamnya yang khusus untuk satu chip.
+Node V2 menjalankan sketch DIY node bersama milik kampanye tanpa perubahan kode selain token Smart Citizen per perangkat: **[`../firmware/diy_node/`](../../firmware/diy_node/)**. Berkas yang sama menyasar XIAO ESP32-S3 maupun ESP32-C3 — pemetaan pin D4/D5 diselesaikan per varian board, jadi tidak ada di dalamnya yang khusus untuk satu chip.
 
 Setiap 60 detik XIAO mengalamati tiap sensor bergantian lewat I²C, mengemas pembacaannya sebagai JSON, dan mengirimkannya lewat Wi-Fi via MQTT di port 8883 ke `mqtt.smartcitizen.me`, tempat dasbor kampanye membacanya. Koneksinya memakai TLS tetapi **validasi sertifikat dimatikan** di versi firmware ini (`net.setInsecure()`) — cukup untuk kit lokakarya, tidak cukup untuk node yang datanya masuk ke argumen kebijakan. Sketch-nya sendiri menyatakan hal itu di tempat kejadiannya.
 
@@ -213,7 +213,7 @@ ID kanal katalog global Smart Citizen yang dipakai node ini:
 
 ![Diagram integrasi sistem](img/12-system-integration-diagram.png)
 
-> **Dokumentasi vs kode, ditandai.** Dokumen sumber menyebutkan data mentah "disaring menggunakan fungsi kalkulasi kalibrasi lokal untuk mengeliminasi error sasis" sebelum dikirim. **Fungsi seperti itu tidak ada di firmware yang ditautkan.** Firmware mengirim suhu dan kelembapan apa adanya, ditambah aproksimasi IAQ on-device yang secara eksplisit tidak terkalibrasi. Dua alasan mengapa ini penting: fungsi yang dijelaskan itu tidak ada, dan kalau ada yang menambahkannya, itu bertentangan dengan kebijakan kampanye bahwa [koreksi hidup di lapisan pemrosesan dasbor, bukan di firmware](../README.id.md) — koreksi di firmware tidak bisa diaudit, koreksi di dasbor terversi. Panas sendiri yang ditemukan evaluasi adalah error nyata yang memang butuh koreksi nyata; tempatnya di pipeline data. <!-- TODO: hapus klaim ini dari peredaran, atau tunjuk kode yang benar-benar mengimplementasikannya. -->
+> **Dokumentasi vs kode, ditandai.** Dokumen sumber menyebutkan data mentah "disaring menggunakan fungsi kalkulasi kalibrasi lokal untuk mengeliminasi error sasis" sebelum dikirim. **Fungsi seperti itu tidak ada di firmware yang ditautkan.** Firmware mengirim suhu dan kelembapan apa adanya, ditambah aproksimasi IAQ on-device yang secara eksplisit tidak terkalibrasi. Dua alasan mengapa ini penting: fungsi yang dijelaskan itu tidak ada, dan kalau ada yang menambahkannya, itu bertentangan dengan kebijakan kampanye bahwa [koreksi hidup di lapisan pemrosesan dasbor, bukan di firmware](../../README.id.md) — koreksi di firmware tidak bisa diaudit, koreksi di dasbor terversi. Panas sendiri yang ditemukan evaluasi adalah error nyata yang memang butuh koreksi nyata; tempatnya di pipeline data. <!-- TODO: hapus klaim ini dari peredaran, atau tunjuk kode yang benar-benar mengimplementasikannya. -->
 
 ## Evaluasi — apa yang ditunjukkan uji lapangan
 
@@ -230,7 +230,11 @@ Kedua kegagalan ini tidak mengumumkan dirinya. Keduanya menghasilkan data yang t
 1. **Masukan udara dari atas atau samping terbuka, bukan dari bawah.** Lubang masuk menghadap ke bawah terbukti gagal. V3 kembali ke jalur aliran udara vertikal.
 2. **Keluarkan BME680 dari kompartemen utama.** Sensor itu harus berada di luar bilik elektronik, di bawah struktur kubah perisai radiasi matahari (multi-louvered solar radiation shield), agar membaca udara alam dan bukan buangan panas mikrokontroler.
 
-Keduanya sudah terpecahkan di [sasis pine cone v5 yang berlaku sekarang](../enclosure/), yang menaruh setiap celah napas di bayangan hujan sebuah sisik dan menjalankan cerobong dari lubang masuk rendah setinggi BME680 ke pembuangan tinggi di bawah tudung. Kalau V3 memang rancangan baru dan bukan adopsi v5, folder itu yang pertama harus dibaca.
+Keduanya terpecahkan di sasis pine cone v5, yang menaruh setiap celah napas di bayangan hujan sebuah sisik dan menjalankan cerobong dari lubang masuk rendah setinggi BME680 ke pembuangan tinggi di bawah tudung.
+
+**V3 menempuh jalan lain, dan kedua syarat itu tidak ikut terbawa.** Generasi V3 Fab Lab Bali — [`../../node-v3.1/`](../node-v3.1/) (= Node V3.1) dan [`../../node-v3.2/`](../node-v3.2/) (= Node V3.2, yang berlaku sekarang) — kembali ke bodi horizontal yang kompak. Generasi ini memperbaiki masalah aliran udara ketiga yang tidak tertangkap evaluasi ini, yaitu hisap balik udara buang, lewat saluran yang mengarahkan buangan PM ke samping. Tetapi lubang masukannya tetap di bawah bodi, dan BME680 tetap berada dalam satu ruang tertutup yang sama dengan radio, di bawah penutup datar tanpa pelindung radiasi. Syarat 1 dan syarat 2 di atas sama-sama belum terpenuhi.
+
+Bisa jadi ini tidak menjadi masalah — bentuk bodi V3 berbeda dan volume dalamnya bukan volume V2 — tetapi belum ada yang mengukurnya. Sampai satu unit V3 diko-lokasikan dengan SCK, kedua kegagalan yang didokumentasikan di sini sebaiknya dianggap masih berlaku.
 
 Ada pelajaran ketiga yang disiratkan evaluasi tanpa dinyatakan: **keringkasan dan isolasi termal saling bertentangan langsung**, dan V2 memilih keringkasan tanpa menghitung harganya. Cangkang yang menampung radio dan sensor suhu dalam satu ruang tertutup akan melaporkan suhu radionya. Pisahkan keduanya secara fisik, atau terima bahwa kanal suhunya bersifat diagnostik dan bukan ambien — lalu nyatakan itu di dasbor.
 
@@ -238,12 +242,12 @@ Ada pelajaran ketiga yang disiratkan evaluasi tanpa dinyatakan: **keringkasan da
 
 | Apa | Di mana |
 |---|---|
-| Firmware (dipakai bersama seluruh keluarga DIY node) | [`../firmware/diy_node/`](../firmware/diy_node/) |
+| Firmware (dipakai bersama seluruh keluarga DIY node) | [`../firmware/diy_node/`](../../firmware/diy_node/) |
 | Bill of materials, terbaca mesin | [`bom.csv`](bom.csv) |
 | Foto, render, dan diagram | [`img/`](img/) |
 | Berkas enclosure Node V2 | [Folder Google Drive](https://drive.google.com/file/d/1OdK7mdnLc2XkGRntHOQXK7PGmcP8E4bJ/view?usp=sharing) — **belum ada di repo ini** |
 | Makalah acuan stasiun SCK | [HardwareX 6 (2019)](https://www.sciencedirect.com/science/article/pii/S2468067219300203) |
-| Sasis yang direkomendasikan saat ini | [`../enclosure/`](../enclosure/) |
+| Sasis yang direkomendasikan saat ini | [`../../node-v3.2/`](../node-v3.2/) |
 
 ## Apa yang masih kurang dari dokumentasi ini
 
