@@ -69,6 +69,9 @@ var DUPLICATE_RADIUS_KM = 0.05;
 // we put a number on. Roughly 20 of 105 stations are stale at any moment.
 var FRESH_HOURS = 6;
 
+// Networks that republish other networks' boxes rather than running their own.
+var RELAYS = { 'OpenAQ': true };
+
 // Four scopes the reader picks between, NESTED rather than disjoint rings.
 // Nesting matters: with disjoint bands (<=100 m, 500 m - 2 km, 2-5 km) there is
 // a hole between 100 m and 500 m, and real sensors fall in it — Denpasar
@@ -100,25 +103,38 @@ function usable(s){
 }
 
 // Normalise /latest rows into what this page works with.
+function toStation(r){
+  var ageH = typeof r.age_hours === 'number' ? r.age_hours : null;
+  return {
+    id: r.station_id,
+    name: r.name,
+    source: r.source,
+    lat: r.latitude,
+    lng: r.longitude,
+    pm25: typeof r.pm25 === 'number' ? r.pm25 : null,
+    pm25Raw: typeof r.pm25_raw === 'number' ? r.pm25_raw : null,
+    corrected: !!r.pm25_corrected,
+    fromAqi: !!r.pm25_from_aqi,
+    observedAt: r.observed_at || null,
+    ageHours: ageH,
+    fresh: ageH != null && ageH <= FRESH_HOURS,
+    sources: [r.source]
+  };
+}
+
 function normalise(readings){
-  return readings.filter(usable).map(function(r){
-    var ageH = typeof r.age_hours === 'number' ? r.age_hours : null;
-    return {
-      id: r.station_id,
-      name: r.name,
-      source: r.source,
-      lat: r.latitude,
-      lng: r.longitude,
-      pm25: typeof r.pm25 === 'number' ? r.pm25 : null,
-      pm25Raw: typeof r.pm25_raw === 'number' ? r.pm25_raw : null,
-      corrected: !!r.pm25_corrected,
-      fromAqi: !!r.pm25_from_aqi,
-      observedAt: r.observed_at || null,
-      ageHours: ageH,
-      fresh: ageH != null && ageH <= FRESH_HOURS,
-      sources: [r.source]
-    };
-  });
+  return readings.filter(usable).map(toStation);
+}
+
+// Stations BAD flags as probably indoor. They never enter a scale median —
+// an indoor box describes one room — but a resident may own one and want it
+// on their Home tab next to the outdoor air, which is exactly the comparison
+// (outside 58, inside 9) that teaches seal-first.
+function indoorOnly(readings){
+  return readings.filter(function(r){
+    return r && typeof r.latitude === 'number' && typeof r.longitude === 'number'
+      && r.suspected_indoor && !r.suspected_malfunctioning;
+  }).map(function(r){ var s = toStation(r); s.indoor = true; return s; });
 }
 
 // Collapse co-located records into one physical sensor. The survivor is the
@@ -134,10 +150,15 @@ function dedupe(list){
         if (o.sources.indexOf(s.source) < 0) o.sources.push(s.source);
         // Fresher wins; then the more recent observation. (This used to
         // tie-break on days_of_data, which cost a whole second request.)
+        // On a tie, the network's own record beats a relay of it. OpenAQ
+        // republishes AirGradient boxes, and on 26 Sep 2026 the two copies of
+        // one box read 48 and 112: the native record is the one to quote.
+        var sa = s.ageHours == null ? Infinity : s.ageHours;
+        var oa = o.ageHours == null ? Infinity : o.ageHours;
+        var tie = s.fresh === o.fresh && Math.abs(sa - oa) <= 0.5;
         var better = (s.fresh && !o.fresh) ||
-                     (s.fresh === o.fresh &&
-                      (s.ageHours == null ? Infinity : s.ageHours) <
-                      (o.ageHours == null ? Infinity : o.ageHours));
+                     (tie && RELAYS[o.source] && !RELAYS[s.source]) ||
+                     (!tie && s.fresh === o.fresh && sa < oa);
         if (better){
           var keep = o.sources;
           out[i] = s; out[i].sources = keep;
@@ -167,6 +188,7 @@ function load(force){
       var rows = normalise(j.readings || []);
       _cache = {
         sensors: dedupe(rows),
+        indoor: indoorOnly(j.readings || []),
         records: rows.length,
         generatedAt: j.generated_at || null
       };
@@ -200,6 +222,15 @@ function bandsFor(lat, lng, sensors){
 
 // Only fresh readings carry a number. A band of three sensors where two are
 // stale reports one, and says so.
+// True median: the average of the middle pair for an even count. It used to
+// take the upper middle value, which with two sensors at 10 and 40 put 40 on
+// the hero while understand.js (which averages) said 25 underneath it.
+function median(sorted){
+  if (!sorted.length) return null;
+  var m = Math.floor(sorted.length/2);
+  return sorted.length % 2 ? sorted[m] : (sorted[m-1] + sorted[m]) / 2;
+}
+
 function bandSummary(band){
   var fresh = band.sensors.filter(function(o){ return o.s.fresh && o.s.pm25 != null; });
   if (!fresh.length) return { count: band.sensors.length, freshCount: 0, pm25: null };
@@ -207,9 +238,37 @@ function bandSummary(band){
   return {
     count: band.sensors.length,
     freshCount: fresh.length,
-    pm25: vals[Math.floor(vals.length/2)],   // median, not mean: one bad box must not move it
+    pm25: median(vals),   // median, not mean: one bad box must not move it
     closest: fresh[0]
   };
+}
+
+
+// Hourly history for one station, for the "is this usual for this hour here?"
+// test. Fetched lazily, after first paint and only once somebody is located,
+// for at most a couple of stations. Both sides of that comparison come from
+// this endpoint, so they share one basis — /latest is humidity-corrected and
+// the hourly archive may not be, and mixing the two would invent a peak.
+var _hourly = {}, HOURLY_TTL_MS = 30*60*1000;
+function hourly(stationId, days){
+  days = days || 7;
+  var key = stationId + ':' + days, hit = _hourly[key];
+  // A tab left open must not compare "now" against an archive frozen at
+  // page load; after half an hour the archive is fetched again.
+  if (hit && Date.now() - hit.at < HOURLY_TTL_MS) return hit.p;
+  var from = new Date(Date.now() - days*86400000).toISOString().slice(0,10);
+  var p = fetch(API + '/measurements?station=' + encodeURIComponent(stationId) +
+                       '&interval=hourly&from=' + from)
+    .then(function(r){ if(!r.ok) throw new Error('measurements HTTP '+r.status); return r.json(); })
+    .then(function(j){
+      return (j.measurements || []).filter(function(m){ return typeof m.pm25 === 'number'; })
+        .map(function(m){ return { t: Date.parse(m.observed_at), pm25: m.pm25 }; })
+        .filter(function(m){ return isFinite(m.t); })
+        .sort(function(a,b){ return a.t - b.t; });
+    })
+    .catch(function(e){ delete _hourly[key]; throw e; });
+  _hourly[key] = { p: p, at: Date.now() };
+  return p;
 }
 
 window.SCB_NEAR = {
@@ -225,10 +284,12 @@ window.SCB_NEAR = {
   islandMedian: function(sensors){
     var v = sensors.filter(function(s){ return s.fresh && s.pm25 != null; })
                    .map(function(s){ return s.pm25; }).sort(function(a,b){ return a-b; });
-    return v.length ? v[Math.floor(v.length/2)] : null;
+    return median(v);
   },
   _dedupe: dedupe,
-  _normalise: normalise
+  hourly: hourly,
+  _normalise: normalise,
+  _indoorOnly: indoorOnly
 };
 
 })();
