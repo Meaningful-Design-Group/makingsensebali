@@ -45,9 +45,12 @@ function windowOf(hour){
   return null;
 }
 
+// The same gate Bali Air Dispatch uses for every island-wide figure
+// (isAmbient): fresh, and not indoor, faulty or community-contributed. near.js
+// sets .ambient; objects without the field (tests, older data) count if fresh.
 function live(sensors){
   return (sensors || []).filter(function(s){
-    return s && s.fresh && typeof s.pm25 === 'number' && typeof s.lat === 'number';
+    return s && s.fresh && s.ambient !== false && typeof s.pm25 === 'number' && typeof s.lat === 'number';
   });
 }
 

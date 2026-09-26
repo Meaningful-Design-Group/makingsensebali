@@ -29,48 +29,52 @@
 //
 // DATA
 // ----
-// Bali Air Dispatch, https://baliairdispatch.com/api  (CORS: *, no key).
-//   GET /api/v1/latest    most recent reading held for each station
+// Bali Air Dispatch, https://baliairdispatch.com  (CORS: *, no key).
+//   GET /api/live          the live station set the BAD homepage itself reads
+//   GET /api/v1/stations   station registry, carrying the indoor / faulty flags
+//   GET /api/v1/measurements  hourly archive, fetched lazily (see hourly())
 //
-// ONE request, deliberately. /latest already carries latitude, longitude, name,
-// source and both provenance flags, so /stations adds nothing this page needs
-// except days_of_data — which was only ever a dedupe tie-break, and recency
-// breaks ties better anyway.
+// WHY /api/live AND NOT /api/v1/latest (changed 26 Sep 2026)
+// The page used to read /api/v1/latest and apply its own filter: drop the two
+// provenance flags, merge records within 50 m, call anything older than 6 h
+// stale. Bali Air Dispatch publishes its headline figures from a different
+// set: /api/live, merged within 300 m on their side, stale by each network's
+// own freshness limit, and then filtered by one predicate (isAmbient on their
+// homepage): not stale, not indoor, not faulty, not community-contributed.
+// The two sets disagreed — 69 boxes against their 57 live sensors, and a
+// median of 19.3 against their 20.1 — and a visitor who opened both sites
+// saw two numbers for the same island. Reading the same endpoint and
+// applying the same predicate reproduces their 57 / 20.1 / worst exactly.
 //
-// Measured from Bali, 2026-09-24, brotli on the wire:
-//   own data/sensors.json   2.7 KB   TTFB 112 ms   (same origin, Pages CDN)
-//   BAD /latest             7.2 KB   TTFB 258 ms
-//   BAD /stations           6.4 KB   TTFB 254 ms
-// So this is not a heavy dependency — it is seven kilobytes and a quarter
-// second. Dropping /stations halves the round trips and saves 6.4 KB, and the
-// caller warms this at idle so the button press itself costs nothing.
-//
-// (An earlier note here claimed the API served no compression. That was wrong:
-// Content-Encoding is not readable cross-origin and encodedBodySize is 0
-// without Timing-Allow-Origin, so the browser cannot see it. curl can — the
-// responses are brotli, 65 KB down to 7.)
-//
+// The indoor and faulty lists come from /api/v1/stations (suspected_indoor,
+// suspected_malfunctioning), which BAD documents as mirroring the lists on
+// their homepage. That file changes on a scale of weeks, so it is fetched
+// once per page view, in parallel, and a mirrored copy below is used if it
+// cannot be reached — so a hiccup there can never let an indoor box back
+// into the median.
+
 // Readings originate from independent networks (Nafas, IQAir, PurpleAir,
 // AQICN, OpenAQ, AirGradient, Smart Citizen, Airly) and remain subject to
 // their terms. Attribute Bali Air Dispatch AND the network in each row.
 (function(){
 'use strict';
 
-var API = 'https://baliairdispatch.com/api/v1';
+var API  = 'https://baliairdispatch.com/api/v1';
+var LIVE = 'https://baliairdispatch.com/api/live';
 
-// Distinct physical sensors closer than this are the same box reaching us
-// through two networks. 105 outdoor records collapse to 70 real locations:
-// AirGradient units are relayed by OpenAQ, and several Airly sites also
-// publish through Nafas. Counting the records instead of the boxes overstates
-// coverage by half.
-var DUPLICATE_RADIUS_KM = 0.05;
-
-// A reading older than this is shown, but greyed and excluded from any figure
-// we put a number on. Roughly 20 of 105 stations are stale at any moment.
+// Kept for the copy ("N sensors silent for more than 6 h" on older strings)
+// and for the hourly archive; freshness itself now comes from BAD's own
+// per-network stale flag.
 var FRESH_HOURS = 6;
 
-// Networks that republish other networks' boxes rather than running their own.
-var RELAYS = { 'OpenAQ': true };
+// Used only when /api/v1/stations cannot be reached. Mirrors INDOOR_IDS and
+// MALFUNCTION_IDS on baliairdispatch.com as of 26 Sep 2026.
+var FALLBACK_INDOOR = {
+  'nafas-ba19b143-3580-4a60-a3ce-135a5e5936dd': 1,   // Pemogan (Nafas)
+  'pa-36601': 1,                                     // Jimbaran by Lumi Clinic
+  'iqs-jimbaran-s': 1                                // the same unit via IQAir
+};
+var FALLBACK_FAULTY = { 'pa-46949': 1 };             // Klungkung by Lumi Clinic
 
 // Four scopes the reader picks between, NESTED rather than disjoint rings.
 // Nesting matters: with disjoint bands (<=100 m, 500 m - 2 km, 2-5 km) there is
@@ -97,100 +101,92 @@ function haversineKm(lat1, lon1, lat2, lon2){
   return 2*R*Math.asin(Math.min(1, Math.sqrt(a)));
 }
 
-function usable(s){
-  return s && typeof s.latitude === 'number' && typeof s.longitude === 'number'
-    && !s.suspected_indoor && !s.suspected_malfunctioning;
+var _flags = null;
+function loadFlags(){
+  if (_flags) return Promise.resolve(_flags);
+  return fetch(API + '/stations')
+    .then(function(r){ if(!r.ok) throw new Error('stations HTTP '+r.status); return r.json(); })
+    .then(function(j){
+      var f = { indoor: {}, faulty: {}, fallback: false };
+      (j.stations || []).forEach(function(s){
+        if (s.suspected_indoor) f.indoor[s.station_id] = 1;
+        if (s.suspected_malfunctioning) f.faulty[s.station_id] = 1;
+      });
+      _flags = f;
+      return f;
+    })
+    .catch(function(e){
+      console.warn('[near] station flags unavailable, using the mirrored list:', e);
+      return { indoor: FALLBACK_INDOOR, faulty: FALLBACK_FAULTY, fallback: true };
+    });
 }
 
-// Normalise /latest rows into what this page works with.
-function toStation(r){
-  var ageH = typeof r.age_hours === 'number' ? r.age_hours : null;
+// One /api/live row into what this page works with. `ambient` is BAD's
+// isAmbient, and it is the only gate on any figure this site computes: the
+// scale medians, the island median, the diagnosis, coverage.
+function toStation(r, flags){
+  var seen = Date.parse(r.lastSeen);
+  var indoor = !!flags.indoor[r.id], faulty = !!flags.faulty[r.id];
+  var contributed = !!r.contributed || /^cs-/.test(String(r.id));
+  var fresh = !r.stale && typeof r.pm25 === 'number';
   return {
-    id: r.station_id,
+    id: r.id,
     name: r.name,
     source: r.source,
-    lat: r.latitude,
-    lng: r.longitude,
+    lat: r.lat,
+    lng: r.lon,
     pm25: typeof r.pm25 === 'number' ? r.pm25 : null,
     pm25Raw: typeof r.pm25_raw === 'number' ? r.pm25_raw : null,
     corrected: !!r.pm25_corrected,
-    fromAqi: !!r.pm25_from_aqi,
-    observedAt: r.observed_at || null,
-    ageHours: ageH,
-    fresh: ageH != null && ageH <= FRESH_HOURS,
+    estimated: !!r.pm25_estimated,
+    observedAt: r.lastSeen || null,
+    ageHours: isFinite(seen) ? (Date.now() - seen) / 3600000 : null,
+    fresh: fresh,
+    indoor: indoor,
+    faulty: faulty,
+    contributed: contributed,
+    ambient: fresh && !indoor && !faulty && !contributed,
+    // Shown, labelled, never counted — in the order BAD gives the reasons.
+    excluded: !fresh ? 'stale' : indoor ? 'indoor' : faulty ? 'faulty' : contributed ? 'community' : null,
     sources: [r.source]
   };
-}
-
-function normalise(readings){
-  return readings.filter(usable).map(toStation);
-}
-
-// Stations BAD flags as probably indoor. They never enter a scale median —
-// an indoor box describes one room — but a resident may own one and want it
-// on their Home tab next to the outdoor air, which is exactly the comparison
-// (outside 58, inside 9) that teaches seal-first.
-function indoorOnly(readings){
-  return readings.filter(function(r){
-    return r && typeof r.latitude === 'number' && typeof r.longitude === 'number'
-      && r.suspected_indoor && !r.suspected_malfunctioning;
-  }).map(function(r){ var s = toStation(r); s.indoor = true; return s; });
-}
-
-// Collapse co-located records into one physical sensor. The survivor is the
-// one we would rather quote: fresh beats stale, then longest record. The
-// networks that were folded in are kept in .sources so the popup can say
-// "AirGradient · OpenAQ" rather than silently dropping an attribution we owe.
-function dedupe(list){
-  var out = [];
-  list.forEach(function(s){
-    for (var i = 0; i < out.length; i++){
-      var o = out[i];
-      if (haversineKm(s.lat, s.lng, o.lat, o.lng) <= DUPLICATE_RADIUS_KM){
-        if (o.sources.indexOf(s.source) < 0) o.sources.push(s.source);
-        // Fresher wins; then the more recent observation. (This used to
-        // tie-break on days_of_data, which cost a whole second request.)
-        // On a tie, the network's own record beats a relay of it. OpenAQ
-        // republishes AirGradient boxes, and on 26 Sep 2026 the two copies of
-        // one box read 48 and 112: the native record is the one to quote.
-        var sa = s.ageHours == null ? Infinity : s.ageHours;
-        var oa = o.ageHours == null ? Infinity : o.ageHours;
-        var tie = s.fresh === o.fresh && Math.abs(sa - oa) <= 0.5;
-        var better = (s.fresh && !o.fresh) ||
-                     (tie && RELAYS[o.source] && !RELAYS[s.source]) ||
-                     (!tie && s.fresh === o.fresh && sa < oa);
-        if (better){
-          var keep = o.sources;
-          out[i] = s; out[i].sources = keep;
-        }
-        return;
-      }
-    }
-    out.push(s);
-  });
-  return out;
 }
 
 var _cache = null, _inflight = null, _fetchedAt = 0;
 
 // force=true drops the cached copy so the page can poll for a new reading.
-// Deliberately NOT cache-busted with a query parameter: the API is edge-cached
-// at s-maxage=300 and the browser holds it for max-age=60, so a plain fetch
-// after a minute costs an edge hit and after five a fresh origin read. Adding
-// ?t=<now> would bypass both and push every visitor's poll onto their origin,
-// which is a rude way to treat somebody else's free API.
+// Deliberately NOT cache-busted with a query parameter: /api/live is edge-cached
+// at s-maxage=120 and held by the browser for max-age=60, so a plain fetch is
+// cheap for everyone. Adding ?t=<now> would push every visitor's poll onto
+// their origin, which is a rude way to treat somebody else's free API.
 function load(force){
   if (_cache && !force) return Promise.resolve(_cache);
   if (_inflight) return _inflight;
-  _inflight = fetch(API + '/latest')
-    .then(function(r){ if(!r.ok) throw new Error('latest HTTP '+r.status); return r.json(); })
-    .then(function(j){
-      var rows = normalise(j.readings || []);
+  var live = fetch(LIVE)
+    .then(function(r){ if(!r.ok) throw new Error('live HTTP '+r.status); return r.json(); });
+  _inflight = Promise.all([live, loadFlags()])
+    .then(function(res){
+      var d = res[0], flags = res[1];
+      // off:true rows are BAD's tombstones for dead units: never live.
+      var all = (d.stations || []).filter(function(s){
+        return s && !s.off && typeof s.lat === 'number' && typeof s.lon === 'number';
+      }).map(function(s){ return toStation(s, flags); });
+      var live = all.filter(function(s){ return s.fresh; });
+      var nets = {}; live.forEach(function(s){ nets[s.source] = 1; });
       _cache = {
-        sensors: dedupe(rows),
-        indoor: indoorOnly(j.readings || []),
-        records: rows.length,
-        generatedAt: j.generated_at || null
+        // Every live sensor, as BAD counts "live sensors". Figures are taken
+        // from the ambient subset only; the rest are listed and labelled.
+        sensors: live,
+        ambient: live.filter(function(s){ return s.ambient; }),
+        excluded: live.filter(function(s){ return !s.ambient; }),
+        // Home can pin anything, including an indoor or community unit that
+        // is the reader's own, and one that has gone quiet.
+        all: all,
+        indoor: live.filter(function(s){ return s.indoor; }),
+        networks: Object.keys(nets).length,
+        flagsFallback: !!flags.fallback,
+        generatedAt: d.ts || null,
+        degraded: !!d.degraded
       };
       _fetchedAt = Date.now();
       _inflight = null;
@@ -220,8 +216,8 @@ function bandsFor(lat, lng, sensors){
   return { bands: bands, nearest: withD.length ? withD[0] : null, all: withD };
 }
 
-// Only fresh readings carry a number. A band of three sensors where two are
-// stale reports one, and says so.
+// Only ambient readings carry a number. A band of three sensors where one is
+// indoor reports two, and says so.
 // True median: the average of the middle pair for an even count. It used to
 // take the upper middle value, which with two sensors at 10 and 40 put 40 on
 // the hero while understand.js (which averages) said 25 underneath it.
@@ -231,15 +227,19 @@ function median(sorted){
   return sorted.length % 2 ? sorted[m] : (sorted[m-1] + sorted[m]) / 2;
 }
 
-function bandSummary(band){
-  var fresh = band.sensors.filter(function(o){ return o.s.fresh && o.s.pm25 != null; });
-  if (!fresh.length) return { count: band.sensors.length, freshCount: 0, pm25: null };
-  var vals = fresh.map(function(o){ return o.s.pm25; }).sort(function(a,b){ return a-b; });
+function bandSummary(band, anyFresh){
+  // Figures come from the ambient set only (BAD's isAmbient). anyFresh is for
+  // the Home tab, where an indoor unit is exactly what the reader pinned.
+  var use = band.sensors.filter(function(o){
+    return o.s.pm25 != null && (anyFresh ? o.s.fresh : o.s.ambient);
+  });
+  if (!use.length) return { count: band.sensors.length, freshCount: 0, pm25: null };
+  var vals = use.map(function(o){ return o.s.pm25; }).sort(function(a,b){ return a-b; });
   return {
     count: band.sensors.length,
-    freshCount: fresh.length,
+    freshCount: use.length,
     pm25: median(vals),   // median, not mean: one bad box must not move it
-    closest: fresh[0]
+    closest: use[0]
   };
 }
 
@@ -273,6 +273,7 @@ function hourly(stationId, days){
 
 window.SCB_NEAR = {
   API: API,
+  LIVE: LIVE,
   SCALES: SCALES,
   FRESH_HOURS: FRESH_HOURS,
   load: load,
@@ -282,14 +283,13 @@ window.SCB_NEAR = {
   bandSummary: bandSummary,
   distanceKm: haversineKm,
   islandMedian: function(sensors){
-    var v = sensors.filter(function(s){ return s.fresh && s.pm25 != null; })
+    var v = sensors.filter(function(s){ return s.ambient && s.pm25 != null; })
                    .map(function(s){ return s.pm25; }).sort(function(a,b){ return a-b; });
     return median(v);
   },
-  _dedupe: dedupe,
   hourly: hourly,
-  _normalise: normalise,
-  _indoorOnly: indoorOnly
+  _toStation: toStation,
+  _fallbackFlags: { indoor: FALLBACK_INDOOR, faulty: FALLBACK_FAULTY }
 };
 
 })();
