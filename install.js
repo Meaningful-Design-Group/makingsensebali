@@ -117,5 +117,54 @@ function wire(){
 }
 if (document.readyState !== 'loading') wire(); else addEventListener('DOMContentLoaded', wire);
 
+
+// ---------------------------------------------------------------------------
+// Diagnostics: open the site with ?debug=install on the phone that will not
+// install, and this panel shows what the browser is actually reporting —
+// which of the conditions above holds, whether Chrome has offered its
+// prompt yet, and the service worker's state — so a screenshot says why.
+var firedAt = null, installedAt = null, t0 = Date.now();
+addEventListener('beforeinstallprompt', function(){ firedAt = Date.now(); });
+addEventListener('appinstalled', function(){ installedAt = Date.now(); });
+if (/[?&]debug=install\b/.test(location.search)) {
+  addEventListener('load', function(){
+    var box = document.createElement('div');
+    box.setAttribute('style', 'position:fixed;left:8px;right:8px;bottom:8px;z-index:2000;background:#16171a;color:#f6efe1;' +
+      'font:12px/1.5 ui-monospace,Menlo,monospace;padding:12px 14px;border-radius:10px;max-height:60vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,.4)');
+    document.body.appendChild(box);
+    var manifestStatus = '…', swState = '…';
+    var link = document.querySelector('link[rel="manifest"]');
+    if (link) fetch(link.href, { cache: 'no-store' }).then(function(r){ manifestStatus = r.status + ' ' + (r.headers.get('content-type') || ''); }).catch(function(e){ manifestStatus = 'error ' + e; });
+    else manifestStatus = 'no <link rel=manifest>';
+    function sw(){
+      if (!('serviceWorker' in navigator)) { swState = 'not supported'; return; }
+      navigator.serviceWorker.getRegistration().then(function(r){
+        swState = !r ? 'not registered' : (r.active ? 'active' : r.installing ? 'installing' : r.waiting ? 'waiting' : 'registered') +
+                  (navigator.serviceWorker.controller ? ', controlling' : ', not controlling yet');
+      });
+    }
+    function row(k, v){ return '<div><span style="color:#9a948a">' + k + '</span> ' + String(v).replace(/</g,'&lt;') + '</div>'; }
+    function paint(){
+      sw();
+      var secs = Math.round((Date.now() - t0) / 1000);
+      box.innerHTML = '<div style="color:#e9a05a;margin-bottom:6px">install diagnostics · screenshot this</div>' +
+        row('ua', ua) +
+        row('android / ios / in-app / from-app', [isAndroid, isIOS, isInApp, fromApp].join(' / ')) +
+        row('referrer', document.referrer || '(none)') +
+        row('standalone', standalone) +
+        row('secure context', window.isSecureContext) +
+        row('manifest', manifestStatus) +
+        row('service worker', swState) +
+        row('seconds on page', secs + (secs < 30 ? '  (Chrome wants ~30 s and a tap)' : '')) +
+        row('install prompt offered', firedAt ? 'YES, after ' + Math.round((firedAt - t0)/1000) + ' s' : 'not yet') +
+        row('prompt held for our button', deferred ? 'yes' : 'no') +
+        row('installed event', installedAt ? 'yes' : 'no') +
+        '<button type="button" id="dbg-try" style="margin-top:8px;padding:8px 12px;border-radius:6px;border:0;background:#b8472b;color:#fff">Try install now</button>';
+      var b = document.getElementById('dbg-try'); if (b) b.onclick = onClick;
+    }
+    paint(); setInterval(paint, 1000);
+  });
+}
+
 window.SCB_INSTALL = { open: onClick, standalone: standalone };
 })();
