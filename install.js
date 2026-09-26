@@ -12,6 +12,15 @@
 //     opens two lines of instructions: Share, then "Add to Home Screen".
 //   Inside WhatsApp, Instagram or Facebook: in-app browsers cannot install
 //     anything. The button says to open the page in the real browser first.
+//     On Android these are usually Chrome Custom Tabs, which send Chrome's
+//     own user agent and cannot be told apart from Chrome by it. The one tell
+//     is document.referrer ("android-app://com.whatsapp"), when the app sends
+//     it; the Android instructions cover the case where it does not.
+//   Chrome only offers its install prompt after the reader has interacted
+//     with the page for a while (roughly 30 seconds and a tap, Chrome's own
+//     engagement rule). Somebody who taps our button in the first seconds
+//     gets the menu instructions, and if Chrome's prompt becomes available
+//     while those are open, an "Install now" button appears in the sheet.
 //   Already installed (running standalone): the button never appears.
 //
 // Any element with [data-install] is a button this file shows and wires up.
@@ -21,7 +30,9 @@
 var ua = navigator.userAgent || '';
 var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 var isInApp = /FBAN|FBAV|FB_IAB|Instagram|Line\/|WhatsApp|; wv\)/.test(ua);
-var isMobile = isIOS || /Android|Mobi/.test(ua);
+var isAndroid = /Android/.test(ua);
+var isMobile = isIOS || isAndroid || /Mobi/.test(ua);
+var fromApp = /^android-app:\/\//.test(document.referrer || '');
 var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
 var deferred = null;
 
@@ -41,7 +52,8 @@ var sheet = null;
 function closeSheet(){ if (sheet){ sheet.remove(); sheet = null; } }
 function openSheet(){
   closeSheet();
-  var how = isInApp ? 'install.inapp' : isIOS ? 'install.ios' : 'install.other';
+  var how = (isInApp || fromApp) ? (isAndroid ? 'install.inapp_android' : 'install.inapp')
+          : isIOS ? 'install.ios' : isAndroid ? 'install.android' : 'install.other';
   sheet = document.createElement('div');
   sheet.className = 'install-sheet';
   sheet.setAttribute('role', 'dialog');
@@ -53,11 +65,16 @@ function openSheet(){
       '<h2 id="install-title"></h2>' +
       '<p class="install-why"></p>' +
       '<p class="install-how"></p>' +
+      '<button type="button" class="btn btn-fill btn-report install-now" hidden></button>' +
       '<button type="button" class="btn btn-fill install-close"></button>' +
     '</div>';
   sheet.querySelector('h2').textContent = t('install.title');
   sheet.querySelector('.install-why').textContent = t('install.why');
   sheet.querySelector('.install-how').textContent = t(how);
+  var now = sheet.querySelector('.install-now');
+  now.textContent = t('install.now');
+  now.addEventListener('click', function(){ closeSheet(); onClick(); });
+  now.hidden = !deferred;
   var close = sheet.querySelector('.install-close');
   close.textContent = t('install.close');
   close.addEventListener('click', closeSheet);
@@ -83,6 +100,9 @@ addEventListener('beforeinstallprompt', function(e){
   e.preventDefault();          // we show our own button instead of the mini-infobar
   deferred = e;
   if (!standalone) show(true);
+  // The reader may already be looking at the menu instructions.
+  var now = sheet && sheet.querySelector('.install-now');
+  if (now){ now.hidden = false; now.focus(); }
 });
 addEventListener('appinstalled', function(){ deferred = null; show(false); closeSheet(); });
 

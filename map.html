@@ -141,6 +141,8 @@ button.btn{font-family:var(--mono)}
 .install-card p{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--ink-soft)}
 .install-card .install-how{color:var(--ink);font-weight:500}
 .install-card .install-close{width:100%;justify-content:center;margin-top:6px}
+.install-card .install-now{width:100%;justify-content:center;margin-top:6px}
+.install-card .install-now[hidden]{display:none}
 @media(min-width:720px){.install-sheet{align-items:center}}
 @media(max-width:260px){.install-btn{display:none!important}}
 </style>
@@ -204,12 +206,12 @@ button.btn{font-family:var(--mono)}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <!-- ?v= is a cache buster; see index.html. Bump it whenever these files change. -->
-<script src="./data.js?v=20260926d"></script>
-<script src="./peaks.js?v=20260926d"></script>
-<script src="./near.js?v=20260926d"></script>
-<script src="./i18n.js?v=20260926d"></script>
-<script src="./i18n-home.js?v=20260926d"></script>
-<script src="./install.js?v=20260926d"></script>
+<script src="./data.js?v=20260926e"></script>
+<script src="./peaks.js?v=20260926e"></script>
+<script src="./near.js?v=20260926e"></script>
+<script src="./i18n.js?v=20260926e"></script>
+<script src="./i18n-home.js?v=20260926e"></script>
+<script src="./install.js?v=20260926e"></script>
 <script>
 /* Map & reports. Moved here from the home page on 26 Sep 2026, when the home
    page became "the air where you are" and nothing else. The code below is the
