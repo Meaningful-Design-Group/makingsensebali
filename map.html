@@ -185,11 +185,11 @@ button.btn{font-family:var(--mono)}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <!-- ?v= is a cache buster; see index.html. Bump it whenever these files change. -->
-<script src="./data.js?v=20260926a"></script>
-<script src="./peaks.js?v=20260926a"></script>
-<script src="./near.js?v=20260926a"></script>
-<script src="./i18n.js?v=20260926a"></script>
-<script src="./i18n-home.js?v=20260926a"></script>
+<script src="./data.js?v=20260926b"></script>
+<script src="./peaks.js?v=20260926b"></script>
+<script src="./near.js?v=20260926b"></script>
+<script src="./i18n.js?v=20260926b"></script>
+<script src="./i18n-home.js?v=20260926b"></script>
 <script>
 /* Map & reports. Moved here from the home page on 26 Sep 2026, when the home
    page became "the air where you are" and nothing else. The code below is the
@@ -421,10 +421,10 @@ function renderLivePins(sensors){
   sensors.forEach(function(s){
     if(s.pm25==null) return;
     L.circleMarker([s.lat,s.lng],{radius:9,color:'#fff',weight:2,
-      fillColor:bandColor(s.pm25),fillOpacity:s.fresh?1:0.35,dashArray:s.fresh?null:'2,3'})
+      fillColor:s.ambient===false?'#9a948a':bandColor(s.pm25),fillOpacity:s.ambient===false?0.45:1,dashArray:s.ambient===false?'2,3':null})
       .addTo(window._pinLayer)
       .bindPopup('<b>'+esc(s.name)+'</b><br>PM2.5 '+(Math.round(s.pm25*10)/10)+' µg/m³<br>'+
-        '<small>'+esc(s.sources.join(' · '))+(s.fresh?'':' · '+esc(tr('near.stale_pin')))+'</small>');
+        '<small>'+esc(s.sources.join(' · '))+(s.excluded?' · '+esc(tr('near.reason_pin.'+s.excluded)):'')+'</small>');
     pts.push([s.lat,s.lng]);
   });
   if(pts.length){ try{ window._map.fitBounds(pts,{padding:[60,60],maxZoom:12}); }catch(_){ } }
