@@ -2,9 +2,14 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Making Sense Bali: the air, made visible</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The air where you are, right now. Open sensors and resident reports across Bali, on one living map. A Fab Lab Bali campaign.">
+<title>Making Sense Bali: the air where you are</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6efe1">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Air Bali">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="description" content="The air where you are, right now: what it means, what to do, and how to help fix it. Open sensors and resident reports across Bali. A Fab Lab Bali campaign.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%233f8a5b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,80 +107,6 @@ button.btn{font-family:var(--mono)}
 
 .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
 .rv.in{opacity:1;transform:none}
-
-.story{background:#111619;color:#ece3d2;padding:14vh 5vw;position:relative;overflow:hidden}
-.story::before{content:"";position:absolute;right:-10%;top:-20%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(204,96,40,.22),transparent 62%);pointer-events:none}
-.story-wrap{position:relative;max-width:1080px;margin:0 auto}
-.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c9742f}
-.story h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,62px);line-height:1.05;letter-spacing:-.015em;margin:18px 0 0;max-width:20ch}
-.story h2 em{font-style:italic;color:#e9a05a}
-.story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;margin-top:54px;align-items:center}
-@media(max-width:820px){.story-grid{grid-template-columns:1fr;gap:34px}}
-.quote{font-family:var(--serif);font-style:italic;font-size:clamp(23px,3.2vw,38px);line-height:1.3;color:#f3ead9}
-.quote .by{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9a8f7d;margin-top:18px}
-.story p{font-family:var(--sans);font-size:16px;line-height:1.7;color:#b8ae9c;margin-top:22px;max-width:46ch}
-.chartcard{background:#171d20;border:1px solid #28302f;border-radius:10px;padding:20px 20px 14px}
-.chartcard .ch-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8d8474;margin-bottom:8px}
-.ch-foot{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:#7d7565;margin-top:8px;display:flex;gap:16px;flex-wrap:wrap}
-.story-line{font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);font-style:italic;color:#ece3d2;margin-top:64px;text-align:center;max-width:30ch;margin-left:auto;margin-right:auto}
-
-.island{background:var(--paper);padding:13vh 5vw}
-.island-head{max-width:1080px;margin:0 auto 38px}
-.island-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,56px);line-height:1.04;letter-spacing:-.015em;margin-top:14px}
-.island-head h2 em{font-style:italic;color:var(--teal)}
-.island-head p{font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:54ch;margin-top:16px}
-.mapwrap{max-width:1180px;margin:0 auto;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.1);box-shadow:0 30px 60px rgba(40,30,15,.12)}
-#map{width:100%;height:62vh;min-height:420px;background:#dfe7e6}
-.maptag{position:absolute;z-index:500;left:18px;bottom:18px;background:rgba(246,239,225,.92);backdrop-filter:blur(8px);border-radius:8px;padding:12px 15px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);line-height:1.7}
-.maptag b{color:var(--ink);font-weight:600}
-.maptag .mapsrc{display:inline-block;margin-top:5px;opacity:.85}
-.maptag .mapsrc a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
-
-.act{background:var(--ink);color:var(--paper);padding:15vh 5vw}
-.act-wrap{max-width:1080px;margin:0 auto}
-.act h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.6vw,72px);line-height:1.02;letter-spacing:-.02em;max-width:16ch}
-.act h2 em{font-style:italic;color:#e9a05a}
-.act-sub{font-size:17px;line-height:1.6;color:#b9b2a4;max-width:46ch;margin-top:22px}
-.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:60px}
-.act-note{margin-top:32px;max-width:780px;font-size:14px;line-height:1.75;color:#8b8578}
-.act-note a{color:#5fb6b6;text-decoration:underline;text-underline-offset:2px}
-@media(max-width:820px){.acts{grid-template-columns:1fr}}
-.actcard{display:flex;flex-direction:column;gap:12px;padding:30px 26px 26px;border-radius:12px;background:#1e2024;border:1px solid #2c2f34;transition:transform .18s,background .2s;cursor:pointer}
-.actcard:hover{transform:translateY(-4px);background:#24262b}
-.actcard .n{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7f8b86}
-.actcard.report .n{color:#7bb893}.actcard.survey .n{color:#e9a05a}.actcard.build .n{color:#5fb6b6}
-.actcard h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1}
-.actcard p{font-size:14.5px;line-height:1.6;color:#a9a294}
-.actcard .go{margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);padding-top:10px}
-
-.more{background:var(--paper2);padding:13vh 5vw;border-top:1px solid rgba(0,0,0,.07)}
-.more-wrap{max-width:1080px;margin:0 auto}
-.more .kicker2{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
-.more h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,50px);line-height:1.06;letter-spacing:-.015em;margin:14px 0 0;max-width:22ch}
-.more h2 em{font-style:italic;color:var(--teal)}
-.doors{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:46px}
-@media(max-width:760px){.doors{grid-template-columns:1fr}}
-.door{display:block;padding:34px 30px;background:var(--paper);border:1px solid rgba(0,0,0,.1);border-radius:12px;transition:transform .18s,box-shadow .2s}
-.door:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(40,30,15,.1)}
-.door .dn{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
-.door h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.1;margin:12px 0 0}
-.door p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-top:12px;max-width:42ch}
-.door .go{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
-.foot{background:var(--ink);color:#7c766a;padding:40px 5vw 60px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;line-height:1.9;border-top:1px solid #2a2d31}
-.foot a{color:#b9b2a4}
-.reports{background:var(--paper);padding:12vh 5vw;border-top:1px solid rgba(0,0,0,.06)}
-.reports-wrap{max-width:1080px;margin:0 auto}
-.reports h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.4vw,52px);line-height:1.05;letter-spacing:-.015em;margin-top:14px}
-.reports h2 em{font-style:italic;color:var(--teal)}
-.rep-cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.rep-chip{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:100px;padding:7px 14px}
-.rep-chip b{color:var(--ink);font-weight:600;margin-left:6px}
-.rep-list{margin-top:24px;display:flex;flex-direction:column;border-top:1px solid rgba(0,0,0,.1)}
-.rep-row{display:grid;grid-template-columns:118px 1fr auto;gap:18px;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(0,0,0,.08)}
-@media(max-width:680px){.rep-row{grid-template-columns:1fr;gap:4px}}
-.rep-cat{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500}
-.rep-desc{font-family:var(--serif);font-size:16.5px;line-height:1.4;color:var(--ink)}
-.rep-meta{font-family:var(--mono);font-size:11px;color:var(--ink-soft);white-space:nowrap}
 /* ---------- near me: sensors sorted by what they can actually tell you ---------- */
 .near{margin:26px 0 0;max-width:640px;border:1px solid rgba(0,0,0,.14);border-radius:12px;background:rgba(255,255,255,.62);backdrop-filter:blur(6px);overflow:hidden}
 .near[hidden]{display:none}
@@ -216,14 +147,6 @@ button.btn{font-family:var(--mono)}
    job was to ask is gone. */
 .near-tab.needloc .tn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--teal);opacity:.95}
 .near-tab[aria-selected="true"].needloc .tn{color:#7fd0d0}
-
-/* Touch: a full-bleed map inside a scrolling page swallows the swipe. Leaflet
-   is left inert until the reader deliberately taps in, which is also how they
-   get their scroll back by tapping out. */
-.map-veil{position:absolute;inset:0;z-index:600;display:flex;align-items:center;justify-content:center;background:rgba(246,239,225,.28);cursor:pointer}
-.map-veil span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:rgba(246,239,225,.94);border:1px solid rgba(0,0,0,.14);border-radius:100px;padding:11px 20px}
-@media(hover:hover) and (pointer:fine){.map-veil{display:none}}
-
 /* ---------- mobile ---------- */
 @supports(height:100svh){.hero{min-height:100svh}}
 @media(max-width:720px){
@@ -232,9 +155,15 @@ button.btn{font-family:var(--mono)}
      nav stays trapped in that flex line and the last link falls off-screen.
      The live badge goes — the hero states the same reading, much louder. */
   .bar{padding:10px 5vw}
-  .bar-right{flex-wrap:wrap;justify-content:flex-end;gap:10px 14px}
+  /* Brand and language on the first row, the nav on its own full-width row
+     underneath. display:contents lifts the nav out of .bar-right so it can
+     take the whole width instead of being squeezed beside the brand. */
+  .bar{flex-wrap:wrap;row-gap:0}
+  .bar-right{display:contents}
+  .bar .brand{white-space:nowrap}
+  .langtoggle{order:2}
   .bar .live{display:none}
-  .bar-nav{display:flex;order:3;flex:0 0 100%;gap:18px;justify-content:flex-start;
+  .bar-nav{display:flex;order:3;flex:0 0 100%;gap:18px;justify-content:flex-start;min-width:0;
     overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .bar-nav::-webkit-scrollbar{display:none}
   .bar-nav a{white-space:nowrap;padding:12px 0;opacity:.85}
@@ -250,41 +179,179 @@ button.btn{font-family:var(--mono)}
   .hero-cta{gap:10px;margin-top:28px}
   .hero-cta .btn{width:100%;justify-content:center}
   .langtoggle button{padding:12px 13px}
-  .story,.reports,.island,.act,.more{padding-top:9vh;padding-bottom:9vh;padding-left:6vw;padding-right:6vw}
-  .story-line{margin-top:44px}
-  #map{height:58svh;min-height:300px}
-  .maptag{left:10px;right:10px;bottom:10px;font-size:9.5px;padding:10px 12px}
-  .actcard{padding:24px 20px 22px}
-  .actcard h3{font-size:24px}
-  .door{padding:26px 22px}
-  .door h3{font-size:25px}
   .nb-val{font-size:29px}
   .near{margin-top:22px}
   .foot{padding:34px 6vw 48px;line-height:1.85}
   .scrollcue{display:none}
 }
 @media(prefers-reduced-motion:reduce){.num{animation:none}.dot{animation:none}.scrollcue span{animation:none}.rv{transition:none;opacity:1;transform:none}}
+
+/* ---------- nav: which page you are on ---------- */
+.bar-nav a[aria-current="page"]{opacity:1;border-bottom:2px solid currentColor;padding-bottom:2px}
+.bar .brand{color:var(--aq)}
+
+/* ---------- hero: observe ---------- */
+.hero-inner{padding:108px 0 64px}
+.readout{margin-top:22px}
+.signals{margin:18px 0 0;max-width:640px;display:flex;flex-direction:column;gap:8px}
+.signals[hidden]{display:none}
+.sig{display:flex;gap:10px;align-items:baseline;font-size:15px;line-height:1.5;color:var(--ink)}
+.sig[hidden]{display:none}
+.sig .tag{flex:0 0 auto;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 7px;border-radius:3px;background:#dd8a3c;color:#1a1208}
+.sig.pattern .tag{background:var(--teal);color:#eef6f5}
+.sig a{text-decoration:underline;text-underline-offset:3px;color:var(--ink-soft);white-space:nowrap}
+.hero-cta{margin-top:22px}
+.hero .near{margin-top:22px}
+.btn-report{background:#b8472b;border-color:#b8472b;color:#fff8ef}
+.btn-report:hover{background:#a23d24}
+.jump{display:flex;flex-wrap:wrap;gap:6px 16px;margin:18px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.jump a{color:var(--ink-soft);border-bottom:1px solid rgba(0,0,0,.25);padding:6px 0}
+.jump a:hover{color:var(--ink)}
+
+/* ---------- home sensors ---------- */
+.home-pick{padding:12px 16px 14px;border-top:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.5)}
+.home-pick[hidden]{display:none}
+.hp-intro{font-size:13px;line-height:1.55;color:var(--ink-soft);margin-bottom:8px}
+.hp-row{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid rgba(0,0,0,.06);font-size:14px}
+.hp-row:first-of-type{border-top:0}
+.hp-row .nm{line-height:1.3}
+.hp-row .nm small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-soft)}
+.hp-row .pv{font-family:var(--serif);font-size:17px}
+.hp-row .pv.off{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#a8763a!important}
+.hp-row label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:5px;align-items:center;white-space:nowrap}
+.hp-row input{width:18px;height:18px;accent-color:var(--ink)}
+.hp-done{margin-top:10px}
+.linkbtn{appearance:none;background:none;border:0;padding:6px 0;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid currentColor}
+.nb-pair{display:flex;gap:18px;flex-wrap:wrap;margin-top:9px}
+.nb-pair .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:block}
+.near-tabs.n5{grid-template-columns:repeat(5,1fr)}
+
+/* ---------- sections below the hero ---------- */
+.sec{padding:11vh 5vw;border-top:1px solid rgba(0,0,0,.07)}
+.sec-wrap{max-width:1000px;margin:0 auto}
+.sec .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
+.sec h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,54px);line-height:1.05;letter-spacing:-.015em;margin-top:12px;max-width:22ch}
+.sec h2 em{font-style:italic;color:var(--teal)}
+.sec .lede{font-size:17px;line-height:1.65;color:var(--ink-soft);max-width:58ch;margin-top:16px}
+.sec .small{font-size:14px;line-height:1.7;color:var(--ink-soft);max-width:70ch;margin-top:26px}
+.sec .small a,.sec .lede a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+
+/* understand */
+.understand{background:var(--paper)}
+.u-why{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px;max-width:62ch}
+.u-why li{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--ink);padding-left:18px;position:relative}
+.u-why li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--ink-soft)}
+.u-who{font-size:14px;line-height:1.65;color:var(--ink-soft);margin-top:22px;max-width:62ch;padding-top:16px;border-top:1px dashed rgba(0,0,0,.18)}
+.u-suspect{margin-top:18px;padding:12px 14px;border-left:3px solid #c98a2a;background:rgba(201,138,42,.1);font-size:14.5px;line-height:1.6;max-width:62ch}
+.u-suspect[hidden]{display:none}
+
+/* act now */
+.protect{background:var(--paper2)}
+.p-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.p-col{background:var(--paper);border:1px solid rgba(0,0,0,.09);border-radius:12px;padding:24px 22px}
+.p-col h3{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+.p-col ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:14px}
+.p-col li{font-size:15.5px;line-height:1.6}
+.p-col li b{font-weight:600}
+.p-kids{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.4;max-width:40ch}
+.p-kids[hidden]{display:none}
+
+/* contribute */
+.contrib{background:var(--paper)}
+.c-gap{margin-top:18px;font-family:var(--serif);font-size:clamp(20px,2.4vw,27px);line-height:1.35;max-width:36ch}
+.c-gap.is-gap{color:#9a3b22}
+.c-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px}
+.c-card{display:flex;flex-direction:column;gap:12px;padding:26px 24px;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:#fffaf1}
+.c-card.local{background:#eef3ee;border-color:rgba(63,138,91,.35)}
+.c-card .tg{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.c-card.local .tg{color:var(--good)}
+.c-card h3{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.1}
+.c-card p{font-size:15px;line-height:1.62;color:var(--ink-soft)}
+.c-card .facts{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5}
+.c-card .facts li{padding-left:16px;position:relative}
+.c-card .facts li::before{content:"·";position:absolute;left:4px;color:var(--ink-soft)}
+.c-card .links{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px 18px;padding-top:6px}
+.c-card .links a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid currentColor;padding:4px 0}
+
+/* engage */
+.engage{background:var(--ink);color:var(--paper)}
+.engage .kicker{color:#e9a05a}
+.engage h2 em{color:#e9a05a}
+.engage .lede{color:#b9b2a4}
+.btn-wa{background:#25d366;border-color:#25d366;color:#0b2716;margin-top:26px}
+.btn-wa:hover{background:#1fbf5b}
+.ladder{list-style:none;counter-reset:rung;margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ladder li{counter-increment:rung;background:#1e2024;border:1px solid #2c2f34;border-radius:12px;padding:22px 18px}
+.ladder li::before{content:counter(rung);display:block;font-family:var(--serif);font-size:34px;line-height:1;color:#e9a05a}
+.ladder h3{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.15;margin-top:10px}
+.ladder p{font-size:14px;line-height:1.6;color:#a9a294;margin-top:8px}
+.engage .small{color:#8b8578}
+.engage .small a{color:#5fb6b6}
+.e-rules{margin-top:30px;font-size:15px;line-height:1.7;color:#cfc7b8;max-width:66ch}
+.e-rules b{color:var(--paper);font-weight:500}
+
+.foot{background:var(--ink);color:#7c766a;padding:40px 5vw 60px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;line-height:1.9;border-top:1px solid #2a2d31}
+.foot a{color:#b9b2a4}
+.foot .deeper{display:block;margin-bottom:10px;color:#b9b2a4}
+.foot .deeper a{text-decoration:underline;text-underline-offset:2px}
+
+@media(max-width:860px){
+  .ladder{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .p-cols,.c-cards{grid-template-columns:1fr}
+  .hero-inner{padding:118px 0 56px}
+}
+@media(max-width:520px){
+  .ladder{grid-template-columns:1fr}
+  .sec{padding:8vh 6vw}
+  .sig{font-size:14px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .near-tab .tl{font-size:9px;letter-spacing:.06em}
+}
+
+/* ---------- a watch, or any very small screen: the glance ----------
+   A web page cannot put itself on a watch face, and Apple Watch has no
+   browser worth the name. What a small screen CAN get is the answer and the
+   one action, without the chrome. */
+@media(max-width:260px){
+  .bar-nav,.langtoggle,.eyebrow,.near,.signals,.jump,.heromap-credit,#heromap,.hero-veil,.bar .brand{display:none!important}
+  .bar{padding:6px 8px}
+  .hero{min-height:auto}
+  .hero-inner{width:94vw;padding:40px 0 20px}
+  .readout{gap:4px;margin-top:0}
+  .num{font-size:64px}
+  .unit{font-size:9px;letter-spacing:.06em}
+  .verdict{font-size:14px;line-height:1.25}
+  .hero-inner{padding-top:14px}
+  .hero-cta{margin-top:12px}
+  .hero-cta .btn{width:100%;justify-content:center;padding:12px 8px;font-size:11px}
+  .hero-cta .btn-ghost{display:none}
+  .sec{padding:28px 6vw}
+  .sec h2{font-size:22px}
+}
+
 </style>
 </head>
 <body>
-
 <div class="bar" id="bar">
-  <div class="brand">Making Sense Bali</div>
+  <a class="brand" href="index.html">Making Sense Bali</a>
   <div class="bar-right">
-    <nav class="bar-nav"><a href="#story" data-i18n="idx.nav.story">The story</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
+    <nav class="bar-nav"><a href="index.html" aria-current="page" data-i18n="nav.air">Air near you</a><a href="map.html" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
     <div class="live"><span class="dot"></span><span id="bar-state" data-i18n="idx.state.connecting">connecting…</span></div>
     <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa Indonesia / English / Español"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
   </div>
 </div>
 
+<!-- 1 · OBSERVE -->
 <header class="hero" id="top">
   <div id="heromap" aria-hidden="true"></div>
   <div class="hero-veil" aria-hidden="true"></div>
   <p class="heromap-credit" id="heromap-credit">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>
   <canvas id="air"></canvas>
   <div class="hero-inner">
-    <div class="eyebrow rv in" data-i18n="idx.hero.eyebrow">A Fab Lab Bali campaign · open sensors + resident reports</div>
-    <h1 class="headline rv in" data-i18n-html="idx.hero.headline">Bali, <em>made&nbsp;visible.</em></h1>
+    <div class="eyebrow rv in" data-i18n="home.eyebrow">The air where you are · live</div>
     <div class="readout rv in">
       <div class="num" id="hero-num">–</div>
       <div class="num-side">
@@ -292,125 +359,121 @@ button.btn{font-family:var(--mono)}
         <div class="verdict" id="hero-verdict" data-i18n="idx.verdict.reading">Reading the air across Bali…</div>
       </div>
     </div>
-    <p class="subline rv in" data-i18n-html="idx.hero.subline">Every speck drifting on this screen is particulate matter: the air you actually breathe, made visible. <span id="hero-mood"></span></p>
+    <div class="signals rv in" id="signals" hidden>
+      <p class="sig report" id="sig-reports" hidden></p>
+      <p class="sig pattern" id="sig-pattern" hidden></p>
+    </div>
+    <div class="hero-cta rv in">
+      <a class="btn btn-fill btn-report" href="https://bali-aq.fab.city/report" target="_blank" rel="noopener" data-i18n="home.btn.report">Report smoke · 30 seconds</a>
+      <a class="btn btn-ghost" href="https://baliairdispatch.com/" target="_blank" rel="noopener" data-i18n="home.btn.bad">Full map · Bali Air Dispatch ↗</a>
+    </div>
     <div class="near rv in" id="near">
       <div class="near-head">
         <span class="near-title" id="near-title" data-i18n="near.title">Sensors around you</span>
+        <button type="button" class="linkbtn" id="home-toggle" data-i18n="near.home.pin">+ Your own sensor</button>
       </div>
       <div class="near-tabs" id="near-tabs" role="tablist"></div>
       <div class="near-body" id="near-body"></div>
+      <div class="home-pick" id="home-pick" hidden></div>
       <p class="near-foot" id="near-foot"></p>
       <p class="near-note" id="locnote" data-i18n="idx.locnote.default">Your coordinates never leave this browser. The page downloads every station in Bali and measures the distances here, on your device — nothing about where you are is sent anywhere.</p>
     </div>
-    <div class="hero-cta rv in">
-      <a class="btn btn-fill" href="#act" data-i18n="idx.hero.btn_report">Report what you smell</a>
-    </div>
+    <nav class="jump rv in" aria-label="On this page">
+      <a href="#understand" data-i18n="home.jump.why">Why is it like this?</a>
+      <a href="#protect" data-i18n="home.jump.protect">What to do now</a>
+      <a href="#contribute" data-i18n="home.jump.contribute">Add a sensor</a>
+      <a href="#engage" data-i18n="home.jump.engage">Act together</a>
+    </nav>
   </div>
-  <div class="scrollcue"><span></span><span class="cuetext" data-i18n="idx.hero.scroll">scroll</span></div>
 </header>
 
-<section class="story" id="story">
-  <div class="story-wrap">
-    <div class="kicker rv" id="story-kicker" data-i18n="idx.story.kicker">Sensors meet residents</div>
-    <h2 class="rv" data-i18n-html="idx.story.h2">When the data and the residents tell the <em>same story.</em></h2>
-    <div class="story-grid">
-      <div>
-        <div class="quote rv" id="story-quote" data-i18n-html="idx.story.quote">"They're burning at night to avoid the sanctions."
-          <span class="by" id="story-by">— resident report</span>
+<!-- 2 · UNDERSTAND -->
+<section class="sec understand" id="understand">
+  <div class="sec-wrap">
+    <div class="kicker rv" data-i18n="u.kicker">What's going on</div>
+    <h2 class="rv" id="u-title" data-i18n="u.title.nodata">Waiting for live readings.</h2>
+    <p class="lede rv" id="u-body"></p>
+    <ul class="u-why rv" id="u-why"></ul>
+    <p class="u-suspect rv" id="u-suspect" hidden></p>
+    <p class="u-who rv" data-i18n="u.who">The WHO's line is 15 µg/m³ averaged over a whole day. One reading is a moment, not a day, and we label a peak as a peak.</p>
+  </div>
+</section>
+
+<!-- 3 · ACT NOW -->
+<section class="sec protect" id="protect">
+  <div class="sec-wrap">
+    <div class="kicker rv" data-i18n="p.kicker">What to do now</div>
+    <h2 class="rv" id="p-title"></h2>
+    <div class="p-cols">
+      <div class="p-col rv"><h3 data-i18n="p.out.h">Outside · on the road</h3><ul id="p-out"></ul></div>
+      <div class="p-col rv"><h3 data-i18n="p.in.h">Inside</h3><ul id="p-in"></ul></div>
+    </div>
+    <p class="p-kids rv" id="p-kids" data-i18n="p.kids" hidden>Children and older people are hit hardest. If you change one thing today, change it for them.</p>
+    <p class="small rv" data-i18n-html="p.source">This advice comes from what about 240 residents of the Bali Air Dispatch community tested for themselves, written up in our <a href="https://github.com/Meaningful-Design-Group/makingsensebali/blob/main/docs/community-knowledge.md" target="_blank" rel="noopener">community knowledge</a>. It is not medical advice.</p>
+  </div>
+</section>
+
+<!-- 4 · CONTRIBUTE -->
+<section class="sec contrib" id="contribute">
+  <div class="sec-wrap">
+    <div class="kicker rv" data-i18n="c.kicker">Add a sensor</div>
+    <h2 class="rv" data-i18n-html="c.h2">Put a sensor where the map is <em>empty.</em></h2>
+    <p class="c-gap rv" id="c-gap" data-i18n="c.gap.unknown">Coverage matters most where there is none. Sanur, Ubud and Gianyar have all asked for sensors.</p>
+    <div class="c-cards">
+      <div class="c-card rv">
+        <div class="tg" id="c-ag-tag" data-i18n="c.ag.tag">What the community runs</div>
+        <h3>AirGradient Open Air</h3>
+        <p id="c-ag-p" data-i18n="c.ag.p">Most of the outdoor sensors on this map are AirGradient. Open source, made to be repaired, and it becomes the trusted sensor for your area.</p>
+        <ul class="facts">
+          <li data-i18n="c.ag.f1">PM2.5, CO₂, TVOC, NOx, temperature and humidity</li>
+          <li data-i18n="c.ag.f2">About USD 125 as a kit or USD 225 assembled (airgradient.com, September 2026)</li>
+          <li data-i18n="c.ag.f3">About 2.5 weeks from Thailand, with duty prepaid at 19.2%</li>
+          <li data-i18n="c.ag.f4">Turn on public sharing, or it is invisible to everyone else</li>
+        </ul>
+        <div class="links"><a href="https://www.airgradient.com/outdoor/" target="_blank" rel="noopener" data-i18n="c.ag.link">AirGradient Open Air ↗</a></div>
+      </div>
+      <div class="c-card local rv">
+        <div class="tg" data-i18n="c.fl.tag">Made in Bali · open · not for profit</div>
+        <h3 data-i18n="c.fl.h3">The Fab Lab Bali node</h3>
+        <p data-i18n="c.fl.p">Designed and built at Fab Lab Bali. Open hardware and firmware, no company behind it and nothing to sell, and a fraction of the price.</p>
+        <ul class="facts">
+          <li data-i18n="c.fl.f1">Parts about USD 35–60 from local stock. No soldering, two Grove cables</li>
+          <li data-i18n="c.fl.f2">PM2.5 on its own screen, its own record on a memory card, a buzzer when it detects burning</li>
+          <li data-i18n="c.fl.f3">Publishes to this map. Spends its first week next to a trusted sensor, and is marked DIY</li>
+          <li data-i18n="c.fl.f4">Build one in an afternoon at a Fab Lab Bali workshop</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node" target="_blank" rel="noopener" data-i18n="c.fl.link_build">Build guide ↗</a>
+          <a href="https://chat.whatsapp.com/DxzIjc59mhT6H2C0dz5uHx?mode=gi_t" target="_blank" rel="noopener" data-i18n="c.fl.link_ws">Join a workshop ↗</a>
         </div>
-        <p class="rv" id="story-body" data-i18n="idx.story.body">Nobody saw a headline. One neighbour smelled smoke and sent a message. A low-cost sensor nearby felt the same thing: particulate matter climbing while the kampung slept. A measurement and a human voice, pointing at the same moment.</p>
-      </div>
-      <div class="chartcard rv">
-        <div class="ch-top"><span id="story-sensor">nearest sensor · PM2.5</span><span data-i18n="idx.story.recent_trend">recent trend</span></div>
-        <svg id="spark" viewBox="0 0 520 240" width="100%" preserveAspectRatio="none" aria-label="Recent PM2.5 trend with a peak aligned to a citizen report"></svg>
-        <div class="ch-foot"><span style="color:#7bb893">— PM2.5 µg/m³</span><span style="color:#e9a05a" data-i18n="idx.story.legend_report">● resident report</span><span style="color:#8d8474" data-i18n="idx.story.legend_who">- - WHO 24h guideline</span></div>
       </div>
     </div>
-    <p class="story-line rv" data-i18n-html="idx.story.line">A sensor measures. A neighbour testifies. Together, they become <em>evidence</em>.</p>
+    <p class="small rv" data-i18n-html="c.small">Already have an AirGradient or PurpleAir? Turn on public sharing and it appears here. Work somewhere with a reference-grade monitor, such as a university, a hospital or BMKG? <a href="mailto:fablabbali@gmail.com?subject=Co-location%20for%20Making%20Sense%20Bali">Write to us</a>. One week of a sensor sitting beside yours would let us check every reading in this network, and it is the biggest thing the network is missing.</p>
   </div>
 </section>
 
-<section class="reports" id="reports">
-  <div class="reports-wrap">
-    <div class="kicker rv" style="color:var(--teal)" data-i18n="idx.reports.kicker">What residents are reporting</div>
-    <h2 class="rv" data-i18n-html="idx.reports.h2">Humans report, <em>AI analyses.</em></h2>
-    <div class="rep-cats rv" id="rep-cats"></div>
-    <div class="rep-list rv" id="rep-list"><div class="rep-row"><span class="rep-cat">—</span><span class="rep-desc" data-i18n="idx.reports.loading">Loading reports…</span><span class="rep-meta"></span></div></div>
-    <a class="btn btn-ghost rv" href="https://bali-aq.fab.city/report" target="_blank" rel="noopener" style="margin-top:30px" data-i18n="idx.reports.add">Add your report →</a>
+<!-- 5 · ENGAGE -->
+<section class="sec engage" id="engage">
+  <div class="sec-wrap">
+    <div class="kicker rv" data-i18n="e.kicker">Act together</div>
+    <h2 class="rv" data-i18n-html="e.h2">Clean air is decided <em>street by street.</em></h2>
+    <p class="lede rv" data-i18n="e.lede">Over four months and 2,900 messages, about 240 residents worked out what actually gets burning stopped. Join them, and start where it works.</p>
+    <a class="btn btn-wa rv" href="https://chat.whatsapp.com/DxzIjc59mhT6H2C0dz5uHx?mode=gi_t" target="_blank" rel="noopener" data-i18n="e.btn">Join the WhatsApp community ↗</a>
+    <ol class="ladder">
+      <li class="rv"><h3 data-i18n="e.l1.h">Your neighbour</h3><p data-i18n="e.l1.p">In person, not through a report. Ask what happens to their rubbish before you mention health, then talk about the children. Show the number on your phone, and bring a route with you: a compost bag costs about IDR 60k.</p></li>
+      <li class="rv"><h3 data-i18n="e.l2.h">The banjar</h3><p data-i18n="e.l2.p">What a klian needs is somewhere for the waste to go. Organic waste is about two-thirds of it, so start there: composting, Bank Sampah, TPS3R. Enforcement without a route only moves the fire.</p></li>
+      <li class="rv"><h3 data-i18n="e.l3.h">The regency (DLH)</h3><p data-i18n="e.l3.p">The environment office has the legal power. Bring your numbers and how you measured them, make numbered asks, and ask for an inspection while the burning is happening.</p></li>
+      <li class="rv"><h3 data-i18n="e.l4.h">SP4N-LAPOR</h3><p data-i18n="e.l4.p">File at the same time as the regency. It can be anonymous and gives you a ticket number to follow. Many separate complaints count for more than one letter.</p></li>
+    </ol>
+    <p class="e-rules rv" data-i18n-html="e.rules"><b>Two things the community learned the hard way.</b> Say what the data shows, never who caused it: no sensor in Bali can name a source yet. And if you are a foreign resident, take advice before organising anything public, and let Indonesian residents lead it.</p>
+    <p class="small rv" data-i18n-html="e.small">Five minutes? <a href="https://airtable.com/appwQPP3ywSp4uu25/pag1mi3F086XPIlBy/form" target="_blank" rel="noopener">Tell us what matters where you live</a>. Eight questions, and the answers decide where the next sensors go.</p>
   </div>
 </section>
 
-<section class="island" id="island">
-  <div class="island-head">
-    <div class="kicker rv" style="color:var(--teal)" data-i18n="idx.island.kicker">The whole island</div>
-    <h2 class="rv" data-i18n-html="idx.island.h2">One map. Every sensor, every report, <em>breathing in real time.</em></h2>
-    <p class="rv" data-i18n="idx.island.lede">Pinch into your own banjar. The colour is always the air, never the noise of how many people reported. Clean stays calm, even where the reports pile up.</p>
-  </div>
-  <div class="mapwrap rv">
-    <div id="map"></div>
-    <div class="maptag" data-i18n-html="idx.island.maptag"><b id="map-sensors">—</b> sensors live · <b id="map-reports">—</b> reports<br>tap any point for the reading<br><span class="mapsrc">data: <a href="https://baliairdispatch.com/" target="_blank" rel="noopener">Bali Air Dispatch</a> · eight networks</span></div>
-  </div>
-</section>
-
-<section class="act" id="act">
-  <div class="act-wrap">
-    <div class="kicker rv" style="color:#e9a05a" data-i18n="idx.act.kicker">This is where you come in</div>
-    <h2 class="rv" data-i18n-html="idx.act.h2">The air is only visible <em>because people look.</em></h2>
-    <p class="act-sub rv" data-i18n="idx.act.sub">No app to install. No login. You already have the only tool you need: your senses, and a phone.</p>
-    <div class="acts">
-      <a class="actcard report rv" id="act-report" href="https://bali-aq.fab.city/report" target="_blank" rel="noopener">
-        <div class="n" data-i18n="idx.act.report.n">01 · 30 seconds</div>
-        <h3 data-i18n="idx.act.report.h3">Report what you smell</h3>
-        <p data-i18n="idx.act.report.p">Smoke, burning waste, a smell that wasn't there yesterday. An anonymous form: no account, no phone number. Our local team verifies it and it joins the public map.</p>
-        <div class="go" data-i18n="idx.act.report.go">Open the report form →</div>
-      </a>
-      <a class="actcard survey rv" id="act-survey" href="https://airtable.com/appwQPP3ywSp4uu25/pag1mi3F086XPIlBy/form" target="_blank" rel="noopener">
-        <div class="n" data-i18n="idx.act.survey.n">02 · 5 minutes</div>
-        <h3 data-i18n="idx.act.survey.h3">Tell us what matters</h3>
-        <p data-i18n="idx.act.survey.p">Eight questions about the environment where you live. Your answers decide where the next sensors go. The campaign starts with you.</p>
-        <div class="go" data-i18n="idx.act.survey.go">Open the survey →</div>
-      </a>
-      <a class="actcard build rv" id="act-build" href="https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2" target="_blank" rel="noopener">
-        <div class="n" data-i18n="idx.act.build.n">03 · An afternoon</div>
-        <h3 data-i18n="idx.act.build.h3">Build a sensor</h3>
-        <p data-i18n="idx.act.build.p">Node V3.2, our current design: five 3D-printed parts that snap together without a single screw. Print it, hang it on a wall or a pole, and its readings join the map. Temperature and humidity have not been checked against a reference station yet.</p>
-        <div class="go" data-i18n="idx.act.build.go">Open the build guide →</div>
-      </a>
-    </div>
-      <p class="act-note rv" data-i18n-html="idx.act.note">Got a printer? The <a href="https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2/stl" target="_blank" rel="noopener">STL files</a> are right here. Prefer to fix code or translations? The <a href="https://github.com/Meaningful-Design-Group/makingsensebali/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contributing guide</a> says where to start. And if you work somewhere with a reference-grade air monitor — a university, a hospital, BMKG — <a href="mailto:fablabbali@gmail.com?subject=Co-location%20for%20Making%20Sense%20Bali">write to us</a>: one week of a sensor sitting beside yours is the one thing that would let us check every reading in this network.</p>
-  </div>
-</section>
-
-<section class="more" id="more">
-  <div class="more-wrap">
-    <div class="kicker2 rv" data-i18n="idx.more.kicker">Go deeper, if you want</div>
-    <h2 class="rv" data-i18n-html="idx.more.h2">The map shows you <em>what.</em> When you want the why, and the raw numbers, three doors.</h2>
-    <div class="doors">
-      <a class="door rv" href="about.html">
-        <div class="dn" data-i18n="idx.more.about.dn">About the campaign</div>
-        <h3 data-i18n="idx.more.about.h3">Why we listen before we measure</h3>
-        <p data-i18n="idx.more.about.p">The method, the seven phases, the people who answer for this, and how Bali fits a global lineage: Making Sense, Smart Citizen, Fab City.</p>
-        <div class="go" data-i18n="idx.more.about.go">Read about Making Sense Bali →</div>
-      </a>
-      <a class="door rv" href="https://baliairdispatch.com/" target="_blank" rel="noopener">
-        <div class="dn" data-i18n="idx.more.dispatch.dn">Bali Air Dispatch · independent</div>
-        <h3 data-i18n="idx.more.dispatch.h3">The whole island, every network</h3>
-        <p data-i18n="idx.more.dispatch.p">A separate community effort reading seven sensor networks island-wide, with an evidence brief and a solutions guide. Our resident reports appear on their map.</p>
-        <div class="go" data-i18n="idx.more.dispatch.go">Open Bali Air Dispatch →</div>
-      </a>
-      <a class="door rv" href="dashboard/">
-        <div class="dn" data-i18n="idx.more.data.dn">The data view · for analysts</div>
-        <h3 data-i18n="idx.more.data.h3">Every reading, every standard</h3>
-        <p data-i18n="idx.more.data.p">Raw sensor history, WHO and EPA thresholds, network coverage, reports by category, and open downloads with citation guidance.</p>
-        <div class="go" data-i18n="idx.more.data.go">Open the data dashboard →</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer class="foot" data-i18n-html="idx.foot">
-  Making Sense Bali, led by <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · open hardware: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · methodology: EU Making Sense · part of <a href="https://fab.city">Fab City</a> + Murmurations · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">source &amp; contribute on GitHub</a>.<br>
-  Low-cost sensors, ±10–15% from regulatory-grade, so trends and relative magnitudes are reliable.
+<footer class="foot">
+  <span class="deeper" data-i18n-html="home.foot.deeper">Go deeper: <a href="map.html">every sensor and report on one map</a> · <a href="about.html">how we work</a> · <a href="dashboard/">the raw data</a> · <a href="https://baliairdispatch.com/" target="_blank" rel="noopener">Bali Air Dispatch</a></span>
+  <span data-i18n-html="idx.foot">Making Sense Bali, led by <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · open hardware: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · methodology: EU Making Sense · part of <a href="https://fab.city">Fab City</a> + Murmurations · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">source &amp; contribute on GitHub</a>.<br>
+  Low-cost sensors, ±10–15% from regulatory-grade, so trends and relative magnitudes are reliable.</span>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -422,10 +485,12 @@ button.btn{font-family:var(--mono)}
      have yet, threw, was swallowed by its own catch, and the page quietly went
      on showing the stale snapshot. BUMP THIS STRING whenever any of these files
      changes. -->
-<script src="./data.js?v=20260924d"></script>
-<script src="./peaks.js?v=20260924d"></script>
-<script src="./near.js?v=20260924d"></script>
-<script src="./i18n.js?v=20260924d"></script>
+<script src="./data.js?v=20260926a"></script>
+<script src="./peaks.js?v=20260926a"></script>
+<script src="./near.js?v=20260926a"></script>
+<script src="./understand.js?v=20260926a"></script>
+<script src="./i18n.js?v=20260926a"></script>
+<script src="./i18n-home.js?v=20260926a"></script>
 <script>
 var D=window.SCB_DATA||{}, P=window.SCB_PEAKS||{};
 var S={sensors:[],reports:[]};
@@ -463,8 +528,7 @@ function applyReading(pm, scopeKey, local, scopeVars){
   rebuildParticles();
 }
 function setText(id,t){ var e=document.getElementById(id); if(e) e.textContent=t; }
-function esc(s){ return D.escapeHtml?D.escapeHtml(String(s)):String(s); }
-
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 /* Robust reports loader: try the library, then a direct fetch fallback, with
    logging — so an empty result is diagnosable instead of silent. */
 async function loadReports(){
@@ -482,28 +546,12 @@ async function loadReports(){
   }catch(e){ console.warn('[reports] direct loader failed:', e); }
   return rs;
 }
-
-/* Pre-baked sensor history (data/history.json) — instant + reliable. The live
-   Smart Citizen /readings endpoint hangs through the worker, so we never block
-   on it: snapshot first, live only as a timed-out fallback. */
-var HIST=null, HIST_TRIED=false;
-async function getHistory(){
-  if(HIST_TRIED) return HIST;
-  HIST_TRIED=true;
-  try{ var base=(D.dataBaseUrl?D.dataBaseUrl():'./data'); var r=await fetch(base+'/history.json',{cache:'no-cache'}); if(r.ok){ var j=await r.json(); HIST=(j&&j.sensors)||null; } }catch(_){}
-  return HIST;
-}
-function withTimeout(p,ms){ return Promise.race([p, new Promise(function(_,rej){ setTimeout(function(){rej(new Error('timeout'));}, ms); })]); }
-
 /* ---------- helpers ---------- */
 function activeSensors(){ return S.sensors.filter(function(s){ return s && s.reading && typeof s.reading.pm25==='number' && (!D.isActive || D.isActive(s.lastReading)); }); }
 /* Sensors that COUNT toward the average: active, minus indoor/outlier sensors the
    generator tagged excluded_from_avg (they read unrealistically and mislead). */
 function statSensors(){ return activeSensors().filter(function(s){ return !(s && s.excluded_from_avg); }); }
 function median(a){ if(!a.length) return null; var x=a.slice().sort(function(p,q){return p-q;}); return x[Math.floor(x.length/2)]; }
-function dkm(a,b,c,d){ return (P.distanceKm)?P.distanceKm(a,b,c,d):haversine(a,b,c,d); }
-function haversine(a,b,c,d){ var R=6371,r=Math.PI/180,dla=(c-a)*r,dlo=(d-b)*r,s=Math.sin(dla/2)*Math.sin(dla/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dlo/2)*Math.sin(dlo/2); return 2*R*Math.asin(Math.min(1,Math.sqrt(s))); }
-
 /* ---------- bar solidify ---------- */
 var bar=document.getElementById('bar');
 addEventListener('scroll',function(){ bar.classList.toggle('solid', scrollY>60); },{passive:true});
@@ -519,8 +567,6 @@ function size(){ if(!cv)return; var h=cv.parentElement; W=h.clientWidth; H=h.cli
 function rebuildParticles(){ if(!cv)return; parts=[]; for(var i=0;i<cur.count;i++) parts.push(mk()); }
 function mk(){ var spd=cur.count/120; return {x:Math.random()*W,y:Math.random()*H,r:.6+Math.random()*2.2,vx:(-.25-Math.random()*.5)*spd,vy:(Math.random()-.5)*.4*spd,a:.15+Math.random()*.45}; }
 function draw(){ if(!cv)return; ctx.clearRect(0,0,W,H); var c=cur.pcol; for(var i=0;i<parts.length;i++){ var p=parts[i]; p.x+=p.vx; p.y+=p.vy; if(p.x<-4)p.x=W+4; if(p.x>W+4)p.x=-4; if(p.y<-4)p.y=H+4; if(p.y>H+4)p.y=-4; ctx.beginPath(); ctx.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+p.a+')'; ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill(); } if(!reduce) requestAnimationFrame(draw); }
-addEventListener('resize',function(){ size(); rebuildParticles(); });
-
 /* ---------- where I am : sensors sorted by representativeness scale ----------
    Not a radius and an average. A reading represents an area, and how big that
    area is depends on the scale of the sources around it. Bali's dominant PM2.5
@@ -528,109 +574,11 @@ addEventListener('resize',function(){ size(); rebuildParticles(); });
    confidently wrong at exactly the moment somebody wants to know.
    See near.js for the scales and why MIDDLE is in there.                     */
 var NEAR_BUILD_URL='https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/diy-node/enclosure/node-v3.2';
-var _near={lat:null,lng:null,data:null,scale:null,wanted:null};
+var _near={lat:null,lng:null,data:null,sel:null,wanted:null};
 
 function nearEl(id){ return document.getElementById(id); }
 
 function fmtKm(km){ return km<1 ? Math.round(km*1000)+' m' : (km<10?km.toFixed(1):Math.round(km))+' km'; }
-
-function renderNear(){
-  var N=window.SCB_NEAR, box=nearEl('near'), tabs=nearEl('near-tabs'), body=nearEl('near-body'), foot=nearEl('near-foot');
-  if(!N||!box||!tabs||!body||!_near.data) return;
-  var located=_near.lat!=null;
-
-  /* Without a position only the island scope can be computed. The other three
-     still render, showing a dot and asking for location when tapped — the tabs
-     ARE the prompt, which is why the button that did nothing else is gone. */
-  var res = located ? N.bandsFor(_near.lat,_near.lng,_near.data.sensors) : null;
-  var bands = res ? res.bands : N.SCALES.map(function(sc){
-    return { id:sc.id, maxKm:sc.maxKm,
-             sensors: sc.maxKm===Infinity ? _near.data.sensors.map(function(x){return {s:x,km:null};}) : [] };
-  });
-  var sums = bands.map(function(b){ return N.bandSummary(b); });
-  var islandIdx = bands.length-1;
-
-  if(!located){ _near.scale=islandIdx; }
-  else if(_near.scale==null){
-    /* Opens on the banjar — 2 km. The tightest scope with any chance of having
-       sensors today (street is empty everywhere in Bali) and the one whose
-       answer a resident can act on. Where it is genuinely empty, as across the
-       north, east and highlands, fall forward rather than greet somebody in
-       Singaraja with a blank. */
-    var def=0; for(var d=0;d<bands.length;d++){ if(bands[d].id==='neighbourhood'){ def=d; break; } }
-    _near.scale=def;
-    if(sums[def].pm25==null){ for(var q=0;q<sums.length;q++){ if(sums[q].pm25!=null){ _near.scale=q; break; } } }
-  }
-  var sel=Math.min(_near.scale,bands.length-1);
-
-  tabs.innerHTML=bands.map(function(b,i){
-    var on=i===sel, needloc=!located && b.id!=='island';
-    var n = needloc ? '·' : sums[i].count;
-    return '<button type="button" role="tab" class="near-tab'+(needloc?' needloc':(sums[i].count?'':' is-empty'))+'"'+
-           ' data-i="'+i+'" data-needloc="'+(needloc?'1':'')+'" aria-selected="'+(on?'true':'false')+'">'+
-           '<span class="tl">'+esc(tr('near.tab.'+b.id))+'</span>'+
-           '<span class="tn">'+n+'</span></button>';
-  }).join('');
-  tabs.querySelectorAll('.near-tab').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if(btn.getAttribute('data-needloc')){ _near.wanted=+btn.getAttribute('data-i'); locate(false); return; }
-      _near.scale=+btn.getAttribute('data-i'); renderNear();
-    });
-  });
-
-  var b=bands[sel], sum=sums[sel], id=b.id;
-  var head='<div class="nb-top"><span class="nb-name">'+esc(tr('near.scale.'+id+'.name'))+'</span>'+
-           '<span class="nb-range">'+esc(tr('near.scale.'+id+'.range'))+'</span></div>';
-  if(!sum.count){
-    var cta=(id==='street')
-      ? '<a class="nb-cta" href="'+NEAR_BUILD_URL+'" target="_blank" rel="noopener">'+esc(tr('near.cta.build'))+'</a>' : '';
-    body.innerHTML=head+'<p class="nb-say">'+esc(tr('near.scale.'+id+'.empty'))+'</p>'+cta;
-  } else {
-    var stale=sum.count-sum.freshCount;
-    var line='<div class="nb-body">';
-    if(sum.pm25!=null) line+='<span class="nb-val" style="color:'+bandColor(sum.pm25)+'">'+
-      (Math.round(sum.pm25*10)/10).toFixed(1)+'<i>µg/m³</i></span>';
-    line+='<span class="nb-count">'+esc(tr(sum.count===1?'near.count_one':'near.count_many',{n:sum.count}))+'</span>';
-    if(stale) line+='<span class="nb-stale">'+esc(tr('near.stale',{n:stale,h:N.FRESH_HOURS}))+'</span>';
-    line+='</div>';
-    var say=sum.pm25!=null ? tr('near.scale.'+id+'.has') : tr('near.nofresh',{h:N.FRESH_HOURS});
-    if(!located && id==='island') say = say+' '+tr('near.locate_hint');
-    body.innerHTML=head+line+'<p class="nb-say">'+esc(say)+'</p>';
-  }
-
-  /* The hero follows the selected scope: pick "my street" and the big number is
-     your street's or nothing at all, never quietly the island's. An empty scope
-     blanks the readout rather than leaving the previous scope's figure sitting
-     under a heading that no longer describes it — at hero scale, the dash IS
-     the finding. */
-  if(sum.pm25!=null){
-    applyReading(sum.pm25,'near.scope.'+(located?id:'island_live'),located&&id!=='island');
-  } else if(located){
-    applyReading(null,'near.scope.'+id);
-    setText('hero-verdict', tr('near.verdict.nosensor'));
-    setText('hero-mood','');
-  }
-
-  var parts=[];
-  if(located && res && res.nearest) parts.push(tr('near.nearest',{km:fmtKm(res.nearest.km),name:res.nearest.s.name}));
-  parts.push(tr('near.foot',{boxes:_near.data.sensors.length}));
-  foot.innerHTML=esc(parts.join(' '))+' <a href="https://baliairdispatch.com/api" target="_blank" rel="noopener">Bali Air Dispatch</a>.'+
-    ' <span class="near-age" id="near-age"></span>';
-  tickAge();
-}
-
-/* Asking on arrival, not on a tap. The trade-off is real and worth stating:
-   a permission dialog before the reader knows what the site is gets refused
-   more often than one behind a button, and in every browser a refusal is
-   sticky — it kills the feature for that person more or less permanently.
-   Two mitigations, both cheap:
-     - the Permissions API is consulted first, so somebody who already granted
-       is located silently and somebody who already refused is never asked
-       again by us;
-     - the ask waits for first paint, so the dialog appears over a page that
-       has explained itself rather than over a blank screen.
-   Refusal is not a dead end: the island figure still renders and the button
-   stays live for whenever they change their mind.                            */
 function locate(auto){
   var note=nearEl('locnote'), N=window.SCB_NEAR;
   if(!navigator.geolocation){ if(!auto&&note) note.textContent=tr('idx.geo.no_geo'); return; }
@@ -642,7 +590,7 @@ function locate(auto){
      used locally and never transmitted. */
   navigator.geolocation.getCurrentPosition(function(pos){
     _near.lat=pos.coords.latitude; _near.lng=pos.coords.longitude;
-    if(_near.wanted!=null){ _near.scale=_near.wanted; _near.wanted=null; } else { _near.scale=null; }
+    if(_near.wanted!=null){ _near.sel=_near.wanted; _near.wanted=null; } else if(_near.sel!=='home'){ _near.sel=null; }
     heroMapTo(_near.lat,_near.lng);
     /* Normally resolved already — the idle upgrade warmed it, so this is
        instant rather than a wait at the moment of most impatience. */
@@ -650,7 +598,6 @@ function locate(auto){
       _near.data=data;
       if(note) note.textContent=tr('idx.locnote.default');
       renderNear();
-      if(window._map) window._map.setView([_near.lat,_near.lng],13);
     }).catch(function(e){
       console.warn('[near] load failed:',e);
       if(!auto&&note) note.textContent=tr('near.err');
@@ -672,214 +619,6 @@ function autoLocate(){
     if(st.state==='denied') return;            /* already refused — never nag */
     locate(true);
   }).catch(function(){ locate(true); });
-}
-
-/* ---------- story TEXT (from the most notable real report) ---------- */
-var KNOWN_SCK=[19236,19600,19618,19651];
-function notableReport(){
-  if(!S.reports.length) return null;
-  var rank={high:3,medium:2,low:1};
-  return S.reports.slice().sort(function(a,b){ return (rank[b.severity]||0)-(rank[a.severity]||0) || (new Date(b.submittedAt||0))-(new Date(a.submittedAt||0)); })[0];
-}
-function renderStory(){
-  var r=notableReport(); if(!r) return;   /* no reports yet → keep evergreen copy */
-  var quote=(r.aiDescription||r.description||r.title||'').trim();
-  if(quote.length>140) quote=quote.slice(0,137)+'…';
-  if(quote) setText('story-quote','“'+quote+'”');
-  var rel=(window.SCB_I18N&&r.submittedAt)?window.SCB_I18N.formatRelative(r.submittedAt):'';
-  setText('story-by',tr('idx.story.by_prefix')+(r.locality?' · '+r.locality:'')+(rel?' · '+rel:''));
-  setText('story-body',tr('idx.story.body_dyn',{loc:(r.locality?tr('idx.story.in',{loc:r.locality}):'')}));
-}
-
-/* ---------- home reports summary (categories + most recent, in their words) ---------- */
-function renderReportsSummary(){
-  var cats=document.getElementById('rep-cats'), list=document.getElementById('rep-list');
-  if(!S.reports.length){ if(list) list.innerHTML='<div class="rep-row"><span class="rep-cat">—</span><span class="rep-desc">'+esc(tr('idx.reports.empty'))+'</span><span class="rep-meta"></span></div>'; return; }
-  if(cats){ var c={}; S.reports.forEach(function(r){ var k=r.category||'other'; c[k]=(c[k]||0)+1; }); cats.innerHTML=Object.keys(c).sort(function(a,b){return c[b]-c[a];}).map(function(k){ return '<span class="rep-chip">'+esc(k)+'<b>'+c[k]+'</b></span>'; }).join(''); }
-  if(list){ var rs=S.reports.slice().sort(function(a,b){ return new Date(b.submittedAt||0)-new Date(a.submittedAt||0); }).slice(0,6);
-    list.innerHTML=rs.map(function(r){ var rel=(window.SCB_I18N&&r.submittedAt)?window.SCB_I18N.formatRelative(r.submittedAt):''; var desc=(r.aiDescription||r.description||r.title||'').trim(); if(desc.length>96) desc=desc.slice(0,93)+'…'; return '<div class="rep-row"><span class="rep-cat">'+esc(r.category||'other')+'</span><span class="rep-desc">'+esc(desc||tr('idx.reports.no_desc'))+'</span><span class="rep-meta">'+esc(r.locality||'Bali')+(rel?' · '+rel:'')+'</span></div>'; }).join(''); }
-}
-
-/* ---------- story CHART : real Smart Citizen 24h PM2.5 with clock labels ---------- */
-function activeSCK(){ return activeSensors().filter(function(s){ return s.source==='smartcitizen' && s.rawId; }); }
-async function loadStoryChart(){
-  drawSparkIllustrative(8);                       /* draw something immediately — never blank */
-  /* 1) pre-baked snapshot — instant, no slow worker call */
-  var hist=await getHistory();
-  if(hist){
-    var key=pickHistKey(hist);
-    if(key && hist[key] && hist[key].h24 && hist[key].h24.length>=3){
-      setText('story-sensor', (hist[key].name||'Smart Citizen')+' · PM2.5 · 24h');
-      drawSparkPairs(hist[key].h24, notableReport());
-      return;
-    }
-  }
-  /* 2) live fallback through the worker — timed out so it never hangs */
-  var scks=activeSCK();
-  var known=scks.filter(function(s){ return KNOWN_SCK.indexOf(Number(s.rawId))>=0; });
-  var pool=known.length?known:scks, pick=null;
-  if(pool.length){ pick=pool[0]; var r=notableReport(); if(r){ var best=1e9; pool.forEach(function(s){ var k=dkm(r.lat,r.lng,s.lat,s.lng); if(k<best){best=k;pick=s;} }); } }
-  var cand=[];
-  if(pick) cand.push({rid:pick.rawId, label:pick.name});
-  KNOWN_SCK.forEach(function(id){ if(!pick||Number(pick.rawId)!==id) cand.push({rid:id, label:'Smart Citizen · Bali'}); });
-  for(var i=0;i<cand.length;i++){ if(await tryStorySensor(cand[i].rid, cand[i].label)) return; }
-}
-function pickHistKey(hist){
-  var keys=Object.keys(hist).filter(function(k){ return hist[k]&&Array.isArray(hist[k].h24)&&hist[k].h24.length>=3; });
-  if(!keys.length) return null;
-  var r=notableReport();
-  if(r){ var nearest=null,best=1e9; activeSCK().forEach(function(s){ if(keys.indexOf(String(s.rawId))<0) return; var k=dkm(r.lat,r.lng,s.lat,s.lng); if(k<best){best=k;nearest=String(s.rawId);} }); if(nearest) return nearest; }
-  for(var i=0;i<KNOWN_SCK.length;i++){ if(keys.indexOf(String(KNOWN_SCK[i]))>=0) return String(KNOWN_SCK[i]); }
-  return keys[0];
-}
-function drawSparkPairs(pairs, report){
-  var svg=document.getElementById('spark'); if(!svg)return;
-  pairs=pairs.slice().sort(function(a,b){return new Date(a[0])-new Date(b[0]);});  /* series arrives newest-first */
-  svg.innerHTML=_sparkSVG(pairs.map(function(p){return p[1];}), pairs.map(function(p){return new Date(p[0]).getTime();}), report);
-}
-async function tryStorySensor(rid, label){
-  try{
-    var detail=await withTimeout(D.fetchSmartCitizenDetail(rid), 8000);
-    var list=(detail&&detail.data&&detail.data.sensors)||(detail&&detail.sensors)||[];
-    var pm=list.find(function(x){ return /pm\s*2\.?5/i.test(x.name||''); });
-    if(!pm) return false;
-    var to=new Date(), from=new Date(to.getTime()-24*3600*1000);
-    var pts=await withTimeout(D.fetchSmartCitizenHistory(rid, pm.id, from.toISOString(), to.toISOString(), '1h'), 12000);
-    if(pts&&pts.length>=3){ setText('story-sensor', label+' · PM2.5 · 24h'); drawSparkReal(pts, notableReport()); return true; }
-  }catch(_){}
-  return false;
-}
-function drawSparkIllustrative(baseline){
-  var svg=document.getElementById('spark'); if(!svg)return;
-  var n=72,data=[],b=Math.max(4,baseline);
-  for(var i=0;i<n;i++){ data.push(Math.max(2, b*0.8+Math.sin(i/6)*2+Math.random()*1.6)); }
-  svg.innerHTML=_sparkSVG(data,null,null);
-}
-function drawSparkReal(pts,report){
-  var svg=document.getElementById('spark'); if(!svg)return;
-  pts=pts.slice().sort(function(a,b){return new Date(a.recordedAt)-new Date(b.recordedAt);});  /* newest-first → chronological */
-  svg.innerHTML=_sparkSVG(pts.map(function(p){return p.value;}), pts.map(function(p){return new Date(p.recordedAt).getTime();}), report);
-}
-function _fmtClock(ms){ try{ return new Date(ms).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Makassar'}); }catch(_){ return ''; } }
-function _sparkSVG(vals, times, report){
-  var w=520,h=240,pad=16,padB=30,n=vals.length;
-  var max=Math.max(Math.max.apply(null,vals)*1.1,18);
-  var t0=times?times[0]:0, span=times?Math.max(1,times[n-1]-times[0]):1;
-  function X(i){ return times ? pad+(times[i]-t0)/span*(w-2*pad) : pad+i*(w-2*pad)/(n-1); }
-  function Y(v){ return (h-padB)-(v/max)*((h-padB)-pad); }
-  var d=''; for(var i=0;i<n;i++){ d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(vals[i]).toFixed(1); }
-  var who=Y(15).toFixed(1);
-  var out='<line x1="'+pad+'" y1="'+who+'" x2="'+(w-pad)+'" y2="'+who+'" stroke="#5b5347" stroke-width="1" stroke-dasharray="4 5"/>'+
-          '<path d="'+d+'" fill="none" stroke="#4f9e6e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>';
-  if(times){ var tk=4; for(var k=0;k<=tk;k++){ var idx=Math.round(k*(n-1)/tk), x=X(idx); out+='<text x="'+x.toFixed(1)+'" y="'+(h-9)+'" text-anchor="middle" fill="#8d8474" font-family="IBM Plex Mono,monospace" font-size="10">'+_fmtClock(times[idx])+'</text>'; } }
-  if(report&&report.submittedAt&&times){ var rt=new Date(report.submittedAt).getTime(); if(rt>=times[0]&&rt<=times[n-1]){ var rx=pad+(rt-t0)/span*(w-2*pad), ni=0,bd=1e18; for(var j=0;j<n;j++){var dd=Math.abs(times[j]-rt); if(dd<bd){bd=dd;ni=j;}} var ry=Y(vals[ni]); out+='<line x1="'+rx.toFixed(1)+'" y1="'+ry.toFixed(1)+'" x2="'+rx.toFixed(1)+'" y2="'+(h-padB)+'" stroke="#e9a05a" stroke-width="1.4" stroke-dasharray="3 4"/><circle cx="'+rx.toFixed(1)+'" cy="'+ry.toFixed(1)+'" r="5.5" fill="#e9a05a"/><text x="'+rx.toFixed(1)+'" y="'+(ry-11).toFixed(1)+'" text-anchor="middle" fill="#e9a05a" font-family="IBM Plex Mono,monospace" font-size="10">'+_fmtClock(rt)+'</text>'; } }
-  return out;
-}
-
-/* ---------- live map ---------- */
-/* report glows are drawn once, whenever BOTH the map and reports are ready
-   (sensors + reports resolve independently, so either can finish first). */
-function renderGlows(){
-  if(!window._map || window._glowsDone || !S.reports.length) return;
-  window._glowsDone=true;
-  S.reports.forEach(function(r){ if(typeof r.lat==='number'&&typeof r.lng==='number'){ L.circle([r.lat,r.lng],{radius:1500,color:'transparent',fillColor:'#dd8a3c',fillOpacity:.13}).addTo(window._map); } });
-}
-function initMap(){
-  if(typeof L==='undefined'){ return; }
-  var map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([-8.66,115.16],10);
-  window._map=map;
-  /* Touch: a full-width map inside a scrolling page eats the swipe, and the
-     reader gets stuck panning Bali when they wanted to read the next section.
-     Leaflet stays inert until they tap in; tapping outside gives it back. */
-  if(matchMedia('(hover:none)').matches){
-    map.dragging.disable(); map.touchZoom.disable(); map.doubleClickZoom.disable();
-    var veil=document.createElement('div');
-    veil.className='map-veil';
-    veil.innerHTML='<span data-i18n="idx.island.tap">Tap to explore the map</span>';
-    veil.addEventListener('click',function(){
-      map.dragging.enable(); map.touchZoom.enable(); map.doubleClickZoom.enable();
-      veil.remove();
-    });
-    document.getElementById('map').appendChild(veil);
-    if(window.SCB_I18N) window.SCB_I18N.applyTo(veil);
-    document.addEventListener('click',function(e){
-      if(!map.dragging.enabled()) return;
-      if(document.getElementById('map').contains(e.target)) return;
-      map.dragging.disable(); map.touchZoom.disable(); map.doubleClickZoom.disable();
-      if(!document.querySelector('.map-veil')) document.getElementById('map').appendChild(veil);
-    });
-  }
-  /* Basemap. CARTO now requires an API key: without one it still returns HTTP
-     200 with a PNG, but every tile is stamped "API KEY REQUIRED". A curl check
-     passes while the map is visibly defaced, which is how this went unnoticed.
-     Default below is keyless OpenStreetMap, which supports z19 — the copy
-     promises "pinch into your own banjar", so deep zoom has to keep working.
-     To use a keyed provider, set TILE_URL/TILE_ATTR from that provider's own
-     documentation. Do not guess the query-parameter name. */
-  var TILE_URL  = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-  var TILE_ATTR = '© OpenStreetMap';
-  L.tileLayer(TILE_URL,{maxZoom:19,attribution:TILE_ATTR}).addTo(map);
-  renderGlows();
-  /* Pins live in their own layer so the live upgrade can replace them wholesale
-     rather than drawing a second set on top of the snapshot's. */
-  window._pinLayer = L.layerGroup().addTo(map);
-  var pts=[];
-  activeSensors().forEach(function(s){
-    var col=bandColor(s.reading.pm25);
-    var ex=s.excluded_from_avg;
-    L.circleMarker([s.lat,s.lng],{radius:9,color:'#fff',weight:2,fillColor:col,fillOpacity:ex?0.4:1,dashArray:ex?'2,3':null})
-      .addTo(window._pinLayer)
-      .bindPopup('<b>'+(D.escapeHtml?D.escapeHtml(s.name):s.name)+'</b><br>PM2.5 '+(Math.round(s.reading.pm25*10)/10)+' µg/m³'+(ex?'<br><small>indoor / not counted in the average</small>':''));
-    pts.push([s.lat,s.lng]);
-  });
-  if(pts.length){ try{ map.fitBounds(pts,{padding:[60,60],maxZoom:12}); }catch(_){ } }
-}
-
-/* ---------- live upgrade from Bali Air Dispatch ----------------------------
-   First paint uses data/sensors.json: 2.7 KB gzipped, same origin, TTFB 112 ms
-   from Bali, and it works with the API down. But that file is only as fresh as
-   the sync, and the sync asks GitHub for a quarter-hour cron and gets roughly
-   one run every two to five hours — so the page was presenting a morning-peak
-   snapshot as "right now".
-
-   So the snapshot paints, and then, at idle, the live figures replace it: 67
-   boxes against 40, humidity-corrected upstream, minutes old instead of hours.
-   It costs 7.2 KB brotli and about a quarter second, off the critical path.
-   Nothing blocks on it and a failure leaves the snapshot exactly as it was.
-   The reader's own scale selection always wins over this.                    */
-function renderLivePins(sensors){
-  if(!window._map || !window._pinLayer) return;
-  window._pinLayer.clearLayers();
-  var pts=[];
-  sensors.forEach(function(s){
-    if(s.pm25==null) return;
-    L.circleMarker([s.lat,s.lng],{radius:9,color:'#fff',weight:2,
-      fillColor:bandColor(s.pm25),fillOpacity:s.fresh?1:0.35,dashArray:s.fresh?null:'2,3'})
-      .addTo(window._pinLayer)
-      .bindPopup('<b>'+esc(s.name)+'</b><br>PM2.5 '+(Math.round(s.pm25*10)/10)+' µg/m³<br>'+
-        '<small>'+esc(s.sources.join(' · '))+(s.fresh?'':' · '+esc(tr('near.stale_pin')))+'</small>');
-    pts.push([s.lat,s.lng]);
-  });
-  if(pts.length){ try{ window._map.fitBounds(pts,{padding:[60,60],maxZoom:12}); }catch(_){ } }
-}
-
-function upgradeFromLive(){
-  var N=window.SCB_NEAR; if(!N) return;
-  /* Guard against a cache-skewed near.js. The scripts carry a ?v= for exactly
-     this, but a stale one must fail in the open rather than throw inside the
-     promise and leave the page silently on yesterday's snapshot. */
-  if(typeof N.islandMedian!=='function'){
-    console.warn('[near] near.js is older than this page expects (cache skew); staying on the snapshot');
-    return;
-  }
-  N.load().then(function(data){
-    _near.data=data;
-    setText('map-sensors', data.sensors.length||'—');
-    renderLivePins(data.sensors);
-    /* Paints the permanent panel too: with no position yet it shows the island
-       scope and three tabs waiting to be asked. */
-    renderNear();
-  }).catch(function(e){ console.warn('[near] live upgrade unavailable, snapshot stands:', e); });
 }
 /* ---------- hero background map ---------- */
 var _heroMap=null;
@@ -903,7 +642,6 @@ function heroMapTo(lat,lng){
   _heroMap.setView([lat,lng], 14);
   setTimeout(function(){ try{ _heroMap.invalidateSize(); }catch(_){ } }, 250);
 }
-
 /* ---------- keep the reading current without a reload ----------------------
    Five minutes, which is not an arbitrary round number: the API is edge-cached
    at s-maxage=300 and held in the browser for max-age=60, and the sensors
@@ -923,21 +661,6 @@ function tickAge(){
   var mins=Math.round((Date.now()-N.fetchedAt())/60000);
   el.textContent = mins<1 ? tr('near.checked_now') : tr('near.checked_min',{n:mins});
 }
-
-function refreshLive(){
-  var N=window.SCB_NEAR; if(!N||!N.refresh) return;
-  N.refresh().then(function(data){
-    _near.data=data;
-    setText('map-sensors', data.sensors.length||'—');
-    renderLivePins(data.sensors);
-    renderNear();                 /* keeps the reader's selected scope */
-  }).catch(function(e){
-    /* Leave the last good reading on screen. A failed poll is not new
-       information, and blanking the number would imply it were. */
-    console.warn('[near] refresh failed, keeping the last reading:', e);
-  });
-}
-
 function startAutoRefresh(){
   function stop(){ if(_refreshTimer){ clearInterval(_refreshTimer); _refreshTimer=null; } }
   function start(){ stop(); _refreshTimer=setInterval(refreshLive, REFRESH_MS); }
@@ -962,58 +685,418 @@ function scheduleLiveUpgrade(){
   startAutoRefresh();
 }
 
+/* ---------- Home: sensors the reader owns ----------------------------------
+   Pinned by station id, kept in this browser only (localStorage), never sent
+   anywhere. Stored with a position as well as the id, because two networks
+   can report the same box and the deduplicated survivor's id can change from
+   one refresh to the next; the position is what stays put.                  */
+var HOME_KEY='scb-home';
+function loadPins(){
+  try{ var v=JSON.parse(localStorage.getItem(HOME_KEY)||'[]');
+       return Array.isArray(v) ? v.filter(function(p){ return p && p.id; }) : []; }catch(_){ return []; }
+}
+function savePins(){ try{ localStorage.setItem(HOME_KEY, JSON.stringify(_pins)); }catch(_){ } }
+var _pins=loadPins(), _pickOpen=false;
+
+function allStations(){ var d=_near.data; return d ? d.sensors.concat(d.indoor||[]) : []; }
+function findPinned(p){
+  var all=allStations(), N=window.SCB_NEAR;
+  for(var i=0;i<all.length;i++){ if(all[i].id===p.id) return all[i]; }
+  if(N && typeof p.lat==='number'){
+    for(var j=0;j<all.length;j++){
+      if(N.distanceKm(p.lat,p.lng,all[j].lat,all[j].lng)<=0.05){
+        /* Same box, reported under its other network's id this time. Follow
+           it, so the picker and removal keep working on the pin. */
+        p.id=all[j].id; savePins();
+        return all[j];
+      }
+    }
+  }
+  return null;
+}
+function homeBand(){
+  if(!_pins.length || !_near.data) return null;
+  var N=window.SCB_NEAR, out=[], ins=[];
+  var seen={};
+  _pins.forEach(function(p){
+    var s=findPinned(p); if(!s || seen[s.id]) return;
+    seen[s.id]=true;
+    var o={ s:s, km:(_near.lat!=null ? N.distanceKm(_near.lat,_near.lng,s.lat,s.lng) : null) };
+    (p.indoor ? ins : out).push(o);
+  });
+  return { id:'home', maxKm:null, sensors:out, indoorSensors:ins };
+}
+function isPinned(s){ for(var i=0;i<_pins.length;i++){ if(_pins[i].id===s.id || findPinned(_pins[i])===s) return _pins[i]; } return null; }
+var _indoorPref={}, _focusSid=null;
+function togglePin(s, on, indoor){
+  _pins=_pins.filter(function(p){ return p.id!==s.id && findPinned(p)!==s; });
+  if(on) _pins.push({ id:s.id, lat:s.lat, lng:s.lng, indoor:!!indoor, name:s.name });
+  savePins();
+  if(on){ _near.sel='home'; }
+  else if(!_pins.length && _near.sel==='home'){ _near.sel=null; }
+  renderNear();
+}
+
+function renderHomePicker(){
+  var box=nearEl('home-pick'), N=window.SCB_NEAR;
+  if(!box) return;
+  box.hidden=!_pickOpen;
+  if(!_pickOpen) return;
+  if(_near.lat==null || !_near.data){
+    box.innerHTML='<p class="hp-intro">'+esc(tr('near.home.needloc'))+'</p>'+
+      '<button type="button" class="linkbtn" id="hp-locate">'+esc(tr('near.home.locate'))+'</button>';
+    var b=document.getElementById('hp-locate'); if(b) b.addEventListener('click', function(){ locate(false); });
+    return;
+  }
+  var list=allStations().map(function(s){ return { s:s, km:N.distanceKm(_near.lat,_near.lng,s.lat,s.lng) }; })
+    .sort(function(a,b){ return a.km-b.km; }).slice(0,12);
+  var rows=list.map(function(o,i){
+    var p=isPinned(o.s), indoor = p ? p.indoor : (_indoorPref[o.s.id]!=null ? _indoorPref[o.s.id] : !!o.s.indoor);
+    var live = o.s.fresh && o.s.pm25!=null;
+    var v = live ? (Math.round(o.s.pm25*10)/10).toFixed(1) : tr('near.home.silent');
+    return '<div class="hp-row">'+
+      '<input type="checkbox" data-i="'+i+'" data-sid="'+esc(o.s.id)+'" class="hp-pin" aria-label="'+esc(tr('near.home.pin_one',{name:o.s.name}))+'"'+(p?' checked':'')+'>'+
+      '<span class="nm">'+esc(o.s.name)+'<small>'+esc(fmtKm(o.km)+' · '+o.s.sources.join(' · ')+(o.s.indoor?' · '+tr('near.home.flag_indoor'):''))+'</small></span>'+
+      '<span class="pv'+(live?'':' off')+'" style="color:'+(live?bandColor(o.s.pm25):'inherit')+'">'+esc(v)+'</span>'+
+      '<label><input type="checkbox" data-i="'+i+'" data-sid="'+esc(o.s.id)+'" class="hp-in"'+(indoor?' checked':'')+'>'+esc(tr('near.home.indoors'))+'</label>'+
+    '</div>';
+  }).join('');
+  box.innerHTML='<p class="hp-intro">'+esc(tr('near.home.intro'))+'</p>'+rows+
+    '<button type="button" class="linkbtn hp-done" id="hp-done">'+esc(tr('near.home.done'))+'</button>';
+  box.querySelectorAll('.hp-pin').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var o=list[+cb.getAttribute('data-i')];
+      var inCb=box.querySelector('.hp-in[data-i="'+cb.getAttribute('data-i')+'"]');
+      _focusSid='hp-pin:'+o.s.id;
+      togglePin(o.s, cb.checked, inCb && inCb.checked);
+    });
+  });
+  box.querySelectorAll('.hp-in').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var o=list[+cb.getAttribute('data-i')];
+      _indoorPref[o.s.id]=cb.checked;
+      _focusSid='hp-in:'+o.s.id;
+      if(isPinned(o.s)) togglePin(o.s, true, cb.checked);
+    });
+  });
+  document.getElementById('hp-done').addEventListener('click', function(){ _pickOpen=false; renderNear(); });
+  /* Re-rendering replaced the checkbox the reader just used; put focus back
+     on it so a keyboard or screen-reader user is not thrown to the top. */
+  if(_focusSid){
+    var parts=_focusSid.split(':'), sid=parts.slice(1).join(':');
+    box.querySelectorAll('.'+parts[0]).forEach(function(el){ if(el.getAttribute('data-sid')===sid) el.focus(); });
+    _focusSid=null;
+  }
+}
+
+/* ---------- the panel: one tab per scale, Home first when there is one ---------- */
+function renderNear(){
+  var N=window.SCB_NEAR, box=nearEl('near'), tabs=nearEl('near-tabs'), body=nearEl('near-body'), foot=nearEl('near-foot');
+  if(!N||!box||!tabs||!body||!_near.data){ renderDerived(); return; }
+  var located=_near.lat!=null;
+
+  var res = located ? N.bandsFor(_near.lat,_near.lng,_near.data.sensors) : null;
+  var bands = res ? res.bands : N.SCALES.map(function(sc){
+    return { id:sc.id, maxKm:sc.maxKm,
+             sensors: sc.maxKm===Infinity ? _near.data.sensors.map(function(x){return {s:x,km:null};}) : [] };
+  });
+  var home=homeBand();
+  if(home) bands=[home].concat(bands);
+  var sums = bands.map(function(b){ return N.bandSummary(b); });
+  var idx = function(id){ for(var i=0;i<bands.length;i++){ if(bands[i].id===id) return i; } return -1; };
+
+  /* Default: Home if the reader has one; otherwise the banjar (2 km), the
+     tightest scope with a real chance of sensors and the one a resident can
+     act on; where that is empty, the first scope that has a reading. Without
+     a position, only Bali can be computed. */
+  if(_near.sel==null || idx(_near.sel)<0){
+    if(home && (sums[0].pm25!=null || (home.indoorSensors||[]).length)) _near.sel='home';
+    else if(!located) _near.sel='island';
+    else {
+      _near.sel='neighbourhood';
+      var nb=idx('neighbourhood');
+      if(nb<0 || sums[nb].pm25==null){ for(var q=0;q<bands.length;q++){ if(bands[q].id!=='home' && sums[q].pm25!=null){ _near.sel=bands[q].id; break; } } }
+    }
+  }
+  if(!located && _near.sel!=='home' && _near.sel!=='island') _near.sel='island';
+  var sel=Math.max(0, idx(_near.sel));
+
+  tabs.className='near-tabs'+(bands.length>4?' n5':'');
+  tabs.innerHTML=bands.map(function(b,i){
+    var on=i===sel, needloc=!located && b.id!=='island' && b.id!=='home';
+    var n = needloc ? '·' : (b.id==='home' ? (b.sensors.length+(b.indoorSensors||[]).length) : sums[i].count);
+    return '<button type="button" role="tab" class="near-tab'+(needloc?' needloc':(n?'':' is-empty'))+'"'+
+           ' data-id="'+b.id+'" data-needloc="'+(needloc?'1':'')+'" aria-selected="'+(on?'true':'false')+'">'+
+           '<span class="tl">'+esc(tr('near.tab.'+b.id))+'</span>'+
+           '<span class="tn">'+n+'</span></button>';
+  }).join('');
+  tabs.querySelectorAll('.near-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(btn.getAttribute('data-needloc')){ _near.wanted=btn.getAttribute('data-id'); locate(false); return; }
+      _near.sel=btn.getAttribute('data-id'); renderNear();
+    });
+  });
+
+  var b=bands[sel], sum=sums[sel], id=b.id;
+  var head='<div class="nb-top"><span class="nb-name">'+esc(tr('near.scale.'+id+'.name'))+'</span>'+
+           '<span class="nb-range">'+esc(tr('near.scale.'+id+'.range'))+'</span></div>';
+
+  if(id==='home'){
+    var inSum=N.bandSummary({sensors:b.indoorSensors||[]});
+    var fmt=function(v){ return v==null?'–':(Math.round(v*10)/10).toFixed(1); };
+    var pair='<div class="nb-pair">'+
+      '<div><span class="k">'+esc(tr('near.home.outside'))+'</span><span class="nb-val" style="color:'+(sum.pm25!=null?bandColor(sum.pm25):'inherit')+'">'+fmt(sum.pm25)+'<i>µg/m³</i></span></div>'+
+      '<div><span class="k">'+esc(tr('near.home.inside'))+'</span><span class="nb-val" style="color:'+(inSum.pm25!=null?bandColor(inSum.pm25):'inherit')+'">'+fmt(inSum.pm25)+'<i>µg/m³</i></span></div></div>';
+    var lesson='';
+    if(sum.pm25!=null && inSum.pm25!=null && sum.pm25>12){
+      lesson = tr(inSum.pm25 <= sum.pm25*0.5 ? 'near.home.lesson_ok' : 'near.home.lesson_leak');
+    } else if(sum.pm25==null && inSum.pm25==null){
+      lesson = tr('near.home.none_fresh',{h:N.FRESH_HOURS});
+    } else lesson = tr('near.scale.home.has');
+    body.innerHTML=head+pair+'<p class="nb-say">'+esc(lesson)+'</p>';
+    if(sum.pm25!=null) applyReading(sum.pm25,'near.scope.home',true);
+    else if(inSum.pm25!=null) applyReading(inSum.pm25,'near.scope.home_in',true);
+    else { applyReading(null,'near.scope.home'); setText('hero-verdict', tr('near.home.none_fresh',{h:N.FRESH_HOURS})); }
+  } else if(!sum.count){
+    var cta=(id==='street')
+      ? '<a class="nb-cta" href="#contribute">'+esc(tr('near.cta.build'))+'</a>' : '';
+    body.innerHTML=head+'<p class="nb-say">'+esc(tr('near.scale.'+id+'.empty'))+'</p>'+cta;
+  } else {
+    var stale=sum.count-sum.freshCount;
+    var line='<div class="nb-body">';
+    if(sum.pm25!=null) line+='<span class="nb-val" style="color:'+bandColor(sum.pm25)+'">'+
+      (Math.round(sum.pm25*10)/10).toFixed(1)+'<i>µg/m³</i></span>';
+    line+='<span class="nb-count">'+esc(tr(sum.count===1?'near.count_one':'near.count_many',{n:sum.count}))+'</span>';
+    if(stale) line+='<span class="nb-stale">'+esc(tr('near.stale',{n:stale,h:N.FRESH_HOURS}))+'</span>';
+    line+='</div>';
+    var say=sum.pm25!=null ? tr('near.scale.'+id+'.has') : tr('near.nofresh',{h:N.FRESH_HOURS});
+    if(!located && id==='island') say = say+' '+tr('near.locate_hint');
+    body.innerHTML=head+line+'<p class="nb-say">'+esc(say)+'</p>';
+  }
+
+  /* The hero follows the selected scope. An empty scope blanks the readout
+     rather than leaving another scope's figure under the wrong heading. */
+  if(id!=='home'){
+    if(sum.pm25!=null){
+      applyReading(sum.pm25,'near.scope.'+(located?id:'island_live'),located&&id!=='island');
+    } else if(located){
+      applyReading(null,'near.scope.'+id);
+      setText('hero-verdict', tr('near.verdict.nosensor'));
+      setText('hero-mood','');
+    }
+  }
+
+  var ht=document.getElementById('home-toggle');
+  if(ht) ht.textContent = tr(_pins.length ? 'near.home.edit' : 'near.home.pin');
+
+  var parts=[];
+  if(located && res && res.nearest) parts.push(tr('near.nearest',{km:fmtKm(res.nearest.km),name:res.nearest.s.name}));
+  parts.push(tr('near.foot',{boxes:_near.data.sensors.length}));
+  foot.innerHTML=esc(parts.join(' '))+' <a href="https://baliairdispatch.com/api" target="_blank" rel="noopener">Bali Air Dispatch</a>.'+
+    ' <span class="near-age" id="near-age"></span>';
+  tickAge();
+  renderHomePicker();
+  renderDerived();
+}
+
+/* ---------- which radius the "near you" lines use ---------- */
+function selectedKm(){
+  if(_near.lat==null) return Infinity;
+  var id=_near.sel;
+  if(id==='island') return Infinity;
+  if(id==='regional') return 5;
+  return 2;                     /* home, street and banjar: reports are desa-level anyway */
+}
+function here(){ return _near.lat!=null ? {lat:_near.lat, lng:_near.lng} : null; }
+function curLang(){ return window.SCB_I18N ? window.SCB_I18N.currentLang() : 'en'; }
+function fmtDay(iso){
+  var l=curLang(), loc = l==='id' ? 'id-ID' : (l==='es' ? 'es-ES' : 'en-GB');
+  try{ return new Date(iso).toLocaleDateString(loc,{day:'numeric',month:'short',timeZone:'Asia/Makassar'}); }catch(_){ return String(iso).slice(0,10); }
+}
+
+/* ---------- signals under the number: reports and patterns near you ---------- */
+var PATTERNS=null;
+function renderSignals(){
+  var U=window.SCB_UNDERSTAND; if(!U) return;
+  var box=nearEl('signals'), rEl=nearEl('sig-reports'), pEl=nearEl('sig-pattern');
+  if(!box||!rEl||!pEl) return;
+  var km=selectedKm(), h=here(), txt=null;
+  var nr=U.nearbyReports(h, S.reports, Date.now(), km);
+  if(nr.week>0){
+    txt = (km===Infinity)
+      ? tr(nr.week===1?'sig.week_bali_one':'sig.week_bali',{n:nr.week})
+      : nr.places.length ? tr(nr.week===1?'sig.week_one':'sig.week',{n:nr.week, places:nr.places.join(', ')})
+      : tr(nr.week===1?'sig.week_near_one':'sig.week_near',{n:nr.week});
+  } else if(nr.last && nr.last.days<=60 && km!==Infinity){
+    txt = tr('sig.last',{date:fmtDay(nr.last.at), place:nr.last.locality||tr('sig.near_you')});
+  } else if(nr.last && nr.last.days<=60){
+    txt = tr('sig.last_bali',{date:fmtDay(nr.last.at), place:nr.last.locality||'Bali'});
+  }
+  if(txt){
+    rEl.innerHTML='<span class="tag">'+esc(tr('sig.tag.reports'))+'</span><span>'+esc(txt)+
+      ' <a href="map.html#reports">'+esc(tr('sig.see_map'))+'</a></span>';
+    rEl.hidden=false;
+  } else rEl.hidden=true;
+
+  var ps=U.nearbyPatterns(h, PATTERNS, km);
+  if(ps.length){
+    var p=ps[0], l=curLang();
+    var s=p['summary_'+l]||p.summary_en||'';
+    pEl.innerHTML='<span class="tag">'+esc(tr('sig.tag.pattern'))+'</span><span>'+esc(s)+
+      (ps.length>1?' '+esc(tr('sig.more',{n:ps.length-1})):'')+'</span>';
+    pEl.hidden=!s;
+  } else pEl.hidden=true;
+  box.hidden = rEl.hidden && pEl.hidden;
+}
+function loadPatterns(){
+  var base=(D.dataBaseUrl?D.dataBaseUrl():'./data');
+  /* Written by the insight agent on the node. Until it runs, this 404s and
+     the pattern line simply never appears. */
+  return fetch(base+'/patterns.json',{cache:'no-cache'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      /* If the agent stops running, its last file would sit on Pages forever
+         and the page would keep asserting an old pattern. Three days without
+         a new file and the line goes. */
+      var at = j && Date.parse(j.generated_at);
+      PATTERNS = (at && Date.now()-at < 3*86400000) ? j : null;
+      renderSignals();
+    })
+    .catch(function(){ PATTERNS=null; });
+}
+
+/* ---------- 2 · understand ---------- */
+var _hourly={id:null, series:null, name:null, at:0};
+function ensureHourly(){
+  var N=window.SCB_NEAR, U=window.SCB_UNDERSTAND, h=here();
+  if(!N||!U||!h||!_near.data||typeof N.hourly!=='function') return;
+  var cv=U.coverage(h,_near.data.sensors);
+  if(!cv || cv.nearestKm>5){ _hourly={id:null, series:null, name:null, at:0}; return; }
+  var s=cv.nearest, fresh=_hourly.at && (Date.now()-_hourly.at) < 30*60000;
+  if(_hourly.id===s.id && fresh) return;
+  if(_hourly.id!==s.id) _hourly={id:s.id, series:null, name:s.name, at:0};
+  _hourly.at=Date.now();                    /* claims the slot; no double fetch */
+  N.hourly(s.id,8).then(function(series){
+    if(_hourly.id!==s.id) return;
+    _hourly.series=series; renderUnderstand(); renderProtect();
+  }).catch(function(e){ _hourly.at=0; console.warn('[understand] hourly history unavailable:', e); });
+}
+function renderUnderstand(){
+  var U=window.SCB_UNDERSTAND; if(!U) return;
+  var d=U.diagnose({ here:here(), sensors:_near.data?_near.data.sensors:[],
+                     hourly:_hourly.series, hourlyName:_hourly.name });
+  window._diag=d;
+  var v=d.vars, located=_near.lat!=null;
+  setText('u-title', tr('u.title.'+d.kind));
+  setText('u-body', tr('u.body.'+d.kind) + ((!located && d.kind!=='nodata') ? ' '+tr('u.locate') : ''));
+  var why=document.getElementById('u-why');
+  if(why){
+    why.innerHTML=d.why.map(function(k){
+      var key = k==='hour' ? 'u.why.hour_'+(d.hour?d.hour.verdict:'usual') : 'u.why.'+k;
+      return '<li>'+esc(tr(key,v))+'</li>';
+    }).join('');
+  }
+  var su=document.getElementById('u-suspect');
+  if(su){
+    if(d.suspect){ su.textContent=tr('u.suspect.'+d.suspect.direction, d.suspect); su.hidden=false; }
+    else su.hidden=true;
+  }
+}
+
+/* ---------- 3 · what to do now ---------- */
+var PROTECT={
+  nodata:   { out:['p.out.mask','p.out.timing'],                 inn:['p.in.seal','p.in.co2'] },
+  good:     { out:['p.out.good','p.out.keepmask'],               inn:['p.in.ventilate','p.in.seal'] },
+  moderate: { out:['p.out.mask','p.out.timing'],                 inn:['p.in.close','p.in.seal','p.in.co2'] },
+  unhealthy:{ out:['p.out.mask','p.out.exercise','p.out.report'], inn:['p.in.close','p.in.seal','p.in.co2'] }
+};
+function renderProtect(){
+  /* Follows the number the reader is looking at, so the advice never sits
+     under a figure from a different scale. */
+  var lr=window._lastReading, d=window._diag;
+  var v = (lr && lr.pm!=null) ? lr.pm : (d ? d.value : null);
+  var band = v==null ? 'nodata' : bandOf(v);
+  var set=PROTECT[band];
+  setText('p-title', tr('p.title.'+band));
+  var li=function(k){ return '<li>'+tr(k)+'</li>'; };
+  var o=document.getElementById('p-out'), i=document.getElementById('p-in');
+  if(o) o.innerHTML=set.out.map(li).join('');
+  if(i) i.innerHTML=set.inn.map(li).join('');
+  var k=document.getElementById('p-kids'); if(k) k.hidden = !(band==='moderate'||band==='unhealthy');
+}
+
+/* ---------- 4 · contribute ---------- */
+function renderContribute(){
+  var U=window.SCB_UNDERSTAND, el=document.getElementById('c-gap'), h=here(), data=_near.data;
+  if(el && U){
+    var cv = (h && data) ? U.coverage(h, data.sensors) : null;
+    el.classList.toggle('is-gap', !!(cv && cv.gap));
+    el.textContent = !cv ? tr('c.gap.unknown')
+      : cv.gap ? tr('c.gap.yes',{km:fmtKm(cv.nearestKm)})
+      : tr(cv.within2===1?'c.gap.no_one':'c.gap.no',{n:cv.within2});
+  }
+  var ag=document.getElementById('c-ag-p');
+  if(ag && data && data.sensors.length){
+    var n=data.sensors.filter(function(s){ return s.sources && s.sources.indexOf('AirGradient')>=0; }).length;
+    if(n) ag.textContent=tr('c.ag.p_n',{n:n, m:data.sensors.length});
+  }
+}
+
+function renderDerived(){ renderSignals(); ensureHourly(); renderUnderstand(); renderProtect(); renderContribute(); }
+
+/* ---------- live data ---------- */
+function upgradeFromLive(){
+  var N=window.SCB_NEAR; if(!N) return;
+  /* Guard against a cache-skewed near.js: fail in the open, stay on the snapshot. */
+  if(typeof N.islandMedian!=='function'){
+    console.warn('[near] near.js is older than this page expects (cache skew); staying on the snapshot');
+    return;
+  }
+  N.load().then(function(data){ _near.data=data; renderNear(); })
+   .catch(function(e){ console.warn('[near] live upgrade unavailable, snapshot stands:', e); });
+}
+function refreshLive(){
+  var N=window.SCB_NEAR; if(!N||!N.refresh) return;
+  N.refresh().then(function(data){ _near.data=data; renderNear(); })
+   .catch(function(e){ console.warn('[near] refresh failed, keeping the last reading:', e); });
+}
+
 /* ---------- boot ---------- */
 function boot(){
   size(); applyReading(null,'idx.scope.across_bali',false);
   if(reduce){ draw(); } else { requestAnimationFrame(draw); }
   if(window.SCB_I18N){
-    if(document.documentElement) document.documentElement.lang=window.SCB_I18N.currentLang();
+    document.documentElement.lang=window.SCB_I18N.currentLang();
     window.SCB_I18N.applyTo(document);
   }
-  setText('story-sensor', tr('idx.story.sensor_default'));
   setupLangToggle();
+  renderDerived();
+  var ht=document.getElementById('home-toggle');
+  if(ht) ht.addEventListener('click', function(){ _pickOpen=!_pickOpen; renderHomePicker(); if(_pickOpen){ var hp=document.getElementById('home-pick'); if(hp&&hp.scrollIntoView) hp.scrollIntoView({block:'nearest'}); } });
 
+  initHeroMap();
   (D.fetchSensorsFast?D.fetchSensorsFast():Promise.resolve([])).then(function(s){
     S.sensors=s||[];
-    var act=activeSensors();
-    setText('map-sensors', act.length||'—');
-    var statS=statSensors();
-    if(statS.length){ applyReading(median(statS.map(function(x){return x.reading.pm25;})),'idx.scope.right_now',false); }
+    var statS=statSensors(), act=activeSensors();
+    if(_near.data){ /* live already painted; the snapshot must not overwrite it */ }
+    else if(statS.length){ applyReading(median(statS.map(function(x){return x.reading.pm25;})),'idx.scope.right_now',false); }
     else if(act.length){ applyReading(median(act.map(function(x){return x.reading.pm25;})),'idx.scope.right_now',false); }
-    initMap();
     initHeroMap();
-    loadStoryChart();
     scheduleLiveUpgrade();
-  }).catch(function(){ initMap(); initHeroMap(); loadStoryChart(); scheduleLiveUpgrade(); });
+  }).catch(function(){ initHeroMap(); scheduleLiveUpgrade(); });
 
-  /* After first paint, so the permission dialog lands over a page that has
-     already said what it is. */
   setTimeout(autoLocate, 900);
 
-  loadReports().then(function(r){
-    S.reports=r||[];
-    setText('map-reports', S.reports.length||'0');
-    renderStory();
-    renderReportsSummary();
-    renderGlows();
-    loadStoryChart();
-  }).catch(function(e){ console.warn('[reports] load failed:', e); });
+  loadReports().then(function(r){ S.reports=r||[]; renderSignals(); })
+    .catch(function(e){ console.warn('[reports] load failed:', e); });
+  loadPatterns();
 }
 
-/* ---------- language toggle (Bahasa Indonesia ↔ English) ---------- */
-/* applyTo() re-paints every [data-i18n] node; then we re-run the dynamic
-   renders that own their nodes so live values survive the toggle. */
 function reRenderI18n(){
   if(window.SCB_I18N) window.SCB_I18N.applyTo(document);
   var lr=window._lastReading;
   if(lr){ applyReading(lr.pm, lr.scopeKey, lr.local, lr.scopeVars); }
-  setText('story-sensor', tr('idx.story.sensor_default'));
-  setText('map-sensors', (activeSensors().length||'—'));
-  setText('map-reports', (S.reports.length||'0'));
-  renderStory();
-  renderReportsSummary();
   renderNear();
-  loadStoryChart();
 }
 function setupLangToggle(){
   var box=document.getElementById('langtoggle'); if(!box||!window.SCB_I18N) return;
@@ -1023,6 +1106,7 @@ function setupLangToggle(){
   btns.forEach(function(b){ b.addEventListener('click', function(){ window.SCB_I18N.setLang(b.getAttribute('data-lang')); sync(); reRenderI18n(); }); });
 }
 if(document.readyState!=='loading'){ boot(); } else { addEventListener('DOMContentLoaded', boot); }
+
 </script>
 </body>
 </html>

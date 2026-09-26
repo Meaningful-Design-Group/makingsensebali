@@ -1,0 +1,14 @@
+{
+  "name": "Making Sense Bali: the air where you are",
+  "short_name": "Air Bali",
+  "description": "The air where you are, what it means, what to do, and how to help fix it.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6efe1",
+  "theme_color": "#f6efe1",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
