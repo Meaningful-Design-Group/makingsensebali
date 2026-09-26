@@ -78,19 +78,19 @@ var FALLBACK_FAULTY = { 'pa-46949': 1 };             // Klungkung by Lumi Clinic
 
 // Four scopes the reader picks between, NESTED rather than disjoint rings, and
 // named the way somebody in Bali places themselves (Tomas, 26 Sep 2026):
-//   home     < 100 m   your house and the lane outside it — micro scale.
-//                      Also where the reader's own pinned sensors live,
-//                      indoor ones included.
-//   banjar   < 1 km    the hamlet, the unit that actually decides things
-//                      about waste and burning.
-//   village  < 3 km    the desa.
-//   island   Bali      the regional picture.
+//   street   <= 200 m   the lane and the houses on it — micro scale.
+//   banjar   <= 1 km    the hamlet, the unit that actually decides things
+//                       about waste and burning.
+//   village  <= 5 km    the desa, or the part of the city you live in.
+//   island   region     the whole administrative province: Bali.
+// The reader's own pinned sensors are not a distance and get their own Home
+// tab, shown only to somebody who has pinned one (see index.html).
 // Nesting matters: with disjoint rings there are holes real sensors fall into,
 // and nothing can be silently dropped when each scope includes the last.
 var SCALES = [
-  { id:'home',    maxKm:0.1      },
+  { id:'street',  maxKm:0.2      },
   { id:'banjar',  maxKm:1        },
-  { id:'village', maxKm:3        },
+  { id:'village', maxKm:5        },
   { id:'island',  maxKm:Infinity }
 ];
 

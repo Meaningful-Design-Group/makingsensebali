@@ -17,7 +17,7 @@
 
 var WHO_24H = 15;          // µg/m³, WHO 2021 24-hour guideline
 var LOCAL_KM = 1;          // "your area" — the banjar scale on the page
-var LOCAL_KM_WIDE = 3;     // fallback when the banjar is empty — the village scale
+var LOCAL_KM_WIDE = 5;     // fallback when the banjar is empty — the village/city scale
 var RING_KM = 10;          // the ring you are compared against
 var RING_KM_WIDE = 15;
 var WITA_OFFSET_H = 8;     // Bali is UTC+8, no DST
