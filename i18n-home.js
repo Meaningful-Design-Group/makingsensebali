@@ -24,6 +24,9 @@ var STRINGS = {
     'install.ios': 'On iPhone: tap the Share button (the square with an arrow) in Safari, scroll down, and choose “Add to Home Screen”.',
     'install.other': 'Open your browser menu (⋮ or ≡) and choose “Add to Home screen” or “Install app”.',
     'install.inapp': 'This page is open inside another app, which cannot add it to your home screen. Open it in your browser first (Chrome or Safari, from the ⋮ or share menu), then tap this button again.',
+    'install.android': 'In Chrome: tap ⋮ at the top right, then “Add to Home screen”, then “Install”. If the menu shows “Open in Chrome” instead, the page is open inside another app: tap that first, then this button again.',
+    'install.inapp_android': 'This page opened inside another app’s browser (WhatsApp, Gmail, Instagram…), which cannot install it. Tap ⋮ at the top right, choose “Open in Chrome”, then tap this button again.',
+    'install.now': 'Install now',
     'install.close': 'Got it',
 
     'home.eyebrow': 'The air where you are · live',
@@ -217,6 +220,9 @@ var STRINGS = {
     'install.ios': 'Di iPhone: ketuk tombol Bagikan (kotak dengan panah) di Safari, gulir ke bawah, lalu pilih “Tambah ke Layar Utama”.',
     'install.other': 'Buka menu browser (⋮ atau ≡) lalu pilih “Tambahkan ke layar utama” atau “Instal aplikasi”.',
     'install.inapp': 'Halaman ini terbuka di dalam aplikasi lain yang tidak bisa menambahkannya ke layar utama. Buka dulu di browser (Chrome atau Safari, lewat menu ⋮ atau bagikan), lalu ketuk tombol ini lagi.',
+    'install.android': 'Di Chrome: ketuk ⋮ di kanan atas, lalu “Tambahkan ke layar utama”, lalu “Instal”. Jika menu menampilkan “Buka di Chrome”, halaman ini terbuka di dalam aplikasi lain: ketuk itu dulu, lalu ketuk tombol ini lagi.',
+    'install.inapp_android': 'Halaman ini terbuka di browser aplikasi lain (WhatsApp, Gmail, Instagram…) yang tidak bisa menginstalnya. Ketuk ⋮ di kanan atas, pilih “Buka di Chrome”, lalu ketuk tombol ini lagi.',
+    'install.now': 'Instal sekarang',
     'install.close': 'Mengerti',
 
     'home.eyebrow': 'Udara di tempat Anda · langsung',
@@ -404,6 +410,9 @@ var STRINGS = {
     'install.ios': 'En iPhone: toca el botón Compartir (el cuadrado con una flecha) en Safari, baja y elige “Añadir a pantalla de inicio”.',
     'install.other': 'Abre el menú del navegador (⋮ o ≡) y elige “Añadir a pantalla de inicio” o “Instalar aplicación”.',
     'install.inapp': 'Esta página está abierta dentro de otra app, que no puede añadirla a tu pantalla de inicio. Ábrela primero en tu navegador (Chrome o Safari, desde el menú ⋮ o compartir) y vuelve a tocar este botón.',
+    'install.android': 'En Chrome: toca ⋮ arriba a la derecha, luego “Añadir a pantalla de inicio” y luego “Instalar”. Si el menú muestra “Abrir en Chrome”, la página está abierta dentro de otra app: toca eso primero y vuelve a tocar este botón.',
+    'install.inapp_android': 'Esta página se abrió en el navegador de otra app (WhatsApp, Gmail, Instagram…), que no puede instalarla. Toca ⋮ arriba a la derecha, elige “Abrir en Chrome” y vuelve a tocar este botón.',
+    'install.now': 'Instalar ahora',
     'install.close': 'Entendido',
 
     'home.eyebrow': 'El aire donde estás · en directo',
