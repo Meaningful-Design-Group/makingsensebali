@@ -70,9 +70,9 @@ ok('clean island', d.kind === 'clean' && d.why[0] === 'island', d);
 d = U.diagnose({ sensors: [...island(30, 5)], now: NOON });
 ok('few sensors: no regional claim below 10 boxes', d.kind === 'elevated', d.kind);
 
-console.log('\n[10] banjar (1 km) empty -> widens to village (3 km), not silently island');
+console.log('\n[10] banjar (1 km) empty -> widens to village/city (5 km), not silently island');
 d = U.diagnose({ here: HERE, sensors: [...island(10, 14), S(at(2.5, 0), 60), S(at(8, 0), 11), S(at(12, 0), 12)], now: NOON });
-ok('widened local radius', d.vars.rLocal === 3 && d.vars.localMed === 60, d.vars);
+ok('widened local radius', d.vars.rLocal === 5 && d.vars.localMed === 60, d.vars);
 ok('and still finds the local source', d.kind === 'local', d.kind);
 
 console.log('\n[11] median, not mean');

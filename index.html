@@ -502,13 +502,13 @@ button.btn{font-family:var(--mono)}
      have yet, threw, was swallowed by its own catch, and the page quietly went
      on showing the stale snapshot. BUMP THIS STRING whenever any of these files
      changes. -->
-<script src="./data.js?v=20260926c"></script>
-<script src="./peaks.js?v=20260926c"></script>
-<script src="./near.js?v=20260926c"></script>
-<script src="./understand.js?v=20260926c"></script>
-<script src="./i18n.js?v=20260926c"></script>
-<script src="./i18n-home.js?v=20260926c"></script>
-<script src="./install.js?v=20260926c"></script>
+<script src="./data.js?v=20260926d"></script>
+<script src="./peaks.js?v=20260926d"></script>
+<script src="./near.js?v=20260926d"></script>
+<script src="./understand.js?v=20260926d"></script>
+<script src="./i18n.js?v=20260926d"></script>
+<script src="./i18n-home.js?v=20260926d"></script>
+<script src="./install.js?v=20260926d"></script>
 <script>
 var D=window.SCB_DATA||{}, P=window.SCB_PEAKS||{};
 var S={sensors:[],reports:[]};
@@ -732,10 +732,10 @@ function findPinned(p){
   }
   return null;
 }
-/* Home is two things at once: the sensors within 100 m of you, and the ones
-   you pinned as yours (indoor included), wherever they are. Outside is the
-   100 m ambient set plus your outdoor pins; inside is your indoor pins, and
-   the two are never averaged together. */
+/* Home is the sensors the reader pinned as their own, indoor included,
+   wherever they are. It is a tab only for somebody who has pinned one.
+   Outside is the outdoor pins; inside is the indoor pins, and the two are
+   never averaged together. */
 function mergeHome(band){
   var N=window.SCB_NEAR, seen={}, sensors=[], value=[], ins=[], pinned=0;
   (band ? band.sensors : []).forEach(function(o){
@@ -750,7 +750,7 @@ function mergeHome(band){
     if(!seen[s.id]){ seen[s.id]=true; sensors.push(o); }
     if(s.fresh && !value.some(function(v){ return v.s===s; })) value.push(o);
   });
-  return { id:'home', maxKm:0.1, sensors:sensors, valueSensors:value, indoorSensors:ins, pinned:pinned };
+  return { id:'home', maxKm:null, sensors:sensors, valueSensors:value, indoorSensors:ins, pinned:pinned };
 }
 function isPinned(s){ for(var i=0;i<_pins.length;i++){ if(_pins[i].id===s.id || findPinned(_pins[i])===s) return _pins[i]; } return null; }
 var _indoorPref={}, _focusSid=null;
@@ -759,7 +759,7 @@ function togglePin(s, on, indoor){
   if(on) _pins.push({ id:s.id, lat:s.lat, lng:s.lng, indoor:!!indoor, name:s.name });
   savePins();
   if(on){ _near.sel='home'; }
-  else if(!_pins.length && _near.sel==='home' && _near.lat==null){ _near.sel=null; }
+  else if(!_pins.length && _near.sel==='home'){ _near.sel=null; }
   renderNear();
 }
 
@@ -826,11 +826,10 @@ function renderNear(){
     return { id:sc.id, maxKm:sc.maxKm,
              sensors: sc.maxKm===Infinity ? _near.data.sensors.map(function(x){return {s:x,km:null};}) : [] };
   });
-  bands[0]=mergeHome(bands[0]);
-  var home=bands[0];
-  /* Home takes its figure from the 100 m ambient set plus the reader's own
-     outdoor pins; every other scope from the ambient set only, as Bali Air
-     Dispatch does. */
+  var home=mergeHome(null);
+  if(home.pinned) bands=[home].concat(bands);
+  /* Home takes its figure from the reader's own sensors; every other scope
+     from the ambient set only, as Bali Air Dispatch does. */
   var sums = bands.map(function(b){
     if(b.id!=='home') return N.bandSummary(b);
     var hs=N.bandSummary({sensors:b.valueSensors}, true);
@@ -840,22 +839,22 @@ function renderNear(){
   });
   var idx = function(id){ for(var i=0;i<bands.length;i++){ if(bands[i].id===id) return i; } return -1; };
 
-  /* Default: the tightest scope that has a reading — Home (100 m, or your own
-     pinned sensor), then the banjar (1 km), then the village (3 km), then
-     Bali. Without a position, Home only if the reader pinned something, and
-     otherwise Bali, the one scope that needs no location. */
-  var homeHas = sums[0].pm25!=null || home.indoorSensors.length>0;
+  /* Default: the reader's own sensors if they pinned any; otherwise the
+     tightest scope that has a reading — street (200 m), banjar (1 km),
+     village or city (5 km), then the region. Without a position, only the
+     region can be computed. */
+  var homeHas = home.pinned && (sums[0].pm25!=null || home.indoorSensors.length>0);
   if(_near.sel==null || idx(_near.sel)<0){
-    if(homeHas && (located || home.pinned)) _near.sel='home';
+    if(homeHas) _near.sel='home';
     else if(!located) _near.sel='island';
-    else { _near.sel='island'; for(var q=1;q<bands.length;q++){ if(sums[q].pm25!=null){ _near.sel=bands[q].id; break; } } }
+    else { _near.sel='island'; for(var q=0;q<bands.length;q++){ if(bands[q].id!=='home' && sums[q].pm25!=null){ _near.sel=bands[q].id; break; } } }
   }
-  if(!located && _near.sel!=='island' && !(_near.sel==='home' && home.pinned)) _near.sel='island';
+  if(!located && _near.sel!=='island' && _near.sel!=='home') _near.sel='island';
   var sel=Math.max(0, idx(_near.sel));
 
-  tabs.className='near-tabs';
+  tabs.className='near-tabs'+(bands.length>4?' n5':'');
   tabs.innerHTML=bands.map(function(b,i){
-    var on=i===sel, needloc=!located && b.id!=='island' && !(b.id==='home' && home.pinned);
+    var on=i===sel, needloc=!located && b.id!=='island' && b.id!=='home';
     var n = needloc ? '·' : sums[i].count;
     return '<button type="button" role="tab" class="near-tab'+(needloc?' needloc':(n?'':' is-empty'))+'"'+
            ' data-id="'+b.id+'" data-needloc="'+(needloc?'1':'')+'" aria-selected="'+(on?'true':'false')+'">'+
@@ -890,7 +889,7 @@ function renderNear(){
     else if(inSum.pm25!=null) applyReading(inSum.pm25,'near.scope.home_in',true);
     else { applyReading(null,'near.scope.home'); setText('hero-verdict', tr('near.home.none_fresh',{h:N.FRESH_HOURS})); }
   } else if(!sum.count){
-    var cta=(id==='home')
+    var cta=(id==='street')
       ? '<a class="nb-cta" href="#contribute">'+esc(tr('near.cta.build'))+'</a>' : '';
     body.innerHTML=head+'<p class="nb-say">'+esc(tr('near.scale.'+id+'.empty'))+'</p>'+cta;
   } else {
@@ -940,8 +939,8 @@ function selectedKm(){
   if(_near.lat==null) return Infinity;
   var id=_near.sel;
   if(id==='island') return Infinity;
-  if(id==='village') return 3;
-  return 1;                     /* home and banjar; reports are desa-level, so nearbyReports floors this at 5 km */
+  if(id==='village') return 5;
+  return 1;                     /* home, street and banjar; reports are desa-level, so nearbyReports floors this at 5 km */
 }
 function here(){ return _near.lat!=null ? {lat:_near.lat, lng:_near.lng} : null; }
 function curLang(){ return window.SCB_I18N ? window.SCB_I18N.currentLang() : 'en'; }
