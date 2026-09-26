@@ -16,8 +16,8 @@
 'use strict';
 
 var WHO_24H = 15;          // µg/m³, WHO 2021 24-hour guideline
-var LOCAL_KM = 2;          // "your area" — the banjar scale
-var LOCAL_KM_WIDE = 5;     // fallback when nothing is within 2 km
+var LOCAL_KM = 1;          // "your area" — the banjar scale on the page
+var LOCAL_KM_WIDE = 3;     // fallback when the banjar is empty — the village scale
 var RING_KM = 10;          // the ring you are compared against
 var RING_KM_WIDE = 15;
 var WITA_OFFSET_H = 8;     // Bali is UTC+8, no DST
@@ -256,15 +256,17 @@ function nearbyPatterns(here, doc, scaleKm){
   }).sort(function(a,b){ return (a.km||0) - (b.km||0); });
 }
 
-// Nearest live sensor, for the coverage-gap line: "no sensor within 2 km of
+// Nearest live sensor, for the coverage-gap line: "no sensor within 1 km (the banjar) of
 // you — you are exactly where one is needed".
 function coverage(here, sensors){
   var l = live(sensors);
   if (!here || !l.length) return null;
   var best = null;
   l.forEach(function(s){ var d = km(here.lat, here.lng, s.lat, s.lng); if (!best || d < best.km) best = { km: d, s: s }; });
-  var within2 = l.filter(function(s){ return km(here.lat, here.lng, s.lat, s.lng) <= 2; }).length;
-  return { nearestKm: r1(best.km), nearest: best.s, within2: within2, gap: within2 === 0 };
+  // The gap is judged at banjar scale (1 km): that is the unit a resident can
+  // organise, and a sensor there is what makes a banjar conversation possible.
+  var within1 = l.filter(function(s){ return km(here.lat, here.lng, s.lat, s.lng) <= 1; }).length;
+  return { nearestKm: r1(best.km), nearest: best.s, within1: within1, gap: within1 === 0 };
 }
 
 var API = { diagnose: diagnose, nearbyReports: nearbyReports, nearbyPatterns: nearbyPatterns,

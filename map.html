@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Map and reports · Making Sense Bali</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6efe1">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Air Bali">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta name="description" content="Every sensor and every resident report across Bali on one map, and what residents are reporting. A Fab Lab Bali campaign.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%233f8a5b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,13 +129,27 @@ button.btn{font-family:var(--mono)}
 }
 @media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}}
 
+
+/* ---------- add to home screen ---------- */
+.install-btn{appearance:none;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;padding:6px 12px;cursor:pointer;white-space:nowrap;align-self:center;flex:0 0 auto}
+.install-btn[hidden]{display:none}
+.install-btn:hover{background:#2c2e33}
+.install-sheet{position:fixed;inset:0;z-index:1000;background:rgba(22,23,26,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.install-card{background:var(--paper);color:var(--ink);border-radius:16px;max-width:440px;width:100%;padding:22px 20px 18px;box-shadow:0 20px 50px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px}
+.install-card img{border-radius:12px}
+.install-card h2{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.2}
+.install-card p{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.install-card .install-how{color:var(--ink);font-weight:500}
+.install-card .install-close{width:100%;justify-content:center;margin-top:6px}
+@media(min-width:720px){.install-sheet{align-items:center}}
+@media(max-width:260px){.install-btn{display:none!important}}
 </style>
 </head>
 <body>
 <div class="bar" id="bar">
   <a class="brand" href="index.html">Making Sense Bali</a>
   <div class="bar-right">
-    <nav class="bar-nav"><a href="index.html" data-i18n="nav.air">Air near you</a><a href="map.html" aria-current="page" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
+    <nav class="bar-nav"><button type="button" class="install-btn" data-install hidden data-i18n="install.btn">+ Add to home screen</button><a href="index.html" data-i18n="nav.air">Air near you</a><a href="map.html" aria-current="page" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
     <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa Indonesia / English / Español"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
   </div>
 </div>
@@ -185,11 +204,12 @@ button.btn{font-family:var(--mono)}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <!-- ?v= is a cache buster; see index.html. Bump it whenever these files change. -->
-<script src="./data.js?v=20260926b"></script>
-<script src="./peaks.js?v=20260926b"></script>
-<script src="./near.js?v=20260926b"></script>
-<script src="./i18n.js?v=20260926b"></script>
-<script src="./i18n-home.js?v=20260926b"></script>
+<script src="./data.js?v=20260926c"></script>
+<script src="./peaks.js?v=20260926c"></script>
+<script src="./near.js?v=20260926c"></script>
+<script src="./i18n.js?v=20260926c"></script>
+<script src="./i18n-home.js?v=20260926c"></script>
+<script src="./install.js?v=20260926c"></script>
 <script>
 /* Map & reports. Moved here from the home page on 26 Sep 2026, when the home
    page became "the air where you are" and nothing else. The code below is the
