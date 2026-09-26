@@ -294,6 +294,8 @@ button.btn{font-family:var(--mono)}
 .foot{background:var(--ink);color:#7c766a;padding:40px 5vw 60px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;line-height:1.9;border-top:1px solid #2a2d31}
 .foot a{color:#b9b2a4}
 .foot .deeper{display:block;margin-bottom:10px;color:#b9b2a4}
+.foot-install{background:var(--paper);color:var(--ink);border-color:var(--paper);margin:0 0 18px;padding:10px 16px}
+.foot-install:hover{background:#fff}
 .foot .deeper a{text-decoration:underline;text-underline-offset:2px}
 
 @media(max-width:860px){
@@ -332,13 +334,27 @@ button.btn{font-family:var(--mono)}
   .sec h2{font-size:22px}
 }
 
+
+/* ---------- add to home screen ---------- */
+.install-btn{appearance:none;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;padding:6px 12px;cursor:pointer;white-space:nowrap;align-self:center;flex:0 0 auto}
+.install-btn[hidden]{display:none}
+.install-btn:hover{background:#2c2e33}
+.install-sheet{position:fixed;inset:0;z-index:1000;background:rgba(22,23,26,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.install-card{background:var(--paper);color:var(--ink);border-radius:16px;max-width:440px;width:100%;padding:22px 20px 18px;box-shadow:0 20px 50px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px}
+.install-card img{border-radius:12px}
+.install-card h2{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.2}
+.install-card p{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.install-card .install-how{color:var(--ink);font-weight:500}
+.install-card .install-close{width:100%;justify-content:center;margin-top:6px}
+@media(min-width:720px){.install-sheet{align-items:center}}
+@media(max-width:260px){.install-btn{display:none!important}}
 </style>
 </head>
 <body>
 <div class="bar" id="bar">
   <a class="brand" href="index.html">Making Sense Bali</a>
   <div class="bar-right">
-    <nav class="bar-nav"><a href="index.html" aria-current="page" data-i18n="nav.air">Air near you</a><a href="map.html" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
+    <nav class="bar-nav"><button type="button" class="install-btn" data-install hidden data-i18n="install.btn">+ Add to home screen</button><a href="index.html" aria-current="page" data-i18n="nav.air">Air near you</a><a href="map.html" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
     <div class="live"><span class="dot"></span><span id="bar-state" data-i18n="idx.state.connecting">connecting…</span></div>
     <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa Indonesia / English / Español"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
   </div>
@@ -471,6 +487,7 @@ button.btn{font-family:var(--mono)}
 </section>
 
 <footer class="foot">
+  <button type="button" class="install-btn foot-install" data-install hidden data-i18n="install.btn_long">+ Keep this on your home screen</button>
   <span class="deeper" data-i18n-html="home.foot.deeper">Go deeper: <a href="map.html">every sensor and report on one map</a> · <a href="about.html">how we work</a> · <a href="dashboard/">the raw data</a> · <a href="https://baliairdispatch.com/" target="_blank" rel="noopener">Bali Air Dispatch</a></span>
   <span data-i18n-html="idx.foot">Making Sense Bali, led by <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · open hardware: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · methodology: EU Making Sense · part of <a href="https://fab.city">Fab City</a> + Murmurations · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">source &amp; contribute on GitHub</a>.<br>
   Low-cost sensors, ±10–15% from regulatory-grade, so trends and relative magnitudes are reliable.</span>
@@ -485,12 +502,13 @@ button.btn{font-family:var(--mono)}
      have yet, threw, was swallowed by its own catch, and the page quietly went
      on showing the stale snapshot. BUMP THIS STRING whenever any of these files
      changes. -->
-<script src="./data.js?v=20260926b"></script>
-<script src="./peaks.js?v=20260926b"></script>
-<script src="./near.js?v=20260926b"></script>
-<script src="./understand.js?v=20260926b"></script>
-<script src="./i18n.js?v=20260926b"></script>
-<script src="./i18n-home.js?v=20260926b"></script>
+<script src="./data.js?v=20260926c"></script>
+<script src="./peaks.js?v=20260926c"></script>
+<script src="./near.js?v=20260926c"></script>
+<script src="./understand.js?v=20260926c"></script>
+<script src="./i18n.js?v=20260926c"></script>
+<script src="./i18n-home.js?v=20260926c"></script>
+<script src="./install.js?v=20260926c"></script>
 <script>
 var D=window.SCB_DATA||{}, P=window.SCB_PEAKS||{};
 var S={sensors:[],reports:[]};
@@ -714,17 +732,25 @@ function findPinned(p){
   }
   return null;
 }
-function homeBand(){
-  if(!_pins.length || !_near.data) return null;
-  var N=window.SCB_NEAR, out=[], ins=[];
-  var seen={};
-  _pins.forEach(function(p){
-    var s=findPinned(p); if(!s || seen[s.id]) return;
-    seen[s.id]=true;
-    var o={ s:s, km:(_near.lat!=null ? N.distanceKm(_near.lat,_near.lng,s.lat,s.lng) : null) };
-    (p.indoor ? ins : out).push(o);
+/* Home is two things at once: the sensors within 100 m of you, and the ones
+   you pinned as yours (indoor included), wherever they are. Outside is the
+   100 m ambient set plus your outdoor pins; inside is your indoor pins, and
+   the two are never averaged together. */
+function mergeHome(band){
+  var N=window.SCB_NEAR, seen={}, sensors=[], value=[], ins=[], pinned=0;
+  (band ? band.sensors : []).forEach(function(o){
+    seen[o.s.id]=true; sensors.push(o);
+    if(o.s.ambient) value.push(o);
   });
-  return { id:'home', maxKm:null, sensors:out, indoorSensors:ins };
+  _pins.forEach(function(p){
+    var s=findPinned(p); if(!s) return;
+    var o={ s:s, km:(_near.lat!=null ? N.distanceKm(_near.lat,_near.lng,s.lat,s.lng) : null) };
+    pinned++;
+    if(p.indoor){ if(!seen['in:'+s.id]){ seen['in:'+s.id]=true; ins.push(o); } return; }
+    if(!seen[s.id]){ seen[s.id]=true; sensors.push(o); }
+    if(s.fresh && !value.some(function(v){ return v.s===s; })) value.push(o);
+  });
+  return { id:'home', maxKm:0.1, sensors:sensors, valueSensors:value, indoorSensors:ins, pinned:pinned };
 }
 function isPinned(s){ for(var i=0;i<_pins.length;i++){ if(_pins[i].id===s.id || findPinned(_pins[i])===s) return _pins[i]; } return null; }
 var _indoorPref={}, _focusSid=null;
@@ -733,7 +759,7 @@ function togglePin(s, on, indoor){
   if(on) _pins.push({ id:s.id, lat:s.lat, lng:s.lng, indoor:!!indoor, name:s.name });
   savePins();
   if(on){ _near.sel='home'; }
-  else if(!_pins.length && _near.sel==='home'){ _near.sel=null; }
+  else if(!_pins.length && _near.sel==='home' && _near.lat==null){ _near.sel=null; }
   renderNear();
 }
 
@@ -800,33 +826,37 @@ function renderNear(){
     return { id:sc.id, maxKm:sc.maxKm,
              sensors: sc.maxKm===Infinity ? _near.data.sensors.map(function(x){return {s:x,km:null};}) : [] };
   });
-  var home=homeBand();
-  if(home) bands=[home].concat(bands);
-  /* Home counts whatever the reader pinned; every other scope takes its
-     figure from the ambient set only, as Bali Air Dispatch does. */
-  var sums = bands.map(function(b){ return N.bandSummary(b, b.id==='home'); });
+  bands[0]=mergeHome(bands[0]);
+  var home=bands[0];
+  /* Home takes its figure from the 100 m ambient set plus the reader's own
+     outdoor pins; every other scope from the ambient set only, as Bali Air
+     Dispatch does. */
+  var sums = bands.map(function(b){
+    if(b.id!=='home') return N.bandSummary(b);
+    var hs=N.bandSummary({sensors:b.valueSensors}, true);
+    hs.count=b.sensors.length+b.indoorSensors.length;
+    hs.freshCount=hs.count - (b.sensors.length - b.valueSensors.length);
+    return hs;
+  });
   var idx = function(id){ for(var i=0;i<bands.length;i++){ if(bands[i].id===id) return i; } return -1; };
 
-  /* Default: Home if the reader has one; otherwise the banjar (2 km), the
-     tightest scope with a real chance of sensors and the one a resident can
-     act on; where that is empty, the first scope that has a reading. Without
-     a position, only Bali can be computed. */
+  /* Default: the tightest scope that has a reading — Home (100 m, or your own
+     pinned sensor), then the banjar (1 km), then the village (3 km), then
+     Bali. Without a position, Home only if the reader pinned something, and
+     otherwise Bali, the one scope that needs no location. */
+  var homeHas = sums[0].pm25!=null || home.indoorSensors.length>0;
   if(_near.sel==null || idx(_near.sel)<0){
-    if(home && (sums[0].pm25!=null || (home.indoorSensors||[]).length)) _near.sel='home';
+    if(homeHas && (located || home.pinned)) _near.sel='home';
     else if(!located) _near.sel='island';
-    else {
-      _near.sel='neighbourhood';
-      var nb=idx('neighbourhood');
-      if(nb<0 || sums[nb].pm25==null){ for(var q=0;q<bands.length;q++){ if(bands[q].id!=='home' && sums[q].pm25!=null){ _near.sel=bands[q].id; break; } } }
-    }
+    else { _near.sel='island'; for(var q=1;q<bands.length;q++){ if(sums[q].pm25!=null){ _near.sel=bands[q].id; break; } } }
   }
-  if(!located && _near.sel!=='home' && _near.sel!=='island') _near.sel='island';
+  if(!located && _near.sel!=='island' && !(_near.sel==='home' && home.pinned)) _near.sel='island';
   var sel=Math.max(0, idx(_near.sel));
 
-  tabs.className='near-tabs'+(bands.length>4?' n5':'');
+  tabs.className='near-tabs';
   tabs.innerHTML=bands.map(function(b,i){
-    var on=i===sel, needloc=!located && b.id!=='island' && b.id!=='home';
-    var n = needloc ? '·' : (b.id==='home' ? (b.sensors.length+(b.indoorSensors||[]).length) : sums[i].count);
+    var on=i===sel, needloc=!located && b.id!=='island' && !(b.id==='home' && home.pinned);
+    var n = needloc ? '·' : sums[i].count;
     return '<button type="button" role="tab" class="near-tab'+(needloc?' needloc':(n?'':' is-empty'))+'"'+
            ' data-id="'+b.id+'" data-needloc="'+(needloc?'1':'')+'" aria-selected="'+(on?'true':'false')+'">'+
            '<span class="tl">'+esc(tr('near.tab.'+b.id))+'</span>'+
@@ -843,7 +873,7 @@ function renderNear(){
   var head='<div class="nb-top"><span class="nb-name">'+esc(tr('near.scale.'+id+'.name'))+'</span>'+
            '<span class="nb-range">'+esc(tr('near.scale.'+id+'.range'))+'</span></div>';
 
-  if(id==='home'){
+  if(id==='home' && home.pinned){
     var inSum=N.bandSummary({sensors:b.indoorSensors||[]}, true);
     var fmt=function(v){ return v==null?'–':(Math.round(v*10)/10).toFixed(1); };
     var pair='<div class="nb-pair">'+
@@ -854,13 +884,13 @@ function renderNear(){
       lesson = tr(inSum.pm25 <= sum.pm25*0.5 ? 'near.home.lesson_ok' : 'near.home.lesson_leak');
     } else if(sum.pm25==null && inSum.pm25==null){
       lesson = tr('near.home.none_fresh',{h:N.FRESH_HOURS});
-    } else lesson = tr('near.scale.home.has');
+    } else lesson = tr('near.scale.home.pinned');
     body.innerHTML=head+pair+'<p class="nb-say">'+esc(lesson)+'</p>';
     if(sum.pm25!=null) applyReading(sum.pm25,'near.scope.home',true);
     else if(inSum.pm25!=null) applyReading(inSum.pm25,'near.scope.home_in',true);
     else { applyReading(null,'near.scope.home'); setText('hero-verdict', tr('near.home.none_fresh',{h:N.FRESH_HOURS})); }
   } else if(!sum.count){
-    var cta=(id==='street')
+    var cta=(id==='home')
       ? '<a class="nb-cta" href="#contribute">'+esc(tr('near.cta.build'))+'</a>' : '';
     body.innerHTML=head+'<p class="nb-say">'+esc(tr('near.scale.'+id+'.empty'))+'</p>'+cta;
   } else {
@@ -878,7 +908,7 @@ function renderNear(){
 
   /* The hero follows the selected scope. An empty scope blanks the readout
      rather than leaving another scope's figure under the wrong heading. */
-  if(id!=='home'){
+  if(!(id==='home' && home.pinned)){
     if(sum.pm25!=null){
       applyReading(sum.pm25,'near.scope.'+(located?id:'island_live'),located&&id!=='island');
     } else if(located){
@@ -910,8 +940,8 @@ function selectedKm(){
   if(_near.lat==null) return Infinity;
   var id=_near.sel;
   if(id==='island') return Infinity;
-  if(id==='regional') return 5;
-  return 2;                     /* home, street and banjar: reports are desa-level anyway */
+  if(id==='village') return 3;
+  return 1;                     /* home and banjar; reports are desa-level, so nearbyReports floors this at 5 km */
 }
 function here(){ return _near.lat!=null ? {lat:_near.lat, lng:_near.lng} : null; }
 function curLang(){ return window.SCB_I18N ? window.SCB_I18N.currentLang() : 'en'; }
@@ -1039,7 +1069,7 @@ function renderContribute(){
     el.classList.toggle('is-gap', !!(cv && cv.gap));
     el.textContent = !cv ? tr('c.gap.unknown')
       : cv.gap ? tr('c.gap.yes',{km:fmtKm(cv.nearestKm)})
-      : tr(cv.within2===1?'c.gap.no_one':'c.gap.no',{n:cv.within2});
+      : tr(cv.within1===1?'c.gap.no_one':'c.gap.no',{n:cv.within1});
   }
   var ag=document.getElementById('c-ag-p');
   if(ag && data && data.sensors.length){

@@ -76,21 +76,22 @@ var FALLBACK_INDOOR = {
 };
 var FALLBACK_FAULTY = { 'pa-46949': 1 };             // Klungkung by Lumi Clinic
 
-// Four scopes the reader picks between, NESTED rather than disjoint rings.
-// Nesting matters: with disjoint bands (<=100 m, 500 m - 2 km, 2-5 km) there is
-// a hole between 100 m and 500 m, and real sensors fall in it — Denpasar
-// centre's nearest station is 190 m away and would have appeared nowhere.
-// Nested, "my street / my banjar / my region / the island" is also how somebody
-// actually asks the question, and nothing can be silently dropped.
-//
-// maxKm is what the scope INCLUDES. The representativeness radius each scope is
-// named for is the separate thing the copy explains: a 2 km scope is
-// neighbourhood-scale, which the EPA siting taxonomy puts at 500 m - 2 km.
+// Four scopes the reader picks between, NESTED rather than disjoint rings, and
+// named the way somebody in Bali places themselves (Tomas, 26 Sep 2026):
+//   home     < 100 m   your house and the lane outside it — micro scale.
+//                      Also where the reader's own pinned sensors live,
+//                      indoor ones included.
+//   banjar   < 1 km    the hamlet, the unit that actually decides things
+//                      about waste and burning.
+//   village  < 3 km    the desa.
+//   island   Bali      the regional picture.
+// Nesting matters: with disjoint rings there are holes real sensors fall into,
+// and nothing can be silently dropped when each scope includes the last.
 var SCALES = [
-  { id:'street',       maxKm:0.1      },
-  { id:'neighbourhood',maxKm:2        },
-  { id:'regional',     maxKm:5        },
-  { id:'island',       maxKm:Infinity }
+  { id:'home',    maxKm:0.1      },
+  { id:'banjar',  maxKm:1        },
+  { id:'village', maxKm:3        },
+  { id:'island',  maxKm:Infinity }
 ];
 
 function haversineKm(lat1, lon1, lat2, lon2){
