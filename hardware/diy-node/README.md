@@ -11,6 +11,8 @@ Same firmware runs both — for Basic, you simply don't connect the HM3301 and l
 
 This node is the **workshop entry point** to the Making Sense Bali campaign. It is not a replacement for an official [Smart Citizen Kit](https://smartcitizen.me/store) (~USD 150) — it's a spatial-density complement. Be honest about that distinction with workshop participants.
 
+**Setting one up:** got a finished sensor from us? → [SETUP-ASSEMBLED.md](SETUP-ASSEMBLED.md). Building your own from parts? → [BUILD-IT-YOURSELF.md](BUILD-IT-YOURSELF.md).
+
 ## What this is — and isn't
 
 The DIY node exists to **multiply spatial density per campaign dollar**. The official SCK 2.1 at ~USD 150 is the trusted backbone — battle-tested firmware, calibrated multi-parameter sensing, plug-and-play. But for the same money as one SCK, the campaign can ship 3–4 DIY Plus nodes or 6–10 DIY Basics, deployed by participants in their own kos rooms, schools, warungs, and banjar compounds. That's the leverage: not "the SCK is too expensive" (it isn't, for the campaign team), but "we can't put an SCK in every kos in Denpasar — and the DIY tier can get close." A USD 20 Basic, built in a Fab Lab Bali workshop and deployed on the participant's wall, gets a non-technical resident producing public data on the same dashboard within an afternoon. That density is the point.
