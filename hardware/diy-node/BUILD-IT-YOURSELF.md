@@ -54,7 +54,7 @@ Keep the test sketch on for now. You'll use it in step 4.
 1. **Plug the XIAO into the Grove Shield**, with the USB-C port at the shield's edge.
 2. **Plug both sensors into the shield's I²C Grove ports** (they share the same bus, so either port works for either sensor).
 3. **Test before you close anything.** Connect USB, open **Tools → Serial Monitor** at **115200** baud, and check that both sensors appear with sensible readings. If one is missing, reseat its cable. Only go on once both show up.
-4. **Upload the real firmware.** Open [`firmware/diy_node_v3/diy_node_v3.ino`](firmware/diy_node_v3/) and upload it with the same settings. It contains no passwords or tokens; you'll enter those from your phone.
+4. **Upload the real firmware.** Open [`firmware/diy_node_v4/diy_node_v4.ino`](firmware/diy_node_v4/) and upload it with the same settings. It contains no passwords or tokens; you'll enter those from your phone.
 5. **Assemble the case.** No screwdriver needed.
    - If you're using an external antenna, fit the pigtail through the hole in the body, tighten the nut, and clip the other end onto the XIAO's antenna socket.
    - Drop the BME680 into its pocket in the floor of the body and press its cover down until it clicks.
