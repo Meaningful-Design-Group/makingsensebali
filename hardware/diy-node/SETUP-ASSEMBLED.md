@@ -34,6 +34,7 @@ Use a **5 V / 2 A USB-C wall charger**. A laptop port or a weak phone charger ca
    - **Your WiFi network** and its password. It has to be a **2.4 GHz** network. The sensor can't see 5 GHz networks; if your router shows two names, pick the one without "5G".
    - **Device token**: already filled in if we set it up for you, so leave it alone. Otherwise type the six characters from step 2. Check them twice, because this is where most setups go wrong.
    - **Name**, **Where it hangs** and **Height above ground**: these help *you* find the sensor on your network. They are not sent to Smart Citizen.
+   - **Where it publishes**: leave it alone, unless there is a PLANETAI node in the house. Then type what `planetai broker` printed on that machine (its name, port 1883, user and password), and tick **indoors** if the sensor hangs in a room.
 4. Tap **Save**. The sensor leaves setup and joins your WiFi, and the `MSB-Node` network disappears.
 
 You have **3 minutes** from the moment the setup page opens. If it closes before you finish, unplug the sensor, plug it back in and start again. It remembers anything you already saved.
