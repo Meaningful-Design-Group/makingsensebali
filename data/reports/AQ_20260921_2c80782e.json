@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Huge clouds of smoke near river behind construction site in Tumbak Bayuh at sunset 6:30pm on Monday evening.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260921_2c80782e.json",
+  "latitude": -8.6192,
+  "longitude": 115.142626,
+  "geolocation": {
+    "lat": -8.6192,
+    "lon": 115.142626
+  },
+  "locality": "Tumbakbayuh",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-21T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.85,
+    "indicators": [
+      "smoke plume",
+      "open burning",
+      "dense foliage"
+    ],
+    "description": "Smoke is visible rising from vegetation in the middle ground of the scene.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260921_2c80782e.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-21T00:00:00+00:00",
+    "reported_timestamp": "2026-09-21T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Tumbakbayuh",
+    "kecamatan": "Mengwi",
+    "kabupaten": "Badung"
+  }
+}

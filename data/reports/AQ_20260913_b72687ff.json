@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Waste is burned regularly, approximately every 2–3 days, in a brick-enclosed burning area in their yard of Pura Luhur Pedengenan. The burning takes place very close to residential homes, and the smoke spreads directly into the surrounding residences.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260913_b72687ff.json",
+  "latitude": -8.565291,
+  "longitude": 115.110965,
+  "geolocation": {
+    "lat": -8.565291,
+    "lon": 115.110965
+  },
+  "locality": "Bongan",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:high",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-13T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "thick black smoke",
+      "large fire plume",
+      "smoke rising from temple"
+    ],
+    "description": "A large traditional structure is engulfed in a massive plume of dark smoke.",
+    "severity": "high",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260913_b72687ff.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-13T00:00:00+00:00",
+    "reported_timestamp": "2026-09-13T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Bongan",
+    "kecamatan": "Tabanan",
+    "kabupaten": "Tabanan"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Trash observation — Bali, Bali",
+  "description": "Trash area here for weeks. Plastic is in river, water passage, and spread to rice fields. Very unsanitary, and they are not cleaning properly. Leaving open bags. This needs to be professionally cleaned up and taken care of responsibly. It is toxic. There are children and pregnant women nearby.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260921_3091eae6.json",
+  "latitude": -8.6192,
+  "longitude": 115.142626,
+  "geolocation": {
+    "lat": -8.6192,
+    "lon": 115.142626
+  },
+  "locality": "Tumbakbayuh",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "trash",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-21T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "trash",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.9,
+    "indicators": [
+      "scattered debris",
+      "plastic waste",
+      "construction waste"
+    ],
+    "description": "An area littered with accumulated plastic and wood debris near an unfinished building.",
+    "severity": "medium",
+    "model_version": "gemini:gemini-flash-lite-latest (fallback; primary openai down)"
+  },
+  "photo_path": "photos/AQ_20260921_3091eae6.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-21T00:00:00+00:00",
+    "reported_timestamp": "2026-09-21T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Tumbakbayuh",
+    "kecamatan": "Mengwi",
+    "kabupaten": "Badung"
+  }
+}

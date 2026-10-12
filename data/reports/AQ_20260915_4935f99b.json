@@ -1,0 +1,61 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Waste are burned here approximately every second day, apparently from nearby businesses. The fires can be very intense and produce large amounts of smoke. The smoke affects nearby residents and everyone passing by on motorbikes, who are forced to breathe it.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260915_4935f99b.json",
+  "latitude": -8.565291,
+  "longitude": 115.110965,
+  "geolocation": {
+    "lat": -8.565291,
+    "lon": 115.110965
+  },
+  "locality": "Bongan",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-15T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "charred debris",
+      "blackened trash",
+      "burning waste",
+      "soot and ash"
+    ],
+    "description": "A pile of trash and debris is actively burning on the roadside.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260915_4935f99b.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-15T00:00:00+00:00",
+    "reported_timestamp": "2026-09-15T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Bongan",
+    "kecamatan": "Tabanan",
+    "kabupaten": "Tabanan"
+  }
+}

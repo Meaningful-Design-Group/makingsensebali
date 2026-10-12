@@ -1,0 +1,61 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "The same family has been reported numerous times to Bupati. They nevertheless continue to burn daily. Organic and a lot of plastic at the end of Gg. Kecubung. The Kecamatan officials have ordered me to stop filing reports on https://kontak-bupati.badungkab.go.id/ or I will face consequences. They have taken no action besides repeatedly closing my reports and forcing me to pose in photos after intimidation.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260911_23728f7d.json",
+  "latitude": -8.647173,
+  "longitude": 115.150768,
+  "geolocation": {
+    "lat": -8.647173,
+    "lon": 115.150768
+  },
+  "locality": "Tibubeneng",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-11T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "small fire",
+      "rising smoke",
+      "open burning",
+      "ground waste"
+    ],
+    "description": "A small fire is burning waste material on the ground, producing visible smoke.",
+    "severity": "medium",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260911_23728f7d.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-11T00:00:00+00:00",
+    "reported_timestamp": "2026-09-11T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Tibubeneng",
+    "kecamatan": "Kuta Utara",
+    "kabupaten": "Badung"
+  }
+}

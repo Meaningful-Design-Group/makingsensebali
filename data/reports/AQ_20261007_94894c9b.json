@@ -1,0 +1,61 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Locals burning plastic",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20261007_94894c9b.json",
+  "latitude": -8.639902,
+  "longitude": 115.143605,
+  "geolocation": {
+    "lat": -8.639902,
+    "lon": 115.143605
+  },
+  "locality": "Canggu",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:medium",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-10-07T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.98,
+    "indicators": [
+      "active flames",
+      "thick white smoke",
+      "pile of mixed trash",
+      "burning plastic"
+    ],
+    "description": "A pile of mixed household trash is actively burning, generating significant smoke.",
+    "severity": "medium",
+    "model_version": "openai:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20261007_94894c9b.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-10-07T00:00:00+00:00",
+    "reported_timestamp": "2026-10-07T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Canggu",
+    "kecamatan": "Kuta Utara",
+    "kabupaten": "Badung"
+  }
+}

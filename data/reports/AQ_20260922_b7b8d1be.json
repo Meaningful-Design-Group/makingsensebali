@@ -1,0 +1,55 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "None observation — Bali, Bali",
+  "description": "Trash burning has happened earlier this morning",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260922_b7b8d1be.json",
+  "latitude": -8.491418,
+  "longitude": 115.275916,
+  "geolocation": {
+    "lat": -8.491418,
+    "lon": 115.275916
+  },
+  "locality": "Petulu",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-22T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "none",
+  "ai_analysis": {
+    "detected": false,
+    "confidence": 0.95,
+    "indicators": [],
+    "description": "An outdoor scene showing a paved driveway, vegetation, and a roadside ditch with no visible air pollution.",
+    "severity": "low",
+    "model_version": "gemini:gemini-flash-lite-latest (fallback; primary openai down)"
+  },
+  "photo_path": "photos/AQ_20260922_b7b8d1be.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-22T00:00:00+00:00",
+    "reported_timestamp": "2026-09-22T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Petulu",
+    "kecamatan": "Ubud",
+    "kabupaten": "Gianyar"
+  }
+}

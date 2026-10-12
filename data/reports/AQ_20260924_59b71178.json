@@ -1,0 +1,60 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Trash observation — Bali, Bali",
+  "description": "Sampah dari yeh Gangga dan beberapa tempat lainnya selalu menumpuk disini. Kita bayar 30rb. Operasional sempat di berhentikan karna desusnya sampah sampai ke sungai di bawah tumpukkan ini .\r\nSekarang mereka sepertinya menahannya dengan sesuatu agar tidak jatuh ke sungai tapi tetap saja.. lama kelamaan akan mencemari sungai",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20260924_59b71178.json",
+  "latitude": -8.554706,
+  "longitude": 115.097262,
+  "geolocation": {
+    "lat": -8.554706,
+    "lon": 115.097262
+  },
+  "locality": "Gubug",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "trash",
+    "source:web",
+    "severity:high",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-09-24T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "trash",
+  "ai_analysis": {
+    "detected": true,
+    "confidence": 0.95,
+    "indicators": [
+      "large pile of mixed waste",
+      "unmanaged dump site",
+      "plastic debris"
+    ],
+    "description": "A large, unmanaged pile of mixed household trash is dumped on a hillside.",
+    "severity": "high",
+    "model_version": "exo:gemma-4-e4b-it-6bit"
+  },
+  "photo_path": "photos/AQ_20260924_59b71178.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-09-24T00:00:00+00:00",
+    "reported_timestamp": "2026-09-24T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Gubug",
+    "kecamatan": "Tabanan",
+    "kabupaten": "Tabanan"
+  }
+}

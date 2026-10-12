@@ -1,20 +1,17 @@
 {
-  "line": "Today: 1 report \u2014 burning trash.",
+  "line": "No reports today yet \u2014 the page updates as residents submit.",
   "today": {
-    "total": 1,
-    "by_category": {
-      "burning": 1
-    }
+    "total": 0,
+    "by_category": {}
   },
   "week": {
-    "total": 47,
+    "total": 28,
     "by_category": {
-      "burning": 36,
-      "trash": 4,
-      "industrial": 1,
-      "none": 5,
-      "other": 1
+      "none": 3,
+      "burning": 23,
+      "dust": 1,
+      "trash": 1
     }
   },
-  "generated_at": "2026-09-10T10:09:42.873391+00:00"
+  "generated_at": "2026-10-12T05:13:53.193157+00:00"
 }
