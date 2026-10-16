@@ -6,7 +6,7 @@ name: firmware-build
 # Output, committed to the repo so GitHub Pages serves it from the same origin (the flasher fetches the
 # images with fetch(); a cross-origin host would need CORS headers GitHub releases do not send):
 #   flash/firmware/diy-node/manifest.json          the ESP Web Tools manifest, one build per chip
-#   flash/firmware/diy-node/<ver>/<chip>/*.bin      bootloader, partitions, boot_app0, app, and the merged image
+#   flash/firmware/diy-node/<ver>/<chip>/*.bin      bootloader, partitions, boot_app0, app (four parts, no padded merged image)
 #   flash/firmware/diy-node/<ver>/SHA256SUMS
 #
 # Board options are the ones hardware/diy-node/firmware/README.md tells the IDE user to set: USB CDC on boot for both
@@ -16,8 +16,8 @@ name: firmware-build
 #
 # First run, 16 Oct 2026: core, libraries and both FQBNs resolved; the compile failed on WiFiManager 2.0.17 lacking
 # two methods v5 uses (fixed below with a pinned master commit). If a later run fails on an FQBN option, print the
-# list with `arduino-cli board details -b esp32:esp32:XIAO_ESP32S3`; if the core emits no .merged.bin, the
-# manifest's four-part layout is used and nothing else changes.
+# list with `arduino-cli board details -b esp32:esp32:XIAO_ESP32S3`. Second run: green, both boards (S3 app
+# 1.23 MB of 3.3, C3 app 1.36 MB of 1.9 with min_spiffs); the core's merged.bin was flash-sized padding, dropped.
 
 on:
   push:
@@ -75,6 +75,9 @@ jobs:
           VER="$(sed -n 's/^const char\*\s*FW_VERSION\s*=\s*"\([^"]*\)".*/\1/p' "$SKETCH/diy_node_v5.ino")"; [ -n "$VER" ] || VER=v5
           SHA="$(git rev-parse --short HEAD)"; TAG="$VER-$SHA"
           echo "TAG=$TAG" >> "$GITHUB_ENV"
+          # one build in the tree at a time: the page serves the manifest's tag and nothing else, and every build
+          # left behind is 2.6 MB of git history nobody reads
+          find "$OUT" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
           build() { # <chip dir> <fqbn>
             local chip="$1" fqbn="$2" bp="$RUNNER_TEMP/build-$1"
             arduino-cli compile --fqbn "$fqbn" --build-path "$bp" --warnings default "$SKETCH"
@@ -83,7 +86,8 @@ jobs:
             cp "$bp"/diy_node_v5.ino.bootloader.bin "$OUT/$TAG/$chip/bootloader.bin"
             cp "$bp"/diy_node_v5.ino.partitions.bin "$OUT/$TAG/$chip/partitions.bin"
             cp "$(arduino-cli config get directories.data)"/packages/esp32/hardware/esp32/"$CORE"/tools/partitions/boot_app0.bin "$OUT/$TAG/$chip/boot_app0.bin"
-            if [ -f "$bp"/diy_node_v5.ino.merged.bin ]; then cp "$bp"/diy_node_v5.ino.merged.bin "$OUT/$TAG/$chip/merged.bin"; fi
+            # no merged.bin: the core pads it to the whole flash (8 MB on the S3, 4 MB on the C3) for a 1.3 MB app.
+            # The four parts at their offsets are what esptool would write anyway, and a quarter of the download.
             ls -la "$OUT/$TAG/$chip"
           }
           build esp32s3 "esp32:esp32:XIAO_ESP32S3:CDCOnBoot=cdc"
@@ -96,9 +100,6 @@ jobs:
           import json, os, sys, datetime
           out, tag, core, libs = sys.argv[1:5]
           def parts(chip):
-              d = f"{out}/{tag}/{chip}"
-              if os.path.exists(f"{d}/merged.bin"):
-                  return [{"path": f"{tag}/{chip}/merged.bin", "offset": 0}]
               # S3 and C3 both boot from 0x0 (the classic ESP32 boots from 0x1000)
               return [{"path": f"{tag}/{chip}/bootloader.bin", "offset": 0x0}, {"path": f"{tag}/{chip}/partitions.bin", "offset": 0x8000},
                       {"path": f"{tag}/{chip}/boot_app0.bin", "offset": 0xE000}, {"path": f"{tag}/{chip}/app.bin", "offset": 0x10000}]
