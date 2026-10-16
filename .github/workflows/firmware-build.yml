@@ -14,10 +14,10 @@ name: firmware-build
 # default 1.25 MB slot. The core version is pinned in flash/firmware/VERSIONS. Library versions are pinned here and
 # recorded in the manifest, so a build is reproducible from its manifest alone.
 #
-# Not yet run as of 16 Oct 2026: written against arduino-cli 1.x and arduino-esp32 3.3.12 from the docs, not from a
-# green run. The first run is the test. Two things it may say: an FQBN option name has changed (print the list with
-# `arduino-cli board details -b esp32:esp32:XIAO_ESP32S3`), or the core did not emit a .merged.bin, in which case
-# the manifest's four-part layout is used and nothing else changes.
+# First run, 16 Oct 2026: core, libraries and both FQBNs resolved; the compile failed on WiFiManager 2.0.17 lacking
+# two methods v5 uses (fixed below with a pinned master commit). If a later run fails on an FQBN option, print the
+# list with `arduino-cli board details -b esp32:esp32:XIAO_ESP32S3`; if the core emits no .merged.bin, the
+# manifest's four-part layout is used and nothing else changes.
 
 on:
   push:
@@ -38,8 +38,12 @@ concurrency:
 env:
   SKETCH: hardware/diy-node/firmware/diy_node_v5
   OUT: flash/firmware/diy-node
-  # pinned libraries (hardware/diy-node/README.md lists them; versions chosen 16 Oct 2026, bump deliberately)
-  LIBS: "WiFiManager@2.0.17;PubSubClient@2.8;ArduinoJson@7.4.2;Adafruit BME680 Library@2.0.5;Adafruit Unified Sensor@1.1.15"
+  # pinned libraries (hardware/diy-node/README.md lists them; versions chosen 16 Oct 2026, bump deliberately).
+  # WiFiManager is NOT the 2.0.17 release: v5 calls setCustomBodyHeader/Footer, which exist only on tzapu's master
+  # (added 12 Dec 2024, no tag since). The first CI run found this; the IDE's Library Manager 2.0.17 cannot build v5
+  # either. Pinned to a master commit so the build cannot drift; bump the sha when tzapu tags a release that has them.
+  LIBS: "PubSubClient@2.8;ArduinoJson@7.4.2;Adafruit BME680 Library@2.0.5;Adafruit Unified Sensor@1.1.15"
+  WIFIMANAGER_GIT: "https://github.com/tzapu/WiFiManager.git#4131fe617d01d746677e8b909379597162c2ca58"
 
 jobs:
   build:
@@ -60,6 +64,8 @@ jobs:
           arduino-cli lib update-index
           # semicolon-separated because two of the names contain spaces
           echo "$LIBS" | tr ';' '\n' | while read -r lib; do arduino-cli lib install "$lib"; done
+          arduino-cli config set library.enable_unsafe_install true
+          arduino-cli lib install --git-url "$WIFIMANAGER_GIT"
           arduino-cli lib list
           echo "CORE=$CORE" >> "$GITHUB_ENV"
 
@@ -86,7 +92,7 @@ jobs:
       - name: manifest and checksums
         run: |
           set -euo pipefail
-          python3 - "$OUT" "$TAG" "$CORE" "$LIBS" <<'EOF'
+          python3 - "$OUT" "$TAG" "$CORE" "$LIBS;WiFiManager@git:$WIFIMANAGER_GIT" <<'EOF'
           import json, os, sys, datetime
           out, tag, core, libs = sys.argv[1:5]
           def parts(chip):

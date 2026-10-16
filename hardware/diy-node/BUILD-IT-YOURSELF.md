@@ -42,7 +42,7 @@ We haven't published tested print settings yet. As a starting point, use 0.2 mm 
 ## 3. Flash the firmware
 
 1. Install the [Arduino IDE](https://www.arduino.cc/en/software). In **Boards Manager**, install **esp32 by Espressif Systems**.
-2. In **Library Manager**, install **WiFiManager** by tzapu (tested with 2.0.17), **Adafruit BME680 Library** (it will ask to add *Adafruit Unified Sensor*: yes), **PubSubClient** by Nick O'Leary, and **ArduinoJson** version 7.
+2. In **Library Manager**, install **WiFiManager** by tzapu (for v5: the git master zip from the repository, not Library Manager's 2.0.17, which lacks two methods v5 uses; see the firmware README), **Adafruit BME680 Library** (it will ask to add *Adafruit Unified Sensor*: yes), **PubSubClient** by Nick O'Leary, and **ArduinoJson** version 7.
 3. Download this repository. Open [`firmware/diy_node_test/diy_node_test.ino`](firmware/diy_node_test/) first.
 4. Choose **Tools → Board → XIAO_ESP32S3**, and set **Tools → USB CDC On Boot → Enabled**. Without that setting the Serial Monitor stays silent.
 5. Plug the XIAO in, choose its port, and upload. If the upload fails with *No serial data received*, you probably have the wrong port selected: pick the one that belongs to the XIAO.
