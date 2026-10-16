@@ -1,0 +1,116 @@
+name: firmware-build
+
+# Compiles the DIY node firmware for both boards and publishes the images the flash page serves
+# (https://makingsense.fablabbali.com/flash/). Runs when the firmware changes or by hand.
+#
+# Output, committed to the repo so GitHub Pages serves it from the same origin (the flasher fetches the
+# images with fetch(); a cross-origin host would need CORS headers GitHub releases do not send):
+#   flash/firmware/diy-node/manifest.json          the ESP Web Tools manifest, one build per chip
+#   flash/firmware/diy-node/<ver>/<chip>/*.bin      bootloader, partitions, boot_app0, app, and the merged image
+#   flash/firmware/diy-node/<ver>/SHA256SUMS
+#
+# Board options are the ones hardware/diy-node/firmware/README.md tells the IDE user to set: USB CDC on boot for both
+# boards (or Serial is silent); the min_spiffs partition scheme on the C3, where a 1.35 MB app no longer fits the
+# default 1.25 MB slot. The core version is pinned in flash/firmware/VERSIONS. Library versions are pinned here and
+# recorded in the manifest, so a build is reproducible from its manifest alone.
+#
+# Not yet run as of 16 Oct 2026: written against arduino-cli 1.x and arduino-esp32 3.3.12 from the docs, not from a
+# green run. The first run is the test. Two things it may say: an FQBN option name has changed (print the list with
+# `arduino-cli board details -b esp32:esp32:XIAO_ESP32S3`), or the core did not emit a .merged.bin, in which case
+# the manifest's four-part layout is used and nothing else changes.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "hardware/diy-node/firmware/diy_node_v5/**"
+      - ".github/workflows/firmware-build.yml"
+      - "flash/firmware/VERSIONS"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: firmware-build
+  cancel-in-progress: false
+
+env:
+  SKETCH: hardware/diy-node/firmware/diy_node_v5
+  OUT: flash/firmware/diy-node
+  # pinned libraries (hardware/diy-node/README.md lists them; versions chosen 16 Oct 2026, bump deliberately)
+  LIBS: "WiFiManager@2.0.17;PubSubClient@2.8;ArduinoJson@7.4.2;Adafruit BME680 Library@2.0.5;Adafruit Unified Sensor@1.1.15"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: arduino-cli
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: core and libraries
+        run: |
+          set -euo pipefail
+          CORE="$(sed -n 's/^esp32-core=//p' flash/firmware/VERSIONS)"; [ -n "$CORE" ] || { echo "no esp32-core= in flash/firmware/VERSIONS"; exit 1; }
+          arduino-cli config init --overwrite --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install "esp32:esp32@$CORE"
+          arduino-cli lib update-index
+          # semicolon-separated because two of the names contain spaces
+          echo "$LIBS" | tr ';' '\n' | while read -r lib; do arduino-cli lib install "$lib"; done
+          arduino-cli lib list
+          echo "CORE=$CORE" >> "$GITHUB_ENV"
+
+      - name: compile both boards
+        run: |
+          set -euo pipefail
+          VER="$(sed -n 's/^const char\*\s*FW_VERSION\s*=\s*"\([^"]*\)".*/\1/p' "$SKETCH/diy_node_v5.ino")"; [ -n "$VER" ] || VER=v5
+          SHA="$(git rev-parse --short HEAD)"; TAG="$VER-$SHA"
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          build() { # <chip dir> <fqbn>
+            local chip="$1" fqbn="$2" bp="$RUNNER_TEMP/build-$1"
+            arduino-cli compile --fqbn "$fqbn" --build-path "$bp" --warnings default "$SKETCH"
+            mkdir -p "$OUT/$TAG/$chip"
+            cp "$bp"/diy_node_v5.ino.bin "$OUT/$TAG/$chip/app.bin"
+            cp "$bp"/diy_node_v5.ino.bootloader.bin "$OUT/$TAG/$chip/bootloader.bin"
+            cp "$bp"/diy_node_v5.ino.partitions.bin "$OUT/$TAG/$chip/partitions.bin"
+            cp "$(arduino-cli config get directories.data)"/packages/esp32/hardware/esp32/"$CORE"/tools/partitions/boot_app0.bin "$OUT/$TAG/$chip/boot_app0.bin"
+            if [ -f "$bp"/diy_node_v5.ino.merged.bin ]; then cp "$bp"/diy_node_v5.ino.merged.bin "$OUT/$TAG/$chip/merged.bin"; fi
+            ls -la "$OUT/$TAG/$chip"
+          }
+          build esp32s3 "esp32:esp32:XIAO_ESP32S3:CDCOnBoot=cdc"
+          build esp32c3 "esp32:esp32:esp32c3:CDCOnBoot=cdc,PartitionScheme=min_spiffs"
+
+      - name: manifest and checksums
+        run: |
+          set -euo pipefail
+          python3 - "$OUT" "$TAG" "$CORE" "$LIBS" <<'EOF'
+          import json, os, sys, datetime
+          out, tag, core, libs = sys.argv[1:5]
+          def parts(chip):
+              d = f"{out}/{tag}/{chip}"
+              if os.path.exists(f"{d}/merged.bin"):
+                  return [{"path": f"{tag}/{chip}/merged.bin", "offset": 0}]
+              # S3 and C3 both boot from 0x0 (the classic ESP32 boots from 0x1000)
+              return [{"path": f"{tag}/{chip}/bootloader.bin", "offset": 0x0}, {"path": f"{tag}/{chip}/partitions.bin", "offset": 0x8000},
+                      {"path": f"{tag}/{chip}/boot_app0.bin", "offset": 0xE000}, {"path": f"{tag}/{chip}/app.bin", "offset": 0x10000}]
+          m = {"name": "Making Sense Bali · DIY node", "version": tag, "built": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+               "core": f"esp32:esp32@{core}", "libs": libs, "new_install_prompt_erase": False,
+               "builds": [{"chipFamily": "ESP32-S3", "parts": parts("esp32s3")}, {"chipFamily": "ESP32-C3", "parts": parts("esp32c3")}]}
+          json.dump(m, open(f"{out}/manifest.json", "w"), indent=2)
+          print(json.dumps(m, indent=1))
+          EOF
+          ( cd "$OUT/$TAG" && find . -name '*.bin' | sort | xargs sha256sum > SHA256SUMS )
+
+      - name: commit
+        run: |
+          set -euo pipefail
+          git config user.name "firmware-build"; git config user.email "firmware-build@users.noreply.github.com"
+          git add "$OUT"
+          git diff --cached --quiet && { echo "nothing changed"; exit 0; }
+          git commit -m "flash: DIY node $TAG for XIAO ESP32-S3 and ESP32-C3 [skip ci]"
+          # the data-sync workflow commits to the same branch every quarter hour; rebase on whatever landed meanwhile
+          git pull --rebase origin main
+          git push origin HEAD:main
