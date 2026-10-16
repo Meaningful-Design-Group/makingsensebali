@@ -384,6 +384,144 @@ String uptimeStr() {
 }
 
 // ============================================================================
+// LOOK — the setup portal and the status page share one theme
+//
+// The PLANETAI layer, cut down to what a captive portal can carry: paper
+// #F9F5F2 / ink #171717, square corners, numbers and ids in mono, blue only for
+// identity (the node's id chip), green only for an act taken (a publish that
+// left), red only as an edge on a failure notice — never a fill, never text.
+// State is carried by weight, opacity and a dashed edge, not by hue.
+// No web fonts: a phone joined to the node's access point has no internet, so
+// Figtree/JetBrains Mono are named first and the system stack takes over.
+// Logos are inline SVG data URIs (Fab Lab Bali wordmark converted to paths, so
+// it does not depend on Figtree being installed; ~8 kB together).
+// ============================================================================
+
+const char THEME_CSS[] PROGMEM =
+  "<style>:root{--p:#F9F5F2;--i:#171717;--m:#5f5b57;--h:#d8d2cc;--b:#20388D;--g:#00A057;--r:#E62038}html,body{mar"
+  "gin:0;background:var(--p);color:var(--i)}body,h1,h3,.c,div,input,select,button{font-family:Figtree,system-ui,-"
+  "apple-system,'Segoe UI',Roboto,sans-serif;text-align:left}.wrap{display:block;max-width:520px;min-width:0;marg"
+  "in:0 auto;padding:0 16px 40px}.top{background:var(--i);margin:0 -16px 18px;padding:12px 16px;display:flex;alig"
+  "n-items:center}.top img{display:block;width:auto}.top .flb{height:40px}.top .fc{height:36px;margin-left:auto}."
+  "id{display:inline-block;font:12px/1 ui-monospace,'JetBrains Mono',SFMono-Regular,Menlo,Consolas,monospace;lett"
+  "er-spacing:.06em;border:1px solid var(--b);padding:6px 8px;margin:0 0 6px}h1{font-size:22px;font-weight:700;ma"
+  "rgin:6px 0 2px;line-height:1.2}h3{font-size:13px;font-weight:400;color:var(--m);margin:0 0 16px}input,button,s"
+  "elect,.msg{border-radius:0}input:not([type=checkbox]){background:#fff;border:1px solid var(--i);font-size:16px"
+  ";padding:10px;color:var(--i)}input:focus{outline:2px solid var(--b);outline-offset:0}input[type=checkbox]{acce"
+  "nt-color:var(--i);width:18px;height:18px;vertical-align:middle;margin-right:6px}button,input[type=submit]{back"
+  "ground:var(--i);color:var(--p);border:0;font-size:16px;font-weight:600;line-height:2.8rem}button.D{background:"
+  "transparent;color:var(--i);border:1px dashed var(--i)}a{color:var(--i);font-weight:600}a:hover{color:var(--b)}"
+  "label{font-size:14px}hr{border:0;border-top:1px solid var(--i);margin:20px 0 4px}.msg{border:1px solid var(--i"
+  ");border-left-width:6px;background:transparent}.msg.S{border-left-color:var(--g)}.msg.D{border-left-color:var("
+  "--r)}.msg.P{border-left-color:var(--b)}.q{font:12px ui-monospace,'JetBrains Mono',SFMono-Regular,Menlo,Consola"
+  "s,monospace}.sec{font:600 11px/1.2 ui-monospace,'JetBrains Mono',SFMono-Regular,Menlo,Consolas,monospace;lette"
+  "r-spacing:.14em;text-transform:uppercase;margin:22px 0 4px}.hint{font-size:13px;color:var(--m);margin:0 0 8px;"
+  "line-height:1.45}.foot{margin-top:30px;padding-top:10px;border-top:1px solid var(--h);font:11px/1.5 ui-monospa"
+  "ce,'JetBrains Mono',SFMono-Regular,Menlo,Consolas,monospace;color:var(--m)}table{width:100%;border-collapse:co"
+  "llapse;margin:0 0 20px}th{text-align:left;font-weight:400;color:var(--m);padding:7px 10px 7px 0;width:46%;font"
+  "-size:14px;vertical-align:top}td{padding:7px 0;font-size:14px;border-bottom:1px solid var(--h)}.n{font-family:"
+  "ui-monospace,'JetBrains Mono',SFMono-Regular,Menlo,Consolas,monospace}.on{font-weight:600}.off{opacity:.45}.st"
+  "op{font-weight:700;border:1px dashed var(--i);padding:1px 5px}.mk{display:inline-block;width:9px;height:9px;ba"
+  "ckground:var(--g);margin-right:6px}.note{color:var(--m);font-size:13px;line-height:1.5;border-top:1px solid va"
+  "r(--h);padding-top:14px}</style>";
+
+const char LOGO_FLB[] PROGMEM =
+  "data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 1759 755.9' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%"
+  "3E%3CclipPath id='d'%3E%3Cpath transform='translate(-744.2 -448)' d='m0 1992h1708v-1992h-1708z'/%3E%3C/clipPat"
+  "h%3E%3CclipPath id='c'%3E%3Cpath transform='translate(-241.6 -566.4)' d='m0 1992h1708v-1992h-1708z'/%3E%3C/cli"
+  "pPath%3E%3CclipPath id='b'%3E%3Cpath transform='translate(-467.6 -198.7)' d='m0 1992h1708v-1992h-1708z'/%3E%3C"
+  "/clipPath%3E%3CclipPath id='a'%3E%3Cpath transform='translate(-673.1 -578.3)' d='m0 1992h1708v-1992h-1708z'/%3"
+  "E%3C/clipPath%3E%3C/defs%3E%3Cg transform='translate(-236.4 -1681)'%3E%3Cg%3E%3Cpath transform='matrix(1.333 0"
+  " 0 -1.333 992.3 2059)' d='m0 0c0 156.6-126.9 283.5-283.5 283.5-156.6 0-283.5-126.9-283.5-283.5s126.9-283.5 283"
+  ".5-283.5c156.6 0 283.5 126.9 283.5 283.5' clip-path='url(%23d)' fill='%23f9f0d1'/%3E%3Cpath transform='matrix("
+  "1.333 0 0 -1.333 322.1 1901)' d='m0 0c-2.807 1.621-6.387 0.548-7.868-2.336-61.72-120.2-18.84-268.9 99.45-337.2"
+  " 36.24-20.92 75.48-31.94 114.6-33.9 3.233-0.162 5.945 2.411 5.946 5.647l1e-3 16.97c0 2.07-1.132 3.975-2.951 4."
+  "965l-50.52 27.5c-5.516 3.003-8.921 8.808-8.849 15.09l0.302 26.44c0.052 4.591 2.619 8.795 6.697 10.9 3.239 1.67"
+  "5 5.959 3.245 7.239 3.984 28.94 17.14 28.32 69.28 3.083 112.1-25.23 42.77-68.95 58.31-94.47 43.25-28.99-17.06-"
+  "35.58-58.19-12.04-101.9 6.54-12.09 15.11-22.58 20.69-29.09 2.055-2.401 3.115-5.493 2.974-8.65l-0.841-18.73c-0."
+  "191-4.248-4.828-6.773-8.499-4.627l-43.62 25.49c-8.698 5.082-14.03 14.41-14 24.48l0.591 206.1c6e-3 2.025-1.072 "
+  "3.899-2.826 4.912z' clip-path='url(%23c)' fill='%23faa51c'/%3E%3Cpath transform='matrix(1.333 0 0 -1.333 623.4"
+  " 2391)' d='m0 0c0-3.241 2.719-5.805 5.957-5.646 134.9 6.634 242.3 118.1 242.3 254.7 0 41.84-10.08 81.34-27.94 "
+  "116.2-1.476 2.88-5.06 3.943-7.863 2.325l-14.7-8.482c-1.793-1.036-2.877-2.968-2.825-5.038l1.446-57.5c0.158-6.27"
+  "9-3.167-12.13-8.642-15.21l-23.05-12.96c-4.002-2.25-8.926-2.128-12.79 0.349-3.069 1.968-5.79 3.538-7.069 4.277-"
+  "29.31 16.49-74.16-10.12-98.58-53.36s-16.02-88.87 9.778-103.4c29.27-16.58 68.19-1.713 94.31 40.55 7.201 11.71 1"
+  "1.99 24.38 14.85 32.46 1.052 2.979 3.2 5.444 6.005 6.9l16.64 8.636c3.775 1.959 8.279-0.794 8.257-5.047l-0.263-"
+  "50.52c-0.053-10.07-5.463-19.36-14.2-24.37l-178.8-102.5c-1.757-1.007-2.84-2.878-2.841-4.903z' clip-path='url(%2"
+  "3b)' fill='%234b8e86'/%3E%3Cpath transform='matrix(1.333 0 0 -1.333 897.5 1885)' d='m0 0c2.807 1.62 3.668 5.25"
+  "8 1.911 7.982-73.22 113.5-223.5 150.8-341.8 82.48-36.24-20.92-65.4-49.4-86.65-82.28-1.757-2.719-0.885-6.354 1."
+  "918-7.972l14.69-8.485c1.793-1.035 4.009-1.008 5.775 0.072l49.08 30c5.358 3.276 12.09 3.322 17.49 0.119l22.75-1"
+  "3.48c3.95-2.34 6.307-6.665 6.094-11.25-0.169-3.642-0.169-6.783-0.169-8.261 0.372-33.63 45.84-59.16 95.5-58.7 4"
+  "9.66 0.465 84.97 30.56 84.69 60.19-0.28 33.63-32.61 59.91-82.27 61.4-13.74 0.382-27.11-1.801-35.54-3.371-3.107"
+  "-0.579-6.315 0.049-8.978 1.751l-15.8 10.09c-3.583 2.29-3.451 7.567 0.242 9.674l43.89 25.03c8.75 4.991 19.5 4.9"
+  "48 28.21-0.114l178.2-103.6c1.751-1.018 3.912-1.021 5.666-9e-3z' clip-path='url(%23a)' fill='%23972f1f'/%3E%3C/"
+  "g%3E%3Cg fill='%23f9f0d1' stroke-width='4.297' aria-label='FAB LAB'%3E%3Cpath d='m1105 1933v-120.3h71.5v13.23h"
+  "-56.89v41.08h50.19v13.23h-50.19v52.76z'/%3E%3Cpath d='m1184 1933 48.98-120.3h15.12l48.98 120.3h-15.3l-13.92-34"
+  ".2h-54.48l-13.92 34.2zm34.37-47.26h44.34l-22.17-54.83z'/%3E%3Cpath d='m1315 1933v-120.3h37.98q12.37 0 21.14 3."
+  "781 8.765 3.781 13.58 11.17 4.812 7.218 4.812 17.7 0 8.765-3.953 15.47-3.953 6.531-11.17 10.66 8.937 4.297 13."
+  "75 11.52 4.984 7.218 4.984 17.19 0 10.48-4.64 17.87-4.64 7.218-13.23 11.17-8.422 3.781-20.28 3.781zm14.44-13.0"
+  "6h27.84q11.34 0 17.7-5.328 6.531-5.5 6.531-14.95 0-10.14-7.39-15.81-7.39-5.844-20.62-5.844h-24.06zm0-54.48h27."
+  "16q9.968 0 15.64-5.328 5.672-5.328 5.672-14.78 0-9.796-6.703-14.95-6.531-5.328-18.56-5.328h-23.2z'/%3E%3Cpath "
+  "d='m1463 1933v-120.3h14.61v107.1h56.72v13.23z'/%3E%3Cpath d='m1538 1933 48.98-120.3h15.12l48.98 120.3h-15.3l-1"
+  "3.92-34.2h-54.48l-13.92 34.2zm34.37-47.26h44.34l-22.17-54.83z'/%3E%3Cpath d='m1668 1933v-120.3h37.98q12.37 0 2"
+  "1.14 3.781 8.765 3.781 13.58 11.17 4.812 7.218 4.812 17.7 0 8.765-3.953 15.47-3.953 6.531-11.17 10.66 8.937 4."
+  "297 13.75 11.52 4.984 7.218 4.984 17.19 0 10.48-4.64 17.87-4.64 7.218-13.23 11.17-8.422 3.781-20.28 3.781zm14."
+  "44-13.06h27.84q11.34 0 17.7-5.328 6.531-5.5 6.531-14.95 0-10.14-7.39-15.81-7.39-5.844-20.62-5.844h-24.06zm0-54"
+  ".48h27.16q9.968 0 15.64-5.328 5.672-5.328 5.672-14.78 0-9.796-6.703-14.95-6.531-5.328-18.56-5.328h-23.2z'/%3E%"
+  "3C/g%3E%3Cg fill='%23f7a41f' stroke-width='11.12' aria-label='BALI'%3E%3Cpath d='m1106 2293v-311.4h105.4q32.03"
+  " 0 56.06 9.788 24.02 9.788 37.37 29.81 13.35 19.58 13.35 48.94 0 18.24-9.343 33.81-8.898 15.13-25.36 26.25 21."
+  "8 11.12 33.37 29.81 12.01 18.24 12.01 44.04 0 28.47-12.9 48.49-12.9 20.02-36.04 30.25t-54.28 10.23zm59.62-53.8"
+  "3h54.28q21.8 0 34.26-10.68 12.46-11.12 12.46-29.36 0-19.13-13.79-29.81-13.79-11.12-37.82-11.12h-49.38zm0-130.8"
+  "h47.16q20.02 0 31.59-10.23 11.57-10.23 11.57-28.92t-12.9-28.92-35.15-10.23h-42.27z'/%3E%3Cpath d='m1348 2293 1"
+  "22.8-311.4h64.95l122.8 311.4h-64.51l-26.69-68.51h-128.1l-26.69 68.51zm111.2-122.3h88.09l-44.04-113z'/%3E%3Cpat"
+  "h d='m1696 2293v-311.4h60.95v255.8h137v55.61z'/%3E%3Cpath d='m1935 2293v-311.4h60.95v311.4z'/%3E%3C/g%3E%3C/g%"
+  "3E%3C/svg%3E";
+
+const char LOGO_FC[] PROGMEM =
+  "data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 320 321.7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d"
+  "='m240.2 137.7v-89.18c0-1.85-0.99-3.57-2.6-4.5l-74.98-43.29c-1.61-0.93-3.58-0.93-5.19 0l-74.98 43.29c-1.61 0.9"
+  "3-2.6 2.64-2.6 4.5v89.18l77.57-44.79c1.61-0.93 3.58-0.93 5.19 0l77.57 44.79z' fill='%23f9f5f2'/%3E%3Cpath d='m"
+  "160 276.4 77.24 44.59c1.61 0.93 3.58 0.93 5.19 0l74.98-43.29c1.61-0.93 2.6-2.64 2.6-4.5v-86.58c0-1.86-0.99-3.5"
+  "7-2.6-4.5l-77.23-44.49v89.47c0 1.85-0.99 3.57-2.6 4.5l-77.57 44.79z' fill='%23f9f5f2'/%3E%3Cpath d='m160 276.4"
+  "-77.24 44.59c-1.61 0.93-3.58 0.93-5.19 0l-74.98-43.29c-1.61-0.93-2.6-2.64-2.6-4.5v-86.58c0-1.86 0.99-3.57 2.6-"
+  "4.5l77.23-44.49v89.47c0 1.85 0.99 3.57 2.6 4.5l77.57 44.79z' fill='%23f9f5f2'/%3E%3Cpolygon transform='transla"
+  "te(-95.85 -95)' points='224.2 249.2 239.6 249.2 239.6 241.2 215.3 241.2 215.3 277 224.2 277 224.2 262.9 237.3 "
+  "262.9 237.3 254.9 224.2 254.9' fill='%23f9f5f2'/%3E%3Cpath d='m155 146.2-11.81 35.85h9.02l2.47-8.21h10.54l2.47"
+  " 8.21h9.22l-11.66-35.85h-10.26zm8 19.93h-6.15l3.05-10.51 3.09 10.51z' fill='%23f9f5f2'/%3E%3Cpath d='m207.9 16"
+  "7.5c-0.55-1.1-1.25-2.01-2.07-2.71-0.82-0.69-1.73-1.21-2.7-1.53 0.83-0.31 1.56-0.8 2.18-1.44 0.64-0.66 1.15-1.5"
+  " 1.53-2.5 0.37-0.99 0.56-2.2 0.56-3.6 0-2.84-0.87-5.16-2.59-6.9s-4.14-2.62-7.17-2.62h-17.43v35.85h18.96c1.38 0"
+  " 2.67-0.28 3.84-0.83 1.16-0.55 2.18-1.31 3.03-2.26 0.84-0.95 1.51-2.08 1.98-3.35s0.71-2.64 0.71-4.06c0-1.58-0."
+  "28-2.95-0.84-4.06zm-18.85 0.31h7.99c0.82 0 1.44 0.21 1.9 0.64 0.44 0.42 0.66 1.01 0.66 1.82v1.68c0 0.81-0.22 1"
+  ".4-0.66 1.82-0.45 0.43-1.07 0.64-1.9 0.64h-7.99v-6.59zm9.31-9.96c0 0.81-0.21 1.42-0.65 1.86s-1.04 0.65-1.86 0."
+  "65h-6.81v-6.49h6.81c0.81 0 1.42 0.21 1.86 0.65s0.65 1.04 0.65 1.86v1.48z' fill='%23f9f5f2'/%3E%3Cpath d='m126."
+  "8 222.3c-4.16 0-7.41-1.4-9.78-4.21-2.37-2.8-3.55-6.88-3.55-12.21 0-2.67 0.3-5.02 0.91-7.05s1.49-3.75 2.64-5.14"
+  " 2.55-2.45 4.21-3.16c1.65-0.71 3.51-1.07 5.57-1.07 2.76 0 5.07 0.6 6.94 1.8s3.33 2.98 4.39 5.34l-4.32 2.37c-0."
+  "55-1.52-1.39-2.72-2.52-3.62-1.14-0.89-2.63-1.34-4.48-1.34-2.46 0-4.38 0.84-5.78 2.51s-2.09 3.99-2.09 6.94v4.84"
+  "c0 2.95 0.7 5.27 2.09 6.94s3.32 2.51 5.78 2.51c1.91 0 3.46-0.49 4.66-1.48s2.08-2.25 2.66-3.8l4.14 2.5c-1.06 2."
+  "3-2.55 4.1-4.46 5.39s-4.25 1.94-7.01 1.94z' fill='%23f9f5f2'/%3E%3Cpath d='m141.2 221.8v-4.18h4.32v-23.38h-4.3"
+  "2v-4.19h13.83v4.19h-4.37v23.38h4.37v4.18z' fill='%23f9f5f2'/%3E%3Cpath d='m172 194.6v27.2h-5.14v-27.2h-9.46v-4"
+  ".55h24.06v4.55z' fill='%23f9f5f2'/%3E%3Cpath d='m194.2 221.8v-12.51l-10.92-19.24h5.87l7.73 14.15h0.14l7.69-14."
+  "15h5.64l-11.01 19.15v12.6z' fill='%23f9f5f2'/%3E%3C/svg%3E";
+
+// The ink band with both marks. Same markup on the portal and the status page.
+String headerBand() {
+  String h = "<div class='top'><img class='flb' alt='Fab Lab Bali' src=\"";
+  h += FPSTR(LOGO_FLB);
+  h += "\"><img class='fc' alt='Fab City' src=\"";
+  h += FPSTR(LOGO_FC);
+  h += "\"></div>";
+  return h;
+}
+
+// Portal header: band + the node's id chip (the AP name the phone just joined).
+String portalHeader() {
+  return headerBand() + "<span class='id'>" + apName() + "</span>";
+}
+
+String footerLine() {
+  return String("<div class='foot'>Making Sense Bali · makingsense.fablabbali.com · firmware ") + FW_VERSION + "</div>";
+}
+
+// ============================================================================
 // CONFIG PORTAL (WiFiManager + NVS)
 // ============================================================================
 
@@ -420,21 +558,32 @@ void setupConfig(bool forcePortal) {
   loadIdentity();
 
   WiFiManager wm;
-  wm.setTitle("Making Sense Bali — node setup");
+  wm.setTitle("Node setup");
+  // WiFiManager keeps the pointers, so the strings must outlive this call.
+  static String head = FPSTR(THEME_CSS);
+  static String header;  header = portalHeader();
+  static String footer;  footer = footerLine();
+  wm.setCustomHeadElement(head.c_str());
+  wm.setCustomBodyHeader(header.c_str());
+  wm.setCustomBodyFooter(footer.c_str());
+  // A participant needs one thing here. Info / erase / update stay reachable
+  // by URL for whoever knows them, but are not offered as buttons.
+  std::vector<const char*> menu = {"wifi"};
+  wm.setMenu(menu);
   wm.setConfigPortalTimeout(PORTAL_TIMEOUT_S);
   wm.setConnectTimeout(20);
 
   WiFiManagerParameter hdrToken(
-      "<p style='margin:14px 0 4px;font-weight:600'>Smart Citizen</p>"
-      "<p style='margin:0 0 8px;font-size:13px;color:#555'>The six-character "
+      "<p class='sec'>Smart Citizen</p>"
+      "<p class='hint'>The six-character "
       "device token from your device page. This is what identifies the node "
       "on the wire — nothing publishes without it. For a node that will only "
       "talk to a PLANETAI node on your own network, any six characters will do.</p>");
   WiFiManagerParameter tokenParam("sctoken", "Device token", scToken.c_str(), TOKEN_FIELD_LEN);
 
   WiFiManagerParameter hdrBroker(
-      "<p style='margin:18px 0 4px;font-weight:600'>Where it publishes</p>"
-      "<p style='margin:0 0 8px;font-size:13px;color:#555'>Leave these alone to "
+      "<p class='sec'>Where it publishes</p>"
+      "<p class='hint'>Leave these alone to "
       "publish to Smart Citizen. To publish to a PLANETAI node on this network "
       "instead, type what <b>planetai broker</b> printed on that machine: its "
       "name (something.local) or address, port 1883, and the broker user and "
@@ -447,8 +596,8 @@ void setupConfig(bool forcePortal) {
   WiFiManagerParameter passParam("mpass", "Broker password", brokerPass.c_str(), PASS_FIELD_LEN, "type='password'");
 
   WiFiManagerParameter hdrLocal(
-      "<p style='margin:18px 0 4px;font-weight:600'>This node</p>"
-      "<p style='margin:0 0 8px;font-size:13px;color:#555'>For finding and "
+      "<p class='sec'>This node</p>"
+      "<p class='hint'>For finding and "
       "checking the node on your own network. <b>These are not sent to Smart "
       "Citizen</b> — set the display name and location on the device page there.</p>");
   WiFiManagerParameter nameParam("nodename", "Name (e.g. Balai Banjar Serangan)", nodeName.c_str(), NAME_FIELD_LEN);
@@ -569,55 +718,50 @@ String row(const String &k, const String &v, const char* cls = "") {
 }
 
 String fmt(float v, int dp, const char* unit) {
-  if (isnan(v)) return "<span class='bad'>—</span>";
+  if (isnan(v)) return "<span class='off'>—</span>";
   char b[24];
   snprintf(b, sizeof(b), "%.*f", dp, v);
-  return String(b) + " " + unit;
+  return "<span class='n'>" + String(b) + "</span> " + unit;
 }
 
-// "not fitted" is neutral grey, not an error. Only a sensor that was there and
-// stopped answering is shown in red.
+// State by weight, not hue: online is set in weight, "not fitted" is faded
+// (a normal state), and only a sensor that was there and stopped answering
+// gets the dashed edge.
 String sensorStateHtml(bool online, bool lost) {
-  if (online) return "<span class='ok'>online</span>";
-  if (lost)   return "<span class='bad'>stopped answering — check the cable</span>";
-  return "<span class='dim'>not fitted</span>";
+  if (online) return "<span class='on'>online</span>";
+  if (lost)   return "<span class='stop'>stopped answering — check the cable</span>";
+  return "<span class='off'>not fitted</span>";
 }
 
 void handleStatus() {
   String title = nodeName.length() ? nodeName : apName();
   String h;
-  h.reserve(4096);
-  h += "<!doctype html><html><head><meta charset='utf-8'>";
+  h.reserve(16384);
+  h += "<!doctype html><html lang='en'><head><meta charset='utf-8'>";
   h += "<meta name='viewport' content='width=device-width,initial-scale=1'>";
-  h += "<title>" + htmlEscape(title) + " — Making Sense Bali</title><style>";
-  h += "body{font-family:system-ui,-apple-system,sans-serif;margin:0;padding:18px;";
-  h += "background:#16181b;color:#e8e4da;line-height:1.5}";
-  h += "h1{font-size:21px;margin:0 0 2px}.sub{color:#8b8578;font-size:13px;margin:0 0 18px}";
-  h += "table{width:100%;max-width:560px;border-collapse:collapse;margin-bottom:22px}";
-  h += "th{text-align:left;font-weight:400;color:#8b8578;padding:6px 10px 6px 0;width:46%;";
-  h += "vertical-align:top;font-size:14px}td{padding:6px 0;font-size:14px}";
-  h += "h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7f8b86;";
-  h += "margin:0 0 6px;font-weight:400}.ok{color:#7bb893}.bad{color:#e07a5f}.dim{color:#6b675f}";
-  h += ".note{max-width:560px;color:#8b8578;font-size:13px;border-top:1px solid #2c2f34;padding-top:14px}";
-  h += "button{font:inherit;background:#24262b;color:#e8e4da;border:1px solid #3a3d43;";
-  h += "border-radius:7px;padding:9px 15px;cursor:pointer}</style></head><body>";
-
+  h += "<title>" + htmlEscape(title) + " — Making Sense Bali</title>";
+  h += FPSTR(THEME_CSS);
+  h += "</head><body><div class='wrap'>";
+  h += headerBand();
+  h += "<span class='id'>" + htmlEscape(mdnsHost()) + ".local</span>";
   h += "<h1>" + htmlEscape(title) + "</h1>";
-  h += "<p class='sub'>" + htmlEscape(nodeSite.length() ? nodeSite : "site not set");
+  h += "<h3>" + htmlEscape(nodeSite.length() ? nodeSite : "site not set");
   if (nodeHeight.length()) h += " · " + htmlEscape(nodeHeight) + " m above ground";
   h += nodeIndoor ? " · indoors" : " · outdoors";
-  h += "</p>";
+  h += "</h3>";
 
   // Only sensors that are fitted get rows. A node without a BME680 shows no
   // empty temperature row; a node with two PM sensors labels which is which.
   const char* UG = "&micro;g/m&sup3;";
   String senLabel = sen5xModel[0] ? String(sen5xModel) : String("SEN5x");
-  h += "<h2>Latest reading</h2><table>";
+  // Every figure carries its time and how we know it: these are live, from
+  // the last read cycle, at the node's local clock.
+  h += "<p class='sec'>Latest reading · live · <span class='n'>" + htmlEscape(lastPublishAt) + "</span></p><table>";
   if (g_hmOnline || g_hmLost) {
     String tag = (g_senOnline || g_senLost) ? " (HM3301)" : "";
-    h += row("PM1"   + tag, lastHmOk ? String(lastPM1)  + " " + UG : "<span class='bad'>—</span>");
-    h += row("PM2.5" + tag, lastHmOk ? String(lastPM25) + " " + UG : "<span class='bad'>—</span>");
-    h += row("PM10"  + tag, lastHmOk ? String(lastPM10) + " " + UG : "<span class='bad'>—</span>");
+    h += row("PM1"   + tag, lastHmOk ? "<span class='n'>" + String(lastPM1)  + "</span> " + UG : "<span class='off'>—</span>");
+    h += row("PM2.5" + tag, lastHmOk ? "<span class='n'>" + String(lastPM25) + "</span> " + UG : "<span class='off'>—</span>");
+    h += row("PM10"  + tag, lastHmOk ? "<span class='n'>" + String(lastPM10) + "</span> " + UG : "<span class='off'>—</span>");
   }
   if (g_senOnline || g_senLost) {
     String tag = (g_hmOnline || g_hmLost) ? " (" + senLabel + ")" : "";
@@ -640,25 +784,26 @@ void handleStatus() {
   }
   h += "</table>";
 
-  h += "<h2>Health</h2><table>";
+  h += "<p class='sec'>Health</p><table>";
   h += row("HM3301", sensorStateHtml(g_hmOnline,  g_hmLost));
   h += row(senLabel, sensorStateHtml(g_senOnline, g_senLost));
   h += row("BME680", sensorStateHtml(g_bmeOnline, g_bmeLost));
-  h += row("Smart Citizen token", scToken.length() ? "<span class='ok'>" + maskedToken() + "</span>"
-                                                   : "<span class='bad'>NOT SET — nothing is published</span>");
-  h += row("Publishes to", htmlEscape(brokerLabel()));
-  h += row("MQTT", mqtt.connected() ? "<span class='ok'>connected</span>" : "<span class='bad'>disconnected</span>");
-  h += row("Last publish", (lastPublishOk ? "<span class='ok'>ok</span> at " : "<span class='bad'>failed</span> at ") + htmlEscape(lastPublishAt));
-  h += row("Published / failed", String(publishCount) + " / " + String(publishFailCount));
+  h += row("Smart Citizen token", scToken.length() ? "<span class='n on'>" + maskedToken() + "</span>"
+                                                   : "<span class='stop'>NOT SET — nothing is published</span>");
+  h += row("Publishes to", "<span class='n'>" + htmlEscape(brokerLabel()) + "</span>");
+  h += row("MQTT", mqtt.connected() ? "<span class='on'>connected</span>" : "<span class='stop'>disconnected</span>");
+  h += row("Last publish", String(lastPublishOk ? "<span class='mk'></span><span class='on'>left the node</span> at "
+                                                 : "<span class='stop'>failed</span> at ") + "<span class='n'>" + htmlEscape(lastPublishAt) + "</span>");
+  h += row("Published / failed", "<span class='n'>" + String(publishCount) + " / " + String(publishFailCount) + "</span>");
   h += "</table>";
 
-  h += "<h2>Connection</h2><table>";
+  h += "<p class='sec'>Connection</p><table>";
   h += row("WiFi", htmlEscape(WiFi.SSID()));
-  h += row("Signal", String(WiFi.RSSI()) + " dBm");
-  h += row("IP", WiFi.localIP().toString());
-  h += row("Also reachable at", "http://" + mdnsHost() + ".local");
-  h += row("I2C pins", "SDA " + String(I2C_SDA_PIN) + " · SCL " + String(I2C_SCL_PIN));
-  h += row("Uptime", uptimeStr());
+  h += row("Signal", "<span class='n'>" + String(WiFi.RSSI()) + "</span> dBm");
+  h += row("IP", "<span class='n'>" + WiFi.localIP().toString() + "</span>");
+  h += row("Also reachable at", "<span class='n'>http://" + mdnsHost() + ".local</span>");
+  h += row("I2C pins", "<span class='n'>SDA " + String(I2C_SDA_PIN) + " · SCL " + String(I2C_SCL_PIN) + "</span>");
+  h += row("Uptime", "<span class='n'>" + uptimeStr() + "</span>");
   h += "</table>";
 
   h += "<form method='POST' action='/setup' onsubmit=\"return confirm('Reboot into the setup portal? The node stops measuring until setup finishes.')\">";
@@ -676,17 +821,18 @@ void handleStatus() {
          "Temperature and humidity are published raw — they have not been checked "
          "against a reference station, so expect them to read high in an enclosure.</p>";
   }
-  h += "</body></html>";
+  h += footerLine();
+  h += "</div></body></html>";
 
   status.send(200, "text/html; charset=utf-8", h);
 }
 
 void handleSetupRequest() {
   status.send(200, "text/html; charset=utf-8",
-    "<!doctype html><meta charset='utf-8'>"
-    "<body style='font-family:system-ui;background:#16181b;color:#e8e4da;padding:22px'>"
-    "<p>Rebooting into setup. Join the WiFi network <b>" + apName() +
-    "</b> (password <b>" + String(PORTAL_PASSWORD) + "</b>) in about 15 seconds.</p></body>");
+    "<!doctype html><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>" +
+    String(FPSTR(THEME_CSS)) + "<body><div class='wrap'>" + headerBand() +
+    "<h1>Rebooting into setup</h1><p class='hint'>Join the WiFi network <span class='id'>" + apName() +
+    "</span> (password <span class='n'>" + String(PORTAL_PASSWORD) + "</span>) in about 15 seconds.</p></div></body>");
   reopenPortalRequested = true;
 }
 
