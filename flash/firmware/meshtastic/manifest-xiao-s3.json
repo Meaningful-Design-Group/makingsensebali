@@ -1,0 +1,8 @@
+{
+  "name": "Meshtastic · Seeed XIAO ESP32-S3 + Wio-SX1262",
+  "version": "2.7.26.54e0d8d",
+  "new_install_prompt_erase": true,
+  "builds": [
+    { "chipFamily": "ESP32-S3", "parts": [ { "path": "2.7.26.54e0d8d/firmware-seeed-xiao-s3-2.7.26.54e0d8d.factory.bin", "offset": 0 } ] }
+  ]
+}
