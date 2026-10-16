@@ -574,32 +574,35 @@ void setupConfig(bool forcePortal) {
   wm.setConnectTimeout(20);
 
   WiFiManagerParameter hdrToken(
-      "<p class='sec'>Smart Citizen</p>"
-      "<p class='hint'>The six-character "
-      "device token from your device page. This is what identifies the node "
-      "on the wire — nothing publishes without it. For a node that will only "
-      "talk to a PLANETAI node on your own network, any six characters will do.</p>");
-  WiFiManagerParameter tokenParam("sctoken", "Device token", scToken.c_str(), TOKEN_FIELD_LEN);
+      "<p class='sec'>Device token</p>"
+      "<p class='hint'>The token your platform gives this device — on Smart "
+      "Citizen it is on the device page. It identifies the node on the wire; "
+      "nothing publishes without it. For a node that only talks to a PLANETAI "
+      "node on your own network, any six characters will do.</p>");
+  WiFiManagerParameter tokenParam("sctoken", "Token", scToken.c_str(), TOKEN_FIELD_LEN);
 
   WiFiManagerParameter hdrBroker(
       "<p class='sec'>Where it publishes</p>"
-      "<p class='hint'>Leave these alone to "
-      "publish to Smart Citizen. To publish to a PLANETAI node on this network "
-      "instead, type what <b>planetai broker</b> printed on that machine: its "
-      "name (something.local) or address, port 1883, and the broker user and "
-      "password. The node keeps your readings and can pass them on to Smart "
-      "Citizen for you.</p>");
+      "<p class='hint'><b>To a PLANETAI node:</b> on the machine running the "
+      "node, open a terminal and run <b>planetai broker</b>. It prints the four "
+      "values below: the host (its name ending in .local, or its address), port "
+      "1883, user <b>planetai</b> and a password. Type them in. The node keeps "
+      "every reading and can pass it on to Smart Citizen for you.</p>"
+      "<p class='hint'><b>To Smart Citizen directly:</b> leave these as they are "
+      "(mqtt.smartcitizen.me, port 8883, no user).</p>");
   String portStr = String(brokerPort);
   WiFiManagerParameter hostParam("mhost", "Broker host", brokerHost.c_str(), HOST_FIELD_LEN);
-  WiFiManagerParameter portParam("mport", "Broker port (8883 = Smart Citizen, 1883 = a node)", portStr.c_str(), 6);
-  WiFiManagerParameter userParam("muser", "Broker user (blank for Smart Citizen)", brokerUser.c_str(), USER_FIELD_LEN);
+  WiFiManagerParameter portParam("mport", "Broker port (1883 = PLANETAI node, 8883 = Smart Citizen)", portStr.c_str(), 6);
+  WiFiManagerParameter userParam("muser", "Broker user (planetai on a PLANETAI node, blank for Smart Citizen)", brokerUser.c_str(), USER_FIELD_LEN);
   WiFiManagerParameter passParam("mpass", "Broker password", brokerPass.c_str(), PASS_FIELD_LEN, "type='password'");
 
   WiFiManagerParameter hdrLocal(
       "<p class='sec'>This node</p>"
       "<p class='hint'>For finding and "
-      "checking the node on your own network. <b>These are not sent to Smart "
-      "Citizen</b> — set the display name and location on the device page there.</p>");
+      "checking the node on your own network. <b>These are never published to "
+      "an online platform</b>: a PLANETAI node on your network receives them so "
+      "it knows where the sensor hangs. Set the public name and location on your "
+      "platform's device page.</p>");
   WiFiManagerParameter nameParam("nodename", "Name (e.g. Balai Banjar Serangan)", nodeName.c_str(), NAME_FIELD_LEN);
   WiFiManagerParameter siteParam("nodesite", "Where it hangs (desa, landmark)", nodeSite.c_str(), SITE_FIELD_LEN);
   WiFiManagerParameter heightParam("nodehgt", "Height above ground, metres", nodeHeight.c_str(), 6);
