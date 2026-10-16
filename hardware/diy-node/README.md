@@ -243,6 +243,7 @@ Required Arduino libraries (install via Library Manager):
 - `PubSubClient` by Nick O'Leary (MQTT) — only needed by the production sketch
 - `ArduinoJson` v7.x — only needed by the production sketch
 - `WiFiManager` by tzapu — only needed by the production sketch (tested with 2.0.17)
+  - **v5 needs WiFiManager's git master, not the 2.0.17 release.** v5 calls `setCustomBodyHeader` / `setCustomBodyFooter`, added in December 2024 and in no tagged release as of October 2026, so Library Manager's 2.0.17 fails to compile it. Install from the repository instead (Sketch → Include Library → Add .ZIP Library with the master zip from https://github.com/tzapu/WiFiManager), or build it from the flash page, whose CI pins a master commit.
 
 The HM3301 is read directly over I²C — no external library needed. See note below on why.
 
