@@ -151,9 +151,9 @@ esp-web-install-button[install-unsupported]{display:none}
     <p class="lede rv" data-i18n="flash.s2.lede">One firmware version across a mesh, always: radios on different versions stop hearing each other in ways nothing reports. This page carries the stable release the PLANETAI nodes run. The XIAO flashes from here; the Seeed trackers take a file copied to a drive.</p>
     <div class="boards">
       <div class="board rv">
-        <div class="bn">ESP32-S3 · gateway</div>
+        <div class="bn" data-i18n="flash.s2.xiao.bn">ESP32-S3 · gateway or sensor node</div>
         <h4>XIAO ESP32-S3 + Wio-SX1262</h4>
-        <p data-i18n="flash.s2.xiao.p">The radio with WiFi: the mesh's door to the node. The web flasher erases it fully and installs the release; the radio comes up with no region and no channel, which is correct, those come next.</p>
+        <p data-i18n="flash.s2.xiao.p">One image whatever the job: Meshtastic firmware is per board, the job is settings. As the gateway it uses its WiFi, the mesh's door to the node. As a sensor node (the FAB26 ones, or Seeed's cased kit) it carries an I2C sensor and sits where the reading is wanted; it has no GPS, so the node gives it a fixed position when it is provisioned. The flasher erases it fully and installs the release; the radio comes up with no region and no channel, which is correct, those come next.</p>
         <div class="btnrow">
           <esp-web-install-button manifest="./firmware/meshtastic/manifest-xiao-s3.json">
             <button slot="activate" class="btn primary" data-i18n="flash.s2.btn">Connect and flash</button>
@@ -185,7 +185,7 @@ esp-web-install-button[install-unsupported]{display:none}
         <ol class="steps">
           <li data-i18n-html="flash.s2.after.1">Open the Meshtastic app, connect to the radio over Bluetooth (PIN <code>123456</code> on radios without a screen).</li>
           <li data-i18n-html="flash.s2.after.2">Scan the QR the node operator shows you, from <code>planetai radio url</code> on the node. Accept replacing the channels. That is region, slot and keys, done.</li>
-          <li data-i18n-html="flash.s2.after.3">Or skip the phone: plug the radio into the node and run <code>planetai radio provision sensor "Subak edge" SBK --port …</code>. Same result, and the node remembers the radio.</li>
+          <li data-i18n-html="flash.s2.after.3">Or skip the phone: plug the radio into the node and run <code>planetai radio provision sensor "Subak edge" SBK --port …</code>, with <code>--fixed LAT,LON</code> for a XIAO, which has no GPS. Same result, and the node remembers the radio.</li>
         </ol>
         <div class="note" data-i18n="flash.s2.after.note">Bali runs SG_923 with the slot pinned inside 920–923 MHz. Menorca EU_868, Boston US. Whoever runs the node has already made that choice; a radio only needs to copy it.</div>
       </div>
