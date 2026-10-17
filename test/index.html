@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Sensor bench — Making Sense Bali</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Plug a sensor into USB and see each of its sensors working, live. Or see every device a PLANETAI node reads on your network. Works offline.">
+<meta name="theme-color" content="#f6efe1">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%231e5959'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23f6efe1'/%3E%3C/svg%3E">
+<!-- Fonts are a nicety: offline, or served by a node with no internet, the page falls back to system faces and
+     nothing else changes. Everything the page needs to work is in this one file. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6efe1; --paper2:#efe6d2; --paper3:#e6dbc3; --ink:#16171a; --ink-soft:#3a3a3e; --soft:#5d5849; --line:rgba(0,0,0,.1);
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace; --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  --teal:#1e5959; --good:#3f8a5b; --amber:#c47a2c; --rust:#b5532f; --bad:#8a2f2f; --sky:#5b86a6; --violet:#6d5a8c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+
+.bar{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:14px 4vw;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  background:rgba(246,239,225,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .brand{font-weight:600;color:var(--teal);white-space:nowrap}
+.bar nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.bar nav a{text-decoration:none;opacity:.72}.bar nav a:hover{opacity:1}
+.net{display:inline-flex;align-items:center;gap:6px;opacity:.8}
+.net i{width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block}
+.net.off i{background:var(--amber)}
+.langtoggle{display:inline-flex;border:1px solid rgba(0,0,0,.25);border-radius:3px;overflow:hidden}
+.langtoggle button{font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:transparent;border:0;padding:5px 8px;cursor:pointer}
+.langtoggle button[aria-pressed="true"]{background:var(--teal);color:var(--paper)}
+@media(max-width:720px){.bar nav a{display:none}}
+
+.top{padding:34px 4vw 18px;max-width:1280px;margin:0 auto}
+.top h1{font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.6vw,54px);line-height:1.04;letter-spacing:-.02em;margin:10px 0 12px;max-width:22ch}
+.top h1 em{font-style:italic;color:var(--teal)}
+.top p{font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:66ch}
+
+.controls{position:sticky;top:45px;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 4vw}
+.controls .in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border-radius:6px;
+  border:1px solid var(--ink);background:transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.small{padding:5px 9px;font-size:10.5px}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:6px;overflow:hidden}
+.seg button{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border:0;background:transparent;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.spacer{flex:1}
+.layers{display:flex;flex-wrap:wrap;gap:6px;align-items:center;max-width:1280px;margin:8px auto 0}
+.layers label{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 8px;cursor:pointer;background:var(--paper2);user-select:none}
+.layers label input{accent-color:var(--teal)}
+.layers label .sw{width:9px;height:9px;border-radius:50%}
+.layers label .n{opacity:.6}
+.layers label.empty{opacity:.45}
+
+.note{font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--soft)}
+.note.warn{color:var(--rust)}
+.banner{max-width:1280px;margin:12px auto 0;padding:10px 14px;border:1px dashed var(--rust);border-radius:8px;font-size:14px;line-height:1.55;color:var(--ink-soft);display:none}
+.banner.show{display:block}
+
+main{max-width:1280px;margin:0 auto;padding:18px 4vw 60px}
+.empty-state{border:1px dashed rgba(0,0,0,.25);border-radius:12px;padding:40px 28px;text-align:center;margin-top:10px}
+.empty-state h2{font-family:var(--serif);font-weight:400;font-size:26px;margin-bottom:10px}
+.empty-state p{color:var(--ink-soft);line-height:1.6;max-width:56ch;margin:0 auto 18px}
+.empty-state .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ---- device cards ---- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,560px),1fr));gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card.hl{box-shadow:0 0 0 3px var(--teal)}
+.card header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:16px 18px 10px;border-bottom:1px solid var(--line);background:var(--paper2)}
+.card h3{font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.1}
+.card .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--soft);margin-top:4px;text-transform:uppercase}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:3px 8px;border:1px solid currentColor;white-space:nowrap;display:inline-flex;gap:5px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 18px 0}
+.chip.ok{color:var(--good)} .chip.warn{color:var(--amber)} .chip.bad{color:var(--bad)} .chip.idle{color:var(--soft);border-style:dashed}
+.chip i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:14px 18px}
+.tile{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fbf7ee;min-height:150px;display:flex;flex-direction:column}
+.tile.wide{grid-column:span 2}
+@media(max-width:420px){.tile.wide{grid-column:span 1}}
+.tile canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tile .lab{position:relative;z-index:2;padding:9px 11px 0;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);display:flex;justify-content:space-between;gap:6px}
+.tile .val{position:relative;z-index:2;padding:2px 11px 0;font-family:var(--serif);font-size:34px;line-height:1;letter-spacing:-.01em}
+.tile .val small{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--soft);margin-left:4px}
+.tile .extra{position:relative;z-index:2;padding:4px 11px 0;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
+.tile .tfoot{position:relative;z-index:2;margin-top:auto;padding:0 11px 8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--soft)}
+.tile.stale .val{color:var(--soft)}
+.tile .flag{color:var(--rust)}
+.checks{padding:0 18px 12px;display:grid;gap:4px}
+.checks div{font-size:13px;line-height:1.5;color:var(--ink-soft);display:flex;gap:8px}
+.checks div b{font-weight:500;color:var(--ink)}
+.checks .mk{font-family:var(--mono);width:14px;flex:none}
+.checks .ok .mk{color:var(--good)} .checks .warn .mk{color:var(--amber)} .checks .bad .mk{color:var(--bad)} .checks .idle{opacity:.7}
+.cardfoot{display:flex;gap:8px;flex-wrap:wrap;padding:10px 18px 14px;border-top:1px solid var(--line);margin-top:auto;align-items:center}
+details.console{margin:0 18px 14px}
+details.console summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);cursor:pointer}
+details.console pre{margin-top:8px;max-height:220px;overflow:auto;background:#16171a;color:#d9d3c4;font-family:var(--mono);font-size:11px;line-height:1.5;padding:10px 12px;border-radius:8px;white-space:pre-wrap;word-break:break-word}
+
+/* ---- network view ---- */
+#netwrap{position:relative;border:1px solid var(--line);border-radius:14px;background:radial-gradient(ellipse at 55% 50%,#fbf7ee 0%,var(--paper) 70%);overflow:hidden}
+#netsvg{display:block;width:100%;height:min(72vh,720px)}
+#netsvg text{font-family:var(--mono);font-size:11px;fill:var(--ink-soft)}
+#netsvg .hub text{font-size:12px;fill:var(--ink)}
+#netsvg .dev{cursor:pointer}
+#netsvg .dev:hover circle.body{stroke-width:3}
+.netnote{position:absolute;left:14px;bottom:12px;right:14px;max-width:60ch}
+.legend{position:absolute;right:14px;top:12px;font-family:var(--mono);font-size:10.5px;color:var(--soft);text-align:right;line-height:1.7}
+
+.foot{background:var(--ink);color:#8a8475;padding:30px 4vw 50px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;line-height:1.9;text-align:center}
+.foot a{color:#c4bdae}
+dialog{border:1px solid var(--line);border-radius:12px;padding:22px 24px;max-width:520px;width:calc(100% - 32px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(22,23,26,.35)}
+dialog h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:8px}
+dialog label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:12px 0 4px}
+dialog input{width:100%;font-family:var(--mono);font-size:13px;padding:8px 10px;border:1px solid rgba(0,0,0,.25);border-radius:6px;background:#fffdf7}
+dialog .row{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand" data-t="brand">Making Sense Bali · Sensor bench</div>
+  <nav>
+    <span class="net" id="netstate"><i></i><span data-t="online">online</span></span>
+    <a href="../index.html" data-t="nav.live" id="navlive">Live air</a>
+    <a href="../flash/" data-t="nav.flash" id="navflash">Flash a board</a>
+    <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa Indonesia / English / Español"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
+  </nav>
+</div>
+
+<header class="top">
+  <div class="kicker" data-t="kicker">Bench · USB · node · network</div>
+  <h1 data-th="h1">Plug it in, <em>and watch each sensor breathe.</em></h1>
+  <p data-t="lede">Connect a DIY node by USB to see every sensor on it working, live, and whether it is reaching WiFi and its broker. Several boards at once is fine. Opened from a PLANETAI node, the same page also shows every device that node reads on your network. Once opened, it works without internet.</p>
+</header>
+
+<div class="controls">
+  <div class="in">
+    <button class="btn primary" id="btnusb" type="button"><span data-t="btn.usb">Connect a board by USB</span></button>
+    <button class="btn" id="btnnode" type="button"><span data-t="btn.node">Node</span> <span id="nodestate" class="note"></span></button>
+    <button class="btn" id="btndemo" type="button" aria-pressed="false"><span data-t="btn.demo">Demo</span></button>
+    <label class="btn" for="filelog" style="cursor:pointer"><span data-t="btn.replay">Replay a log</span></label>
+    <input type="file" id="filelog" accept=".txt,.log,text/plain" class="sr">
+    <span class="spacer"></span>
+    <div class="seg" role="group" aria-label="view">
+      <button type="button" data-view="bench" aria-pressed="true" data-t="view.bench">Bench</button>
+      <button type="button" data-view="net" aria-pressed="false" data-t="view.net">Network</button>
+    </div>
+    <button class="btn small" id="btncsv" type="button" data-t="btn.csv">Save readings (CSV)</button>
+  </div>
+  <div class="layers" id="layers"></div>
+</div>
+
+<div class="banner" id="banner"></div>
+
+<main>
+  <section id="viewbench">
+    <div class="empty-state" id="empty">
+      <h2 data-t="empty.h">Nothing connected yet</h2>
+      <p data-t="empty.p">Plug the board in with a data cable and press Connect. Pick the port that says USB JTAG/serial or usbmodem. No board at hand? The demo plays two Bayu sensors and a node, clearly marked as demo.</p>
+      <div class="row">
+        <button class="btn primary" type="button" data-act="usb" data-t="btn.usb">Connect a board by USB</button>
+        <button class="btn" type="button" data-act="demo" data-t="btn.demo">Demo</button>
+      </div>
+      <p class="note" id="serialhint" style="margin-top:16px"></p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section id="viewnet" hidden>
+    <div id="netwrap">
+      <svg id="netsvg" role="img" aria-label="devices"></svg>
+      <div class="legend" id="legend"></div>
+      <div class="netnote note" id="netnote" data-t="net.note">A browser cannot scan a network. This map is what the node knows: every sensor that publishes to it, every radio its gateway hears, the platforms and stations it reads, the nodes it lists. And the boards on this computer's USB.</div>
+    </div>
+  </section>
+</main>
+
+<dialog id="dlgnode">
+  <h3 data-t="node.h">A PLANETAI node</h3>
+  <p class="note" data-t="node.p">The node answers this page when the page comes from the node itself (its address, then /tester), or from this machine. A token lets it show everything at SHARE_LEVEL=off; planetai ui prints it.</p>
+  <label for="nodeurl" data-t="node.url">Address</label>
+  <input id="nodeurl" placeholder="http://192.168.1.20:8080" autocomplete="off">
+  <label for="nodetok" data-t="node.tok">Token (optional)</label>
+  <input id="nodetok" type="password" autocomplete="off">
+  <p class="note warn" id="nodeerr" style="margin-top:10px"></p>
+  <div class="row">
+    <button class="btn" type="button" id="nodeoff" data-t="node.off">Disconnect</button>
+    <button class="btn primary" type="button" id="nodego" data-t="node.go">Connect</button>
+  </div>
+</dialog>
+
+<footer class="foot" data-th="foot">Making Sense Bali · a Fab Lab Bali campaign · nothing you see here leaves this browser · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">the repository</a> · <a href="https://planetai.fab.city">PLANETAI</a></footer>
+
+<script>
+'use strict';
+/* =====================================================================================================
+   Sensor bench. One file: no CDN, no build, so it runs from makingsense.fablabbali.com/test, from a PLANETAI
+   node's /tester, or from a saved copy, online or off. Sources:
+     usb    Web Serial (Chrome/Edge, https or localhost). Reads the DIY node's own lines: v5 "[read]  HM3301 …
+            SEN54 … BME680 …", v3/v4 "[read] T=… PM2.5=… (bme=1 hm=1)", the test sketch's "[bme680] / [hm3301]".
+     node   a node's /health, /sensors, /readings, /nodes, polled. Same origin or this machine only (no CORS).
+     demo   synthetic devices, every one labelled DEMO.
+     replay a saved serial log, played back as if it were live.
+   Nothing is sent anywhere. Readings live in memory; the CSV button is the only way out.
+   ===================================================================================================== */
+
+/* ---------- strings: en canonical; id and es are first drafts for a native read ---------- */
+const STR = {
+ en:{brand:'Making Sense Bali · Sensor bench',online:'online',offline:'offline — still works','nav.live':'Live air','nav.flash':'Flash a board',
+  kicker:'Bench · USB · node · network',h1:'Plug it in, <em>and watch each sensor breathe.</em>',
+  lede:'Connect a DIY node by USB to see every sensor on it working, live, and whether it is reaching WiFi and its broker. Several boards at once is fine. Opened from a PLANETAI node, the same page also shows every device that node reads on your network. Once opened, it works without internet.',
+  'btn.usb':'Connect a board by USB','btn.node':'Node','btn.demo':'Demo','btn.replay':'Replay a log','btn.csv':'Save readings (CSV)',
+  'view.bench':'Bench','view.net':'Network','empty.h':'Nothing connected yet',
+  'empty.p':'Plug the board in with a data cable and press Connect. Pick the port that says USB JTAG/serial or usbmodem. No board at hand? The demo plays two Bayu sensors and a node, clearly marked as demo.',
+  'net.note':'A browser cannot scan a network. This map is what the node knows: every sensor that publishes to it, every radio its gateway hears, the platforms and stations it reads, the nodes it lists. And the boards on this computer\'s USB.',
+  'node.h':'A PLANETAI node','node.p':'The node answers this page when the page comes from the node itself (its address, then /tester), or from this machine. A token lets it show everything at SHARE_LEVEL=off; planetai ui prints it.',
+  'node.url':'Address','node.tok':'Token (optional)','node.off':'Disconnect','node.go':'Connect',
+  'serial.no':'This browser cannot open a USB port. Use Chrome or Edge on a laptop. The demo, the replay and the node view still work here.',
+  'serial.insecure':'USB needs this page on https or on localhost. Open makingsense.fablabbali.com/test for USB.',
+  'L.usb':'USB on this computer','L.node':'the node','L.mesh':'mesh radios','L.wifi':'WiFi pods → broker','L.cloud':'Smart Citizen platform','L.lan':'LAN devices','L.public':'stations & models','L.peers':'other nodes','L.indoor':'indoors','L.outdoor':'outdoors',
+  'ago.s':'s ago','ago.m':'min ago','ago.h':'h ago','never':'waiting for the first reading','stale':'no new reading for',
+  'c.board':'Board talking','c.board.no':'Nothing from the board yet. Press reset on it, or check the cable is a data cable.',
+  'c.fw':'Firmware','c.fitted':'Sensors found','c.fitted.none':'No sensor answered. Only the two I2C sockets on the Grove shield carry the bus; HM3301 and SEN5x need 5 V.',
+  'c.wifi':'WiFi','c.wifi.no':'not connected yet (the setup portal may be open: join MSB-Node-xxxx)','c.boot':'not seen since this page connected: press Restart board to read the boot check','c.time':'Clock','c.time.no':'not synced: readings may be dropped by the platform',
+  'c.pub':'Publishing','c.pub.ok':'sent','c.pub.fail':'failing','c.pm0':'PM reads 0 every time: check 5 V on the Grove socket and that the fan spins.',
+  'c.range':'out of a sensible range','c.gas':'The gas reading settles over the first 30 minutes; ignore its first values.',
+  'c.notoken':'No token saved: it reads sensors but publishes nothing. Reopen setup to add one.','c.lost':'stopped answering — check its cable',
+  'btn.restart':'Restart board','btn.forget':'Disconnect','btn.focus':'Show on bench','demo':'DEMO','replay':'REPLAY',
+  'node.none':'not connected','node.same':'connected (this node)','node.err.cors':'The node did not answer this page. A browser lets a page read a node only when the node serves it, or from the same machine. Open the bench from the node: its address, then /tester.',
+  'node.err.403':'The node answered, but asks for a token for this (SHARE_LEVEL). Paste the token from planetai ui.',
+  'm.pm':'particles','m.temp':'temperature','m.rh':'humidity','m.pressure':'pressure','m.gas':'gas resistance','m.iaq':'air quality index','m.voc':'VOC index','m.nox':'NOx index','m.co2':'CO₂','m.battery':'battery','m.other':'reading',
+  'who':'WHO 24 h guideline 15 µg/m³','sens.cadence':'every','foot':'Making Sense Bali · a Fab Lab Bali campaign · nothing you see here leaves this browser · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">the repository</a> · <a href="https://planetai.fab.city">PLANETAI</a>',
+  'net.laptop':'this computer','net.cloud':'smartcitizen.me','net.gateway':'gateway','net.nonode':'connect a node to see the network around it','csv.none':'No readings yet to save.'},
+ id:{brand:'Making Sense Bali · Meja uji sensor',online:'online',offline:'offline — tetap jalan','nav.live':'Udara saat ini','nav.flash':'Flash papan',
+  kicker:'Meja uji · USB · node · jaringan',h1:'Colokkan, <em>dan lihat tiap sensor bernapas.</em>',
+  lede:'Hubungkan node DIY lewat USB untuk melihat tiap sensornya bekerja, langsung, dan apakah ia tersambung ke WiFi dan broker-nya. Beberapa papan sekaligus juga bisa. Jika dibuka dari node PLANETAI, halaman yang sama juga menampilkan semua perangkat yang dibaca node itu di jaringan Anda. Setelah dibuka sekali, ia jalan tanpa internet.',
+  'btn.usb':'Hubungkan papan lewat USB','btn.node':'Node','btn.demo':'Demo','btn.replay':'Putar ulang log','btn.csv':'Simpan bacaan (CSV)',
+  'view.bench':'Meja uji','view.net':'Jaringan','empty.h':'Belum ada yang terhubung',
+  'empty.p':'Colokkan papan dengan kabel data lalu tekan Hubungkan. Pilih port bertuliskan USB JTAG/serial atau usbmodem. Tidak ada papan? Demo memutar dua sensor Bayu dan satu node, ditandai jelas sebagai demo.',
+  'net.note':'Browser tidak bisa memindai jaringan. Peta ini adalah apa yang diketahui node: tiap sensor yang mengirim ke sana, tiap radio yang didengar gateway-nya, platform dan stasiun yang dibacanya, node lain yang tercatat. Dan papan di USB komputer ini.',
+  'node.h':'Node PLANETAI','node.p':'Node menjawab halaman ini bila halaman datang dari node itu sendiri (alamatnya, lalu /tester), atau dari mesin ini. Token membuatnya menampilkan semuanya saat SHARE_LEVEL=off; planetai ui mencetaknya.',
+  'node.url':'Alamat','node.tok':'Token (opsional)','node.off':'Putuskan','node.go':'Hubungkan',
+  'serial.no':'Browser ini tidak bisa membuka port USB. Gunakan Chrome atau Edge di laptop. Demo, putar ulang, dan tampilan node tetap jalan di sini.',
+  'serial.insecure':'USB butuh halaman ini di https atau localhost. Buka makingsense.fablabbali.com/test untuk USB.',
+  'L.usb':'USB di komputer ini','L.node':'node','L.mesh':'radio mesh','L.wifi':'pod WiFi → broker','L.cloud':'platform Smart Citizen','L.lan':'perangkat LAN','L.public':'stasiun & model','L.peers':'node lain','L.indoor':'dalam ruangan','L.outdoor':'luar ruangan',
+  'ago.s':'dtk lalu','ago.m':'mnt lalu','ago.h':'jam lalu','never':'menunggu bacaan pertama','stale':'tidak ada bacaan baru selama',
+  'c.board':'Papan bicara','c.board.no':'Belum ada apa pun dari papan. Tekan reset, atau pastikan kabelnya kabel data.',
+  'c.fw':'Firmware','c.fitted':'Sensor ditemukan','c.fitted.none':'Tidak ada sensor yang menjawab. Hanya dua soket I2C di Grove shield yang membawa bus; HM3301 dan SEN5x butuh 5 V.',
+  'c.wifi':'WiFi','c.wifi.no':'belum tersambung (portal setup mungkin terbuka: sambungkan ke MSB-Node-xxxx)','c.boot':'belum terlihat sejak halaman ini terhubung: tekan Mulai ulang papan untuk membaca pemeriksaan boot','c.time':'Jam','c.time.no':'belum sinkron: platform bisa membuang bacaan',
+  'c.pub':'Mengirim','c.pub.ok':'terkirim','c.pub.fail':'gagal','c.pm0':'PM selalu 0: periksa 5 V di soket Grove dan pastikan kipasnya berputar.',
+  'c.range':'di luar rentang wajar','c.gas':'Bacaan gas stabil setelah 30 menit pertama; abaikan nilai awalnya.',
+  'c.notoken':'Belum ada token: ia membaca sensor tapi tidak mengirim apa pun. Buka setup lagi untuk menambahkannya.','c.lost':'berhenti menjawab — periksa kabelnya',
+  'btn.restart':'Mulai ulang papan','btn.forget':'Putuskan','btn.focus':'Tampilkan di meja','demo':'DEMO','replay':'PUTAR ULANG',
+  'node.none':'tidak terhubung','node.same':'terhubung (node ini)','node.err.cors':'Node tidak menjawab halaman ini. Browser hanya membolehkan halaman membaca node bila node yang menyajikannya, atau dari mesin yang sama. Buka meja uji dari node: alamatnya, lalu /tester.',
+  'node.err.403':'Node menjawab, tapi meminta token untuk ini (SHARE_LEVEL). Tempel token dari planetai ui.',
+  'm.pm':'partikel','m.temp':'suhu','m.rh':'kelembapan','m.pressure':'tekanan','m.gas':'resistansi gas','m.iaq':'indeks kualitas udara','m.voc':'indeks VOC','m.nox':'indeks NOx','m.co2':'CO₂','m.battery':'baterai','m.other':'bacaan',
+  'who':'pedoman WHO 24 jam 15 µg/m³','sens.cadence':'setiap','foot':'Making Sense Bali · kampanye Fab Lab Bali · tidak ada yang Anda lihat di sini meninggalkan browser ini · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">repositori</a> · <a href="https://planetai.fab.city">PLANETAI</a>',
+  'net.laptop':'komputer ini','net.cloud':'smartcitizen.me','net.gateway':'gateway','net.nonode':'hubungkan node untuk melihat jaringan di sekitarnya','csv.none':'Belum ada bacaan untuk disimpan.'},
+ es:{brand:'Making Sense Bali · Banco de sensores',online:'en línea',offline:'sin conexión — sigue funcionando','nav.live':'Aire ahora','nav.flash':'Flashear una placa',
+  kicker:'Banco · USB · nodo · red',h1:'Conéctalo, <em>y mira respirar cada sensor.</em>',
+  lede:'Conecta un nodo DIY por USB para ver cada uno de sus sensores funcionando, en vivo, y si llega al WiFi y a su broker. Varias placas a la vez también. Abierta desde un nodo PLANETAI, la misma página muestra además cada dispositivo que ese nodo lee en tu red. Una vez abierta, funciona sin internet.',
+  'btn.usb':'Conectar una placa por USB','btn.node':'Nodo','btn.demo':'Demo','btn.replay':'Reproducir un registro','btn.csv':'Guardar lecturas (CSV)',
+  'view.bench':'Banco','view.net':'Red','empty.h':'Nada conectado todavía',
+  'empty.p':'Conecta la placa con un cable de datos y pulsa Conectar. Elige el puerto que dice USB JTAG/serial o usbmodem. ¿Sin placa? La demo reproduce dos sensores Bayu y un nodo, marcados como demo.',
+  'net.note':'Un navegador no puede escanear una red. Este mapa es lo que sabe el nodo: cada sensor que le publica, cada radio que oye su gateway, las plataformas y estaciones que lee, los nodos que lista. Y las placas en el USB de este ordenador.',
+  'node.h':'Un nodo PLANETAI','node.p':'El nodo responde a esta página cuando la página viene del propio nodo (su dirección, y /tester), o desde esta máquina. Un token le deja mostrarlo todo con SHARE_LEVEL=off; planetai ui lo imprime.',
+  'node.url':'Dirección','node.tok':'Token (opcional)','node.off':'Desconectar','node.go':'Conectar',
+  'serial.no':'Este navegador no puede abrir un puerto USB. Usa Chrome o Edge en un portátil. La demo, la reproducción y la vista del nodo siguen funcionando aquí.',
+  'serial.insecure':'El USB necesita esta página en https o en localhost. Abre makingsense.fablabbali.com/test para el USB.',
+  'L.usb':'USB en este ordenador','L.node':'el nodo','L.mesh':'radios de la malla','L.wifi':'pods WiFi → broker','L.cloud':'plataforma Smart Citizen','L.lan':'dispositivos de la LAN','L.public':'estaciones y modelos','L.peers':'otros nodos','L.indoor':'interior','L.outdoor':'exterior',
+  'ago.s':'s','ago.m':'min','ago.h':'h','never':'esperando la primera lectura','stale':'sin lectura nueva desde hace',
+  'c.board':'La placa habla','c.board.no':'Nada de la placa todavía. Pulsa reset, o comprueba que el cable es de datos.',
+  'c.fw':'Firmware','c.fitted':'Sensores encontrados','c.fitted.none':'Ningún sensor respondió. Solo los dos zócalos I2C del Grove shield llevan el bus; HM3301 y SEN5x necesitan 5 V.',
+  'c.wifi':'WiFi','c.wifi.no':'sin conectar (puede estar abierto el portal: únete a MSB-Node-xxxx)','c.boot':'no visto desde que esta página se conectó: pulsa Reiniciar placa para leer la comprobación de arranque','c.time':'Reloj','c.time.no':'sin sincronizar: la plataforma puede descartar lecturas',
+  'c.pub':'Publicando','c.pub.ok':'enviadas','c.pub.fail':'fallando','c.pm0':'PM siempre en 0: revisa los 5 V del zócalo Grove y que el ventilador gire.',
+  'c.range':'fuera de un rango razonable','c.gas':'La lectura de gas se estabiliza en los primeros 30 minutos; ignora sus primeros valores.',
+  'c.notoken':'Sin token guardado: lee sensores pero no publica nada. Vuelve a abrir el setup para añadirlo.','c.lost':'dejó de responder — revisa su cable',
+  'btn.restart':'Reiniciar placa','btn.forget':'Desconectar','btn.focus':'Ver en el banco','demo':'DEMO','replay':'REPRODUCCIÓN',
+  'node.none':'sin conectar','node.same':'conectado (este nodo)','node.err.cors':'El nodo no respondió a esta página. Un navegador solo deja leer un nodo a una página que el propio nodo sirve, o desde la misma máquina. Abre el banco desde el nodo: su dirección, y /tester.',
+  'node.err.403':'El nodo respondió, pero pide un token para esto (SHARE_LEVEL). Pega el token de planetai ui.',
+  'm.pm':'partículas','m.temp':'temperatura','m.rh':'humedad','m.pressure':'presión','m.gas':'resistencia de gas','m.iaq':'índice de calidad del aire','m.voc':'índice VOC','m.nox':'índice NOx','m.co2':'CO₂','m.battery':'batería','m.other':'lectura',
+  'who':'guía OMS 24 h 15 µg/m³','sens.cadence':'cada','foot':'Making Sense Bali · una campaña de Fab Lab Bali · nada de lo que ves aquí sale de este navegador · <a href="https://github.com/Meaningful-Design-Group/makingsensebali">el repositorio</a> · <a href="https://planetai.fab.city">PLANETAI</a>',
+  'net.laptop':'este ordenador','net.cloud':'smartcitizen.me','net.gateway':'gateway','net.nonode':'conecta un nodo para ver la red a su alrededor','csv.none':'Aún no hay lecturas que guardar.'}
+};
+const store = { get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : v; } catch(e){ return d; } },
+                set(k, v){ try { localStorage.setItem(k, v); } catch(e){} } };
+let LANG = (store.get('scb-lang', '') || (navigator.language || 'id').slice(0, 2));
+if (!STR[LANG]) LANG = 'id';
+const t = k => (STR[LANG] && STR[LANG][k]) || STR.en[k] || k;
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
+  document.querySelectorAll('[data-th]').forEach(el => { el.innerHTML = t(el.dataset.th); });
+  document.querySelectorAll('#langtoggle button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === LANG ? 'true' : 'false'));
+  renderLayers(); renderAll(true); renderNet(); updateNetState(); serialHint(); nodeStateLabel();
+}
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- the catalogue of what can be measured ---------- */
+// kind decides the animation; unit is shown; range is what counts as sensible (outside it, the tile says so)
+const MET = {
+  pm1:{kind:'pm',unit:'µg/m³',lab:'PM1',range:[0,1000]}, pm25:{kind:'pm',unit:'µg/m³',lab:'PM2.5',range:[0,1000]},
+  pm4:{kind:'pm',unit:'µg/m³',lab:'PM4',range:[0,1000]}, pm10:{kind:'pm',unit:'µg/m³',lab:'PM10',range:[0,1000]},
+  temp:{kind:'temp',unit:'°C',lab:'T',range:[-10,60],dp:1}, rh:{kind:'rh',unit:'%',lab:'RH',range:[0,100],dp:0},
+  pressure:{kind:'pressure',unit:'kPa',lab:'P',range:[70,110],dp:2}, gas:{kind:'gas',unit:'kΩ',lab:'Gas',range:[0,5e6],scale:1e-3,dp:0},
+  iaq:{kind:'iaq',unit:'',lab:'IAQ',range:[0,500],dp:0}, voc:{kind:'voc',unit:'',lab:'VOC',range:[0,500],dp:0},
+  nox:{kind:'nox',unit:'',lab:'NOx',range:[0,500],dp:0}, co2:{kind:'co2',unit:'ppm',lab:'CO₂',range:[300,10000],dp:0},
+  battery:{kind:'battery',unit:'%',lab:'Batt',range:[0,100],dp:0}
+};
+// the node's metric names → ours (app/sources.py: MESH_METRICS and the Smart Citizen map)
+const NODE_METRIC = {temp:'temp',humidity:'rh',pressure:'pressure',pressure_hpa:'pressure',pm1:'pm1',pm25:'pm25',pm4:'pm4',pm10:'pm10',
+  gas_resistance:'gas',iaq:'iaq',bme_iaq:'iaq',tvoc_index:'voc',voc_index:'voc',nox_index:'nox',co2:'co2',eco2:'co2',battery_pct:'battery'};
+
+/* ---------- devices ---------- */
+// a device: {id, name, layer, model, sensors:{groupName:{metric:{v,t,hist}}}, status, log[], seen, demo, port, place}
+const devices = new Map();
+const LAYERS = ['usb','node','mesh','wifi','lan','cloud','public','peers'];
+const LAYER_COLOR = {usb:'#1e5959',node:'#16171a',mesh:'#6d5a8c',wifi:'#3f8a5b',lan:'#5b86a6',cloud:'#c47a2c',public:'#8a8475',peers:'#b5532f'};
+let layerOn = {}; LAYERS.forEach(l => layerOn[l] = store.get('bench-layer-' + l, '1') === '1');
+let placeOn = {indoor: store.get('bench-place-indoor','1') === '1', outdoor: store.get('bench-place-outdoor','1') === '1'};
+let VIEW = store.get('bench-view', 'bench');
+let focusId = null;
+
+function dev(id, init){
+  let d = devices.get(id);
+  if (!d){ d = Object.assign({id, name:id, layer:'usb', sensors:{}, status:{}, log:[], seen:0, created:Date.now()}, init || {}); devices.set(id, d); structureDirty = true; }
+  else if (init){ for (const k of ['name','layer','place','demo','replay','sub','hub','kind']) if (init[k] !== undefined) d[k] = init[k]; }
+  return d;
+}
+let structureDirty = true;
+const csvRows = [];
+function put(d, group, metric, v, ts){
+  if (v == null || !isFinite(v)) return;
+  ts = ts || Date.now();
+  const g = d.sensors[group] || (d.sensors[group] = {});
+  const m = g[metric] || (g[metric] = {v:null, t:0, hist:[], pulse:0, zeros:0});
+  if (!g[metric].t) structureDirty = true;
+  m.v = v; m.t = ts; m.pulse = performance.now();
+  m.hist.push(v); if (m.hist.length > 120) m.hist.shift();
+  m.zeros = (v === 0) ? m.zeros + 1 : 0;
+  d.seen = Math.max(d.seen, ts);
+  csvRows.push([new Date(ts).toISOString(), d.name, d.layer + (d.demo ? ' (demo)' : d.replay ? ' (replay)' : ''), group, metric, v]);
+  if (csvRows.length > 200000) csvRows.splice(0, 50000);
+  netPulse(d);
+}
+
+/* ---------- parsing the DIY node's serial lines ---------- */
+const SENSOR_TOKEN = /\b(HM3301|HM3001|SEN5[045x]|BME680)\b/g;
+function num(s){ if (s == null) return NaN; const v = parseFloat(String(s).replace(',', '.')); return v; }
+function kv(seg){
+  const out = {}; const re = /([A-Za-z][A-Za-z0-9.]*)\s*[=~]\s*(-?[0-9.]+|nan|inf)/gi; let m;
+  while ((m = re.exec(seg))) out[m[1].toUpperCase()] = num(m[2]);
+  return out;
+}
+function putBME(d, k, kOhm){
+  put(d,'BME680','temp',k.T); put(d,'BME680','rh',k.RH); put(d,'BME680','pressure',k.P);
+  if (isFinite(k.GAS)) put(d,'BME680','gas', kOhm ? k.GAS * 1000 : k.GAS);
+  if (isFinite(k.IAQ)) put(d,'BME680','iaq',k.IAQ);
+}
+function putPM(d, group, k){
+  put(d,group,'pm1',k.PM1); put(d,group,'pm25',k['PM2.5']); if (isFinite(k.PM4)) put(d,group,'pm4',k.PM4); put(d,group,'pm10',k.PM10);
+}
+function parseLine(d, raw){
+  const line = raw.replace(/\r/g, '').replace(/\x1b\[[0-9;]*m/g, '');
+  if (!line.trim()) return;
+  const masked = line.replace(/(token[:\s]+)([A-Za-z0-9]{4,})/i, (m, a, b) => a + b.slice(0, 2) + '••••');
+  d.log.push(masked); if (d.log.length > 400) d.log.splice(0, 100);
+  d.status.lines = (d.status.lines || 0) + 1; d.status.lastLine = Date.now();
+  const S = d.status;
+  let m;
+  if ((m = line.match(/DIY Node (v[0-9.]+)/i))) { S.fw = m[1]; S.bootSeen = true; }
+  if (/\[config\] portal opened|portal timed out|\[boot\] reopen-setup|AP name if portal opens/i.test(line) && !S.wifi) S.portal = /portal opened|reopen-setup/i.test(line) || S.portal;
+  if (/\[wifi\] connected/i.test(line)) S.portal = false;
+  else if (/DIY Node SENSOR TEST/i.test(line)) S.fw = 'test sketch';
+  if ((m = line.match(/\[sensors\] fitted:\s*(.+)$/i))) { S.fitted = m[1].split(/[,·+]/).map(x => x.trim()).filter(x => x && !/^none/i.test(x)); S.fittedSeen = true; }
+  if ((m = line.match(/\[sensors\] (.+?) stopped answering/i))) { (S.lost = S.lost || {})[m[1]] = Date.now(); }
+  if (/\[sensors\] no sensor answered/i.test(line)) { S.fitted = []; S.fittedSeen = true; }
+  if ((m = line.match(/\[(bme680|hm3301)\] online/i))) { S.fitted = Array.from(new Set([...(S.fitted||[]), m[1].toUpperCase()])); S.fittedSeen = true; }
+  if ((m = line.match(/\[(bme680|hm3301)\] NOT FOUND/i))) { S.missing = Array.from(new Set([...(S.missing||[]), m[1].toUpperCase()])); S.fittedSeen = true; }
+  if ((m = line.match(/\[wifi\] connected[^0-9]*([0-9.]+)(?:.*RSSI\s*(-?\d+))?/i))) { S.wifi = {ip:m[1], rssi: m[2] ? +m[2] : null, t:Date.now()}; }
+  if (/\[wifi\] disconnected/i.test(line)) S.wifi = {down:true, t:Date.now()};
+  if ((m = line.match(/\[ntp\] synced/i))) S.ntp = true;
+  if (/\[ntp\] failed/i.test(line)) S.ntp = false;
+  if ((m = line.match(/\[config\] publishes to (.+)$/i))) S.broker = m[1].trim();
+  if ((m = line.match(/\[config\] token: \S+ · name: (.+)$/i))) { const nm = m[1].trim(); if (nm && !/^\(?none/i.test(nm)) { d.name = nm; structureDirty = true; } S.token = true; }
+  if (/NO TOKEN SAVED/i.test(line)) S.token = false;
+  if ((m = line.match(/\[mqtt\] connecting to (\S+?):(\d+)\s*(ok|failed)?(?:\s*\(rc=(-?\d+)\))?/i))) { S.mqttHost = m[1] + ':' + m[2]; if (m[3]) S.mqtt = {ok: /ok/i.test(m[3]), rc: m[4] != null ? +m[4] : null, t:Date.now()}; }
+  else if (/^ok\s*$/i.test(line.trim()) && S.mqttHost && !S.mqtt) S.mqtt = {ok:true, t:Date.now()};
+  if ((m = line.match(/failed \(rc=(-?\d+)\)/i))) S.mqtt = {ok:false, rc:+m[1], t:Date.now()};
+  if (/\[mqtt\] published/i.test(line)) { S.pubOk = (S.pubOk || 0) + 1; S.pubLast = Date.now(); S.mqtt = {ok:true, t:Date.now()}; }
+  if (/\[mqtt\] publish failed/i.test(line)) { S.pubFail = (S.pubFail || 0) + 1; }
+  if ((m = line.match(/\[http\] status page on (http:\/\/\S+)/i))) S.statusUrl = m[1];
+  if ((m = line.match(/\[mdns\] (http:\/\/\S+)/i))) S.mdns = m[1];
+
+  // readings
+  if (/^\[read\]/i.test(line) && !/no sensor read/i.test(line)) {
+    const body = line.replace(/^\[read\]\s*/i, '');
+    SENSOR_TOKEN.lastIndex = 0;
+    const marks = []; let mm;
+    while ((mm = SENSOR_TOKEN.exec(body))) marks.push({name: mm[1].toUpperCase().replace('HM3001','HM3301'), at: mm.index});
+    if (marks.length) {                                   // v5: one segment per fitted sensor
+      marks.forEach((mk, i) => {
+        const seg = body.slice(mk.at + mk.name.length, i + 1 < marks.length ? marks[i + 1].at : undefined);
+        const k = kv(seg);
+        if (mk.name === 'BME680') putBME(d, k, false);
+        else if (mk.name === 'HM3301') putPM(d, 'HM3301', k);
+        else { const g = mk.name; putPM(d, g, k); put(d,g,'temp',k.T); put(d,g,'rh',k.RH); put(d,g,'voc',k.VOC); put(d,g,'nox',k.NOX); }
+      });
+      if (!S.fwGuess) S.fwGuess = 'v5';
+    } else {                                              // v3 / v4: everything in one line, validity flags at the end
+      const k = kv(body);
+      const bme = /bme=(\d)/i.exec(body), hm = /hm=(\d)/i.exec(body);
+      if (!bme || bme[1] === '1') putBME(d, k, false);
+      if ((!hm || hm[1] === '1') && isFinite(k.PM10)) putPM(d, 'HM3301', k);
+      if (!S.fwGuess) S.fwGuess = 'v3/v4';
+    }
+    S.reads = (S.reads || 0) + 1; S.lastRead = Date.now();
+  } else if ((m = line.match(/^\[(bme680)\]\s+T=/i))) { putBME(d, kv(line), /kΩ|kohm/i.test(line)); S.reads = (S.reads||0)+1; S.lastRead = Date.now(); }
+  else if ((m = line.match(/^\[(hm3301)\]\s+PM/i))) { putPM(d, 'HM3301', kv(line)); S.reads = (S.reads||0)+1; S.lastRead = Date.now(); }
+}
+
+/* ---------- USB ---------- */
+const hasSerial = 'serial' in navigator;
+const secure = window.isSecureContext;
+let usbCount = 0;
+function serialHint(){
+  const el = document.getElementById('serialhint');
+  const msg = !secure ? t('serial.insecure') : (!hasSerial ? t('serial.no') : '');
+  if (el) el.textContent = msg;
+  const b = document.getElementById('btnusb'); if (b) b.disabled = !(hasSerial && secure);
+  document.querySelectorAll('[data-act="usb"]').forEach(x => x.disabled = !(hasSerial && secure));
+}
+const ports = new Map();   // port → device id
+async function openPort(port){
+  if (ports.has(port)) return;
+  const info = (port.getInfo && port.getInfo()) || {};
+  const id = 'usb-' + (++usbCount);
+  const d = dev(id, {layer:'usb', name:'USB ' + usbCount, sub: info.usbVendorId ? ('VID ' + info.usbVendorId.toString(16).padStart(4,'0') + ' · PID ' + (info.usbProductId||0).toString(16).padStart(4,'0')) : 'serial', kind:'board'});
+  d.port = port; ports.set(port, id);
+  try { await port.open({baudRate:115200, bufferSize:8192}); }
+  catch(e){ d.status.err = String(e.message || e); renderAll(); return; }
+  d.status.open = true; renderAll();
+  readLoop(port, d);
+}
+async function readLoop(port, d){
+  const dec = new TextDecoder(); let buf = '';
+  while (port.readable && d.status.open) {
+    let reader;
+    try {
+      reader = port.readable.getReader(); d.reader = reader;
+      while (true) {
+        const {value, done} = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, {stream:true});
+        let i; while ((i = buf.indexOf('\n')) >= 0) { parseLine(d, buf.slice(0, i)); buf = buf.slice(i + 1); }
+        if (buf.length > 4096) buf = buf.slice(-1024);
+        scheduleRender();
+      }
+    } catch(e){ d.status.err = String(e.message || e); }
+    finally { try { reader && reader.releaseLock(); } catch(e){} }
+    if (!d.status.open) break;
+    await new Promise(r => setTimeout(r, 300));
+  }
+}
+async function closeDevice(d){
+  d.status.open = false;
+  try { d.reader && await d.reader.cancel(); } catch(e){}
+  try { d.port && await d.port.close(); } catch(e){}
+  if (d.port) ports.delete(d.port);
+  devices.delete(d.id); structureDirty = true; renderAll(); renderNet();
+}
+async function restartBoard(d){
+  // the classic auto-reset: EN low through RTS, then released, with DTR high so it does not stop in the bootloader
+  try {
+    await d.port.setSignals({dataTerminalReady:false, requestToSend:true});
+    await new Promise(r => setTimeout(r, 120));
+    await d.port.setSignals({dataTerminalReady:false, requestToSend:false});
+    d.log.push('— restart sent from the bench —');
+  } catch(e){ d.log.push('— this board does not take a reset over USB: press its RST button —'); }
+  renderAll();
+}
+if (hasSerial) {
+  navigator.serial.addEventListener('connect', e => { openPort(e.target || e.port).catch(()=>{}); });
+  navigator.serial.addEventListener('disconnect', e => {
+    const p = e.target || e.port; const id = ports.get(p); const d = id && devices.get(id);
+    if (d) { d.status.open = false; d.status.unplugged = Date.now(); ports.delete(p); renderAll(); }
+  });
+}
+async function connectUSB(){
+  if (!(hasSerial && secure)) { serialHint(); return; }
+  try { const p = await navigator.serial.requestPort({}); await openPort(p); } catch(e){ /* the person closed the picker */ }
+}
+
+/* ---------- a PLANETAI node ---------- */
+const node = {url: store.get('bench-node-url', ''), tok: '', on:false, err:'', info:null, timer:null, same:false};
+try { node.tok = sessionStorage.getItem('bench-node-tok') || ''; } catch(e){}
+function nodeHeaders(){ return node.tok ? {Authorization: 'Bearer ' + node.tok} : {}; }
+async function nget(path){
+  const base = node.url.replace(/\/+$/, '');
+  const r = await fetch(base + path, {headers: nodeHeaders(), cache:'no-store'});
+  if (r.status === 403 || r.status === 401) { const e = new Error('403'); e.code = 403; throw e; }
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+function srcLayer(row){
+  const s = String(row.source || '').toLowerCase(), k = String(row.kind || '').toLowerCase(), id = String(row.sensor_id || '');
+  if (s === 'meshtastic' || id.startsWith('msh-')) return 'mesh';
+  if (s === 'smartcitizen-direct' || s === 'mqtt' || id.startsWith('sck-') || id.startsWith('pod-')) return 'wifi';
+  if (s === 'smartcitizen' || s === 'smart citizen') return 'cloud';
+  if (/airgradient|purpleair|xiaomi|homeassistant|ha|local/.test(s) && row.local) return 'lan';
+  if (row.custody && row.local) return 'lan';
+  return 'public';
+}
+async function pollNode(){
+  if (!node.on) return;
+  try {
+    const health = await nget('/health');
+    node.info = health; node.err = '';
+    const nd = dev('node', {layer:'node', name: health.node || 'node', sub: 'PLANETAI ' + (health.version || ''), kind:'node'});
+    nd.status.health = health; nd.seen = Date.now();
+    let sensors = [];
+    try { sensors = await nget('/sensors'); } catch(e){ if (e.code === 403) node.err = t('node.err.403'); }
+    let readings = [];
+    try { readings = await nget('/readings?limit=2000'); } catch(e){ if (e.code === 403) node.err = t('node.err.403'); }
+    const latest = {};
+    for (const r of readings) { const key = r.sensor_id + '|' + r.metric; if (!latest[key]) latest[key] = r; }
+    const seenIds = new Set();
+    for (const s of (Array.isArray(sensors) ? sensors : [])) {
+      const id = 'n:' + s.sensor_id; seenIds.add(id);
+      const layer = srcLayer(s);
+      const d = dev(id, {layer, name: s.name || s.sensor_id, sub: (s.source || '') + (s.cadence ? ' · ' + s.cadence : ''), place: s.indoor ? 'indoor' : 'outdoor', kind:'sensor', hub: layer === 'mesh' ? (s.meta && s.meta.gateway) || 'gateway' : null});
+      d.row = s;
+      for (const key in latest) {
+        const r = latest[key]; if (r.sensor_id !== s.sensor_id) continue;
+        const mk = NODE_METRIC[r.metric]; if (!mk) continue;
+        const ts = Date.parse(r.ts) || Date.now();
+        const g = d.sensors.node || {}; const prev = g[mk];
+        if (prev && prev.t === ts) continue;               // nothing new since the last poll
+        put(d, 'node', mk, r.metric === 'pressure_hpa' ? r.value / 10 : r.value, ts);
+      }
+    }
+    try { const nn = await nget('/nodes'); (nn.nodes || []).forEach(p => { if (p && p.name && p.name !== health.node) { dev('peer:' + p.name, {layer:'peers', name:p.name, sub:(p.city || p.place || '') , kind:'node'}).seen = Date.now(); } }); } catch(e){}
+    for (const [id, d] of devices) if (id.startsWith('n:') && !seenIds.has(id) && !d.demo) devices.delete(id);
+  } catch(e){
+    node.err = e.code === 403 ? t('node.err.403') : t('node.err.cors');
+  }
+  nodeStateLabel(); structureDirty = true; renderLayers(); renderAll(); renderNet();
+}
+function nodeStateLabel(){
+  const el = document.getElementById('nodestate'); if (!el) return;
+  el.textContent = !node.on ? '· ' + t('node.none') : (node.err ? '· !' : '· ' + ((node.info && node.info.node) || '…'));
+  const b = document.getElementById('banner');
+  if (node.on && node.err) { b.textContent = node.err; b.classList.add('show'); } else b.classList.remove('show');
+}
+function startNode(url, tok){
+  node.url = url; node.tok = tok || ''; node.on = !!url;
+  store.set('bench-node-url', url); try { sessionStorage.setItem('bench-node-tok', node.tok); } catch(e){}
+  clearInterval(node.timer);
+  if (node.on) { pollNode(); node.timer = setInterval(pollNode, 15000); }
+  nodeStateLabel();
+}
+function stopNode(){
+  node.on = false; clearInterval(node.timer);
+  for (const id of Array.from(devices.keys())) if ((id === 'node' || id.startsWith('n:') || id.startsWith('peer:')) && !devices.get(id).demo) devices.delete(id);
+  structureDirty = true; nodeStateLabel(); renderLayers(); renderAll(); renderNet();
+}
+// Served by a node? Its /health answers on this origin.
+async function detectNode(){
+  if (!/^https?:$/.test(location.protocol)) return;
+  try {
+    const r = await fetch('/health', {cache:'no-store'});
+    if (!r.ok) return;
+    const j = await r.json();
+    if (j && j.node && j.version) { node.same = true; startNode(location.origin, node.tok); }
+  } catch(e){}
+}
+
+/* ---------- demo: two Bayu sensors on USB and a small node, every one labelled ---------- */
+let demoTimer = null;
+function demoOn(){
+  const btn = document.getElementById('btndemo'); btn.setAttribute('aria-pressed','true');
+  const a = dev('demo-a', {layer:'usb', name:'Bayu · Banjar Kelod', sub:'DEMO · XIAO ESP32-S3 · HM3301 + BME680', demo:true, kind:'board', place:'outdoor'});
+  const b = dev('demo-b', {layer:'usb', name:'Bayu SENX · kitchen', sub:'DEMO · ESP32-C3 · SEN55', demo:true, kind:'board', place:'indoor'});
+  ['=== Making Sense Bali — DIY Node v5 (HM3301 / SEN5x / BME680, auto-detected) ===','[sensors] fitted: HM3301, BME680','[wifi] connected — IP 192.168.4.31 · RSSI -61 dBm','[ntp] synced — unix 1792160000','[config] publishes to the node at bayu-ungasan.local:1883','[mqtt] connecting to bayu-ungasan.local:1883 ok'].forEach(l => parseLine(a, l));
+  ['=== Making Sense Bali — DIY Node v5 (HM3301 / SEN5x / BME680, auto-detected) ===','[sensors] fitted: SEN55','[wifi] connected — IP 192.168.4.44 · RSSI -48 dBm','[ntp] synced — unix 1792160000','[config] publishes to mqtt.smartcitizen.me:8883','[mqtt] connecting to mqtt.smartcitizen.me:8883 ok'].forEach(l => parseLine(b, l));
+  const n = dev('demo-node', {layer:'node', name:'bayu-ungasan', sub:'DEMO · PLANETAI', demo:true, kind:'node'});
+  const sensors = [
+    ['demo-mesh1','mesh','Subak edge','meshtastic · Tracker L1 + BME680','outdoor'],
+    ['demo-mesh2','mesh','Warung roof','meshtastic · XIAO + BME680','outdoor'],
+    ['demo-wifi1','wifi','Bayu · school','smartcitizen-direct · v5','outdoor'],
+    ['demo-lan1','lan','living room','airgradient · ONE','indoor'],
+    ['demo-cloud1','cloud','SCK 2.1 · Sanur','smartcitizen','outdoor'],
+    ['demo-pub1','public','Denpasar station','nearby · Bali Air Dispatch','outdoor'],
+    ['demo-pub2','public','satellite air model','model · CAMS','outdoor']];
+  sensors.forEach(([id, layer, name, sub, place]) => dev(id, {layer, name, sub:'DEMO · ' + sub, demo:true, place, kind:'sensor', hub: layer === 'mesh' ? 'gateway' : null}));
+  dev('demo-peer1', {layer:'peers', name:'menorca', sub:'DEMO · node #02', demo:true, kind:'node'});
+  dev('demo-peer2', {layer:'peers', name:'dieznode', sub:'DEMO · node #03', demo:true, kind:'node'});
+  let k = 0; const base = {pm25:14, t:29.5, rh:72};
+  const tick = () => {
+    k++;
+    const drift = Math.sin(k / 9) * 6 + (k % 23 === 0 ? 30 : 0);
+    const pm25 = Math.max(1, base.pm25 + drift + (Math.random() - .5) * 4);
+    parseLine(a, `[read]  HM3301 PM1=${Math.round(pm25*.7)} PM2.5=${Math.round(pm25)} PM10=${Math.round(pm25*1.35)}  BME680 T=${(base.t + Math.sin(k/14)).toFixed(2)} RH=${(base.rh + Math.cos(k/11)*4).toFixed(2)} P=${(100.9 + Math.sin(k/30)*.08).toFixed(3)} Gas=${Math.round(52000 + Math.sin(k/7)*9000)} IAQ~${Math.round(48 + Math.sin(k/7)*20)}`);
+    parseLine(a, '[mqtt] published (212 bytes): {…}');
+    parseLine(b, `[read]  SEN55 PM2.5=${(8 + Math.sin(k/5)*3 + (k%17===0?40:0)).toFixed(1)} PM10=${(10 + Math.sin(k/5)*3).toFixed(1)} T=${(27.2 + Math.sin(k/20)*.6).toFixed(2)} RH=${(64 + Math.sin(k/13)*3).toFixed(1)} VOC=${Math.round(110 + Math.sin(k/6)*60)} NOx=${Math.max(1,Math.round(1 + Math.sin(k/8)*3 + (k%17===0?40:0)))}`);
+    parseLine(b, '[mqtt] published (318 bytes): {…}');
+    const now = Date.now();
+    if (k % 2 === 0) {
+      put(devices.get('demo-mesh1'), 'node', 'temp', 30.4 + Math.sin(k/9)); put(devices.get('demo-mesh1'), 'node', 'rh', 78); put(devices.get('demo-mesh1'), 'node', 'battery', 86);
+      put(devices.get('demo-mesh2'), 'node', 'temp', 31.1 + Math.sin(k/8)*.5); put(devices.get('demo-mesh2'), 'node', 'pressure', 100.7);
+      put(devices.get('demo-wifi1'), 'node', 'pm25', 19 + Math.sin(k/6)*5); put(devices.get('demo-wifi1'), 'node', 'pm10', 26 + Math.sin(k/6)*6); put(devices.get('demo-wifi1'), 'node', 'temp', 29.8);
+      put(devices.get('demo-lan1'), 'node', 'pm25', 6 + Math.sin(k/4)); put(devices.get('demo-lan1'), 'node', 'co2', 640 + Math.sin(k/10)*120);
+    }
+    if (k % 6 === 0) { put(devices.get('demo-cloud1'), 'node', 'pm25', 22 + Math.sin(k/20)*4); put(devices.get('demo-pub1'), 'node', 'pm25', 28); put(devices.get('demo-pub2'), 'node', 'pm25', 24); n.seen = now; devices.get('demo-peer1').seen = now; devices.get('demo-peer2').seen = now; }
+    scheduleRender();
+  };
+  tick(); demoTimer = setInterval(tick, 3000);
+  structureDirty = true; renderLayers(); renderAll(); renderNet();
+}
+function demoOff(){
+  clearInterval(demoTimer); demoTimer = null;
+  document.getElementById('btndemo').setAttribute('aria-pressed','false');
+  for (const [id, d] of Array.from(devices)) if (d.demo) devices.delete(id);
+  structureDirty = true; renderLayers(); renderAll(); renderNet();
+}
+
+/* ---------- replay a saved serial log ---------- */
+let replayN = 0;
+document.getElementById('filelog').addEventListener('change', async e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  const text = await f.text(); e.target.value = '';
+  const lines = text.split(/\n/);
+  const d = dev('replay-' + (++replayN), {layer:'usb', name:f.name.replace(/\.(txt|log)$/i, ''), sub: t('replay') + ' · ' + lines.length + ' lines', replay:true, kind:'board'});
+  let i = 0;
+  const step = () => {
+    if (!devices.has(d.id)) return;
+    for (let n = 0; n < 4 && i < lines.length; n++, i++) parseLine(d, lines[i]);
+    scheduleRender();
+    if (i < lines.length) setTimeout(step, 250);
+  };
+  step(); renderLayers();
+});
+
+/* ---------- rendering the bench ---------- */
+const grid = document.getElementById('grid');
+const cardEls = new Map();   // id → {el, tiles: Map(key → tile)}
+function visible(d){
+  if (!layerOn[d.layer]) return false;
+  if (d.place === 'indoor' && !placeOn.indoor) return false;
+  if (d.place === 'outdoor' && !placeOn.outdoor) return false;
+  return true;
+}
+function ago(ts){
+  if (!ts) return t('never');
+  const s = Math.max(0, (Date.now() - ts) / 1000);
+  if (s < 90) return Math.round(s) + ' ' + t('ago.s');
+  if (s < 5400) return Math.round(s / 60) + ' ' + t('ago.m');
+  return Math.round(s / 3600) + ' ' + t('ago.h');
+}
+function dur(ts){ const s = Math.max(0, (Date.now() - ts) / 1000); return s < 5400 ? Math.round(s / 60) + ' min' : Math.round(s / 3600) + ' h'; }
+function fmt(metric, v){
+  const M = MET[metric] || {}; const x = v * (M.scale || 1);
+  const dp = M.dp != null ? M.dp : (Math.abs(x) < 10 ? 1 : 0);
+  return x.toLocaleString(LANG === 'en' ? 'en' : LANG, {maximumFractionDigits: dp, minimumFractionDigits: 0});
+}
+// tile layout for a group of metrics: PM metrics share one wide tile, the rest one each
+function tilesFor(groupName, g){
+  const out = []; const pmKeys = ['pm1','pm25','pm4','pm10'].filter(k => g[k]);
+  if (pmKeys.length) out.push({key: groupName + ':pm', kind:'pm', metrics: pmKeys, group: groupName, wide:true});
+  for (const k of Object.keys(g)) if (!pmKeys.includes(k)) out.push({key: groupName + ':' + k, kind: (MET[k] || {}).kind || 'other', metrics:[k], group: groupName});
+  return out;
+}
+function checksFor(d){
+  if (d.layer !== 'usb') return [];
+  const S = d.status, out = [];
+  const add = (cls, label, text) => out.push({cls, label, text});
+  if (!S.lines) add('warn', t('c.board'), t('c.board.no'));
+  else add('ok', t('c.board'), (S.lines) + ' lines' + (S.err ? ' · ' + S.err : ''));
+  if (S.fw || S.fwGuess) add('ok', t('c.fw'), (S.fw || S.fwGuess));
+  const groups = Object.keys(d.sensors);
+  if (S.fittedSeen) {
+    const f = S.fitted || [];
+    add(f.length ? 'ok' : 'bad', t('c.fitted'), f.length ? f.join(', ') + (S.missing && S.missing.length ? ' · missing ' + S.missing.join(', ') : '') : t('c.fitted.none'));
+  } else if (groups.length) add('ok', t('c.fitted'), groups.join(', '));
+  if (S.lost) for (const n in S.lost) add('bad', n, t('c.lost'));
+  if (S.wifi) add(S.wifi.down ? 'warn' : 'ok', t('c.wifi'), S.wifi.down ? '—' : S.wifi.ip + (S.wifi.rssi != null ? ' · ' + S.wifi.rssi + ' dBm' : '') + (S.statusUrl ? ' · ' + S.statusUrl : ''));
+  else if (S.portal) add('warn', t('c.wifi'), t('c.wifi.no'));
+  else if (/^v/.test(S.fw || S.fwGuess || '') && !S.bootSeen) add('idle', t('c.wifi'), t('c.boot'));
+  if (S.ntp === true) add('ok', t('c.time'), 'NTP');
+  else if (S.ntp === false) add('warn', t('c.time'), t('c.time.no'));
+  if (S.token === false) add('bad', t('c.pub'), t('c.notoken'));
+  if (S.mqtt || S.pubOk || S.pubFail) {
+    const where = S.broker || S.mqttHost || '';
+    if (S.mqtt && S.mqtt.ok === false) add('bad', t('c.pub'), t('c.pub.fail') + (S.mqtt.rc != null ? ' rc=' + S.mqtt.rc + ' (' + rcText(S.mqtt.rc) + ')' : '') + (where ? ' · ' + where : ''));
+    else add('ok', t('c.pub'), (S.pubOk || 0) + ' ' + t('c.pub.ok') + (S.pubFail ? ', ' + S.pubFail + ' ' + t('c.pub.fail') : '') + (where ? ' · ' + where : ''));
+  }
+  for (const gname of groups) {
+    const g = d.sensors[gname];
+    if (/HM3301/.test(gname) && g.pm25 && g.pm25.zeros >= 3 && g.pm10 && g.pm10.zeros >= 3) add('bad', gname, t('c.pm0'));
+    for (const mk in g) { const M = MET[mk]; if (M && M.range && (g[mk].v < M.range[0] || g[mk].v > M.range[1])) add('bad', gname + ' ' + M.lab, fmt(mk, g[mk].v) + ' ' + M.unit + ' — ' + t('c.range')); }
+    if (gname === 'BME680' && g.gas && (Date.now() - d.created) < 30 * 60e3) add('warn', 'BME680 Gas', t('c.gas'));
+  }
+  return out;
+}
+function rcText(rc){
+  return ({'-4':'timeout','-3':'connection lost','-2':'cannot reach the broker','-1':'disconnected','1':'bad protocol','2':'client id refused','3':'broker unavailable','4':'wrong user or password','5':'not authorised: user or password'})[String(rc)] || '?';
+}
+function chipsFor(d){
+  const out = [];
+  const age = d.seen ? (Date.now() - d.seen) / 1000 : null;
+  if (d.demo) out.push(['warn', t('demo')]);
+  if (d.replay) out.push(['warn', t('replay')]);
+  out.push([d.layer === 'usb' ? 'ok' : 'idle', t('L.' + d.layer)]);
+  if (d.place) out.push(['idle', t('L.' + d.place)]);
+  if (d.layer === 'usb' && !d.demo && !d.replay) out.push([d.status.open ? 'ok' : 'bad', d.status.open ? 'port open' : 'unplugged']);
+  out.push([age == null ? 'idle' : (age < 180 ? 'ok' : (age < 900 ? 'warn' : 'bad')), ago(d.seen)]);
+  return out;
+}
+function buildCard(d){
+  const el = document.createElement('article'); el.className = 'card'; el.dataset.id = d.id;
+  el.innerHTML = `<header><div><h3></h3><div class="sub"></div></div><div class="hdr-r"></div></header><div class="chips"></div><div class="tiles"></div><div class="checks"></div>
+    <details class="console"><summary>serial / log</summary><pre></pre></details><div class="cardfoot"></div>`;
+  const foot = el.querySelector('.cardfoot');
+  if (d.layer === 'usb' && d.port) {
+    const r = document.createElement('button'); r.className = 'btn small'; r.type = 'button'; r.textContent = t('btn.restart'); r.onclick = () => restartBoard(d); foot.appendChild(r);
+  }
+  if (d.layer === 'usb' && (d.port || d.replay)) {
+    const x = document.createElement('button'); x.className = 'btn small'; x.type = 'button'; x.textContent = t('btn.forget'); x.onclick = () => closeDevice(d); foot.appendChild(x);
+  }
+  if (!foot.children.length) foot.remove();
+  const c = {el, tiles:new Map()};
+  cardEls.set(d.id, c); return c;
+}
+function buildTile(spec){
+  const el = document.createElement('div'); el.className = 'tile' + (spec.wide ? ' wide' : '');
+  el.innerHTML = `<canvas aria-hidden="true"></canvas><div class="lab"><span class="name"></span><span class="grp"></span></div><div class="val"></div><div class="extra"></div><div class="tfoot"></div>`;
+  const tile = {el, spec, canvas: el.querySelector('canvas'), anim: makeAnim(spec.kind), lastPulse: 0};
+  animTiles.add(tile); io && io.observe(el); tile.visible = true;
+  return tile;
+}
+let renderQueued = false;
+function scheduleRender(){ if (!renderQueued) { renderQueued = true; requestAnimationFrame(() => { renderQueued = false; renderAll(); }); } }
+function renderAll(force){
+  const list = Array.from(devices.values()).filter(d => d.kind !== 'node' || d.layer !== 'peers').filter(d => !(d.id === 'node' || d.id === 'demo-node'));
+  const shown = list.filter(visible);
+  document.getElementById('empty').style.display = devices.size ? 'none' : '';
+  // remove cards that are gone or hidden
+  for (const [id, c] of cardEls) if (!devices.has(id) || !visible(devices.get(id)) || force) {
+    c.tiles.forEach(tl => { animTiles.delete(tl); io && io.unobserve(tl.el); }); c.el.remove(); cardEls.delete(id);
+  }
+  // USB first, then the node's devices by layer
+  shown.sort((a, b) => LAYERS.indexOf(a.layer) - LAYERS.indexOf(b.layer) || a.created - b.created);
+  for (const d of shown) {
+    const c = cardEls.get(d.id) || buildCard(d);
+    if (c.el.parentNode !== grid) grid.appendChild(c.el);
+    c.el.classList.toggle('hl', focusId === d.id);
+    c.el.querySelector('h3').textContent = d.name;
+    c.el.querySelector('.sub').textContent = d.sub || '';
+    c.el.querySelector('.chips').innerHTML = chipsFor(d).map(([cls, txt]) => `<span class="chip ${cls}"><i></i>${esc(txt)}</span>`).join('');
+    // tiles
+    const want = [];
+    for (const gname of Object.keys(d.sensors)) want.push(...tilesFor(gname, d.sensors[gname]));
+    const tilesEl = c.el.querySelector('.tiles');
+    for (const spec of want) {
+      let tile = c.tiles.get(spec.key);
+      if (!tile) { tile = buildTile(spec); c.tiles.set(spec.key, tile); tilesEl.appendChild(tile.el); }
+      tile.spec = spec; tile.device = d;
+      fillTile(tile, d.sensors[spec.group]);
+    }
+    tilesEl.style.display = want.length ? '' : 'none';
+    const ch = checksFor(d);
+    c.el.querySelector('.checks').innerHTML = ch.map(x => `<div class="${x.cls}"><span class="mk">${x.cls === 'ok' ? '✓' : (x.cls === 'bad' ? '✕' : '•')}</span><span><b>${esc(x.label)}</b> ${esc(x.text)}</span></div>`).join('');
+    const pre = c.el.querySelector('pre'); const det = c.el.querySelector('details');
+    if (d.log.length) { det.style.display = ''; if (det.open) { pre.textContent = d.log.slice(-120).join('\n'); pre.scrollTop = pre.scrollHeight; } }
+    else det.style.display = 'none';
+  }
+  // keep DOM order = shown order
+  shown.forEach(d => { const c = cardEls.get(d.id); if (c && grid.lastChild !== c.el) grid.appendChild(c.el); });
+  structureDirty = false;
+}
+function fillTile(tile, g){
+  const spec = tile.spec; const el = tile.el;
+  const main = spec.kind === 'pm' ? (g.pm25 ? 'pm25' : spec.metrics[0]) : spec.metrics[0];
+  const m = g[main]; const M = MET[main] || {lab: main, unit:''};
+  el.querySelector('.name').textContent = spec.kind === 'pm' ? t('m.pm') : t(MET[main] ? 'm.' + main : 'm.other');
+  el.querySelector('.grp').textContent = spec.group === 'node' ? '' : spec.group;
+  el.querySelector('.val').innerHTML = m && m.v != null ? `${esc(fmt(main, m.v))}<small>${esc(spec.kind === 'pm' ? 'PM2.5 ' + M.unit : M.unit)}</small>` : '—';
+  let extra = '';
+  if (spec.kind === 'pm') extra = spec.metrics.filter(k => k !== main).map(k => `${MET[k].lab} ${fmt(k, g[k].v)}`).join(' · ');
+  else if (main === 'gas' && g.iaq) extra = '';
+  el.querySelector('.extra').textContent = extra;
+  const stale = m && m.t && (Date.now() - m.t) > 5 * 60e3;
+  el.classList.toggle('stale', !!stale);
+  el.querySelector('.tfoot').textContent = m ? (stale ? t('stale') + ' ' + dur(m.t) : ago(m.t)) + (spec.kind === 'pm' && m.v != null ? ' · ' + t('who') : '') : '';
+  tile.values = {}; spec.metrics.forEach(k => tile.values[k] = g[k] && g[k].v);
+  tile.main = main; tile.pulseAt = m ? m.pulse : 0; tile.hist = m ? m.hist : [];
+}
+
+/* ---------- animations: one loop, every visible tile ---------- */
+const animTiles = new Set();
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+  for (const tl of animTiles) if (tl.el === e.target) tl.visible = e.isIntersecting;
+}), {rootMargin:'80px'}) : null;
+function pmColor(v){ return v <= 15 ? [63,138,91] : v <= 35 ? [196,122,44] : v <= 55 ? [181,83,47] : [138,47,47]; }
+function rgba(c, a){ return `rgba(${c[0]},${c[1]},${c[2]},${a})`; }
+function makeAnim(kind){ return {kind, parts:[], phase:Math.random() * 6, needle:null, level:null}; }
+function fit(cv){
+  const r = cv.getBoundingClientRect(); const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const w = Math.max(1, Math.round(r.width * dpr)), h = Math.max(1, Math.round(r.height * dpr));
+  if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  return {w, h, dpr};
+}
+function spark(ctx, w, h, hist, color, dpr){
+  if (!hist || hist.length < 2) return;
+  let lo = Math.min(...hist), hi = Math.max(...hist); if (hi - lo < 1e-9) { hi = lo + 1; }
+  ctx.beginPath();
+  hist.forEach((v, i) => { const x = w * .06 + (w * .88) * i / (hist.length - 1); const y = h * .92 - (h * .2) * (v - lo) / (hi - lo); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+  ctx.strokeStyle = color; ctx.lineWidth = 1.2 * dpr; ctx.stroke();
+}
+function drawTile(tl, now){
+  const ctx = tl.canvas.getContext('2d'); const {w, h, dpr} = fit(tl.canvas); const A = tl.anim; const v = tl.values || {};
+  ctx.clearRect(0, 0, w, h);
+  const since = Math.max(0, now - (tl.pulseAt || 0)); const pulse = since < 1400 ? 1 - since / 1400 : 0;
+  const stale = tl.el.classList.contains('stale');
+  const k = A.kind;
+  if (k === 'pm') {
+    // the fan pulls air through: particles drift left to right, one size per fraction, as many as the reading
+    const pm25 = v.pm25 != null ? v.pm25 : (v.pm10 || v.pm1 || 0);
+    const col = pmColor(pm25);
+    const target = (key, mult) => v[key] == null ? 0 : Math.min(260, Math.round(mult * Math.log2(1 + v[key]) * 6));
+    const want = {pm1: target('pm1', .9), pm25: target('pm25', 1), pm10: target('pm10', .6)};
+    for (const key of ['pm1','pm25','pm10']) {
+      const have = A.parts.filter(p => p.k === key).length;
+      for (let i = have; i < want[key]; i++) A.parts.push({k:key, x:Math.random() * w, y:Math.random() * h, s:.4 + Math.random() * .8, ph:Math.random() * 6});
+      if (have > want[key]) { let drop = have - want[key]; A.parts = A.parts.filter(p => !(p.k === key && drop-- > 0)); }
+    }
+    const speed = stale ? 0 : (REDUCED ? 0 : 1);
+    for (const p of A.parts) {
+      p.x += (0.35 + p.s * .9) * dpr * speed; p.y += Math.sin(now / 700 + p.ph) * .25 * dpr * speed;
+      if (p.x > w + 4) { p.x = -4; p.y = Math.random() * h; }
+      const r = (p.k === 'pm1' ? 1.1 : p.k === 'pm25' ? 1.9 : 3.0) * dpr;
+      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 6.283);
+      ctx.fillStyle = rgba(stale ? [140,132,117] : col, p.k === 'pm10' ? .28 : p.k === 'pm25' ? .5 : .35); ctx.fill();
+    }
+    // the fan, bottom left
+    if (!stale) { const fx = w * .9, fy = h * .82, fr = 9 * dpr; ctx.save(); ctx.translate(fx, fy); ctx.rotate(REDUCED ? 0 : now / 160);
+      for (let i = 0; i < 4; i++) { ctx.rotate(1.5708); ctx.beginPath(); ctx.ellipse(fr * .45, 0, fr * .45, fr * .18, 0, 0, 6.283); ctx.fillStyle = rgba(col, .35); ctx.fill(); }
+      ctx.restore(); }
+  } else if (k === 'temp') {
+    const T = v.temp; const f = T == null ? 0 : Math.max(0, Math.min(1, (T - 10) / 35));
+    const c = [Math.round(63 + 140 * f), Math.round(138 - 70 * f), Math.round(91 - 50 * f)];
+    const bx = w - 26 * dpr, by = h * .16, bh = h * .62, bw = 8 * dpr;
+    ctx.fillStyle = 'rgba(0,0,0,.06)'; ctx.fillRect(bx, by, bw, bh);
+    const hh = bh * f; ctx.fillStyle = rgba(stale ? [140,132,117] : c, .8); ctx.fillRect(bx, by + bh - hh, bw, hh);
+    ctx.beginPath(); ctx.arc(bx + bw / 2, by + bh + 7 * dpr, 9 * dpr, 0, 6.283); ctx.fill();
+    // heat shimmer rising, stronger when warmer
+    if (!stale && !REDUCED) for (let i = 0; i < 4; i++) {
+      ctx.beginPath(); const x0 = w * (.12 + i * .16);
+      for (let y = h; y > h * .35; y -= 4 * dpr) { const x = x0 + Math.sin(y / (14 * dpr) + now / 500 + i) * (3 + 6 * f) * dpr; y === h ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+      ctx.strokeStyle = rgba(c, .12 + .18 * f); ctx.lineWidth = 1.4 * dpr; ctx.stroke();
+    }
+  } else if (k === 'rh') {
+    const RH = v.rh; const f = RH == null ? 0 : Math.max(0, Math.min(1, RH / 100));
+    A.level = A.level == null ? f : A.level + (f - A.level) * .05;
+    const top = h - h * .78 * A.level;
+    ctx.beginPath(); ctx.moveTo(0, h);
+    for (let x = 0; x <= w; x += 4 * dpr) ctx.lineTo(x, top + Math.sin(x / (22 * dpr) + (REDUCED ? 0 : now / 600)) * 3.5 * dpr);
+    ctx.lineTo(w, h); ctx.closePath(); ctx.fillStyle = stale ? 'rgba(140,132,117,.18)' : 'rgba(91,134,166,.22)'; ctx.fill();
+    if (!stale && !REDUCED) { if (Math.random() < .03 + .05 * f) A.parts.push({x: Math.random() * w, y: 0, s: 1 + Math.random()});
+      A.parts = A.parts.filter(p => (p.y += 1.6 * p.s * dpr) < top);
+      for (const p of A.parts) { ctx.beginPath(); ctx.ellipse(p.x, p.y, 1.4 * dpr, 2.6 * dpr, 0, 0, 6.283); ctx.fillStyle = 'rgba(91,134,166,.5)'; ctx.fill(); } }
+  } else if (k === 'pressure') {
+    const P = v.pressure; const f = P == null ? .5 : Math.max(0, Math.min(1, (P - 95) / 10));
+    const cx = w * .72, cy = h * .78, r = Math.min(w * .3, h * .5);
+    ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI, 0); ctx.strokeStyle = 'rgba(0,0,0,.12)'; ctx.lineWidth = 6 * dpr; ctx.stroke();
+    for (let i = 0; i <= 10; i++) { const a = Math.PI + Math.PI * i / 10; ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r * .82, cy + Math.sin(a) * r * .82); ctx.lineTo(cx + Math.cos(a) * r * .95, cy + Math.sin(a) * r * .95); ctx.strokeStyle = 'rgba(0,0,0,.25)'; ctx.lineWidth = 1 * dpr; ctx.stroke(); }
+    A.needle = A.needle == null ? f : A.needle + (f - A.needle) * .06;
+    const a = Math.PI + Math.PI * (A.needle + (REDUCED || stale ? 0 : Math.sin(now / 300) * .004));
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * r * .9, cy + Math.sin(a) * r * .9); ctx.strokeStyle = stale ? '#8a8475' : '#1e5959'; ctx.lineWidth = 2 * dpr; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, 3.5 * dpr, 0, 6.283); ctx.fillStyle = '#1e5959'; ctx.fill();
+  } else if (k === 'gas' || k === 'iaq' || k === 'voc' || k === 'nox' || k === 'co2') {
+    // wisps: more, darker, faster as the air gets worse. Gas resistance goes the other way (high = clean).
+    let f;
+    if (k === 'gas') f = v.gas == null ? 0 : Math.max(0, Math.min(1, 1 - (Math.log10(Math.max(1000, v.gas)) - 3.7) / 1.6));
+    else if (k === 'co2') f = v.co2 == null ? 0 : Math.max(0, Math.min(1, (v.co2 - 420) / 1600));
+    else if (k === 'nox') f = v.nox == null ? 0 : Math.max(0, Math.min(1, (v.nox - 1) / 150));
+    else { const x = v[k]; f = x == null ? 0 : Math.max(0, Math.min(1, x / 300)); }
+    const col = k === 'co2' ? [91,134,166] : k === 'nox' ? [181,83,47] : [109,90,140];
+    const n = 3 + Math.round(f * 7);
+    for (let i = 0; i < n; i++) {
+      ctx.beginPath(); const y0 = h * (.35 + .6 * i / n);
+      for (let x = 0; x <= w; x += 5 * dpr) { const y = y0 + Math.sin(x / (30 * dpr) + (REDUCED || stale ? 0 : now / (900 - 500 * f)) + i * 1.7) * (5 + 9 * f) * dpr; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.strokeStyle = rgba(stale ? [140,132,117] : col, .08 + .22 * f); ctx.lineWidth = (2 + 4 * f) * dpr; ctx.stroke();
+    }
+  } else if (k === 'battery') {
+    const b = v.battery; const f = b == null ? 0 : Math.max(0, Math.min(1, b / 100));
+    const x = w * .5, y = h * .5, bw = w * .38, bh = h * .2;
+    ctx.strokeStyle = 'rgba(0,0,0,.3)'; ctx.lineWidth = 1.5 * dpr; ctx.strokeRect(x, y, bw, bh); ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.fillRect(x + bw, y + bh * .3, 4 * dpr, bh * .4);
+    ctx.fillStyle = rgba(f > .3 ? [63,138,91] : [181,83,47], .7); ctx.fillRect(x + 2 * dpr, y + 2 * dpr, (bw - 4 * dpr) * f, bh - 4 * dpr);
+  }
+  spark(ctx, w, h, tl.hist, 'rgba(30,89,89,.35)', dpr);
+  if (pulse > 0) { ctx.beginPath(); ctx.arc(w - 14 * dpr, h - 14 * dpr, (4 + 14 * (1 - pulse)) * dpr, 0, 6.283); ctx.strokeStyle = `rgba(30,89,89,${pulse * .6})`; ctx.lineWidth = 2 * dpr; ctx.stroke(); }
+}
+let lastStatic = 0;
+function frame(now){
+  if (VIEW === 'bench') {
+    if (!REDUCED || now - lastStatic > 1000) { for (const tl of animTiles) if (tl.visible) drawTile(tl, now); lastStatic = now; }
+  } else drawPackets(now);
+  requestAnimationFrame(frame);
+}
+setInterval(() => { if (VIEW === 'bench') renderAll(); else renderNet(); }, 5000);   // ages and staleness move on even with nothing new
+
+/* ---------- layers ---------- */
+function renderLayers(){
+  const box = document.getElementById('layers');
+  const counts = {}; LAYERS.forEach(l => counts[l] = 0); let ind = 0, out = 0;
+  for (const d of devices.values()) { counts[d.layer] = (counts[d.layer] || 0) + 1; if (d.place === 'indoor') ind++; if (d.place === 'outdoor') out++; }
+  const L = LAYERS.map(l => `<label class="${counts[l] ? '' : 'empty'}"><input type="checkbox" data-layer="${l}" ${layerOn[l] ? 'checked' : ''}><span class="sw" style="background:${LAYER_COLOR[l]}"></span>${esc(t('L.' + l))} <span class="n">${counts[l]}</span></label>`).join('');
+  const P = ['indoor','outdoor'].map(p => `<label class="${(p === 'indoor' ? ind : out) ? '' : 'empty'}"><input type="checkbox" data-place="${p}" ${placeOn[p] ? 'checked' : ''}>${esc(t('L.' + p))} <span class="n">${p === 'indoor' ? ind : out}</span></label>`).join('');
+  box.innerHTML = L + '<span style="width:10px"></span>' + P;
+  box.querySelectorAll('input[data-layer]').forEach(i => i.onchange = () => { layerOn[i.dataset.layer] = i.checked; store.set('bench-layer-' + i.dataset.layer, i.checked ? '1' : '0'); renderAll(true); renderNet(); });
+  box.querySelectorAll('input[data-place]').forEach(i => i.onchange = () => { placeOn[i.dataset.place] = i.checked; store.set('bench-place-' + i.dataset.place, i.checked ? '1' : '0'); renderAll(true); renderNet(); });
+}
+
+/* ---------- the network view ---------- */
+const svg = document.getElementById('netsvg');
+const NS = 'http://www.w3.org/2000/svg';
+let netPos = new Map();   // id → {x,y,hub:{x,y}, color}
+const packets = [];
+function svgEl(tag, attrs, parent){ const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; }
+function renderNet(){
+  if (!svg) return;
+  const W = svg.clientWidth || 1000, H = svg.clientHeight || 640;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  netPos = new Map();
+  const all = Array.from(devices.values()).filter(visible);
+  const nodeDev = all.find(d => d.layer === 'node');
+  const cx = W * .58, cy = H * .5;
+  const laptop = {x: W * .13, y: H * .5};
+  const gEdges = svgEl('g', {}); const gPk = svgEl('g', {id:'pk'}); const gNodes = svgEl('g', {});
+  // this computer and its USB boards
+  const usb = all.filter(d => d.layer === 'usb');
+  hub(gNodes, laptop.x, laptop.y, t('net.laptop'), '#1e5959', 'rect');
+  usb.forEach((d, i) => {
+    const a = (i - (usb.length - 1) / 2) * 0.55; const r = Math.min(150, H * .26);
+    const p = {x: laptop.x + Math.cos(a) * r * .55 + 30, y: laptop.y + Math.sin(a) * r};
+    if (usb.length === 1) { p.x = laptop.x; p.y = laptop.y - r * .8; }
+    p.y = Math.max(40, Math.min(H - 60, p.y));
+    edge(gEdges, laptop, p, LAYER_COLOR.usb, true);
+    devNode(gNodes, d, p, LAYER_COLOR.usb); netPos.set(d.id, {x:p.x, y:p.y, path:[p, laptop], color:LAYER_COLOR.usb});
+  });
+  if (!nodeDev) {
+    const tx = svgEl('text', {x: cx, y: cy, 'text-anchor':'middle'}, gNodes); tx.textContent = t('net.nonode');
+    svgEl('circle', {cx, cy:cy + 30, r:26, fill:'none', stroke:'rgba(0,0,0,.2)', 'stroke-dasharray':'4 4'}, gNodes);
+  } else {
+    hub(gNodes, cx, cy, nodeDev.name, LAYER_COLOR.node, 'hex');
+    edge(gEdges, laptop, {x:cx, y:cy}, 'rgba(0,0,0,.18)', true);
+    netPos.set(nodeDev.id, {x:cx, y:cy, path:[{x:cx, y:cy}], color:LAYER_COLOR.node});
+    // sectors around the node, one per layer that has devices
+    const sectors = [['mesh', -128], ['wifi', -74], ['lan', -20], ['cloud', 34], ['public', 86], ['peers', 136]];   // this computer sits at 180°
+    const R1 = Math.min(W * .3, H * .38), R2 = R1 * .55;
+    for (const [layer, deg] of sectors) {
+      const ds = all.filter(d => d.layer === layer); if (!ds.length) continue;
+      const a0 = deg * Math.PI / 180; const col = LAYER_COLOR[layer];
+      // an intermediate hub for mesh (the gateway) and cloud (the platform)
+      let via = null;
+      if (layer === 'mesh' || layer === 'cloud') {
+        via = {x: cx + Math.cos(a0) * R2, y: cy + Math.sin(a0) * R2};
+        edge(gEdges, via, {x:cx, y:cy}, col, false);
+        hub(gNodes, via.x, via.y, layer === 'mesh' ? t('net.gateway') : t('net.cloud'), col, layer === 'mesh' ? 'tri' : 'cloud');
+      }
+      const spread = Math.min(0.9, 0.22 * ds.length);
+      ds.forEach((d, i) => {
+        const a = a0 + (ds.length === 1 ? 0 : (i / (ds.length - 1) - .5) * spread * 2);
+        const rr = R1 * (1 + (i % 2) * .12);
+        const p = {x: cx + Math.cos(a) * rr, y: cy + Math.sin(a) * rr};
+        const target = via || {x:cx, y:cy};
+        edge(gEdges, p, target, col, layer === 'mesh');
+        devNode(gNodes, d, p, col);
+        netPos.set(d.id, {x:p.x, y:p.y, path: via ? [p, via, {x:cx, y:cy}] : [p, {x:cx, y:cy}], color:col});
+      });
+    }
+  }
+  document.getElementById('legend').innerHTML = LAYERS.filter(l => all.some(d => d.layer === l)).map(l => `<div><span style="color:${LAYER_COLOR[l]}">●</span> ${esc(t('L.' + l))}</div>`).join('');
+}
+function hub(g, x, y, label, col, shape){
+  const gg = svgEl('g', {class:'hub'}, g);
+  if (shape === 'rect') svgEl('rect', {x:x - 26, y:y - 17, width:52, height:34, rx:5, fill:'#fbf7ee', stroke:col, 'stroke-width':2}, gg);
+  else if (shape === 'hex') { const pts = []; for (let i = 0; i < 6; i++) { const a = Math.PI / 6 + i * Math.PI / 3; pts.push((x + Math.cos(a) * 30) + ',' + (y + Math.sin(a) * 30)); } svgEl('polygon', {points:pts.join(' '), fill:col}, gg); }
+  else if (shape === 'tri') svgEl('polygon', {points:`${x},${y - 16} ${x + 15},${y + 11} ${x - 15},${y + 11}`, fill:'#fbf7ee', stroke:col, 'stroke-width':2}, gg);
+  else svgEl('ellipse', {cx:x, cy:y, rx:24, ry:14, fill:'#fbf7ee', stroke:col, 'stroke-width':2}, gg);
+  const tx = svgEl('text', {x, y: y + (shape === 'hex' ? 46 : 32), 'text-anchor':'middle'}, gg); tx.textContent = label;
+}
+function edge(g, a, b, col, dashed){ svgEl('line', {x1:a.x, y1:a.y, x2:b.x, y2:b.y, stroke:col, 'stroke-opacity':.35, 'stroke-width':1.5, ...(dashed ? {'stroke-dasharray':'3 5'} : {})}, g); }
+function devNode(g, d, p, col){
+  const gg = svgEl('g', {class:'dev', transform:`translate(${p.x},${p.y})`, tabindex:0}, g);
+  const age = d.seen ? (Date.now() - d.seen) / 1000 : 1e9;
+  const live = age < 300;
+  svgEl('circle', {class:'body', r:11, fill: live ? col : '#fbf7ee', stroke:col, 'stroke-width':2, 'fill-opacity': live ? .85 : 1}, gg);
+  if (d.demo || d.replay) svgEl('circle', {r:15, fill:'none', stroke:'#c47a2c', 'stroke-dasharray':'2 3'}, gg);
+  const tx = svgEl('text', {y:26, 'text-anchor':'middle'}, gg); tx.textContent = (d.name || '').slice(0, 26);
+  const pm = Object.values(d.sensors).map(gp => gp.pm25 && gp.pm25.v).find(v => v != null);
+  if (pm != null) { const tv = svgEl('text', {y:40, 'text-anchor':'middle', style:`fill:${rgba(pmColor(pm), 1)}`}, gg); tv.textContent = 'PM2.5 ' + Math.round(pm); }
+  gg.addEventListener('click', () => { focusId = d.id; setView('bench'); const c = cardEls.get(d.id); c && c.el.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'center'}); renderAll(); });
+}
+function netPulse(d){
+  if (VIEW !== 'net' || REDUCED) return;
+  const p = netPos.get(d.id); if (!p || p.path.length < 2) return;
+  packets.push({path:p.path, color:p.color, t0:performance.now(), dur: 900 * (p.path.length - 1)});
+  if (packets.length > 200) packets.shift();
+}
+function drawPackets(now){
+  const g = document.getElementById('pk'); if (!g) return;
+  while (g.firstChild) g.removeChild(g.firstChild);
+  for (let i = packets.length - 1; i >= 0; i--) {
+    const pk = packets[i]; const f = Math.max(0, (now - pk.t0) / pk.dur);   // a frame's timestamp can precede the packet's
+    if (f >= 1) { packets.splice(i, 1); continue; }
+    const seg = Math.min(pk.path.length - 2, Math.floor(f * (pk.path.length - 1))); const lf = f * (pk.path.length - 1) - seg;
+    const a = pk.path[seg], b = pk.path[seg + 1];
+    svgEl('circle', {cx: a.x + (b.x - a.x) * lf, cy: a.y + (b.y - a.y) * lf, r:4, fill:pk.color, 'fill-opacity': 1 - f * .4}, g);
+  }
+}
+window.addEventListener('resize', () => { if (VIEW === 'net') renderNet(); });
+
+/* ---------- views, controls ---------- */
+function setView(v){
+  VIEW = v; store.set('bench-view', v);
+  document.getElementById('viewbench').hidden = v !== 'bench';
+  document.getElementById('viewnet').hidden = v !== 'net';
+  document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v ? 'true' : 'false'));
+  if (v === 'net') renderNet(); else renderAll(true);
+}
+document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => setView(b.dataset.view));
+document.getElementById('btnusb').onclick = connectUSB;
+document.querySelectorAll('[data-act="usb"]').forEach(b => b.onclick = connectUSB);
+document.getElementById('btndemo').onclick = () => demoTimer ? demoOff() : demoOn();
+document.querySelectorAll('[data-act="demo"]').forEach(b => b.onclick = () => demoTimer ? null : demoOn());
+const dlg = document.getElementById('dlgnode');
+document.getElementById('btnnode').onclick = () => {
+  document.getElementById('nodeurl').value = node.url || (node.same ? location.origin : '');
+  document.getElementById('nodetok').value = node.tok || '';
+  document.getElementById('nodeerr').textContent = node.err || '';
+  dlg.showModal ? dlg.showModal() : dlg.setAttribute('open', '');
+};
+document.getElementById('nodego').onclick = () => { const u = document.getElementById('nodeurl').value.trim(); if (u) startNode(/^https?:\/\//.test(u) ? u : 'http://' + u, document.getElementById('nodetok').value.trim()); dlg.close && dlg.close(); };
+document.getElementById('nodeoff').onclick = () => { stopNode(); dlg.close && dlg.close(); };
+document.getElementById('btncsv').onclick = () => {
+  if (!csvRows.length) { alertBanner(t('csv.none')); return; }
+  const lines = ['time,device,layer,sensor,metric,value'].concat(csvRows.map(r => r.map(x => /[",\n]/.test(String(x)) ? '"' + String(x).replace(/"/g, '""') + '"' : x).join(',')));
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'bench-' + new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-') + '.csv'; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+};
+function alertBanner(msg){ const b = document.getElementById('banner'); b.textContent = msg; b.classList.add('show'); setTimeout(() => { if (!(node.on && node.err)) b.classList.remove('show'); }, 4000); }
+document.querySelectorAll('#langtoggle button').forEach(b => b.onclick = () => { LANG = b.dataset.lang; store.set('scb-lang', LANG); applyLang(); });
+grid.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('details.console') && e.target.open) renderAll(); }, true);
+function updateNetState(){ const el = document.getElementById('netstate'); const on = navigator.onLine; el.classList.toggle('off', !on); el.querySelector('span').textContent = on ? t('online') : t('offline'); }
+window.addEventListener('online', updateNetState); window.addEventListener('offline', updateNetState);
+// served by a node, the site's own pages are not next door
+if (!/makingsense|localhost|127\.0\.0\.1|^$/.test(location.hostname)) { const a = document.getElementById('navlive'), f = document.getElementById('navflash'); a.href = 'https://makingsense.fablabbali.com/'; f.href = 'https://makingsense.fablabbali.com/flash/'; }
+
+/* ---------- start ---------- */
+applyLang(); setView(VIEW === 'net' ? 'net' : 'bench');
+if (hasSerial && secure) navigator.serial.getPorts().then(ps => ps.forEach(p => openPort(p).catch(() => {}))).catch(() => {});
+detectNode().then(() => {
+  if (!node.on && node.url && /localhost|127\.0\.0\.1/.test(node.url)) startNode(node.url, node.tok);
+  // offline copy: only the site's /test/ (a directory with sw.js beside it). A node serves /tester and has no sw.js.
+  if (!node.same && 'serviceWorker' in navigator && secure && /^https?:$/.test(location.protocol) && location.pathname.endsWith('/'))
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+});
+requestAnimationFrame(frame);
+window.__bench = {devices, parseLine, dev, put};   // for the tests and for anyone curious in the console
+</script>
+</body>
+</html>
