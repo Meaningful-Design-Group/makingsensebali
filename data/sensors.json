@@ -250,11 +250,11 @@
       "offline": false,
       "lastReading": "2026-10-17T00:07:46.000Z",
       "reading": {
-        "pm25": 25.6,
-        "pm10": 49.0,
-        "temp": 32.5,
-        "rh": 60,
-        "pm25_raw": 39.0
+        "pm25": 21.9,
+        "pm10": 46.0,
+        "temp": 31.6,
+        "rh": 64,
+        "pm25_raw": 36.0
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -302,8 +302,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-204186",
