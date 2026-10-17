@@ -1,7 +1,7 @@
 // sw.js — the sensor bench, offline. Scope is /test/ only, so the site's own sw.js (which answers every navigation
 // with "no connection" when offline) never takes this page. The page is one file: cache it, serve it from the cache,
 // refresh the cache in the background whenever the network answers. Fonts are cached the first time they load.
-const CACHE = 'msb-bench-v1';
+const CACHE = 'msb-bench-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('msb-bench-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
