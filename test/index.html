@@ -234,7 +234,7 @@ const STR = {
   'ago.s':'s ago','ago.m':'min ago','ago.h':'h ago','never':'waiting for the first reading','stale':'no new reading for',
   'c.board':'Board talking','c.board.no':'Nothing from the board yet. Press reset on it, or check the cable is a data cable.',
   'c.fw':'Firmware','c.fitted':'Sensors found','c.fitted.none':'No sensor answered. Only the two I2C sockets on the Grove shield carry the bus; HM3301 and SEN5x need 5 V.',
-  'c.wifi':'WiFi','c.wifi.no':'not connected yet (the setup portal may be open: join MSB-Node-xxxx)','c.boot':'not seen since this page connected: press Restart board to read the boot check','c.time':'Clock','c.time.no':'not synced: readings may be dropped by the platform',
+  'c.wifi':'WiFi','c.wifi.no':'not connected yet (the setup portal may be open: join MSB-Node-xxxx)','c.boot':'not seen since this page connected: press Restart board to read the boot check','c.mesh':'A Meshtastic radio','c.mesh.p':'This board speaks Meshtastic, not the DIY firmware. Its readings travel over LoRa to a gateway, not to this page: see them in the node\'s network view, or in the Meshtastic app.','c.silent':'The program says nothing here','c.silent.p':'The chip boots (its ROM prints), then its program sends nothing over USB. Flashed from makingsense.fablabbali.com/flash before 17 Oct: that build sent its log to the pins, so flash it again. Built in the Arduino IDE: set Tools → USB CDC On Boot: Enabled. Running Meshtastic with its serial console off: this bench reads the DIY firmware. The node may still be measuring and publishing over WiFi.','c.noread':'No reading yet','c.noread.p':'The board is talking but has printed no reading. The DIY firmware reads once a minute; press Restart board to see its boot check.','c.time':'Clock','c.time.no':'not synced: readings may be dropped by the platform',
   'c.pub':'Publishing','c.pub.ok':'sent','c.pub.fail':'failing','c.pm0':'PM reads 0 every time: check 5 V on the Grove socket and that the fan spins.',
   'c.range':'out of a sensible range','c.gas':'The gas reading settles over the first 30 minutes; ignore its first values.',
   'c.notoken':'No token saved: it reads sensors but publishes nothing. Reopen setup to add one.','c.lost':'stopped answering — check its cable',
@@ -259,7 +259,7 @@ const STR = {
   'ago.s':'dtk lalu','ago.m':'mnt lalu','ago.h':'jam lalu','never':'menunggu bacaan pertama','stale':'tidak ada bacaan baru selama',
   'c.board':'Papan bicara','c.board.no':'Belum ada apa pun dari papan. Tekan reset, atau pastikan kabelnya kabel data.',
   'c.fw':'Firmware','c.fitted':'Sensor ditemukan','c.fitted.none':'Tidak ada sensor yang menjawab. Hanya dua soket I2C di Grove shield yang membawa bus; HM3301 dan SEN5x butuh 5 V.',
-  'c.wifi':'WiFi','c.wifi.no':'belum tersambung (portal setup mungkin terbuka: sambungkan ke MSB-Node-xxxx)','c.boot':'belum terlihat sejak halaman ini terhubung: tekan Mulai ulang papan untuk membaca pemeriksaan boot','c.time':'Jam','c.time.no':'belum sinkron: platform bisa membuang bacaan',
+  'c.wifi':'WiFi','c.wifi.no':'belum tersambung (portal setup mungkin terbuka: sambungkan ke MSB-Node-xxxx)','c.boot':'belum terlihat sejak halaman ini terhubung: tekan Mulai ulang papan untuk membaca pemeriksaan boot','c.mesh':'Radio Meshtastic','c.mesh.p':'Papan ini berbicara Meshtastic, bukan firmware DIY. Bacaannya dikirim lewat LoRa ke gateway, bukan ke halaman ini: lihat di tampilan jaringan node, atau di aplikasi Meshtastic.','c.silent':'Programnya diam di sini','c.silent.p':'Chip menyala (ROM-nya mencetak), lalu programnya tidak mengirim apa pun lewat USB. Di-flash dari makingsense.fablabbali.com/flash sebelum 17 Okt: build itu mengirim log ke pin, jadi flash ulang. Dibuat di Arduino IDE: atur Tools → USB CDC On Boot: Enabled. Menjalankan Meshtastic dengan konsol serial mati: meja ini membaca firmware DIY. Node mungkin tetap mengukur dan mengirim lewat WiFi.','c.noread':'Belum ada bacaan','c.noread.p':'Papan bicara tapi belum mencetak bacaan. Firmware DIY membaca sekali semenit; tekan Mulai ulang papan untuk melihat pemeriksaan boot.','c.time':'Jam','c.time.no':'belum sinkron: platform bisa membuang bacaan',
   'c.pub':'Mengirim','c.pub.ok':'terkirim','c.pub.fail':'gagal','c.pm0':'PM selalu 0: periksa 5 V di soket Grove dan pastikan kipasnya berputar.',
   'c.range':'di luar rentang wajar','c.gas':'Bacaan gas stabil setelah 30 menit pertama; abaikan nilai awalnya.',
   'c.notoken':'Belum ada token: ia membaca sensor tapi tidak mengirim apa pun. Buka setup lagi untuk menambahkannya.','c.lost':'berhenti menjawab — periksa kabelnya',
@@ -284,7 +284,7 @@ const STR = {
   'ago.s':'s','ago.m':'min','ago.h':'h','never':'esperando la primera lectura','stale':'sin lectura nueva desde hace',
   'c.board':'La placa habla','c.board.no':'Nada de la placa todavía. Pulsa reset, o comprueba que el cable es de datos.',
   'c.fw':'Firmware','c.fitted':'Sensores encontrados','c.fitted.none':'Ningún sensor respondió. Solo los dos zócalos I2C del Grove shield llevan el bus; HM3301 y SEN5x necesitan 5 V.',
-  'c.wifi':'WiFi','c.wifi.no':'sin conectar (puede estar abierto el portal: únete a MSB-Node-xxxx)','c.boot':'no visto desde que esta página se conectó: pulsa Reiniciar placa para leer la comprobación de arranque','c.time':'Reloj','c.time.no':'sin sincronizar: la plataforma puede descartar lecturas',
+  'c.wifi':'WiFi','c.wifi.no':'sin conectar (puede estar abierto el portal: únete a MSB-Node-xxxx)','c.boot':'no visto desde que esta página se conectó: pulsa Reiniciar placa para leer la comprobación de arranque','c.mesh':'Una radio Meshtastic','c.mesh.p':'Esta placa habla Meshtastic, no el firmware DIY. Sus lecturas viajan por LoRa a un gateway, no a esta página: míralas en la vista de red del nodo, o en la app de Meshtastic.','c.silent':'El programa no dice nada aquí','c.silent.p':'El chip arranca (su ROM imprime) y luego su programa no envía nada por USB. Flasheada desde makingsense.fablabbali.com/flash antes del 17 oct: esa compilación mandaba el log a los pines, así que vuelve a flashearla. Compilada en el IDE de Arduino: pon Tools → USB CDC On Boot: Enabled. Con Meshtastic y su consola serie apagada: este banco lee el firmware DIY. El nodo puede seguir midiendo y publicando por WiFi.','c.noread':'Aún sin lectura','c.noread.p':'La placa habla pero no ha impreso ninguna lectura. El firmware DIY lee una vez por minuto; pulsa Reiniciar placa para ver su comprobación de arranque.','c.time':'Reloj','c.time.no':'sin sincronizar: la plataforma puede descartar lecturas',
   'c.pub':'Publicando','c.pub.ok':'enviadas','c.pub.fail':'fallando','c.pm0':'PM siempre en 0: revisa los 5 V del zócalo Grove y que el ventilador gire.',
   'c.range':'fuera de un rango razonable','c.gas':'La lectura de gas se estabiliza en los primeros 30 minutos; ignora sus primeros valores.',
   'c.notoken':'Sin token guardado: lee sensores pero no publica nada. Vuelve a abrir el setup para añadirlo.','c.lost':'dejó de responder — revisa su cable',
@@ -382,6 +382,13 @@ function parseLine(d, raw){
   d.status.lines = (d.status.lines || 0) + 1; d.status.lastLine = Date.now();
   const S = d.status;
   let m;
+  if (/^(ESP-ROM:|rst:0x|entry 0x|ets [A-Z][a-z]{2} )/.test(line)) {           // the chip's own ROM, before any program runs
+    S.rom = (S.rom || 0) + 1;
+    if (/^ESP-ROM:|^ets /.test(line)) S.entryAt = 0;                       // a new boot: forget the last one
+    if (/^entry 0x/.test(line)) { S.entryAt = Date.now(); S.appAfterEntry = 0; }
+    if ((m = line.match(/^ESP-ROM:(esp32\w*)/))) S.chip = m[1];
+  } else if (S.entryAt) S.appAfterEntry = (S.appAfterEntry || 0) + 1;
+  if (/(INFO|DEBUG|WARN|ERROR)\s+\|\s|\[(Router|RadioIf|SerialConsole|Power|GPS|DeviceTelemetry)\]|Meshtastic|meshtastic/.test(line) && !/Making Sense/.test(line)) S.meshtastic = true;
   if ((m = line.match(/DIY Node (v[0-9.]+)/i))) { S.fw = m[1]; S.bootSeen = true; }
   if (/\[config\] portal opened|portal timed out|\[boot\] reopen-setup|AP name if portal opens/i.test(line) && !S.wifi) S.portal = /portal opened|reopen-setup/i.test(line) || S.portal;
   if (/\[wifi\] connected/i.test(line)) S.portal = false;
@@ -445,15 +452,28 @@ function serialHint(){
   document.querySelectorAll('[data-act="usb"]').forEach(x => x.disabled = !(hasSerial && secure));
 }
 const ports = new Map();   // port → device id
+function usbName(vid, pid){
+  if (!vid) return 'serial';
+  const h = n => (n || 0).toString(16).padStart(4, '0');
+  const known = {'303a:1001':'ESP32-S3/C3 · hardware USB (the ROM and a hwcdc build)', '2886:0056':'Seeed XIAO ESP32-S3 · TinyUSB', '2886:8056':'Seeed XIAO ESP32-S3 · TinyUSB',
+                 '1a86:7523':'CH340 USB-serial', '1a86:55d4':'CH9102 USB-serial', '10c4:ea60':'CP210x USB-serial', '0403:6001':'FTDI USB-serial'};
+  const k = h(vid) + ':' + h(pid);
+  const v = {'2886':'Seeed', '239a':'Adafruit (nRF52 bootloader)', '303a':'Espressif', '1a86':'WCH', '10c4':'Silicon Labs'}[h(vid)];
+  return (known[k] || v || 'USB') + ' · ' + k;
+}
 async function openPort(port){
   if (ports.has(port)) return;
   const info = (port.getInfo && port.getInfo()) || {};
   const id = 'usb-' + (++usbCount);
-  const d = dev(id, {layer:'usb', name:'USB ' + usbCount, sub: info.usbVendorId ? ('VID ' + info.usbVendorId.toString(16).padStart(4,'0') + ' · PID ' + (info.usbProductId||0).toString(16).padStart(4,'0')) : 'serial', kind:'board'});
+  const d = dev(id, {layer:'usb', name:'USB ' + usbCount, sub: usbName(info.usbVendorId, info.usbProductId), kind:'board'});
+  d.status.vid = info.usbVendorId; d.status.pid = info.usbProductId;
   d.port = port; ports.set(port, id);
   try { await port.open({baudRate:115200, bufferSize:8192}); }
   catch(e){ d.status.err = String(e.message || e); renderAll(); return; }
   d.status.open = true; renderAll();
+  // DTR up, RTS down: an Arduino build in TinyUSB mode sends nothing until the host raises DTR, and RTS down keeps
+  // the chip out of reset. On the hardware CDC port this changes nothing that is running.
+  try { await port.setSignals({dataTerminalReady:true, requestToSend:false}); } catch(e){}
   readLoop(port, d);
 }
 async function readLoop(port, d){
@@ -465,6 +485,8 @@ async function readLoop(port, d){
       while (true) {
         const {value, done} = await reader.read();
         if (done) break;
+        d.status.bytes = (d.status.bytes || 0) + value.length;
+        for (let j = 0; j + 1 < value.length; j++) if (value[j] === 0x94 && value[j + 1] === 0xC3) { d.status.meshtastic = true; d.status.meshBinary = true; break; }
         buf += dec.decode(value, {stream:true});
         let i; while ((i = buf.indexOf('\n')) >= 0) { parseLine(d, buf.slice(0, i)); buf = buf.slice(i + 1); }
         if (buf.length > 4096) buf = buf.slice(-1024);
@@ -489,6 +511,9 @@ async function restartBoard(d){
     await d.port.setSignals({dataTerminalReady:false, requestToSend:true});
     await new Promise(r => setTimeout(r, 120));
     await d.port.setSignals({dataTerminalReady:false, requestToSend:false});
+    await new Promise(r => setTimeout(r, 300));
+    await d.port.setSignals({dataTerminalReady:true, requestToSend:false});
+    d.status.entryAt = 0; d.status.appAfterEntry = 0;
     d.log.push('— restart sent from the bench —');
   } catch(e){ d.log.push('— this board does not take a reset over USB: press its RST button —'); }
   renderAll();
@@ -689,7 +714,10 @@ function checksFor(d){
   const S = d.status, out = [];
   const add = (cls, label, text) => out.push({cls, label, text});
   if (!S.lines) add('warn', t('c.board'), t('c.board.no'));
-  else add('ok', t('c.board'), (S.lines) + ' lines' + (S.err ? ' · ' + S.err : ''));
+  else add('ok', t('c.board'), (S.lines) + ' lines' + (S.chip ? ' · ' + S.chip : '') + (S.err ? ' · ' + S.err : ''));
+  if (S.meshtastic) add('warn', t('c.mesh'), t('c.mesh.p'));
+  else if (S.entryAt && !S.appAfterEntry && Date.now() - S.entryAt > 6000) add('bad', t('c.silent'), t('c.silent.p'));
+  else if (S.lines && !S.reads && !S.rom && Date.now() - (d.created || 0) > 75000) add('warn', t('c.noread'), t('c.noread.p'));
   if (S.fw || S.fwGuess) add('ok', t('c.fw'), (S.fw || S.fwGuess));
   const groups = Object.keys(d.sensors);
   if (S.fittedSeen) {

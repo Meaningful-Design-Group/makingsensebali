@@ -9,8 +9,8 @@ name: firmware-build
 #   flash/firmware/diy-node/<ver>/<chip>/*.bin      bootloader, partitions, boot_app0, app (four parts, no padded merged image)
 #   flash/firmware/diy-node/<ver>/SHA256SUMS
 #
-# Board options are the ones hardware/diy-node/firmware/README.md tells the IDE user to set: USB CDC on boot for both
-# boards (or Serial is silent); the min_spiffs partition scheme on the C3, where a 1.35 MB app no longer fits the
+# Board options are the ones hardware/diy-node/firmware/README.md tells the IDE user to set: USB CDC on boot ENABLED for
+# both boards (or Serial is silent; the option's value names differ per board, see the build step); the min_spiffs partition scheme on the C3, where a 1.35 MB app no longer fits the
 # default 1.25 MB slot. The core version is pinned in flash/firmware/VERSIONS. Library versions are pinned here and
 # recorded in the manifest, so a build is reproducible from its manifest alone.
 #
@@ -90,7 +90,11 @@ jobs:
             # The four parts at their offsets are what esptool would write anyway, and a quarter of the download.
             ls -la "$OUT/$TAG/$chip"
           }
-          build esp32s3 "esp32:esp32:XIAO_ESP32S3:CDCOnBoot=cdc"
+          # XIAO_ESP32S3's menu is the inverse of the C3's: there `cdc` means DISABLED (default = Enabled). Until 17 Oct
+          # this line said CDCOnBoot=cdc, and every XIAO flashed from the page sent its log to the pins: the ROM's boot
+          # text reached USB, then silence. hwcdc puts Serial on the same hardware USB port the ROM uses (303a:1001),
+          # so a reset never re-enumerates the port and no host has to raise DTR before the board speaks.
+          build esp32s3 "esp32:esp32:XIAO_ESP32S3:USBMode=hwcdc,CDCOnBoot=default"
           build esp32c3 "esp32:esp32:esp32c3:CDCOnBoot=cdc,PartitionScheme=min_spiffs"
 
       - name: manifest and checksums
