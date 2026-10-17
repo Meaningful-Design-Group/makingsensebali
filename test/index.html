@@ -234,7 +234,7 @@ const STR = {
   'ago.s':'s ago','ago.m':'min ago','ago.h':'h ago','never':'waiting for the first reading','stale':'no new reading for',
   'c.board':'Board talking','c.board.no':'Nothing from the board yet. Press reset on it, or check the cable is a data cable.',
   'c.fw':'Firmware','c.fitted':'Sensors found','c.fitted.none':'No sensor answered. Only the two I2C sockets on the Grove shield carry the bus; HM3301 and SEN5x need 5 V.',
-  'c.wifi':'WiFi','c.wifi.no':'not connected yet (the setup portal may be open: join MSB-Node-xxxx)','c.boot':'not seen since this page connected: press Restart board to read the boot check','c.mesh':'A Meshtastic radio','c.mesh.p':'This board speaks Meshtastic, not the DIY firmware. Its readings travel over LoRa to a gateway, not to this page: see them in the node\'s network view, or in the Meshtastic app.','c.silent':'The program says nothing here','c.silent.p':'The chip boots (its ROM prints), then its program sends nothing over USB. Flashed from makingsense.fablabbali.com/flash before 17 Oct: that build sent its log to the pins, so flash it again. Built in the Arduino IDE: set Tools → USB CDC On Boot: Enabled. Running Meshtastic with its serial console off: this bench reads the DIY firmware. The node may still be measuring and publishing over WiFi.','c.noread':'No reading yet','c.noread.p':'The board is talking but has printed no reading. The DIY firmware reads once a minute; press Restart board to see its boot check.','c.time':'Clock','c.time.no':'not synced: readings may be dropped by the platform',
+  'c.wifi':'WiFi','c.wifi.no':'not connected yet (the setup portal may be open: join MSB-Node-xxxx)','c.boot':'not seen since this page connected: press Restart board to read the boot check','c.mesh':'A Meshtastic radio','c.mesh.p':'This board speaks Meshtastic, not the DIY firmware. The bench is asking it for its node list; if nothing comes, press Read as Meshtastic.','c.silent':'The program says nothing here','c.silent.p':'The chip boots (its ROM prints), then its program sends nothing over USB. Flashed from makingsense.fablabbali.com/flash before 17 Oct: that build sent its log to the pins, so flash it again. Built in the Arduino IDE: set Tools → USB CDC On Boot: Enabled. Running Meshtastic with its serial console off: this bench reads the DIY firmware. The node may still be measuring and publishing over WiFi.','c.noread':'No reading yet','c.noread.p':'The board is talking but has printed no reading. The DIY firmware reads once a minute; press Restart board to see its boot check.','c.mesh.ok':'reading its node list and the mesh live','c.mesh.reading':'asking for its node list…','c.mesh.nodes':'other nodes heard','btn.mesh':'Read as Meshtastic','net.heardby':'heard by','net.direct':'direct','c.time':'Clock','c.time.no':'not synced: readings may be dropped by the platform',
   'c.pub':'Publishing','c.pub.ok':'sent','c.pub.fail':'failing','c.pm0':'PM reads 0 every time: check 5 V on the Grove socket and that the fan spins.',
   'c.range':'out of a sensible range','c.gas':'The gas reading settles over the first 30 minutes; ignore its first values.',
   'c.notoken':'No token saved: it reads sensors but publishes nothing. Reopen setup to add one.','c.lost':'stopped answering — check its cable',
@@ -259,7 +259,7 @@ const STR = {
   'ago.s':'dtk lalu','ago.m':'mnt lalu','ago.h':'jam lalu','never':'menunggu bacaan pertama','stale':'tidak ada bacaan baru selama',
   'c.board':'Papan bicara','c.board.no':'Belum ada apa pun dari papan. Tekan reset, atau pastikan kabelnya kabel data.',
   'c.fw':'Firmware','c.fitted':'Sensor ditemukan','c.fitted.none':'Tidak ada sensor yang menjawab. Hanya dua soket I2C di Grove shield yang membawa bus; HM3301 dan SEN5x butuh 5 V.',
-  'c.wifi':'WiFi','c.wifi.no':'belum tersambung (portal setup mungkin terbuka: sambungkan ke MSB-Node-xxxx)','c.boot':'belum terlihat sejak halaman ini terhubung: tekan Mulai ulang papan untuk membaca pemeriksaan boot','c.mesh':'Radio Meshtastic','c.mesh.p':'Papan ini berbicara Meshtastic, bukan firmware DIY. Bacaannya dikirim lewat LoRa ke gateway, bukan ke halaman ini: lihat di tampilan jaringan node, atau di aplikasi Meshtastic.','c.silent':'Programnya diam di sini','c.silent.p':'Chip menyala (ROM-nya mencetak), lalu programnya tidak mengirim apa pun lewat USB. Di-flash dari makingsense.fablabbali.com/flash sebelum 17 Okt: build itu mengirim log ke pin, jadi flash ulang. Dibuat di Arduino IDE: atur Tools → USB CDC On Boot: Enabled. Menjalankan Meshtastic dengan konsol serial mati: meja ini membaca firmware DIY. Node mungkin tetap mengukur dan mengirim lewat WiFi.','c.noread':'Belum ada bacaan','c.noread.p':'Papan bicara tapi belum mencetak bacaan. Firmware DIY membaca sekali semenit; tekan Mulai ulang papan untuk melihat pemeriksaan boot.','c.time':'Jam','c.time.no':'belum sinkron: platform bisa membuang bacaan',
+  'c.wifi':'WiFi','c.wifi.no':'belum tersambung (portal setup mungkin terbuka: sambungkan ke MSB-Node-xxxx)','c.boot':'belum terlihat sejak halaman ini terhubung: tekan Mulai ulang papan untuk membaca pemeriksaan boot','c.mesh':'Radio Meshtastic','c.mesh.p':'Papan ini berbicara Meshtastic, bukan firmware DIY. Meja uji sedang meminta daftar node-nya; jika tidak ada yang datang, tekan Baca sebagai Meshtastic.','c.silent':'Programnya diam di sini','c.silent.p':'Chip menyala (ROM-nya mencetak), lalu programnya tidak mengirim apa pun lewat USB. Di-flash dari makingsense.fablabbali.com/flash sebelum 17 Okt: build itu mengirim log ke pin, jadi flash ulang. Dibuat di Arduino IDE: atur Tools → USB CDC On Boot: Enabled. Menjalankan Meshtastic dengan konsol serial mati: meja ini membaca firmware DIY. Node mungkin tetap mengukur dan mengirim lewat WiFi.','c.noread':'Belum ada bacaan','c.noread.p':'Papan bicara tapi belum mencetak bacaan. Firmware DIY membaca sekali semenit; tekan Mulai ulang papan untuk melihat pemeriksaan boot.','c.mesh.ok':'membaca daftar node dan mesh secara langsung','c.mesh.reading':'meminta daftar node…','c.mesh.nodes':'node lain terdengar','btn.mesh':'Baca sebagai Meshtastic','net.heardby':'didengar oleh','net.direct':'langsung','c.time':'Jam','c.time.no':'belum sinkron: platform bisa membuang bacaan',
   'c.pub':'Mengirim','c.pub.ok':'terkirim','c.pub.fail':'gagal','c.pm0':'PM selalu 0: periksa 5 V di soket Grove dan pastikan kipasnya berputar.',
   'c.range':'di luar rentang wajar','c.gas':'Bacaan gas stabil setelah 30 menit pertama; abaikan nilai awalnya.',
   'c.notoken':'Belum ada token: ia membaca sensor tapi tidak mengirim apa pun. Buka setup lagi untuk menambahkannya.','c.lost':'berhenti menjawab — periksa kabelnya',
@@ -284,7 +284,7 @@ const STR = {
   'ago.s':'s','ago.m':'min','ago.h':'h','never':'esperando la primera lectura','stale':'sin lectura nueva desde hace',
   'c.board':'La placa habla','c.board.no':'Nada de la placa todavía. Pulsa reset, o comprueba que el cable es de datos.',
   'c.fw':'Firmware','c.fitted':'Sensores encontrados','c.fitted.none':'Ningún sensor respondió. Solo los dos zócalos I2C del Grove shield llevan el bus; HM3301 y SEN5x necesitan 5 V.',
-  'c.wifi':'WiFi','c.wifi.no':'sin conectar (puede estar abierto el portal: únete a MSB-Node-xxxx)','c.boot':'no visto desde que esta página se conectó: pulsa Reiniciar placa para leer la comprobación de arranque','c.mesh':'Una radio Meshtastic','c.mesh.p':'Esta placa habla Meshtastic, no el firmware DIY. Sus lecturas viajan por LoRa a un gateway, no a esta página: míralas en la vista de red del nodo, o en la app de Meshtastic.','c.silent':'El programa no dice nada aquí','c.silent.p':'El chip arranca (su ROM imprime) y luego su programa no envía nada por USB. Flasheada desde makingsense.fablabbali.com/flash antes del 17 oct: esa compilación mandaba el log a los pines, así que vuelve a flashearla. Compilada en el IDE de Arduino: pon Tools → USB CDC On Boot: Enabled. Con Meshtastic y su consola serie apagada: este banco lee el firmware DIY. El nodo puede seguir midiendo y publicando por WiFi.','c.noread':'Aún sin lectura','c.noread.p':'La placa habla pero no ha impreso ninguna lectura. El firmware DIY lee una vez por minuto; pulsa Reiniciar placa para ver su comprobación de arranque.','c.time':'Reloj','c.time.no':'sin sincronizar: la plataforma puede descartar lecturas',
+  'c.wifi':'WiFi','c.wifi.no':'sin conectar (puede estar abierto el portal: únete a MSB-Node-xxxx)','c.boot':'no visto desde que esta página se conectó: pulsa Reiniciar placa para leer la comprobación de arranque','c.mesh':'Una radio Meshtastic','c.mesh.p':'Esta placa habla Meshtastic, no el firmware DIY. El banco le está pidiendo su lista de nodos; si no llega nada, pulsa Leer como Meshtastic.','c.silent':'El programa no dice nada aquí','c.silent.p':'El chip arranca (su ROM imprime) y luego su programa no envía nada por USB. Flasheada desde makingsense.fablabbali.com/flash antes del 17 oct: esa compilación mandaba el log a los pines, así que vuelve a flashearla. Compilada en el IDE de Arduino: pon Tools → USB CDC On Boot: Enabled. Con Meshtastic y su consola serie apagada: este banco lee el firmware DIY. El nodo puede seguir midiendo y publicando por WiFi.','c.noread':'Aún sin lectura','c.noread.p':'La placa habla pero no ha impreso ninguna lectura. El firmware DIY lee una vez por minuto; pulsa Reiniciar placa para ver su comprobación de arranque.','c.mesh.ok':'leyendo su lista de nodos y la malla en vivo','c.mesh.reading':'pidiendo su lista de nodos…','c.mesh.nodes':'otros nodos oídos','btn.mesh':'Leer como Meshtastic','net.heardby':'oído por','net.direct':'directo','c.time':'Reloj','c.time.no':'sin sincronizar: la plataforma puede descartar lecturas',
   'c.pub':'Publicando','c.pub.ok':'enviadas','c.pub.fail':'fallando','c.pm0':'PM siempre en 0: revisa los 5 V del zócalo Grove y que el ventilador gire.',
   'c.range':'fuera de un rango razonable','c.gas':'La lectura de gas se estabiliza en los primeros 30 minutos; ignora sus primeros valores.',
   'c.notoken':'Sin token guardado: lee sensores pero no publica nada. Vuelve a abrir el setup para añadirlo.','c.lost':'dejó de responder — revisa su cable',
@@ -440,6 +440,106 @@ function parseLine(d, raw){
   else if ((m = line.match(/^\[(hm3301)\]\s+PM/i))) { putPM(d, 'HM3301', kv(line)); S.reads = (S.reads||0)+1; S.lastRead = Date.now(); }
 }
 
+/* ---------- Meshtastic over USB ----------
+   A radio speaks its API in frames: 0x94 0xC3, a 2-byte length, then a FromRadio protobuf. Asked with ToRadio
+   {want_config_id}, it sends who it is (my_info), every node it has heard with their last device metrics
+   (node_info), then live packets, telemetry among them. Field numbers checked against meshtastic 2.7.11's
+   protobufs on 17 Oct 2026; units from their comments: pressure hPa, gas resistance MΩ. */
+const MT = {
+  pb(buf){                                   // field number → [{w, v}]; v is a number, a Uint8Array, or 4/8 raw bytes
+    const out = {}; let i = 0;
+    const varint = () => { let lo = 0, shift = 0, b; do { b = buf[i++]; if (shift < 32) lo |= (b & 0x7f) << shift; shift += 7; } while (b & 0x80 && i < buf.length); return lo; };
+    while (i < buf.length) {
+      const key = varint(); const f = key >>> 3, w = key & 7; let v;
+      if (w === 0) v = varint();
+      else if (w === 1) { v = buf.subarray(i, i + 8); i += 8; }
+      else if (w === 2) { const n = varint() >>> 0; v = buf.subarray(i, i + n); i += n; }
+      else if (w === 5) { v = buf.subarray(i, i + 4); i += 4; }
+      else break;                            // groups: not in these messages
+      (out[f] = out[f] || []).push({w, v});
+    }
+    return out;
+  },
+  one(m, f){ return m[f] && m[f][0] ? m[f][0].v : undefined; },
+  u32(m, f){ const v = MT.one(m, f); if (v === undefined) return undefined; return v instanceof Uint8Array ? new DataView(v.buffer, v.byteOffset, 4).getUint32(0, true) : v >>> 0; },
+  i32(m, f){ const v = MT.one(m, f); return v === undefined ? undefined : (v | 0); },
+  f32(m, f){ const v = MT.one(m, f); return v instanceof Uint8Array && v.length === 4 ? new DataView(v.buffer, v.byteOffset, 4).getFloat32(0, true) : undefined; },
+  str(m, f){ const v = MT.one(m, f); return v instanceof Uint8Array ? new TextDecoder().decode(v) : undefined; },
+  msg(m, f){ const v = MT.one(m, f); return v instanceof Uint8Array ? MT.pb(v) : null; },
+  frame(bytes){ const n = bytes.length; return new Uint8Array([0x94, 0xC3, (n >> 8) & 0xff, n & 0xff, ...bytes]); },
+  varintBytes(n){ const o = []; n >>>= 0; while (n > 0x7f) { o.push((n & 0x7f) | 0x80); n >>>= 7; } o.push(n); return o; },
+  HW: {4:'T-Beam',9:'RAK4631',43:'Heltec V3',71:'Tracker T1000-E',81:'XIAO ESP32-S3',84:'Wio Tracker L1',85:'XIAO nRF52840',99:'Wio Tracker L1 e-ink'},
+};
+function mtName(n){ return '!' + (n >>> 0).toString(16).padStart(8, '0'); }
+async function mtSend(d, bytes){
+  try { const w = d.port.writable.getWriter(); await w.write(bytes); w.releaseLock(); } catch(e){ d.log.push('— could not write to the radio: ' + (e.message || e) + ' —'); }
+}
+async function mtStart(d){
+  if (!d.port || !d.port.writable || d.mt.started) return;
+  d.mt.started = Date.now();
+  await mtSend(d, new Uint8Array(32).fill(0xC3));                     // wake it and make it resync, as the Python client does
+  await new Promise(r => setTimeout(r, 120));
+  d.mt.cfg = (Math.random() * 0x7fffffff) >>> 0 || 1;
+  await mtSend(d, MT.frame([0x18, ...MT.varintBytes(d.mt.cfg)]));     // ToRadio { want_config_id (3) }
+  clearInterval(d.mt.hb); d.mt.hb = setInterval(() => mtSend(d, MT.frame([0x3a, 0x00])), 300000);   // ToRadio { heartbeat (7) {} }
+  d.log.push('— asked the radio for its node list (Meshtastic serial API) —'); scheduleRender();
+}
+function mtNodeDev(radio, num){
+  if (num === radio.mt.my) return radio;
+  const id = 'mt:' + (num >>> 0).toString(16);
+  if (devices.has(id)) return devices.get(id);              // dev() with init would put the placeholder name back
+  return dev(id, {layer:'mesh', name: mtName(num), sub:'Meshtastic · ' + t('net.heardby') + ' ' + radio.name, kind:'sensor', hub: radio.id, place:'outdoor'});
+}
+function mtTelemetry(d, tm, ts){
+  const dm = MT.msg(tm, 2), em = MT.msg(tm, 3), aq = MT.msg(tm, 4);
+  const time = MT.u32(tm, 1); if (time && time > 1.6e9) ts = time * 1000;
+  if (dm) { const b = MT.u32(dm, 1); if (b !== undefined && b <= 100) put(d, 'mesh', 'battery', b, ts); }
+  if (em) {
+    const T = MT.f32(em, 1), RH = MT.f32(em, 2), P = MT.f32(em, 3), G = MT.f32(em, 4), IAQ = MT.u32(em, 7);
+    if (T !== undefined) put(d, 'mesh', 'temp', T, ts);
+    if (RH !== undefined) put(d, 'mesh', 'rh', RH, ts);
+    if (P !== undefined && P > 0) put(d, 'mesh', 'pressure', P / 10, ts);        // hPa → kPa
+    if (G !== undefined && G > 0) put(d, 'mesh', 'gas', G * 1e6, ts);           // MΩ → Ω
+    if (IAQ !== undefined) put(d, 'mesh', 'iaq', IAQ, ts);
+  }
+  if (aq) {
+    const m = {1:'pm1', 2:'pm25', 3:'pm10', 13:'co2'};
+    for (const f in m) { const v = MT.u32(aq, +f); if (v !== undefined) put(d, 'mesh', m[f], v, ts); }
+    const voc = MT.f32(aq, 23), nox = MT.f32(aq, 24); if (voc !== undefined) put(d, 'mesh', 'voc', voc, ts); if (nox !== undefined) put(d, 'mesh', 'nox', nox, ts);
+  }
+}
+function mtFromRadio(d, buf){
+  const fr = MT.pb(buf); const S = d.status; S.meshtastic = true; S.mtFrames = (S.mtFrames || 0) + 1;
+  const my = MT.msg(fr, 3); if (my) { d.mt.my = MT.u32(my, 1); }
+  const ni = MT.msg(fr, 4);
+  if (ni) {
+    const num = MT.u32(ni, 1); const u = MT.msg(ni, 2); const nd = mtNodeDev(d, num);
+    if (u) { const ln = MT.str(u, 2), sn = MT.str(u, 3), hw = MT.u32(u, 5);
+      if (ln) { nd.name = ln; structureDirty = true; }
+      nd.sub = 'Meshtastic · ' + (sn ? sn + ' · ' : '') + (MT.HW[hw] || ('hw ' + hw)) + (nd === d ? '' : ' · ' + t('net.heardby') + ' ' + d.name); }
+    const lh = MT.u32(ni, 5); if (lh && lh > 1.6e9) nd.seen = Math.max(nd.seen || 0, lh * 1000);
+    const hops = MT.u32(ni, 9); if (nd !== d) nd.hops = hops || 0;
+    const dm = MT.msg(ni, 6); if (dm) { const b = MT.u32(dm, 1); if (b !== undefined && b <= 100) put(nd, 'mesh', 'battery', b, lh ? lh * 1000 : undefined); }
+    if (nd !== d) S.heard = (S.heard || 0) + 1;
+  }
+  if (MT.u32(fr, 7) !== undefined) { S.mtReady = true; d.log.push('— node list complete: ' + (S.heard || 0) + ' other nodes —'); }
+  const lr = MT.msg(fr, 6); if (lr) { const msg = MT.str(lr, 1); if (msg) d.log.push(msg); }
+  const pk = MT.msg(fr, 2);
+  if (pk) {
+    const from = MT.u32(pk, 1); const data = MT.msg(pk, 4); const rx = MT.u32(pk, 7);
+    const ts = rx && rx > 1.6e9 ? rx * 1000 : Date.now();
+    if (data && from !== undefined) {
+      const port = MT.u32(data, 1); const payload = MT.one(data, 2) || new Uint8Array();
+      const nd = mtNodeDev(d, from); nd.seen = Math.max(nd.seen || 0, ts);
+      const snr = MT.f32(pk, 8), rssi = MT.i32(pk, 12); if (nd !== d && rssi) { nd.rssi = rssi; nd.snr = snr; }
+      if (port === 67) mtTelemetry(nd, MT.pb(payload), ts);
+      else if (port === 4) { const u = MT.pb(payload); const ln = MT.str(u, 2); if (ln) { nd.name = ln; structureDirty = true; } }
+      else if (port === 1) d.log.push('[mesh text] ' + nd.name + ': ' + new TextDecoder().decode(payload));
+      if (VIEW === 'net') netPulse(nd);
+    }
+  }
+}
+
 /* ---------- USB ---------- */
 const hasSerial = 'serial' in navigator;
 const secure = window.isSecureContext;
@@ -467,7 +567,7 @@ async function openPort(port){
   const id = 'usb-' + (++usbCount);
   const d = dev(id, {layer:'usb', name:'USB ' + usbCount, sub: usbName(info.usbVendorId, info.usbProductId), kind:'board'});
   d.status.vid = info.usbVendorId; d.status.pid = info.usbProductId;
-  d.port = port; ports.set(port, id);
+  d.port = port; d.mt = {}; ports.set(port, id);
   try { await port.open({baudRate:115200, bufferSize:8192}); }
   catch(e){ d.status.err = String(e.message || e); renderAll(); return; }
   d.status.open = true; renderAll();
@@ -486,10 +586,11 @@ async function readLoop(port, d){
         const {value, done} = await reader.read();
         if (done) break;
         d.status.bytes = (d.status.bytes || 0) + value.length;
-        for (let j = 0; j + 1 < value.length; j++) if (value[j] === 0x94 && value[j + 1] === 0xC3) { d.status.meshtastic = true; d.status.meshBinary = true; break; }
-        buf += dec.decode(value, {stream:true});
+        const text = mtDemux(d, value);
+        if (text.length) buf += dec.decode(text, {stream:true});
         let i; while ((i = buf.indexOf('\n')) >= 0) { parseLine(d, buf.slice(0, i)); buf = buf.slice(i + 1); }
         if (buf.length > 4096) buf = buf.slice(-1024);
+        if (d.status.meshtastic && !d.mt.started) mtStart(d);       // a text log line may be the first sign of a radio
         scheduleRender();
       }
     } catch(e){ d.status.err = String(e.message || e); }
@@ -498,7 +599,27 @@ async function readLoop(port, d){
     await new Promise(r => setTimeout(r, 300));
   }
 }
+// Pull Meshtastic frames (0x94 0xC3 len_hi len_lo payload) out of the stream; return the bytes between them as text.
+function mtDemux(d, chunk){
+  const m = d.mt; const text = [];
+  let pend = m.pend && m.pend.length ? Uint8Array.from([...m.pend, ...chunk]) : chunk; m.pend = null;
+  let i = 0;
+  while (i < pend.length) {
+    if (pend[i] === 0x94 && (i + 1 >= pend.length || pend[i + 1] === 0xC3)) {
+      if (i + 4 > pend.length) { m.pend = pend.slice(i); break; }
+      const n = (pend[i + 2] << 8) | pend[i + 3];
+      if (n === 0 || n > 512) { text.push(pend[i]); i++; continue; }      // not a frame after all
+      if (i + 4 + n > pend.length) { m.pend = pend.slice(i); break; }
+      d.status.meshBinary = true;
+      try { mtFromRadio(d, pend.subarray(i + 4, i + 4 + n)); } catch(e){ d.log.push('— a Meshtastic frame did not decode: ' + e.message + ' —'); }
+      i += 4 + n;
+    } else { text.push(pend[i]); i++; }
+  }
+  if (d.status.meshtastic && !m.started) mtStart(d);
+  return Uint8Array.from(text);
+}
 async function closeDevice(d){
+  clearInterval(d.mt && d.mt.hb);
   d.status.open = false;
   try { d.reader && await d.reader.cancel(); } catch(e){}
   try { d.port && await d.port.close(); } catch(e){}
@@ -715,7 +836,8 @@ function checksFor(d){
   const add = (cls, label, text) => out.push({cls, label, text});
   if (!S.lines) add('warn', t('c.board'), t('c.board.no'));
   else add('ok', t('c.board'), (S.lines) + ' lines' + (S.chip ? ' · ' + S.chip : '') + (S.err ? ' · ' + S.err : ''));
-  if (S.meshtastic) add('warn', t('c.mesh'), t('c.mesh.p'));
+  if (S.meshtastic && S.mtFrames) add('ok', t('c.mesh'), (S.mtReady ? t('c.mesh.ok') : t('c.mesh.reading')) + ' · ' + (S.heard || 0) + ' ' + t('c.mesh.nodes'));
+  else if (S.meshtastic) add('warn', t('c.mesh'), t('c.mesh.p'));
   else if (S.entryAt && !S.appAfterEntry && Date.now() - S.entryAt > 6000) add('bad', t('c.silent'), t('c.silent.p'));
   else if (S.lines && !S.reads && !S.rom && Date.now() - (d.created || 0) > 75000) add('warn', t('c.noread'), t('c.noread.p'));
   if (S.fw || S.fwGuess) add('ok', t('c.fw'), (S.fw || S.fwGuess));
@@ -723,7 +845,7 @@ function checksFor(d){
   if (S.fittedSeen) {
     const f = S.fitted || [];
     add(f.length ? 'ok' : 'bad', t('c.fitted'), f.length ? f.join(', ') + (S.missing && S.missing.length ? ' · missing ' + S.missing.join(', ') : '') : t('c.fitted.none'));
-  } else if (groups.length) add('ok', t('c.fitted'), groups.join(', '));
+  } else if (groups.length && !S.meshtastic) add('ok', t('c.fitted'), groups.join(', '));
   if (S.lost) for (const n in S.lost) add('bad', n, t('c.lost'));
   if (S.wifi) add(S.wifi.down ? 'warn' : 'ok', t('c.wifi'), S.wifi.down ? '—' : S.wifi.ip + (S.wifi.rssi != null ? ' · ' + S.wifi.rssi + ' dBm' : '') + (S.statusUrl ? ' · ' + S.statusUrl : ''));
   else if (S.portal) add('warn', t('c.wifi'), t('c.wifi.no'));
@@ -754,6 +876,7 @@ function chipsFor(d){
   if (d.replay) out.push(['warn', t('replay')]);
   out.push([d.layer === 'usb' ? 'ok' : 'idle', t('L.' + d.layer)]);
   if (d.place) out.push(['idle', t('L.' + d.place)]);
+  if (d.layer === 'mesh' && d.hub && devices.get(d.hub)) out.push(['idle', (d.hops ? d.hops + ' hop' + (d.hops > 1 ? 's' : '') : t('net.direct')) + (d.rssi ? ' · ' + d.rssi + ' dBm' : '')]);
   if (d.layer === 'usb' && !d.demo && !d.replay) out.push([d.status.open ? 'ok' : 'bad', d.status.open ? 'port open' : 'unplugged']);
   out.push([age == null ? 'idle' : (age < 180 ? 'ok' : (age < 900 ? 'warn' : 'bad')), ago(d.seen)]);
   return out;
@@ -764,6 +887,7 @@ function buildCard(d){
     <details class="console"><summary>serial / log</summary><pre></pre></details><div class="cardfoot"></div>`;
   const foot = el.querySelector('.cardfoot');
   if (d.layer === 'usb' && d.port) {
+    const q = document.createElement('button'); q.className = 'btn small'; q.type = 'button'; q.textContent = t('btn.mesh'); q.onclick = () => { d.status.meshtastic = true; d.mt.started = 0; mtStart(d); }; foot.appendChild(q);
     const r = document.createElement('button'); r.className = 'btn small'; r.type = 'button'; r.textContent = t('btn.restart'); r.onclick = () => restartBoard(d); foot.appendChild(r);
   }
   if (d.layer === 'usb' && (d.port || d.replay)) {
@@ -782,7 +906,10 @@ function buildTile(spec){
 }
 let renderQueued = false;
 function scheduleRender(){ if (!renderQueued) { renderQueued = true; requestAnimationFrame(() => { renderQueued = false; renderAll(); }); } }
+let layerSig = '';
 function renderAll(force){
+  const sig = Array.from(devices.values()).map(d => d.layer + (d.place || '')).sort().join();
+  if (sig !== layerSig) { layerSig = sig; renderLayers(); }          // counts follow new boards and new mesh nodes
   const list = Array.from(devices.values()).filter(d => d.kind !== 'node' || d.layer !== 'peers').filter(d => !(d.id === 'node' || d.id === 'demo-node'));
   const shown = list.filter(visible);
   document.getElementById('empty').style.display = devices.size ? 'none' : '';
@@ -825,7 +952,7 @@ function fillTile(tile, g){
   const main = spec.kind === 'pm' ? (g.pm25 ? 'pm25' : spec.metrics[0]) : spec.metrics[0];
   const m = g[main]; const M = MET[main] || {lab: main, unit:''};
   el.querySelector('.name').textContent = spec.kind === 'pm' ? t('m.pm') : t(MET[main] ? 'm.' + main : 'm.other');
-  el.querySelector('.grp').textContent = spec.group === 'node' ? '' : spec.group;
+  el.querySelector('.grp').textContent = (spec.group === 'node' || spec.group === 'mesh') ? '' : spec.group;
   el.querySelector('.val').innerHTML = m && m.v != null ? `${esc(fmt(main, m.v))}<small>${esc(spec.kind === 'pm' ? 'PM2.5 ' + M.unit : M.unit)}</small>` : '—';
   let extra = '';
   if (spec.kind === 'pm') extra = spec.metrics.filter(k => k !== main).map(k => `${MET[k].lab} ${fmt(k, g[k].v)}`).join(' · ');
@@ -992,9 +1119,21 @@ function renderNet(){
     edge(gEdges, laptop, p, LAYER_COLOR.usb, true);
     devNode(gNodes, d, p, LAYER_COLOR.usb); netPos.set(d.id, {x:p.x, y:p.y, path:[p, laptop], color:LAYER_COLOR.usb});
   });
+  // mesh nodes heard by a radio on this computer's USB: a fan around that radio, node or no node
+  const viaRadio = all.filter(d => d.layer === 'mesh' && d.hub && netPos.has(d.hub));
+  const byRadio = {}; viaRadio.forEach(d => (byRadio[d.hub] = byRadio[d.hub] || []).push(d));
+  for (const rid in byRadio) {
+    const r = netPos.get(rid); const ds = byRadio[rid]; const R = Math.min(W * .22, 230);
+    ds.forEach((d, i) => {
+      const a = (ds.length === 1 ? 0 : (i / (ds.length - 1) - .5) * Math.min(2.4, .45 * ds.length)) - (nodeDev ? .9 : 0);
+      const p = {x: Math.min(W - 60, r.x + Math.cos(a) * R + 40), y: Math.max(40, Math.min(H - 60, r.y + Math.sin(a) * R))};
+      edge(gEdges, p, r, LAYER_COLOR.mesh, true); devNode(gNodes, d, p, LAYER_COLOR.mesh);
+      netPos.set(d.id, {x:p.x, y:p.y, path:[p, r, ...r.path.slice(1)], color:LAYER_COLOR.mesh});
+    });
+  }
   if (!nodeDev) {
-    const tx = svgEl('text', {x: cx, y: cy, 'text-anchor':'middle'}, gNodes); tx.textContent = t('net.nonode');
-    svgEl('circle', {cx, cy:cy + 30, r:26, fill:'none', stroke:'rgba(0,0,0,.2)', 'stroke-dasharray':'4 4'}, gNodes);
+    const tx = svgEl('text', {x: cx, y: cy, 'text-anchor':'middle'}, gNodes); tx.textContent = viaRadio.length ? '' : t('net.nonode');
+    if (!viaRadio.length) svgEl('circle', {cx, cy:cy + 30, r:26, fill:'none', stroke:'rgba(0,0,0,.2)', 'stroke-dasharray':'4 4'}, gNodes);
   } else {
     hub(gNodes, cx, cy, nodeDev.name, LAYER_COLOR.node, 'hex');
     edge(gEdges, laptop, {x:cx, y:cy}, 'rgba(0,0,0,.18)', true);
@@ -1003,7 +1142,7 @@ function renderNet(){
     const sectors = [['mesh', -128], ['wifi', -74], ['lan', -20], ['cloud', 34], ['public', 86], ['peers', 136]];   // this computer sits at 180°
     const R1 = Math.min(W * .3, H * .38), R2 = R1 * .55;
     for (const [layer, deg] of sectors) {
-      const ds = all.filter(d => d.layer === layer); if (!ds.length) continue;
+      const ds = all.filter(d => d.layer === layer && !(d.hub && netPos.has(d.hub) && devices.get(d.hub) && devices.get(d.hub).layer === 'usb')); if (!ds.length) continue;
       const a0 = deg * Math.PI / 180; const col = LAYER_COLOR[layer];
       // an intermediate hub for mesh (the gateway) and cloud (the platform)
       let via = null;

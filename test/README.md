@@ -6,6 +6,13 @@ sensors shows working, animated, with a check list: board talking, firmware, sen
 already prints at 115200: v5 `[read]  HM3301 … SEN5x … BME680 …`, v3/v4 `[read] T=… PM2.5=… (bme=1 hm=1)`, and the
 test sketch's `[bme680]` / `[hm3301]`. Nothing is reflashed and nothing is sent anywhere.
 
+**Meshtastic radios.** A radio on USB is asked in its own serial API (frames `0x94 0xC3` + length + a FromRadio
+protobuf; `want_config_id` to start, a heartbeat every five minutes). The bench decodes, with a small reader in the
+file, the radio's own name and telemetry and every node it has heard, each with its last battery, environment and
+air-quality readings, live as packets arrive. They appear in the mesh layer, around the radio, with hops and RSSI.
+Field numbers were checked against meshtastic 2.7.11's protobufs; pressure arrives in hPa and gas resistance in MΩ.
+Nothing is sent to the radio but the request to talk and the heartbeat: no settings change.
+
 **Network view and layers.** Served by a PLANETAI node (as `/tester`, once the node carries it), the same file reads
 the node's `/health`, `/sensors`, `/readings` and `/nodes` and draws every device the node knows: mesh radios through
 the gateway, WiFi pods on its broker, LAN devices, Smart Citizen kits, public stations and models, other nodes. Each
