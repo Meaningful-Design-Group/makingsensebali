@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-10-17T18:15:19Z",
+      "lastReading": "2026-10-17T18:27:19Z",
       "reading": {
-        "pm25": 9.1,
-        "pm10": 9.1,
-        "temp": 26.01,
-        "rh": 82.8,
-        "noise": 31.43
+        "pm25": 8.8,
+        "pm10": 8.9,
+        "temp": 26.0,
+        "rh": 82.63,
+        "noise": 33.14
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "pm25_corrected": false,
@@ -99,7 +99,7 @@
       "reading": {
         "pm25": null,
         "pm10": null,
-        "temp": 27.7,
+        "temp": 27.6,
         "rh": 61
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -226,13 +226,13 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-10-17T18:12:44.000Z",
+      "lastReading": "2026-10-17T18:27:45.000Z",
       "reading": {
-        "pm25": 5.3,
-        "pm10": 12.0,
+        "pm25": 12.7,
+        "pm10": 31.0,
         "temp": 29.5,
         "rh": 78,
-        "pm25_raw": 12.0
+        "pm25_raw": 26.0
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -280,8 +280,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "outlier_high"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-204185",
@@ -408,7 +408,7 @@
         "pm10": 14.8,
         "temp": 29.1,
         "rh": 56,
-        "pm25_raw": 13.8
+        "pm25_raw": 10.7
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -500,8 +500,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-206706",
@@ -698,8 +698,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-208036",
@@ -764,8 +764,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-208255",
@@ -808,8 +808,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     },
     {
       "id": "airgradient-208422",
