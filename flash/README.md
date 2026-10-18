@@ -1,3 +1,9 @@
+> **The page moved** to https://planetai.fab.city/sensors/#flash on 19 Oct 2026, as part of the sensors workbench
+> (source: `sensors/index.html` in `fabcity/planetai`). `flash/index.html` is now a redirect. **The firmware stays
+> here:** `flash/firmware/` is what that page reads (GitHub Pages serves it with `Access-Control-Allow-Origin: *`),
+> and the two workflows below are still the only way a binary changes. Do not move or rename `flash/firmware/`
+> without changing `FW` in that page and its `sw.js`.
+
 # flash/ — the browser flasher
 
 `https://makingsense.fablabbali.com/flash/` puts firmware on a board over a USB cable from Chrome or Edge, with
