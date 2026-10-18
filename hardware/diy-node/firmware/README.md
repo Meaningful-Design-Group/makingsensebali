@@ -40,6 +40,14 @@ six-character token from a logged-in Smart Citizen device page, on a phone that 
 currently joined to a captive portal, is the step that goes wrong. Do it once at the
 bench and a participant only ever picks their WiFi and types its password.
 
+**Or skip the typing with the setup page.** [makingsense.fablabbali.com/setup.html](https://makingsense.fablabbali.com/setup.html)
+signs in to Smart Citizen, creates the device with a fresh token, and shows that
+token as a QR code for `http://192.168.4.1/t?token=…`. Join the node's `MSB-Node-…`
+network on a phone, scan the code: the node saves the token and opens the WiFi
+picker with the token already filled in. The page then waits for the first reading
+and links to the device page. The page has no server of its own; the browser talks
+to `api.smartcitizen.me` directly. Source: [`setup.html`](../../../setup.html).
+
 ## Retired sketches
 
 Both are in [`previous/`](previous/), with a table of what each one asked for at
