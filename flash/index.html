@@ -125,10 +125,12 @@ esp-web-install-button[install-unsupported]{display:none}
       </div>
       <div class="card rv">
         <h3 data-i18n="flash.s1.after.h3">Then, once</h3>
+        <p data-i18n-html="flash.s1.after.qr">Publishing to Smart Citizen? Open the <strong>setup page</strong> on your phone first. It creates the device on your account and shows its token as a QR code, so you never type it.</p>
+        <div class="btnrow"><a class="btn" href="../setup.html" data-i18n="flash.s1.after.qr.btn">Open the setup page →</a></div>
         <ol class="steps">
           <li data-i18n-html="flash.s1.after.1">On your phone, join the WiFi network <strong>MSB-Node-xxxx</strong>, password <code>makingsense</code>. The setup page opens; if not, browse to <code>192.168.4.1</code>.</li>
           <li data-i18n-html="flash.s1.after.2">Give the node your <strong>WiFi</strong>, a <strong>name</strong>, the <strong>site</strong>, the mounting <strong>height</strong>, and tick <strong>indoors</strong> if it hangs in a room.</li>
-          <li data-i18n-html="flash.s1.after.3"><strong>Where it publishes.</strong> Leave the broker blank for Smart Citizen (then paste the device token from your device page). To send readings to a PLANETAI node in the house instead, type what <code>planetai broker</code> prints on that machine:</li>
+          <li data-i18n-html="flash.s1.after.3"><strong>Where it publishes.</strong> Leave the broker blank for Smart Citizen. If you scanned the setup page's QR, the token is already filled in; otherwise paste it from your device page. To send readings to a PLANETAI node in the house instead, type what <code>planetai broker</code> prints on that machine:</li>
         </ol>
         <dl class="field">
           <dt data-i18n="flash.f.host">Broker host</dt><dd data-i18n="flash.f.host.v">the node machine's .local name or LAN address</dd>
@@ -204,7 +206,7 @@ esp-web-install-button[install-unsupported]{display:none}
 <!-- ESP Web Tools 10.4.0 (Apache-2.0), pinned, from the same CDN the site already uses for Leaflet. To vendor instead: npm pack esp-web-tools@10.4.0, copy dist/web/ to flash/vendor/esp-web-tools/, point this at ./vendor/esp-web-tools/install-button.js -->
 <script type="module" src="https://unpkg.com/esp-web-tools@10.4.0/dist/web/install-button.js?module"></script>
 <script src="../i18n.js?v=20260924a"></script>
-<script src="./i18n-flash.js?v=20261016a"></script>
+<script src="./i18n-flash.js?v=20261018a"></script>
 <script>
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
 document.querySelectorAll('.rv:not(.in)').forEach(function(el){io.observe(el);});

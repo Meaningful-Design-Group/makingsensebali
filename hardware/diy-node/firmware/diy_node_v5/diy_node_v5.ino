@@ -577,8 +577,10 @@ void setupConfig(bool forcePortal) {
       "<p class='sec'>Device token</p>"
       "<p class='hint'>The token your platform gives this device — on Smart "
       "Citizen it is on the device page. It identifies the node on the wire; "
-      "nothing publishes without it. For a node that only talks to a PLANETAI "
-      "node on your own network, any six characters will do.</p>");
+      "nothing publishes without it. If you scanned the QR from "
+      "makingsense.fablabbali.com/setup.html it is already filled in. For a node "
+      "that only talks to a PLANETAI node on your own network, any six "
+      "characters will do.</p>");
   WiFiManagerParameter tokenParam("sctoken", "Token", scToken.c_str(), TOKEN_FIELD_LEN);
 
   WiFiManagerParameter hdrBroker(
@@ -652,6 +654,32 @@ void setupConfig(bool forcePortal) {
     Serial.printf("[config] saved — token %s · name '%s' · site '%s' · height '%s' · %s · broker %s:%d user '%s'\n",
                   t.length() ? "yes" : "NO", n.c_str(), s.c_str(), h.c_str(), indoor ? "indoor" : "outdoor",
                   host.c_str(), port, user.c_str());
+  });
+
+  // QR hand-off. makingsense.fablabbali.com/setup.html registers the device on
+  // Smart Citizen and shows a QR for http://192.168.4.1/t?token=xxxxxx. A phone
+  // joined to this AP scans it: the token is saved and prefilled, and the phone
+  // goes on to the WiFi page, so nobody copies six characters by hand.
+  // Registered through setWebServerCallback because WiFiManager creates its
+  // WebServer only when the portal starts; wm.server is public.
+  wm.setWebServerCallback([&]() {
+    wm.server->on("/t", [&]() {
+      String t = sanitizeToken(wm.server->arg("token"));
+      if (t.length() == 0 || t.length() > TOKEN_FIELD_LEN) {
+        wm.server->send(400, "text/plain", "missing or malformed token");
+        return;
+      }
+      prefs.putString("token", t);
+      scToken = t;
+      tokenParam.setValue(t.c_str(), TOKEN_FIELD_LEN);   // prefill the portal field
+      Serial.printf("[config] token saved via /t (%s)\n", maskedToken().c_str());
+      wm.server->send(200, "text/html; charset=utf-8",
+        "<!doctype html><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>" +
+        String(FPSTR(THEME_CSS)) + "<body><div class='wrap'>" + headerBand() +
+        "<h1>Token saved</h1><p class='hint'>This node will publish as <span class='n'>" + maskedToken() +
+        "</span>. Now give it your WiFi.</p><form action='/wifi' method='get'><button>Choose WiFi &rarr;</button></form>" +
+        footerLine() + "</div></body>");
+    });
   });
 
   bool ok;
