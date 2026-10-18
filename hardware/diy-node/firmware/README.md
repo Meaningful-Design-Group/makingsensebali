@@ -121,6 +121,7 @@ network on a phone, scan the code: the node saves the token and opens the WiFi
 picker with the token already filled in. The page then waits for the first reading
 and links to the device page. The page has no server of its own; the browser talks
 to `api.smartcitizen.me` directly. Source: [`setup.html`](../../../setup.html).
+The `/t` route is in v5 and v3; v4 does not have it, so on v4 type the token.
 
 ## Retired sketches
 
