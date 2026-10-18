@@ -258,7 +258,11 @@ $('device').addEventListener('submit', function(e){
     exposure: $('exposure').value,
     latitude: +p.lat.toFixed(6),
     longitude: +p.lng.toFixed(6),
-    device_token: token
+    device_token: token,
+    // v0 permits these for any owner (v0/devices_controller.rb device_params);
+    // without them the device page reads "Unknown" hardware.
+    hardware_name_override: 'Bayu node v3',
+    hardware_type_override: 'Bayu'
   }, true)
   .then(function(r){
     if(!r.ok || !r.json.id) throw new Error(r.json.message || r.status);

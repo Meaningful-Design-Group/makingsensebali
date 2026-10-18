@@ -118,6 +118,10 @@ def main():
         "latitude": lat,
         "longitude": lon,
         "exposure": exposure,
+        # v0 permits the hardware overrides for any owner; without them the
+        # device page on smartcitizen.me reads "Unknown" hardware.
+        "hardware_name_override": "Bayu node v3",
+        "hardware_type_override": "Bayu",
     }
     # Only include user_tags if the user explicitly provided some. The SC API
     # validates tag names against an existing-records list and returns HTTP 404
