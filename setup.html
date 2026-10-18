@@ -228,8 +228,14 @@ $('login').addEventListener('submit', function(e){
 });
 
 /* ---------- 2 · map + create ---------- */
-var map = L.map('map', {zoomControl:true, attributionControl:false}).setView([-8.65, 115.21], 10);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {maxZoom:19}).addTo(map);
+// Free OpenStreetMap tiles, no key, same as map.html. Their usage policy asks
+// for visible attribution and light traffic; a setup page is both.
+var map = L.map('map', {zoomControl:true}).setView([-8.65, 115.21], 10);
+map.attributionControl.setPrefix(false);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+}).addTo(map);
 var pin = L.marker([-8.65, 115.21], {draggable:true}).addTo(map);
 function showCoords(){ var p = pin.getLatLng(); $('coords').textContent = p.lat.toFixed(5) + ', ' + p.lng.toFixed(5); }
 pin.on('dragend', showCoords);
