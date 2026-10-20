@@ -1,8 +1,14 @@
 > **The page moved** to https://planetai.fab.city/sensors/#flash on 19 Oct 2026, as part of the sensors workbench
 > (source: `sensors/index.html` in `fabcity/planetai`). `flash/index.html` is now a redirect. **The firmware stays
 > here:** `flash/firmware/` is what that page reads (GitHub Pages serves it with `Access-Control-Allow-Origin: *`),
-> and the two workflows below are still the only way a binary changes. Do not move or rename `flash/firmware/`
+> and the build workflow below is still the only way a DIY node binary changes. Do not move or rename `flash/firmware/`
 > without changing `FW` in that page and its `sw.js`.
+>
+> **Meshtastic moved too**, on 20 Oct 2026. The radio firmware now lives at
+> https://planetai.fab.city/sensors/firmware/meshtastic/, and `scripts/fetch_meshtastic.sh` in `fabcity/planetai`
+> fetches it and holds the only version pin. The files in `flash/firmware/meshtastic/` stay here at 2.7.26.54e0d8d
+> because older copies of the sensors page still read them, but nothing updates them anymore, so bump Meshtastic
+> over there.
 
 # flash/ — the browser flasher
 
@@ -24,8 +30,8 @@ and the DIY node's broker settings come from `planetai broker`. The page sets no
 ```
 flash/index.html                      the page, in the site's style; strings in flash/i18n-flash.js (en canonical, id and es drafts)
 (ESP Web Tools 10.4.0, Apache-2.0, is loaded pinned from unpkg, the CDN the site already uses for Leaflet; the comment in index.html says how to vendor it)
-flash/firmware/VERSIONS               the two pins: esp32-core=…, meshtastic=…
-flash/firmware/meshtastic/            written by tools/fetch_meshtastic.sh (CI: meshtastic-fetch.yml): the release's files, md5-checked, SHA256SUMS, manifest-xiao-s3.json, files.json
+flash/firmware/VERSIONS               the core pin: esp32-core=…
+flash/firmware/meshtastic/            frozen at 2.7.26.54e0d8d for older copies of the sensors page; the live copy is in fabcity/planetai
 flash/firmware/diy-node/              written by CI (firmware-build.yml): manifest.json and the images per chip, SHA256SUMS
 ```
 
@@ -34,19 +40,15 @@ manifest is missing (the build has not run yet) the button is hidden and a note 
 
 ## Bumping a version
 
-- **Meshtastic**: change `meshtastic=` in `flash/firmware/VERSIONS` to the stable release tag without the leading
-  `v` (the one GitHub does not mark pre-release; alphas are offered first and are not releases). Merge; the
-  workflow fetches and commits. Every radio in a mesh must run the same version, so a bump means re-flashing the
-  fleet. Old versions stay in the tree until deleted by hand.
+- **Meshtastic**: not here anymore, see `scripts/fetch_meshtastic.sh` in `fabcity/planetai`.
 - **DIY node**: a push that touches `hardware/diy-node/firmware/diy_node_v5/` rebuilds. The tag in the manifest
   is `FW_VERSION-<short sha>`. The arduino-esp32 core is pinned in `VERSIONS`; libraries are pinned in the
   workflow and recorded in the manifest.
 
 ## What a first run will tell you
 
-Neither workflow has run yet (written 16 Oct 2026). `meshtastic-fetch` was exercised locally end to end with the
-real release and passes. `firmware-build` was written from the arduino-cli and arduino-esp32 docs; the first run
-checks the FQBN option names, the pinned library versions, and whether the core emits a `.merged.bin` (the manifest
+`firmware-build` had not run yet when this was written (16 Oct 2026). It was written from the arduino-cli and
+arduino-esp32 docs; the first run checks the FQBN option names, the pinned library versions, and whether the core emits a `.merged.bin` (the manifest
 falls back to the four-part layout if not). v5 itself has not run on a board as of its own README; flash v5 to one
 node and do the bench check in `hardware/diy-node/firmware/README.md` before pointing a workshop at this page.
 
