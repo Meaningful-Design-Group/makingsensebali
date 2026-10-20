@@ -9,6 +9,11 @@ Smart Citizen.
 
 ## `register_device.py` — bypass the onboarding flow
 
+> For a phone-only path with no copying, use the site's
+> [setup page](../../../setup.html) instead: it does the same `POST /v0/devices`
+> from the browser and shows the token as a QR the node's captive portal reads
+> (`/t?token=…`, firmware v3). This script remains the scriptable / batch route.
+
 Registers a custom DIY node on the Smart Citizen platform via the API,
 without going through the web onboarding flow and its associated
 activation gate. This is the path the official SCK tooling uses for

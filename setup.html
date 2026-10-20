@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Node setup — Making Sense Bali</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23b5532f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+  --paper:#f6efe1; --paper2:#efe6d2; --ink:#16171a; --ink-soft:#3a3a3e; --soft:#5d5849;
+  --mono:'IBM Plex Mono',monospace; --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  --teal:#b5532f; --saffron:#c47a2c; --good:#3f8a5b; --bad:#a83a2a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;
+  padding:16px 5vw;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(246,239,225,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.07)}
+.bar .brand{font-weight:600;color:var(--teal)}
+.bar-nav{display:flex;gap:20px;align-items:center}
+.bar-nav a{color:var(--ink);opacity:.72;text-decoration:none}
+.bar-nav a.home{color:var(--teal);opacity:1}
+.langtoggle{display:inline-flex;gap:1px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;border:1px solid rgba(0,0,0,.25);border-radius:3px;overflow:hidden}
+.langtoggle button{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:transparent;border:0;padding:5px 8px;cursor:pointer;line-height:1}
+.langtoggle button[aria-pressed="true"]{background:var(--teal);color:var(--paper)}
+@media(max-width:640px){.bar{padding:12px 4vw}.bar-nav{gap:12px}.bar-nav .lbl{display:none}.langtoggle button{padding:12px 10px}}
+
+.wrap{max-width:760px;margin:0 auto;padding:16vh 5vw 10vh}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,5vw,54px);line-height:1.08;letter-spacing:-.015em;margin-top:18px;max-width:18ch}
+h1 em{font-style:italic;color:var(--teal)}
+.lede{font-size:16.5px;line-height:1.7;color:var(--ink-soft);max-width:56ch;margin-top:18px}
+
+.step{margin-top:34px;background:var(--paper2);border:1px solid rgba(0,0,0,.1);border-radius:12px;padding:24px 22px;border-top:3px solid rgba(0,0,0,.18);transition:opacity .25s}
+.step.active{border-top-color:var(--teal)}
+.step.done{border-top-color:var(--good)}
+.step.locked{opacity:.42;pointer-events:none}
+.step h2{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.15}
+.step p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin-top:8px}
+label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin:16px 0 6px}
+input[type=text],input[type=password],input[type=email],select{width:100%;font:16px var(--sans);padding:12px 13px;border:1px solid rgba(0,0,0,.2);border-radius:8px;background:var(--paper);color:var(--ink)}
+input:focus,select:focus{outline:2px solid var(--teal);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.btn{display:inline-block;margin-top:18px;font:500 14px var(--sans);padding:13px 22px;border-radius:999px;border:0;cursor:pointer;background:var(--teal);color:var(--paper);text-decoration:none}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.out{background:transparent;color:var(--ink);border:1px solid rgba(0,0,0,.3)}
+.btn.sm{padding:9px 16px;font-size:13px;margin-top:0}
+.msg{font-size:14px;margin-top:12px;min-height:1.4em}
+.msg.err{color:var(--bad)}
+.msg.ok{color:var(--good)}
+#map{height:260px;border-radius:8px;margin-top:8px;border:1px solid rgba(0,0,0,.15);z-index:0}
+.coords{font-family:var(--mono);font-size:12px;color:var(--soft);margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+.handoff{display:grid;grid-template-columns:220px 1fr;gap:22px;margin-top:16px;align-items:start}
+@media(max-width:560px){.handoff{grid-template-columns:1fr}}
+.qr{background:#fff;border-radius:10px;padding:10px;border:1px solid rgba(0,0,0,.12)}
+.qr svg{display:block;width:100%;height:auto}
+.token{font-family:var(--mono);font-size:34px;font-weight:600;letter-spacing:.12em;color:var(--ink);margin-top:4px}
+.handoff ol{padding-left:20px;font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-top:10px}
+.handoff li+li{margin-top:8px}
+.linkline{font-family:var(--mono);font-size:12px;color:var(--soft);margin-top:12px;word-break:break-all}
+
+.pulse{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--saffron);margin-right:8px;animation:p 1.4s infinite}
+.pulse.ok{background:var(--good);animation:none}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding:5px 9px;border-radius:999px;background:var(--paper);border:1px solid rgba(0,0,0,.15)}
+
+.foot{padding:40px 5vw 48px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--soft);line-height:1.8;border-top:1px solid rgba(0,0,0,.07)}
+.foot a{color:var(--teal);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand">Making Sense Bali</div>
+  <div class="bar-nav">
+    <a class="home" href="index.html">← <span class="lbl" data-i18n="setup.nav.live">Live air</span></a>
+    <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa Indonesia / English / Español"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="kicker" data-i18n="setup.kicker">Node setup · Smart Citizen</div>
+  <h1 data-i18n-html="setup.h1">Put a <em>Bayu node</em> on the map.</h1>
+  <p class="lede" data-i18n="setup.lede">Four steps, one phone. Sign in, name the node, scan a code, wait for the first reading. This page has no server of its own: everything you type goes straight from your browser to api.smartcitizen.me.</p>
+
+  <!-- 1 · sign in -->
+  <section class="step active" id="s1">
+    <h2 data-i18n="setup.s1.title">1 · Sign in to Smart Citizen</h2>
+    <form id="login" autocomplete="on">
+      <div class="row">
+        <div><label for="user" data-i18n="setup.s1.user">Username or email</label><input type="text" id="user" autocomplete="username" required></div>
+        <div><label for="pass" data-i18n="setup.s1.pass">Password</label><input type="password" id="pass" autocomplete="current-password" required></div>
+      </div>
+      <button class="btn" type="submit" id="login-btn" data-i18n="setup.s1.btn">Sign in</button>
+      <div class="msg" id="login-msg"></div>
+    </form>
+    <p data-i18n-html="setup.s1.signup">No account yet? <a href="https://smartcitizen.me/signup" target="_blank" rel="noopener">Create one on smartcitizen.me</a>, then come back here.</p>
+  </section>
+
+  <!-- 2 · the node -->
+  <section class="step locked" id="s2">
+    <h2 data-i18n="setup.s2.title">2 · The node</h2>
+    <form id="device">
+      <div class="row">
+        <div><label for="name" data-i18n="setup.s2.name">Device name</label><input type="text" id="name" required maxlength="60" data-i18n-attr="placeholder:setup.s2.name_ph" placeholder="e.g. Balai Banjar Serangan"></div>
+        <div><label for="exposure" data-i18n="setup.s2.exposure">Where it hangs</label>
+          <select id="exposure"><option value="outdoor" data-i18n="setup.s2.outdoor">Outdoor</option><option value="indoor" data-i18n="setup.s2.indoor">Indoor</option></select></div>
+      </div>
+      <label data-i18n="setup.s2.loc">Location — drag the pin, or use your position</label>
+      <div id="map"></div>
+      <div class="coords"><span id="coords">-8.6500, 115.2100</span><button type="button" class="btn out sm" id="locate" data-i18n="setup.s2.locate">Use my position</button></div>
+      <button class="btn" type="submit" id="create-btn" data-i18n="setup.s2.btn">Create device</button>
+      <div class="msg" id="create-msg"></div>
+    </form>
+  </section>
+
+  <!-- 3 · hand-off -->
+  <section class="step locked" id="s3">
+    <h2 data-i18n="setup.s3.title">3 · Hand the token to the node</h2>
+    <div class="handoff">
+      <div>
+        <div class="qr" id="qr"></div>
+        <label data-i18n="setup.s3.token">Device token</label>
+        <div class="token" id="token">······</div>
+      </div>
+      <div>
+        <ol data-i18n-html="setup.s3.steps"><li>Plug in the node. On your phone, join the WiFi network that starts with <b>MSB-Node-</b> (password <b>makingsense</b>).</li><li>Scan this code with the phone camera, or open the link below. The node saves the token.</li><li>Pick your home WiFi, type its password, press <b>Save</b>.</li></ol>
+        <div class="linkline"><span data-i18n="setup.s3.link">Or open</span> <a id="tlink" href="#">http://192.168.4.1/t?token=…</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · first reading -->
+  <section class="step locked" id="s4">
+    <h2 data-i18n="setup.s4.title">4 · First reading</h2>
+    <p><span class="pulse" id="pulse"></span><span id="status" data-i18n="setup.s4.waiting">Waiting for the first reading… the node publishes once a minute after it joins WiFi.</span></p>
+    <div id="seen" hidden><label data-i18n="setup.s4.sensors">Channels seen</label><div class="chips" id="chips"></div></div>
+    <a class="btn" id="open" href="#" target="_blank" rel="noopener" data-i18n="setup.s4.open">Open the device page →</a>
+    <button class="btn out" type="button" id="again" data-i18n="setup.again" hidden>Register another node</button>
+  </section>
+</main>
+
+<footer class="foot" data-i18n-html="abt.foot">
+  Making Sense Bali, led by <a href="https://www.fablabbali.com/">Fab Lab Bali</a> · open hardware: Smart Citizen Kit (Fab Lab Barcelona / IAAC) · methodology: EU Making Sense · part of <a href="https://fab.city">Fab City</a> + Murmurations.
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<!-- ?v= is a cache buster and it is load-bearing: GitHub Pages caches HTML and
+     scripts separately for ten minutes. BUMP when i18n.js changes. -->
+<script src="./i18n.js?v=20261018a"></script>
+<script>
+(function(){
+'use strict';
+var API = 'https://api.smartcitizen.me/v0';
+var FRONT = 'https://smartcitizen.me/kits/';
+var PORTAL = 'http://192.168.4.1/t?token=';
+var POLL_MS = 10000;
+
+var I = window.SCB_I18N;
+var t = function(k){ return I ? I.t(k) : k; };
+var $ = function(id){ return document.getElementById(id); };
+
+var bearer = null;     // memory only — never persisted
+var poll = null;
+
+/* ---------- i18n toggle (same wiring as about.html) ---------- */
+(function(){
+  if(!I) return;
+  var btns = $('langtoggle').querySelectorAll('button[data-lang]');
+  function apply(){
+    document.documentElement.lang = I.currentLang();
+    I.applyTo(document);
+    var cur = I.currentLang();
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-lang')===cur?'true':'false'); });
+  }
+  apply();
+  btns.forEach(function(b){ b.addEventListener('click', function(){ I.setLang(b.getAttribute('data-lang')); apply(); }); });
+})();
+
+function setStep(n){
+  [1,2,3,4].forEach(function(i){
+    var el = $('s'+i);
+    el.classList.toggle('locked', i>n);
+    el.classList.toggle('active', i===n);
+    el.classList.toggle('done', i<n);
+  });
+  $('s'+n).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function api(method, path, body, auth){
+  var h = {'Accept':'application/json'};
+  if(body) h['Content-Type'] = 'application/json';
+  if(auth && bearer) h['Authorization'] = 'Bearer ' + bearer;
+  return fetch(API + path, {method:method, headers:h, body: body ? JSON.stringify(body) : undefined})
+    .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, status:r.status, json:j}; }); });
+}
+
+/* ---------- 1 · sign in ---------- */
+$('login').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = $('login-btn'), msg = $('login-msg');
+  btn.disabled = true; msg.className = 'msg'; msg.textContent = '…';
+  api('POST', '/sessions', {username: $('user').value.trim(), password: $('pass').value})
+    .then(function(r){
+      if(!r.ok || !r.json.access_token) throw new Error(r.json.message || r.status);
+      bearer = r.json.access_token;
+      $('pass').value = '';
+      return api('GET', '/me', null, true);
+    })
+    .then(function(r){
+      msg.className = 'msg ok';
+      msg.textContent = t('setup.s1.ok') + ' ' + (r.json.username || '');
+      setStep(2);
+      setTimeout(function(){ map.invalidateSize(); }, 400);
+    })
+    .catch(function(){ msg.className = 'msg err'; msg.textContent = t('setup.s1.err'); btn.disabled = false; });
+});
+
+/* ---------- 2 · map + create ---------- */
+// Free OpenStreetMap tiles, no key, same as map.html. Their usage policy asks
+// for visible attribution and light traffic; a setup page is both.
+var map = L.map('map', {zoomControl:true}).setView([-8.65, 115.21], 10);
+map.attributionControl.setPrefix(false);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+}).addTo(map);
+var pin = L.marker([-8.65, 115.21], {draggable:true}).addTo(map);
+function showCoords(){ var p = pin.getLatLng(); $('coords').textContent = p.lat.toFixed(5) + ', ' + p.lng.toFixed(5); }
+pin.on('dragend', showCoords);
+map.on('click', function(e){ pin.setLatLng(e.latlng); showCoords(); });
+$('locate').addEventListener('click', function(){
+  if(!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var ll = [pos.coords.latitude, pos.coords.longitude];
+    pin.setLatLng(ll); map.setView(ll, 16); showCoords();
+  });
+});
+
+function newToken(){
+  var b = new Uint8Array(3); crypto.getRandomValues(b);
+  return Array.prototype.map.call(b, function(x){ return ('0'+x.toString(16)).slice(-2); }).join('');
+}
+
+$('device').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = $('create-btn'), msg = $('create-msg'), p = pin.getLatLng();
+  btn.disabled = true; msg.className = 'msg'; msg.textContent = '…';
+  var token = newToken();
+  api('POST', '/devices', {
+    name: $('name').value.trim(),
+    description: 'Bayu DIY node (XIAO ESP32 + BME680 + HM3301) — Making Sense Bali, registered via setup page',
+    exposure: $('exposure').value,
+    latitude: +p.lat.toFixed(6),
+    longitude: +p.lng.toFixed(6),
+    device_token: token,
+    // v0 permits these for any owner (v0/devices_controller.rb device_params);
+    // without them the device page reads "Unknown" hardware.
+    hardware_name_override: 'Bayu node v3',
+    hardware_type_override: 'Bayu'
+  }, true)
+  .then(function(r){
+    if(!r.ok || !r.json.id) throw new Error(r.json.message || r.status);
+    msg.textContent = '';
+    showHandoff(r.json.id, token);
+  })
+  .catch(function(err){ msg.className = 'msg err'; msg.textContent = t('setup.s2.err') + ' ' + (err.message||''); btn.disabled = false; });
+});
+
+/* ---------- 3 · QR hand-off ---------- */
+function showHandoff(id, token){
+  var url = PORTAL + token;
+  $('token').textContent = token;
+  $('tlink').textContent = url; $('tlink').href = url;
+  var q = qrcode(0, 'M'); q.addData(url); q.make();
+  $('qr').innerHTML = q.createSvgTag({cellSize: 6, margin: 2, scalable: true});
+  setStep(3);
+  $('s4').classList.remove('locked');
+  watch(id);
+}
+
+/* ---------- 4 · wait for the first reading ---------- */
+function watch(id){
+  $('open').href = FRONT + id;
+  history.replaceState(null, '', '?device=' + id);
+  if(poll) clearInterval(poll);
+  function tick(){
+    api('GET', '/devices/' + id).then(function(r){
+      if(!r.ok) return;
+      var d = r.json;
+      var live = d.state === 'has_published' || !!d.last_reading_at;
+      if(!live) return;
+      clearInterval(poll); poll = null;
+      $('pulse').classList.add('ok');
+      $('status').textContent = t('setup.s4.ok');
+      $('status').removeAttribute('data-i18n');
+      var sensors = (d.data && d.data.sensors) || [];
+      if(sensors.length){
+        $('chips').innerHTML = sensors.map(function(s){ return '<span class="chip">' + String(s.name || s.id).replace(/</g,'&lt;') + '</span>'; }).join('');
+        $('seen').hidden = false;
+      }
+      $('again').hidden = false;
+      $('s4').classList.add('done');
+    });
+  }
+  tick();
+  poll = setInterval(tick, POLL_MS);
+}
+
+$('again').addEventListener('click', function(){
+  $('name').value = ''; $('create-btn').disabled = false;
+  $('pulse').classList.remove('ok'); $('seen').hidden = true; $('again').hidden = true;
+  $('status').textContent = t('setup.s4.waiting');
+  history.replaceState(null, '', location.pathname);
+  setStep(2);
+});
+
+/* ?device=ID — reopen the waiting screen for a node registered earlier */
+var m = /[?&]device=(\d+)/.exec(location.search);
+if(m){ setStep(4); ['s1','s2','s3'].forEach(function(i){ $(i).classList.add('locked'); $(i).classList.remove('done'); }); watch(m[1]); }
+})();
+</script>
+</body>
+</html>

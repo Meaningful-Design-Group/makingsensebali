@@ -65,6 +65,12 @@
 //  (password below), the portal opens — or browse to 192.168.4.1. Pick the
 //  real WiFi, type its password, fill what's asked, Save.
 //
+//  QR HAND-OFF (no typing): makingsense.fablabbali.com/setup.html registers
+//  the device on Smart Citizen and shows a QR for
+//  http://192.168.4.1/t?token=xxxxxx. A phone joined to this AP scans it, the
+//  node saves the token to NVS and sends the phone on to the WiFi picker with
+//  the token already filled in. The portal's own token field still works.
+//
 //  CONFIGURED BOOT: connects in seconds, no portal.
 //
 //  SAVED WIFI UNREACHABLE: portal opens for 3 minutes, then the node reboots
@@ -282,7 +288,8 @@ void setupConfig(bool forcePortal) {
       "<p style='margin:14px 0 4px;font-weight:600'>Smart Citizen</p>"
       "<p style='margin:0 0 8px;font-size:13px;color:#555'>The six-character "
       "device token from your device page. This is what identifies the node to "
-      "the platform — nothing publishes without it.</p>");
+      "the platform — nothing publishes without it. If you scanned the QR from "
+      "the setup page it is already filled in.</p>");
   WiFiManagerParameter tokenParam("sctoken", "Device token", scToken.c_str(), TOKEN_FIELD_LEN);
 
   WiFiManagerParameter hdrLocal(
@@ -316,6 +323,34 @@ void setupConfig(bool forcePortal) {
 
     Serial.printf("[config] saved — token %s · name '%s' · site '%s' · height '%s'\n",
                   t.length() ? "yes" : "NO", n.c_str(), s.c_str(), h.c_str());
+  });
+
+  // QR hand-off. The setup page (makingsense.fablabbali.com/setup.html) shows a
+  // QR for http://192.168.4.1/t?token=xxxxxx. Scanning it on a phone joined to
+  // this AP saves the token here and sends the phone on to the WiFi picker, so
+  // nobody copies six characters by hand at a workshop table. Registered via
+  // setWebServerCallback because WiFiManager only creates its WebServer once
+  // the portal starts; wm.server is public in 2.0.x.
+  wm.setWebServerCallback([&]() {
+    wm.server->on("/t", [&]() {
+      String t = sanitizeToken(wm.server->arg("token"));
+      if (t.length() == 0) {
+        wm.server->send(400, "text/plain", "missing token");
+        return;
+      }
+      prefs.putString("token", t);
+      scToken = t;
+      tokenParam.setValue(t.c_str(), TOKEN_FIELD_LEN);   // prefill the portal field
+      Serial.printf("[config] token saved via /t (%s)\n", maskedToken().c_str());
+      wm.server->send(200, "text/html",
+          "<!doctype html><meta name='viewport' content='width=device-width,initial-scale=1'>"
+          "<body style='font-family:system-ui,sans-serif;padding:24px;max-width:420px'>"
+          "<h2 style='margin:0 0 8px'>Token saved</h2>"
+          "<p>This node now publishes as <b>" + maskedToken() + "</b>.</p>"
+          "<p><a href='/wifi' style='display:inline-block;padding:12px 18px;"
+          "background:#1fa3ec;color:#fff;border-radius:6px;text-decoration:none'>"
+          "Choose your WiFi &rarr;</a></p></body>");
+    });
   });
 
   bool ok;
