@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-10-22T22:35:29Z",
+      "lastReading": "2026-10-22T22:50:29Z",
       "reading": {
-        "pm25": 22.7,
-        "pm10": 23.1,
-        "temp": 25.18,
-        "rh": 85.17,
-        "noise": 42.83
+        "pm25": 32.0,
+        "pm10": 32.3,
+        "temp": 25.42,
+        "rh": 85.35,
+        "noise": 52.04
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "pm25_corrected": false,
@@ -105,8 +105,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-195778",
@@ -121,7 +121,7 @@
       "reading": {
         "pm25": 0.5,
         "pm10": 0.0,
-        "temp": 26.5,
+        "temp": 26.6,
         "rh": 61,
         "pm25_raw": 0.0
       },
@@ -281,8 +281,8 @@
       },
       "detailsUrl": "https://baliair.pages.dev",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-203997",
@@ -303,8 +303,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "outlier_high"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-204185",
@@ -918,8 +918,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "outlier_high"
     },
     {
       "id": "airgradient-209023",
