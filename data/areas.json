@@ -10,12 +10,12 @@
         "burning": 2
       },
       "top_tags": [
-        "visible glow",
-        "faint smoke",
-        "open burning",
         "thick smoke",
         "burning trash",
-        "pile of debris"
+        "pile of debris",
+        "visible glow",
+        "faint smoke",
+        "open burning"
       ],
       "max_severity": "medium",
       "pm25": 14.4,
@@ -80,8 +80,8 @@
       "report_count": 11,
       "categories": {
         "burning": 9,
-        "none": 1,
-        "trash": 1
+        "trash": 1,
+        "none": 1
       },
       "top_tags": [
         "open fire",
@@ -147,6 +147,8 @@
         "none": 1
       },
       "top_tags": [
+        "dense tropical foliage",
+        "green plants",
         "Accumulated trash",
         "Littered drainage ditch",
         "Evidence of burning debris",
@@ -334,8 +336,8 @@
       "lon": 115.162496,
       "report_count": 10,
       "categories": {
-        "trash": 3,
         "none": 3,
+        "trash": 3,
         "burning": 2,
         "other": 1,
         "vehicle": 1
@@ -597,11 +599,11 @@
         "trash": 2
       },
       "top_tags": [
-        "large pile of mixed waste",
-        "discarded trash",
         "scattered trash",
         "accumulated waste",
-        "dirt path"
+        "dirt path",
+        "large pile of mixed waste",
+        "discarded trash"
       ],
       "max_severity": "medium",
       "pm25": null,
@@ -645,7 +647,7 @@
         "open fire",
         "thick smoke plume",
         "thick smoke",
-        "burning debris"
+        "visible flames"
       ],
       "max_severity": "high",
       "pm25": 14.8,
@@ -872,9 +874,9 @@
         "smoke plume",
         "pile of black trash bags",
         "open burning activity",
-        "smoldering debris",
-        "charred ground",
-        "visible smoke plume"
+        "visible smoke plume",
+        "localized smoke source",
+        "tropical vegetation"
       ],
       "max_severity": "medium",
       "pm25": 16.0,
@@ -930,7 +932,7 @@
         "open fire",
         "thick smoke plume",
         "burning debris",
-        "open burning",
+        "thick smoke plume",
         "smoke",
         "burning waste"
       ],
@@ -988,11 +990,10 @@
       "report_count": 6,
       "categories": {
         "burning": 4,
-        "none": 1,
-        "other": 1
+        "other": 1,
+        "none": 1
       },
       "top_tags": [
-        "open burning",
         "smoke rising",
         "visible smoke plume",
         "pile of trash",
