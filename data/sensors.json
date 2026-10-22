@@ -121,7 +121,7 @@
       "reading": {
         "pm25": 0.6,
         "pm10": 0.0,
-        "temp": 27.9,
+        "temp": 27.8,
         "rh": 60,
         "pm25_raw": 0.0
       },
@@ -215,8 +215,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-201082",
