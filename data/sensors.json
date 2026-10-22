@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-10-22T10:25:33Z",
+      "lastReading": "2026-10-22T10:38:33Z",
       "reading": {
-        "pm25": 8.6,
-        "pm10": 9.3,
-        "temp": 29.44,
-        "rh": 70.8,
-        "noise": 39.24
+        "pm25": 10.4,
+        "pm10": 10.6,
+        "temp": 28.99,
+        "rh": 71.69,
+        "noise": 49.38
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "pm25_corrected": false,
@@ -633,8 +633,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-207040",
@@ -809,8 +809,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-208422",
