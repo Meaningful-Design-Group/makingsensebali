@@ -1,0 +1,48 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Ada pembakaran di sekitar Pura Pendam, dekat Villa Bagus Estate, Cemagi, tempat saya tinggal. Asapnya sangat hitam dan pekat, dan sudah berlangsung sekitar 10 menit. Asap masuk ke dalam rumah kami dan kualitas udara di dalam rumah sudah mencapai angka 230 AQI. Kondisinya sangat buruk dan berbahaya, terutama bagi anak-anak. Mohon segera ditindaklanjuti dan pembakaran dihentikan.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20261022_1f724cb0.json",
+  "latitude": -8.629207,
+  "longitude": 115.126202,
+  "geolocation": {
+    "lat": -8.629207,
+    "lon": 115.126202
+  },
+  "locality": "Munggu",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-10-22T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "photo_path": "photos/AQ_20261022_1f724cb0.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-10-22T00:00:00+00:00",
+    "reported_timestamp": "2026-10-22T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Munggu",
+    "kecamatan": "Mengwi",
+    "kabupaten": "Badung"
+  }
+}
