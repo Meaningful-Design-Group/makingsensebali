@@ -523,8 +523,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     },
     {
       "id": "airgradient-206706",
@@ -585,7 +585,7 @@
         "pm10": 26.8,
         "temp": 32.0,
         "rh": 46,
-        "pm25_raw": 23.8
+        "pm25_raw": 22.2
       },
       "detailsUrl": "https://snehankekre.com",
       "pm25_corrected": true,
@@ -611,8 +611,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     },
     {
       "id": "airgradient-206981",
