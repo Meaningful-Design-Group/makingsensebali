@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1210" width="1100" height="1210" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+  <title>Bayu Indoor placement</title>
+  <desc>Where to put a Bayu Indoor node in a classroom, kos room or kitchen: a room section and a room plan with distances to windows, doors, fans, AC, cooking and mosquito coils, the airflow inside the shell, the SCD40&#x27;s need for open air and a weekly airing, and a do and do-not list.</desc>
+  <style>
+    text { fill: #1d1d1b; }
+    .t  { font-size: 19px; font-weight: 700; }
+    .st { font-size: 12.5px; fill: #6b665c; }
+    .h  { font-size: 13px; font-weight: 700; }
+    .l  { font-size: 11.5px; }
+    .s  { font-size: 10.5px; fill: #6b665c; }
+    .p  { font-size: 10px; }
+    .pw { font-size: 9.5px; fill: #ffffff; }
+    .b  { font-weight: 700; }
+  </style>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d1d1b"/></marker><marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f7fbf"/></marker><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9480f"/></marker><clipPath id="room"><rect x="700" y="160" width="350" height="300"/></clipPath></defs>
+  <rect width="1100" height="1210" fill="#fbf8f1"/>
+  <text x="24" y="36" class="t">Bayu Indoor, where to put it</text>
+  <text x="24" y="57" class="st">Classrooms, kos rooms and kitchens. The node should breathe the room&#x27;s air once it has mixed, away from breath and smoke.</text>
+  <!-- room section: 1 m = 120 px, floor at y=500 -->
+  <text x="24" y="98" class="h">Section</text>
+  <text x="84" y="98" class="s">one wall to the window, 3 m ceiling</text>
+  <rect x="50" y="124" width="20" height="392" fill="#b9b1a1"/>
+  <rect x="610" y="124" width="20" height="392" fill="#b9b1a1"/>
+  <rect x="50" y="500" width="580" height="16" fill="#b9b1a1"/>
+  <rect x="50" y="124" width="580" height="16" fill="#b9b1a1"/>
+  <rect x="610" y="260" width="20" height="132" fill="#dcecf7" stroke="#7fa7c4"/>
+  <text x="640" y="320" class="s">window,</text>
+  <text x="640" y="334" class="s">sun</text>
+  <line x1="650" y1="236" x2="575" y2="500" stroke="#f2b705" stroke-width="3" opacity="0.55"/>
+  <line x1="660" y1="226" x2="545" y2="500" stroke="#f2b705" stroke-width="3" opacity="0.55"/>
+  <line x1="670" y1="216" x2="515" y2="500" stroke="#f2b705" stroke-width="3" opacity="0.55"/>
+  <rect x="548" y="150" width="62" height="26" rx="4" fill="#ffffff" stroke="#1d1d1b" stroke-width="1.3"/>
+  <text x="579" y="168" class="p b" text-anchor="middle">AC</text>
+  <path d="M548,178 Q470,200 420,250" fill="none" stroke="#2f7fbf" stroke-width="1.6" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <path d="M548,178 Q500,220 480,280" fill="none" stroke="#2f7fbf" stroke-width="1.6" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <line x1="330" y1="140" x2="330" y2="166" stroke="#1d1d1b" stroke-width="2"/>
+  <line x1="280" y1="168" x2="380" y2="168" stroke="#1d1d1b" stroke-width="3" stroke-linecap="round"/>
+  <text x="388" y="172" class="s">ceiling fan</text>
+  <path d="M300,176 L290,232" fill="none" stroke="#2f7fbf" stroke-width="1.6" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <path d="M330,176 L330,232" fill="none" stroke="#2f7fbf" stroke-width="1.6" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <path d="M360,176 L370,232" fill="none" stroke="#2f7fbf" stroke-width="1.6" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <!-- seated person -->
+  <circle cx="262" cy="344" r="14" fill="#e7ddcb" stroke="#1d1d1b" stroke-width="1.3"/>
+  <path d="M262,358 L262,420 L300,420 L300,500 M262,384 L310,392" fill="none" stroke="#1d1d1b" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M238,420 L238,500 M238,420 L286,420" fill="none" stroke="#8c877b" stroke-width="2"/>
+  <rect x="304" y="386" width="96" height="8" fill="#c9bfa9"/>
+  <line x1="392" y1="394" x2="392" y2="500" stroke="#c9bfa9" stroke-width="5"/>
+  <ellipse cx="466" cy="496" rx="16" ry="4" fill="#5b8a3c"/>
+  <path d="M466,490 C456,470 478,456 464,436 C452,418 472,404 462,388" fill="none" stroke="#8c877b" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <text x="466" y="362" class="s" text-anchor="middle">mosquito coil,</text>
+  <text x="466" y="376" class="s" text-anchor="middle">incense</text>
+  <rect x="70" y="322" width="26" height="44" rx="4" fill="#ffffff" stroke="#1d1d1b" stroke-width="1.6"/>
+  <rect x="75" y="358" width="16" height="4" fill="#2f7fbf"/>
+  <circle cx="83.0" cy="334" r="3" fill="#2a9d4b"/>
+  <line x1="146" y1="500" x2="146" y2="344" stroke="#1d1d1b" stroke-width="1.2" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <text x="0" y="0" class="l b" text-anchor="middle"></text>
+  <text x="154" y="446" class="l b">1.1–1.5 m</text>
+  <text x="154" y="460" class="s">seated to</text>
+  <text x="154" y="474" class="s">standing</text>
+  <text x="154" y="488" class="s">head height</text>
+  <line x1="98" y1="300" x2="246" y2="300" stroke="#1d1d1b" stroke-width="1.2" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <text x="172" y="290" class="l b" text-anchor="middle">1 m or more from faces</text>
+  <text x="172" y="316" class="s" text-anchor="middle">0.5 m is the bare minimum</text>
+  <text x="76" y="384" class="p b">node, on</text>
+  <text x="76" y="398" class="s">an inside</text>
+  <text x="76" y="412" class="s">wall</text>
+  <!-- room plan: 1 m = 80 px; node on the left (inside) wall -->
+  <text x="694" y="98" class="h">Plan</text>
+  <text x="736" y="98" class="s">a kos room with a kitchen corner</text>
+  <rect x="690" y="150" width="370" height="320" fill="none" stroke="#b9b1a1" stroke-width="10"/>
+  <rect x="750" y="145" width="110" height="10" fill="#dcecf7" stroke="#7fa7c4"/>
+  <text x="805" y="140" class="s" text-anchor="middle">window</text>
+  <rect x="780" y="465" width="60" height="10" fill="#fbf8f1"/>
+  <path d="M840,470 L840,410 A60,60 0 0 0 780,470" fill="none" stroke="#8c877b" stroke-width="1.3"/>
+  <text x="810" y="490" class="s" text-anchor="middle">door</text>
+  <g clip-path="url(#room)"><circle cx="696" cy="330" r="80" fill="#2a9d4b" fill-opacity="0.07" stroke="#2a9d4b" stroke-width="1.4" stroke-dasharray="6 4"/><circle cx="696" cy="330" r="160" fill="none" stroke="#d9480f" stroke-width="1.4" stroke-dasharray="6 4"/></g>
+  <text x="708" y="336" class="l b" style="fill:#2a9d4b">1 m</text>
+  <text x="708" y="350" class="s">people,</text>
+  <text x="708" y="364" class="s">windows,</text>
+  <text x="708" y="378" class="s">doors</text>
+  <text x="706" y="430" class="l b" style="fill:#d9480f">2 m</text>
+  <text x="706" y="444" class="s">AC, stove,</text>
+  <text x="706" y="458" class="s">coil, fan</text>
+  <rect x="1042" y="256" width="14" height="62" rx="3" fill="#ffffff" stroke="#1d1d1b" stroke-width="1.3"/>
+  <text x="1036" y="250" class="p b" text-anchor="end">AC</text>
+  <path d="M1040,270 L990,262" fill="none" stroke="#2f7fbf" stroke-width="1.5" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <path d="M1040,304 L990,312" fill="none" stroke="#2f7fbf" stroke-width="1.5" marker-end="url(#aa)" stroke-dasharray="4 3"/>
+  <circle cx="930" cy="300" r="44" fill="none" stroke="#8c877b" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <path d="M930,300 L930,262 M930,300 L963,319 M930,300 L897,319" stroke="#8c877b" stroke-width="3" stroke-linecap="round"/>
+  <text x="930" y="364" class="s" text-anchor="middle">fan</text>
+  <rect x="984" y="160" width="70" height="40" rx="2" fill="#efe7d6" stroke="#8c877b" stroke-width="1.1"/>
+  <circle cx="1004" cy="180" r="9" fill="none" stroke="#d9480f" stroke-width="2"/>
+  <circle cx="1034" cy="180" r="9" fill="none" stroke="#d9480f" stroke-width="2"/>
+  <text x="1019" y="216" class="s" text-anchor="middle">stove</text>
+  <rect x="870" y="396" width="120" height="62" rx="3" fill="#efe7d6" stroke="#8c877b" stroke-width="1.1"/>
+  <text x="930" y="432" class="s" text-anchor="middle">bed</text>
+  <rect x="810" y="196" width="70" height="36" rx="3" fill="#efe7d6" stroke="#8c877b" stroke-width="1.1"/>
+  <text x="845" y="218" class="s" text-anchor="middle">desk</text>
+  <circle cx="845" cy="248" r="9" fill="#e7ddcb" stroke="#1d1d1b" stroke-width="1.2"/>
+  <ellipse cx="1018" cy="450" rx="9" ry="3" fill="#5b8a3c"/>
+  <text x="1018" y="436" class="s" text-anchor="middle">coil</text>
+  <rect x="690" y="316" width="12" height="28" rx="2" fill="#ffffff" stroke="#1d1d1b" stroke-width="1.4"/>
+  <text x="708" y="308" class="p b">node</text>
+  <text x="694" y="512" class="s">AC, stove, coil and fan stay outside the orange ring,</text>
+  <text x="694" y="526" class="s">people, windows and doors outside the green one.</text>
+  <!-- airflow inside a simple indoor shell -->
+  <text x="24" y="576" class="h">Inside the shell</text>
+  <text x="166" y="576" class="s">the order of parts, as a sketch</text>
+  <rect x="200" y="600" width="150" height="270" rx="10" fill="#ffffff" stroke="#1d1d1b" stroke-width="1.8"/>
+  <line x1="200" y1="672" x2="350" y2="672" stroke="#1d1d1b" stroke-width="1.6"/>
+  <line x1="200" y1="782" x2="300" y2="782" stroke="#1d1d1b" stroke-width="1.6"/>
+  <rect x="240" y="628" width="70" height="30" rx="3" fill="#1f2a33" stroke="#0d1418" stroke-width="1"/>
+  <text x="275" y="647" class="pw" text-anchor="middle">XIAO</text>
+  <path d="M250,600 L250,592 M275,600 L275,592 M300,600 L300,592" stroke="#ffffff" stroke-width="5"/>
+  <path d="M260,624 Q262,600 258,584" fill="none" stroke="#d9480f" stroke-width="1.6" marker-end="url(#ah)"/>
+  <path d="M290,624 Q288,600 292,584" fill="none" stroke="#d9480f" stroke-width="1.6" marker-end="url(#ah)"/>
+  <rect x="214" y="694" width="116" height="72" rx="3" fill="#cdd2d6" stroke="#6d747a" stroke-width="1.2"/>
+  <text x="272" y="724" class="p b" text-anchor="middle">PMS5003</text>
+  <rect x="222" y="762" width="34" height="6" fill="#ffffff" stroke="#6d747a"/>
+  <text x="272" y="740" class="s" text-anchor="middle">inlet below,</text>
+  <text x="272" y="753" class="s" text-anchor="middle">outlet right</text>
+  <path d="M350,706 L350,746" stroke="#fbf8f1" stroke-width="5"/>
+  <path d="M330,726 L382,712" fill="none" stroke="#d9480f" stroke-width="2.2" marker-end="url(#ah)"/>
+  <rect x="214" y="806" width="44" height="30" rx="3" fill="#2f4f3a" stroke="#17291e" stroke-width="1"/>
+  <text x="236" y="825" class="pw" text-anchor="middle">SCD40</text>
+  <rect x="272" y="812" width="30" height="20" rx="3" fill="#2f4f3a" stroke="#17291e" stroke-width="1"/>
+  <text x="287" y="826" class="pw" text-anchor="middle">SHT</text>
+  <path d="M216,870 L216,878 M236,870 L236,878 M256,870 L256,878 M276,870 L276,878 M296,870 L296,878 M316,870 L316,878 M336,870 L336,878" stroke="#fbf8f1" stroke-width="6"/>
+  <path d="M350,826 L350,858" stroke="#fbf8f1" stroke-width="5"/>
+  <path d="M236,904 L236,872" fill="none" stroke="#2f7fbf" stroke-width="2" marker-end="url(#aa)"/>
+  <path d="M300,904 L300,872" fill="none" stroke="#2f7fbf" stroke-width="2" marker-end="url(#aa)"/>
+  <path d="M384,846 L354,846" fill="none" stroke="#2f7fbf" stroke-width="2" marker-end="url(#aa)"/>
+  <path d="M240,800 Q238,790 240,772" fill="none" stroke="#2f7fbf" stroke-width="1.6" marker-end="url(#aa)"/>
+  <text x="392" y="620" class="l b">XIAO and its WiFi</text>
+  <text x="392" y="634" class="s">radio on top, own vent:</text>
+  <text x="392" y="648" class="s">its heat rises out</text>
+  <text x="392" y="662" class="s">and never reaches</text>
+  <text x="392" y="676" class="s">the sensors.</text>
+  <text x="392" y="712" class="l b">PMS exhaust leaves</text>
+  <text x="392" y="726" class="s">high and sideways,</text>
+  <text x="392" y="740" class="s">away from the intake.</text>
+  <text x="392" y="790" class="l b">SCD40 and SHT40 sit</text>
+  <text x="392" y="804" class="s">in the intake air,</text>
+  <text x="392" y="818" class="s">upstream of the PMS,</text>
+  <text x="392" y="832" class="s">below the baffle.</text>
+  <text x="24" y="620" class="s">Node V2 lost its</text>
+  <text x="24" y="634" class="s">temperature channel</text>
+  <text x="24" y="648" class="s">to radio heat in one</text>
+  <text x="24" y="662" class="s">closed box. Bottom to</text>
+  <text x="24" y="676" class="s">top: sensors, PMS,</text>
+  <text x="24" y="690" class="s">XIAO.</text>
+  <text x="24" y="912" class="s">Room air in at the bottom and the side.</text>
+  <!-- SCD40: open air, weekly fresh air for ASC -->
+  <text x="560" y="576" class="h">The SCD40 needs open air, and fresh air once a week</text>
+  <text x="560" y="600" class="l">It reads CO2 through a membrane on top of the part. Give its bay</text>
+  <text x="560" y="615" class="l">openings on two faces so room air moves through, leave the membrane</text>
+  <text x="560" y="630" class="l">bare, and mask it before the board is coated. In a closed pocket it</text>
+  <text x="560" y="645" class="l">reads stale air and answers late.</text>
+  <rect x="610" y="680" width="450" height="160" fill="#ffffff" stroke="#cfc6b4"/>
+  <line x1="610" y1="840" x2="1060" y2="840" stroke="#ece6da"/>
+  <text x="604" y="844" class="s" text-anchor="end">400</text>
+  <line x1="610" y1="780" x2="1060" y2="780" stroke="#ece6da"/>
+  <text x="604" y="784" class="s" text-anchor="end">1000</text>
+  <line x1="610" y1="730" x2="1060" y2="730" stroke="#ece6da"/>
+  <text x="604" y="734" class="s" text-anchor="end">1500</text>
+  <line x1="610" y1="680" x2="1060" y2="680" stroke="#ece6da"/>
+  <text x="604" y="684" class="s" text-anchor="end">2000</text>
+  <text x="604" y="672" class="s" text-anchor="end">ppm</text>
+  <text x="642.143" y="856" class="s" text-anchor="middle">Mon</text>
+  <text x="706.429" y="856" class="s" text-anchor="middle">Tue</text>
+  <line x1="674.286" y1="680" x2="674.286" y2="840" stroke="#ece6da"/>
+  <text x="770.714" y="856" class="s" text-anchor="middle">Wed</text>
+  <line x1="738.571" y1="680" x2="738.571" y2="840" stroke="#ece6da"/>
+  <text x="835" y="856" class="s" text-anchor="middle">Thu</text>
+  <line x1="802.857" y1="680" x2="802.857" y2="840" stroke="#ece6da"/>
+  <text x="899.286" y="856" class="s" text-anchor="middle">Fri</text>
+  <line x1="867.143" y1="680" x2="867.143" y2="840" stroke="#ece6da"/>
+  <text x="963.571" y="856" class="s" text-anchor="middle">Sat</text>
+  <line x1="931.429" y1="680" x2="931.429" y2="840" stroke="#ece6da"/>
+  <text x="1027.86" y="856" class="s" text-anchor="middle">Sun</text>
+  <line x1="995.714" y1="680" x2="995.714" y2="840" stroke="#ece6da"/>
+  <polyline points="610.0,828.0 629.3,816.0 637.0,730.0 645.4,760.0 653.7,715.0 660.1,790.0 674.3,818.0 674.3,818.0 693.6,816.0 701.3,730.0 709.6,760.0 718.0,715.0 724.4,790.0 738.6,818.0 738.6,818.0 757.9,816.0 765.6,730.0 773.9,760.0 782.3,715.0 788.7,790.0 802.9,818.0 802.9,818.0 822.1,816.0 829.9,730.0 838.2,760.0 846.6,715.0 853.0,790.0 867.1,818.0 867.1,818.0 886.4,816.0 894.1,730.0 902.5,760.0 910.9,715.0 917.3,790.0 931.4,818.0 963.6,833.0 995.7,836.8 1060.0,836.2" fill="none" stroke="#1f6fd6" stroke-width="2"/>
+  <line x1="610" y1="837.5" x2="1060" y2="837.5" stroke="#2a9d4b" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <rect x="940" y="726" width="118" height="56" rx="4" fill="#ffffff" stroke="#2a9d4b" stroke-width="1.1"/>
+  <text x="947" y="742" class="s">empty weekend,</text>
+  <text x="947" y="756" class="s">near outdoor air</text>
+  <text x="947" y="770" class="s">(dashed, ~425)</text>
+  <line x1="1010" y1="782" x2="1010" y2="832" stroke="#2a9d4b" stroke-width="1.2"/>
+  <text x="560" y="880" class="l">Automatic self-calibration takes the lowest air it sees each week as</text>
+  <text x="560" y="895" class="l">outdoor air. A classroom empty at the weekend gives it that. A kos</text>
+  <text x="560" y="910" class="l">room with the AC on and the door shut does not: open window and door</text>
+  <text x="560" y="925" class="l">10 minutes once a week, or its CO2 drifts. Curve for illustration only.</text>
+  <!-- do and do not -->
+  <rect x="24" y="960" width="520" height="132" rx="6" fill="#f3f8f2" stroke="#2a9d4b" stroke-width="1.1"/>
+  <text x="36" y="980" class="h">Do</text>
+  <text x="36" y="999" class="l">Mount at 1.1 to 1.5 m on an inside wall, facing the room.</text>
+  <text x="36" y="1016" class="l">Keep 1 m from where people sit or sleep.</text>
+  <text x="36" y="1033" class="l">Keep 1 m from windows and doors, 2 m from AC and fans.</text>
+  <text x="36" y="1050" class="l">Leave 15 cm of free air round the intake and vents.</text>
+  <text x="36" y="1067" class="l">Air the room fully for 10 minutes once a week.</text>
+  <text x="36" y="1084" class="l">Mask the SCD40 and SHT40 before coating the board.</text>
+  <rect x="560" y="960" width="516" height="132" rx="6" fill="#fbf1ee" stroke="#d9480f" stroke-width="1.1"/>
+  <text x="572" y="980" class="h">Do not</text>
+  <text x="572" y="999" class="l">Put it in direct sun or on a sun-warmed outer wall.</text>
+  <text x="572" y="1016" class="l">Hang it in the throw of an AC or under a ceiling fan.</text>
+  <text x="572" y="1033" class="l">Mount it above a stove, rice cooker, coil or incense.</text>
+  <text x="572" y="1050" class="l">Shut it in a cupboard, behind a curtain or in a corner.</text>
+  <text x="572" y="1067" class="l">Seal the shell, or glue or coat over a sensor.</text>
+  <text x="572" y="1084" class="l">Put the SHT40 or SCD40 beside the XIAO or the PMS exhaust.</text>
+  <text x="24" y="1150" class="s">Sources: Sensirion SCD4x datasheet v1.7 (ASC needs 400 ppm air at least 3 minutes a week); Plantower PMS5003</text>
+  <text x="24" y="1166" class="s">manual v2.3 (keep the inlet free, out of air-cleaner streams); Welsh Government CO2 monitor guidance for schools</text>
+  <text x="24" y="1182" class="s">(seated head height, away from vents and windows, at least 0.5 m from people). The 1 m and 2 m rings are our rule.</text>
+</svg>
