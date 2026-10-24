@@ -1,25 +1,28 @@
 # Bayu node
 
-Bayu is the next air quality node for Making Sense Bali, after the DIY node. It runs on the
-same Seeed XIAO ESP32-S3. The sensors change: a Sensirion SEN54 and Plantower PMS5003 or
-PMS5003T for particulate matter, an SHT40 for temperature and humidity, and an SCD40 for CO₂
-indoors. Every node has WiFi. Where WiFi doesn't reach, nodes talk to each other over LoRa
-with Meshtastic, through the Wio-SX1262 board that clips on top of the XIAO.
+Bayu is the Making Sense Bali air quality node. The one deployed today is Bayu v3: a Seeed
+XIAO ESP32-S3 with a BME680 and an HM3301, built on a Grove Shield or Fab Lab Bali's own PCB
+and housed in the [node-v3.2](../diy-node/enclosure/node-v3.2/) enclosure.
 
-It is one board, fitted four different ways depending on what you want to measure and
-where. Every kit stays under USD 100.
+The four new variants keep the XIAO and add the sensors we have now: a Sensirion SEN54 and
+Plantower PMS5003 or PMS5003T for particulate matter, an SHT40 for temperature and
+humidity, and an SCD40 for CO₂ indoors. Every node has WiFi. Where WiFi doesn't reach,
+nodes talk to each other over LoRa with Meshtastic, through the Wio-SX1262 board that clips
+on top of the XIAO. It is one board, fitted differently depending on what you want to
+measure and where. Every kit stays under USD 100.
 
 Why the design is the way it is, the costs, where to buy parts in Indonesia and elsewhere,
 and the firmware plan are in [DESIGN.md](DESIGN.md). This page is the map of the drawings.
 
-> Nothing here has been built yet. Every drawing was checked against the datasheets, the
+> None of the four new variants has been built yet. Every drawing was checked against the datasheets, the
 > Seeed schematic and the firmware source, but none against a stack on the bench. If you
 > build one, tell us what is wrong.
 
-## The four variants
+## Bayu v3 and the four new variants
 
 | | Sensors | Where it goes | Kit, USD | Firmware |
 |---|---|---|---|---|
+| [**Bayu v3**](../diy-node/) | BME680, HM3301, LoRa optional | Deployed today, indoors and out. Temperature, humidity, VOC and PM. | not priced yet | Smart Citizen v5 |
 | [**Anchor**](circuits/anchor/) | SEN54, PMS5003, SHT40, LoRa | One per cluster, outdoors. The local reference the cheap nodes are corrected against. | about 91 | Meshtastic, Bayu image |
 | [**Dense**](circuits/dense/) | PMS5003T, LoRa optional | Many, on kos rooms, warungs and family compounds, put up by workshop participants. | about 52, 58 with LoRa | Meshtastic `_t` image, or Smart Citizen v5 |
 | [**Indoor**](circuits/indoor/) | PMS5003, SCD40, SHT40 | Classrooms, kos rooms, kitchens with a mosquito coil going. | about 70 | Smart Citizen v5 or Meshtastic |
@@ -27,6 +30,23 @@ and the firmware plan are in [DESIGN.md](DESIGN.md). This page is the map of the
 
 A fifth variant, Mobile, with GPS and a battery for transects on a motorbike, is in the
 design and comes later.
+
+### Bayu v3, the node in the field
+
+Grove BME680 and Grove HM3301 on the two I2C sockets of the Grove Shield. It is the only
+configuration that is fully plug and play on today's shield, and the Wio-SX1262 stacks on
+it for LoRa. The build guide, wiring for the shield and for Fab Lab Bali's PCB, and the
+enclosure are in [`../diy-node/`](../diy-node/).
+
+<table>
+<tr>
+<td width="50%"><a href="../diy-node/enclosure/node-v3.2/img/10-breadboard-grove-shield.png"><img src="../diy-node/enclosure/node-v3.2/img/10-breadboard-grove-shield.png" alt="Bayu v3 wiring on the Grove Shield" width="460"></a></td>
+<td width="50%"><a href="../diy-node/enclosure/node-v3.2/img/02-internal-layout.png"><img src="../diy-node/enclosure/node-v3.2/img/02-internal-layout.png" alt="Bayu v3 inside the node-v3.2 enclosure" width="460"></a></td>
+</tr>
+<tr><td>Wiring on the Grove Shield</td><td>Inside the node-v3.2 enclosure</td></tr>
+</table>
+
+[Build it yourself](../diy-node/BUILD-IT-YOURSELF.md) · [Set up an assembled one](../diy-node/SETUP-ASSEMBLED.md) · [Enclosure](../diy-node/enclosure/node-v3.2/)
 
 ### Anchor
 
@@ -94,25 +114,38 @@ the shade. Its README also has the Meshtastic settings every node in a cluster n
 A variant only leaves pins empty. No pin changes job between variants, so one Core board
 and one firmware image serve all four.
 
-| XIAO | GPIO | Job | Anchor | Dense | Indoor | Relay |
-|---|---|---|---|---|---|---|
-| 5V | VBUS | 5 V for the PM sensors' fans | ● | ● | ● | |
-| 3V3 | | 3.3 V for the I²C sensors and the LED | ● | ● | ● | ● |
-| D4 | 5 | I²C SDA | ● | | ● | ● |
-| D5 | 6 | I²C SCL | ● | | ● | ● |
-| D6 | 43 | UART TX to the PMS RXD | ● | ● | ● | |
-| D7 | 44 | UART RX from the PMS TXD | ● | ● | ● | |
-| D2 | 3 | PMS SET, fan sleep | ● | ● | ● | |
-| D0 | 1 | button | ○ | ○ | ○ | ○ |
-| D1 | 2 | WS2812 status LED | ○ | ○ | ○ | ○ |
-| D3 | 4 | battery sense, Power board only | ○ | | | |
-| D8 to D10 | 7, 8, 9 | LoRa SPI, taken by the Wio-SX1262 | ● | ○ | | ● |
+| XIAO | GPIO | Job | v3 | Anchor | Dense | Indoor | Relay |
+|---|---|---|---|---|---|---|---|
+| 5V | VBUS | 5 V for the PM sensors' fans | | ● | ● | ● | |
+| 3V3 | | 3.3 V for the I²C sensors and the LED | ● | ● | ● | ● | ● |
+| D4 | 5 | I²C SDA | ● | ● | | ● | ● |
+| D5 | 6 | I²C SCL | ● | ● | | ● | ● |
+| D6 | 43 | UART TX to the PMS RXD | | ● | ● | ● | |
+| D7 | 44 | UART RX from the PMS TXD | | ● | ● | ● | |
+| D2 | 3 | PMS SET, fan sleep | | ● | ● | ● | |
+| D0 | 1 | button | | ○ | ○ | ○ | ○ |
+| D1 | 2 | WS2812 status LED | | ○ | ○ | ○ | ○ |
+| D3 | 4 | battery sense, Power board only | | ○ | | | |
+| D8 to D10 | 7, 8, 9 | LoRa SPI, taken by the Wio-SX1262 | ○ | ● | ○ | | ● |
 
 ● wired · ○ optional
 
 The Smart Citizen firmware v5 only listens to the PMS on D7. The Meshtastic Bayu image also
 uses D6 and D2 to sleep the fan between readings. Wire all three and the same node runs
 either.
+
+## Plug and play with Grove
+
+Every variant can be built on the Seeed Grove Shield for XIAO with Grove cables. Bayu v3
+and the Relay are fully plug and play on it today. The Plantower nodes need one extra wire,
+because the shield's sockets give 3V3 and the PMS5003 fan needs 5 V.
+[Bayu on the Grove Shield](grove/) has the socket map for each variant.
+
+We are also proposing a smaller board to Seeed, with four sockets, a clock and a microSD
+slot, on which every variant plugs in:
+[Grove Shield Mini for XIAO](grove-shield-mini/).
+
+<a href="grove/grove-shield-map.svg"><img src="grove/grove-shield-map.svg" alt="Bayu on the Grove Shield: socket map per variant" width="920"></a>
 
 ## Before you solder
 
@@ -140,6 +173,8 @@ either.
 bayu-node/
 ├── README.md       this page
 ├── DESIGN.md       the design: roles, boards, costs, sourcing, mesh, firmware
+├── grove/          Bayu on the Seeed Grove Shield, socket map per variant
+├── grove-shield-mini/  the board we are proposing to Seeed
 └── circuits/
     ├── anchor/     ┐
     ├── dense/      │ each: wiring-breadboard.svg, wiring-core.svg,
