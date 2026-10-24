@@ -51,7 +51,7 @@
   <rect x="268" y="250" width="162" height="16" fill="#3a3a3a"/>
   <rect x="268" y="386" width="162" height="16" fill="#3a3a3a"/>
   <text x="347" y="316" class="lab" text-anchor="middle">XIAO ESP32-S3</text>
-  <text x="347" y="330" class="sm" text-anchor="middle">+ Wio-SX1262 stack</text>
+  <text x="347" y="330" class="sm" text-anchor="middle">Wio-SX1262 on top</text>
   <text x="347" y="344" class="sm" text-anchor="middle">25 mm clear above</text>
   <text x="236" y="306" class="sm" text-anchor="end">USB-C</text>
   <text x="236" y="318" class="sm" text-anchor="end">5 V in</text>
@@ -168,18 +168,18 @@
   <text x="1030" y="350" class="sm" text-anchor="middle">shade side, 60 mm or more from the stack,</text>
   <text x="1030" y="362" class="sm" text-anchor="middle">below the stack's vents</text>
 
-  <!-- open decision -->
+  <!-- stack rule -->
   <rect x="830" y="400" width="380" height="182" rx="6" fill="#ffffff" stroke="#e0b4ae" stroke-width="1.2"/>
-  <text x="846" y="424" class="hw">Open for the Core: how the stack mounts</text>
-  <text x="846" y="444" class="lab">The Wio clips under the XIAO and carries edge</text>
-  <text x="846" y="458" class="lab">pads (J1) with radio lines under D0 to D4. XIAO</text>
-  <text x="846" y="472" class="lab">pins pushed down into a socket pass through those</text>
-  <text x="846" y="486" class="lab">pads and short GPIO1–5 to the radio.</text>
-  <text x="846" y="506" class="lab">Option A: invert the stack. Pins out of the XIAO's</text>
-  <text x="846" y="520" class="lab">top, can side down in the socket, Wio on top,</text>
-  <text x="846" y="534" class="lab">USB-C over the board edge.</text>
-  <text x="846" y="554" class="lab">Option B: no socket. Wire the six pins the Relay</text>
-  <text x="846" y="568" class="lab">uses to the XIAO pads, as in phase 0.</text>
+  <text x="846" y="424" class="hw">Socket it pins-down, header in the XIAO only</text>
+  <text x="846" y="444" class="lab">The Wio clips on top of the XIAO, onto the B2B</text>
+  <text x="846" y="458" class="lab">connector at the end away from USB-C. Its edge</text>
+  <text x="846" y="472" class="lab">pads (J1) sit right over the XIAO's pins and carry</text>
+  <text x="846" y="486" class="lab">radio lines on the D0 to D4 positions.</text>
+  <text x="846" y="506" class="lab">Solder the socket header into the XIAO alone and</text>
+  <text x="846" y="520" class="lab">trim the stubs flush on top before the Wio goes</text>
+  <text x="846" y="534" class="lab">on. A header through both boards shorts GPIO1–5</text>
+  <text x="846" y="548" class="lab">to the radio. The socket needs 25 mm clear above</text>
+  <text x="846" y="562" class="lab">for the stack and the U.FL pigtail.</text>
 
   <!-- connection table -->
   <line x1="40" y1="652" x2="1200" y2="652" stroke="#d8d1c3"/>

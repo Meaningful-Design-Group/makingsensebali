@@ -10,9 +10,9 @@ Phase 0 is a breadboard and jumpers, no PCB. The Core drawing shows where the sa
 
 ![Bayu Relay breadboard wiring](wiring-breadboard.svg)
 
-The stack does **not** plug into the breadboard. The Wio-SX1262 clips under the XIAO on the board-to-board (B2B) connector, and the Wio has two rows of edge pads (J1, J2) right under the XIAO's pins. J1 carries the radio on the D0 to D4 positions, so a header pushed through both boards ties GPIO1–5 to the radio's DIO1, BUSY, RESET, NSS and RF switch lines. The Relay uses D0, D1 and D4, so that would break it on day one.
+The stack plugs into the breadboard pins-down, with one rule. The Wio-SX1262 clips on top of the XIAO, onto the board-to-board (B2B) connector at the end away from USB-C, and it has two rows of edge pads (J1, J2) right over the XIAO's pins. J1 carries the radio on the D0 to D4 positions, so a header that reaches the Wio ties GPIO1–5 to the radio's DIO1, BUSY, RESET, NSS and RF switch lines. The Relay uses D0, D1 and D4, so that would break it on day one.
 
-The way around it is to fit two 1×7 headers from the top of the XIAO, solder them underneath, trim the stubs flush, then clip the Wio on. The stack sits next to the breadboard and female-to-male jumpers carry six pins across. Fit both antennas before you plug in USB.
+So the header goes into the XIAO alone. Push two 1×7 headers into the breadboard, set the XIAO on them front side up, solder from the top and trim the stubs flush before the Wio goes on. USB-C hangs over the edge of the breadboard. Fit both antennas before you plug in USB.
 
 ### On the Bayu Core
 
@@ -20,7 +20,7 @@ The way around it is to fit two 1×7 headers from the top of the XIAO, solder th
 
 The SHT40 goes on Grove socket G1, the button and the LED share the D0/D1 Grove socket G3, and the SEN54 and PMS5003 connectors stay empty. Leave the I²C pull-up jumper JP1 open: Grove and Adafruit SHT40 boards bring their own pull-ups. The LoRa pigtail leaves the board towards the SMA bulkhead, and the WiFi antenna goes on the opposite wall.
 
-The edge-pad problem above also applies to the Core: a socketed XIAO with the Wio underneath has the same short. Two ways out are drawn in the red box, invert the stack in the socket or wire the six pins by hand. We have to decide this before the PCB order.
+The same rule holds on the Core: the socket takes the XIAO pins-down, with the header soldered into the XIAO only and the stubs trimmed, and the Wio rides on top. The socket needs 25 mm clear above it for the stack and the U.FL pigtail.
 
 ### Schematic
 
@@ -58,8 +58,8 @@ Prices are single units, October 2026, from the cost table in DESIGN.md where it
 | 1 | 6 × 6 mm tactile button | | 0.10 |
 | 1 | WS2812B breakout, single pixel | | 0.50 |
 | 1 | 330 Ω resistor | In series with the LED data line. | 0.05 |
-| 2 | 1×7 male header, 2.54 mm | Soldered from the top of the XIAO only. | 0.20 |
-| 1 | Half-size breadboard, female-to-male and male-to-male jumpers | Phase 0 only. | 3 |
+| 2 | 1×7 male header, 2.54 mm | Into the XIAO only, stubs trimmed flush on top. | 0.20 |
+| 1 | Half-size breadboard and male-to-male jumpers | Phase 0 only. | 3 |
 | 1 | 5 V / 2 A USB supply and USB-C cable | | 5 |
 | 1 | Enclosure with a radiation-shield bay and an SMA boss | Kit1-hex, or any printed box that keeps the radio high and the SHT40 low. | 5 |
 
@@ -144,11 +144,11 @@ Leave `lora.tx_power` at the default until someone has read the Indonesian class
 These came up while checking the drawings against the Seeed schematic and the firmware source. DESIGN.md is not changed here.
 
 1. The radio does take D pins. GPIO 7, 8 and 9 are the same nets as D8, D9 and D10, so the SPI bus uses those three pins even though it reaches the Wio through the B2B connector. The pin budget table in DESIGN.md already says so; the sentence "every D pin is still available" does not hold for D8 to D10.
-2. No header through both boards. The Wio's edge pads J1 carry the radio on the D0 to D4 positions (Seeed schematic "Wio-SX1262 for XIAO V1.0"; it is also Meshtastic's `SEEED_XIAO_NRF_WIO_BTB` pinout). Phase 0 "on the Grove Shield" and a "socketed XIAO" on the Core both need the stack mounted another way. See the Core drawing.
+2. No header through both boards. The Wio's edge pads J1 carry the radio on the D0 to D4 positions (Seeed schematic "Wio-SX1262 for XIAO V1.0"; it is also Meshtastic's `SEEED_XIAO_NRF_WIO_BTB` pinout). The Grove Shield in phase 0 and the socket on the Core both work, as long as the header goes into the XIAO alone and the stubs are trimmed flush under the Wio.
 3. `ROUTER_CLIENT` is gone. It is deprecated in the protobufs, and `AdminModule.cpp` silently turns it into `CLIENT`. `ROUTER` and `ROUTER_LATE` force power saving in `PowerFSM.cpp`, which puts WiFi to sleep, so neither fits a WiFi Relay. Use `CLIENT`.
 4. MQTT JSON was removed in firmware 2.8.0. `mqtt.json_enabled` is ignored and the firmware only publishes protobuf on `msh/ID/2/e/<channel>/<node>`. The `msh/ID/2/json/bayu/#` topic in DESIGN.md will stay empty. `bayu-bridge` has to decode the `ServiceEnvelope` protobuf, with `mqtt.encryption_enabled false` so the packet inside arrives decoded.
 5. Bluetooth stops when WiFi starts. Provisioning over Bluetooth only works until WiFi is set. After that it is USB or the node's IP.
-6. Buy the kit. The B2B connector is on the XIAO's underside, and a Seeed forum thread reports that plain XIAO ESP32-S3 boards ship without it fitted. The kit at USD 9.90 is also cheaper than the XIAO plus the Wio priced separately in the cost table.
+6. Buy the kit. The B2B connector is on the XIAO's front, next to the WiFi U.FL (Seeed's front pinout image), and a Seeed forum thread reports that plain XIAO ESP32-S3 boards ship without it fitted. The kit at USD 9.90 is also cheaper than the XIAO plus the Wio priced separately in the cost table.
 7. The Wio has a button and an LED of its own. Button K1 on GPIO21 and a green LED on GPIO48, both through the B2B connector. That is why the stock variant has `BUTTON_PIN 21` and `LED_POWER 48`. The Bayu build moves the button to D0, so the Wio's button does nothing there.
 8. The secondary `LongFast` only meets nodes on the same radio settings. All channels share the primary's frequency and preset, so with the frequency pinned at 921.5 MHz our Relays carry community traffic only from nodes pinned to the same frequency and preset.
 9. Wio-SX1262 band. The kit wiki says 862 to 930 MHz. The module page says 868 to 915 MHz in one place and 868 to 960 MHz in another. 920 to 923 MHz sits inside all three.
