@@ -746,11 +746,11 @@ def schematic(key):
 HEADER_ONLY = ("Solder the header into the XIAO only and trim the stubs flush. The Wio's edge pads over "
                "D0 to D4 carry radio lines, a pin through both boards ties them to the button, LED, SET and SDA.")
 FIRMWARE = ("Firmware: Meshtastic (Bayu variant) listens on D7, drives D6 to the PMS RXD and D2 to SET, so it can "
-            "sleep the fan. Smart Citizen v5 only listens on D7 and never drives the PMS, SET then floats high "
+            "sleep the fan. The Bayu firmware v5 only listens on D7 and never drives the PMS, SET then floats high "
             "and the fan keeps running. Wire all three and the same node runs either.")
 PMS_OPEN = ("PMS pins 6 (RESET), 7 and 8 stay open. The sensor pulls SET and RESET up inside, so there is no "
             "resistor on them. Logic is 3.3 V on every line, no level shifter.")
-OPTIONAL = ("SW1 and U7 are optional and only the Meshtastic build uses them, v5 reads the XIAO's own BOOT "
+OPTIONAL = ("SW1 and U7 are optional and only the Meshtastic build uses them, the Bayu firmware v5 reads the XIAO's own BOOT "
             "button. R3, 330 Ω, sits in series on the LED data line on every variant. U7 runs on 3V3. The "
             "WS2812B asks for 3.5 V, but one pixel lights fine on 3.3 V and then reads the GPIO cleanly.")
 POWER = ("Power: a 5 V / 2 A USB-C wall supply. The XIAO's 5V pin is USB VBUS, the top rail carries it as "

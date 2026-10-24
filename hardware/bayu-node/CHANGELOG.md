@@ -28,6 +28,10 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Fixed
 
+- The docs called the node's own firmware "Smart Citizen v5". It is the Bayu firmware, v5 in
+  [`../diy-node/firmware/`](../diy-node/firmware/); Smart Citizen is one of the platforms it
+  publishes to. DESIGN.md also said that firmware stays on the old node and is not carried
+  forward, when it already reads every Bayu sensor.
 - A design review of the drawings found the Core drawn as four different boards: different
   designators, socket positions and USB-C direction, R1 meaning three different parts, a
   RESET pull-up on Dense only, and the LED resistor on Relay only. Wire colours also

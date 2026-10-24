@@ -2,7 +2,7 @@
 
 The Dense node is the cheap one, the one participants take home from a workshop and hang on their kos room, their warung or the family compound. A XIAO ESP32-S3 and a Plantower PMS5003T, on WiFi, powered from a 5 V wall plug. The Wio-SX1262 LoRa board is optional, for places the WiFi doesn't reach. Residents hang it themselves, so the wiring has to be easy to follow and the placement rules have to work without English.
 
-It runs the Bayu fork of Meshtastic (`seeed_xiao_s3_bayu_t`), and the Smart Citizen firmware v5 reads it too. The full design is in `../../DESIGN.md`.
+It runs the Bayu fork of Meshtastic (`seeed_xiao_s3_bayu_t`), and the Bayu firmware v5 reads it too. The full design is in `../../DESIGN.md`.
 
 ## Wiring on a breadboard (phase 0)
 
@@ -84,7 +84,7 @@ I checked every fact in the drawings against a source before drawing it. Most he
 
 1. **The LoRa board does take three D pins.** The Wio-SX1262 shares SPI on GPIO 7, 8 and 9, which are also the XIAO's D8, D9 and D10. Nothing else can go on those three pins when LoRa might be fitted. The control lines (GPIO 38 to 42) only reach it through the B2B connector, as DESIGN.md says.
 2. **How the stack mounts.** The Wio-SX1262 clips onto the XIAO's B2B connector, and Seeed's photos show the stack with a header on the XIAO only, sitting in a Grove Shield, so it plugs into a breadboard and into the Core. The B2B connector is on the XIAO's front, next to the WiFi U.FL, so the Wio rides on top. Its edge pads sit over the XIAO's D0 to D4 and carry radio lines (the Relay session found this in Seeed's schematic), so the header goes into the XIAO alone, stubs trimmed flush before the Wio goes on. The LoRa U.FL is on the Wio board. The XIAO's WiFi U.FL ends up between the two boards, and the plain XIAO has no antenna of its own, so the WiFi pigtail has to be routed out of the stack.
-3. **Nothing is sent on D6 today.** The Meshtastic driver opens the UART with TX on GPIO43 but never writes to it. v5 opens it RX only. D6 is wired so a later firmware can use the sensor's passive mode.
+3. **Nothing is sent on D6 today.** The Meshtastic driver opens the UART with TX on GPIO43 but never writes to it. The Bayu firmware v5 opens it RX only. D6 is wired so a later firmware can use the sensor's passive mode.
 4. **SET is safe to leave alone.** Plantower's manual says high or floating is normal running. A v5 node with D2 wired but never driven keeps the fan on, which is what v5 expects.
 5. **The PMS5003T pinout comes from the PMS5003 manual.** I found no PMS5003T manual. Plantower's PMS5003 manual v2.3 gives the 1 to 8 table, the 3.3 V logic and the ≤ 100 mA, and PyPMS lists the T with the same 8-pin connector. The manual doesn't state the 1.25 mm pitch, that figure is from sellers and DESIGN.md. Check pin 1 and the pitch on the first sensor before ordering a batch of PicoBlade cables.
 6. **The button and LED are Meshtastic only.** v5 uses the XIAO's own BOOT button on GPIO0 and has no WS2812 code.

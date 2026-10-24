@@ -82,7 +82,7 @@ The SCD40 reads CO₂ through a membrane, so its bay needs openings on two faces
 Both firmwares read this wiring, and that is why D6 and D2 are wired even though only one of them uses them.
 
 - **Meshtastic, Bayu fork** ([`seeed_xiao_s3_bayu`](https://github.com/Meaningful-Design-Group/firmware/tree/bayu/variants/esp32s3/seeed_xiao_s3_bayu)): listens on D7, talks on D6, sleeps the PMS fan with D2, button on D0, WS2812 on D1. The SCD40 and SHT40 come up from the I2C scan.
-- **Smart Citizen v5** ([`diy_node_v5.ino`](../../../diy-node/firmware/diy_node_v5/diy_node_v5.ino)): finds the SCD4x and SHT4x on I2C and only listens to the PMS on D7. It never drives D6 or D2, so the fan runs all the time, and it uses the XIAO's own BOOT button, not D0.
+- **Bayu firmware v5** ([`diy_node_v5.ino`](../../../diy-node/firmware/diy_node_v5/diy_node_v5.ino)): finds the SCD4x and SHT4x on I2C and only listens to the PMS on D7. It never drives D6 or D2, so the fan runs all the time, and it uses the XIAO's own BOOT button, not D0.
 
 ## Checked against the datasheets
 
@@ -94,6 +94,6 @@ I checked each fact in these drawings against the datasheet or the code before d
 - PMS5003 RESET: DESIGN.md has RESET pulled up on the Core. The Plantower manual v2.3 says SET and RESET are already pulled up inside and should be left unconnected when unused. The resistor can go.
 - PMS5003 connector: the Plantower manual draws the 8-pin, 1.25 mm connector and its pinout, which matches, but doesn't name a maker. The cables sold with it fit Molex PicoBlade.
 - Button: v5 reads the XIAO's BOOT button (GPIO0), not D0 (GPIO1). D0 is a Meshtastic button only.
-- Which firmware: DESIGN.md says every Bayu node runs Meshtastic and v5 stays on the DIY node. For a WiFi-only Indoor node v5 also works, and the wiring here suits both. That choice is still open.
+- Which firmware: DESIGN.md makes Meshtastic the firmware for new Bayu nodes. For a WiFi-only Indoor node the Bayu firmware v5 also works, and the wiring here suits both. That choice is still open.
 
 Placement distances: seated head height, away from windows and vents, and the 0.5 m minimum from people come from the Welsh Government's CO₂ monitor guidance for schools. The 1 m and 2 m rings are our own rule, set wider than that minimum.

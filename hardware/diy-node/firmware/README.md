@@ -1,4 +1,4 @@
-# Firmware
+# Bayu firmware
 
 **Flash [`diy_node_v5/`](diy_node_v5/) once it has passed a bench check (below); until
 then, [`diy_node_v4/`](diy_node_v4/).** One image serves the whole fleet — no

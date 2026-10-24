@@ -612,8 +612,8 @@
 <text x="30" y="1127" font-size="14" fill="#1d2433">The SHT40 is drawn as the Grove board that goes on J3. On the breadboard an Adafruit 4885 works too: VIN to 3V3, its 3V pin left open. Clone boards order their pins</text>
 <text x="30" y="1146" font-size="14" fill="#1d2433">differently, read the silkscreen.</text>
 <text x="30" y="1169" font-size="14" fill="#1d2433">The LoRa whip goes out through the SMA bulkhead, the XIAO's WiFi antenna stays inside the box.</text>
-<text x="30" y="1192" font-size="14" fill="#1d2433">SW1 and U7 are optional and only the Meshtastic build uses them, v5 reads the XIAO's own BOOT button. R3, 330 Ω, sits in series on the LED data line on every</text>
-<text x="30" y="1211" font-size="14" fill="#1d2433">variant. U7 runs on 3V3. The WS2812B asks for 3.5 V, but one pixel lights fine on 3.3 V and then reads the GPIO cleanly.</text>
+<text x="30" y="1192" font-size="14" fill="#1d2433">SW1 and U7 are optional and only the Meshtastic build uses them, the Bayu firmware v5 reads the XIAO's own BOOT button. R3, 330 Ω, sits in series on the LED data</text>
+<text x="30" y="1211" font-size="14" fill="#1d2433">line on every variant. U7 runs on 3V3. The WS2812B asks for 3.5 V, but one pixel lights fine on 3.3 V and then reads the GPIO cleanly.</text>
 <text x="30" y="1234" font-size="14" fill="#1d2433">Power: a 5 V / 2 A USB-C wall supply. The XIAO's 5V pin is USB VBUS, the top rail carries it as +5V_USB. On the Core it goes through F1 first and becomes +5V_F.</text>
 <g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1297" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1297" x2="1100" y2="1297" stroke="#c9c4b6"/><text x="20" y="1319" fill="#1d2433" font-weight="bold">Bayu Relay · Breadboard wiring, phase 0 · rev 2026-10-24</text><text x="20" y="1338" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

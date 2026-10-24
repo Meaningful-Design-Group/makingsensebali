@@ -686,13 +686,13 @@
 <text x="766" y="1043" font-size="13" fill="#5b6475">JST GH 1.25 mm, 6-pin</text>
 <text x="766" y="1059" font-size="13" fill="#5b6475">Core: J1 · I2C 0x69</text>
 <text x="766" y="1075" font-size="13" fill="#5b6475">SEL to GND selects I2C</text>
-<text x="30" y="1127" font-size="14" fill="#1d2433">Firmware: Meshtastic (Bayu variant) listens on D7, drives D6 to the PMS RXD and D2 to SET, so it can sleep the fan. Smart Citizen v5 only listens on D7 and never</text>
-<text x="30" y="1146" font-size="14" fill="#1d2433">drives the PMS, SET then floats high and the fan keeps running. Wire all three and the same node runs either.</text>
+<text x="30" y="1127" font-size="14" fill="#1d2433">Firmware: Meshtastic (Bayu variant) listens on D7, drives D6 to the PMS RXD and D2 to SET, so it can sleep the fan. The Bayu firmware v5 only listens on D7 and</text>
+<text x="30" y="1146" font-size="14" fill="#1d2433">never drives the PMS, SET then floats high and the fan keeps running. Wire all three and the same node runs either.</text>
 <text x="30" y="1169" font-size="14" fill="#1d2433">PMS pins 6 (RESET), 7 and 8 stay open. The sensor pulls SET and RESET up inside, so there is no resistor on them. Logic is 3.3 V on every line, no level shifter.</text>
 <text x="30" y="1188" font-size="14" fill="#1d2433">SEN54 pin 6 is not connected.</text>
 <text x="30" y="1211" font-size="14" fill="#1d2433">Keep the I2C wires under 10 cm, Sensirion asks for it. Both sensor cases are tied to their GND pin, keep them off other metal.</text>
-<text x="30" y="1234" font-size="14" fill="#1d2433">SW1 and U7 are optional and only the Meshtastic build uses them, v5 reads the XIAO's own BOOT button. R3, 330 Ω, sits in series on the LED data line on every</text>
-<text x="30" y="1253" font-size="14" fill="#1d2433">variant. U7 runs on 3V3. The WS2812B asks for 3.5 V, but one pixel lights fine on 3.3 V and then reads the GPIO cleanly.</text>
+<text x="30" y="1234" font-size="14" fill="#1d2433">SW1 and U7 are optional and only the Meshtastic build uses them, the Bayu firmware v5 reads the XIAO's own BOOT button. R3, 330 Ω, sits in series on the LED data</text>
+<text x="30" y="1253" font-size="14" fill="#1d2433">line on every variant. U7 runs on 3V3. The WS2812B asks for 3.5 V, but one pixel lights fine on 3.3 V and then reads the GPIO cleanly.</text>
 <text x="30" y="1276" font-size="14" fill="#1d2433">Power: a 5 V / 2 A USB-C wall supply. The XIAO's 5V pin is USB VBUS, the top rail carries it as +5V_USB. On the Core it goes through F1 first and becomes +5V_F.</text>
 <g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1339" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1339" x2="1100" y2="1339" stroke="#c9c4b6"/><text x="20" y="1361" fill="#1d2433" font-weight="bold">Bayu Anchor · Breadboard wiring, phase 0 · rev 2026-10-24</text><text x="20" y="1380" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>
