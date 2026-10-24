@@ -12,6 +12,8 @@ Five wires go to the sensor: 5 V, GND, D7 from the sensor's TXD, D6 to its RXD, 
 
 On a Grove Shield instead of a breadboard the nets are the same. SET still needs its own wire to D2.
 
+If you add the LoRa board, solder the header into the XIAO only and trim the stubs flush on the side the Wio clips onto. The Wio board has its own row of pads under D0 to D4, and they carry the radio's DIO1, BUSY, RST, NSS and RF_SW lines. One pin through both boards, or a long stub touching a pad, ties the button, the LED, SET and the radio together.
+
 ## On the Bayu Core board (phase 1)
 
 ![Connector map of the Bayu Core carrier as fitted for Dense](wiring-core.svg)
@@ -56,7 +58,7 @@ Prices are from the cost table in DESIGN.md, October 2026, single units. Search 
 | 1 | printed enclosure, PETG or ASA | Fab Lab Bali | 7 | |
 | — | coating, mesh, cable ties | | 3 | |
 | | **Total, WiFi only** | | **about 52** | |
-| 1 | *Optional:* Wio-SX1262 for XIAO and a 900 MHz U.FL antenna | `Wio-SX1262` | 6 | Locally only as the kit with a XIAO. Brings a Dense node to about 58. |
+| 1 | *Optional:* Wio-SX1262 for XIAO and a 900 MHz U.FL antenna | `Wio-SX1262` | 6 | Buy it as the kit with a XIAO, which is also the only way it's sold locally. Brings a Dense node to about 58. |
 
 ## Where to hang it
 
@@ -81,7 +83,7 @@ The PMS5003T's temperature and humidity come from inside the sensor, in the fan'
 I checked every fact in the drawings against a source before drawing it. Most held, these didn't or needed a note:
 
 1. **The LoRa board does take three D pins.** The Wio-SX1262 shares SPI on GPIO 7, 8 and 9, which are also the XIAO's D8, D9 and D10. Nothing else can go on those three pins when LoRa might be fitted. The control lines (GPIO 38 to 42) only reach it through the B2B connector, as DESIGN.md says.
-2. **How the stack mounts.** Seeed's photos show the Wio-SX1262 clipping onto the B2B connector on the XIAO's top face, next to the WiFi U.FL. The pins underneath stay free, and Seeed's own photo has the stack sitting in a Grove Shield, so it plugs into a breadboard and into the Core. The LoRa U.FL is on the Wio board. The XIAO's WiFi U.FL ends up between the two boards, and the plain XIAO has no antenna of its own, so the WiFi pigtail has to be routed out of the stack.
+2. **How the stack mounts.** The Wio-SX1262 clips onto the XIAO's B2B connector, and Seeed's photos show the stack with a header on the XIAO only, sitting in a Grove Shield, so it plugs into a breadboard and into the Core. The Wio board still has edge pads under the XIAO's D0 to D4 that carry radio lines (the Relay session found this in Seeed's schematic), so the header goes into the XIAO alone with its stubs trimmed flush. Seeed's FRONT pin map draws the B2B on the shield-can face; the Relay session reads the schematic as the underside. The drawings work either way, but whoever builds the first one should check and correct this note. The LoRa U.FL is on the Wio board. The XIAO's WiFi U.FL ends up between the two boards, and the plain XIAO has no antenna of its own, so the WiFi pigtail has to be routed out of the stack.
 3. **Nothing is sent on D6 today.** The Meshtastic driver opens the UART with TX on GPIO43 but never writes to it. v5 opens it RX only. D6 is wired so a later firmware can use the sensor's passive mode.
 4. **SET is safe to leave alone.** Plantower's manual says high or floating is normal running. A v5 node with D2 wired but never driven keeps the fan on, which is what v5 expects.
 5. **The PMS5003T pinout comes from the PMS5003 manual.** I found no PMS5003T manual. Plantower's PMS5003 manual v2.3 gives the 1 to 8 table, the 3.3 V logic and the ≤ 100 mA, and PyPMS lists the T with the same 8-pin connector. The manual doesn't state the 1.25 mm pitch, that figure is from sellers and DESIGN.md. Check pin 1 and the pitch on the first sensor before ordering a batch of PicoBlade cables.

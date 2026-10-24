@@ -82,6 +82,8 @@
   <text x="310" y="360" class="sm">and a path for its U.FL pigtail to the</text>
   <text x="310" y="372" class="sm">SMA bulkhead. <tspan fill="#c4861a" font-weight="700">D8 D9 D10</tspan> carry its SPI:</text>
   <text x="310" y="384" class="sm">no traces on them.</text>
+  <text x="310" y="400" class="sm" style="fill:#d62828">Header in the XIAO only, stubs flush:</text>
+  <text x="310" y="412" class="sm" style="fill:#d62828">the Wio's edge pads carry radio lines.</text>
 
   <!-- signal traces to the PicoBlade -->
   <path class="tr" stroke="#55a630" d="M257.4 264 H575 V333.5 H626"/>

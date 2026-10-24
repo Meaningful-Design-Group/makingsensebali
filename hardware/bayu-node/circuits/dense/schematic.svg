@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1100 800" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+<svg viewBox="0 0 1100 806" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
   <title>Bayu Dense schematic</title>
   <desc>Schematic of the Bayu Dense node: XIAO ESP32-S3, Plantower PMS5003T on UART with SET, button, WS2812 LED, optional Wio-SX1262 LoRa through the board-to-board connector. Nets named.</desc>
   <style>
@@ -20,7 +20,7 @@
     <g id="nc"><path d="M-4 -4 L4 4 M-4 4 L4 -4" stroke="#222" stroke-width="1.6"/></g>
   </defs>
 
-  <rect width="1100" height="800" fill="#ffffff"/>
+  <rect width="1100" height="806" fill="#ffffff"/>
   <text x="24" y="36" class="t1">Bayu Dense · schematic</text>
   <text x="24" y="56" class="t2">XIAO ESP32-S3 + PMS5003T, button, status LED · Wio-SX1262 optional (dashed) · nets in colour</text>
 
@@ -161,4 +161,5 @@
   <text x="24" y="736" class="note">SW1 needs no resistor: the firmware enables the ESP32 internal pull-up on GPIO1. All logic is 3.3 V; only the PMS fan runs on 5 V.</text>
   <text x="24" y="754" class="note">U3 talks over the B2B connector only. D8 D9 D10 are the same GPIO 7 8 9 as its SPI: leave them unconnected on a Dense node.</text>
   <text x="24" y="772" class="note">U2's T/RH element sits inside the sensor, in the fan's air. Report it as PM-internal temperature and humidity, never as ambient.</text>
+  <text x="24" y="790" class="note">U3's edge pads sit over D0 to D4 and carry DIO1, BUSY, RST, NSS and RF_SW: never solder one header through both boards.</text>
 </svg>
