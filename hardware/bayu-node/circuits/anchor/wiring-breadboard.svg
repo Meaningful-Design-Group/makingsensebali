@@ -680,6 +680,7 @@
 <text x="752" y="148" font-size="10.5" fill="#1d1d1b" text-anchor="start">LoRa antenna: U.FL on the Wio board → pigtail → SMA bulkhead → whip.</text>
 <text x="752" y="166" font-size="10.5" fill="#1d1d1b" text-anchor="start">WiFi antenna: the separate U.FL on the XIAO. Do not swap the two.</text>
 <text x="752" y="184" font-size="10.5" fill="#d2322d" text-anchor="start">Never run the LoRa radio without its antenna fitted.</text>
+<text x="752" y="202" font-size="10.5" fill="#d2322d" text-anchor="start">Header on the XIAO only, stubs trimmed flush: the Wio's edge pads over D0–D4 are radio lines.</text>
 <text x="1154" y="640" font-size="12" fill="#1d1d1b" text-anchor="start" font-weight="bold">Wires</text>
 <path d="M 1154 662 L 1188 662" fill="none" stroke="#fdfbf6" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 1154 662 L 1188 662" fill="none" stroke="#d2322d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
