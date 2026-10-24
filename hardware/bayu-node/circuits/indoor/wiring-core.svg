@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 900" width="1100" height="900" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 952" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1100" height="952">
   <title>Bayu Indoor on the Bayu Core board</title>
   <desc>Connector map of the planned Bayu Core carrier board as fitted for the Indoor role: the PMS5003 on the 8-pin PicoBlade, the SCD40 and SHT40 on the two Grove I2C sockets, the XIAO ESP32-S3 in its socket. Nets are named at every pin instead of drawn as traces.</desc>
   <style>
@@ -273,4 +273,5 @@
   <line x1="818" y1="834" x2="848" y2="834" stroke="#8a8a8a" stroke-width="3.8" stroke-linecap="round"/>
   <text x="858" y="838" class="l">BTN, LED_DIN (optional)</text>
   <text x="38" y="858" class="s">UART names follow the XIAO: UART_RX is the PMS TXD going into D7, UART_TX leaves D6 for the PMS RXD.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="900" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="900" x2="1100" y2="900" stroke="#c9c4b6"/><text x="20" y="922" fill="#1d2433" font-weight="bold">Bayu Indoor · Bayu Core connector map, phase 1 · rev 2026-10-24</text><text x="20" y="941" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

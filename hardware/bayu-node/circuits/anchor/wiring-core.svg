@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" width="1400" height="1000" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1052" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1400" height="1052">
 <title>Bayu Anchor on the Bayu Core carrier</title>
 <desc>Connector map of the planned Bayu Core carrier board for the Anchor role: XIAO ESP32-S3 socket, J1 JST GH 6-pin for the SEN54, J2 PicoBlade 8-pin for the PMS5003, J3 and J4 Grove I2C, J5 Grove GPIO, J6 JST PH 5 V input, fuse, pull-ups and test pads.</desc>
 <rect x="0" y="0" width="1400" height="1000" fill="#fdfbf6"/>
@@ -184,4 +184,5 @@
 <text x="360" y="949" font-size="10.5" fill="#1d1d1b" text-anchor="start">D8, D9, D10 (GPIO7/8/9) carry the Wio-SX1262 SPI. No connector uses them.</text>
 <text x="360" y="966" font-size="10.5" fill="#1d1d1b" text-anchor="start">25 mm clear above the XIAO for the Wio-SX1262 and a path for its U.FL pigtail.</text>
 <text x="607.5" y="346.1" font-size="9.5" fill="#f2e6b8" text-anchor="start">LoRa U.FL → SMA bulkhead</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1000" width="1400" height="52" fill="#ffffff"/><line x1="0" y1="1000" x2="1400" y2="1000" stroke="#c9c4b6"/><text x="20" y="1022" fill="#1d2433" font-weight="bold">Bayu Anchor · Bayu Core connector map, phase 1 · rev 2026-10-24</text><text x="20" y="1041" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

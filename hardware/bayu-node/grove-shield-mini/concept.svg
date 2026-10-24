@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1020" viewBox="0 0 1160 1020" font-family="Helvetica, Arial, sans-serif">
-<rect width="1160" height="1020" fill="#fbfaf6"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1072" viewBox="0 0 1160 1072" font-family="Helvetica, Arial, sans-serif">
+<rect width="1160" height="1072" fill="#fbfaf6"/>
 <text x="40" y="48" font-size="26" fill="#1d2433" font-weight="bold" text-anchor="start">Grove Shield Mini for XIAO, a proposal</text>
 <text x="40" y="74" font-size="15" fill="#5b6475" font-weight="normal" text-anchor="start">Four Grove sockets, a real-time clock and a microSD slot, on the 39 × 25 mm the snapped Grove Shield already has.</text>
 <text x="40" y="116" font-size="16" fill="#1d2433" font-weight="bold" text-anchor="start">Top</text>
@@ -158,4 +158,5 @@
 <text x="40" y="946" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">I2C lines up to 5 V would still be unsafe for the ESP32-S3 and must not go in G1 set to 5 V.</text>
 <text x="40" y="968" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start"></text>
 <text x="40" y="990" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">Concept drawing, not a layout. Sizes at 12 px per mm for the board, the XIAO, the microSD socket and the coin cell.</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1020" width="1160" height="52" fill="#ffffff"/><line x1="0" y1="1020" x2="1160" y2="1020" stroke="#c9c4b6"/><text x="20" y="1042" fill="#1d2433" font-weight="bold">Grove Shield Mini for XIAO · concept · rev 2026-10-24</text><text x="20" y="1061" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

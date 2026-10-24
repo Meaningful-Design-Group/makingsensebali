@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1210" width="1100" height="1210" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1262" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1100" height="1262">
   <title>Bayu Indoor placement</title>
   <desc>Where to put a Bayu Indoor node in a classroom, kos room or kitchen: a room section and a room plan with distances to windows, doors, fans, AC, cooking and mosquito coils, the airflow inside the shell, the SCD40&#x27;s need for open air and a weekly airing, and a do and do-not list.</desc>
   <style>
@@ -211,4 +211,5 @@
   <text x="24" y="1150" class="s">Sources: Sensirion SCD4x datasheet v1.7 (ASC needs 400 ppm air at least 3 minutes a week); Plantower PMS5003</text>
   <text x="24" y="1166" class="s">manual v2.3 (keep the inlet free, out of air-cleaner streams); Welsh Government CO2 monitor guidance for schools</text>
   <text x="24" y="1182" class="s">(seated head height, away from vents and windows, at least 0.5 m from people). The 1 m and 2 m rings are our rule.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1210" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1210" x2="1100" y2="1210" stroke="#c9c4b6"/><text x="20" y="1232" fill="#1d2433" font-weight="bold">Bayu Indoor · Placement · rev 2026-10-24</text><text x="20" y="1251" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

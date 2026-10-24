@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1240 830" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg viewBox="0 0 1240 882" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1240" height="882">
   <title>Bayu Relay schematic</title>
   <desc>Schematic of the Bayu Relay: XIAO ESP32-S3 powered from a 5 V USB supply, SHT40 on I2C, button on D0, WS2812B on D1 through 330 ohm, and the Wio-SX1262 on GPIO 7, 8, 9 and 38 to 42 through the 30-pin board-to-board connector, with the antenna chain to an SMA bulkhead.</desc>
   <style>
@@ -203,4 +203,5 @@
   <text x="40" y="772" class="sm">The Wio board also has its own button K1 on GPIO21 (10 kΩ pull-up) and a green LED on GPIO48 (330 Ω), both through J3. GPIO48 is LED_POWER in the variant; GPIO21 is not read by the Bayu build.</text>
   <text x="40" y="788" class="sm">The Wio's two 1×7 edge-pad rows repeat the radio lines on the D0 to D4 positions (DIO1, BUSY, RST, NSS, RF_SW1). Never put a header through both boards.</text>
   <text x="40" y="804" class="sm">WS2812B: datasheet supply 3.5 to 5.3 V, data high above 0.7 × VDD. On 3V3 one pixel lights and reads the 3.3 V GPIO cleanly; on 5 V the data line would need a level shifter.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="830" width="1240" height="52" fill="#ffffff"/><line x1="0" y1="830" x2="1240" y2="830" stroke="#c9c4b6"/><text x="20" y="852" fill="#1d2433" font-weight="bold">Bayu Relay · Schematic · rev 2026-10-24</text><text x="20" y="871" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

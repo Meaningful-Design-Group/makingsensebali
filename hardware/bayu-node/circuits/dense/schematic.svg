@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1100 806" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+<svg viewBox="0 0 1100 858" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" width="1100" height="858">
   <title>Bayu Dense schematic</title>
   <desc>Schematic of the Bayu Dense node: XIAO ESP32-S3, Plantower PMS5003T on UART with SET, button, WS2812 LED, optional Wio-SX1262 LoRa through the board-to-board connector. Nets named.</desc>
   <style>
@@ -162,4 +162,5 @@
   <text x="24" y="754" class="note">U3 talks over the B2B connector only. D8 D9 D10 are the same GPIO 7 8 9 as its SPI: leave them unconnected on a Dense node.</text>
   <text x="24" y="772" class="note">U2's T/RH element sits inside the sensor, in the fan's air. Report it as PM-internal temperature and humidity, never as ambient.</text>
   <text x="24" y="790" class="note">U3's edge pads sit over D0 to D4 and carry DIO1, BUSY, RST, NSS and RF_SW: never solder one header through both boards.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="806" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="806" x2="1100" y2="806" stroke="#c9c4b6"/><text x="20" y="828" fill="#1d2433" font-weight="bold">Bayu Dense · Schematic · rev 2026-10-24</text><text x="20" y="847" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

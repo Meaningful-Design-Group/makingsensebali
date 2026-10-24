@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+<svg viewBox="0 0 1200 852" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" width="1200" height="852">
   <title>Bayu Dense on the Bayu Core board</title>
   <desc>Connector map of the planned 60 by 40 mm Bayu Core carrier as fitted for the Dense role: XIAO socket, PicoBlade 8-pin to the PMS5003T, Grove socket for button and LED, and the connectors left empty.</desc>
   <style>
@@ -157,4 +157,5 @@
   <text x="24" y="666" class="lab">R1 holds RESET high so a long cable cannot reset the sensor; on the breadboard the pin is simply left open.</text>
   <text x="24" y="686" class="lab">F1 is a 1 A resettable fuse between VBUS and the sensor rail: a shorted cable trips it, not the USB supply.</text>
   <text x="24" y="714" class="sm">When the 5V IN header is used, Seeed asks for a diode between an outside 5 V source and the XIAO's 5V pin. Not a Dense concern; noted for the Core layout.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="800" width="1200" height="52" fill="#ffffff"/><line x1="0" y1="800" x2="1200" y2="800" stroke="#c9c4b6"/><text x="20" y="822" fill="#1d2433" font-weight="bold">Bayu Dense · Bayu Core connector map, phase 1 · rev 2026-10-24</text><text x="20" y="841" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

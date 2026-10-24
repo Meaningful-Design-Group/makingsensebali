@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1060" viewBox="0 0 1200 1060" font-family="Helvetica, Arial, sans-serif">
-<rect width="1200" height="1060" fill="#fbfaf6"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1112" viewBox="0 0 1200 1112" font-family="Helvetica, Arial, sans-serif">
+<rect width="1200" height="1112" fill="#fbfaf6"/>
 <text x="40" y="48" font-size="26" fill="#1d2433" font-weight="bold" text-anchor="start" >Bayu on the Seeed Grove Shield for XIAO</text>
 <text x="40" y="74" font-size="15" fill="#5b6475" font-weight="normal" text-anchor="start" >Which module goes in which socket, for each variant. Every socket on this shield is powered at 3V3.</text>
 <rect x="40" y="100" width="470" height="300" rx="18" fill="#1f2b45"/>
@@ -176,4 +176,5 @@
 <text x="40" y="962" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >* Seeed fitted the Grove SEN54 with a regulator for 3.3 V supply, according to one review. Not confirmed on our bench yet.</text>
 <text x="40" y="984" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The Grove HM3301 is rated 3.3 or 5 V by Seeed, and the deployed nodes run it on the socket's 3V3.</text>
 <text x="40" y="1006" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The D0 and D1 sockets take the Grove button and LED. With LoRa fitted, the D8 and D9 sockets are not usable.</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1060" width="1200" height="52" fill="#ffffff"/><line x1="0" y1="1060" x2="1200" y2="1060" stroke="#c9c4b6"/><text x="20" y="1082" fill="#1d2433" font-weight="bold">Bayu on the Seeed Grove Shield for XIAO · socket map · rev 2026-10-24</text><text x="20" y="1101" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

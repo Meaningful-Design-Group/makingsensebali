@@ -347,7 +347,10 @@ three pieces, in this order:
    table. Done when a Dense node's PM2.5 appears on smartcitizen.me through the mesh.
 3. **Correction, server side.** PMS5003 raw values are published as read. The EPA
    PurpleAir-style humidity correction and the per-cluster anchor coefficients run on the
-   server, where they can be revised; nodes never carry calibration state.
+   server, where they can be revised; nodes never carry calibration state. The humidity
+   term uses ambient RH from a shielded SHT40: the node's own on Anchor and Indoor, the
+   nearest Anchor or Relay for a Dense node. A PMS5003T's internal RH reads low because its
+   air is warm, and would under-correct.
 
 Fan sleep for the Plantower is Meshtastic's existing sleep/wake cycle driven by the SET
 pin: 30 s warm-up before each read, idle between reads. This roughly triples fan life

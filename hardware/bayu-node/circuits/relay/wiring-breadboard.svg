@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1240 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg viewBox="0 0 1240 952" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1240" height="952">
   <title>Bayu Relay, phase-0 breadboard wiring</title>
   <desc>XIAO ESP32-S3 plugged pins-down into a half-size breadboard with the Wio-SX1262 clipped on top, an SHT40 breakout, a push button and a WS2812B LED. Side view of the stack with the header trimmed flush under the Wio and the LoRa U.FL pigtail to an SMA bulkhead and whip.</desc>
   <style>
@@ -248,4 +248,5 @@
   <text x="40" y="828" class="sm">SHT40 breakout drawn: Adafruit 4885 (VIN 3V GND SCL SDA, 10 kΩ pull-ups on board). Clone boards order their pins differently, read the silkscreen.</text>
   <text x="40" y="844" class="sm">Button legs are wired diagonally (D0 to col 18 below the gap, GND to col 20 above it), which switches whichever way round the button sits.</text>
   <text x="40" y="860" class="sm">WS2812B on 3V3: the data threshold then matches the 3.3 V GPIO. The datasheet asks for 3.5 V minimum; one pixel runs in practice, see README.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="900" width="1240" height="52" fill="#ffffff"/><line x1="0" y1="900" x2="1240" y2="900" stroke="#c9c4b6"/><text x="20" y="922" fill="#1d2433" font-weight="bold">Bayu Relay · Breadboard wiring, phase 0 · rev 2026-10-24</text><text x="20" y="941" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

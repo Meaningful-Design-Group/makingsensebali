@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 880" width="1100" height="880" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 932" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1100" height="932">
   <title>Bayu Indoor schematic</title>
   <desc>Schematic of the Bayu Indoor node: XIAO ESP32-S3, Plantower PMS5003 on the UART, SCD40 and SHT40 breakouts on I2C, optional button and WS2812 LED. Connections are made by net name.</desc>
   <style>
@@ -292,4 +292,5 @@
   <text x="40" y="790" class="s">The SCD40 and SHT40 boards bring their</text>
   <text x="40" y="804" class="s">own pull-ups, so R5 and R6 stay out.</text>
   <text x="40" y="818" class="s">Close JP1 for a bare sensor only.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="880" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="880" x2="1100" y2="880" stroke="#c9c4b6"/><text x="20" y="902" fill="#1d2433" font-weight="bold">Bayu Indoor · Schematic · rev 2026-10-24</text><text x="20" y="921" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

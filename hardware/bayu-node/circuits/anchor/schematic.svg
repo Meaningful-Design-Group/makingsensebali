@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 840" width="1360" height="840" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 892" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1360" height="892">
 <title>Bayu Anchor schematic</title>
 <desc>Schematic of the Bayu Anchor: XIAO ESP32-S3 (U1) with Wio-SX1262 (U2) on its B2B connector, SEN54 (U3) and SHT40 (U4) on I2C_SDA (D4) and I2C_SCL (D5) with 4.7 kOhm pull-ups R1 and R2 to +3V3, PMS5003 (U5) on UART D6/D7 with SET on D2, +5V from USB VBUS.</desc>
 <rect x="0" y="0" width="1360" height="840" fill="#fdfbf6"/>
@@ -139,4 +139,5 @@
 <text x="1249" y="728" font-size="9.5" fill="#6b665c" text-anchor="middle">SMA</text>
 <line x1="1258" y1="700" x2="1290" y2="700" stroke="#202020" stroke-width="1.6" /><line x1="1290" y1="700" x2="1290" y2="660" stroke="#202020" stroke-width="1.6" /><polyline points="1276,660 1290,676 1304,660" fill="none" stroke="#202020" stroke-width="1.6"/>
 <text x="1290" y="650" font-size="9.5" fill="#6b665c" text-anchor="middle">whip</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="840" width="1360" height="52" fill="#ffffff"/><line x1="0" y1="840" x2="1360" y2="840" stroke="#c9c4b6"/><text x="20" y="862" fill="#1d2433" font-weight="bold">Bayu Anchor · Schematic · rev 2026-10-24</text><text x="20" y="881" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

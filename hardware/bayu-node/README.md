@@ -14,9 +14,15 @@ measure and where. Every kit stays under USD 100.
 Why the design is the way it is, the costs, where to buy parts in Indonesia and elsewhere,
 and the firmware plan are in [DESIGN.md](DESIGN.md). This page is the map of the drawings.
 
-> None of the four new variants has been built yet. Every drawing was checked against the datasheets, the
-> Seeed schematic and the firmware source, but none against a stack on the bench. If you
-> build one, tell us what is wrong.
+| | |
+|---|---|
+| Stage | Bayu v3 is deployed. The four new variants are at concept stage: drawn and checked against datasheets, the Seeed schematic and the firmware, not yet built. Breadboard builds come next. |
+| For | Fab labs and workshop facilitators building nodes, and anyone replicating the campaign in another city. |
+| Contact | [Open an issue](https://github.com/Meaningful-Design-Group/makingsensebali/issues) on the repository. |
+| Home | https://github.com/Meaningful-Design-Group/makingsensebali/tree/main/hardware/bayu-node |
+| Licences | CERN-OHL-W-2.0 hardware, CC-BY-SA-4.0 docs, MIT scripts. See [Licences](#licences). |
+
+If you build one, tell us what is wrong.
 
 ## Bayu v3 and the four new variants
 
@@ -173,8 +179,11 @@ slot, on which every variant plugs in:
 bayu-node/
 ├── README.md       this page
 ├── DESIGN.md       the design: roles, boards, costs, sourcing, mesh, firmware
-├── grove/          Bayu on the Seeed Grove Shield, socket map per variant
-├── grove-shield-mini/  the board we are proposing to Seeed
+├── bom.csv         every part, every variant, Open-Make columns
+├── CHANGELOG.md    what changed and why, including what we got wrong
+├── LICENSES/       CERN-OHL-W-2.0, CC-BY-SA-4.0, MIT
+├── grove/          Bayu on the Seeed Grove Shield, socket map per variant, and its generator
+├── grove-shield-mini/  the board we are proposing to Seeed, and its generator
 └── circuits/
     ├── anchor/     ┐
     ├── dense/      │ each: wiring-breadboard.svg, wiring-core.svg,
@@ -182,5 +191,13 @@ bayu-node/
     └── relay/      ┘
 ```
 
-Hardware is CERN-OHL-W-2.0, documentation CC-BY-SA-4.0, software MIT, as for the
-[DIY node](../diy-node/enclosure/LICENSES/).
+## Licences
+
+| What | Licence | SPDX |
+|---|---|---|
+| Drawings, board concepts and the bill of materials: `circuits/`, the SVGs in `grove/` and `grove-shield-mini/`, `bom.csv` | CERN Open Hardware Licence v2, weakly reciprocal | `CERN-OHL-W-2.0` |
+| Documentation: every `.md` file | Creative Commons Attribution-ShareAlike 4.0 | `CC-BY-SA-4.0` |
+| Scripts that generate drawings: `grove/grove_shield_map.py`, `grove-shield-mini/concept.py` | MIT | `MIT` |
+
+The full texts are in [`LICENSES/`](LICENSES/). Copyright 2026 Meaningful Design Group /
+Fab Lab Bali.

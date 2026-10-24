@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1060" width="1100" height="1060" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1112" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1100" height="1112">
   <title>Bayu Indoor, breadboard wiring</title>
   <desc>Phase-0 breadboard build of the Bayu Indoor node: Seeed XIAO ESP32-S3 on a half-size breadboard with a Plantower PMS5003 on its 8-pin cable, an SCD40 CO2 breakout and an SHT40 breakout. Every jumper is drawn in its net colour and ends on the XIAO pin it belongs to.</desc>
   <style>
@@ -798,4 +798,5 @@
   <text x="936" y="682" class="l">exhaust, away from</text>
   <text x="936" y="696" class="l">the XIAO. See</text>
   <text x="936" y="710" class="l">placement.svg.</text>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1060" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1060" x2="1100" y2="1060" stroke="#c9c4b6"/><text x="20" y="1082" fill="#1d2433" font-weight="bold">Bayu Indoor · Breadboard wiring, phase 0 · rev 2026-10-24</text><text x="20" y="1101" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>
