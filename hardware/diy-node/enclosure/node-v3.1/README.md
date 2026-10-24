@@ -248,9 +248,10 @@ Identical across the whole V3 generation. Rather than duplicate it, see
 **[v7 § Wiring](../node-v3.2/README.md#wiring)** — three mainboard options, with schematics
 and breadboard views.
 
-> One correction carried there: the source document's Grove Shield table gives the HM3301
-> **3.3 V**, while its own schematic gives **5 V**. The schematic is right — the HM3301's
-> fan and laser will not run on 3.3 V.
+> One correction carried there: the HM3301 runs on 3.3 V or 5 V. Seeed's Grove HM3301 board
+> steps its supply down to 3.0 V and back up to 5 V for the fan and laser
+> ([schematic](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/)), so the source document's 3.3 V from the Grove socket is right. An
+> earlier version of this note said the opposite.
 
 ## Assembly
 

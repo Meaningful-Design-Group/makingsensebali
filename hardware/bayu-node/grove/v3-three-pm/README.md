@@ -64,9 +64,10 @@ materials](../../bom.csv).
    GND on the cable. Keep the SDA and SCL wires under 10 cm.
 5. Wire the PMS5003: VCC and GND from the breadboard, then the Grove to jumper cable from
    the UART socket, yellow to TXD and white to RXD.
-6. Before powering it, check the I2C pull-ups. With the board unpowered, measure SDA to
-   3V3. About 10 kΩ or less means the Grove modules bring pull-ups. If you read open
-   circuit, add 4.7 kΩ from SDA and from SCL to 3V3 on the breadboard.
+6. You don't need extra I2C pull-ups. Seeed's [schematic](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/) for the Grove HM3301
+   puts 4.7 kΩ pull-ups on SDA and SCL, tied to the socket's 3V3, and the bare SEN54 shares
+   that bus. Keep the HM3301 plugged in whenever the SEN54 is. Without it, add 4.7 kΩ from
+   SDA and from SCL to 3V3 on the breadboard.
 7. Power it from the USB-C supply and open the node's status page. The boot inventory
    should list BME680, HM3301, SEN54 and PMS5003.
 
@@ -91,7 +92,6 @@ enclosure only holds the HM3301, so for now this node needs its own housing.
 
 - That the bus reads cleanly with three PM sensors on it. The SEN54 asks for short leads,
   and the HM3301 and BME680 sit on Grove cables.
-- The 3V3 supply. The HM3301 runs from the socket's 3V3, as on every Bayu v3, and the
-  node-v3.2 notes still say it needs 5 V. Running this node is also a good way to settle
-  that.
+- The 3V3 load. The HM3301 makes its own 5 V from the socket's 3V3, converting twice, so
+  with the BME680 and WiFi on the same regulator it is worth measuring once.
 - Nothing on this page has been built yet.

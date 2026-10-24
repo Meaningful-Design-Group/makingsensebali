@@ -192,8 +192,8 @@
 <text x="30" y="874" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">Keep the Grove Shield whole. The second I2C socket, for the BME680, is on the half that snaps off.</text>
 <text x="30" y="896" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">Bayu firmware v5 finds all four sensors at boot and publishes each PM sensor on its own channels, so the three can be compared.</text>
 <text x="30" y="918" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">The SEN54 has no Grove plug. Keep its I2C wires under 10 cm, as Sensirion asks, and bridge SEL (pin 5) to GND (pin 2) on the cable.</text>
-<text x="30" y="940" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">Grove modules usually carry I2C pull-ups and the bare SEN54 has none. With the board unpowered, measure SDA to 3V3: about 10 kΩ</text>
-<text x="30" y="962" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">or less means pull-ups are there. If not, add 4.7 kΩ from SDA and SCL to 3V3 on the breadboard.</text>
+<text x="30" y="940" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">The Grove HM3301 carries 4.7 kΩ pull-ups on SDA and SCL to 3V3 (Seeed's schematic), so the bare SEN54 needs none. Keep the</text>
+<text x="30" y="962" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">HM3301 plugged in whenever the SEN54 is. Without it, add 4.7 kΩ from SDA and SCL to 3V3 on the breadboard.</text>
 <text x="30" y="984" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">PMS5003 SET (pin 3) can stay unconnected: Bayu firmware v5 never drives it and the fan runs all the time. For the Meshtastic build,</text>
 <text x="30" y="1006" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">run SET to pin 1 of the D2 socket so the fan can sleep between readings. RESET, pins 7 and 8 stay open.</text>
 <text x="30" y="1028" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">5 V load: SEN54 up to 100 mA and PMS5003 about 100 mA. Use a 5 V / 2 A USB-C supply, not a laptop port.</text>

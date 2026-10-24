@@ -31,6 +31,12 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Fixed
 
+- The HM3301 supply is settled from Seeed's [schematic](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/) for the Grove HM3301: a
+  step-down to 3.0 V and a step-up to 5 V on the board, so it runs from a 3.3 V or a 5 V
+  socket. The node-v3.2 and node-v3.1 READMEs, in all three languages, and their bills of
+  materials had called the 3.3 V in Fab Lab Bali's Grove Shield table an error. They now
+  say the table was right. The board's 4.7 kΩ I2C pull-ups also answer the pull-up check
+  in `grove/v3-three-pm/`.
 - The docs called the node's own firmware "Smart Citizen v5". It is the Bayu firmware, v5 in
   [`../diy-node/firmware/`](../diy-node/firmware/); Smart Citizen is one of the platforms it
   publishes to. DESIGN.md also said that firmware stays on the old node and is not carried
@@ -66,8 +72,6 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Open
 
-- The HM3301 supply. The node-v3.2 README and bill of materials say it needs 5 V. Its own
-  wiring drawing powers it from a 3V3 Grove socket, and Seeed rates it for both.
 - Whether the Grove SEN54 runs on 3.3 V, as one review says.
 - KiCad source for the Bayu Core board. It is specified in DESIGN.md and not drawn yet.
 - No drawing has been checked against a built node.

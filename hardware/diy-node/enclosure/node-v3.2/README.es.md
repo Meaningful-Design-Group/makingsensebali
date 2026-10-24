@@ -240,10 +240,14 @@ otra mainboard.
 
 Todos los sensores están en un mismo bus I²C, leídos en paralelo.
 
-> **El HM3301 necesita 5 V.** Su ventilador y su láser no funcionan a 3.3 V. La tabla del Grove
-> Shield del documento fuente dice 3.3 V; **el propio esquema del Grove Shield de ese documento
-> dice 5 V**, igual que todas las demás tablas. El esquema es el correcto. Aquí está corregido.
-> <!-- Reportado aguas arriba — ver "Lo que todavía falta en esta documentación". -->
+> **El HM3301 funciona con 3.3 V o con 5 V.** La placa Grove HM3301 de Seeed genera su propia
+> alimentación: un convertidor reductor a 3.0 V (ETA3410), luego un elevador a 5 V (ETA1038)
+> para el ventilador y el láser, un regulador de 3.3 V para la lógica y un adaptador de
+> niveles I²C con pull-ups de 4.7 kΩ. Todo está en el propio [esquema de Seeed](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/), en
+> los archivos Eagle de la sección Resources. Por eso la tabla del Grove Shield del documento
+> fuente, que alimenta el HM3301 con 3.3 V desde el conector Grove, es correcta. Una versión
+> anterior de este README la llamó error y pasó el HM3301 a 5 V. Eso estaba mal y queda
+> retirado.
 
 ### Grove Shield (XIAO ESP32-C3 / S3 / S3+LoRa)
 
@@ -254,7 +258,7 @@ Todos los sensores están en un mismo bus I²C, leídos en paralelo.
 | | GND | GND | Tierra |
 | | SDA | SDA (I²C dedicado) | Datos I²C |
 | | SCL | SCL (I²C dedicado) | Reloj I²C |
-| HM3301 | VCC | **5V** | Alimentación — *no 3.3 V; ver la nota de arriba* |
+| HM3301 | VCC | 3.3V, el conector Grove | Alimentación. La placa Grove genera sus propios 5 V, ver la nota de arriba |
 | | GND | GND | Tierra |
 | | SDA | SDA (en paralelo con BME680) | Datos I²C |
 | | SCL | SCL (en paralelo con BME680) | Reloj I²C |
@@ -386,11 +390,12 @@ Diez puntos abiertos, greppables como `TODO` en la fuente de este archivo. Prime
 10. **Elección de antena.** Ganancia, y si la variante de dos antenas tiene un problema de
     aislamiento medido entre los puertos de 2.4 GHz y sub-GHz.
 
-Se corrigieron dos errores del documento fuente en lugar de copiarlos, y ambos deberían volver
-a Fab Lab Bali:
+Los 3.3 V que la tabla de cableado del Grove Shield da al HM3301 no son un error. Una versión
+anterior de esta lista decía que sí; ver la nota en el apartado de cableado.
 
-- La tabla de cableado del Grove Shield le da 3.3 V al HM3301; su propio esquema da 5 V.
-  Aquí se corrigió a 5 V. Seguir la tabla dejaría muertos el ventilador y el láser.
+Se corrigió un error del documento fuente en lugar de copiarlo, y debería volver a Fab Lab
+Bali:
+
 - La sección de ensamblaje de la V3.1 nombra `V3.1_Top_Cover.stl` y `V3.1_Wall_Bracket_Separate.stl`;
   no existen tales archivos en ninguna de las dos publicaciones. Los nombres reales son
   `TOP COVER.stl` y `BRACKET TO WALL.stl`. Documentado en [`../node-v3.1/`](../node-v3.1/).

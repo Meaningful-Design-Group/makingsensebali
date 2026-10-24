@@ -142,7 +142,7 @@ foot = [
     "1.25 mm 8-pin cable, and its fan takes 5 V from the header. Leave SET out and the fan simply runs all the time.",
     "* Seeed fitted the Grove SEN54 with a regulator for 3.3 V supply, according to one review. Not confirmed on our bench yet.",
     "  A bare Sensirion SEN54 needs 5 V, which makes a second wire from the 5V header.",
-    "The Grove HM3301 is rated 3.3 or 5 V by Seeed, and the deployed nodes run it on the socket's 3V3.",
+    "The Grove HM3301 makes its own 5 V from the socket's 3V3, with a step-down and a step-up converter (Seeed's schematic).",
     "The D0 and D1 sockets take the Grove button and LED. With LoRa fitted, the D8 and D9 sockets are not usable.",
 ]
 for i, f in enumerate(foot):

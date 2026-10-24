@@ -249,9 +249,10 @@ Sama untuk seluruh generasi V3. Alih-alih menduplikasinya, lihat
 **[v7 § Pengkabelan](../node-v3.2/README.id.md)** — tiga pilihan papan utama, lengkap dengan skematik
 dan tampilan breadboard.
 
-> Satu koreksi yang dibawa ke sana: tabel Grove Shield pada dokumen sumber memberi HM3301
-> **3.3 V**, sementara skematiknya sendiri memberi **5 V**. Skematiknya yang benar — kipas dan
-> laser HM3301 tidak akan berjalan pada 3.3 V.
+> Satu koreksi yang dibawa ke sana: HM3301 berjalan pada 3.3 V atau 5 V. Papan Grove HM3301
+> dari Seeed menurunkan catu dayanya ke 3.0 V lalu menaikkannya lagi ke 5 V untuk kipas dan
+> laser ([skema](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/)), jadi 3.3 V dari soket Grove di dokumen sumber sudah benar. Versi
+> sebelumnya dari catatan ini menyatakan sebaliknya.
 
 ## Perakitan
 
