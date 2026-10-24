@@ -238,10 +238,13 @@ penawaran, dan catat bahwa V2 memakai mainboard yang berbeda.
 
 Semua sensor berada pada satu bus I²C, dibaca secara paralel.
 
-> **HM3301 butuh 5 V.** Kipas dan lasernya tidak akan jalan pada 3.3 V. Tabel Grove Shield di
-> dokumen sumber menyebut 3.3 V; **skema Grove Shield di dokumen sumber itu sendiri menyebut
-> 5 V**, begitu juga semua tabel lain di dalamnya. Skemanya yang benar. Di bawah ini sudah
-> dikoreksi. <!-- Sudah dilaporkan ke hulu — lihat "Yang masih kurang dari dokumentasi ini". -->
+> **HM3301 berjalan pada 3.3 V atau 5 V.** Papan Grove HM3301 dari Seeed membuat catu dayanya
+> sendiri: konverter penurun tegangan ke 3.0 V (ETA3410), lalu penaik tegangan ke 5 V
+> (ETA1038) untuk kipas dan laser, regulator 3.3 V untuk logika, dan penggeser level I²C
+> dengan pull-up 4.7 kΩ. Semuanya ada di [skema Seeed](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/) sendiri, di berkas Eagle bagian
+> Resources. Jadi tabel Grove Shield di dokumen sumber, yang memberi HM3301 3.3 V dari soket
+> Grove, sudah benar. Versi sebelumnya dari README ini menyebut tabel itu salah dan
+> memindahkan HM3301 ke 5 V. Itu keliru dan sudah ditarik.
 
 ### Grove Shield (XIAO ESP32-C3 / S3 / S3+LoRa)
 
@@ -252,7 +255,7 @@ Semua sensor berada pada satu bus I²C, dibaca secara paralel.
 | | GND | GND | Ground |
 | | SDA | SDA (I²C khusus) | Data I²C |
 | | SCL | SCL (I²C khusus) | Clock I²C |
-| HM3301 | VCC | **5V** | Daya — *bukan 3.3 V; lihat catatan di atas* |
+| HM3301 | VCC | 3.3V, soket Grove | Daya. Papan Grove membuat 5 V sendiri, lihat catatan di atas |
 | | GND | GND | Ground |
 | | SDA | SDA (paralel dengan BME680) | Data I²C |
 | | SCL | SCL (paralel dengan BME680) | Clock I²C |
@@ -384,11 +387,12 @@ Sepuluh butir terbuka, bisa di-grep sebagai `TODO` di sumber berkas ini. Yang pa
 10. **Pilihan antena.** Gain, dan apakah varian dua antena punya masalah isolasi terukur
     antara port 2.4 GHz dan sub-GHz.
 
-Dua kesalahan dalam dokumen sumber dikoreksi alih-alih disalin, dan keduanya harus
-dikembalikan ke Fab Lab Bali:
+3.3 V yang diberikan tabel pengkabelan Grove Shield untuk HM3301 bukan kesalahan. Versi
+sebelumnya dari daftar ini menyebutnya salah; lihat catatan di bagian pengkabelan.
 
-- Tabel pengkabelan Grove Shield memberi HM3301 3.3 V; skemanya sendiri memberi 5 V.
-  Di sini dikoreksi menjadi 5 V. Mengikuti tabel itu akan membuat kipas dan lasernya mati.
+Satu kesalahan dalam dokumen sumber dikoreksi alih-alih disalin, dan harus dikembalikan ke
+Fab Lab Bali:
+
 - Bagian perakitan V3.1 menyebut `V3.1_Top_Cover.stl` dan `V3.1_Wall_Bracket_Separate.stl`;
   berkas semacam itu tidak ada di rilis mana pun. Nama sebenarnya adalah `TOP COVER.stl` dan
   `BRACKET TO WALL.stl`. Terdokumentasi di [`../node-v3.1/`](../node-v3.1/).
