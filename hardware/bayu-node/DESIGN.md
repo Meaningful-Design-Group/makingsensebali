@@ -6,7 +6,7 @@ schematic and the Meshtastic source; what changed is listed in
 [Corrections from the circuit drawings](#corrections-from-the-circuit-drawings).
 
 Bayu is the campaign's node. The one deployed today is Bayu v3: XIAO ESP32-S3, BME680 and
-HM3301 on a Grove Shield or Fab Lab Bali's PCB, firmware v5, enclosure node-v3.2, documented
+HM3301 on a Grove Shield or Fab Lab Bali's PCB, Bayu firmware v5, enclosure node-v3.2, documented
 in [`../diy-node/`](../diy-node/). This design keeps that node as it is and adds four
 variants around it, with the same MCU and new sensors: Sensirion SEN54 and Plantower
 PMS5003 / PMS5003T. One carrier board, several sensor roles, WiFi uplink on every unit and
@@ -28,8 +28,9 @@ expensive after the first PCB order.
 1. **Mesh = Meshtastic on the Seeed Wio-SX1262 for XIAO, from day one** (Tomas's call,
    2026-10-24). The radio stacks on the XIAO through the board-to-board connector,
    Meshtastic ships a build for that exact pair, and kit1-hex already reserves the stack
-   height and the SMA boss. Every Bayu node runs Meshtastic, WiFi-only ones included; the
-   Smart Citizen firmware v5 stays on the DIY node and is not carried forward. ESP-NOW
+   height and the SMA boss. Every new Bayu node runs Meshtastic. The Bayu firmware v5, which
+   the Bayu v3 nodes run, also reads the new sensors since 24 Oct 2026, so a WiFi-only node
+   can run either. ESP-NOW
    was rejected: 2.4 GHz, 100 to 300 m line of sight, useless between banjar compounds.
 2. **USD 100 covers the whole kit on wall power:** MCU, sensors, carrier board, connectors,
    USB supply, printed enclosure, coating and fixings. Solar is a separate power module,
@@ -67,7 +68,7 @@ anchor node reads the peaks the SEN54 flattens.
 | **SGP41** VOC/NOx index | USD 8 to 12 | Option only on PMS-based nodes that want a smoke signature. Redundant next to a SEN54. |
 | **INMP441** I2S microphone | USD 2 to 4 | Option. Noise is a live complaint in Canggu; the XIAO S3 has I2S. Firmware work, not hardware cost. Publish a dBA-ish level, never audio. |
 | **BH1750** light | USD 1 to 2 | Option as a diagnostic: tells you when a node sits in sun and its temperature reads high. |
-| **BME280** pressure | USD 3 | Skip. Pressure adds nothing the campaign uses; the BME680 stays supported by v5 for existing nodes. |
+| **BME280** pressure | USD 3 | Skip. Pressure adds nothing the campaign uses; the BME680 stays supported by the Bayu firmware v5 for existing nodes. |
 | **MiCS-4514** CO/NO2 | USD 12 to 15 | Skip for now. Needs heater burn-in and per-unit calibration we cannot do yet. |
 | Electrochemical NO2/O3 (Alphasense class) | USD 80 and up per gas | Out. Blows the budget on its own. |
 | **GPS** (ATGM336H / NEO-6M class) | USD 4 to 6 | Only for a mobile role, see below. |
@@ -320,7 +321,7 @@ broker (msh/ID/2/e/bayu/#) --> bayu-bridge --> Smart Citizen MQTT (per-device to
   node id to Smart Citizen device token and sensor ids, applies the field mapping
   (`pm25_environmental` to PM2.5, `pm_temperature` to "PM internal temperature", and so
   on), and republishes with the token. One YAML file holds the node table. This replaces
-  the per-node credentials that v5 kept in `secrets.h`: tokens never leave the NAS.
+  the per-node credentials that the Bayu firmware v5 keeps on each node: tokens never leave the NAS.
 - Dashboard markers stay as today: Dense nodes are DIY tier, Anchors are their own tier.
 
 ### What Meshtastic costs us
@@ -337,8 +338,9 @@ broker (msh/ID/2/e/bayu/#) --> bayu-bridge --> Smart Citizen MQTT (per-device to
 
 ## Firmware plan
 
-Smart Citizen firmware v5 stays with the DIY node and is not ported. Bayu work splits in
-three pieces, in this order:
+The Bayu firmware v5 keeps running the Bayu v3 fleet and reads the new sensors too. It
+publishes to a PLANETAI node first and Smart Citizen as fallback, over WiFi. The Meshtastic
+work splits in three pieces, in this order:
 
 1. **Fork and variant** (section above): flash a stock `seeed_xiao_s3` image on the kit,
    confirm SEN54, SHT40 and SCD40 show up in the app with no code at all. Then add the

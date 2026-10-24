@@ -28,10 +28,10 @@ If you build one, tell us what is wrong.
 
 | | Sensors | Where it goes | Kit, USD | Firmware |
 |---|---|---|---|---|
-| [**Bayu v3**](../diy-node/) | BME680, HM3301, LoRa optional | Deployed today, indoors and out. Temperature, humidity, VOC and PM. | not priced yet | Smart Citizen v5 |
+| [**Bayu v3**](../diy-node/) | BME680, HM3301, LoRa optional | Deployed today, indoors and out. Temperature, humidity, VOC and PM. | not priced yet | Bayu firmware v5 |
 | [**Anchor**](circuits/anchor/) | SEN54, PMS5003, SHT40, LoRa | One per cluster, outdoors. The local reference the cheap nodes are corrected against. | about 91 | Meshtastic, Bayu image |
-| [**Dense**](circuits/dense/) | PMS5003T, LoRa optional | Many, on kos rooms, warungs and family compounds, put up by workshop participants. | about 52, 58 with LoRa | Meshtastic `_t` image, or Smart Citizen v5 |
-| [**Indoor**](circuits/indoor/) | PMS5003, SCD40, SHT40 | Classrooms, kos rooms, kitchens with a mosquito coil going. | about 70 | Smart Citizen v5 or Meshtastic |
+| [**Dense**](circuits/dense/) | PMS5003T, LoRa optional | Many, on kos rooms, warungs and family compounds, put up by workshop participants. | about 52, 58 with LoRa | Meshtastic `_t` image, or Bayu firmware v5 |
+| [**Indoor**](circuits/indoor/) | PMS5003, SCD40, SHT40 | Classrooms, kos rooms, kitchens with a mosquito coil going. | about 70 | Bayu firmware v5 or Meshtastic |
 | [**Relay**](circuits/relay/) | SHT40, LoRa | Only where a cluster has no node with WiFi. Carries the mesh to the internet. | about 36 to 40 | Meshtastic, Bayu image |
 
 A fifth variant, Mobile, with GPS and a battery for transects on a motorbike, is in the
@@ -136,7 +136,7 @@ and one firmware image serve all four.
 
 ● wired · ○ optional
 
-The Smart Citizen firmware v5 only listens to the PMS on D7. The Meshtastic Bayu image also
+The Bayu firmware v5 only listens to the PMS on D7. The Meshtastic Bayu image also
 uses D6 and D2 to sleep the fan between readings. Wire all three and the same node runs
 either.
 
@@ -171,7 +171,7 @@ slot, on which every variant plugs in:
   [Meaningful-Design-Group/firmware](https://github.com/Meaningful-Design-Group/firmware/tree/bayu),
   build envs `seeed_xiao_s3_bayu` and `seeed_xiao_s3_bayu_t` for the PMS5003T. How to build,
   flash and set the region is in `BAYU.md` on that branch.
-- Smart Citizen v5, which also reads the PMS5003, PMS5003T, SHT4x and SCD4x:
+- The Bayu firmware v5, which the Bayu v3 nodes run and which also reads the PMS5003, PMS5003T, SHT4x and SCD4x:
   [`../diy-node/firmware/diy_node_v5/`](../diy-node/firmware/diy_node_v5/).
 
 ## Folders

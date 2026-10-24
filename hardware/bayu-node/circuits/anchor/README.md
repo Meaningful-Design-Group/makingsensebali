@@ -42,7 +42,7 @@ The Core is planned and not routed yet. It is one board for every variant, laid 
 
 PMS5003 pin 6 (RESET) and pins 7 and 8 stay open. SEN54 pin 6 is not connected.
 
-On firmware, the Meshtastic Bayu variant ([`variant.h`](https://github.com/Meaningful-Design-Group/firmware/blob/bayu/variants/esp32s3/seeed_xiao_s3_bayu/variant.h), branch `bayu`) drives D6 to the PMS RXD and D2 to SET, so it can sleep the fan between reads. The Smart Citizen firmware v5 in [`../../../diy-node/firmware/diy_node_v5/`](../../../diy-node/firmware/diy_node_v5/) only listens on D7 and never drives the PMS. Wire all three lines and the same node runs either.
+On firmware, the Meshtastic Bayu variant ([`variant.h`](https://github.com/Meaningful-Design-Group/firmware/blob/bayu/variants/esp32s3/seeed_xiao_s3_bayu/variant.h), branch `bayu`) drives D6 to the PMS RXD and D2 to SET, so it can sleep the fan between reads. The Bayu firmware v5 in [`../../../diy-node/firmware/diy_node_v5/`](../../../diy-node/firmware/diy_node_v5/) only listens on D7 and never drives the PMS. Wire all three lines and the same node runs either.
 
 ### Bill of materials
 
@@ -95,7 +95,7 @@ I checked every fact on these drawings against the datasheet or the source. Thes
 - **SHT40:** the bare part runs on 1.08 to 3.6 V. Address 0x44 is the SHT40-AD1B; other versions sit at 0x45 or 0x46, so check the breakout. The Grove and Adafruit boards bring a regulator and 10 kΩ pull-ups.
 - **The 5V pin is USB VBUS.** Seeed's XIAO pages say any external 5 V fed into it needs a diode. The Core's J6 input from the Power board can be live while USB is plugged in, so it goes through CR1, a Schottky.
 - **The Wio board has its own button and LED,** on GPIO21 and GPIO48 (Seeed schematic). The Bayu build moves the button to D0, so the Wio button does nothing.
-- **The pins in the firmware match.** `variant.h` on `bayu` has SDA 5, SCL 6, RX 44, TX 43, SET 3, button 1, WS2812 2, battery 4. The v5 sketch opens only RX on GPIO44.
+- **The pins in the firmware match.** `variant.h` on `bayu` has SDA 5, SCL 6, RX 44, TX 43, SET 3, button 1, WS2812 2, battery 4. The Bayu firmware v5 opens only RX on GPIO44.
 - **Two numbers for the climate gap.** The kit1-hex spec gives 25 mm from the stack in its parts table and 60 mm in its zoning rules. I used 60.
 
 Sources: Sensirion SEN5x datasheet (v2, March 2022) and its mechanical design-in guide (v1.0, June 2021), the Plantower PMS5003 manual v2.3, Seeed's XIAO ESP32-S3 and Wio-SX1262 kit wiki pages, EU Directive 2008/50/EC Annex III, and US EPA report EPA/600/R-20/280 (2021).
