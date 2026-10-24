@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 1600" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+  <title>Where to hang a Bayu Dense node</title>
+  <desc>Placement guide in pictograms: side elevation on a wall and on a post with heights and clearances, a section through the enclosure with the PM intake and exhaust, a compound site plan with 5 m rings around smoke and heat sources, the first-week co-location, and do and do-not cards.</desc>
+  <style>
+    .t1   { font-size: 17px; font-weight: 700; fill: #111; }
+    .t2   { font-size: 11.5px; fill: #555; }
+    .k    { font-size: 12px; font-weight: 700; fill: #111; }
+    .kr   { font-size: 13px; font-weight: 700; fill: #d62828; }
+    .kg   { font-size: 12px; font-weight: 700; fill: #2b7a3b; }
+    .s    { font-size: 10px; fill: #444; }
+    .id   { font-size: 10px; fill: #888; font-style: italic; }
+    .dim  { stroke: #222; stroke-width: 1.2; fill: none; }
+    .tile { fill: #faf8f3; stroke: #d9d4c7; stroke-width: 1.2; }
+    .ln   { stroke: #222; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .halo { paint-order: stroke; stroke: #f6f3ec; stroke-width: 4px; stroke-linejoin: round; }
+    .badge{ font-size: 15px; font-weight: 700; fill: #fff; }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#222"/></marker>
+    <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1d70b8"/></marker>
+    <marker id="arR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#d62828"/></marker>
+    <!-- node: hood, body, louvres; origin at body centre, 30 wide -->
+    <g id="node">
+      <path d="M-17 -12 L0 -22 L17 -12 Z" fill="#fff" stroke="#222" stroke-width="1.8" stroke-linejoin="round"/>
+      <rect x="-13" y="-12" width="26" height="26" rx="2" fill="#fff" stroke="#222" stroke-width="1.8"/>
+      <path d="M-9 -3 L-4 1 M-9 4 L-4 8" stroke="#222" stroke-width="1.6"/>
+    </g>
+    <g id="ok"><circle r="13" fill="#2b9348"/><path d="M-6 0 L-1.5 5 L7 -5" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="no"><circle r="11.5" fill="#fff" stroke="#d62828" stroke-width="3"/><path d="M-5 -5 L5 5 M-5 5 L5 -5" stroke="#d62828" stroke-width="3" stroke-linecap="round"/></g>
+    <g id="person" fill="#555">
+      <circle cx="0" cy="-53" r="7"/>
+      <rect x="-8" y="-44" width="16" height="24" rx="4"/>
+      <rect x="-7" y="-22" width="6" height="22" rx="2"/><rect x="1" y="-22" width="6" height="22" rx="2"/>
+    </g>
+    <g id="sun"><circle r="9" fill="#f2b84b"/><path d="M0 -15 V-12 M0 12 V15 M-15 0 H-12 M12 0 H15 M-10.6 -10.6 L-8.5 -8.5 M8.5 8.5 L10.6 10.6 M-10.6 10.6 L-8.5 8.5 M8.5 -8.5 L10.6 -10.6" stroke="#e0a020" stroke-width="2.5" stroke-linecap="round"/></g>
+    <path id="drop" d="M0 -6 C 3 -1, 4 2, 0 5 C -4 2, -3 -1, 0 -6 Z" fill="#1d70b8"/>
+    <g id="pan">
+      <rect x="-16" y="0" width="28" height="9" rx="3" fill="#555"/><rect x="12" y="2" width="14" height="4" rx="2" fill="#555"/>
+      <path d="M-10 -4 C -14 -9, -6 -12, -10 -18 M-2 -4 C -6 -9, 2 -12, -2 -18 M6 -4 C 2 -9, 10 -12, 6 -18" stroke="#999" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="gen">
+      <rect x="-17" y="-12" width="34" height="24" rx="3" fill="#555"/>
+      <path d="M2 -9 L-6 2 L0 2 L-3 10 L6 -2 L0 -2 Z" fill="#f2c94c"/>
+      <circle cx="22" cy="-12" r="4" fill="#bbb"/><circle cx="28" cy="-19" r="5" fill="#ccc"/>
+    </g>
+    <g id="coil">
+      <path d="M0 0 m0 0 a3 3 0 1 1 3 3 a6 6 0 1 1 -6 -6 a9 9 0 1 1 9 9" stroke="#7a4a1a" stroke-width="2.6" fill="none" stroke-linecap="round" transform="translate(0 4)"/>
+      <path d="M2 -6 C -2 -11, 6 -14, 2 -20" stroke="#999" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="ac">
+      <rect x="-17" y="-13" width="34" height="26" rx="3" fill="#fff" stroke="#555" stroke-width="2"/>
+      <circle cx="-3" cy="0" r="8" fill="none" stroke="#555" stroke-width="2.2"/>
+      <path d="M-3 -6 V6 M-9 0 H3" stroke="#555" stroke-width="2"/>
+      <path d="M22 -8 C 26 -4, 18 0, 22 4 M28 -8 C 32 -4, 24 0, 28 4" stroke="#d62828" stroke-width="1.8" fill="none"/>
+    </g>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#b9b2a3" stroke-width="1.4"/></pattern>
+  </defs>
+
+  <rect width="1200" height="1600" fill="#ffffff"/>
+  <text x="24" y="36" class="t1">Bayu Dense · where to hang it</text>
+  <text x="24" y="56" class="t2">Outside, in the shade, 1.5 to 3 m up, 5 m from anything that makes smoke or heat.</text>
+
+  <!-- ===================== A · elevation ===================== -->
+  <circle cx="36" cy="92" r="13" fill="#111"/><text x="36" y="97" text-anchor="middle" class="badge">A</text>
+  <!-- ground -->
+  <rect x="30" y="720" width="620" height="16" fill="url(#hatch)"/>
+  <line x1="30" y1="720" x2="650" y2="720" stroke="#222" stroke-width="2"/>
+  <!-- shade from the eave -->
+  <path d="M236 236 L380 172 L380 442 Z" fill="#000" fill-opacity="0.07"/>
+  <path d="M156 122 L380 442" stroke="#e0a020" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <use href="#sun" x="156" y="122"/>
+  <!-- wall and roof -->
+  <rect x="380" y="160" width="40" height="560" fill="#e8e2d6" stroke="#8a8170" stroke-width="1.5"/>
+  <path d="M420 160 l8 20 l-16 20 l16 20 l-8 20" fill="none" stroke="#8a8170"/>
+  <line x1="230" y1="240" x2="470" y2="134" stroke="#8d6e63" stroke-width="12" stroke-linecap="butt"/>
+  <!-- drip line -->
+  <line x1="236" y1="250" x2="236" y2="720" stroke="#1d70b8" stroke-width="1.4" stroke-dasharray="3 5"/>
+  <use href="#drop" x="236" y="266"/><use href="#drop" x="236" y="300"/><use href="#drop" x="236" y="334"/>
+  <!-- node on its bracket -->
+  <path d="M380 392 H362" stroke="#222" stroke-width="4"/>
+  <use href="#node" x="346" y="392"/>
+  <!-- USB cable with drip loop to a covered socket -->
+  <path d="M346 406 C 346 520, 376 520, 376 486" fill="none" stroke="#222" stroke-width="2.2"/>
+  <rect x="370" y="470" width="10" height="16" fill="#fff" stroke="#222" stroke-width="1.4"/>
+  <text x="338" y="538" text-anchor="end" class="s">drip loop</text>
+  <!-- dims: drip line to node, wall gap, height band -->
+  <path d="M240 392 H328" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <text x="284" y="384" text-anchor="middle" class="k">≥ 30 cm</text>
+  <path d="M362 424 H380 M362 418 V430 M380 418 V430" stroke="#222" stroke-width="1.6"/>
+  <path d="M326 462 L366 428" stroke="#888" stroke-width="1"/>
+  <text x="324" y="474" text-anchor="end" class="k">≥ 10 cm</text>
+  <rect x="380" y="270" width="6" height="225" fill="#2b9348"/>
+  <path d="M446 720 V270" class="dim"/>
+  <path d="M440 720 H452 M440 495 H452 M440 270 H452" stroke="#222" stroke-width="1.4"/>
+  <path d="M446 495 V270" stroke="#2b9348" stroke-width="4"/>
+  <text x="458" y="274" class="kg">3 m</text>
+  <text x="458" y="499" class="kg">1.5 m</text>
+  <text x="458" y="724" class="s">0</text>
+  <!-- person for scale, 1.6 m -->
+  <use href="#person" x="140" y="720" transform="translate(140 720) scale(4) translate(-140 -720)"/>
+  <text x="140" y="742" text-anchor="middle" class="s" dy="10">1.6 m</text>
+  <!-- or on a post -->
+  <rect x="572" y="250" width="16" height="470" fill="#c8b89a" stroke="#8a8170"/>
+  <rect x="588" y="270" width="6" height="225" fill="#2b9348"/>
+  <path d="M572 392 H556" stroke="#222" stroke-width="4"/>
+  <path d="M570 382 h20 M570 402 h20" stroke="#111" stroke-width="3"/>
+  <use href="#node" x="540" y="392"/>
+  <path d="M540 406 C 540 470, 566 480, 572 470" fill="none" stroke="#222" stroke-width="2.2"/>
+  <text x="580" y="240" text-anchor="middle" class="s">or a post</text>
+  <use href="#ok" x="346" y="342"/>
+  <use href="#ok" x="540" y="342"/>
+  <text x="236" y="762" text-anchor="middle" class="s">drip line</text>
+  <text x="380" y="762" text-anchor="middle" class="s">wall</text>
+
+  <!-- ===================== B · section ===================== -->
+  <circle cx="676" cy="92" r="13" fill="#111"/><text x="676" y="97" text-anchor="middle" class="badge">B</text>
+  <text x="696" y="97" class="s">section through the case, not to scale</text>
+  <!-- hood with skirts and drip edges -->
+  <path d="M790 282 L960 206 L1130 282" fill="none" stroke="#222" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M790 280 V322 h-6 M1130 280 V322 h6" fill="none" stroke="#222" stroke-width="5"/>
+  <!-- base walls -->
+  <rect x="820" y="296" width="10" height="70" fill="#9e9e9e"/>
+  <rect x="820" y="400" width="10" height="68" fill="#9e9e9e"/>
+  <rect x="820" y="510" width="10" height="90" fill="#9e9e9e"/>
+  <rect x="1090" y="296" width="10" height="14" fill="#9e9e9e"/>
+  <rect x="1090" y="346" width="10" height="254" fill="#9e9e9e"/>
+  <rect x="820" y="592" width="44" height="8" fill="#9e9e9e"/><rect x="872" y="592" width="118" height="8" fill="#9e9e9e"/><rect x="1006" y="592" width="94" height="8" fill="#9e9e9e"/>
+  <rect x="820" y="290" width="280" height="6" fill="#9e9e9e"/>
+  <!-- louvres, down and out -->
+  <path d="M830 372 L818 382 M830 384 L818 394 M830 474 L818 484 M830 488 L818 498 M1100 316 L1112 326 M1100 330 L1112 340" stroke="#555" stroke-width="2.5"/>
+  <line x1="833" y1="470" x2="833" y2="508" stroke="#1d70b8" stroke-width="2" stroke-dasharray="2 2"/>
+  <!-- outside fin between out and in -->
+  <rect x="760" y="430" width="60" height="6" fill="#555"/>
+  <!-- partition, sealed -->
+  <rect x="945" y="296" width="8" height="296" fill="#555"/>
+  <circle cx="949" cy="548" r="5" fill="#111"/>
+  <!-- PMS5003T standing, ports against the left wall -->
+  <rect x="836" y="330" width="78" height="232" rx="4" fill="#d8dadc" stroke="#444" stroke-width="1.5"/>
+  <rect x="830" y="336" width="6" height="30" fill="#111"/><rect x="830" y="402" width="6" height="64" fill="#111"/><rect x="830" y="510" width="6" height="40" fill="#111"/>
+  <circle cx="876" cy="382" r="22" fill="#fff" stroke="#444" stroke-width="1.5"/>
+  <path d="M876 362 L882 382 L876 402 M856 382 L876 376 L896 382" stroke="#888" stroke-width="2" fill="none"/>
+  <path d="M846 490 C 900 490, 900 430, 876 404" fill="none" stroke="#1d70b8" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arB)"/>
+  <rect x="890" y="520" width="12" height="28" rx="6" fill="#fff" stroke="#d62828" stroke-width="1.6"/>
+  <circle cx="896" cy="544" r="5" fill="#d62828"/>
+  <path d="M914 548 H945" stroke="#7b2cbf" stroke-width="2"/>
+  <!-- air in and out -->
+  <path d="M760 566 C 790 560, 800 500, 830 490" fill="none" stroke="#1d70b8" stroke-width="4" marker-end="url(#arB)"/>
+  <path d="M830 383 C 800 386, 785 398, 762 404" fill="none" stroke="#d62828" stroke-width="4" marker-end="url(#arR)"/>
+  <!-- electronics -->
+  <rect x="1010" y="430" width="12" height="150" rx="2" fill="#2b2b2b"/>
+  <rect x="1026" y="438" width="8" height="134" rx="2" fill="none" stroke="#555" stroke-dasharray="4 3"/>
+  <path d="M1040 330 C 1060 320, 1080 318, 1112 334" fill="none" stroke="#d62828" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arR)"/>
+  <path d="M998 600 V650 C 998 680, 1040 680, 1040 650 V640" fill="none" stroke="#222" stroke-width="2.4"/>
+  <circle cx="998" cy="596" r="5" fill="#111"/>
+  <!-- weep hole -->
+  <use href="#drop" x="868" y="612"/>
+  <!-- labels -->
+  <text x="744" y="372" text-anchor="end" class="kr">OUT</text>
+  <text x="744" y="574" text-anchor="end" class="k" style="fill:#1d70b8">IN</text>
+  <text x="744" y="430" text-anchor="end" class="s">fin</text>
+  <text x="744" y="446" text-anchor="end" class="k">≥ 40 mm</text>
+  <text x="744" y="462" text-anchor="end" class="s">out → in</text>
+  <text x="744" y="500" text-anchor="end" class="s">mesh</text>
+  <text x="776" y="318" text-anchor="end" class="s">drip edge</text>
+  <text x="884" y="320" text-anchor="middle" class="k">PM</text>
+  <text x="1020" y="404" text-anchor="middle" class="k">XIAO</text>
+  <text x="1020" y="418" text-anchor="middle" class="id">LoRa dashed</text>
+  <text x="1124" y="358" class="s">heat</text>
+  <text x="958" y="626" class="s">seal</text>
+  <path d="M955 616 L951 552" stroke="#888" stroke-width="1"/>
+  <text x="990" y="672" text-anchor="end" class="s">USB 5 V</text>
+  <text x="880" y="640" class="s">weep</text>
+    <text x="700" y="704" class="s">T/RH sensor inside the PMS (red): warm air, indicative.</text>
+  <!-- not this: intake underneath -->
+  <rect x="1094" y="646" width="44" height="30" rx="2" fill="#fff" stroke="#222" stroke-width="1.6"/>
+  <path d="M1098 680 h36" stroke="#222" stroke-width="2" stroke-dasharray="3 3"/>
+  <path d="M1116 708 V686" stroke="#1d70b8" stroke-width="3" marker-end="url(#arB)"/>
+  <use href="#no" x="1164" y="648"/>
+  <text x="1176" y="730" text-anchor="end" class="s">intake underneath:</text>
+  <text x="1176" y="744" text-anchor="end" class="s">peaks arrive late</text>
+  <text x="1176" y="758" text-anchor="end" class="id">Node V2</text>
+
+  <!-- ===================== C · site plan ===================== -->
+  <circle cx="36" cy="800" r="13" fill="#111"/><text x="36" y="805" text-anchor="middle" class="badge">C</text>
+  <text x="56" y="805" class="s">a compound from above</text>
+  <rect x="40" y="820" width="640" height="400" fill="#f6f3ec" stroke="#8a8170" stroke-width="2"/>
+  <rect x="40" y="1224" width="640" height="26" fill="#d9d6cf"/>
+  <text x="360" y="1242" text-anchor="middle" class="s">street · jalan</text>
+  <!-- 5 m rings -->
+  <g fill="#d62828" fill-opacity="0.05" stroke="#d62828" stroke-width="1.6" stroke-dasharray="6 4">
+    <circle cx="306" cy="890" r="80"/>
+    <circle cx="110" cy="990" r="80"/>
+    <circle cx="240" cy="1006" r="80"/>
+    <circle cx="616" cy="874" r="80"/>
+  </g>
+  <!-- house A with kitchen -->
+  <rect x="68" y="846" width="248" height="142" fill="none" stroke="#8a8170" stroke-dasharray="4 4"/>
+  <rect x="80" y="858" width="220" height="118" fill="#e8e2d6" stroke="#8a8170" stroke-width="1.5"/>
+  <line x1="250" y1="858" x2="250" y2="976" stroke="#8a8170"/>
+  <use href="#pan" x="272" y="916"/>
+  <rect x="300" y="882" width="8" height="16" fill="#555"/>
+  <path d="M312 884 C 318 878, 322 892, 330 884" stroke="#999" stroke-width="2" fill="none"/>
+  <use href="#ac" x="110" y="1000" transform="translate(110 1000) scale(0.8) translate(-110 -1000)"/>
+  <rect x="180" y="976" width="120" height="40" fill="none" stroke="#8a8170" stroke-dasharray="2 3"/>
+  <use href="#coil" x="240" y="1000"/>
+  <use href="#gen" x="616" y="874"/>
+  <!-- house B, kos rooms -->
+  <rect x="418" y="1018" width="244" height="168" fill="none" stroke="#8a8170" stroke-dasharray="4 4"/>
+  <rect x="430" y="1030" width="220" height="144" fill="#e8e2d6" stroke="#8a8170" stroke-width="1.5"/>
+  <path d="M485 1030 V1174 M540 1030 V1174 M595 1030 V1174" stroke="#8a8170"/>
+  <path d="M452 1030 h16 M507 1030 h16 M562 1030 h16 M617 1030 h16" stroke="#f6f3ec" stroke-width="3"/>
+  <!-- tree -->
+  <circle cx="380" cy="1150" r="30" fill="#7fb069" fill-opacity="0.6"/>
+  <!-- nodes: good and bad -->
+  <use href="#node" x="520" y="1048" transform="translate(520 1048) scale(0.7) translate(-520 -1048)"/>
+  <use href="#ok" x="520" y="1004"/>
+  <use href="#node" x="440" y="930" transform="translate(440 930) scale(0.7) translate(-440 -930)"/>
+  <circle cx="440" cy="948" r="3" fill="#8a8170"/>
+  <use href="#ok" x="440" y="892"/>
+  <use href="#node" x="332" y="914" transform="translate(332 914) scale(0.7) translate(-332 -914)"/>
+  <use href="#no" x="354" y="930"/>
+  <use href="#node" x="580" y="910" transform="translate(580 910) scale(0.7) translate(-580 -910)"/>
+  <use href="#no" x="560" y="934"/>
+  <!-- labels for the sources -->
+  <text x="306" y="838" text-anchor="middle" class="s halo">kitchen · dapur</text>
+  <text x="110" y="1026" text-anchor="middle" class="s halo">AC</text>
+  <text x="240" y="1038" text-anchor="middle" class="s halo">obat nyamuk</text>
+  <text x="616" y="906" text-anchor="middle" class="s halo">genset</text>
+  <!-- scale and north -->
+  <path d="M56 1206 H136" stroke="#222" stroke-width="3"/>
+  <path d="M56 1200 V1212 M136 1200 V1212" stroke="#222" stroke-width="1.5"/>
+  <text x="96" y="1198" text-anchor="middle" class="kr">5 m</text>
+  <path d="M170 1190 L178 1212 L170 1206 L162 1212 Z" fill="#222"/>
+  <text x="186" y="1210" class="s">N</text>
+
+  <!-- ===================== D · first week, and T/RH ===================== -->
+  <circle cx="726" cy="800" r="13" fill="#111"/><text x="726" y="805" text-anchor="middle" class="badge">D</text>
+  <rect x="720" y="820" width="456" height="200" rx="6" class="tile"/>
+  <rect x="790" y="852" width="12" height="160" fill="#c8b89a" stroke="#8a8170"/>
+  <path d="M790 914 H772" stroke="#222" stroke-width="4"/>
+  <use href="#node" x="756" y="914"/>
+  <path d="M802 914 H818" stroke="#222" stroke-width="4"/>
+  <use href="#node" x="842" y="910" transform="translate(842 910) scale(1.45) translate(-842 -910)"/>
+  <path d="M752 946 H844" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <text x="798" y="966" text-anchor="middle" class="k">≤ 1 m</text>
+  <text x="756" y="992" text-anchor="middle" class="s">Dense</text>
+  <text x="852" y="992" text-anchor="middle" class="s">Anchor/SCK</text>
+  <!-- calendar 7 -->
+  <rect x="910" y="862" width="92" height="86" rx="6" fill="#fff" stroke="#222" stroke-width="2"/>
+  <rect x="910" y="862" width="92" height="20" rx="6" fill="#222"/>
+  <text x="956" y="934" text-anchor="middle" style="font-size:40px;font-weight:700;fill:#111">7</text>
+  <use href="#ok" x="1004" y="864"/>
+  <text x="1020" y="896" class="k">first week:</text>
+  <text x="1020" y="912" class="s">next to a node</text>
+  <text x="1020" y="926" class="s">we trust, same</text>
+  <text x="1020" y="940" class="s">height, same air.</text>
+  <text x="1020" y="962" class="id">minggu pertama</text>
+  <text x="910" y="984" class="s">Then move it to its own spot.</text>
+
+  <rect x="720" y="1032" width="456" height="188" rx="6" class="tile"/>
+  <!-- thermometer inside the sensor vs outside air -->
+  <rect x="744" y="1062" width="120" height="96" rx="6" fill="#d8dadc" stroke="#444" stroke-width="1.5"/>
+  <circle cx="824" cy="1110" r="26" fill="#fff" stroke="#444" stroke-width="1.5"/>
+  <path d="M824 1088 L830 1110 L824 1132 M802 1110 L824 1104 L846 1110" stroke="#888" stroke-width="2" fill="none"/>
+  <rect x="764" y="1076" width="10" height="56" rx="5" fill="#fff" stroke="#d62828" stroke-width="2"/>
+  <circle cx="769" cy="1138" r="8" fill="#d62828"/><rect x="766" y="1092" width="6" height="42" fill="#d62828"/>
+  <text x="900" y="1124" text-anchor="middle" style="font-size:34px;font-weight:700;fill:#d62828">≠</text>
+  <use href="#sun" x="974" y="1072" transform="translate(974 1072) scale(0.8) translate(-974 -1072)"/>
+  <rect x="954" y="1076" width="10" height="56" rx="5" fill="#fff" stroke="#1d70b8" stroke-width="2"/>
+  <circle cx="959" cy="1138" r="8" fill="#1d70b8"/><rect x="956" y="1100" width="6" height="34" fill="#1d70b8"/>
+  <text x="1000" y="1100" class="k">PMS5003T T/RH</text>
+  <text x="1000" y="1116" class="s">inside the sensor,</text>
+  <text x="1000" y="1130" class="s">in warm fan air.</text>
+  <text x="1000" y="1146" class="s">Indicative only,</text>
+  <text x="1000" y="1160" class="s">never "the air".</text>
+  <text x="744" y="1190" class="s">For real air temperature, an SHT40 in a shade (Anchor, Indoor).</text>
+
+  <!-- ===================== tiles ===================== -->
+  <!-- row 1: do -->
+  <g transform="translate(24 1270)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#ok" x="196" y="22"/>
+    <path d="M30 52 L110 22 L190 52" fill="none" stroke="#8d6e63" stroke-width="7"/>
+    <path d="M44 56 L176 56 L176 104 L80 104 Z" fill="#000" fill-opacity="0.07"/>
+    <use href="#node" x="120" y="80"/>
+    <use href="#sun" x="30" y="24" transform="translate(30 24) scale(0.8) translate(-30 -24)"/>
+    <text x="16" y="124" class="k">shade</text><text x="70" y="124" class="id">teduh</text>
+  </g>
+  <g transform="translate(256 1270)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#ok" x="196" y="22"/>
+    <line x1="20" y1="104" x2="170" y2="104" stroke="#222" stroke-width="2"/>
+    <use href="#person" x="60" y="104"/>
+    <rect x="150" y="16" width="12" height="88" fill="#e8e2d6" stroke="#8a8170"/>
+    <use href="#node" x="134" y="40" transform="translate(134 40) scale(0.8) translate(-134 -40)"/>
+    <path d="M104 102 V34" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="16" y="124" class="kg">1.5 – 3 m</text><text x="100" y="124" class="id">tinggi</text>
+  </g>
+  <g transform="translate(488 1270)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#ok" x="196" y="22"/>
+    <rect x="150" y="16" width="14" height="92" fill="#e8e2d6" stroke="#8a8170"/>
+    <path d="M150 64 H126" stroke="#222" stroke-width="4"/>
+    <use href="#node" x="110" y="64"/>
+    <path d="M128 90 H148" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="16" y="124" class="kg">≥ 10 cm</text><text x="82" y="124" class="s">off the wall</text>
+  </g>
+  <g transform="translate(720 1270)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#ok" x="196" y="22"/>
+    <circle cx="110" cy="62" r="42" fill="none" stroke="#2b9348" stroke-width="2" stroke-dasharray="5 4"/>
+    <use href="#node" x="110" y="66"/>
+    <path d="M110 62 H150" class="dim" marker-end="url(#ar)"/>
+    <text x="16" y="124" class="kg">1 m</text><text x="50" y="124" class="s">open air around</text>
+  </g>
+  <g transform="translate(952 1270)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#ok" x="196" y="22"/>
+    <rect x="150" y="16" width="14" height="92" fill="#e8e2d6" stroke="#8a8170"/>
+    <path d="M150 34 H132" stroke="#222" stroke-width="4"/>
+    <use href="#node" x="116" y="34"/>
+    <path d="M116 48 C 116 112, 146 112, 146 84" fill="none" stroke="#222" stroke-width="2.4"/>
+    <rect x="141" y="70" width="9" height="14" fill="#fff" stroke="#222" stroke-width="1.4"/>
+    <use href="#drop" x="128" y="102"/>
+    <text x="16" y="124" class="k">cable loop</text><text x="104" y="124" class="s">below</text>
+  </g>
+  <!-- row 2: do not, unless that is what you measure -->
+  <g transform="translate(24 1420)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#no" x="196" y="22"/>
+    <use href="#pan" x="60" y="62"/>
+    <use href="#node" x="150" y="80" transform="translate(150 80) scale(0.8) translate(-150 -80)"/>
+    <text x="140" y="44" text-anchor="middle" class="kr">≥ 5 m</text>
+    <text x="16" y="124" class="k">kitchen</text><text x="80" y="124" class="id">dapur</text>
+  </g>
+  <g transform="translate(256 1420)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#no" x="196" y="22"/>
+    <use href="#gen" x="56" y="70"/>
+    <use href="#node" x="150" y="80" transform="translate(150 80) scale(0.8) translate(-150 -80)"/>
+    <text x="140" y="44" text-anchor="middle" class="kr">≥ 5 m</text>
+    <text x="16" y="124" class="k">generator</text><text x="96" y="124" class="id">genset</text>
+  </g>
+  <g transform="translate(488 1420)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#no" x="196" y="22"/>
+    <use href="#coil" x="56" y="70"/>
+    <use href="#node" x="150" y="80" transform="translate(150 80) scale(0.8) translate(-150 -80)"/>
+    <text x="140" y="44" text-anchor="middle" class="kr">≥ 5 m</text>
+    <text x="16" y="124" class="k">coil</text><text x="56" y="124" class="id">obat nyamuk</text>
+  </g>
+  <g transform="translate(720 1420)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#no" x="196" y="22"/>
+    <use href="#ac" x="50" y="70"/>
+    <use href="#node" x="150" y="80" transform="translate(150 80) scale(0.8) translate(-150 -80)"/>
+    <text x="140" y="44" text-anchor="middle" class="kr">≥ 5 m</text>
+    <text x="16" y="124" class="k">AC outlet</text><text x="96" y="124" class="id">AC</text>
+  </g>
+  <g transform="translate(952 1420)">
+    <rect width="220" height="140" rx="6" class="tile"/><use href="#no" x="196" y="22"/>
+    <path d="M20 40 L120 40" stroke="#8d6e63" stroke-width="8"/>
+    <use href="#drop" x="116" y="58"/><use href="#drop" x="116" y="76"/>
+    <use href="#node" x="116" y="100" transform="translate(116 100) scale(0.8) translate(-116 -100)"/>
+    <text x="16" y="124" class="k">under the drip</text><text x="134" y="124" class="id">tetesan</text>
+  </g>
+  <text x="24" y="1588" class="s"><tspan class="k">!</tspan>  Measuring one of these on purpose, a kitchen or a coil room? Then go close, and write it in the node's name.</text>
+</svg>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1120 1110" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+  <title>Bayu Dense, phase 0 breadboard wiring</title>
+  <desc>XIAO ESP32-S3 on a half-size breadboard, wired to a Plantower PMS5003T through its 8-pin connector, with a button, a WS2812 LED, the WiFi antenna and the optional Wio-SX1262 LoRa stack.</desc>
+  <style>
+    .t1   { font-size: 17px; font-weight: 700; fill: #111; }
+    .t2   { font-size: 11.5px; fill: #555; }
+    .lab  { font-size: 10.5px; fill: #222; }
+    .sm   { font-size: 9px; fill: #555; }
+    .note { font-size: 10.5px; fill: #333; }
+    .pin  { font-size: 10px; fill: #fff; }
+    .gp   { fill: #b9b9b9; font-weight: 400; }
+    .lora { fill: #f2b84b; }
+    .w    { fill: none; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+    .end  { stroke: #222; stroke-width: 1.2; }
+  </style>
+  <defs>
+    <pattern id="holes" x="310" y="188" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect x="9" y="9" width="6" height="6" rx="1" fill="#9a958c"/>
+    </pattern>
+  </defs>
+
+  <rect width="1120" height="1110" fill="#ffffff"/>
+
+  <text x="24" y="36" class="t1">Bayu Dense · phase 0 on a breadboard</text>
+  <text x="24" y="56" class="t2">XIAO ESP32-S3 + Plantower PMS5003T · WiFi · LoRa optional · top view, USB-C up</text>
+  <text x="24" y="74" class="t2">Every XIAO pin carries its D name and its GPIO number. A dot at a wire end = plugged into that hole.</text>
+
+  <!-- ===== breadboard ===== -->
+  <rect x="226" y="176" width="456" height="744" rx="8" fill="#f4f1ea" stroke="#bdb6a8" stroke-width="1.5"/>
+  <rect x="430" y="176" width="48" height="744" fill="#e9e4d9"/>
+  <rect x="238" y="188" width="48" height="720" fill="url(#holes)"/>
+  <rect x="310" y="188" width="120" height="720" fill="url(#holes)"/>
+  <rect x="478" y="188" width="120" height="720" fill="url(#holes)"/>
+  <rect x="622" y="188" width="48" height="720" fill="url(#holes)"/>
+  <line x1="240" y1="188" x2="240" y2="908" stroke="#1d70b8" stroke-width="1.5"/>
+  <line x1="284" y1="188" x2="284" y2="908" stroke="#d62828" stroke-width="1.5"/>
+  <line x1="624" y1="188" x2="624" y2="908" stroke="#d62828" stroke-width="1.5"/>
+  <line x1="668" y1="188" x2="668" y2="908" stroke="#1d70b8" stroke-width="1.5"/>
+  <text x="250" y="168" text-anchor="middle" class="lab">−</text>
+  <text x="274" y="168" text-anchor="middle" class="lab">+</text>
+  <text x="634" y="168" text-anchor="middle" class="lab">+</text>
+  <text x="658" y="168" text-anchor="middle" class="lab">−</text>
+  <text x="262" y="152" text-anchor="middle" class="sm">GND · 3V3</text>
+  <text x="646" y="152" text-anchor="middle" class="sm">5V · GND</text>
+  <text x="298" y="204" text-anchor="middle" class="sm">1</text>
+  <text x="298" y="420" text-anchor="middle" class="sm">10</text>
+  <text x="298" y="660" text-anchor="middle" class="sm">20</text>
+  <text x="298" y="900" text-anchor="middle" class="sm">30</text>
+  <g class="sm" text-anchor="middle">
+    <text x="322" y="938">a</text><text x="346" y="938">b</text><text x="370" y="938">c</text><text x="394" y="938">d</text><text x="418" y="938">e</text>
+    <text x="490" y="938">f</text><text x="514" y="938">g</text><text x="538" y="938">h</text><text x="562" y="938">i</text><text x="586" y="938">j</text>
+  </g>
+  <text x="454" y="700" text-anchor="middle" class="sm" transform="rotate(-90 454 700)">half-size breadboard, 30 rows</text>
+
+  <!-- ===== XIAO ESP32-S3, pins in column d and h, rows 3 to 9 ===== -->
+  <rect x="424" y="206" width="84" height="22" rx="6" fill="#c9c9c9" stroke="#777"/>
+  <rect x="382" y="221" width="168" height="212" rx="12" fill="#2b2b2b" stroke="#111" stroke-width="1.5"/>
+  <text x="466" y="240" text-anchor="middle" class="sm" fill="#ddd" style="fill:#dddddd">XIAO ESP32-S3</text>
+  <g fill="#d9a520" stroke="#7a5a00" stroke-width="1">
+    <circle cx="394" cy="248" r="5.5"/><circle cx="394" cy="272" r="5.5"/><circle cx="394" cy="296" r="5.5"/><circle cx="394" cy="320" r="5.5"/><circle cx="394" cy="344" r="5.5"/><circle cx="394" cy="368" r="5.5"/><circle cx="394" cy="392" r="5.5"/>
+    <circle cx="538" cy="248" r="5.5"/><circle cx="538" cy="272" r="5.5"/><circle cx="538" cy="296" r="5.5"/><circle cx="538" cy="320" r="5.5"/><circle cx="538" cy="344" r="5.5"/><circle cx="538" cy="368" r="5.5"/><circle cx="538" cy="392" r="5.5"/>
+  </g>
+  <g class="pin">
+    <text x="404" y="252"><tspan font-weight="700">D0</tspan><tspan class="gp" dx="5">GPIO1</tspan></text>
+    <text x="404" y="276"><tspan font-weight="700">D1</tspan><tspan class="gp" dx="5">GPIO2</tspan></text>
+    <text x="404" y="300"><tspan font-weight="700">D2</tspan><tspan class="gp" dx="5">GPIO3</tspan></text>
+    <text x="404" y="324"><tspan font-weight="700">D3</tspan><tspan class="gp" dx="5">GPIO4</tspan></text>
+    <text x="404" y="348"><tspan font-weight="700">D4</tspan><tspan class="gp" dx="5">GPIO5</tspan></text>
+    <text x="404" y="372"><tspan font-weight="700">D5</tspan><tspan class="gp" dx="5">GPIO6</tspan></text>
+    <text x="404" y="396"><tspan font-weight="700">D6</tspan><tspan class="gp" dx="5">GPIO43</tspan></text>
+    <text x="528" y="252" text-anchor="end"><tspan font-weight="700">5V</tspan><tspan class="gp" dx="5">VBUS</tspan></text>
+    <text x="528" y="276" text-anchor="end" font-weight="700">GND</text>
+    <text x="528" y="300" text-anchor="end" font-weight="700">3V3</text>
+    <text x="528" y="324" text-anchor="end"><tspan font-weight="700" class="lora">D10</tspan><tspan class="gp" dx="5">GPIO9</tspan></text>
+    <text x="528" y="348" text-anchor="end"><tspan font-weight="700" class="lora">D9</tspan><tspan class="gp" dx="5">GPIO8</tspan></text>
+    <text x="528" y="372" text-anchor="end"><tspan font-weight="700" class="lora">D8</tspan><tspan class="gp" dx="5">GPIO7</tspan></text>
+    <text x="528" y="396" text-anchor="end"><tspan font-weight="700">D7</tspan><tspan class="gp" dx="5">GPIO44</tspan></text>
+  </g>
+  <circle cx="410" cy="419" r="5" fill="#d9a520" stroke="#7a5a00"/>
+  <rect x="452" y="412" width="70" height="13" rx="2" fill="#555" stroke="#888"/>
+  <text x="487" y="422" text-anchor="middle" style="font-size:8px;fill:#ddd">B2B</text>
+
+  <!-- ===== wires ===== -->
+  <!-- 5V and GND from the XIAO to the right rails -->
+  <path class="w" stroke="#d62828" d="M586 248 H634"/>
+  <path class="w" stroke="#222222" d="M586 272 H658"/>
+  <!-- 3V3 to the left + rail, over the USB end -->
+  <path class="w" stroke="#f08c00" d="M562 296 V188 H274 V200"/>
+  <!-- rail-to-rail GND tie -->
+  <path class="w" stroke="#222222" d="M250 872 H658"/>
+  <!-- button on D0, LED on D1 -->
+  <path class="w" stroke="#1d70b8" d="M200 248 H322"/>
+  <path class="w" stroke="#222222" d="M200 224 H250"/>
+  <path class="w" stroke="#1d70b8" d="M200 272 H322"/>
+  <path class="w" stroke="#f08c00" d="M200 296 H274"/>
+  <path class="w" stroke="#222222" d="M200 320 H250"/>
+  <!-- PMS5003T -->
+  <path class="w" stroke="#55a630" d="M586 392 H700 V440 H770"/>
+  <path class="w" stroke="#1b6e3a" d="M370 392 V464 H770"/>
+  <path class="w" stroke="#7b2cbf" d="M322 296 V488 H770"/>
+  <path class="w" stroke="#222222" d="M658 512 H770"/>
+  <path class="w" stroke="#d62828" d="M634 536 H770"/>
+  <!-- plugged ends -->
+  <g class="end">
+    <circle cx="586" cy="248" r="4" fill="#d62828"/><circle cx="634" cy="248" r="4" fill="#d62828"/>
+    <circle cx="586" cy="272" r="4" fill="#222"/><circle cx="658" cy="272" r="4" fill="#222"/>
+    <circle cx="562" cy="296" r="4" fill="#f08c00"/><circle cx="274" cy="200" r="4" fill="#f08c00"/>
+    <circle cx="250" cy="872" r="4" fill="#222"/><circle cx="658" cy="872" r="4" fill="#222"/>
+    <circle cx="322" cy="248" r="4" fill="#1d70b8"/><circle cx="250" cy="224" r="4" fill="#222"/>
+    <circle cx="322" cy="272" r="4" fill="#1d70b8"/><circle cx="274" cy="296" r="4" fill="#f08c00"/><circle cx="250" cy="320" r="4" fill="#222"/>
+    <circle cx="586" cy="392" r="4" fill="#55a630"/><circle cx="370" cy="392" r="4" fill="#1b6e3a"/>
+    <circle cx="322" cy="296" r="4" fill="#7b2cbf"/><circle cx="658" cy="512" r="4" fill="#222"/><circle cx="634" cy="536" r="4" fill="#d62828"/>
+  </g>
+  <!-- wire tags between the board and the sensor -->
+  <g style="font-size:9.5px;font-weight:700">
+    <text x="708" y="435" fill="#3d7a1f">D7 RX</text>
+    <text x="708" y="459" fill="#1b6e3a">D6 TX</text>
+    <text x="708" y="483" fill="#7b2cbf">D2 SET</text>
+    <text x="708" y="507" fill="#222">GND</text>
+    <text x="708" y="531" fill="#d62828">5V</text>
+  </g>
+
+  <!-- ===== button and WS2812 ===== -->
+  <rect x="160" y="214" width="34" height="44" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+  <circle cx="177" cy="236" r="10" fill="#444"/>
+  <line x1="194" y1="224" x2="200" y2="224" stroke="#333" stroke-width="2"/>
+  <line x1="194" y1="248" x2="200" y2="248" stroke="#333" stroke-width="2"/>
+  <text x="152" y="232" text-anchor="end" class="lab">button</text>
+  <text x="152" y="246" text-anchor="end" class="sm">to D0 + GND</text>
+  <rect x="140" y="262" width="56" height="68" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+  <rect x="146" y="290" width="12" height="12" fill="#eee" stroke="#666"/>
+  <text x="192" y="275" text-anchor="end" class="sm">DIN</text>
+  <text x="192" y="299" text-anchor="end" class="sm">VCC</text>
+  <text x="192" y="323" text-anchor="end" class="sm">GND</text>
+  <text x="132" y="290" text-anchor="end" class="lab">WS2812</text>
+  <text x="132" y="304" text-anchor="end" class="sm">status LED</text>
+  <text x="132" y="316" text-anchor="end" class="sm">on 3V3</text>
+
+  <!-- ===== WiFi antenna, needed ===== -->
+  <path d="M410 424 V564 H196" fill="none" stroke="#666" stroke-width="2"/>
+  <rect x="40" y="550" width="156" height="30" rx="3" fill="#333"/>
+  <circle cx="190" cy="565" r="3" fill="#d9a520"/>
+  <text x="40" y="598" class="lab">WiFi antenna, needed</text>
+  <text x="40" y="612" class="sm">U.FL on the XIAO, under the</text>
+  <text x="40" y="624" class="sm">LoRa board when one is fitted</text>
+
+  <!-- ===== PMS5003T ===== -->
+  <rect x="796" y="344" width="284" height="216" rx="6" fill="#d8dadc" stroke="#555" stroke-width="1.5"/>
+  <rect x="770" y="356" width="26" height="192" rx="2" fill="#f7f7f2" stroke="#333" stroke-width="1.3"/>
+  <g fill="#c9a227" stroke="#7a5a00">
+    <rect x="766" y="364" width="10" height="8"/><rect x="766" y="388" width="10" height="8"/><rect x="766" y="412" width="10" height="8"/><rect x="766" y="436" width="10" height="8"/>
+    <rect x="766" y="460" width="10" height="8"/><rect x="766" y="484" width="10" height="8"/><rect x="766" y="508" width="10" height="8"/><rect x="766" y="532" width="10" height="8"/>
+  </g>
+  <g class="lab">
+    <text x="806" y="372" fill="#777"><tspan font-weight="700">8</tspan> NC</text>
+    <text x="806" y="396" fill="#777"><tspan font-weight="700">7</tspan> NC</text>
+    <text x="806" y="420" fill="#777"><tspan font-weight="700">6</tspan> RESET, leave open</text>
+    <text x="806" y="444"><tspan font-weight="700">5</tspan> TXD 3.3 V</text>
+    <text x="806" y="468"><tspan font-weight="700">4</tspan> RXD 3.3 V</text>
+    <text x="806" y="492"><tspan font-weight="700">3</tspan> SET  high = run</text>
+    <text x="806" y="516"><tspan font-weight="700">2</tspan> GND</text>
+    <text x="806" y="540"><tspan font-weight="700">1</tspan> VCC 5 V, ~100 mA</text>
+  </g>
+  <text x="1070" y="372" text-anchor="end" style="font-size:14px;font-weight:700;fill:#111">PMS5003T</text>
+  <text x="1070" y="388" text-anchor="end" class="sm">Plantower, 50 × 38 × 21 mm</text>
+  <text x="783" y="340" text-anchor="middle" class="sm">pin 8</text>
+  <text x="783" y="574" text-anchor="middle" class="sm">pin 1</text>
+  <text x="796" y="592" class="sm">8-pin, 1.25 mm pitch, drawn enlarged.</text>
+  <text x="796" y="604" class="sm">Check pin 1 on your own cable first.</text>
+
+  <!-- ===== optional LoRa, side view ===== -->
+  <rect x="704" y="636" width="392" height="296" rx="8" fill="#fbfaf6" stroke="#999" stroke-dasharray="6 4"/>
+  <text x="720" y="660" class="lab" font-weight="700">Optional: Wio-SX1262 LoRa, side view</text>
+  <rect x="730" y="880" width="340" height="18" fill="#f4f1ea" stroke="#bdb6a8"/>
+  <text x="900" y="914" text-anchor="middle" class="sm">breadboard or Bayu Core</text>
+  <g stroke="#b08a1a" stroke-width="2">
+    <line x1="836" y1="830" x2="836" y2="890"/><line x1="860" y1="830" x2="860" y2="890"/><line x1="884" y1="830" x2="884" y2="890"/>
+    <line x1="908" y1="830" x2="908" y2="890"/><line x1="932" y1="830" x2="932" y2="890"/><line x1="956" y1="830" x2="956" y2="890"/>
+  </g>
+  <rect x="826" y="838" width="140" height="12" fill="#222"/>
+  <rect x="816" y="822" width="164" height="8" fill="#2b2b2b"/>
+  <rect x="804" y="812" width="24" height="12" rx="3" fill="#c9c9c9" stroke="#777"/>
+  <rect x="846" y="810" width="70" height="12" fill="#9a9a9a" stroke="#666"/>
+  <rect x="938" y="798" width="30" height="24" fill="#555"/>
+  <rect x="816" y="790" width="164" height="8" fill="#fff" stroke="#333" stroke-width="1.3" stroke-dasharray="5 3"/>
+  <circle cx="964" cy="785" r="4" fill="#fff" stroke="#333" stroke-dasharray="2 2"/>
+  <path d="M968 783 C 1000 780, 1036 790, 1038 762" fill="none" stroke="#666" stroke-width="2" stroke-dasharray="5 4"/>
+  <rect x="1030" y="704" width="16" height="58" rx="2" fill="#fff" stroke="#333" stroke-dasharray="5 3"/>
+  <path d="M928 815 C 900 860, 790 870, 760 860" fill="none" stroke="#666" stroke-width="2"/>
+  <text x="988" y="806" class="sm">B2B, clips on</text>
+  <text x="988" y="838" class="sm">XIAO</text>
+  <text x="988" y="852" class="sm">pin headers</text>
+  <text x="798" y="822" text-anchor="end" class="sm">USB-C</text>
+  <text x="812" y="780" class="sm">Wio-SX1262 (dashed)</text>
+  <text x="1052" y="724" class="sm">LoRa</text>
+  <text x="1052" y="736" class="sm">ant.</text>
+  <text x="742" y="848" class="sm">WiFi</text>
+  <text x="742" y="860" class="sm" fill="#666">pigtail</text>
+  <text x="720" y="684" class="note">Clips onto the XIAO's top face. The pins</text>
+  <text x="720" y="698" class="note">underneath stay free, so the stack still</text>
+  <text x="720" y="712" class="note">plugs into the breadboard.</text>
+  <text x="720" y="732" class="note">Takes GPIO 38 to 42 through the B2B and</text>
+  <text x="720" y="746" class="note">shares SPI on <tspan class="lora" style="fill:#c4861a;font-weight:700">D8 D9 D10</tspan>: keep</text>
+  <text x="720" y="760" class="note">those three free. No D pin is wired to it.</text>
+
+  <!-- ===== legend and notes ===== -->
+  <g transform="translate(24 960)">
+    <path class="w" stroke="#d62828" d="M0 0 H26"/><text x="34" y="4" class="lab">5 V</text>
+    <path class="w" stroke="#222" d="M80 0 H106"/><text x="114" y="4" class="lab">GND</text>
+    <path class="w" stroke="#f08c00" d="M166 0 H192"/><text x="200" y="4" class="lab">3V3</text>
+    <path class="w" stroke="#55a630" d="M252 0 H278"/><text x="286" y="4" class="lab">UART, PMS TXD → D7</text>
+    <path class="w" stroke="#1b6e3a" d="M440 0 H466"/><text x="474" y="4" class="lab">UART, D6 → PMS RXD</text>
+    <path class="w" stroke="#7b2cbf" d="M628 0 H654"/><text x="662" y="4" class="lab">SET, D2</text>
+    <path class="w" stroke="#1d70b8" d="M736 0 H762"/><text x="770" y="4" class="lab">button, LED</text>
+    <path d="M876 0 H902" stroke="#666" stroke-width="2" stroke-dasharray="5 4"/><text x="910" y="4" class="lab">dashed = optional</text>
+  </g>
+  <text x="24" y="996" class="note">Firmware. Meshtastic Bayu (env seeed_xiao_s3_bayu_t) reads on D7, opens D6 as TX and switches the fan with D2.</text>
+  <text x="24" y="1012" class="note">Smart Citizen v5 only listens on D7 and leaves D2 alone; SET then floats high and the fan keeps running.</text>
+  <text x="24" y="1028" class="note">Wire all three and the same node runs either firmware.</text>
+  <text x="24" y="1050" class="note">Power: 5 V / 2 A USB-C wall supply. The XIAO 5V pin is USB VBUS and feeds the PMS fan directly.</text>
+  <text x="24" y="1066" class="note">Logic on SET, RXD and TXD is 3.3 V, same as the XIAO: no level shifter.</text>
+  <text x="24" y="1088" class="note">The PMS5003T measures T and RH inside its own case, in the fan's air: indicative, never ambient.</text>
+</svg>

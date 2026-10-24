@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1100 800" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace">
+  <title>Bayu Dense schematic</title>
+  <desc>Schematic of the Bayu Dense node: XIAO ESP32-S3, Plantower PMS5003T on UART with SET, button, WS2812 LED, optional Wio-SX1262 LoRa through the board-to-board connector. Nets named.</desc>
+  <style>
+    .t1  { font-size: 17px; font-weight: 700; fill: #111; }
+    .t2  { font-size: 11.5px; fill: #555; }
+    .ref { font-size: 11px; font-weight: 700; fill: #111; }
+    .val { font-size: 10px; fill: #555; }
+    .pin { font-size: 10px; fill: #222; }
+    .pn  { font-size: 8.5px; fill: #888; }
+    .net { font-size: 10px; font-weight: 700; }
+    .note{ font-size: 10.5px; fill: #333; }
+    .w   { fill: none; stroke: #222; stroke-width: 1.6; stroke-linejoin: round; }
+    .box { fill: #fbfaf6; stroke: #222; stroke-width: 1.6; }
+    .opt { fill: none; stroke: #777; stroke-width: 1.4; stroke-dasharray: 6 4; }
+  </style>
+  <defs>
+    <g id="gnd"><path d="M-9 0 H9 M-6 4 H6 M-3 8 H3" stroke="#222" stroke-width="1.6"/></g>
+    <g id="nc"><path d="M-4 -4 L4 4 M-4 4 L4 -4" stroke="#222" stroke-width="1.6"/></g>
+  </defs>
+
+  <rect width="1100" height="800" fill="#ffffff"/>
+  <text x="24" y="36" class="t1">Bayu Dense · schematic</text>
+  <text x="24" y="56" class="t2">XIAO ESP32-S3 + PMS5003T, button, status LED · Wio-SX1262 optional (dashed) · nets in colour</text>
+
+  <!-- ===== U1 XIAO ===== -->
+  <rect x="400" y="160" width="220" height="380" class="box"/>
+  <text x="510" y="152" text-anchor="middle" class="ref">U1  XIAO ESP32-S3</text>
+  <text x="510" y="284" text-anchor="middle" class="val">USB-C = 5 V in</text>
+  <!-- left pins -->
+  <g class="pin">
+    <text x="408" y="194">5V</text>
+    <text x="408" y="224">GND</text>
+    <text x="408" y="254">3V3</text>
+    <text x="408" y="314">D0 GPIO1</text>
+    <text x="408" y="344">D1 GPIO2</text>
+    <text x="408" y="404">D3 GPIO4</text>
+    <text x="408" y="424">D4 GPIO5</text>
+    <text x="408" y="444">D5 GPIO6</text>
+  </g>
+  <!-- right pins -->
+  <g class="pin" text-anchor="end">
+    <text x="612" y="214">D2 GPIO3</text>
+    <text x="612" y="234">D6 GPIO43 TX</text>
+    <text x="612" y="254">D7 GPIO44 RX</text>
+    <text x="612" y="384">D8 GPIO7 SCK</text>
+    <text x="612" y="404">D9 GPIO8 MISO</text>
+    <text x="612" y="424">D10 GPIO9 MOSI</text>
+    <text x="612" y="444">GPIO41 NSS</text>
+    <text x="612" y="464">GPIO42 RST</text>
+    <text x="612" y="484">GPIO39 DIO1</text>
+    <text x="612" y="504">GPIO40 BUSY</text>
+    <text x="612" y="524">GPIO38 RF_SW</text>
+  </g>
+  <text x="628" y="366" class="pn">B2B</text>
+  <path d="M624 372 H632 V530 H624" fill="none" stroke="#888" stroke-width="1"/>
+
+  <!-- D3 D4 D5 not connected -->
+  <path class="w" d="M400 400 H384 M400 420 H384 M400 440 H384"/>
+  <use href="#nc" x="380" y="400"/><use href="#nc" x="380" y="420"/><use href="#nc" x="380" y="440"/>
+
+  <!-- ===== power ===== -->
+  <path class="w" d="M400 190 H370 V110 H600" stroke="#d62828" style="stroke:#d62828"/>
+  <rect x="600" y="102" width="44" height="16" rx="3" fill="#fff" stroke="#d62828" stroke-width="1.6"/>
+  <text x="622" y="96" text-anchor="middle" class="ref" style="fill:#d62828">F1</text>
+  <text x="622" y="134" text-anchor="middle" class="val">1 A PTC</text>
+  <path class="w" d="M644 110 H860 V180" style="stroke:#d62828"/>
+  <text x="380" y="104" class="net" fill="#d62828" style="fill:#d62828">+5V (VBUS)</text>
+  <text x="700" y="104" class="net" fill="#d62828" style="fill:#d62828">+5V_PMS</text>
+  <path class="w" d="M400 220 H340 V226"/>
+  <use href="#gnd" x="340" y="226"/>
+  <path class="w" d="M400 250 H352" style="stroke:#f08c00"/>
+  <text x="348" y="254" text-anchor="end" class="net" style="fill:#c26d00">3V3</text>
+
+  <!-- ===== SW1 button on D0 ===== -->
+  <path class="w" d="M400 310 H344" style="stroke:#1d70b8"/>
+  <circle cx="340" cy="310" r="3" fill="#fff" stroke="#222" stroke-width="1.4"/>
+  <circle cx="304" cy="310" r="3" fill="#fff" stroke="#222" stroke-width="1.4"/>
+  <path d="M302 302 L338 294" stroke="#222" stroke-width="1.6"/>
+  <path d="M320 298 V288 M312 288 H328" stroke="#222" stroke-width="1.4"/>
+  <path class="w" d="M301 310 H290 V318"/>
+  <use href="#gnd" x="290" y="318"/>
+  <text x="322" y="276" text-anchor="middle" class="ref">SW1</text>
+  <text x="356" y="304" class="net" style="fill:#1d70b8">BTN</text>
+
+  <!-- ===== LED1 WS2812 on D1 ===== -->
+  <path class="w" d="M400 340 H240" style="stroke:#1d70b8"/>
+  <text x="300" y="334" class="net" style="fill:#1d70b8">LED_DIN</text>
+  <rect x="150" y="320" width="90" height="70" class="box"/>
+  <text x="195" y="360" text-anchor="middle" class="val">WS2812</text>
+  <text x="234" y="344" text-anchor="end" class="pn">DIN</text>
+  <text x="195" y="333" text-anchor="middle" class="pn">VDD</text>
+  <text x="195" y="385" text-anchor="middle" class="pn">GND</text>
+  <text x="150" y="312" class="ref">LED1</text>
+  <path class="w" d="M195 320 V292" style="stroke:#f08c00"/>
+  <text x="195" y="286" text-anchor="middle" class="net" style="fill:#c26d00">3V3</text>
+  <path class="w" d="M195 390 V404"/>
+  <use href="#gnd" x="195" y="404"/>
+
+  <!-- ===== U2 PMS5003T ===== -->
+  <rect x="820" y="180" width="160" height="120" class="box"/>
+  <text x="900" y="246" text-anchor="middle" class="ref">U2  PMS5003T</text>
+  <text x="900" y="262" text-anchor="middle" class="val">laser PM + T/RH</text>
+  <g class="pin">
+    <text x="826" y="214">SET</text><text x="812" y="206" text-anchor="end" class="pn">3</text>
+    <text x="826" y="234">RXD</text><text x="812" y="226" text-anchor="end" class="pn">4</text>
+    <text x="826" y="254">TXD</text><text x="812" y="246" text-anchor="end" class="pn">5</text>
+    <text x="866" y="196">VCC</text><text x="852" y="176" text-anchor="end" class="pn">1</text>
+    <text x="866" y="294">GND</text><text x="852" y="312" text-anchor="end" class="pn">2</text>
+    <text x="934" y="294" text-anchor="end">RESET</text><text x="946" y="312" class="pn">6</text>
+    <text x="974" y="224" text-anchor="end">NC</text><text x="988" y="214" class="pn">7</text>
+    <text x="974" y="254" text-anchor="end">NC</text><text x="988" y="244" class="pn">8</text>
+  </g>
+  <path class="w" d="M620 210 H820" style="stroke:#7b2cbf"/>
+  <path class="w" d="M620 230 H820" style="stroke:#1b6e3a"/>
+  <path class="w" d="M620 250 H820" style="stroke:#55a630"/>
+  <text x="700" y="205" class="net" style="fill:#7b2cbf">PMS_SET</text>
+  <text x="700" y="225" class="net" style="fill:#1b6e3a">PMS_RXD</text>
+  <text x="700" y="245" class="net" style="fill:#3d7a1f">PMS_TXD</text>
+  <path class="w" d="M860 300 V318"/>
+  <use href="#gnd" x="860" y="318"/>
+  <path class="w" d="M940 300 V320 H1000"/>
+  <rect x="1000" y="313" width="40" height="14" fill="#fff" stroke="#222" stroke-width="1.6"/>
+  <text x="1020" y="306" text-anchor="middle" class="ref">R1</text>
+  <text x="1020" y="342" text-anchor="middle" class="val">10k</text>
+  <path class="w" d="M1040 320 H1056" style="stroke:#f08c00"/>
+  <text x="1060" y="324" class="net" style="fill:#c26d00">3V3</text>
+  <text x="950" y="340" class="net" style="fill:#444">PMS_RST</text>
+  <path class="w" d="M980 220 H996 M980 250 H996"/>
+  <use href="#nc" x="1000" y="220"/><use href="#nc" x="1000" y="250"/>
+
+  <!-- ===== U3 Wio-SX1262, optional ===== -->
+  <path class="w" d="M620 380 H820 M620 400 H820 M620 420 H820 M620 440 H820 M620 460 H820 M620 480 H820 M620 500 H820 M620 520 H820" style="stroke:#999;stroke-dasharray:6 4"/>
+  <rect x="820" y="370" width="160" height="164" class="opt"/>
+  <text x="900" y="362" text-anchor="middle" class="ref" style="fill:#555">U3  Wio-SX1262 (optional)</text>
+  <g class="pin" style="fill:#555">
+    <text x="826" y="384">SCK</text><text x="826" y="404">MISO</text><text x="826" y="424">MOSI</text><text x="826" y="444">NSS</text>
+    <text x="826" y="464">RESET</text><text x="826" y="484">DIO1</text><text x="826" y="504">BUSY</text><text x="826" y="524">RF_SW</text>
+  </g>
+  <text x="972" y="460" text-anchor="end" class="val">SX1262</text>
+  <text x="972" y="474" text-anchor="end" class="val">900 MHz</text>
+  <path d="M980 450 H1020 V420" class="opt"/>
+  <path d="M1008 400 L1020 420 L1032 400 M1020 420 V396" class="opt" style="stroke:#555"/>
+  <text x="1040" y="408" class="ref" style="fill:#555">ANT1</text>
+  <text x="1040" y="422" class="val">U.FL</text>
+  <text x="700" y="373" class="net" style="fill:#888">LORA_SPI</text>
+
+  <!-- ===== WiFi antenna on U1 ===== -->
+  <path class="w" d="M510 540 V600 H570 V580"/>
+  <path d="M558 566 L570 580 L582 566" stroke="#222" stroke-width="1.6" fill="none"/>
+  <text x="592" y="580" class="ref">ANT2</text>
+  <text x="592" y="594" class="val">WiFi, U.FL on the XIAO, needed</text>
+
+  <!-- ===== notes ===== -->
+  <line x1="24" y1="640" x2="1076" y2="640" stroke="#ddd"/>
+  <text x="24" y="664" class="note">Power: 5 V / 2 A USB-C wall supply into the XIAO. F1 and R1 are on the Bayu Core only.</text>
+  <text x="24" y="682" class="note">On the phase 0 breadboard +5V goes straight to pin 1 and RESET stays open.</text>
+  <text x="24" y="700" class="note">PMS_SET: high or open = fan and laser run, low = sleep. Meshtastic (seeed_xiao_s3_bayu_t) drives it; Smart Citizen v5 never does.</text>
+  <text x="24" y="718" class="note">PMS_RXD carries nothing today: neither firmware sends commands. Wired so a later firmware can use passive mode.</text>
+  <text x="24" y="736" class="note">SW1 needs no resistor: the firmware enables the ESP32 internal pull-up on GPIO1. All logic is 3.3 V; only the PMS fan runs on 5 V.</text>
+  <text x="24" y="754" class="note">U3 talks over the B2B connector only. D8 D9 D10 are the same GPIO 7 8 9 as its SPI: leave them unconnected on a Dense node.</text>
+  <text x="24" y="772" class="note">U2's T/RH element sits inside the sensor, in the fan's air. Report it as PM-internal temperature and humidity, never as ambient.</text>
+</svg>
