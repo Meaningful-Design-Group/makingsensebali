@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1240 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+  <title>Bayu Relay, phase-0 breadboard wiring</title>
+  <desc>XIAO ESP32-S3 plugged pins-down into a half-size breadboard with the Wio-SX1262 clipped on top, an SHT40 breakout, a push button and a WS2812B LED. Side view of the stack with the header trimmed flush under the Wio and the LoRa U.FL pigtail to an SMA bulkhead and whip.</desc>
+  <style>
+    .t    { font-size: 15px; font-weight: 700; fill: #111; }
+    .st   { font-size: 11px; fill: #555; }
+    .pv   { font-size: 8px; fill: #111; }
+    .po   { font-size: 8px; fill: #9a948a; }
+    .pr   { font-size: 8px; fill: #b3261e; }
+    .lab  { font-size: 10.5px; fill: #222; }
+    .sm   { font-size: 9px; fill: #555; }
+    .tiny { font-size: 7.5px; fill: #222; }
+    .warn { font-size: 10.5px; fill: #b3261e; }
+    .h    { font-size: 12px; font-weight: 700; fill: #111; }
+    .hw   { font-size: 12px; font-weight: 700; fill: #b3261e; }
+    .case { fill: none; stroke: #2a2a2a; stroke-width: 6; stroke-linejoin: round; stroke-linecap: round; }
+    .wire { fill: none; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+    .lead { fill: none; stroke: #777; stroke-width: 0.8; }
+  </style>
+  <defs>
+    <pattern id="holes" x="571" y="205" width="18" height="18" patternUnits="userSpaceOnUse">
+      <rect x="6.5" y="6.5" width="5" height="5" fill="#8d877c"/>
+    </pattern>
+    <pattern id="holesB" x="571" y="313" width="18" height="18" patternUnits="userSpaceOnUse">
+      <rect x="6.5" y="6.5" width="5" height="5" fill="#8d877c"/>
+    </pattern>
+    <pattern id="rail" x="571" y="151" width="18" height="18" patternUnits="userSpaceOnUse">
+      <rect x="6.5" y="6.5" width="5" height="5" fill="#8d877c"/>
+    </pattern>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#9a948a" stroke-width="1.2"/>
+    </pattern>
+    <!-- jumper paths, drawn twice: dark casing, then colour -->
+    <path id="wGND" d="M616 214 V160"/>
+    <path id="w3V3" d="M634 214 V178"/>
+    <path id="wD0"  d="M598 394 V440 H886 V394"/>
+    <path id="wD1"  d="M616 394 V428 H760 V394"/>
+    <path id="wD4"  d="M670 358 H1066"/>
+    <path id="wD5"  d="M688 376 H1048"/>
+    <path id="jG20" d="M922 160 V250"/>
+    <path id="jG13" d="M796 160 V322"/>
+    <path id="jV14" d="M814 178 V322"/>
+    <path id="jV24" d="M994 178 V322"/>
+    <path id="jG26" d="M1030 160 V322"/>
+  </defs>
+
+  <rect width="1240" height="900" fill="#fbf8f2"/>
+
+  <text x="40" y="34" class="t">Bayu Relay · phase-0 breadboard build</text>
+  <text x="40" y="54" class="st">XIAO ESP32-S3 + Wio-SX1262 · SHT40 (I²C 0x44) · button · WS2812B · 5 V USB wall supply · top view, not to scale</text>
+
+  <g transform="translate(-200 0)">
+  <!-- ===== breadboard (half size, 30 columns) ===== -->
+  <rect x="548" y="140" width="572" height="274" rx="8" fill="#ffffff" stroke="#bdb6a8" stroke-width="1.4"/>
+  <rect x="571" y="151" width="540" height="36" fill="url(#rail)"/>
+  <line x1="574" y1="151" x2="1108" y2="151" stroke="#1f6fd1" stroke-width="1.2"/>
+  <line x1="574" y1="187" x2="1108" y2="187" stroke="#d23b2f" stroke-width="1.2"/>
+  <text x="540" y="163" class="lab" text-anchor="end">GND −</text>
+  <text x="540" y="181" class="lab" text-anchor="end">3V3 +</text>
+  <rect x="571" y="205" width="540" height="90" fill="url(#holes)"/>
+  <rect x="556" y="298" width="556" height="12" fill="#efebe3"/>
+  <rect x="571" y="313" width="540" height="90" fill="url(#holesB)"/>
+  <g class="sm" text-anchor="middle">
+    <text x="1112" y="217">j</text><text x="1112" y="235">i</text><text x="1112" y="253">h</text><text x="1112" y="271">g</text><text x="1112" y="289">f</text>
+    <text x="1112" y="325">e</text><text x="1112" y="343">d</text><text x="1112" y="361">c</text><text x="1112" y="379">b</text><text x="1112" y="397">a</text>
+    <text x="580" y="201">1</text><text x="652" y="201">5</text><text x="742" y="201">10</text><text x="832" y="201">15</text><text x="1012" y="201">25</text><text x="1102" y="201">30</text>
+  </g>
+
+  <!-- button, straddles the centre gap, legs e18 e20 f18 f20 -->
+  <rect x="876" y="277" width="56" height="54" rx="3" fill="#3a3a3a"/>
+  <circle cx="904" cy="304" r="15" fill="#6b6b6b" stroke="#222"/>
+  <g fill="#d9c27a"><circle cx="886" cy="286" r="2.5"/><circle cx="922" cy="286" r="2.5"/><circle cx="886" cy="322" r="2.5"/><circle cx="922" cy="322" r="2.5"/></g>
+  <text x="940" y="432" class="lab" text-anchor="middle">button</text>
+  <text x="940" y="445" class="sm" text-anchor="middle">diagonal legs</text>
+
+  <!-- 330 ohm, d11 to d15 -->
+  <line x1="760" y1="340" x2="832" y2="340" stroke="#777" stroke-width="1.5"/>
+  <rect x="776" y="334" width="40" height="12" rx="5" fill="#e8d3a8" stroke="#8a6d3b"/>
+  <text x="796" y="343" class="tiny" text-anchor="middle">330Ω</text>
+  <circle cx="760" cy="340" r="2.5" fill="#777"/><circle cx="832" cy="340" r="2.5" fill="#777"/>
+
+  <!-- WS2812B breakout, pins a13 a14 a15 -->
+  <rect x="784" y="386" width="60" height="44" rx="3" fill="#ffffff" stroke="#333"/>
+  <g fill="#d9c27a" stroke="#333" stroke-width="0.6"><circle cx="796" cy="394" r="3"/><circle cx="814" cy="394" r="3"/><circle cx="832" cy="394" r="3"/></g>
+  <text x="796" y="407" class="tiny" text-anchor="middle">GND</text>
+  <text x="814" y="407" class="tiny" text-anchor="middle">VCC</text>
+  <text x="832" y="407" class="tiny" text-anchor="middle">DIN</text>
+  <rect x="806" y="412" width="16" height="14" fill="#f4f4f4" stroke="#333"/>
+  <circle cx="814" cy="419" r="4.5" fill="#ffffff" stroke="#999"/>
+  <text x="814" y="462" class="lab" text-anchor="middle">WS2812B</text>
+  <text x="814" y="475" class="sm" text-anchor="middle">D1 → 330 Ω → DIN</text>
+
+  <!-- SHT40 breakout (Adafruit 4885 pin row), pins a24..a28 -->
+  <rect x="980" y="386" width="100" height="68" rx="4" fill="#ffffff" stroke="#333"/>
+  <g fill="#d9c27a" stroke="#333" stroke-width="0.6"><circle cx="994" cy="394" r="3"/><circle cx="1012" cy="394" r="3"/><circle cx="1030" cy="394" r="3"/><circle cx="1048" cy="394" r="3"/><circle cx="1066" cy="394" r="3"/></g>
+  <text x="994" y="408" class="tiny" text-anchor="middle">VIN</text>
+  <text x="1012" y="408" class="tiny" text-anchor="middle">3V</text>
+  <text x="1030" y="408" class="tiny" text-anchor="middle">GND</text>
+  <text x="1048" y="408" class="tiny" text-anchor="middle">SCL</text>
+  <text x="1066" y="408" class="tiny" text-anchor="middle">SDA</text>
+  <rect x="1022" y="420" width="16" height="16" fill="#cfd3d6" stroke="#333"/>
+  <text x="1030" y="448" class="tiny" text-anchor="middle">SHT40</text>
+  <text x="1030" y="472" class="lab" text-anchor="middle">SHT40 breakout</text>
+  <text x="1030" y="485" class="sm" text-anchor="middle">VIN 3V3 · 3V pin left open</text>
+
+  <!-- ===== the stack, plugged in pins-down: top row in row i, bottom row in row d ===== -->
+  <rect x="560" y="274" width="24" height="24" rx="3" fill="#bdbdbd" stroke="#555"/>
+  <rect x="578" y="223" width="149" height="126" rx="6" fill="#f3efe6" stroke="#222" stroke-width="1.5"/>
+  <rect x="592" y="227" width="131" height="118" rx="4" fill="#dfe8f0" stroke="#555"/>
+  <g fill="#d9c27a" stroke="#333" stroke-width="0.8">
+    <rect x="593" y="227" width="10" height="10"/><rect x="611" y="227" width="10" height="10"/><rect x="629" y="227" width="10" height="10"/><rect x="647" y="227" width="10" height="10"/><rect x="665" y="227" width="10" height="10"/><rect x="683" y="227" width="10" height="10"/><rect x="701" y="227" width="10" height="10"/>
+    <rect x="593" y="335" width="10" height="10"/><rect x="611" y="335" width="10" height="10"/><rect x="629" y="335" width="10" height="10"/><rect x="647" y="335" width="10" height="10"/><rect x="665" y="335" width="10" height="10"/><rect x="683" y="335" width="10" height="10"/><rect x="701" y="335" width="10" height="10"/>
+  </g>
+  <!-- top row, left to right: 5V GND 3V3 D10 D9 D8 D7 -->
+  <g text-anchor="end">
+    <text transform="translate(601 241) rotate(-90)" class="po">5V</text>
+    <text transform="translate(619 241) rotate(-90)" class="pv">GND</text>
+    <text transform="translate(637 241) rotate(-90)" class="pv">3V3</text>
+    <text transform="translate(655 241) rotate(-90)" class="pr">D10·GPIO9</text>
+    <text transform="translate(673 241) rotate(-90)" class="pr">D9·GPIO8</text>
+    <text transform="translate(691 241) rotate(-90)" class="pr">D8·GPIO7</text>
+    <text transform="translate(709 241) rotate(-90)" class="po">D7·GPIO44</text>
+  </g>
+  <!-- bottom row, left to right: D0 .. D6 -->
+  <g>
+    <text transform="translate(601 331) rotate(-90)" class="pv">D0·GPIO1</text>
+    <text transform="translate(619 331) rotate(-90)" class="pv">D1·GPIO2</text>
+    <text transform="translate(637 331) rotate(-90)" class="po">D2·GPIO3</text>
+    <text transform="translate(655 331) rotate(-90)" class="po">D3·GPIO4</text>
+    <text transform="translate(673 331) rotate(-90)" class="pv">D4·GPIO5</text>
+    <text transform="translate(691 331) rotate(-90)" class="pv">D5·GPIO6</text>
+    <text transform="translate(709 331) rotate(-90)" class="po">D6·GPIO43</text>
+  </g>
+  <circle cx="718" cy="286" r="4" fill="#d9c27a" stroke="#333"/>
+  <path class="lead" d="M718 282 V128"/>
+  <text x="724" y="112" class="sm">LoRa U.FL on the Wio, WiFi U.FL on the XIAO,</text>
+  <text x="724" y="124" class="sm">both at this end · antenna route in the side view</text>
+  <text x="548" y="462" class="lab">XIAO ESP32-S3, Wio-SX1262 on top</text>
+  <text x="548" y="476" class="sm">pins down in rows i and d</text>
+  <text x="548" y="489" class="sm">USB-C hangs over the edge</text>
+  <text x="548" y="502" class="sm">red labels: radio SPI, taken</text>
+
+  <!-- ===== jumpers ===== -->
+  <g>
+    <use xlink:href="#wD0" class="case"/><use xlink:href="#wD0" class="wire" stroke="#2e9e4f"/>
+    <use xlink:href="#wD1" class="case"/><use xlink:href="#wD1" class="wire" stroke="#8a4fd1"/>
+    <use xlink:href="#wD4" class="case"/><use xlink:href="#wD4" class="wire" stroke="#1f6fd1"/>
+    <use xlink:href="#wD5" class="case"/><use xlink:href="#wD5" class="wire" stroke="#f2c418"/>
+    <use xlink:href="#wGND" class="case"/><use xlink:href="#wGND" class="wire" stroke="#1a1a1a"/>
+    <use xlink:href="#w3V3" class="case"/><use xlink:href="#w3V3" class="wire" stroke="#f28c28"/>
+    <use xlink:href="#jG20" class="case"/><use xlink:href="#jG20" class="wire" stroke="#1a1a1a"/>
+    <use xlink:href="#jG13" class="case"/><use xlink:href="#jG13" class="wire" stroke="#1a1a1a"/>
+    <use xlink:href="#jV14" class="case"/><use xlink:href="#jV14" class="wire" stroke="#f28c28"/>
+    <use xlink:href="#jV24" class="case"/><use xlink:href="#jV24" class="wire" stroke="#f28c28"/>
+    <use xlink:href="#jG26" class="case"/><use xlink:href="#jG26" class="wire" stroke="#1a1a1a"/>
+  </g>
+  <g fill="#fbf8f2" stroke="#222" stroke-width="1.2">
+    <circle cx="616" cy="214" r="3.5"/><circle cx="616" cy="160" r="3.5"/>
+    <circle cx="634" cy="214" r="3.5"/><circle cx="634" cy="178" r="3.5"/>
+    <circle cx="598" cy="394" r="3.5"/><circle cx="886" cy="394" r="3.5"/>
+    <circle cx="616" cy="394" r="3.5"/><circle cx="760" cy="394" r="3.5"/>
+    <circle cx="670" cy="358" r="3.5"/><circle cx="1066" cy="358" r="3.5"/>
+    <circle cx="688" cy="376" r="3.5"/><circle cx="1048" cy="376" r="3.5"/>
+    <circle cx="922" cy="160" r="3.5"/><circle cx="922" cy="250" r="3.5"/>
+    <circle cx="796" cy="160" r="3.5"/><circle cx="796" cy="322" r="3.5"/>
+    <circle cx="814" cy="178" r="3.5"/><circle cx="814" cy="322" r="3.5"/>
+    <circle cx="994" cy="178" r="3.5"/><circle cx="994" cy="322" r="3.5"/>
+    <circle cx="1030" cy="160" r="3.5"/><circle cx="1030" cy="322" r="3.5"/>
+  </g>
+
+  </g>
+
+  <!-- ===== side view of the stack and the antenna route ===== -->
+  <line x1="40" y1="516" x2="1200" y2="516" stroke="#d8d1c3"/>
+  <text x="40" y="540" class="h">Side view of the stack, not to scale</text>
+
+  <!-- breadboard strip -->
+  <rect x="220" y="690" width="260" height="30" rx="3" fill="#ffffff" stroke="#bdb6a8"/>
+  <!-- header: plastic under the XIAO, pins down into the breadboard, stubs flush on top -->
+  <rect x="250" y="666" width="194" height="10" fill="#1a1a1a"/>
+  <g stroke="#c9a640" stroke-width="3">
+    <line x1="262" y1="656" x2="262" y2="706"/><line x1="290" y1="656" x2="290" y2="706"/><line x1="318" y1="656" x2="318" y2="706"/><line x1="346" y1="656" x2="346" y2="706"/><line x1="374" y1="656" x2="374" y2="706"/><line x1="402" y1="656" x2="402" y2="706"/><line x1="430" y1="656" x2="430" y2="706"/>
+  </g>
+  <!-- XIAO, front side up -->
+  <rect x="230" y="656" width="254" height="10" fill="#f3efe6" stroke="#222"/>
+  <rect x="214" y="643" width="36" height="13" rx="2" fill="#bdbdbd" stroke="#555"/>
+  <!-- B2B on the XIAO's front, far end -->
+  <rect x="400" y="644" width="40" height="12" fill="#555"/>
+  <!-- Wio on top, pads J1/J2 on its underside over the stubs -->
+  <rect x="262" y="634" width="208" height="10" fill="#dfe8f0" stroke="#222"/>
+  <g fill="#b3261e"><rect x="258" y="644" width="8" height="3"/><rect x="286" y="644" width="8" height="3"/><rect x="314" y="644" width="8" height="3"/><rect x="342" y="644" width="8" height="3"/><rect x="370" y="644" width="8" height="3"/></g>
+  <circle cx="466" cy="630" r="4" fill="#d9c27a" stroke="#333"/>
+
+  <g class="lab" text-anchor="end">
+    <text x="256" y="636">Wio-SX1262, on top</text>
+    <text x="210" y="653">USB-C</text>
+    <text x="224" y="667">XIAO ESP32-S3</text>
+    <text x="244" y="684">header, pins down</text>
+    <text x="214" y="709">breadboard</text>
+  </g>
+  <text x="262" y="612" class="warn">pads J1/J2 over the stubs:</text>
+  <text x="262" y="625" class="warn">trim flush, no solder through</text>
+  <path class="lead" d="M440 650 H496"/>
+  <text x="500" y="654" class="sm">B2B connector</text>
+
+  <!-- pigtail, wall, bulkhead, whip -->
+  <path d="M466 626 V600 H586" fill="none" stroke="#333" stroke-width="2.5"/>
+  <text x="474" y="620" class="sm">LoRa U.FL</text>
+  <rect x="600" y="590" width="12" height="110" fill="url(#hatch)" stroke="#9a948a"/>
+  <rect x="586" y="594" width="44" height="12" fill="#c9a640" stroke="#6b5a2a"/>
+  <rect x="590" y="588" width="8" height="24" fill="#a88d3e" stroke="#6b5a2a"/>
+  <rect x="614" y="588" width="8" height="24" fill="#a88d3e" stroke="#6b5a2a"/>
+  <path d="M630 600 H641 V596" fill="none" stroke="#333" stroke-width="3"/>
+  <rect x="636" y="540" width="10" height="58" rx="4" fill="#2a2a2a"/>
+  <text x="626" y="556" class="lab" text-anchor="end">LoRa whip,</text>
+  <text x="626" y="569" class="lab" text-anchor="end">915 MHz band,</text>
+  <text x="626" y="582" class="lab" text-anchor="end">vertical</text>
+  <text x="606" y="716" class="sm" text-anchor="middle">SMA-F bulkhead</text>
+  <text x="606" y="728" class="sm" text-anchor="middle">in the box wall</text>
+  <text x="220" y="744" class="sm">WiFi U.FL is on the XIAO at the same end.</text>
+  <text x="220" y="756" class="sm">The kit's WiFi antenna stays inside the box.</text>
+
+  <!-- ===== notes box ===== -->
+  <rect x="720" y="530" width="480" height="254" rx="6" fill="#ffffff" stroke="#e0b4ae" stroke-width="1.2"/>
+  <text x="736" y="554" class="hw">Never solder one header through both boards</text>
+  <text x="736" y="574" class="lab">The Wio has edge pads (J1, J2) right over the XIAO's</text>
+  <text x="736" y="588" class="lab">pins. J1 carries the radio: D0 = DIO1, D1 = BUSY,</text>
+  <text x="736" y="602" class="lab">D2 = RESET, D3 = NSS, D4 = RF switch. A pin through both</text>
+  <text x="736" y="616" class="lab">boards ties GPIO1–5 to GPIO39, 40, 42, 41 and 38.</text>
+  <text x="736" y="642" class="h">Phase-0 build</text>
+  <text x="736" y="662" class="lab">1  Push two 1×7 headers into the breadboard, set the</text>
+  <text x="736" y="676" class="lab">   XIAO on them front side up, solder from the top.</text>
+  <text x="736" y="690" class="lab">2  Trim the stubs flush, then clip the Wio onto the B2B.</text>
+  <text x="736" y="704" class="lab">3  Fit both antennas before the first power-up.</text>
+  <text x="736" y="718" class="lab">4  Jumpers as drawn.</text>
+  <g>
+    <line x1="736" y1="746" x2="760" y2="746" stroke="#f28c28" stroke-width="4"/><text x="766" y="750" class="sm">3V3</text>
+    <line x1="806" y1="746" x2="830" y2="746" stroke="#1a1a1a" stroke-width="4"/><text x="836" y="750" class="sm">GND</text>
+    <line x1="876" y1="746" x2="900" y2="746" stroke="#1f6fd1" stroke-width="4"/><text x="906" y="750" class="sm">SDA · D4</text>
+    <line x1="976" y1="746" x2="1000" y2="746" stroke="#2a2a2a" stroke-width="6"/><line x1="976" y1="746" x2="1000" y2="746" stroke="#f2c418" stroke-width="4"/><text x="1006" y="750" class="sm">SCL · D5</text>
+    <line x1="736" y1="768" x2="760" y2="768" stroke="#2e9e4f" stroke-width="4"/><text x="766" y="772" class="sm">button · D0</text>
+    <line x1="876" y1="768" x2="900" y2="768" stroke="#8a4fd1" stroke-width="4"/><text x="906" y="772" class="sm">LED data · D1</text>
+  </g>
+
+  <!-- footnotes -->
+  <text x="40" y="812" class="sm">Pin labels read D name · GPIO. D8, D9 and D10 are GPIO7, 8 and 9: the same nets as the radio's SPI bus, which reaches the Wio through the B2B connector.</text>
+  <text x="40" y="828" class="sm">SHT40 breakout drawn: Adafruit 4885 (VIN 3V GND SCL SDA, 10 kΩ pull-ups on board). Clone boards order their pins differently, read the silkscreen.</text>
+  <text x="40" y="844" class="sm">Button legs are wired diagonally (D0 to col 18 below the gap, GND to col 20 above it), which switches whichever way round the button sits.</text>
+  <text x="40" y="860" class="sm">WS2812B on 3V3: the data threshold then matches the 3.3 V GPIO. The datasheet asks for 3.5 V minimum; one pixel runs in practice, see README.</text>
+</svg>
