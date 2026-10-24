@@ -35,8 +35,8 @@ can be corrected against it. Its first week is next to a Smart Citizen Kit.
 
 <table>
 <tr>
-<td width="50%"><a href="circuits/anchor/wiring-breadboard.svg"><img src="circuits/anchor/wiring-breadboard.svg" alt="Anchor breadboard wiring"></a></td>
-<td width="50%"><a href="circuits/anchor/placement.svg"><img src="circuits/anchor/placement.svg" alt="Anchor placement"></a></td>
+<td width="50%"><a href="circuits/anchor/wiring-breadboard.svg"><img src="circuits/anchor/wiring-breadboard.svg" alt="Anchor breadboard wiring" width="100%"></a></td>
+<td width="50%"><a href="circuits/anchor/placement.svg"><img src="circuits/anchor/placement.svg" alt="Anchor placement" width="100%"></a></td>
 </tr>
 <tr><td>Breadboard wiring</td><td>Placement</td></tr>
 </table>
@@ -50,8 +50,8 @@ uses pictograms so a resident can follow it without reading English.
 
 <table>
 <tr>
-<td width="50%"><a href="circuits/dense/wiring-breadboard.svg"><img src="circuits/dense/wiring-breadboard.svg" alt="Dense breadboard wiring"></a></td>
-<td width="50%"><a href="circuits/dense/placement.svg"><img src="circuits/dense/placement.svg" alt="Dense placement"></a></td>
+<td width="50%"><a href="circuits/dense/wiring-breadboard.svg"><img src="circuits/dense/wiring-breadboard.svg" alt="Dense breadboard wiring" width="100%"></a></td>
+<td width="50%"><a href="circuits/dense/placement.svg"><img src="circuits/dense/placement.svg" alt="Dense placement" width="100%"></a></td>
 </tr>
 <tr><td>Breadboard wiring</td><td>Placement</td></tr>
 </table>
@@ -66,8 +66,8 @@ the SCD40 can calibrate itself.
 
 <table>
 <tr>
-<td width="50%"><a href="circuits/indoor/wiring-breadboard.svg"><img src="circuits/indoor/wiring-breadboard.svg" alt="Indoor breadboard wiring"></a></td>
-<td width="50%"><a href="circuits/indoor/placement.svg"><img src="circuits/indoor/placement.svg" alt="Indoor placement"></a></td>
+<td width="50%"><a href="circuits/indoor/wiring-breadboard.svg"><img src="circuits/indoor/wiring-breadboard.svg" alt="Indoor breadboard wiring" width="100%"></a></td>
+<td width="50%"><a href="circuits/indoor/placement.svg"><img src="circuits/indoor/placement.svg" alt="Indoor placement" width="100%"></a></td>
 </tr>
 <tr><td>Breadboard wiring</td><td>Placement</td></tr>
 </table>
@@ -81,8 +81,8 @@ the shade. Its README also has the Meshtastic settings every node in a cluster n
 
 <table>
 <tr>
-<td width="50%"><a href="circuits/relay/wiring-breadboard.svg"><img src="circuits/relay/wiring-breadboard.svg" alt="Relay breadboard wiring"></a></td>
-<td width="50%"><a href="circuits/relay/placement.svg"><img src="circuits/relay/placement.svg" alt="Relay placement"></a></td>
+<td width="50%"><a href="circuits/relay/wiring-breadboard.svg"><img src="circuits/relay/wiring-breadboard.svg" alt="Relay breadboard wiring" width="100%"></a></td>
+<td width="50%"><a href="circuits/relay/placement.svg"><img src="circuits/relay/placement.svg" alt="Relay placement" width="100%"></a></td>
 </tr>
 <tr><td>Breadboard wiring</td><td>Placement</td></tr>
 </table>
