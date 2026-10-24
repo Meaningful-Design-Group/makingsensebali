@@ -74,20 +74,21 @@ socket(rx+116,  ry+142,  "D9", ["pin 1  D9", "pin 2  D10"], lora=True)
 
 # legend for the shield
 lgx, lgy = 800, 118
-add(f'<rect x="{lgx}" y="{lgy}" width="360" height="282" rx="12" fill="#ffffff" stroke="{LINE}"/>')
+add(f'<rect x="{lgx}" y="{lgy}" width="360" height="300" rx="12" fill="#ffffff" stroke="{LINE}"/>')
 text(lgx+18, lgy+32, "Reading the shield", 16, weight="bold")
 notes = [
     "Pin 1 is the yellow wire of a Grove cable.",
     "The left half keeps the XIAO and four sockets:",
-    "D0, D1, I2C and UART. The right half snaps off.",
+    "D0, D1, I2C and UART. The right half snaps off,",
+    "and with it the second I2C and the D2 socket the",
+    "Plantower SET line uses. Keep the shield whole.",
     "",
     "Dashed purple: lost when the Wio-SX1262 is",
     "fitted. D8 to D10 are the radio's SPI bus.",
     "",
     "Sockets give 3V3 only. Anything that needs",
     "5 V, like a PMS5003 fan, takes a wire from",
-    "the 5V header pin. That is the one thing that",
-    "stops a variant being plug and play.",
+    "the 5V header pin.",
 ]
 for i, n in enumerate(notes):
     text(lgx+18, lgy+60+i*20, n, 13, INK if n else INK)
@@ -105,7 +106,7 @@ for name, w in cols:
 
 rows = [
     ("Bayu v3", "deployed today", ["Grove BME680", "Grove HM3301", "—", "—", "—"], "yes"),
-    ("Anchor", "", ["Grove SEN54 *", "Grove SHT40", "PMS5003 data", "PMS5003 SET", "PMS5003 fan"], "no"),
+    ("Anchor", "", ["Grove SEN54 *", "Grove SHT40", "PMS5003 data", "PMS5003 SET", "PMS5003 fan"], "two"),
     ("Dense", "", ["—", "—", "PMS5003T data", "PMS5003T SET", "PMS5003T fan"], "no"),
     ("Indoor", "", ["Grove SCD41", "Grove SHT40", "PMS5003 data", "PMS5003 SET", "PMS5003 fan"], "no"),
     ("Relay", "", ["Grove SHT40", "—", "—", "—", "—"], "yes"),
@@ -132,7 +133,7 @@ for r, (name, sub, cells, ok) in enumerate(rows):
         text(x+vw/2, y+42, "plug and play", 14, GREEN, weight="bold", anchor="middle")
     else:
         add(f'<rect x="{x+8}" y="{y+16}" width="{vw-16}" height="{rh-32}" rx="8" fill="{AMBER_BG}"/>')
-        text(x+vw/2, y+42, "one 5V wire", 14, AMBER, weight="bold", anchor="middle")
+        text(x+vw/2, y+42, "one or two 5V wires *" if ok == "two" else "one 5V wire", 13 if ok == "two" else 14, AMBER, weight="bold", anchor="middle")
 add(f'<rect x="{mx}" y="{my}" width="{total}" height="{44+len(rows)*rh}" rx="8" fill="none" stroke="{LINE}"/>')
 
 fy = my + 44 + len(rows)*rh + 34
@@ -140,6 +141,7 @@ foot = [
     "The PMS5003 has no Grove version. Its data goes in the UART socket and SET in the D2 socket, through a Grove to",
     "1.25 mm 8-pin cable, and its fan takes 5 V from the header. Leave SET out and the fan simply runs all the time.",
     "* Seeed fitted the Grove SEN54 with a regulator for 3.3 V supply, according to one review. Not confirmed on our bench yet.",
+    "  A bare Sensirion SEN54 needs 5 V, which makes a second wire from the 5V header.",
     "The Grove HM3301 is rated 3.3 or 5 V by Seeed, and the deployed nodes run it on the socket's 3V3.",
     "The D0 and D1 sockets take the Grove button and LED. With LoRa fitted, the D8 and D9 sockets are not usable.",
 ]

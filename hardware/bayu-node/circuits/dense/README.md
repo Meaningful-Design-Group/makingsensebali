@@ -18,7 +18,7 @@ If you add the LoRa board, solder the header into the XIAO only and trim the stu
 
 ![Connector map of the Bayu Core carrier as fitted for Dense](wiring-core.svg)
 
-The Core isn't routed yet, so where the connectors sit on the board may change. The pin-to-net map won't. The PMS5003T's own cable plugs straight into the PicoBlade socket. SEN54, the Grove I2C sockets and the 5 V input stay empty on a Dense node.
+The Core isn't routed yet, but it is one board for every variant ([`../CONVENTIONS.md`](../CONVENTIONS.md)), so the connector map is the same on all four. The PMS5003T's own cable plugs straight into the PicoBlade socket, J2. The SEN54 socket J1, the Grove I2C sockets J3 and J4 and the 5 V input J6 stay empty on a Dense node.
 
 ## Schematic
 
@@ -28,19 +28,19 @@ The Core isn't routed yet, so where the connectors sit on the board may change. 
 
 | XIAO | GPIO | Net | Goes to | Used by |
 |---|---|---|---|---|
-| 5V | VBUS | +5V | PMS pin 1 VCC (through F1 on the Core) | both firmwares |
+| 5V | VBUS | +5V_USB | PMS pin 1 VCC (through F1 on the Core, as +5V_F) | both firmwares |
 | GND | | GND | PMS pin 2, button, LED | both |
-| 3V3 | | 3V3 | LED VDD, R1 on the Core | |
+| 3V3 | | 3V3 | LED VDD, JP1 on the Core (open) | |
 | D2 | 3 | PMS_SET | PMS pin 3 SET. High or open = running, low = asleep | Meshtastic |
-| D6 | 43 | PMS_RXD | PMS pin 4 RXD (XIAO TX) | opened by Meshtastic, nothing sent yet |
-| D7 | 44 | PMS_TXD | PMS pin 5 TXD (XIAO RX) | both |
+| D6 | 43 | UART_TX | PMS pin 4 RXD (XIAO TX) | opened by Meshtastic, nothing sent yet |
+| D7 | 44 | UART_RX | PMS pin 5 TXD (XIAO RX) | both |
 | D0 | 1 | BTN | button to GND, internal pull-up | Meshtastic |
-| D1 | 2 | LED_DIN | WS2812 data in | Meshtastic |
+| D1 | 2 | LED_DIN | WS2812 data in, through R3 (330 Ω) | Meshtastic |
 | D8, D9, D10 | 7, 8, 9 | LORA_SPI | Wio-SX1262 through the B2B connector | leave free |
 | — | 38 to 42 | LoRa control | Wio-SX1262 through the B2B connector, no castellated pin | |
 | D3, D4, D5 | 4, 5, 6 | | not used on Dense | |
 
-PMS pin 6 (RESET) is left open on the breadboard and pulled up with 10 kΩ on the Core. Pins 7 and 8 aren't connected inside the sensor.
+PMS pin 6 (RESET) is left open, on the breadboard and on the Core, the sensor pulls it up inside. Pins 7 and 8 aren't connected inside the sensor.
 
 ## Parts
 
@@ -53,7 +53,7 @@ Prices are from the cost table in DESIGN.md, October 2026, single units. Search 
 | 1 | half-size breadboard and jumper wires | `breadboard 400` | | Phase 0 only. |
 | 1 | Bayu Core board, connectors | | 8 | Phase 1, replaces the breadboard. |
 | 1 | 6 × 6 mm push button | `push button 6x6` | | Optional. |
-| 1 | WS2812 single-LED module | `WS2812 modul` | | Optional, powered from 3V3. |
+| 1 | WS2812 single-LED module | `WS2812 modul` | | Optional, powered from 3V3, with a 330 Ω resistor (R3) in series on DIN. |
 | 1 | 5 V / 2 A USB-C wall charger and cable | anywhere | 5 | Not a laptop port, it can't run the fan. |
 | 1 | printed enclosure, PETG or ASA | Fab Lab Bali | 7 | |
 | — | coating, mesh, cable ties | | 3 | |

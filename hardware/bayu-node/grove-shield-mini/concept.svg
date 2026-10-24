@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1072" viewBox="0 0 1160 1072" font-family="Helvetica, Arial, sans-serif">
-<rect width="1160" height="1072" fill="#fbfaf6"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1152" viewBox="0 0 1160 1152" font-family="Helvetica, Arial, sans-serif">
+<rect width="1160" height="1152" fill="#fbfaf6"/>
 <text x="40" y="48" font-size="26" fill="#1d2433" font-weight="bold" text-anchor="start">Grove Shield Mini for XIAO, a proposal</text>
 <text x="40" y="74" font-size="15" fill="#5b6475" font-weight="normal" text-anchor="start">Four Grove sockets, a real-time clock and a microSD slot, on the 39 × 25 mm the snapped Grove Shield already has.</text>
 <text x="40" y="116" font-size="16" fill="#1d2433" font-weight="bold" text-anchor="start">Top</text>
@@ -39,7 +39,7 @@
 <text x="310" y="214" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start">SCL D5</text>
 <text x="310" y="229" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start">SDA D4</text>
 <rect x="308" y="238" width="80" height="26" rx="5" fill="#fbeed6"/>
-<text x="348.0" y="256" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3 / 5V</text>
+<text x="348.0" y="256" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3* / 5V</text>
 <rect x="402" y="144" width="92" height="128" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
 <rect x="410" y="154" width="16" height="7" rx="2" fill="#b9b3a2"/>
 <rect x="410" y="167" width="16" height="7" rx="2" fill="#b9b3a2"/>
@@ -60,7 +60,7 @@
 <text x="310" y="356" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start">RX D7</text>
 <text x="310" y="371" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start">TX D6</text>
 <rect x="308" y="380" width="80" height="26" rx="5" fill="#fbeed6"/>
-<text x="348.0" y="398" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3 / 5V</text>
+<text x="348.0" y="398" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3* / 5V</text>
 <rect x="402" y="286" width="92" height="128" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
 <rect x="410" y="296" width="16" height="7" rx="2" fill="#b9b3a2"/>
 <rect x="410" y="309" width="16" height="7" rx="2" fill="#b9b3a2"/>
@@ -71,8 +71,8 @@
 <text x="410" y="356" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start">A2/D2</text>
 <text x="410" y="371" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start">A3/D3</text>
 <text x="448.0" y="398" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="middle">3V3</text>
-<rect x="56" y="400" width="22" height="18" rx="3" fill="#cfd5e2"/>
-<text x="84" y="414" font-size="11" fill="#c7cede" font-weight="normal" text-anchor="start">button D0</text>
+<rect x="56" y="400" width="18" height="18" rx="3" fill="#f7d2e3"/>
+<text x="82" y="414" font-size="12" fill="#e9ecf2" font-weight="normal" text-anchor="start">WS2812 status LED on D1</text>
 <text x="620" y="116" font-size="16" fill="#1d2433" font-weight="bold" text-anchor="start">Bottom (seen from below)</text>
 <rect x="620" y="130" width="468" height="300" rx="16" fill="#1f2b45"/>
 <circle cx="634" cy="144" r="7" fill="#fbfaf6" stroke="#9aa3b5"/>
@@ -84,7 +84,7 @@
 <rect x="644" y="170" width="180" height="174" rx="6" fill="#c7cede" stroke="#9aa3b5"/>
 <text x="734.0" y="240" font-size="16" fill="#1d2433" font-weight="bold" text-anchor="middle">microSD</text>
 <text x="734.0" y="260" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="middle">SPI D8–D10</text>
-<text x="734.0" y="276" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="middle">CS on D1</text>
+<text x="734.0" y="276" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="middle">CS on D0</text>
 <circle cx="950" cy="248" r="78.0" fill="#c7cede" stroke="#9aa3b5"/>
 <text x="950" y="242" font-size="15" fill="#1d2433" font-weight="bold" text-anchor="middle">CR1220</text>
 <text x="950" y="262" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="middle">RTC backup</text>
@@ -93,7 +93,7 @@
 <text x="920" y="386" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="start">I2C 0x51</text>
 <rect x="644" y="362" width="34" height="16" rx="3" fill="#fbeed6"/>
 <rect x="684" y="362" width="34" height="16" rx="3" fill="#fbeed6"/>
-<text x="726" y="375" font-size="12" fill="#e9ecf2" font-weight="normal" text-anchor="start">JP1 JP2, 3V3/5V</text>
+<text x="726" y="375" font-size="12" fill="#e9ecf2" font-weight="normal" text-anchor="start">JP1 JP2, 3V3 or 5V, default 3V3</text>
 <text x="644" y="406" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="start">4.7 kΩ pull-ups to 3V3 on SDA, SCL</text>
 <text x="40" y="520" font-size="18" fill="#1d2433" font-weight="bold" text-anchor="start">Pin plan</text>
 <rect x="40" y="538" width="710" height="34" rx="6" fill="#1d2433"/>
@@ -103,36 +103,40 @@
 <rect x="40" y="572" width="710" height="34" fill="#ffffff"/>
 <text x="52" y="594" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D0</text>
 <text x="162" y="594" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO1</text>
-<text x="292" y="594" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">user button</text>
+<text x="292" y="594" font-size="13" fill="#1f7a4d" font-weight="normal" text-anchor="start">microSD chip select</text>
 <rect x="40" y="606" width="710" height="34" fill="#f4f2ec"/>
 <text x="52" y="628" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D1</text>
 <text x="162" y="628" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO2</text>
-<text x="292" y="628" font-size="13" fill="#1f7a4d" font-weight="normal" text-anchor="start">microSD chip select</text>
+<text x="292" y="628" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">WS2812 status LED, on the board</text>
 <rect x="40" y="640" width="710" height="34" fill="#ffffff"/>
-<text x="52" y="662" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D2</text>
-<text x="162" y="662" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO3</text>
-<text x="292" y="662" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">G4 pin 1, PMS5003 SET</text>
+<text x="52" y="662" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">—</text>
+<text x="162" y="662" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO0</text>
+<text x="292" y="662" font-size="13" fill="#1f7a4d" font-weight="normal" text-anchor="start">button: the XIAO's own BOOT button</text>
 <rect x="40" y="674" width="710" height="34" fill="#f4f2ec"/>
-<text x="52" y="696" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D3</text>
-<text x="162" y="696" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO4</text>
-<text x="292" y="696" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">G4 pin 2, analog in (battery, any analog Grove)</text>
+<text x="52" y="696" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D2</text>
+<text x="162" y="696" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO3</text>
+<text x="292" y="696" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">G4 pin 1, PMS5003 SET</text>
 <rect x="40" y="708" width="710" height="34" fill="#ffffff"/>
-<text x="52" y="730" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D4, D5</text>
-<text x="162" y="730" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO5, 6</text>
-<text x="292" y="730" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">I2C: G1, G2 and the RTC</text>
+<text x="52" y="730" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D3</text>
+<text x="162" y="730" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO4</text>
+<text x="292" y="730" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">G4 pin 2, analog in (battery, any analog Grove)</text>
 <rect x="40" y="742" width="710" height="34" fill="#f4f2ec"/>
-<text x="52" y="764" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D6, D7</text>
-<text x="162" y="764" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO43, 44</text>
-<text x="292" y="764" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">UART: G3</text>
+<text x="52" y="764" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D4, D5</text>
+<text x="162" y="764" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO5, 6</text>
+<text x="292" y="764" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">I2C: G1, G2 and the RTC</text>
 <rect x="40" y="776" width="710" height="34" fill="#ffffff"/>
-<text x="52" y="798" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D8 to D10</text>
-<text x="162" y="798" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO7, 8, 9</text>
-<text x="292" y="798" font-size="13" fill="#1f7a4d" font-weight="normal" text-anchor="start">SPI: microSD and the Wio-SX1262, each on its own CS</text>
+<text x="52" y="798" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D6, D7</text>
+<text x="162" y="798" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO43, 44</text>
+<text x="292" y="798" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">UART: G3</text>
 <rect x="40" y="810" width="710" height="34" fill="#f4f2ec"/>
-<text x="52" y="832" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">—</text>
-<text x="162" y="832" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO38 to 42</text>
-<text x="292" y="832" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">LoRa control, board-to-board connector only</text>
-<rect x="40" y="538" width="710" height="306" rx="6" fill="none" stroke="#c9c4b6"/>
+<text x="52" y="832" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">D8 to D10</text>
+<text x="162" y="832" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO7, 8, 9</text>
+<text x="292" y="832" font-size="13" fill="#1f7a4d" font-weight="normal" text-anchor="start">SPI: microSD and the Wio-SX1262, each on its own CS</text>
+<rect x="40" y="844" width="710" height="34" fill="#ffffff"/>
+<text x="52" y="866" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="start">—</text>
+<text x="162" y="866" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">GPIO38 to 42</text>
+<text x="292" y="866" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">LoRa control, board-to-board connector only</text>
+<rect x="40" y="538" width="710" height="340" rx="6" fill="none" stroke="#c9c4b6"/>
 <text x="790" y="520" font-size="18" fill="#1d2433" font-weight="bold" text-anchor="start">Compared with the Grove Shield</text>
 <text x="790" y="554" font-size="13" fill="#5b6475" font-weight="bold" text-anchor="start">Same</text>
 <text x="840" y="554" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">XIAO footprint, 3V3 Grove pinout, all 14 pins</text>
@@ -152,11 +156,14 @@
 <text x="790" y="774" font-size="13" fill="#9a5b00" font-weight="bold" text-anchor="start">Gone</text>
 <text x="840" y="774" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">Battery charger and the D8, D9 sockets that</text>
 <text x="840" y="796" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">the LoRa radio takes anyway.</text>
-<text x="40" y="880" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">Every Bayu variant becomes plug and play on this board, including the PMS5003 nodes, once there is a Grove to</text>
-<text x="40" y="902" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">1.25 mm 8-pin cable for the Plantower. The microSD and the LoRa radio share one SPI bus with separate chip selects,</text>
-<text x="40" y="924" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">which the firmware has to handle. The 5 V jumpers only switch the supply pin, so a 5 V module that pulls its own</text>
-<text x="40" y="946" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">I2C lines up to 5 V would still be unsafe for the ESP32-S3 and must not go in G1 set to 5 V.</text>
-<text x="40" y="968" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start"></text>
-<text x="40" y="990" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">Concept drawing, not a layout. Sizes at 12 px per mm for the board, the XIAO, the microSD socket and the coin cell.</text>
-<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1020" width="1160" height="52" fill="#ffffff"/><line x1="0" y1="1020" x2="1160" y2="1020" stroke="#c9c4b6"/><text x="20" y="1042" fill="#1d2433" font-weight="bold">Grove Shield Mini for XIAO · concept · rev 2026-10-24</text><text x="20" y="1061" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
+<text x="40" y="910" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">Every Bayu variant becomes plug and play on this board, including the PMS5003 nodes, once there is a Grove to</text>
+<text x="40" y="932" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">1.25 mm 8-pin cable for the Plantower. The microSD and the LoRa radio share one SPI bus with separate chip selects,</text>
+<text x="40" y="954" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">which the firmware has to handle. The 5 V jumpers only switch the supply pin, so a 5 V module that pulls its own</text>
+<text x="40" y="976" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">I2C lines up to 5 V would still be unsafe for the ESP32-S3 and must not go in G1 set to 5 V.</text>
+<text x="40" y="998" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start"></text>
+<text x="40" y="1020" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">* Both jumpers ship set to 3V3. Bayu runs on the Mini with one build flag: D0 becomes the microSD chip select and the</text>
+<text x="40" y="1042" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start">button moves to the XIAO's BOOT button. Every other pin keeps the job it has in Bayu.</text>
+<text x="40" y="1064" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start"></text>
+<text x="40" y="1086" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="start">Concept drawing, not a layout. Sizes at 12 px per mm for the board, the XIAO, the microSD socket and the coin cell.</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1100" width="1160" height="52" fill="#ffffff"/><line x1="0" y1="1100" x2="1160" y2="1100" stroke="#c9c4b6"/><text x="20" y="1122" fill="#1d2433" font-weight="bold">Grove Shield Mini for XIAO · concept · rev 2026-10-24</text><text x="20" y="1141" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

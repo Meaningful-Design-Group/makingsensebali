@@ -7,6 +7,11 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Added
 
+- `circuits/CONVENTIONS.md`: one Bayu Core with fixed designators J1 to J6, F1, CR1, JP1 and
+  R1 to R3, one set of net names, schematic references U1 to U7 and one colour per net.
+- `circuits/draw_circuits.py`: the breadboard, Core and schematic sheets of all four
+  variants now come from this one script, which also checks itself for small text,
+  overlapping labels and wires through labels.
 - `bom.csv`: every part of the four new variants, in the same Open-Make columns as the
   [node-v3.2 bill of materials](../diy-node/enclosure/node-v3.2/bom.csv), with a `used_in`
   column. Bayu v3's own parts stay in that file.
@@ -23,6 +28,22 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Fixed
 
+- A design review of the drawings found the Core drawn as four different boards: different
+  designators, socket positions and USB-C direction, R1 meaning three different parts, a
+  RESET pull-up on Dense only, and the LED resistor on Relay only. Wire colours also
+  changed meaning between sheets, and text came out as small as 5 px on GitHub. The twelve
+  circuit sheets were regenerated from the conventions.
+- J5 now has the LED on pin 1 and the button on pin 2, so a stock Grove RGB LED plugs in.
+  The first conventions had them the other way round.
+- The placement sheets: every line at least 13 px at GitHub width, Bahasa on every Dense
+  card, a pictogram for "sensor temperature is not air temperature", and keep-away rings
+  drawn around the sources on all four sheets.
+- The Grove Shield Mini put its microSD chip select on D1, where every Bayu variant has its
+  status LED. The chip select moved to D0, the LED stays on D1 on the board, and the button
+  is the XIAO's BOOT button. The proposal now says Bayu needs one build flag for the Mini,
+  where it had claimed no firmware change.
+- The Grove map counted one 5 V wire for the Anchor. A bare SEN54 makes it two. It also now
+  says the D2 socket for the Plantower SET line is on the half that snaps off.
 - Bayu was described as a new node after the DIY node. Bayu is the deployed node, Bayu v3,
   and the four variants are additions to it.
 - The Relay drawings first had the XIAO and Wio-SX1262 stack the wrong way round. The Wio

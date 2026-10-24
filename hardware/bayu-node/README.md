@@ -144,7 +144,8 @@ either.
 
 Every variant can be built on the Seeed Grove Shield for XIAO with Grove cables. Bayu v3
 and the Relay are fully plug and play on it today. The Plantower nodes need one extra wire,
-because the shield's sockets give 3V3 and the PMS5003 fan needs 5 V.
+because the shield's sockets give 3V3 and the PMS5003 fan needs 5 V. An Anchor with a bare
+SEN54 needs a second one.
 [Bayu on the Grove Shield](grove/) has the socket map for each variant.
 
 We are also proposing a smaller board to Seeed, with four sockets, a clock and a microSD

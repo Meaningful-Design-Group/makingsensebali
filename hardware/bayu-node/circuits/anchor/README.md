@@ -10,13 +10,13 @@ Outdoor, 5 V USB wall power, Meshtastic firmware (Bayu variant). Phase 0 is a br
 
 ![Breadboard wiring of the Bayu Anchor: XIAO ESP32-S3 with the Wio-SX1262 on top, SEN54, PMS5003 and SHT40](wiring-breadboard.svg)
 
-The XIAO goes at the right end of a half-size breadboard with its USB-C off the edge. The Wio-SX1262 rides on top of it, so the XIAO's own headers still go into the board. Everything the sensors need is brought to bus columns on the left: SDA, SCL, a 3V3 column with the two 4.7 kΩ pull-ups, and the three PMS lines. The bottom rails carry 5 V and GND. The top rails are not used.
+The XIAO goes at the left end of a half-size breadboard, across the centre channel, with its USB-C off the edge. The Wio-SX1262 rides on top of it, so the XIAO's own headers still go into the board. The top rails carry `+5V_USB` and GND, the bottom rails 3V3 and GND. The sensors sit below the board and take their power from the rail straight above each pin. R1 and R2, the two 4.7 kΩ pull-ups, go from the SDA and SCL columns to the 3V3 rail.
 
 ### Phase 1, on the Bayu Core
 
 ![Connector map of the Bayu Core carrier for the Anchor role](wiring-core.svg)
 
-The Core is planned and not laid out yet, so positions on this map are indicative. Pin numbers and nets are fixed, they come from the sensor datasheets and the firmware.
+The Core is planned and not routed yet. It is one board for every variant, laid out in [`../CONVENTIONS.md`](../CONVENTIONS.md), so this map is the same on all four. Pin numbers and nets are fixed, they come from the sensor datasheets and the firmware.
 
 ### Schematic
 
@@ -26,16 +26,16 @@ The Core is planned and not laid out yet, so positions on this map are indicativ
 
 | Signal | XIAO pin | GPIO | Goes to | Breadboard | Core |
 |---|---|---|---|---|---|
-| 5 V | 5V | USB VBUS | SEN54 pin 1, PMS5003 pin 1 | bottom + rail | J1.1, J2.1, after F1 |
-| 3V3 | 3V3 | regulator out | SHT40 VCC, R1, R2 | column 16 | J3.3, J4.3, J5.3 |
-| GND | GND | | SEN54 pins 2 and 5, PMS5003 pin 2, SHT40 GND | bottom − rail | every connector |
-| I²C SDA | D4 | 5 | SEN54 pin 3, SHT40 SDA | column 14 | J1.3, J3.2, J4.2 |
-| I²C SCL | D5 | 6 | SEN54 pin 4, SHT40 SCL | column 18 | J1.4, J3.1, J4.1 |
-| UART TX | D6 | 43 | PMS5003 pin 4 RXD | column 20 | J2.4 |
-| UART RX | D7 | 44 | PMS5003 pin 5 TXD | column 22 | J2.5 |
-| PMS SET | D2 | 3 | PMS5003 pin 3 | column 11 | J2.3 |
-| Button | D0 | 1 | optional Grove button | | J5.2 |
-| Status LED | D1 | 2 | optional WS2812 | | J5.1 |
+| 5 V | 5V | USB VBUS | SEN54 pin 1, PMS5003 pin 1 | top `+5V_USB` rail | J1.1, J2.1, after F1 |
+| 3V3 | 3V3 | regulator out | SHT40 VCC, R1, R2 | bottom 3V3 rail | J3.3, J4.3, J5.3 |
+| GND | GND | | SEN54 pins 2 and 5, PMS5003 pin 2, SHT40 GND | both GND rails | every connector |
+| I²C SDA | D4 | 5 | SEN54 pin 3, SHT40 SDA | column 6, rows h to j | J1.3, J3.2, J4.2 |
+| I²C SCL | D5 | 6 | SEN54 pin 4, SHT40 SCL | column 7, rows h to j | J1.4, J3.1, J4.1 |
+| UART TX | D6 | 43 | PMS5003 pin 4 RXD | column 8, row i | J2.4 |
+| UART RX | D7 | 44 | PMS5003 pin 5 TXD | column 8, row a | J2.5 |
+| PMS SET | D2 | 3 | PMS5003 pin 3 | column 4, row i | J2.3 |
+| Button | D0 | 1 | optional button to GND, on a split cable | column 2, row h | J5.2 |
+| Status LED | D1 | 2 | optional Grove RGB LED (WS2812), through R3 (330 Ω) | column 3, row i | J5.1 |
 | Battery sense | D3 | 4 | only with the Bayu Power board | | |
 | LoRa SPI | D8, D9, D10 | 7, 8, 9 | Wio-SX1262, through the B2B connector | leave empty | none |
 | LoRa control | | 38 to 42 | Wio-SX1262, through the B2B connector | | |
@@ -93,7 +93,7 @@ I checked every fact on these drawings against the datasheet or the source. Thes
 - **SEN54 current:** 70 mA typical and 100 mA at most while measuring.
 - **PMS5003 RESET:** the Plantower manual (v2.3) says SET and RESET have pull-ups inside and should be left unconnected if unused. The RESET pull-up planned for the Core in `DESIGN.md` is not needed, so I left RESET open. The metal shell is on GND too. The manual asks for 30 s after a wake before trusting the data.
 - **SHT40:** the bare part runs on 1.08 to 3.6 V. Address 0x44 is the SHT40-AD1B; other versions sit at 0x45 or 0x46, so check the breakout. The Grove and Adafruit boards bring a regulator and 10 kΩ pull-ups.
-- **The 5V pin is USB VBUS.** Seeed's XIAO pages say any external 5 V fed into it needs a diode. If the Core's J6 input from the Power board can be live while USB is plugged in, it needs one.
+- **The 5V pin is USB VBUS.** Seeed's XIAO pages say any external 5 V fed into it needs a diode. The Core's J6 input from the Power board can be live while USB is plugged in, so it goes through CR1, a Schottky.
 - **The Wio board has its own button and LED,** on GPIO21 and GPIO48 (Seeed schematic). The Bayu build moves the button to D0, so the Wio button does nothing.
 - **The pins in the firmware match.** `variant.h` on `bayu` has SDA 5, SCL 6, RX 44, TX 43, SET 3, button 1, WS2812 2, battery 4. The v5 sketch opens only RX on GPIO44.
 - **Two numbers for the climate gap.** The kit1-hex spec gives 25 mm from the stack in its parts table and 60 mm in its zoning rules. I used 60.

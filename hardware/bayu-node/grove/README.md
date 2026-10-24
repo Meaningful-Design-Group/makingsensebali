@@ -11,8 +11,10 @@ Bayu v3 on this shield, and it is part of the kit we have discussed with Seeed.
 
 Eight Grove sockets, all powered at 3V3: two I2C, one UART, and five digital ones on D0,
 D1, D2, D8 and D9. The board snaps in two. The half that keeps the XIAO has the D0, D1,
-I2C and UART sockets, which is enough for every Bayu variant except the ones with two I2C
-sensors and a Plantower.
+I2C and UART sockets. The second I2C socket and the D2 socket, which carries the Plantower
+SET line, are on the half that snaps off. Keep the shield whole for Bayu v3, Anchor and
+Indoor. The Relay fits the small half, and so does a Dense node if its fan runs all the
+time.
 
 The pin map is the same as Bayu's. I2C is on D4 and D5, the PMS5003 UART on D6 and D7, its
 SET line on D2, the button on D0 and the LED on D1, so the same firmware runs on the
@@ -37,8 +39,8 @@ gives, so one wire goes from the PMS VCC to the shield's 5V header pin.
 
 On the Anchor, the Grove SEN54 takes one I2C socket and the Grove SHT40 the other. One
 review says Seeed fitted the Grove SEN54 with a regulator so it runs on 3.3 V. We have not
-tested that yet. The bare Sensirion SEN54 needs 5 V and would need the same wire as the
-Plantower.
+tested that yet. A bare Sensirion SEN54 needs 5 V, so it takes a second wire from the 5V
+header, next to the Plantower's.
 
 On Indoor, Seeed's Grove CO2 module is the SCD41, not the SCD40 in the design. It sells
 for USD 55 to 65 at retail against about 22 for an SCD40 breakout, which pushes the Indoor

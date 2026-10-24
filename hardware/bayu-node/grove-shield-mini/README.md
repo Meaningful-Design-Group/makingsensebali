@@ -25,14 +25,16 @@ The size is the one your Grove Shield already has when you snap it in half, 39 �
 with the XIAO on the left and four sockets on the right.
 
 - **G1, I2C**, on D4 and D5, with a solder jumper to switch its supply from 3V3 to 5 V.
+  It ships set to 3V3.
 - **G2, I2C**, on D4 and D5, at 3V3.
-- **G3, UART**, on D6 and D7, with the same 3V3 or 5 V jumper.
+- **G3, UART**, on D6 and D7, with the same jumper, also set to 3V3 out of the box.
 - **G4, analog and digital**, with A2/D2 on pin 1 and A3/D3 on pin 2, at 3V3.
 - **A PCF8563 real-time clock** on the I2C bus at 0x51, with a CR1220 holder, like the one
   on your XIAO Expansion Board.
-- **A microSD slot** on the back, on the SPI pins D8 to D10, with chip select on D1.
-- **A user button** on D0, 4.7 kΩ I2C pull-ups to 3V3, pads for all 14 XIAO pins plus 5V,
-  3V3 and GND, and two M2 holes.
+- **A microSD slot** on the back, on the SPI pins D8 to D10, with chip select on D0.
+- **A WS2812 status LED** on D1, on the board.
+- 4.7 kΩ I2C pull-ups to 3V3, pads for all 14 XIAO pins plus 5V, 3V3 and GND, and two M2
+  holes. No button of its own: the XIAO's BOOT button does that job.
 
 That is three digital sockets, counting the two I2C and the UART, and one analog. Every
 Bayu sensor is digital, so the analog socket earns its place another way. Pin 1 drives the
@@ -52,8 +54,9 @@ never go in G1 on 5 V, and that should be printed on the silkscreen.
   do that part in our Meshtastic fork.
 - **The XIAO family:** it should take a XIAO ESP32-C3 as well, as the Grove Shield does,
   since our firmware runs on both.
-- **The Grove Shield's pins** for I2C, UART and D0, so a node moves from one
-  board to the other without a firmware change.
+- **Bayu's pins:** I2C on D4 and D5, UART on D6 and D7, SET on D2 and the LED on D1, as on
+  the Grove Shield and our own Bayu Core. Moving a node to the Mini takes one build flag,
+  because D0 becomes the microSD chip select and the button moves to BOOT.
 
 ## Next to the board
 

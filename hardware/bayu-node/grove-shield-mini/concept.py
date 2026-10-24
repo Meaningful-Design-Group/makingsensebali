@@ -8,7 +8,7 @@ import sys
 from xml.sax.saxutils import escape as esc
 
 out = sys.argv[1]
-W, H = 1160, 1072
+W, H = 1160, 1152
 INK, MUTED, PAPER, LINE = "#1d2433", "#5b6475", "#fbfaf6", "#c9c4b6"
 BOARD = "#1f2b45"
 NEW, NEW_BG = "#1f7a4d", "#e3f2e9"
@@ -66,7 +66,7 @@ def sock(x, y, name, sub, five=False):
         text(x+8, y+70+i*15, part, 12, INK)
     if five:
         add(f'<rect x="{x+6}" y="{y+94}" width="{w-12}" height="26" rx="5" fill="{FIVE_BG}"/>')
-        text(x+w/2, y+112, "3V3 / 5V", 12, FIVE, weight="bold", anchor="middle")
+        text(x+w/2, y+112, "3V3* / 5V", 12, FIVE, weight="bold", anchor="middle")
     else:
         text(x+w/2, y+112, "3V3", 12, MUTED, anchor="middle")
 sx = tx + 262
@@ -74,9 +74,9 @@ sock(sx,      ty+14,  "G1 I2C",  "SCL D5 · SDA D4", five=True)
 sock(sx+100,  ty+14,  "G2 I2C",  "SCL D5 · SDA D4")
 sock(sx,      ty+156, "G3 UART", "RX D7 · TX D6", five=True)
 sock(sx+100,  ty+156, "G4 A/D",  "A2/D2 · A3/D3")
-# button
-add(f'<rect x="{tx+16}" y="{ty+BH-30}" width="22" height="18" rx="3" fill="#cfd5e2"/>')
-text(tx+44, ty+BH-16, "button D0", 11, "#c7cede")
+# onboard status LED
+add(f'<rect x="{tx+16}" y="{ty+BH-30}" width="18" height="18" rx="3" fill="#f7d2e3"/>')
+text(tx+42, ty+BH-16, "WS2812 status LED on D1", 12, "#e9ecf2")
 
 # ---------- bottom view ----------
 bx, by = 620, 130
@@ -85,7 +85,7 @@ board(bx, by, "Bottom (seen from below)")
 add(f'<rect x="{bx+24}" y="{by+40}" width="{15*MM}" height="{int(14.5*MM)}" rx="6" fill="#c7cede" stroke="#9aa3b5"/>')
 text(bx+24+15*MM/2, by+110, "microSD", 16, weight="bold", anchor="middle")
 text(bx+24+15*MM/2, by+130, "SPI D8–D10", 12, INK, anchor="middle")
-text(bx+24+15*MM/2, by+146, "CS on D1", 12, INK, anchor="middle")
+text(bx+24+15*MM/2, by+146, "CS on D0", 12, INK, anchor="middle")
 # CR1220 holder, 13 mm
 cx, cy = bx+330, by+118
 add(f'<circle cx="{cx}" cy="{cy}" r="{6.5*MM}" fill="#c7cede" stroke="#9aa3b5"/>')
@@ -97,15 +97,16 @@ text(bx+300, by+240, "PCF8563 RTC", 12, "#e9ecf2", weight="bold")
 text(bx+300, by+256, "I2C 0x51", 12, "#c7cede")
 add(f'<rect x="{bx+24}" y="{by+232}" width="34" height="16" rx="3" fill="{FIVE_BG}"/>')
 add(f'<rect x="{bx+64}" y="{by+232}" width="34" height="16" rx="3" fill="{FIVE_BG}"/>')
-text(bx+106, by+245, "JP1 JP2, 3V3/5V", 12, "#e9ecf2")
+text(bx+106, by+245, "JP1 JP2, 3V3 or 5V, default 3V3", 12, "#e9ecf2")
 text(bx+24, by+276, "4.7 kΩ pull-ups to 3V3 on SDA, SCL", 12, "#c7cede")
 
 # ---------- pin plan ----------
 px, py = 40, 520
 text(px, py, "Pin plan", 18, weight="bold")
 rows = [
-    ("D0", "GPIO1", "user button", ""),
-    ("D1", "GPIO2", "microSD chip select", "new"),
+    ("D0", "GPIO1", "microSD chip select", "new"),
+    ("D1", "GPIO2", "WS2812 status LED, on the board", ""),
+    ("—", "GPIO0", "button: the XIAO's own BOOT button", "new"),
     ("D2", "GPIO3", "G4 pin 1, PMS5003 SET", ""),
     ("D3", "GPIO4", "G4 pin 2, analog in (battery, any analog Grove)", ""),
     ("D4, D5", "GPIO5, 6", "I2C: G1, G2 and the RTC", ""),
@@ -150,22 +151,25 @@ for i, (tag, line) in enumerate(changes):
         text(cx0, yy, tag, 13, col, weight="bold")
     text(cx0+50, yy, line, 13)
 
-ny = 880
+ny = 910
 note = [
     "Every Bayu variant becomes plug and play on this board, including the PMS5003 nodes, once there is a Grove to",
     "1.25 mm 8-pin cable for the Plantower. The microSD and the LoRa radio share one SPI bus with separate chip selects,",
     "which the firmware has to handle. The 5 V jumpers only switch the supply pin, so a 5 V module that pulls its own",
     "I2C lines up to 5 V would still be unsafe for the ESP32-S3 and must not go in G1 set to 5 V.",
     "",
+    "* Both jumpers ship set to 3V3. Bayu runs on the Mini with one build flag: D0 becomes the microSD chip select and the",
+    "button moves to the XIAO's BOOT button. Every other pin keeps the job it has in Bayu.",
+    "",
     "Concept drawing, not a layout. Sizes at 12 px per mm for the board, the XIAO, the microSD socket and the coin cell.",
 ]
 for i, n in enumerate(note):
     text(40, ny + i*22, n, 13, MUTED if i == len(note)-1 else INK)
 # footer stamp: what this is, revision, licence, source
-add(f'<g font-family="{FONT}" font-size="13"><rect x="0" y="1020" width="{W}" height="52" fill="#ffffff"/>'
-    f'<line x1="0" y1="1020" x2="{W}" y2="1020" stroke="{LINE}"/>'
-    f'<text x="20" y="1042" fill="{INK}" font-weight="bold">Grove Shield Mini for XIAO · concept · rev 2026-10-24</text>'
-    f'<text x="20" y="1061" fill="{MUTED}">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>')
+add(f'<g font-family="{FONT}" font-size="13"><rect x="0" y="1100" width="{W}" height="52" fill="#ffffff"/>'
+    f'<line x1="0" y1="1100" x2="{W}" y2="1100" stroke="{LINE}"/>'
+    f'<text x="20" y="1122" fill="{INK}" font-weight="bold">Grove Shield Mini for XIAO · concept · rev 2026-10-24</text>'
+    f'<text x="20" y="1141" fill="{MUTED}">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>')
 add('</svg>')
 open(out, "w").write("\n".join(s))
 print("wrote", out)

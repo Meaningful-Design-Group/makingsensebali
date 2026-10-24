@@ -8,7 +8,7 @@ Phase 0 is a breadboard. Phase 1 is the same circuit on the Bayu Core carrier bo
 
 ![Breadboard wiring of the Bayu Indoor node: XIAO ESP32-S3, PMS5003, SCD40 and SHT40](wiring-breadboard.svg)
 
-The XIAO straddles the centre channel with its USB-C to the left. Four long jumpers carry 5 V, D7, SDA and SCL past the XIAO to free columns, so no wire has to arch over the board. The SCD40 and SHT40 take 3V3, the PMS5003 takes 5 V for its fan and laser, and all three share one ground.
+The XIAO straddles the centre channel with its USB-C to the left. The top rails carry `+5V_USB` and GND, the bottom rails 3V3 and GND, and the sensors sit below the board, each taking its power from the rail straight above the pin. The SCD40 and SHT40 take 3V3, the PMS5003 takes 5 V for its fan and laser, and all three share one ground.
 
 Most SCD40 and SHT40 breakouts already carry 10 kΩ pull-ups on SDA and SCL. With two of them on the bus you get 5 kΩ, which is fine at 100 kHz, so don't add more. The XIAO has none of its own, so a bare sensor without a breakout needs 4.7 kΩ to 3V3. To check, measure SDA to VCC on the breakout, about 10 kΩ means the pull-up is there.
 
@@ -16,9 +16,9 @@ Most SCD40 and SHT40 breakouts already carry 10 kΩ pull-ups on SDA and SCL. Wit
 
 ![Connector map of the Bayu Core board fitted as Bayu Indoor](wiring-core.svg)
 
-The PMS5003 plugs into the 8-pin PicoBlade (J1), the SCD40 and SHT40 into the two Grove I2C sockets (J2, J3). Grove VCC is 3V3 on this board. The pull-up jumper JP1 stays open on Indoor because the Grove boards bring their own. The SEN54 socket, the power input and the Wio-SX1262 stack are left empty.
+The PMS5003 plugs into the 8-pin PicoBlade (J2), the SCD40 and SHT40 into the two Grove I2C sockets (J3, J4). Grove VCC is 3V3 on this board. The pull-up jumper JP1 stays open on Indoor because the Grove boards bring their own. The SEN54 socket J1, the power input J6 and the Wio-SX1262 (U2) are left empty.
 
-Before the first power-up, beep J1 pin 1 through to pin 1 on the sensor. A PicoBlade cable can be crimped 1-to-1 or 1-to-8, and a flipped one leaves the PMS unpowered with D6 driving its TXD pin.
+Before the first power-up, beep J2 pin 1 through to pin 1 on the sensor. A PicoBlade cable can be crimped 1-to-1 or 1-to-8, and a flipped one leaves the PMS unpowered with D6 driving its TXD pin.
 
 ## Schematic
 
@@ -28,7 +28,7 @@ Before the first power-up, beep J1 pin 1 through to pin 1 on the sensor. A PicoB
 
 | XIAO pin | GPIO | Net | Goes to | Notes |
 |---|---|---|---|---|
-| 5V | VBUS | `VBUS_5V` | PMS5003 pin 1 VCC | through F1 (1 A) on the Core, a wire on the breadboard |
+| 5V | VBUS | `+5V_USB` | PMS5003 pin 1 VCC | through F1 (1 A) on the Core, where it becomes `+5V_F`, a wire on the breadboard |
 | 3V3 | LDO out | `3V3` | SCD40 VCC, SHT40 VCC | regulator rated 700 mA |
 | GND | | `GND` | everything | |
 | D4 | GPIO5 | `I2C_SDA` | SCD40 SDA, SHT40 SDA | SCD40 at 0x62, SHT40 at 0x44 |
@@ -37,7 +37,7 @@ Before the first power-up, beep J1 pin 1 through to pin 1 on the sensor. A PicoB
 | D7 | GPIO44 | `UART_RX` | PMS5003 pin 5 TXD | 9600 8N1, both firmwares |
 | D2 | GPIO3 | `PMS_SET` | PMS5003 pin 3 SET | high or open = running, low = asleep. Meshtastic only |
 | D0 | GPIO1 | `BTN` | button to GND | optional, Meshtastic only |
-| D1 | GPIO2 | `LED_DIN` | WS2812 DIN | optional, Meshtastic only |
+| D1 | GPIO2 | `LED_DIN` | WS2812 DIN, through R3 (330 Ω) | optional, Meshtastic only |
 
 PMS5003 pins 6 (RESET), 7 and 8 stay open. RESET and SET have pull-ups inside the sensor.
 
@@ -52,7 +52,7 @@ Prices are from the cost table in [DESIGN.md](../../DESIGN.md), single units, Oc
 | 1 | SCD40 CO₂ breakout, I2C | both | Grove or STEMMA QT style for phase 1 | 22 |
 | 1 | SHT40 breakout, I2C | both | on a 10 to 15 cm tail | 4 |
 | 1 | Half-size breadboard and male-female jumpers | 0 | plus a PicoBlade to 2.54 mm adapter, or crimp dupont ends on the PMS cable | |
-| 1 | Bayu Core PCB with headers, PicoBlade and two Grove sockets | 1 | JP1 open, J4, J5, J6 not fitted | 8 |
+| 1 | Bayu Core PCB with headers, PicoBlade and two Grove sockets | 1 | JP1 open, J1 and J6 not fitted, J5 optional | 8 |
 | 2 | Grove 4-pin cables | 1 | | |
 | 1 | 5 V / 2 A USB wall supply and USB-C cable | both | headroom for the WiFi and fan peaks | 5 |
 | 1 | Printed shell, PETG | both | sensors at the bottom, PMS in the middle, XIAO on top | 5 |
