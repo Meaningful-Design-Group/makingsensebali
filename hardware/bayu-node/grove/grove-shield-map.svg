@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1112" viewBox="0 0 1200 1112" font-family="Helvetica, Arial, sans-serif">
+<rect width="1200" height="1112" fill="#fbfaf6"/>
+<text x="40" y="48" font-size="26" fill="#1d2433" font-weight="bold" text-anchor="start" >Bayu on the Seeed Grove Shield for XIAO</text>
+<text x="40" y="74" font-size="15" fill="#5b6475" font-weight="normal" text-anchor="start" >Which module goes in which socket, for each variant. Every socket on this shield is powered at 3V3.</text>
+<rect x="40" y="100" width="470" height="300" rx="18" fill="#1f2b45"/>
+<rect x="522" y="100" width="250" height="300" rx="18" fill="#1f2b45"/>
+<line x1="516" y1="92" x2="516" y2="408" stroke="#5b6475" stroke-dasharray="6 5" stroke-width="2"/>
+<text x="516" y="426" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="middle" >snap line</text>
+<rect x="48" y="230" width="34" height="44" rx="6" fill="#9aa3b5"/>
+<rect x="70" y="160" width="190" height="184" rx="10" fill="#e9ecf2" stroke="#9aa3b5"/>
+<rect x="88" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="88" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="114" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="114" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="140" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="140" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="166" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="166" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="192" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="192" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="218" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="218" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="244" y="146" width="14" height="14" rx="3" fill="#d9b44a"/>
+<rect x="244" y="344" width="14" height="14" rx="3" fill="#d9b44a"/>
+<text x="165" y="240" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="middle" >XIAO ESP32-S3</text>
+<text x="165" y="262" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="middle" >Wio-SX1262 clips on top</text>
+<text x="165" y="280" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="middle" >header in the XIAO only</text>
+<text x="70" y="122" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="start" >5V · GND · 3V3 header pins along this edge</text>
+<rect x="280" y="124" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="290" y="136" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="290" y="150" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="290" y="164" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="290" y="178" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="316" y="152" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >D0</text>
+<text x="316" y="170" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="290" y="208" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  D0</text>
+<text x="290" y="224" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  D1</text>
+<rect x="396" y="124" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="406" y="136" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="406" y="150" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="406" y="164" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="406" y="178" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="432" y="152" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >D1</text>
+<text x="432" y="170" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="406" y="208" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  D1</text>
+<text x="406" y="224" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  D2</text>
+<rect x="280" y="266" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="290" y="278" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="290" y="292" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="290" y="306" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="290" y="320" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="316" y="294" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >I2C</text>
+<text x="316" y="312" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="290" y="350" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  SCL D5</text>
+<text x="290" y="366" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  SDA D4</text>
+<rect x="396" y="266" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="406" y="278" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="406" y="292" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="406" y="306" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="406" y="320" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="432" y="294" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >UART</text>
+<text x="432" y="312" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="406" y="350" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  RX D7</text>
+<text x="406" y="366" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  TX D6</text>
+<rect x="540" y="124" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="550" y="136" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="550" y="150" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="550" y="164" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="550" y="178" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="576" y="152" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >D2</text>
+<text x="576" y="170" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="550" y="208" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  D2</text>
+<text x="550" y="224" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  D3</text>
+<rect x="656" y="124" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="666" y="136" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="666" y="150" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="666" y="164" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="666" y="178" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="692" y="152" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >I2C</text>
+<text x="692" y="170" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="666" y="208" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  SCL D5</text>
+<text x="666" y="224" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  SDA D4</text>
+<rect x="534" y="260" width="116" height="130" rx="10" fill="none" stroke="#8a6cc2" stroke-width="3" stroke-dasharray="7 4"/>
+<rect x="540" y="266" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="550" y="278" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="550" y="292" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="550" y="306" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="550" y="320" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="576" y="294" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >D8</text>
+<text x="576" y="312" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="550" y="350" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  D8</text>
+<text x="550" y="366" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  D9</text>
+<rect x="650" y="260" width="116" height="130" rx="10" fill="none" stroke="#8a6cc2" stroke-width="3" stroke-dasharray="7 4"/>
+<rect x="656" y="266" width="104" height="118" rx="6" fill="#f2f2ee" stroke="#d7d3c6"/>
+<rect x="666" y="278" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="666" y="292" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="666" y="306" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<rect x="666" y="320" width="18" height="8" rx="2" fill="#b9b3a2"/>
+<text x="692" y="294" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >D9</text>
+<text x="692" y="312" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >3V3</text>
+<text x="666" y="350" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 1  D9</text>
+<text x="666" y="366" font-size="12" fill="#1d2433" font-weight="normal" text-anchor="start" >pin 2  D10</text>
+<rect x="800" y="118" width="360" height="300" rx="12" fill="#ffffff" stroke="#c9c4b6"/>
+<text x="818" y="150" font-size="16" fill="#1d2433" font-weight="bold" text-anchor="start" >Reading the shield</text>
+<text x="818" y="178" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >Pin 1 is the yellow wire of a Grove cable.</text>
+<text x="818" y="198" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The left half keeps the XIAO and four sockets:</text>
+<text x="818" y="218" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >D0, D1, I2C and UART. The right half snaps off,</text>
+<text x="818" y="238" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >and with it the second I2C and the D2 socket the</text>
+<text x="818" y="258" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >Plantower SET line uses. Keep the shield whole.</text>
+<text x="818" y="278" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" ></text>
+<text x="818" y="298" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >Dashed purple: lost when the Wio-SX1262 is</text>
+<text x="818" y="318" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >fitted. D8 to D10 are the radio's SPI bus.</text>
+<text x="818" y="338" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" ></text>
+<text x="818" y="358" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >Sockets give 3V3 only. Anything that needs</text>
+<text x="818" y="378" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >5 V, like a PMS5003 fan, takes a wire from</text>
+<text x="818" y="398" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >the 5V header pin.</text>
+<rect x="40" y="470" width="1120" height="44" rx="8" fill="#1d2433"/>
+<text x="52" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >Variant</text>
+<text x="222" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >I2C socket</text>
+<text x="402" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >I2C socket</text>
+<text x="572" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >UART socket</text>
+<text x="747" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >D2 socket</text>
+<text x="897" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >5V header pin</text>
+<text x="1022" y="498" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="start" >On today's shield</text>
+<rect x="40" y="514" width="1120" height="74" fill="#ffffff"/>
+<text x="52" y="546" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >Bayu v3</text>
+<text x="52" y="566" font-size="12" fill="#5b6475" font-weight="normal" text-anchor="start" >deployed today</text>
+<text x="222" y="556" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove BME680</text>
+<text x="402" y="556" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove HM3301</text>
+<text x="572" y="556" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="747" y="556" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="897" y="556" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<rect x="1018" y="530" width="134" height="42" rx="8" fill="#e3f2e9"/>
+<text x="1085.0" y="556" font-size="14" fill="#1f7a4d" font-weight="bold" text-anchor="middle" >plug and play</text>
+<rect x="40" y="588" width="1120" height="74" fill="#f4f2ec"/>
+<text x="52" y="631" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >Anchor</text>
+<text x="222" y="630" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove SEN54 *</text>
+<text x="402" y="630" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove SHT40</text>
+<text x="572" y="630" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >PMS5003 data</text>
+<text x="747" y="630" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >PMS5003 SET</text>
+<rect x="891" y="602" width="113" height="46" rx="6" fill="#fbeed6"/>
+<text x="897" y="630" font-size="14" fill="#9a5b00" font-weight="normal" text-anchor="start" >PMS5003 fan</text>
+<rect x="1018" y="604" width="134" height="42" rx="8" fill="#fbeed6"/>
+<text x="1085.0" y="630" font-size="13" fill="#9a5b00" font-weight="bold" text-anchor="middle" >one or two 5V wires *</text>
+<rect x="40" y="662" width="1120" height="74" fill="#ffffff"/>
+<text x="52" y="705" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >Dense</text>
+<text x="222" y="704" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="402" y="704" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="572" y="704" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >PMS5003T data</text>
+<text x="747" y="704" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >PMS5003T SET</text>
+<rect x="891" y="676" width="113" height="46" rx="6" fill="#fbeed6"/>
+<text x="897" y="704" font-size="14" fill="#9a5b00" font-weight="normal" text-anchor="start" >PMS5003T fan</text>
+<rect x="1018" y="678" width="134" height="42" rx="8" fill="#fbeed6"/>
+<text x="1085.0" y="704" font-size="14" fill="#9a5b00" font-weight="bold" text-anchor="middle" >one 5V wire</text>
+<rect x="40" y="736" width="1120" height="74" fill="#f4f2ec"/>
+<text x="52" y="779" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >Indoor</text>
+<text x="222" y="778" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove SCD41</text>
+<text x="402" y="778" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove SHT40</text>
+<text x="572" y="778" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >PMS5003 data</text>
+<text x="747" y="778" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >PMS5003 SET</text>
+<rect x="891" y="750" width="113" height="46" rx="6" fill="#fbeed6"/>
+<text x="897" y="778" font-size="14" fill="#9a5b00" font-weight="normal" text-anchor="start" >PMS5003 fan</text>
+<rect x="1018" y="752" width="134" height="42" rx="8" fill="#fbeed6"/>
+<text x="1085.0" y="778" font-size="14" fill="#9a5b00" font-weight="bold" text-anchor="middle" >one 5V wire</text>
+<rect x="40" y="810" width="1120" height="74" fill="#ffffff"/>
+<text x="52" y="853" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start" >Relay</text>
+<text x="222" y="852" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start" >Grove SHT40</text>
+<text x="402" y="852" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="572" y="852" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="747" y="852" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<text x="897" y="852" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start" >—</text>
+<rect x="1018" y="826" width="134" height="42" rx="8" fill="#e3f2e9"/>
+<text x="1085.0" y="852" font-size="14" fill="#1f7a4d" font-weight="bold" text-anchor="middle" >plug and play</text>
+<rect x="40" y="470" width="1120" height="414" rx="8" fill="none" stroke="#c9c4b6"/>
+<text x="40" y="918" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The PMS5003 has no Grove version. Its data goes in the UART socket and SET in the D2 socket, through a Grove to</text>
+<text x="40" y="940" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >1.25 mm 8-pin cable, and its fan takes 5 V from the header. Leave SET out and the fan simply runs all the time.</text>
+<text x="40" y="962" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >* Seeed fitted the Grove SEN54 with a regulator for 3.3 V supply, according to one review. Not confirmed on our bench yet.</text>
+<text x="40" y="984" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >  A bare Sensirion SEN54 needs 5 V, which makes a second wire from the 5V header.</text>
+<text x="40" y="1006" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The Grove HM3301 is rated 3.3 or 5 V by Seeed, and the deployed nodes run it on the socket's 3V3.</text>
+<text x="40" y="1028" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The D0 and D1 sockets take the Grove button and LED. With LoRa fitted, the D8 and D9 sockets are not usable.</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1060" width="1200" height="52" fill="#ffffff"/><line x1="0" y1="1060" x2="1200" y2="1060" stroke="#c9c4b6"/><text x="20" y="1082" fill="#1d2433" font-weight="bold">Bayu on the Seeed Grove Shield for XIAO · socket map · rev 2026-10-24</text><text x="20" y="1101" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
+</svg>

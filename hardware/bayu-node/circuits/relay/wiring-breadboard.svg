@@ -1,251 +1,619 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1240 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
-  <title>Bayu Relay, phase-0 breadboard wiring</title>
-  <desc>XIAO ESP32-S3 plugged pins-down into a half-size breadboard with the Wio-SX1262 clipped on top, an SHT40 breakout, a push button and a WS2812B LED. Side view of the stack with the header trimmed flush under the Wio and the LoRa U.FL pigtail to an SMA bulkhead and whip.</desc>
-  <style>
-    .t    { font-size: 15px; font-weight: 700; fill: #111; }
-    .st   { font-size: 11px; fill: #555; }
-    .pv   { font-size: 8px; fill: #111; }
-    .po   { font-size: 8px; fill: #9a948a; }
-    .pr   { font-size: 8px; fill: #b3261e; }
-    .lab  { font-size: 10.5px; fill: #222; }
-    .sm   { font-size: 9px; fill: #555; }
-    .tiny { font-size: 7.5px; fill: #222; }
-    .warn { font-size: 10.5px; fill: #b3261e; }
-    .h    { font-size: 12px; font-weight: 700; fill: #111; }
-    .hw   { font-size: 12px; font-weight: 700; fill: #b3261e; }
-    .case { fill: none; stroke: #2a2a2a; stroke-width: 6; stroke-linejoin: round; stroke-linecap: round; }
-    .wire { fill: none; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
-    .lead { fill: none; stroke: #777; stroke-width: 0.8; }
-  </style>
-  <defs>
-    <pattern id="holes" x="571" y="205" width="18" height="18" patternUnits="userSpaceOnUse">
-      <rect x="6.5" y="6.5" width="5" height="5" fill="#8d877c"/>
-    </pattern>
-    <pattern id="holesB" x="571" y="313" width="18" height="18" patternUnits="userSpaceOnUse">
-      <rect x="6.5" y="6.5" width="5" height="5" fill="#8d877c"/>
-    </pattern>
-    <pattern id="rail" x="571" y="151" width="18" height="18" patternUnits="userSpaceOnUse">
-      <rect x="6.5" y="6.5" width="5" height="5" fill="#8d877c"/>
-    </pattern>
-    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <line x1="0" y1="0" x2="0" y2="6" stroke="#9a948a" stroke-width="1.2"/>
-    </pattern>
-    <!-- jumper paths, drawn twice: dark casing, then colour -->
-    <path id="wGND" d="M616 214 V160"/>
-    <path id="w3V3" d="M634 214 V178"/>
-    <path id="wD0"  d="M598 394 V440 H886 V394"/>
-    <path id="wD1"  d="M616 394 V428 H760 V394"/>
-    <path id="wD4"  d="M670 358 H1066"/>
-    <path id="wD5"  d="M688 376 H1048"/>
-    <path id="jG20" d="M922 160 V250"/>
-    <path id="jG13" d="M796 160 V322"/>
-    <path id="jV14" d="M814 178 V322"/>
-    <path id="jV24" d="M994 178 V322"/>
-    <path id="jG26" d="M1030 160 V322"/>
-  </defs>
-
-  <rect width="1240" height="900" fill="#fbf8f2"/>
-
-  <text x="40" y="34" class="t">Bayu Relay · phase-0 breadboard build</text>
-  <text x="40" y="54" class="st">XIAO ESP32-S3 + Wio-SX1262 · SHT40 (I²C 0x44) · button · WS2812B · 5 V USB wall supply · top view, not to scale</text>
-
-  <g transform="translate(-200 0)">
-  <!-- ===== breadboard (half size, 30 columns) ===== -->
-  <rect x="548" y="140" width="572" height="274" rx="8" fill="#ffffff" stroke="#bdb6a8" stroke-width="1.4"/>
-  <rect x="571" y="151" width="540" height="36" fill="url(#rail)"/>
-  <line x1="574" y1="151" x2="1108" y2="151" stroke="#1f6fd1" stroke-width="1.2"/>
-  <line x1="574" y1="187" x2="1108" y2="187" stroke="#d23b2f" stroke-width="1.2"/>
-  <text x="540" y="163" class="lab" text-anchor="end">GND −</text>
-  <text x="540" y="181" class="lab" text-anchor="end">3V3 +</text>
-  <rect x="571" y="205" width="540" height="90" fill="url(#holes)"/>
-  <rect x="556" y="298" width="556" height="12" fill="#efebe3"/>
-  <rect x="571" y="313" width="540" height="90" fill="url(#holesB)"/>
-  <g class="sm" text-anchor="middle">
-    <text x="1112" y="217">j</text><text x="1112" y="235">i</text><text x="1112" y="253">h</text><text x="1112" y="271">g</text><text x="1112" y="289">f</text>
-    <text x="1112" y="325">e</text><text x="1112" y="343">d</text><text x="1112" y="361">c</text><text x="1112" y="379">b</text><text x="1112" y="397">a</text>
-    <text x="580" y="201">1</text><text x="652" y="201">5</text><text x="742" y="201">10</text><text x="832" y="201">15</text><text x="1012" y="201">25</text><text x="1102" y="201">30</text>
-  </g>
-
-  <!-- button, straddles the centre gap, legs e18 e20 f18 f20 -->
-  <rect x="876" y="277" width="56" height="54" rx="3" fill="#3a3a3a"/>
-  <circle cx="904" cy="304" r="15" fill="#6b6b6b" stroke="#222"/>
-  <g fill="#d9c27a"><circle cx="886" cy="286" r="2.5"/><circle cx="922" cy="286" r="2.5"/><circle cx="886" cy="322" r="2.5"/><circle cx="922" cy="322" r="2.5"/></g>
-  <text x="940" y="432" class="lab" text-anchor="middle">button</text>
-  <text x="940" y="445" class="sm" text-anchor="middle">diagonal legs</text>
-
-  <!-- 330 ohm, d11 to d15 -->
-  <line x1="760" y1="340" x2="832" y2="340" stroke="#777" stroke-width="1.5"/>
-  <rect x="776" y="334" width="40" height="12" rx="5" fill="#e8d3a8" stroke="#8a6d3b"/>
-  <text x="796" y="343" class="tiny" text-anchor="middle">330Ω</text>
-  <circle cx="760" cy="340" r="2.5" fill="#777"/><circle cx="832" cy="340" r="2.5" fill="#777"/>
-
-  <!-- WS2812B breakout, pins a13 a14 a15 -->
-  <rect x="784" y="386" width="60" height="44" rx="3" fill="#ffffff" stroke="#333"/>
-  <g fill="#d9c27a" stroke="#333" stroke-width="0.6"><circle cx="796" cy="394" r="3"/><circle cx="814" cy="394" r="3"/><circle cx="832" cy="394" r="3"/></g>
-  <text x="796" y="407" class="tiny" text-anchor="middle">GND</text>
-  <text x="814" y="407" class="tiny" text-anchor="middle">VCC</text>
-  <text x="832" y="407" class="tiny" text-anchor="middle">DIN</text>
-  <rect x="806" y="412" width="16" height="14" fill="#f4f4f4" stroke="#333"/>
-  <circle cx="814" cy="419" r="4.5" fill="#ffffff" stroke="#999"/>
-  <text x="814" y="462" class="lab" text-anchor="middle">WS2812B</text>
-  <text x="814" y="475" class="sm" text-anchor="middle">D1 → 330 Ω → DIN</text>
-
-  <!-- SHT40 breakout (Adafruit 4885 pin row), pins a24..a28 -->
-  <rect x="980" y="386" width="100" height="68" rx="4" fill="#ffffff" stroke="#333"/>
-  <g fill="#d9c27a" stroke="#333" stroke-width="0.6"><circle cx="994" cy="394" r="3"/><circle cx="1012" cy="394" r="3"/><circle cx="1030" cy="394" r="3"/><circle cx="1048" cy="394" r="3"/><circle cx="1066" cy="394" r="3"/></g>
-  <text x="994" y="408" class="tiny" text-anchor="middle">VIN</text>
-  <text x="1012" y="408" class="tiny" text-anchor="middle">3V</text>
-  <text x="1030" y="408" class="tiny" text-anchor="middle">GND</text>
-  <text x="1048" y="408" class="tiny" text-anchor="middle">SCL</text>
-  <text x="1066" y="408" class="tiny" text-anchor="middle">SDA</text>
-  <rect x="1022" y="420" width="16" height="16" fill="#cfd3d6" stroke="#333"/>
-  <text x="1030" y="448" class="tiny" text-anchor="middle">SHT40</text>
-  <text x="1030" y="472" class="lab" text-anchor="middle">SHT40 breakout</text>
-  <text x="1030" y="485" class="sm" text-anchor="middle">VIN 3V3 · 3V pin left open</text>
-
-  <!-- ===== the stack, plugged in pins-down: top row in row i, bottom row in row d ===== -->
-  <rect x="560" y="274" width="24" height="24" rx="3" fill="#bdbdbd" stroke="#555"/>
-  <rect x="578" y="223" width="149" height="126" rx="6" fill="#f3efe6" stroke="#222" stroke-width="1.5"/>
-  <rect x="592" y="227" width="131" height="118" rx="4" fill="#dfe8f0" stroke="#555"/>
-  <g fill="#d9c27a" stroke="#333" stroke-width="0.8">
-    <rect x="593" y="227" width="10" height="10"/><rect x="611" y="227" width="10" height="10"/><rect x="629" y="227" width="10" height="10"/><rect x="647" y="227" width="10" height="10"/><rect x="665" y="227" width="10" height="10"/><rect x="683" y="227" width="10" height="10"/><rect x="701" y="227" width="10" height="10"/>
-    <rect x="593" y="335" width="10" height="10"/><rect x="611" y="335" width="10" height="10"/><rect x="629" y="335" width="10" height="10"/><rect x="647" y="335" width="10" height="10"/><rect x="665" y="335" width="10" height="10"/><rect x="683" y="335" width="10" height="10"/><rect x="701" y="335" width="10" height="10"/>
-  </g>
-  <!-- top row, left to right: 5V GND 3V3 D10 D9 D8 D7 -->
-  <g text-anchor="end">
-    <text transform="translate(601 241) rotate(-90)" class="po">5V</text>
-    <text transform="translate(619 241) rotate(-90)" class="pv">GND</text>
-    <text transform="translate(637 241) rotate(-90)" class="pv">3V3</text>
-    <text transform="translate(655 241) rotate(-90)" class="pr">D10·GPIO9</text>
-    <text transform="translate(673 241) rotate(-90)" class="pr">D9·GPIO8</text>
-    <text transform="translate(691 241) rotate(-90)" class="pr">D8·GPIO7</text>
-    <text transform="translate(709 241) rotate(-90)" class="po">D7·GPIO44</text>
-  </g>
-  <!-- bottom row, left to right: D0 .. D6 -->
-  <g>
-    <text transform="translate(601 331) rotate(-90)" class="pv">D0·GPIO1</text>
-    <text transform="translate(619 331) rotate(-90)" class="pv">D1·GPIO2</text>
-    <text transform="translate(637 331) rotate(-90)" class="po">D2·GPIO3</text>
-    <text transform="translate(655 331) rotate(-90)" class="po">D3·GPIO4</text>
-    <text transform="translate(673 331) rotate(-90)" class="pv">D4·GPIO5</text>
-    <text transform="translate(691 331) rotate(-90)" class="pv">D5·GPIO6</text>
-    <text transform="translate(709 331) rotate(-90)" class="po">D6·GPIO43</text>
-  </g>
-  <circle cx="718" cy="286" r="4" fill="#d9c27a" stroke="#333"/>
-  <path class="lead" d="M718 282 V128"/>
-  <text x="724" y="112" class="sm">LoRa U.FL on the Wio, WiFi U.FL on the XIAO,</text>
-  <text x="724" y="124" class="sm">both at this end · antenna route in the side view</text>
-  <text x="548" y="462" class="lab">XIAO ESP32-S3, Wio-SX1262 on top</text>
-  <text x="548" y="476" class="sm">pins down in rows i and d</text>
-  <text x="548" y="489" class="sm">USB-C hangs over the edge</text>
-  <text x="548" y="502" class="sm">red labels: radio SPI, taken</text>
-
-  <!-- ===== jumpers ===== -->
-  <g>
-    <use xlink:href="#wD0" class="case"/><use xlink:href="#wD0" class="wire" stroke="#2e9e4f"/>
-    <use xlink:href="#wD1" class="case"/><use xlink:href="#wD1" class="wire" stroke="#8a4fd1"/>
-    <use xlink:href="#wD4" class="case"/><use xlink:href="#wD4" class="wire" stroke="#1f6fd1"/>
-    <use xlink:href="#wD5" class="case"/><use xlink:href="#wD5" class="wire" stroke="#f2c418"/>
-    <use xlink:href="#wGND" class="case"/><use xlink:href="#wGND" class="wire" stroke="#1a1a1a"/>
-    <use xlink:href="#w3V3" class="case"/><use xlink:href="#w3V3" class="wire" stroke="#f28c28"/>
-    <use xlink:href="#jG20" class="case"/><use xlink:href="#jG20" class="wire" stroke="#1a1a1a"/>
-    <use xlink:href="#jG13" class="case"/><use xlink:href="#jG13" class="wire" stroke="#1a1a1a"/>
-    <use xlink:href="#jV14" class="case"/><use xlink:href="#jV14" class="wire" stroke="#f28c28"/>
-    <use xlink:href="#jV24" class="case"/><use xlink:href="#jV24" class="wire" stroke="#f28c28"/>
-    <use xlink:href="#jG26" class="case"/><use xlink:href="#jG26" class="wire" stroke="#1a1a1a"/>
-  </g>
-  <g fill="#fbf8f2" stroke="#222" stroke-width="1.2">
-    <circle cx="616" cy="214" r="3.5"/><circle cx="616" cy="160" r="3.5"/>
-    <circle cx="634" cy="214" r="3.5"/><circle cx="634" cy="178" r="3.5"/>
-    <circle cx="598" cy="394" r="3.5"/><circle cx="886" cy="394" r="3.5"/>
-    <circle cx="616" cy="394" r="3.5"/><circle cx="760" cy="394" r="3.5"/>
-    <circle cx="670" cy="358" r="3.5"/><circle cx="1066" cy="358" r="3.5"/>
-    <circle cx="688" cy="376" r="3.5"/><circle cx="1048" cy="376" r="3.5"/>
-    <circle cx="922" cy="160" r="3.5"/><circle cx="922" cy="250" r="3.5"/>
-    <circle cx="796" cy="160" r="3.5"/><circle cx="796" cy="322" r="3.5"/>
-    <circle cx="814" cy="178" r="3.5"/><circle cx="814" cy="322" r="3.5"/>
-    <circle cx="994" cy="178" r="3.5"/><circle cx="994" cy="322" r="3.5"/>
-    <circle cx="1030" cy="160" r="3.5"/><circle cx="1030" cy="322" r="3.5"/>
-  </g>
-
-  </g>
-
-  <!-- ===== side view of the stack and the antenna route ===== -->
-  <line x1="40" y1="516" x2="1200" y2="516" stroke="#d8d1c3"/>
-  <text x="40" y="540" class="h">Side view of the stack, not to scale</text>
-
-  <!-- breadboard strip -->
-  <rect x="220" y="690" width="260" height="30" rx="3" fill="#ffffff" stroke="#bdb6a8"/>
-  <!-- header: plastic under the XIAO, pins down into the breadboard, stubs flush on top -->
-  <rect x="250" y="666" width="194" height="10" fill="#1a1a1a"/>
-  <g stroke="#c9a640" stroke-width="3">
-    <line x1="262" y1="656" x2="262" y2="706"/><line x1="290" y1="656" x2="290" y2="706"/><line x1="318" y1="656" x2="318" y2="706"/><line x1="346" y1="656" x2="346" y2="706"/><line x1="374" y1="656" x2="374" y2="706"/><line x1="402" y1="656" x2="402" y2="706"/><line x1="430" y1="656" x2="430" y2="706"/>
-  </g>
-  <!-- XIAO, front side up -->
-  <rect x="230" y="656" width="254" height="10" fill="#f3efe6" stroke="#222"/>
-  <rect x="214" y="643" width="36" height="13" rx="2" fill="#bdbdbd" stroke="#555"/>
-  <!-- B2B on the XIAO's front, far end -->
-  <rect x="400" y="644" width="40" height="12" fill="#555"/>
-  <!-- Wio on top, pads J1/J2 on its underside over the stubs -->
-  <rect x="262" y="634" width="208" height="10" fill="#dfe8f0" stroke="#222"/>
-  <g fill="#b3261e"><rect x="258" y="644" width="8" height="3"/><rect x="286" y="644" width="8" height="3"/><rect x="314" y="644" width="8" height="3"/><rect x="342" y="644" width="8" height="3"/><rect x="370" y="644" width="8" height="3"/></g>
-  <circle cx="466" cy="630" r="4" fill="#d9c27a" stroke="#333"/>
-
-  <g class="lab" text-anchor="end">
-    <text x="256" y="636">Wio-SX1262, on top</text>
-    <text x="210" y="653">USB-C</text>
-    <text x="224" y="667">XIAO ESP32-S3</text>
-    <text x="244" y="684">header, pins down</text>
-    <text x="214" y="709">breadboard</text>
-  </g>
-  <text x="262" y="612" class="warn">pads J1/J2 over the stubs:</text>
-  <text x="262" y="625" class="warn">trim flush, no solder through</text>
-  <path class="lead" d="M440 650 H496"/>
-  <text x="500" y="654" class="sm">B2B connector</text>
-
-  <!-- pigtail, wall, bulkhead, whip -->
-  <path d="M466 626 V600 H586" fill="none" stroke="#333" stroke-width="2.5"/>
-  <text x="474" y="620" class="sm">LoRa U.FL</text>
-  <rect x="600" y="590" width="12" height="110" fill="url(#hatch)" stroke="#9a948a"/>
-  <rect x="586" y="594" width="44" height="12" fill="#c9a640" stroke="#6b5a2a"/>
-  <rect x="590" y="588" width="8" height="24" fill="#a88d3e" stroke="#6b5a2a"/>
-  <rect x="614" y="588" width="8" height="24" fill="#a88d3e" stroke="#6b5a2a"/>
-  <path d="M630 600 H641 V596" fill="none" stroke="#333" stroke-width="3"/>
-  <rect x="636" y="540" width="10" height="58" rx="4" fill="#2a2a2a"/>
-  <text x="626" y="556" class="lab" text-anchor="end">LoRa whip,</text>
-  <text x="626" y="569" class="lab" text-anchor="end">915 MHz band,</text>
-  <text x="626" y="582" class="lab" text-anchor="end">vertical</text>
-  <text x="606" y="716" class="sm" text-anchor="middle">SMA-F bulkhead</text>
-  <text x="606" y="728" class="sm" text-anchor="middle">in the box wall</text>
-  <text x="220" y="744" class="sm">WiFi U.FL is on the XIAO at the same end.</text>
-  <text x="220" y="756" class="sm">The kit's WiFi antenna stays inside the box.</text>
-
-  <!-- ===== notes box ===== -->
-  <rect x="720" y="530" width="480" height="254" rx="6" fill="#ffffff" stroke="#e0b4ae" stroke-width="1.2"/>
-  <text x="736" y="554" class="hw">Never solder one header through both boards</text>
-  <text x="736" y="574" class="lab">The Wio has edge pads (J1, J2) right over the XIAO's</text>
-  <text x="736" y="588" class="lab">pins. J1 carries the radio: D0 = DIO1, D1 = BUSY,</text>
-  <text x="736" y="602" class="lab">D2 = RESET, D3 = NSS, D4 = RF switch. A pin through both</text>
-  <text x="736" y="616" class="lab">boards ties GPIO1–5 to GPIO39, 40, 42, 41 and 38.</text>
-  <text x="736" y="642" class="h">Phase-0 build</text>
-  <text x="736" y="662" class="lab">1  Push two 1×7 headers into the breadboard, set the</text>
-  <text x="736" y="676" class="lab">   XIAO on them front side up, solder from the top.</text>
-  <text x="736" y="690" class="lab">2  Trim the stubs flush, then clip the Wio onto the B2B.</text>
-  <text x="736" y="704" class="lab">3  Fit both antennas before the first power-up.</text>
-  <text x="736" y="718" class="lab">4  Jumpers as drawn.</text>
-  <g>
-    <line x1="736" y1="746" x2="760" y2="746" stroke="#f28c28" stroke-width="4"/><text x="766" y="750" class="sm">3V3</text>
-    <line x1="806" y1="746" x2="830" y2="746" stroke="#1a1a1a" stroke-width="4"/><text x="836" y="750" class="sm">GND</text>
-    <line x1="876" y1="746" x2="900" y2="746" stroke="#1f6fd1" stroke-width="4"/><text x="906" y="750" class="sm">SDA · D4</text>
-    <line x1="976" y1="746" x2="1000" y2="746" stroke="#2a2a2a" stroke-width="6"/><line x1="976" y1="746" x2="1000" y2="746" stroke="#f2c418" stroke-width="4"/><text x="1006" y="750" class="sm">SCL · D5</text>
-    <line x1="736" y1="768" x2="760" y2="768" stroke="#2e9e4f" stroke-width="4"/><text x="766" y="772" class="sm">button · D0</text>
-    <line x1="876" y1="768" x2="900" y2="768" stroke="#8a4fd1" stroke-width="4"/><text x="906" y="772" class="sm">LED data · D1</text>
-  </g>
-
-  <!-- footnotes -->
-  <text x="40" y="812" class="sm">Pin labels read D name · GPIO. D8, D9 and D10 are GPIO7, 8 and 9: the same nets as the radio's SPI bus, which reaches the Wio through the B2B connector.</text>
-  <text x="40" y="828" class="sm">SHT40 breakout drawn: Adafruit 4885 (VIN 3V GND SCL SDA, 10 kΩ pull-ups on board). Clone boards order their pins differently, read the silkscreen.</text>
-  <text x="40" y="844" class="sm">Button legs are wired diagonally (D0 to col 18 below the gap, GND to col 20 above it), which switches whichever way round the button sits.</text>
-  <text x="40" y="860" class="sm">WS2812B on 3V3: the data threshold then matches the 3.3 V GPIO. The datasheet asks for 3.5 V minimum; one pixel runs in practice, see README.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1349" viewBox="0 0 1100 1349" font-family="Helvetica, Arial, sans-serif">
+<rect width="1100" height="1349" fill="#fbfaf6"/>
+<text x="30" y="46" font-size="26" fill="#1d2433" font-weight="bold">Bayu Relay · Breadboard wiring, phase 0</text>
+<text x="30" y="72" font-size="15" fill="#5b6475">XIAO ESP32-S3 + Wio-SX1262, SHT40 · 5 V USB wall supply · top view</text>
+<rect x="735" y="18" width="345" height="182" rx="10" fill="#ffffff" stroke="#c9c4b6" stroke-width="1.5"/>
+<text x="751" y="46" font-size="14" fill="#1d2433" font-weight="bold">Nets, the same colour on every sheet</text>
+<line x1="751" y1="65" x2="775" y2="65" stroke="#d0312d" stroke-width="5"/>
+<text x="783" y="70" font-size="13" fill="#1d2433">+5V_USB, +5V_F, +5V_IN</text>
+<line x1="751" y1="82" x2="775" y2="82" stroke="#ef7d00" stroke-width="5"/>
+<text x="783" y="87" font-size="13" fill="#1d2433">3V3</text>
+<line x1="751" y1="99" x2="775" y2="99" stroke="#1d2433" stroke-width="5"/>
+<text x="783" y="104" font-size="13" fill="#1d2433">GND</text>
+<line x1="751" y1="116" x2="775" y2="116" stroke="#1f5fbf" stroke-width="5"/>
+<text x="783" y="121" font-size="13" fill="#1d2433">I2C_SDA</text>
+<line x1="751" y1="133" x2="775" y2="133" stroke="#7a6000" stroke-width="7"/>
+<line x1="751" y1="133" x2="775" y2="133" stroke="#e6b400" stroke-width="5"/>
+<text x="783" y="138" font-size="13" fill="#1d2433">I2C_SCL</text>
+<line x1="751" y1="150" x2="775" y2="150" stroke="#4cae4f" stroke-width="5"/>
+<text x="783" y="155" font-size="13" fill="#1d2433">UART_TX</text>
+<line x1="751" y1="167" x2="775" y2="167" stroke="#1b6b3a" stroke-width="5"/>
+<text x="783" y="172" font-size="13" fill="#1d2433">UART_RX</text>
+<line x1="941" y1="65" x2="965" y2="65" stroke="#7a3fb3" stroke-width="5"/>
+<text x="973" y="70" font-size="13" fill="#1d2433">PMS_SET</text>
+<line x1="941" y1="82" x2="965" y2="82" stroke="#8a8f99" stroke-width="5"/>
+<text x="973" y="87" font-size="13" fill="#1d2433">BTN</text>
+<line x1="941" y1="99" x2="965" y2="99" stroke="#d63384" stroke-width="5"/>
+<text x="973" y="104" font-size="13" fill="#1d2433">LED_DIN</text>
+<line x1="941" y1="116" x2="965" y2="116" stroke="#2a9d8f" stroke-width="5"/>
+<text x="973" y="121" font-size="13" fill="#1d2433">VBAT_SENSE</text>
+<line x1="941" y1="133" x2="965" y2="133" stroke="#8a5a2b" stroke-width="5" stroke-dasharray="5 3"/>
+<text x="973" y="138" font-size="13" fill="#1d2433">antenna coax</text>
+<line x1="941" y1="150" x2="965" y2="150" stroke="#4a5873" stroke-width="5"/>
+<text x="973" y="155" font-size="13" fill="#1d2433">U2 radio lines</text>
+<rect x="941" y="161" width="24" height="12" rx="2" fill="#f4efe2" stroke="#1d2433" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="973" y="172" font-size="13" fill="#1d2433">optional</text>
+<rect x="941" y="178" width="24" height="12" rx="2" fill="none" stroke="#b4b8c1" stroke-width="1.6"/>
+<text x="973" y="189" font-size="13" fill="#1d2433">not fitted</text>
+<text x="30" y="98" font-size="14" fill="#1d2433">Solder the header into the XIAO only and trim the stubs flush. The Wio's edge pads over D0 to D4 carry radio</text>
+<text x="30" y="117" font-size="14" fill="#1d2433">lines, a pin through both boards ties them to the button, LED, SET and SDA.</text>
+<text x="30" y="136" font-size="14" fill="#1d2433">Never power the radio without its antenna. D8, D9 and D10 are the radio's SPI bus, leave them empty.</text>
+<text x="30" y="155" font-size="14" fill="#1d2433">No PM sensor on a Relay, so D2, D3, D6 and D7 stay free.</text>
+<rect x="40" y="222" width="1022" height="560" rx="12" fill="#f3f1ea" stroke="#c9c4b6" stroke-width="1.5"/>
+<rect x="40" y="488" width="1022" height="58" fill="#e7e3d7"/>
+<text x="62" y="240" font-size="13" fill="#5b6475" text-anchor="middle">1</text>
+<text x="182" y="240" font-size="13" fill="#5b6475" text-anchor="middle">5</text>
+<text x="332" y="240" font-size="13" fill="#5b6475" text-anchor="middle">10</text>
+<text x="482" y="240" font-size="13" fill="#5b6475" text-anchor="middle">15</text>
+<text x="632" y="240" font-size="13" fill="#5b6475" text-anchor="middle">20</text>
+<text x="782" y="240" font-size="13" fill="#5b6475" text-anchor="middle">25</text>
+<text x="932" y="240" font-size="13" fill="#5b6475" text-anchor="middle">30</text>
+<line x1="50" y1="250" x2="944" y2="250" stroke="#1d2433" stroke-width="2.5"/>
+<line x1="50" y1="304" x2="944" y2="304" stroke="#d0312d" stroke-width="2.5"/>
+<line x1="50" y1="742" x2="944" y2="742" stroke="#ef7d00" stroke-width="2.5"/>
+<line x1="50" y1="770" x2="944" y2="770" stroke="#1d2433" stroke-width="2.5"/>
+<rect x="58.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="58.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="88.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="118.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="148.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="178.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="208.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="238.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="268.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="298.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="328.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="358.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="388.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="418.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="448.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="478.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="508.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="538.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="568.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="598.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="628.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="658.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="688.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="718.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="748.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="778.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="808.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="838.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="868.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="898.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="258.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="288.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="723.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="753.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="348.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="378.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="408.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="438.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="468.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="558.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="588.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="618.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="648.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<rect x="928.5" y="678.5" width="7" height="7" rx="1" fill="#a9a497"/>
+<text x="954" y="357" font-size="13" fill="#5b6475">a</text>
+<text x="954" y="387" font-size="13" fill="#5b6475">b</text>
+<text x="954" y="417" font-size="13" fill="#5b6475">c</text>
+<text x="954" y="447" font-size="13" fill="#5b6475">d</text>
+<text x="954" y="477" font-size="13" fill="#5b6475">e</text>
+<text x="954" y="567" font-size="13" fill="#5b6475">f</text>
+<text x="954" y="597" font-size="13" fill="#5b6475">g</text>
+<text x="954" y="627" font-size="13" fill="#5b6475">h</text>
+<text x="954" y="657" font-size="13" fill="#5b6475">i</text>
+<text x="954" y="687" font-size="13" fill="#5b6475">j</text>
+<text x="978" y="267" font-size="13" fill="#1d2433" font-weight="bold">GND</text>
+<text x="978" y="297" font-size="13" fill="#d0312d" font-weight="bold">+5V_USB</text>
+<text x="978" y="732" font-size="13" fill="#ef7d00" font-weight="bold">3V3</text>
+<text x="978" y="762" font-size="13" fill="#1d2433" font-weight="bold">GND</text>
+<rect x="33.5" y="466" width="24" height="42" rx="5" fill="#b9bfcc" stroke="#7f889b" stroke-width="1.5"/>
+<rect x="51.5" y="372" width="249" height="230" rx="10" fill="#e9ecf2" stroke="#7f889b" stroke-width="1.6"/>
+<text x="92" y="406" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">5V</text>
+<rect x="86" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="122" y1="388" x2="122" y2="426" stroke="#9aa3b5" stroke-width="1"/>
+<text x="122" y="438" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">GND</text>
+<rect x="116" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="152" y="406" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">3V3</text>
+<rect x="146" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="182" y1="388" x2="182" y2="426" stroke="#9aa3b5" stroke-width="1"/>
+<text x="182" y="438" font-size="13" fill="#5b6475" text-anchor="middle">D10</text>
+<text x="182" y="453" font-size="13" fill="#5b6475" text-anchor="middle">GPIO9</text>
+<rect x="176" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="212" y="406" font-size="13" fill="#5b6475" text-anchor="middle">D9</text>
+<text x="212" y="421" font-size="13" fill="#5b6475" text-anchor="middle">GPIO8</text>
+<rect x="206" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="242" y1="388" x2="242" y2="426" stroke="#9aa3b5" stroke-width="1"/>
+<text x="242" y="438" font-size="13" fill="#5b6475" text-anchor="middle">D8</text>
+<text x="242" y="453" font-size="13" fill="#5b6475" text-anchor="middle">GPIO7</text>
+<rect x="236" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="272" y="406" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D7</text>
+<text x="272" y="421" font-size="13" fill="#5b6475" text-anchor="middle">GPIO44</text>
+<rect x="266" y="376" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="92" y="563" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D0</text>
+<text x="92" y="578" font-size="13" fill="#5b6475" text-anchor="middle">GPIO1</text>
+<rect x="86" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="122" y1="586" x2="122" y2="550" stroke="#9aa3b5" stroke-width="1"/>
+<text x="122" y="531" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D1</text>
+<text x="122" y="546" font-size="13" fill="#5b6475" text-anchor="middle">GPIO2</text>
+<rect x="116" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="152" y="563" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D2</text>
+<text x="152" y="578" font-size="13" fill="#5b6475" text-anchor="middle">GPIO3</text>
+<rect x="146" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="182" y1="586" x2="182" y2="550" stroke="#9aa3b5" stroke-width="1"/>
+<text x="182" y="531" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D3</text>
+<text x="182" y="546" font-size="13" fill="#5b6475" text-anchor="middle">GPIO4</text>
+<rect x="176" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="212" y="563" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D4</text>
+<text x="212" y="578" font-size="13" fill="#5b6475" text-anchor="middle">GPIO5</text>
+<rect x="206" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="242" y1="586" x2="242" y2="550" stroke="#9aa3b5" stroke-width="1"/>
+<text x="242" y="531" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D5</text>
+<text x="242" y="546" font-size="13" fill="#5b6475" text-anchor="middle">GPIO6</text>
+<rect x="236" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="272" y="563" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D6</text>
+<text x="272" y="578" font-size="13" fill="#5b6475" text-anchor="middle">GPIO43</text>
+<rect x="266" y="586" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="176" y="477" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">U1 XIAO ESP32-S3</text>
+<rect x="56.5" y="377" width="239" height="220" rx="8" fill="none" stroke="#4a5873" stroke-width="2.4"/>
+<text x="176" y="495" font-size="13" fill="#4a5873" text-anchor="middle">U2 Wio-SX1262 on top</text>
+<text x="176" y="511" font-size="13" fill="#5b6475" text-anchor="middle">D8 to D10: radio SPI</text>
+<circle cx="284.5" cy="487" r="6" fill="#d9b44a" stroke="#4a5873" stroke-width="1.5"/>
+<polyline points="284.5,487 350,487" fill="none" stroke="#8a5a2b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<text x="358" y="484" font-size="13" fill="#8a5a2b" font-weight="bold">U2 LoRa U.FL, pigtail</text>
+<text x="358" y="501" font-size="13" fill="#8a5a2b">to SMA bulkhead, whip</text>
+<polyline points="92,352 92,292" fill="none" stroke="#d0312d" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="122,352 122,262" fill="none" stroke="#1d2433" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="152,352 152,332 332,332 332,727" fill="none" stroke="#ef7d00" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="932,262 932,757" fill="none" stroke="#1d2433" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="92" cy="352" r="4.5" fill="#d0312d" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="92" cy="292" r="4.5" fill="#d0312d" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="122" cy="352" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="122" cy="262" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="152" cy="352" r="4.5" fill="#ef7d00" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="332" cy="727" r="4.5" fill="#ef7d00" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="932" cy="262" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="932" cy="757" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="92,622 82,622 82,804 62,804 62,957" fill="none" stroke="#8a8f99" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<circle cx="92" cy="622" r="4.5" fill="#8a8f99" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="122,652 132,652 132,840 152,840 152,957" fill="none" stroke="#d63384" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<circle cx="122" cy="652" r="4.5" fill="#d63384" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="147" y="909" width="10" height="28" rx="3" fill="#e8d5b5" stroke="#8a6d3b" stroke-width="1.2"/>
+<text x="140" y="920" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="end">R3</text>
+<text x="140" y="935" font-size="13" fill="#5b6475" text-anchor="end">330 Ω</text>
+<polyline points="212,622 202,622 202,828 392,828 392,957" fill="none" stroke="#1f5fbf" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="212" cy="622" r="4.5" fill="#1f5fbf" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="242,622 232,622 232,816 362,816 362,957" fill="none" stroke="#7a6000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="242,622 232,622 232,816 362,816 362,957" fill="none" stroke="#e6b400" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="242" cy="622" r="4.5" fill="#e6b400" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="92,757 92,957" fill="none" stroke="#1d2433" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<circle cx="92" cy="757" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="182,727 182,957" fill="none" stroke="#ef7d00" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<circle cx="182" cy="727" r="4.5" fill="#ef7d00" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="212,757 212,957" fill="none" stroke="#1d2433" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<circle cx="212" cy="757" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="422,727 422,957" fill="none" stroke="#ef7d00" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="422" cy="727" r="4.5" fill="#ef7d00" stroke="#ffffff" stroke-width="1.2"/>
+<polyline points="452,757 452,957" fill="none" stroke="#1d2433" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="452" cy="757" r="4.5" fill="#1d2433" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="24" y="957" width="92" height="132" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="62" y="979" font-size="13" fill="#1d2433" text-anchor="middle">1</text>
+<rect x="57" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<line x1="92" y1="963" x2="92" y2="985" stroke="#9aa3b5" stroke-width="1"/>
+<text x="92" y="997" font-size="13" fill="#1d2433" text-anchor="middle">2</text>
+<rect x="87" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<text x="34" y="1025" font-size="14" fill="#1d2433" font-weight="bold">SW1 button</text>
+<text x="34" y="1043" font-size="13" fill="#5b6475">optional</text>
+<text x="34" y="1059" font-size="13" fill="#5b6475">D0 to GND</text>
+<rect x="128" y="957" width="108" height="132" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="152" y="979" font-size="13" fill="#1d2433" text-anchor="middle">DIN</text>
+<rect x="147" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<line x1="182" y1="963" x2="182" y2="985" stroke="#9aa3b5" stroke-width="1"/>
+<text x="182" y="997" font-size="13" fill="#1d2433" text-anchor="middle">VCC</text>
+<rect x="177" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<text x="212" y="979" font-size="13" fill="#1d2433" text-anchor="middle">GND</text>
+<rect x="207" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<text x="138" y="1025" font-size="14" fill="#1d2433" font-weight="bold">U7 WS2812B</text>
+<text x="138" y="1043" font-size="13" fill="#5b6475">optional</text>
+<text x="138" y="1059" font-size="13" fill="#5b6475">on 3V3</text>
+<rect x="336" y="957" width="142" height="132" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.4"/>
+<text x="362" y="979" font-size="13" fill="#1d2433" text-anchor="middle">1 SCL</text>
+<rect x="357" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<line x1="392" y1="963" x2="392" y2="985" stroke="#9aa3b5" stroke-width="1"/>
+<text x="392" y="997" font-size="13" fill="#1d2433" text-anchor="middle">2 SDA</text>
+<rect x="387" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<text x="422" y="979" font-size="13" fill="#1d2433" text-anchor="middle">3 VCC</text>
+<rect x="417" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<line x1="452" y1="963" x2="452" y2="985" stroke="#9aa3b5" stroke-width="1"/>
+<text x="452" y="997" font-size="13" fill="#1d2433" text-anchor="middle">4 GND</text>
+<rect x="447" y="952" width="10" height="10" rx="1" fill="#d9b44a" stroke="#8a8371" stroke-width="1"/>
+<text x="346" y="1025" font-size="14" fill="#1d2433" font-weight="bold">U5 SHT40</text>
+<text x="346" y="1043" font-size="13" fill="#5b6475">Grove, I2C 0x44</text>
+<text x="346" y="1059" font-size="13" fill="#5b6475">Core: J3</text>
+<text x="30" y="1127" font-size="14" fill="#1d2433">The SHT40 is drawn as the Grove board that goes on J3. On the breadboard an Adafruit 4885 works too: VIN to 3V3, its 3V pin left open. Clone boards order their pins</text>
+<text x="30" y="1146" font-size="14" fill="#1d2433">differently, read the silkscreen.</text>
+<text x="30" y="1169" font-size="14" fill="#1d2433">The LoRa whip goes out through the SMA bulkhead, the XIAO's WiFi antenna stays inside the box.</text>
+<text x="30" y="1192" font-size="14" fill="#1d2433">SW1 and U7 are optional and only the Meshtastic build uses them, v5 reads the XIAO's own BOOT button. R3, 330 Ω, sits in series on the LED data line on every</text>
+<text x="30" y="1211" font-size="14" fill="#1d2433">variant. U7 runs on 3V3. The WS2812B asks for 3.5 V, but one pixel lights fine on 3.3 V and then reads the GPIO cleanly.</text>
+<text x="30" y="1234" font-size="14" fill="#1d2433">Power: a 5 V / 2 A USB-C wall supply. The XIAO's 5V pin is USB VBUS, the top rail carries it as +5V_USB. On the Core it goes through F1 first and becomes +5V_F.</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1297" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1297" x2="1100" y2="1297" stroke="#c9c4b6"/><text x="20" y="1319" fill="#1d2433" font-weight="bold">Bayu Relay · Breadboard wiring, phase 0 · rev 2026-10-24</text><text x="20" y="1338" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

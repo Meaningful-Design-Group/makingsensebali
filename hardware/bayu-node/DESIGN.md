@@ -5,14 +5,20 @@ after the circuit drawings in [`circuits/`](circuits/) were checked against the 
 schematic and the Meshtastic source; what changed is listed in
 [Corrections from the circuit drawings](#corrections-from-the-circuit-drawings).
 
-Bayu is the next node generation after the DIY node (XIAO ESP32-S3 + BME680 + HM3301,
-firmware v5, enclosure node-v3.2). Same MCU, new sensors: Sensirion SEN54 and Plantower
+Bayu is the campaign's node. The one deployed today is Bayu v3: XIAO ESP32-S3, BME680 and
+HM3301 on a Grove Shield or Fab Lab Bali's PCB, firmware v5, enclosure node-v3.2, documented
+in [`../diy-node/`](../diy-node/). This design keeps that node as it is and adds four
+variants around it, with the same MCU and new sensors: Sensirion SEN54 and Plantower
 PMS5003 / PMS5003T. One carrier board, several sensor roles, WiFi uplink on every unit and
 LoRa mesh where WiFi is missing. Hard constraint: a complete kit under USD 100.
 
+Bayu v3 already fits the pin budget below unchanged: its BME680 and HM3301 sit on the same
+I2C bus the new variants use, so it runs on the Bayu Core board, on the Grove Shield, and on
+the proposed [Grove Shield Mini](grove-shield-mini/).
+
 On the name: `bayu-vN` was retired as an *enclosure* numbering scheme (see
-[`../diy-node/enclosure/README.md`](../diy-node/enclosure/README.md)). Here Bayu names the
-node product, enclosures keep Fab Lab Bali's node-vN numbering. No collision.
+[`../diy-node/enclosure/README.md`](../diy-node/enclosure/README.md)). Bayu names the node,
+enclosures keep Fab Lab Bali's node-vN numbering.
 
 ## Decisions taken in this draft
 
@@ -341,7 +347,10 @@ three pieces, in this order:
    table. Done when a Dense node's PM2.5 appears on smartcitizen.me through the mesh.
 3. **Correction, server side.** PMS5003 raw values are published as read. The EPA
    PurpleAir-style humidity correction and the per-cluster anchor coefficients run on the
-   server, where they can be revised; nodes never carry calibration state.
+   server, where they can be revised; nodes never carry calibration state. The humidity
+   term uses ambient RH from a shielded SHT40: the node's own on Anchor and Indoor, the
+   nearest Anchor or Relay for a Dense node. A PMS5003T's internal RH reads low because its
+   air is warm, and would under-correct.
 
 Fan sleep for the Plantower is Meshtastic's existing sleep/wake cycle driven by the SET
 pin: 30 s warm-up before each read, idle between reads. This roughly triples fan life

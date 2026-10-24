@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1240 1000" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace">
+<svg viewBox="0 0 1100 1872" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace" width="1100" height="1872">
   <title>Bayu Relay placement</title>
   <desc>Where to put a Bayu Relay: side elevation of a house with the Relay on a mast, whip at least 1 m above the ridge and clear of roof sheet and water tank, WiFi to the router; line of sight across a rice field to the nodes with the first Fresnel zone and indicative ranges for MEDIUM_FAST and LONG_FAST; a section of the box with the radio high and the SHT40 low in a radiation shield; a do and do-not list.</desc>
   <style>
@@ -7,8 +7,8 @@
     .st   { font-size: 11px; fill: #555; }
     .h    { font-size: 12px; font-weight: 700; fill: #111; }
     .lab  { font-size: 10.5px; fill: #222; }
-    .sm   { font-size: 9px; fill: #555; }
-    .dim  { font-size: 9.5px; fill: #1f5fa8; }
+    .sm   { font-size: 10.5px; fill: #555; }
+    .dim  { font-size: 10.5px; fill: #1f5fa8; }
     .warn { font-size: 10.5px; fill: #b3261e; }
     .ok   { font-size: 10.5px; fill: #1e6b3a; }
     .okh  { font-size: 12px; font-weight: 700; fill: #1e6b3a; }
@@ -31,11 +31,18 @@
     </pattern>
   </defs>
 
-  <rect width="1240" height="1000" fill="#fbf8f2"/>
+  <rect width="1100" height="1820" fill="#fbf8f2"/>
+  <!-- panels stacked for the 1100 canvas, each scaled 1.238 so the smallest type renders at 13 px -->
+  <line x1="24" y1="636" x2="1076" y2="636" stroke="#d8d1c3"/>
+  <line x1="24" y1="1276" x2="1076" y2="1276" stroke="#d8d1c3"/>
+  <g transform="translate(24 0) scale(1.238) translate(-40 0)">
   <text x="40" y="34" class="t">Bayu Relay · where to put it</text>
   <text x="40" y="54" class="st">radio high and clear, climate sensor low and shaded · distances are rules of thumb, ranges are indicative</text>
 
+  </g>
+
   <!-- ===== 1 side elevation ===== -->
+  <g transform="translate(12 90) scale(1.238) translate(-30 -76)">
   <text x="40" y="90" class="h">1 · Side elevation</text>
   <text x="40" y="106" class="sm">heights to scale (1 m = 40 px), the box and whip drawn larger</text>
   <line x1="40" y1="500" x2="640" y2="500" stroke="#7a6a4f" stroke-width="2"/>
@@ -54,9 +61,9 @@
   <!-- router and WiFi -->
   <rect x="210" y="456" width="34" height="14" rx="2" fill="#ffffff" stroke="#222"/>
   <path d="M220 452 q7 -8 14 0 M216 447 q11 -13 22 0" fill="none" stroke="#3c8fb5" stroke-width="1.2"/>
-  <text x="182" y="410" class="lab">WiFi router</text>
-  <text x="182" y="423" class="sm">within ~15 m,</text>
-  <text x="182" y="434" class="sm">one wall</text>
+  <text x="182" y="408" class="lab">WiFi router</text>
+  <text x="182" y="421" class="sm">within ~15 m,</text>
+  <text x="182" y="433" class="sm">one wall</text>
   <path d="M244 452 L430 270" fill="none" stroke="#3c8fb5" stroke-width="1.2" stroke-dasharray="4 4"/>
 
   <!-- mast, brackets, box, shield, whip -->
@@ -68,8 +75,9 @@
   <rect x="445" y="212" width="6" height="32" rx="2" fill="#2a2a2a"/>
   <!-- USB cable with drip loop into the house -->
   <path d="M470 270 H478 V474 C478 492 462 492 462 476 H390" fill="none" stroke="#555" stroke-width="1.6"/>
-  <text x="486" y="474" class="sm">USB 5 V, drip loop,</text>
-  <text x="486" y="485" class="sm">socket indoors</text>
+  <text x="486" y="466" class="sm">USB 5 V,</text>
+  <text x="486" y="479" class="sm">drip loop,</text>
+  <text x="486" y="492" class="sm">socket indoors</text>
 
   <!-- dimensions -->
   <path class="d" d="M600 500 V300" marker-start="url(#a)" marker-end="url(#a)"/>
@@ -88,15 +96,17 @@
 
   <text x="486" y="226" class="lab">whip vertical</text>
   <text x="486" y="324" class="sm">SHT40 shield bay,</text>
-  <text x="486" y="335" class="sm">shade side</text>
+  <text x="486" y="337" class="sm">shade side</text>
   <!-- sun and compass -->
   <circle cx="616" cy="128" r="10" fill="#f6d36b" stroke="#c99a1a"/>
   <text x="604" y="156" class="sm" text-anchor="end">sun to the north</text>
-  <text x="604" y="167" class="sm" text-anchor="end">mid-Feb to late Oct</text>
+  <text x="604" y="169" class="sm" text-anchor="end">mid-Feb to late Oct</text>
   <text x="430" y="132" class="sm">S</text><path class="d" d="M442 128 H488" marker-start="url(#a)" marker-end="url(#a)"/><text x="494" y="132" class="sm">N</text>
 
+  </g>
+
   <!-- ===== 2 line of sight ===== -->
-  <line x1="660" y1="76" x2="660" y2="570" stroke="#d8d1c3"/>
+  <g transform="translate(24 650) scale(1.238) translate(-680 -76)">
   <text x="680" y="90" class="h">2 · Line of sight across the sawah</text>
   <text x="680" y="106" class="sm">heights exaggerated</text>
   <line x1="680" y1="440" x2="1200" y2="440" stroke="#7a6a4f" stroke-width="2"/>
@@ -122,7 +132,7 @@
   <path d="M984 416 L1007 400 L1030 416 Z" fill="#e6dccb" stroke="#222"/>
   <rect x="1003" y="388" width="8" height="10" fill="#ffffff" stroke="#222"/>
   <text x="1007" y="456" class="sm" text-anchor="middle">warung</text>
-  <text x="1007" y="467" class="sm" text-anchor="middle">Dense</text>
+  <text x="1007" y="469" class="sm" text-anchor="middle">Dense</text>
   <!-- school with the Anchor -->
   <rect x="1120" y="390" width="70" height="50" fill="#f3efe6" stroke="#222"/>
   <path d="M1114 392 L1155 368 L1196 392 Z" fill="#d6dade" stroke="#222"/>
@@ -130,19 +140,21 @@
   <rect x="1170" y="352" width="12" height="10" fill="#ffffff" stroke="#222"/>
   <rect x="1174" y="340" width="4" height="12" fill="#2a2a2a"/>
   <text x="1155" y="456" class="sm" text-anchor="middle">school</text>
-  <text x="1155" y="467" class="sm" text-anchor="middle">Anchor</text>
+  <text x="1155" y="469" class="sm" text-anchor="middle">Anchor</text>
   <!-- sight lines -->
   <path d="M716 280 L1176 342" fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4"/>
   <path d="M716 280 L1007 390" fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4"/>
   <text x="700" y="268" class="lab">Relay</text>
   <text x="760" y="168" class="lab">first Fresnel zone at 921 MHz:</text>
-  <text x="760" y="182" class="sm">radius at mid-path about 9 m on a 1 km link,</text>
-  <text x="760" y="194" class="sm">13 m on 2 km. Keep 60 % of it clear of</text>
-  <text x="760" y="206" class="sm">roofs, palms and tanks, or the link fades.</text>
-  <path d="M900 210 L930 300" fill="none" stroke="#777" stroke-width="0.8"/>
+  <text x="760" y="183" class="sm">radius at mid-path about 9 m on a 1 km link,</text>
+  <text x="760" y="196" class="sm">13 m on 2 km. Keep 60 % of it clear of</text>
+  <text x="760" y="209" class="sm">roofs, palms and tanks, or the link fades.</text>
+  <path d="M900 214 L930 300" fill="none" stroke="#777" stroke-width="0.8"/>
 
   <!-- indicative ranges -->
-  <text x="680" y="492" class="sm">indicative ranges, not measured by us yet · dark: through a village · light: open sawah, clear sight</text>
+  <text x="680" y="486" class="sm">indicative ranges, not measured by us yet</text>
+  <text x="680" y="499" class="sm">dark: through a village · light: open sawah, clear sight</text>
+  <g transform="translate(0 6)">
   <text x="680" y="514" class="lab">MEDIUM_FAST</text>
   <rect x="784" y="505" width="56" height="10" fill="#1f5fa8"/>
   <rect x="840" y="505" width="160" height="10" fill="url(#light)" stroke="#7fa7d6"/>
@@ -154,9 +166,12 @@
     <text x="760" y="558">0</text><text x="840" y="558">1</text><text x="920" y="558">2</text><text x="1000" y="558">3</text><text x="1080" y="558">4</text><text x="1160" y="558">5 km</text>
   </g>
   <g stroke="#555"><line x1="760" y1="541" x2="760" y2="547"/><line x1="840" y1="541" x2="840" y2="547"/><line x1="920" y1="541" x2="920" y2="547"/><line x1="1000" y1="541" x2="1000" y2="547"/><line x1="1080" y1="541" x2="1080" y2="547"/><line x1="1160" y1="541" x2="1160" y2="547"/></g>
+  </g>
+
+  </g>
 
   <!-- ===== 3 inside the box ===== -->
-  <line x1="40" y1="586" x2="1200" y2="586" stroke="#d8d1c3"/>
+  <g transform="translate(24 1290) scale(1.238) translate(-40 -600)">
   <text x="40" y="612" class="h">3 · Inside the box</text>
   <text x="40" y="628" class="sm">section, not to scale</text>
   <rect x="206" y="642" width="8" height="10" fill="#c9a640"/>
@@ -189,8 +204,8 @@
   <!-- labels -->
   <text x="306" y="664" class="lab">warm air out, high</text>
   <text x="306" y="706" class="lab">radio stack at the top</text>
-  <text x="306" y="719" class="sm">transmitting warms the air</text>
-  <text x="306" y="731" class="sm">around it</text>
+  <text x="306" y="719" class="sm">transmitting warms</text>
+  <text x="306" y="732" class="sm">the air around it</text>
   <text x="306" y="792" class="lab">baffle</text>
   <text x="306" y="826" class="lab">SHT40 in the shield,</text>
   <text x="306" y="839" class="sm">10 cm Grove tail,</text>
@@ -198,8 +213,11 @@
   <text x="306" y="940" class="sm">USB from below</text>
   <text x="140" y="944" class="sm">outside air in, low</text>
 
+  </g>
+
   <!-- ===== 4 do and do not ===== -->
-  <rect x="470" y="600" width="730" height="370" rx="6" fill="#ffffff" stroke="#d8d1c3"/>
+  <g transform="translate(544 1290) scale(1.238) translate(-470 -600)">
+  <rect x="470" y="600" width="430" height="370" rx="6" fill="#ffffff" stroke="#d8d1c3"/>
   <text x="490" y="628" class="okh">Do</text>
   <text x="490" y="650" class="ok">✓ whip vertical, tip 1 m or more above the ridge</text>
   <text x="490" y="672" class="ok">✓ face the nodes across open sawah or over roofs</text>
@@ -218,5 +236,11 @@
   <text x="490" y="934" class="warn">✗ swap the U.FL plugs: XIAO is WiFi, Wio is LoRa</text>
   <text x="490" y="956" class="warn">✗ raise tx_power before checking the class licence limit</text>
 
-  <text x="40" y="988" class="sm">Fresnel radius r = √(λ·d1·d2/D), λ = 0.326 m at 921 MHz. The 60 mm stack-to-sensor rule comes from kit1-hex, after the Node V2 lost its climate readings to radio heat.</text>
+  </g>
+
+  <g transform="translate(24 1770) scale(1.238) translate(-40 -976)">
+  <text x="40" y="988" class="sm">Fresnel radius r = √(λ·d1·d2/D), λ = 0.326 m at 921 MHz. The 60 mm stack-to-sensor rule comes from kit1-hex,</text>
+  <text x="40" y="1002" class="sm">after the Node V2 lost its climate readings to radio heat.</text>
+  </g>
+<g data-stamp="bayu" font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1820" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1820" x2="1100" y2="1820" stroke="#c9c4b6"/><text x="20" y="1842" fill="#1d2433" font-weight="bold">Bayu Relay · Placement · rev 2026-10-24</text><text x="20" y="1861" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

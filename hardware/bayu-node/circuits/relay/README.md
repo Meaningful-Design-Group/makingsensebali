@@ -10,7 +10,7 @@ Phase 0 is a breadboard and jumpers, no PCB. The Core drawing shows where the sa
 
 ![Bayu Relay breadboard wiring](wiring-breadboard.svg)
 
-The stack plugs into the breadboard pins-down, with one rule. The Wio-SX1262 clips on top of the XIAO, onto the board-to-board (B2B) connector at the end away from USB-C, and it has two rows of edge pads (J1, J2) right over the XIAO's pins. J1 carries the radio on the D0 to D4 positions, so a header that reaches the Wio ties GPIO1–5 to the radio's DIO1, BUSY, RESET, NSS and RF switch lines. The Relay uses D0, D1 and D4, so that would break it on day one.
+The stack plugs into the breadboard pins-down, with one rule. The Wio-SX1262 clips on top of the XIAO, onto the board-to-board (B2B) connector at the end away from USB-C, and it has two rows of edge pads (J1 and J2 on Seeed's schematic, not the Core's sockets) right over the XIAO's pins. Seeed's J1 carries the radio on the D0 to D4 positions, so a header that reaches the Wio ties GPIO1–5 to the radio's DIO1, BUSY, RESET, NSS and RF switch lines. The Relay uses D0, D1 and D4, so that would break it on day one.
 
 So the header goes into the XIAO alone. Push two 1×7 headers into the breadboard, set the XIAO on them front side up, solder from the top and trim the stubs flush before the Wio goes on. USB-C hangs over the edge of the breadboard. Fit both antennas before you plug in USB.
 
@@ -18,7 +18,7 @@ So the header goes into the XIAO alone. Push two 1×7 headers into the breadboar
 
 ![Bayu Relay connector map on the Bayu Core](wiring-core.svg)
 
-The SHT40 goes on Grove socket G1, the button and the LED share the D0/D1 Grove socket G3, and the SEN54 and PMS5003 connectors stay empty. Leave the I²C pull-up jumper JP1 open: Grove and Adafruit SHT40 boards bring their own pull-ups. The LoRa pigtail leaves the board towards the SMA bulkhead, and the WiFi antenna goes on the opposite wall.
+The SHT40 goes on Grove socket J3, the LED and the button share the Grove socket J5 (pin 1 LED data, pin 2 button, the button on a split cable), and the SEN54 and PMS5003 connectors (J1, J2) stay empty. Leave the I²C pull-up jumper JP1 open: Grove and Adafruit SHT40 boards bring their own pull-ups. The LoRa pigtail leaves the board towards the SMA bulkhead, and the WiFi antenna goes on the opposite wall.
 
 The same rule holds on the Core: the socket takes the XIAO pins-down, with the header soldered into the XIAO only and the stubs trimmed, and the Wio rides on top. The socket needs 25 mm clear above it for the stack and the U.FL pigtail.
 
@@ -30,12 +30,12 @@ The same rule holds on the Core: the socket takes the XIAO pins-down, with the h
 
 | Function | XIAO pin | GPIO | Breadboard wire | Core |
 |---|---|---|---|---|
-| SHT40 SDA | D4 | 5 | blue | G1 pin 2 |
-| SHT40 SCL | D5 | 6 | yellow | G1 pin 1 |
-| SHT40 and LED supply | 3V3 | — | orange | G1, G3 pin 3 |
-| Ground | GND | — | black | G1, G3 pin 4 |
-| Button to GND, internal pull-up | D0 | 1 | green | G3 pin 1 |
-| WS2812B data, through 330 Ω | D1 | 2 | purple | G3 pin 2 |
+| SHT40 SDA | D4 | 5 | blue | J3 pin 2 |
+| SHT40 SCL | D5 | 6 | yellow | J3 pin 1 |
+| SHT40 and LED supply | 3V3 | — | orange | J3, J5 pin 3 |
+| Ground | GND | — | black | J3, J5 pin 4 |
+| Button to GND, internal pull-up | D0 | 1 | grey | J5 pin 2 |
+| WS2812B data, through R3 (330 Ω) | D1 | 2 | pink | J5 pin 1 |
 | Radio SPI: SCK, MISO, MOSI | D8, D9, D10 | 7, 8, 9 | taken | B2B |
 | Radio NSS, RESET, BUSY, DIO1, RF switch | — | 41, 42, 40, 39, 38 | taken | B2B only |
 | Wio's own button and green LED | — | 21, 48 | on the Wio | B2B only |
@@ -57,7 +57,7 @@ Prices are single units, October 2026, from the cost table in DESIGN.md where it
 | 1 | 915 MHz band whip, SMA-male | Covers 920 to 923 MHz. Kit1-hex is drawn around a 13 × 195 mm whip. | 3 |
 | 1 | 6 × 6 mm tactile button | | 0.10 |
 | 1 | WS2812B breakout, single pixel | | 0.50 |
-| 1 | 330 Ω resistor | In series with the LED data line. | 0.05 |
+| 1 | 330 Ω resistor | R3, in series with the LED data line. | 0.05 |
 | 2 | 1×7 male header, 2.54 mm | Into the XIAO only, stubs trimmed flush on top. | 0.20 |
 | 1 | Half-size breadboard and male-to-male jumpers | Phase 0 only. | 3 |
 | 1 | 5 V / 2 A USB supply and USB-C cable | | 5 |

@@ -1,276 +1,335 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 900" width="1100" height="900" role="img" font-family="ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
-  <title>Bayu Indoor on the Bayu Core board</title>
-  <desc>Connector map of the planned Bayu Core carrier board as fitted for the Indoor role: the PMS5003 on the 8-pin PicoBlade, the SCD40 and SHT40 on the two Grove I2C sockets, the XIAO ESP32-S3 in its socket. Nets are named at every pin instead of drawn as traces.</desc>
-  <style>
-    text { fill: #1d1d1b; }
-    .t  { font-size: 19px; font-weight: 700; }
-    .st { font-size: 12.5px; fill: #6b665c; }
-    .h  { font-size: 13px; font-weight: 700; }
-    .l  { font-size: 11.5px; }
-    .s  { font-size: 10.5px; fill: #6b665c; }
-    .p  { font-size: 10px; }
-    .pw { font-size: 9.5px; fill: #ffffff; }
-    .b  { font-weight: 700; }
-  </style>
-  <rect width="1100" height="900" fill="#fbf8f1"/>
-  <text x="24" y="36" class="t">Bayu Indoor on the Bayu Core board (phase 1)</text>
-  <text x="24" y="57" class="st">A connector map for the board, drawn before any PCB layout. Pins with the same net name share copper.</text>
-  <!-- Bayu Core, 60 x 40 mm, drawn not to scale -->
-  <rect x="300" y="110" width="500" height="470" rx="14" fill="#2f4f3a" stroke="#17291e" stroke-width="1.6"/>
-  <circle cx="322" cy="132" r="8" fill="#fbf8f1" stroke="#17291e" stroke-width="1.4"/>
-  <circle cx="778" cy="132" r="8" fill="#fbf8f1" stroke="#17291e" stroke-width="1.4"/>
-  <circle cx="420" cy="558" r="8" fill="#fbf8f1" stroke="#17291e" stroke-width="1.4"/>
-  <text x="338" y="136" class="pw">M2.5 x3</text>
-  <!-- XIAO ESP32-S3 in female headers -->
-  <rect x="470" y="140" width="160" height="208" rx="8" fill="#1f2a33" stroke="#0d1418" stroke-width="1.4"/>
-  <rect x="522" y="112" width="56" height="30" rx="3" fill="#c4c9ce" stroke="#6d747a" stroke-width="1.2"/>
-  <text x="550" y="132" class="p" text-anchor="middle">USB-C</text>
-  <text x="482" y="174" class="pw">D0 GPIO1</text>
-  <line x1="470" y1="170" x2="444" y2="170" stroke="#a8a294" stroke-width="5" stroke-linecap="round"/>
-  <line x1="470" y1="170" x2="444" y2="170" stroke="#a8a294" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="470" cy="170" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="438" y="174" class="l b" text-anchor="end" style="fill:#9fb3a5">BTN</text>
-  <text x="482" y="200" class="pw">D1 GPIO2</text>
-  <line x1="470" y1="196" x2="444" y2="196" stroke="#a8a294" stroke-width="5" stroke-linecap="round"/>
-  <line x1="470" y1="196" x2="444" y2="196" stroke="#a8a294" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="470" cy="196" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="438" y="200" class="l b" text-anchor="end" style="fill:#9fb3a5">LED_DIN</text>
-  <text x="482" y="226" class="pw">D2 GPIO3</text>
-  <line x1="470" y1="222" x2="444" y2="222" stroke="#56256b" stroke-width="5" stroke-linecap="round"/>
-  <line x1="470" y1="222" x2="444" y2="222" stroke="#8e44ad" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="470" cy="222" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="438" y="226" class="l b" text-anchor="end" style="fill:#ffffff">PMS_SET</text>
-  <text x="482" y="252" class="pw">D3 GPIO4</text>
-  <circle cx="470" cy="248" r="3.6" fill="#7a7466"/>
-  <text x="482" y="278" class="pw">D4 GPIO5</text>
-  <line x1="470" y1="274" x2="444" y2="274" stroke="#0f3f80" stroke-width="5" stroke-linecap="round"/>
-  <line x1="470" y1="274" x2="444" y2="274" stroke="#1f6fd6" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="470" cy="274" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="438" y="278" class="l b" text-anchor="end" style="fill:#ffffff">I2C_SDA</text>
-  <text x="482" y="304" class="pw">D5 GPIO6</text>
-  <line x1="470" y1="300" x2="444" y2="300" stroke="#8a6d00" stroke-width="5" stroke-linecap="round"/>
-  <line x1="470" y1="300" x2="444" y2="300" stroke="#f2c300" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="470" cy="300" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="438" y="304" class="l b" text-anchor="end" style="fill:#ffffff">I2C_SCL</text>
-  <text x="482" y="330" class="pw">D6 GPIO43</text>
-  <line x1="470" y1="326" x2="444" y2="326" stroke="#14602b" stroke-width="5" stroke-linecap="round"/>
-  <line x1="470" y1="326" x2="444" y2="326" stroke="#2a9d4b" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="470" cy="326" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="438" y="330" class="l b" text-anchor="end" style="fill:#ffffff">UART_TX</text>
-  <text x="618" y="174" class="pw" text-anchor="end">5V</text>
-  <line x1="630" y1="170" x2="656" y2="170" stroke="#8a1414" stroke-width="5" stroke-linecap="round"/>
-  <line x1="630" y1="170" x2="656" y2="170" stroke="#d62828" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="630" cy="170" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="662" y="174" class="l b" style="fill:#ffffff">VBUS_5V</text>
-  <text x="618" y="200" class="pw" text-anchor="end">GND</text>
-  <line x1="630" y1="196" x2="656" y2="196" stroke="#000000" stroke-width="5" stroke-linecap="round"/>
-  <line x1="630" y1="196" x2="656" y2="196" stroke="#2b2b2b" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="630" cy="196" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="662" y="200" class="l b" style="fill:#ffffff">GND</text>
-  <text x="618" y="226" class="pw" text-anchor="end">3V3</text>
-  <line x1="630" y1="222" x2="656" y2="222" stroke="#9a5a00" stroke-width="5" stroke-linecap="round"/>
-  <line x1="630" y1="222" x2="656" y2="222" stroke="#f08c00" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="630" cy="222" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="662" y="226" class="l b" style="fill:#ffffff">3V3</text>
-  <text x="618" y="252" class="pw" text-anchor="end">D10 GPIO9</text>
-  <circle cx="630" cy="248" r="3.6" fill="#7a7466"/>
-  <text x="618" y="278" class="pw" text-anchor="end">D9 GPIO8</text>
-  <circle cx="630" cy="274" r="3.6" fill="#7a7466"/>
-  <text x="618" y="304" class="pw" text-anchor="end">D8 GPIO7</text>
-  <circle cx="630" cy="300" r="3.6" fill="#7a7466"/>
-  <text x="618" y="330" class="pw" text-anchor="end">D7 GPIO44</text>
-  <line x1="630" y1="326" x2="656" y2="326" stroke="#14602b" stroke-width="5" stroke-linecap="round"/>
-  <line x1="630" y1="326" x2="656" y2="326" stroke="#2a9d4b" stroke-width="3.4" stroke-linecap="round"/>
-  <circle cx="630" cy="326" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="662" y="330" class="l b" style="fill:#ffffff">UART_RX</text>
-  <rect x="462" y="132" width="176" height="224" rx="10" fill="none" stroke="#c9d6cc" stroke-width="1.2" stroke-dasharray="5 4"/>
-  <text x="550" y="372" class="pw" text-anchor="middle">XIAO ESP32-S3 in female headers</text>
-  <text x="550" y="386" class="pw" text-anchor="middle">dashed: Wio-SX1262 stack, not fitted</text>
-  <!-- J1: PMS5003, Molex PicoBlade 1.25 mm, 8 pins -->
-  <rect x="291" y="239" width="18" height="202" rx="2" fill="#f2efe6" stroke="#6d747a" stroke-width="1.2"/>
-  <text x="316" y="258" class="pw">1 VCC</text>
-  <line x1="300" y1="254" x2="270" y2="254" stroke="#8a1414" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="254" x2="270" y2="254" stroke="#d62828" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="258" class="l" text-anchor="end">5V_F  5 V after F1</text>
-  <circle cx="300" cy="254" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="282" class="pw">2 GND</text>
-  <line x1="300" y1="278" x2="270" y2="278" stroke="#000000" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="278" x2="270" y2="278" stroke="#2b2b2b" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="282" class="l" text-anchor="end">GND</text>
-  <circle cx="300" cy="278" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="306" class="pw">3 SET</text>
-  <line x1="300" y1="302" x2="270" y2="302" stroke="#56256b" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="302" x2="270" y2="302" stroke="#8e44ad" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="306" class="l" text-anchor="end">PMS_SET  D2 / GPIO3</text>
-  <circle cx="300" cy="302" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="330" class="pw">4 RXD</text>
-  <line x1="300" y1="326" x2="270" y2="326" stroke="#14602b" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="326" x2="270" y2="326" stroke="#2a9d4b" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="330" class="l" text-anchor="end">UART_TX  D6 / GPIO43</text>
-  <circle cx="300" cy="326" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="354" class="pw">5 TXD</text>
-  <line x1="300" y1="350" x2="270" y2="350" stroke="#14602b" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="350" x2="270" y2="350" stroke="#2a9d4b" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="354" class="l" text-anchor="end">UART_RX  D7 / GPIO44</text>
-  <circle cx="300" cy="350" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="378" class="pw">6 RST</text>
-  <text x="282" y="378" class="s" text-anchor="end">RESET  open (PMS has a pull-up)</text>
-  <circle cx="300" cy="374" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="402" class="pw">7 NC</text>
-  <text x="282" y="402" class="s" text-anchor="end">not connected</text>
-  <circle cx="300" cy="398" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="426" class="pw">8 NC</text>
-  <text x="282" y="426" class="s" text-anchor="end">not connected</text>
-  <circle cx="300" cy="422" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="282" y="220" class="h" text-anchor="end">J1  PMS5003</text>
-  <text x="282" y="234" class="s" text-anchor="end">PicoBlade 1.25 mm, 8-pin</text>
-  <!-- J5: Grove D0/D1, optional button and LED -->
-  <rect x="291" y="465" width="18" height="90" rx="2" fill="#56705e" stroke="#3d5244" stroke-width="1.2"/>
-  <text x="316" y="484" class="pw">1 D0</text>
-  <line x1="300" y1="480" x2="270" y2="480" stroke="#a8a294" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="480" x2="270" y2="480" stroke="#a8a294" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="484" class="s" text-anchor="end">BTN  D0 / GPIO1</text>
-  <circle cx="300" cy="480" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="504" class="pw">2 D1</text>
-  <line x1="300" y1="500" x2="270" y2="500" stroke="#a8a294" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="500" x2="270" y2="500" stroke="#a8a294" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="504" class="s" text-anchor="end">LED_DIN  D1 / GPIO2</text>
-  <circle cx="300" cy="500" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="524" class="pw">3 VCC</text>
-  <line x1="300" y1="520" x2="270" y2="520" stroke="#a8a294" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="520" x2="270" y2="520" stroke="#a8a294" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="524" class="s" text-anchor="end">3V3</text>
-  <circle cx="300" cy="520" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="316" y="544" class="pw">4 GND</text>
-  <line x1="300" y1="540" x2="270" y2="540" stroke="#a8a294" stroke-width="5" stroke-linecap="round"/>
-  <line x1="300" y1="540" x2="270" y2="540" stroke="#a8a294" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="264" y="544" class="s" text-anchor="end">GND</text>
-  <circle cx="300" cy="540" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="282" y="446" class="s b" text-anchor="end">J5  Grove GPIO (optional)</text>
-  <text x="282" y="460" class="s" text-anchor="end">button + WS2812 LED</text>
-  <!-- J2: Grove I2C, SCD40 -->
-  <rect x="791" y="155" width="18" height="98" rx="2" fill="#f2efe6" stroke="#6d747a" stroke-width="1.2"/>
-  <text x="784" y="174" class="pw" text-anchor="end">1 SCL</text>
-  <line x1="800" y1="170" x2="830" y2="170" stroke="#8a6d00" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="170" x2="830" y2="170" stroke="#f2c300" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="174" class="l">I2C_SCL  D5 / GPIO6</text>
-  <circle cx="800" cy="170" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="196" class="pw" text-anchor="end">2 SDA</text>
-  <line x1="800" y1="192" x2="830" y2="192" stroke="#0f3f80" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="192" x2="830" y2="192" stroke="#1f6fd6" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="196" class="l">I2C_SDA  D4 / GPIO5</text>
-  <circle cx="800" cy="192" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="218" class="pw" text-anchor="end">3 VCC</text>
-  <line x1="800" y1="214" x2="830" y2="214" stroke="#9a5a00" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="214" x2="830" y2="214" stroke="#f08c00" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="218" class="l">3V3</text>
-  <circle cx="800" cy="214" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="240" class="pw" text-anchor="end">4 GND</text>
-  <line x1="800" y1="236" x2="830" y2="236" stroke="#000000" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="236" x2="830" y2="236" stroke="#2b2b2b" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="240" class="l">GND</text>
-  <circle cx="800" cy="236" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="818" y="136" class="h">J2  Grove I2C  SCD40</text>
-  <text x="818" y="150" class="s">0x62, CO2 + T/RH</text>
-  <!-- J3: Grove I2C, SHT40 -->
-  <rect x="791" y="303" width="18" height="98" rx="2" fill="#f2efe6" stroke="#6d747a" stroke-width="1.2"/>
-  <text x="784" y="322" class="pw" text-anchor="end">1 SCL</text>
-  <line x1="800" y1="318" x2="830" y2="318" stroke="#8a6d00" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="318" x2="830" y2="318" stroke="#f2c300" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="322" class="l">I2C_SCL  D5 / GPIO6</text>
-  <circle cx="800" cy="318" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="344" class="pw" text-anchor="end">2 SDA</text>
-  <line x1="800" y1="340" x2="830" y2="340" stroke="#0f3f80" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="340" x2="830" y2="340" stroke="#1f6fd6" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="344" class="l">I2C_SDA  D4 / GPIO5</text>
-  <circle cx="800" cy="340" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="366" class="pw" text-anchor="end">3 VCC</text>
-  <line x1="800" y1="362" x2="830" y2="362" stroke="#9a5a00" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="362" x2="830" y2="362" stroke="#f08c00" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="366" class="l">3V3</text>
-  <circle cx="800" cy="362" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="388" class="pw" text-anchor="end">4 GND</text>
-  <line x1="800" y1="384" x2="830" y2="384" stroke="#000000" stroke-width="5" stroke-linecap="round"/>
-  <line x1="800" y1="384" x2="830" y2="384" stroke="#2b2b2b" stroke-width="3.4" stroke-linecap="round"/>
-  <text x="836" y="388" class="l">GND</text>
-  <circle cx="800" cy="384" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="818" y="284" class="h">J3  Grove I2C  SHT40</text>
-  <text x="818" y="298" class="s">0x44, T/RH on a tail</text>
-  <!-- J4: SEN54, not fitted on Indoor -->
-  <rect x="791" y="451" width="18" height="112" rx="2" fill="#56705e" stroke="#3d5244" stroke-width="1.2"/>
-  <text x="784" y="470" class="pw" text-anchor="end">1 VDD</text>
-  <text x="818" y="470" class="s">5V_F</text>
-  <circle cx="800" cy="466" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="487" class="pw" text-anchor="end">2 GND</text>
-  <text x="818" y="487" class="s">GND</text>
-  <circle cx="800" cy="483" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="504" class="pw" text-anchor="end">3 SDA</text>
-  <text x="818" y="504" class="s">I2C_SDA</text>
-  <circle cx="800" cy="500" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="521" class="pw" text-anchor="end">4 SCL</text>
-  <text x="818" y="521" class="s">I2C_SCL</text>
-  <circle cx="800" cy="517" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="538" class="pw" text-anchor="end">5 SEL</text>
-  <text x="818" y="538" class="s">GND, I2C mode</text>
-  <circle cx="800" cy="534" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="784" y="555" class="pw" text-anchor="end">6 NC</text>
-  <text x="818" y="555" class="s"></text>
-  <circle cx="800" cy="551" r="3.6" fill="#d9a520" stroke="#7a5a0a"/>
-  <text x="818" y="432" class="s b">J4  SEN54  not fitted</text>
-  <text x="818" y="446" class="s">JST GH 1.25 mm, 6-pin</text>
-  <!-- fuse, pull-up jumper, power input -->
-  <rect x="396" y="424" width="66" height="26" rx="3" fill="#f2efe6" stroke="#6d747a" stroke-width="1.1"/>
-  <text x="429" y="441" class="p" text-anchor="middle">F1 1 A</text>
-  <text x="429" y="466" class="pw" text-anchor="middle">VBUS_5V to 5V_F</text>
-  <rect x="500" y="424" width="100" height="26" rx="3" fill="#f2efe6" stroke="#6d747a" stroke-width="1.1"/>
-  <text x="550" y="441" class="p" text-anchor="middle">JP1 pull-ups</text>
-  <text x="550" y="466" class="pw" text-anchor="middle">2 x 4.7 kΩ to 3V3</text>
-  <text x="550" y="479" class="pw b" text-anchor="middle">leave OPEN on Indoor</text>
-  <rect x="636" y="424" width="80" height="26" rx="3" fill="#56705e" stroke="#3d5244" stroke-width="1.1"/>
-  <text x="676" y="441" class="pw" text-anchor="middle">J6 PH-2</text>
-  <text x="676" y="466" class="pw" text-anchor="middle">5 V in from</text>
-  <text x="676" y="479" class="pw" text-anchor="middle">Bayu Power,</text>
-  <text x="676" y="492" class="pw" text-anchor="middle">not fitted</text>
-  <text x="550" y="534" class="pw" text-anchor="middle">test pads on SDA, SCL, TX, RX, 5V_F, 3V3, GND</text>
-  <rect x="24" y="620" width="520" height="105" rx="6" fill="#ffffff" stroke="#cfc6b4" stroke-width="1.1"/>
-  <text x="36" y="640" class="h">Before the first power-up</text>
-  <text x="36" y="657" class="l">A PicoBlade cable can be crimped 1-to-1 or 1-to-8. With the</text>
-  <text x="36" y="672" class="l">sensor unplugged, beep J1 pin 1 through to the sensor&#x27;s pin 1.</text>
-  <text x="36" y="687" class="l">A flipped cable leaves the PMS unpowered and puts D6 on its</text>
-  <text x="36" y="702" class="l">TXD pin, so check it once per cable.</text>
-  <text x="36" y="717" class="l">Grove VCC on J2, J3 and J5 is 3V3 on this board, not 5 V.</text>
-  <rect x="560" y="620" width="516" height="90" rx="6" fill="#ffffff" stroke="#cfc6b4" stroke-width="1.1"/>
-  <text x="572" y="640" class="h">Why JP1 stays open</text>
-  <text x="572" y="657" class="l">Grove and breakout boards for the SCD40 and SHT40 usually</text>
-  <text x="572" y="672" class="l">bring 10 kΩ pull-ups each. Two on the bus give 5 kΩ.</text>
-  <text x="572" y="687" class="l">Close JP1 only for a bare sensor or the SEN54 on its own</text>
-  <text x="572" y="702" class="l">cable (Anchor role), which has none.</text>
-  <rect x="24" y="760" width="1052" height="108" rx="6" fill="#ffffff" stroke="#cfc6b4" stroke-width="1.1"/>
-  <text x="38" y="782" class="h">Nets</text>
-  <line x1="38" y1="808" x2="68" y2="808" stroke="#8a1414" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="38" y1="808" x2="68" y2="808" stroke="#d62828" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="78" y="812" class="l">VBUS_5V, 5V_F</text>
-  <line x1="298" y1="808" x2="328" y2="808" stroke="#9a5a00" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="298" y1="808" x2="328" y2="808" stroke="#f08c00" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="338" y="812" class="l">3V3</text>
-  <line x1="558" y1="808" x2="588" y2="808" stroke="#000000" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="558" y1="808" x2="588" y2="808" stroke="#2b2b2b" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="598" y="812" class="l">GND</text>
-  <line x1="818" y1="808" x2="848" y2="808" stroke="#0f3f80" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="818" y1="808" x2="848" y2="808" stroke="#1f6fd6" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="858" y="812" class="l">I2C_SDA</text>
-  <line x1="38" y1="834" x2="68" y2="834" stroke="#8a6d00" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="38" y1="834" x2="68" y2="834" stroke="#f2c300" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="78" y="838" class="l">I2C_SCL</text>
-  <line x1="298" y1="834" x2="328" y2="834" stroke="#14602b" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="298" y1="834" x2="328" y2="834" stroke="#2a9d4b" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="338" y="838" class="l">UART_RX, UART_TX</text>
-  <line x1="558" y1="834" x2="588" y2="834" stroke="#56256b" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="558" y1="834" x2="588" y2="834" stroke="#8e44ad" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="598" y="838" class="l">PMS_SET</text>
-  <line x1="818" y1="834" x2="848" y2="834" stroke="#4d4d4d" stroke-width="5.4" stroke-linecap="round"/>
-  <line x1="818" y1="834" x2="848" y2="834" stroke="#8a8a8a" stroke-width="3.8" stroke-linecap="round"/>
-  <text x="858" y="838" class="l">BTN, LED_DIN (optional)</text>
-  <text x="38" y="858" class="s">UART names follow the XIAO: UART_RX is the PMS TXD going into D7, UART_TX leaves D6 for the PMS RXD.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1206" viewBox="0 0 1100 1206" font-family="Helvetica, Arial, sans-serif">
+<rect width="1100" height="1206" fill="#fbfaf6"/>
+<text x="30" y="46" font-size="26" fill="#1d2433" font-weight="bold">Bayu Indoor · Bayu Core connector map, phase 1</text>
+<text x="30" y="72" font-size="15" fill="#5b6475">One Core board for every variant, 60 × 40 mm at 12 px per mm. Grey parts are not fitted on Indoor.</text>
+<rect x="735" y="18" width="345" height="182" rx="10" fill="#ffffff" stroke="#c9c4b6" stroke-width="1.5"/>
+<text x="751" y="46" font-size="14" fill="#1d2433" font-weight="bold">Nets, the same colour on every sheet</text>
+<line x1="751" y1="65" x2="775" y2="65" stroke="#d0312d" stroke-width="5"/>
+<text x="783" y="70" font-size="13" fill="#1d2433">+5V_USB, +5V_F, +5V_IN</text>
+<line x1="751" y1="82" x2="775" y2="82" stroke="#ef7d00" stroke-width="5"/>
+<text x="783" y="87" font-size="13" fill="#1d2433">3V3</text>
+<line x1="751" y1="99" x2="775" y2="99" stroke="#1d2433" stroke-width="5"/>
+<text x="783" y="104" font-size="13" fill="#1d2433">GND</text>
+<line x1="751" y1="116" x2="775" y2="116" stroke="#1f5fbf" stroke-width="5"/>
+<text x="783" y="121" font-size="13" fill="#1d2433">I2C_SDA</text>
+<line x1="751" y1="133" x2="775" y2="133" stroke="#7a6000" stroke-width="7"/>
+<line x1="751" y1="133" x2="775" y2="133" stroke="#e6b400" stroke-width="5"/>
+<text x="783" y="138" font-size="13" fill="#1d2433">I2C_SCL</text>
+<line x1="751" y1="150" x2="775" y2="150" stroke="#4cae4f" stroke-width="5"/>
+<text x="783" y="155" font-size="13" fill="#1d2433">UART_TX</text>
+<line x1="751" y1="167" x2="775" y2="167" stroke="#1b6b3a" stroke-width="5"/>
+<text x="783" y="172" font-size="13" fill="#1d2433">UART_RX</text>
+<line x1="941" y1="65" x2="965" y2="65" stroke="#7a3fb3" stroke-width="5"/>
+<text x="973" y="70" font-size="13" fill="#1d2433">PMS_SET</text>
+<line x1="941" y1="82" x2="965" y2="82" stroke="#8a8f99" stroke-width="5"/>
+<text x="973" y="87" font-size="13" fill="#1d2433">BTN</text>
+<line x1="941" y1="99" x2="965" y2="99" stroke="#d63384" stroke-width="5"/>
+<text x="973" y="104" font-size="13" fill="#1d2433">LED_DIN</text>
+<line x1="941" y1="116" x2="965" y2="116" stroke="#2a9d8f" stroke-width="5"/>
+<text x="973" y="121" font-size="13" fill="#1d2433">VBAT_SENSE</text>
+<line x1="941" y1="133" x2="965" y2="133" stroke="#8a5a2b" stroke-width="5" stroke-dasharray="5 3"/>
+<text x="973" y="138" font-size="13" fill="#1d2433">antenna coax</text>
+<line x1="941" y1="150" x2="965" y2="150" stroke="#4a5873" stroke-width="5"/>
+<text x="973" y="155" font-size="13" fill="#1d2433">U2 radio lines</text>
+<rect x="941" y="161" width="24" height="12" rx="2" fill="#f4efe2" stroke="#1d2433" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="973" y="172" font-size="13" fill="#1d2433">optional</text>
+<rect x="941" y="178" width="24" height="12" rx="2" fill="none" stroke="#b4b8c1" stroke-width="1.6"/>
+<text x="973" y="189" font-size="13" fill="#1d2433">not fitted</text>
+<text x="30" y="98" font-size="14" fill="#1d2433">On Indoor: J2 PMS5003, J3 SCD40, J4 SHT40. No U2, J1 stays empty, JP1 open because the Grove boards</text>
+<text x="30" y="117" font-size="14" fill="#1d2433">bring their own pull-ups. J5 optional.</text>
+<text x="30" y="136" font-size="14" fill="#1d2433">Before the first power-up, beep J2 pin 1 through to the sensor's pin 1. A PicoBlade cable can be crimped 1-to-1</text>
+<text x="30" y="155" font-size="14" fill="#1d2433">or flipped, and a flipped one leaves the PMS unpowered with D6 on its TXD pin.</text>
+<rect x="60" y="330" width="720" height="480" rx="14" fill="#e6eee1" stroke="#7f9a7a" stroke-width="2"/>
+<text x="468" y="613.2" font-size="14" fill="#6f8a6a" font-weight="bold" text-anchor="middle">Bayu Core · 60 × 40 mm</text>
+<rect x="54" y="549" width="24" height="42" rx="5" fill="#b9bfcc" stroke="#7f889b" stroke-width="1.5"/>
+<rect x="72" y="453.3" width="253" height="233.4" rx="10" fill="#e9ecf2" stroke="#7f889b" stroke-width="1.6"/>
+<text x="113.2" y="487.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">5V</text>
+<rect x="107.2" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="143.6" y1="469.3" x2="143.6" y2="507.3" stroke="#9aa3b5" stroke-width="1"/>
+<text x="143.6" y="519.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">GND</text>
+<rect x="137.6" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="174.1" y="487.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">3V3</text>
+<rect x="168.1" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="204.6" y1="469.3" x2="204.6" y2="507.3" stroke="#9aa3b5" stroke-width="1"/>
+<text x="204.6" y="519.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D10</text>
+<text x="204.6" y="534.3" font-size="13" fill="#5b6475" text-anchor="middle">GPIO9</text>
+<rect x="198.6" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="235.1" y="487.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D9</text>
+<text x="235.1" y="502.3" font-size="13" fill="#5b6475" text-anchor="middle">GPIO8</text>
+<rect x="229.1" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="265.6" y1="469.3" x2="265.6" y2="507.3" stroke="#9aa3b5" stroke-width="1"/>
+<text x="265.6" y="519.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D8</text>
+<text x="265.6" y="534.3" font-size="13" fill="#5b6475" text-anchor="middle">GPIO7</text>
+<rect x="259.6" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="296" y="487.3" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D7</text>
+<text x="296" y="502.3" font-size="13" fill="#5b6475" text-anchor="middle">GPIO44</text>
+<rect x="290" y="457.3" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="113.2" y="647.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D0</text>
+<text x="113.2" y="662.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO1</text>
+<rect x="107.2" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="143.6" y1="670.7" x2="143.6" y2="634.7" stroke="#9aa3b5" stroke-width="1"/>
+<text x="143.6" y="615.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D1</text>
+<text x="143.6" y="630.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO2</text>
+<rect x="137.6" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="174.1" y="647.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D2</text>
+<text x="174.1" y="662.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO3</text>
+<rect x="168.1" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="204.6" y1="670.7" x2="204.6" y2="634.7" stroke="#9aa3b5" stroke-width="1"/>
+<text x="204.6" y="615.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D3</text>
+<text x="204.6" y="630.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO4</text>
+<rect x="198.6" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="235.1" y="647.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D4</text>
+<text x="235.1" y="662.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO5</text>
+<rect x="229.1" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<line x1="265.6" y1="670.7" x2="265.6" y2="634.7" stroke="#9aa3b5" stroke-width="1"/>
+<text x="265.6" y="615.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D5</text>
+<text x="265.6" y="630.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO6</text>
+<rect x="259.6" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="296" y="647.7" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">D6</text>
+<text x="296" y="662.7" font-size="13" fill="#5b6475" text-anchor="middle">GPIO43</text>
+<rect x="290" y="670.7" width="12" height="12" rx="2" fill="#d9b44a" stroke="#a8841f" stroke-width="1"/>
+<text x="198.5" y="560" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">U1 XIAO ESP32-S3</text>
+<rect x="77" y="458.3" width="243" height="223.4" rx="8" fill="none" stroke="#b4b8c1" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="198.5" y="578" font-size="13" fill="#8d929c" text-anchor="middle">U2 Wio-SX1262 not fitted</text>
+<rect x="78" y="337.2" width="72" height="55.2" rx="3" fill="none" stroke="#b4b8c1" stroke-width="1.5"/>
+<rect x="98" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="102" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">1</text>
+<rect x="122" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="126" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">2</text>
+<text x="134.4" y="414" font-size="14" fill="#8d929c" font-weight="bold">J6</text>
+<rect x="168" y="351.6" width="43.2" height="21.6" rx="2" fill="none" stroke="#b4b8c1" stroke-width="1.5"/>
+<line x1="202.8" y1="351.6" x2="202.8" y2="373.2" stroke="#b4b8c1" stroke-width="3"/>
+<text x="189.6" y="398.4" font-size="14" fill="#8d929c" font-weight="bold" text-anchor="middle">CR1</text>
+<rect x="228" y="344.4" width="52.8" height="36" rx="3" fill="#f4efe2" stroke="#1d2433" stroke-width="1.5"/>
+<text x="254.4" y="405.6" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">F1</text>
+<polyline points="211.2,362.4 228,362.4" fill="none" stroke="#d0312d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="280.8,362.4 297.6,362.4" fill="none" stroke="#d0312d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="516" y="337.2" width="132" height="55.2" rx="3" fill="none" stroke="#b4b8c1" stroke-width="1.5"/>
+<rect x="540.5" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="544.5" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">1</text>
+<rect x="555.5" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="559.5" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">2</text>
+<rect x="570.5" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="574.5" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">3</text>
+<rect x="585.5" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="589.5" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">4</text>
+<rect x="600.5" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="604.5" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">5</text>
+<rect x="615.5" y="350" width="8" height="8" rx="1" fill="none" stroke="#b4b8c1" stroke-width="1"/>
+<text x="619.5" y="384.4" font-size="13" fill="#8d929c" text-anchor="middle">6</text>
+<text x="508.8" y="370.8" font-size="14" fill="#8d929c" font-weight="bold" text-anchor="end">J1</text>
+<rect x="504" y="747.6" width="156" height="55.2" rx="3" fill="#f4efe2" stroke="#1d2433" stroke-width="1.5"/>
+<rect x="525.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="529.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">1</text>
+<polyline points="529.5,747.6 529.5,725.6" fill="none" stroke="#d0312d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="540.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="544.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">2</text>
+<polyline points="544.5,747.6 544.5,725.6" fill="none" stroke="#1d2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="555.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="559.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">3</text>
+<polyline points="559.5,747.6 559.5,725.6" fill="none" stroke="#7a3fb3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="570.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="574.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">4</text>
+<polyline points="574.5,747.6 574.5,725.6" fill="none" stroke="#4cae4f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="585.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="589.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">5</text>
+<polyline points="589.5,747.6 589.5,725.6" fill="none" stroke="#1b6b3a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="600.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="604.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">6</text>
+<rect x="615.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="619.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">7</text>
+<rect x="630.5" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="634.5" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">8</text>
+<text x="496.8" y="781.2" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="end">J2</text>
+<rect x="700.8" y="432" width="72" height="120" rx="3" fill="#f4efe2" stroke="#1d2433" stroke-width="1.5"/>
+<rect x="720.8" y="452" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="461" font-size="13" fill="#1d2433">1</text>
+<polyline points="700.8,456 678.8,456" fill="none" stroke="#7a6000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="700.8,456 678.8,456" fill="none" stroke="#e6b400" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="720.8" y="476" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="485" font-size="13" fill="#1d2433">2</text>
+<polyline points="700.8,480 678.8,480" fill="none" stroke="#1f5fbf" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="720.8" y="500" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="509" font-size="13" fill="#1d2433">3</text>
+<polyline points="700.8,504 678.8,504" fill="none" stroke="#ef7d00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="720.8" y="524" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="533" font-size="13" fill="#1d2433">4</text>
+<polyline points="700.8,528 678.8,528" fill="none" stroke="#1d2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="736.8" y="426" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">J3</text>
+<rect x="700.8" y="588" width="72" height="120" rx="3" fill="#f4efe2" stroke="#1d2433" stroke-width="1.5"/>
+<rect x="720.8" y="608" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="617" font-size="13" fill="#1d2433">1</text>
+<polyline points="700.8,612 678.8,612" fill="none" stroke="#7a6000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="700.8,612 678.8,612" fill="none" stroke="#e6b400" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="720.8" y="632" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="641" font-size="13" fill="#1d2433">2</text>
+<polyline points="700.8,636 678.8,636" fill="none" stroke="#1f5fbf" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="720.8" y="656" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="665" font-size="13" fill="#1d2433">3</text>
+<polyline points="700.8,660 678.8,660" fill="none" stroke="#ef7d00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="720.8" y="680" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="740.8" y="689" font-size="13" fill="#1d2433">4</text>
+<polyline points="700.8,684 678.8,684" fill="none" stroke="#1d2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="736.8" y="582" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">J4</text>
+<rect x="96" y="747.6" width="120" height="55.2" rx="3" fill="#f4efe2" stroke="#1d2433" stroke-width="1.5" stroke-dasharray="5 3"/>
+<rect x="116" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="120" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">1</text>
+<polyline points="120,747.6 120,725.6" fill="none" stroke="#d63384" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<rect x="140" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="144" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">2</text>
+<polyline points="144,747.6 144,725.6" fill="none" stroke="#8a8f99" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<rect x="164" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="168" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">3</text>
+<polyline points="168,747.6 168,725.6" fill="none" stroke="#ef7d00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<rect x="188" y="782" width="8" height="8" rx="1" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="192" y="764.6" font-size="13" fill="#1d2433" text-anchor="middle">4</text>
+<polyline points="192,747.6 192,725.6" fill="none" stroke="#1d2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6"/>
+<text x="91.2" y="781.2" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="end">J5</text>
+<rect x="240" y="764.4" width="31.2" height="16.8" rx="2" fill="#e8d5b5" stroke="#8a6d3b" stroke-width="1.2"/>
+<text x="278.4" y="778.8" font-size="13" fill="#1d2433" font-weight="bold">R3 330 Ω</text>
+<rect x="624" y="452.4" width="31.2" height="16.8" rx="2" fill="#e8d5b5" stroke="#8a6d3b" stroke-width="1.2"/>
+<text x="616.8" y="466.8" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="end">R1 4.7 kΩ</text>
+<rect x="624" y="486" width="31.2" height="16.8" rx="2" fill="#e8d5b5" stroke="#8a6d3b" stroke-width="1.2"/>
+<text x="616.8" y="500.4" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="end">R2 4.7 kΩ</text>
+<rect x="624" y="519.6" width="13.2" height="19.2" rx="2" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<rect x="642" y="519.6" width="13.2" height="19.2" rx="2" fill="#d9b44a" stroke="#8a6d3b" stroke-width="1"/>
+<text x="616.8" y="534" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="end">JP1 open</text>
+<rect x="810" y="210" width="270" height="208" rx="8" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1.3"/>
+<text x="822" y="232" font-size="14" fill="#8d929c" font-weight="bold">J1 · SEN54 socket</text>
+<text x="822" y="250" font-size="13" fill="#8d929c">JST GH 1.25 mm, 6-pin</text>
+<text x="824" y="273" font-size="13" fill="#8d929c" font-weight="bold">1</text>
+<rect x="844" y="259.5" width="51.4" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="849" y="273" font-size="13" fill="#8d929c" font-weight="bold">+5V_F</text>
+<text x="824" y="294" font-size="13" fill="#8d929c" font-weight="bold">2</text>
+<rect x="844" y="280.5" width="40.9" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="849" y="294" font-size="13" fill="#8d929c" font-weight="bold">GND</text>
+<text x="824" y="315" font-size="13" fill="#8d929c" font-weight="bold">3</text>
+<rect x="844" y="301.5" width="68" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="849" y="315" font-size="13" fill="#8d929c" font-weight="bold">I2C_SDA</text>
+<text x="920" y="315" font-size="13" fill="#8d929c">D4 · GPIO5</text>
+<text x="824" y="336" font-size="13" fill="#8d929c" font-weight="bold">4</text>
+<rect x="844" y="322.5" width="66.4" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="849" y="336" font-size="13" fill="#8d929c" font-weight="bold">I2C_SCL</text>
+<text x="918.4" y="336" font-size="13" fill="#8d929c">D5 · GPIO6</text>
+<text x="824" y="357" font-size="13" fill="#8d929c" font-weight="bold">5</text>
+<rect x="844" y="343.5" width="40.9" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="849" y="357" font-size="13" fill="#8d929c" font-weight="bold">GND</text>
+<text x="892.9" y="357" font-size="13" fill="#8d929c">SEL, I2C mode</text>
+<text x="824" y="378" font-size="13" fill="#8d929c" font-weight="bold">6</text>
+<text x="844" y="378" font-size="13" fill="#8d929c">not connected</text>
+<text x="822" y="407" font-size="13" fill="#8d929c">not fitted on Indoor</text>
+<line x1="648" y1="366" x2="810" y2="366" stroke="#5b6475" stroke-width="1.2"/>
+<rect x="810" y="430" width="270" height="166" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.3"/>
+<text x="822" y="452" font-size="14" fill="#1d2433" font-weight="bold">J3 · Grove I2C socket A</text>
+<text x="822" y="470" font-size="13" fill="#5b6475">4-pin, VCC is 3V3</text>
+<text x="824" y="493" font-size="13" fill="#1d2433" font-weight="bold">1</text>
+<rect x="844" y="479.5" width="66.4" height="18" rx="4" fill="#e6b400" stroke="#7a6000" stroke-width="1"/>
+<text x="849" y="493" font-size="13" fill="#1d2433" font-weight="bold">I2C_SCL</text>
+<text x="918.4" y="493" font-size="13" fill="#5b6475">D5 · GPIO6</text>
+<text x="824" y="514" font-size="13" fill="#1d2433" font-weight="bold">2</text>
+<rect x="844" y="500.5" width="68" height="18" rx="4" fill="#1f5fbf"/>
+<text x="849" y="514" font-size="13" fill="#ffffff" font-weight="bold">I2C_SDA</text>
+<text x="920" y="514" font-size="13" fill="#5b6475">D4 · GPIO5</text>
+<text x="824" y="535" font-size="13" fill="#1d2433" font-weight="bold">3</text>
+<rect x="844" y="521.5" width="34.7" height="18" rx="4" fill="#ef7d00"/>
+<text x="849" y="535" font-size="13" fill="#1d2433" font-weight="bold">3V3</text>
+<text x="824" y="556" font-size="13" fill="#1d2433" font-weight="bold">4</text>
+<rect x="844" y="542.5" width="40.9" height="18" rx="4" fill="#1d2433"/>
+<text x="849" y="556" font-size="13" fill="#ffffff" font-weight="bold">GND</text>
+<text x="822" y="585" font-size="13" fill="#1d2433" font-weight="bold">Grove SCD40, I2C 0x62</text>
+<line x1="772.8" y1="492" x2="810" y2="492" stroke="#5b6475" stroke-width="1.2"/>
+<rect x="810" y="608" width="270" height="166" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.3"/>
+<text x="822" y="630" font-size="14" fill="#1d2433" font-weight="bold">J4 · Grove I2C socket B</text>
+<text x="822" y="648" font-size="13" fill="#5b6475">4-pin, VCC is 3V3</text>
+<text x="824" y="671" font-size="13" fill="#1d2433" font-weight="bold">1</text>
+<rect x="844" y="657.5" width="66.4" height="18" rx="4" fill="#e6b400" stroke="#7a6000" stroke-width="1"/>
+<text x="849" y="671" font-size="13" fill="#1d2433" font-weight="bold">I2C_SCL</text>
+<text x="918.4" y="671" font-size="13" fill="#5b6475">D5 · GPIO6</text>
+<text x="824" y="692" font-size="13" fill="#1d2433" font-weight="bold">2</text>
+<rect x="844" y="678.5" width="68" height="18" rx="4" fill="#1f5fbf"/>
+<text x="849" y="692" font-size="13" fill="#ffffff" font-weight="bold">I2C_SDA</text>
+<text x="920" y="692" font-size="13" fill="#5b6475">D4 · GPIO5</text>
+<text x="824" y="713" font-size="13" fill="#1d2433" font-weight="bold">3</text>
+<rect x="844" y="699.5" width="34.7" height="18" rx="4" fill="#ef7d00"/>
+<text x="849" y="713" font-size="13" fill="#1d2433" font-weight="bold">3V3</text>
+<text x="824" y="734" font-size="13" fill="#1d2433" font-weight="bold">4</text>
+<rect x="844" y="720.5" width="40.9" height="18" rx="4" fill="#1d2433"/>
+<text x="849" y="734" font-size="13" fill="#ffffff" font-weight="bold">GND</text>
+<text x="822" y="763" font-size="13" fill="#1d2433" font-weight="bold">Grove SHT40, I2C 0x44</text>
+<line x1="772.8" y1="648" x2="810" y2="648" stroke="#5b6475" stroke-width="1.2"/>
+<rect x="810" y="786" width="270" height="250" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.3"/>
+<text x="822" y="808" font-size="14" fill="#1d2433" font-weight="bold">J2 · Plantower socket</text>
+<text x="822" y="826" font-size="13" fill="#5b6475">Molex PicoBlade 1.25 mm, 8-pin</text>
+<text x="824" y="849" font-size="13" fill="#1d2433" font-weight="bold">1</text>
+<rect x="844" y="835.5" width="51.4" height="18" rx="4" fill="#d0312d"/>
+<text x="849" y="849" font-size="13" fill="#ffffff" font-weight="bold">+5V_F</text>
+<text x="824" y="870" font-size="13" fill="#1d2433" font-weight="bold">2</text>
+<rect x="844" y="856.5" width="40.9" height="18" rx="4" fill="#1d2433"/>
+<text x="849" y="870" font-size="13" fill="#ffffff" font-weight="bold">GND</text>
+<text x="824" y="891" font-size="13" fill="#1d2433" font-weight="bold">3</text>
+<rect x="844" y="877.5" width="74.9" height="18" rx="4" fill="#7a3fb3"/>
+<text x="849" y="891" font-size="13" fill="#ffffff" font-weight="bold">PMS_SET</text>
+<text x="926.9" y="891" font-size="13" fill="#5b6475">D2 · GPIO3</text>
+<text x="824" y="912" font-size="13" fill="#1d2433" font-weight="bold">4</text>
+<rect x="844" y="898.5" width="73.4" height="18" rx="4" fill="#4cae4f"/>
+<text x="849" y="912" font-size="13" fill="#1d2433" font-weight="bold">UART_TX</text>
+<text x="925.4" y="912" font-size="13" fill="#5b6475">D6, to PMS RXD</text>
+<text x="824" y="933" font-size="13" fill="#1d2433" font-weight="bold">5</text>
+<rect x="844" y="919.5" width="74.9" height="18" rx="4" fill="#1b6b3a"/>
+<text x="849" y="933" font-size="13" fill="#ffffff" font-weight="bold">UART_RX</text>
+<text x="926.9" y="933" font-size="13" fill="#5b6475">D7, from PMS TXD</text>
+<text x="824" y="954" font-size="13" fill="#1d2433" font-weight="bold">6</text>
+<text x="844" y="954" font-size="13" fill="#5b6475">RESET, left open</text>
+<text x="824" y="975" font-size="13" fill="#1d2433" font-weight="bold">7</text>
+<text x="844" y="975" font-size="13" fill="#5b6475">not connected</text>
+<text x="824" y="996" font-size="13" fill="#1d2433" font-weight="bold">8</text>
+<text x="844" y="996" font-size="13" fill="#5b6475">not connected</text>
+<text x="822" y="1025" font-size="13" fill="#1d2433" font-weight="bold">PMS5003, on its own 8-pin cable</text>
+<line x1="660" y1="776.4" x2="790" y2="776.4" stroke="#5b6475" stroke-width="1.2"/>
+<line x1="790" y1="776.4" x2="790" y2="816" stroke="#5b6475" stroke-width="1.2"/>
+<line x1="790" y1="816" x2="810" y2="816" stroke="#5b6475" stroke-width="1.2"/>
+<rect x="60" y="200" width="262" height="124" rx="8" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1.3"/>
+<text x="72" y="222" font-size="14" fill="#8d929c" font-weight="bold">J6 · 5 V in, JST PH 2-pin</text>
+<text x="72" y="240" font-size="13" fill="#8d929c">from the Bayu Power board</text>
+<text x="74" y="263" font-size="13" fill="#8d929c" font-weight="bold">1</text>
+<rect x="94" y="249.5" width="56.8" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="99" y="263" font-size="13" fill="#8d929c" font-weight="bold">+5V_IN</text>
+<text x="158.8" y="263" font-size="13" fill="#8d929c">through CR1 to +5V_USB</text>
+<text x="74" y="284" font-size="13" fill="#8d929c" font-weight="bold">2</text>
+<rect x="94" y="270.5" width="40.9" height="18" rx="4" fill="#fbfaf6" stroke="#b4b8c1" stroke-width="1"/>
+<text x="99" y="284" font-size="13" fill="#8d929c" font-weight="bold">GND</text>
+<text x="72" y="313" font-size="13" fill="#8d929c">J6 and CR1 not fitted on Indoor</text>
+<line x1="114" y1="324" x2="114" y2="337.2" stroke="#5b6475" stroke-width="1.2"/>
+<rect x="60" y="834" width="262" height="166" rx="8" fill="#ffffff" stroke="#1d2433" stroke-width="1.3" stroke-dasharray="5 3"/>
+<text x="72" y="856" font-size="14" fill="#1d2433" font-weight="bold">J5 · Grove GPIO socket</text>
+<text x="72" y="874" font-size="13" fill="#5b6475">optional on every variant</text>
+<text x="74" y="897" font-size="13" fill="#1d2433" font-weight="bold">1</text>
+<rect x="94" y="883.5" width="68.7" height="18" rx="4" fill="#d63384"/>
+<text x="99" y="897" font-size="13" fill="#ffffff" font-weight="bold">LED_DIN</text>
+<text x="170.7" y="897" font-size="13" fill="#5b6475">D1, after R3</text>
+<text x="74" y="918" font-size="13" fill="#1d2433" font-weight="bold">2</text>
+<rect x="94" y="904.5" width="37.8" height="18" rx="4" fill="#8a8f99"/>
+<text x="99" y="918" font-size="13" fill="#1d2433" font-weight="bold">BTN</text>
+<text x="139.8" y="918" font-size="13" fill="#5b6475">D0, button to GND</text>
+<text x="74" y="939" font-size="13" fill="#1d2433" font-weight="bold">3</text>
+<rect x="94" y="925.5" width="34.7" height="18" rx="4" fill="#ef7d00"/>
+<text x="99" y="939" font-size="13" fill="#1d2433" font-weight="bold">3V3</text>
+<text x="74" y="960" font-size="13" fill="#1d2433" font-weight="bold">4</text>
+<rect x="94" y="946.5" width="40.9" height="18" rx="4" fill="#1d2433"/>
+<text x="99" y="960" font-size="13" fill="#ffffff" font-weight="bold">GND</text>
+<text x="72" y="989" font-size="13" fill="#1d2433" font-weight="bold">Grove RGB LED, button on a split cable</text>
+<line x1="156" y1="810" x2="156" y2="834" stroke="#5b6475" stroke-width="1.2"/>
+<text x="352" y="854" font-size="13" fill="#1d2433">F1, 1 A resettable fuse from +5V_USB to +5V_F, which feeds J1 and J2. A</text>
+<text x="352" y="871" font-size="13" fill="#1d2433">shorted cable trips F1 and leaves the USB supply alone.</text>
+<text x="352" y="902" font-size="13" fill="#1d2433">CR1, Schottky from +5V_IN to +5V_USB, so USB power never flows back</text>
+<text x="352" y="919" font-size="13" fill="#1d2433">into the Power board. Seeed asks for a diode on any external 5 V into the</text>
+<text x="352" y="936" font-size="13" fill="#1d2433">XIAO's 5V pin.</text>
+<text x="352" y="967" font-size="13" fill="#1d2433">R1, R2, 4.7 kΩ I2C pull-ups to 3V3 through JP1. Close JP1 only for a bare</text>
+<text x="352" y="984" font-size="13" fill="#1d2433">SEN54.</text>
+<text x="352" y="1015" font-size="13" fill="#1d2433">J2 pin 6 RESET stays open, the PMS pulls SET and RESET up inside.</text>
+<text x="352" y="1032" font-size="13" fill="#1d2433">There is no resistor on it.</text>
+<text x="352" y="1063" font-size="13" fill="#1d2433">Grove VCC on J3, J4 and J5 is 3V3. D8 to D10 carry U2's SPI, no</text>
+<text x="352" y="1080" font-size="13" fill="#1d2433">connector uses them. Keep 25 mm clear above U1 for the stack and the</text>
+<text x="352" y="1097" font-size="13" fill="#1d2433">pigtail.</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1154" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="1154" x2="1100" y2="1154" stroke="#c9c4b6"/><text x="20" y="1176" fill="#1d2433" font-weight="bold">Bayu Indoor · Bayu Core connector map, phase 1 · rev 2026-10-24</text><text x="20" y="1195" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>
