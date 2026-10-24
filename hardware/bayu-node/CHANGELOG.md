@@ -7,6 +7,10 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Added
 
+- `grove/v3-three-pm/`, plug-in version: two Grove adapter leads with a 5 V module, a
+  fixed buck-boost or an MT3608 from Tokopedia, so the bare SEN54 and the PMS5003 plug into
+  Grove sockets, plus a Grove I2C hub for the third I2C sensor. Drawing and generator, parts,
+  how to make and test a lead, and the 3V3 current budget.
 - `grove/v3-three-pm/`: Bayu v3 on the Grove Shield with a bare SEN54 and a PMS5003 next to
   its HM3301, for comparing the three PM sensors in the field. Wiring drawing and its
   generator, connections, parts and build steps.

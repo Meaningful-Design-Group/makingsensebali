@@ -10,6 +10,10 @@ shows how the HM3301 we deployed, the SEN54 and the PMS5003 read Bali's air side
 through the rice-burning season and the wet months. That is the comparison we need before
 choosing the PM sensor for the next nodes.
 
+There are two ways to build it. The jumper version below takes 5 V straight from the
+shield's 5V pin. The [plug-in version](#plug-in-version-grove-adapter-leads) puts a small 5 V
+module on a Grove lead for each bare sensor, so everything plugs into a Grove socket.
+
 ![Wiring of Bayu v3 with three PM sensors on the Grove Shield](wiring.svg)
 
 ## Connections
@@ -71,6 +75,68 @@ materials](../../bom.csv).
 7. Power it from the USB-C supply and open the node's status page. The boot inventory
    should list BME680, HM3301, SEN54 and PMS5003.
 
+## Plug-in version: Grove adapter leads
+
+Seeed's Grove HM3301 runs from a 3V3 socket because it carries its own converters. The bare
+SEN54 and the PMS5003 don't, so here the converter goes on the lead: a Grove plug, a 5 V
+module and the sensor's own connector, soldered once and heat-shrunk. After that the lead
+plugs into any Grove socket like a Seeed module.
+
+![Plug-in version: Grove I2C hub and two adapter leads with a 5 V module](adapter-leads.svg)
+
+The shield has two I2C sockets and this node has three I2C sensors, so a Grove I2C hub goes
+in one socket and carries the HM3301, the BME680 and the SEN54 lead. The PMS5003 lead goes in
+the UART socket. That fits on the half of the shield that keeps the XIAO.
+
+### What you need for the leads
+
+| Qty | Part | Notes |
+|---|---|---|
+| 2 | 5 V module | A fixed-output automatic buck-boost, 3 to 15 V in, 5 V out, about Rp 19,000 on Tokopedia. Or an MT3608 step-up, 2 to 24 V in, adjustable, about Rp 8,000. |
+| 1 | Grove 4-pin cable, 20 cm | Cut in half: each half is the Grove end of one lead. |
+| 1 | Grove I2C hub | Seeed's 4-port or 6-port hub. |
+| 1 | SEN54 cable, JST GH 6-pin | With bare or 2.54 mm ends. |
+| | Heat-shrink tube | One piece wide enough for the module, thin pieces for each joint. |
+
+The PMS5003 lead uses the 8-pin cable that comes with the sensor. Don't use an XL6009
+module: its input starts around 3.8 V, above what a 3V3 socket gives.
+
+### Making a lead
+
+1. Cut the Grove cable in half. Strip the four wires of one half.
+2. Solder red to the module's IN+ and black to IN−.
+3. Set the output before any sensor is connected. Plug the lead into a Grove socket on a
+   powered node, nothing on the output, and measure OUT+ to OUT−. A fixed buck-boost should
+   read 5.0 V. An MT3608 comes set to anything: turn its trimmer to 5.0 V and seal it with a
+   drop of glue. Also check that IN− and OUT− are the same ground, as they are on most of
+   these modules.
+4. Unplug it. Solder OUT+ to the sensor's supply pin and OUT− to its ground. Solder white and
+   yellow straight to the data pins, as on the drawing. On the SEN54 lead, join pins 2 and 5.
+5. Heat-shrink the module and every joint, and label the lead "5 V · SEN54" or "5 V · PMS5003".
+
+Keep the SEN54 lead short. Sensirion asks for I2C wires under 10 cm, counted from the Grove
+plug to the sensor.
+
+### The 3V3 budget
+
+On the plug-in version every sensor runs from the XIAO's 3.3 V regulator, good for about
+700 mA. A step-up module draws more from 3V3 than the sensor uses at 5 V. Assuming
+about 85 % efficiency, here is roughly what each part takes from 3V3:
+
+| Part | At 5 V | From 3V3 |
+|---|---|---|
+| SEN54, on lead A | 70 mA typical, 100 mA maximum | about 125 to 180 mA |
+| PMS5003, on lead B | up to 100 mA | up to about 180 mA |
+| Grove HM3301 | about 80 mA at its peaks | about 140 mA |
+| Grove BME680 | | about 12 mA with its gas heater on |
+| XIAO ESP32-S3 | | about 100 mA on average, about 340 mA peaks while WiFi transmits |
+
+Typical draw comes to about 450 to 500 mA, which the regulator handles. Worst-case peaks add up
+to about 850 mA, which it does not. One bare sensor on a lead is comfortable. With both leads
+fitted, watch the first day: if the node resets when it connects to WiFi, feed lead B's module
+from the shield's 5V pin instead of its Grove red wire. That one wire takes the PMS5003 off the
+regulator.
+
 ## Firmware
 
 The [Bayu firmware v5](../../../diy-node/firmware/diy_node_v5/) finds all four sensors at
@@ -94,4 +160,5 @@ enclosure only holds the HM3301, so for now this node needs its own housing.
   and the HM3301 and BME680 sit on Grove cables.
 - The 3V3 load. The HM3301 makes its own 5 V from the socket's 3V3, converting twice, so
   with the BME680 and WiFi on the same regulator it is worth measuring once.
+- The 3V3 load on the plug-in version, with both leads fitted. See the budget above.
 - Nothing on this page has been built yet.
