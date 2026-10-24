@@ -18,12 +18,18 @@ name: firmware-build
 # two methods v5 uses (fixed below with a pinned master commit). If a later run fails on an FQBN option, print the
 # list with `arduino-cli board details -b esp32:esp32:XIAO_ESP32S3`. Second run: green, both boards (S3 app
 # 1.23 MB of 3.3, C3 app 1.36 MB of 1.9 with min_spiffs); the core's merged.bin was flash-sized padding, dropped.
+#
+# Self-update (24 Oct 2026): nodes read manifest.json once a day and install the app.bin for their chip when the
+# manifest's "version" is not the build they run. Each build is stamped with that same tag (-DFW_BUILD_TAG=$TAG) and
+# the step below refuses to publish an image that does not carry it: a node that cannot recognise its own build would
+# reinstall it every day. Merging to main therefore updates the fleet; test on a board before merging.
 
 on:
   push:
     branches: [main]
     paths:
       - "hardware/diy-node/firmware/diy_node_v5/**"
+      - "hardware/diy-node/firmware/test/**"
       - ".github/workflows/firmware-build.yml"
       - "flash/firmware/VERSIONS"
   workflow_dispatch: {}
@@ -50,6 +56,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: decoder checks
+        run: |
+          c++ -std=c++17 -Wall -Wextra -o "$RUNNER_TEMP/decoders_test" hardware/diy-node/firmware/test/decoders_test.cpp
+          "$RUNNER_TEMP/decoders_test"
 
       - name: arduino-cli
         uses: arduino/setup-arduino-cli@v2
@@ -80,7 +91,9 @@ jobs:
           find "$OUT" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
           build() { # <chip dir> <fqbn>
             local chip="$1" fqbn="$2" bp="$RUNNER_TEMP/build-$1"
-            arduino-cli compile --fqbn "$fqbn" --build-path "$bp" --warnings default "$SKETCH"
+            arduino-cli compile --fqbn "$fqbn" --build-path "$bp" --warnings default \
+              --build-property "compiler.cpp.extra_flags=-DFW_BUILD_TAG=$TAG" "$SKETCH"
+            grep -qaxF "$TAG" <(strings "$bp"/diy_node_v5.ino.bin) || { echo "$chip image does not carry $TAG"; exit 1; }
             mkdir -p "$OUT/$TAG/$chip"
             cp "$bp"/diy_node_v5.ino.bin "$OUT/$TAG/$chip/app.bin"
             cp "$bp"/diy_node_v5.ino.bootloader.bin "$OUT/$TAG/$chip/bootloader.bin"

@@ -1,5 +1,6 @@
 // Making Sense Bali — DIY Node firmware
-// v5 (one image for every sensor combination: HM3301, SEN5x, BME680)
+// v5 (one image for every sensor combination: HM3301, SEN5x, BME680,
+//     PMS5003/PMS5003T, SHT4x, SCD4x)
 //    ESP32-C3 SuperMini AND XIAO ESP32-S3
 //
 // Boards:  MakerGO ESP32-C3 SuperMini  |  Seeed XIAO ESP32-S3
@@ -9,12 +10,54 @@
 //            Sensirion SEN50/54/55      I2C 0x69   PM1 / 2.5 / 4 / 10, T, RH, VOC, NOx
 //              (e.g. Seeed "Grove - All in one Environmental Sensor SEN5X")
 //            Bosch BME680               I2C 0x76/0x77   T, RH, pressure, gas
-// Platform: publishes to mqtt.smartcitizen.me over TLS (the default), or to
-//           the Mosquitto of a PLANETAI node on the same network (plain MQTT,
-//           with the node's broker user and password).
+//            Sensirion SHT40/41/45      I2C 0x44   T, RH
+//            Sensirion SCD40/41         I2C 0x62   CO2, T, RH
+//            Plantower PMS5003(T)       UART RX on XIAO D7 (GPIO44 S3, GPIO20 C3)
+//                                       PM1 / PM2.5 / PM10, and T, RH on the T
+// Platform: publishes to the Mosquitto of a PLANETAI node on the same network
+//           first (plain MQTT, the node's broker user and password), and to
+//           mqtt.smartcitizen.me over TLS when there is no node or it stops
+//           answering.
+// Updates:  checks makingsense.fablabbali.com/flash/ once a day and installs
+//           a newer build by itself; a build that cannot get back online is
+//           rolled back by the bootloader.
 //
 // Repo: https://github.com/Meaningful-Design-Group/makingsensebali
 // License: MIT
+//
+// ---------------------------------------------------------------------------
+// WHAT GREW IN v5 AFTER v5-c3a5418 (the build on the flash page, 20 Oct 2026)
+// ---------------------------------------------------------------------------
+//  * THREE MORE SENSORS, SAME RULE. SHT4x (0x44), SCD4x (0x62) and a Plantower
+//    PMS5003 or PMS5003T on the UART join the boot inventory. Absent is "not
+//    fitted", silent, as before. A node built for v5-c3a5418 sees no change.
+//    The Plantower is only listened to: RX on XIAO D7, the node never drives
+//    a pin for it, so a board with something else wired there is not touched.
+//    Published on the IDs the SCK publishes the same parts on:
+//      PMS5003   89 PM1   87 PM2.5   88 PM10   (118 T, 119 RH from a PMS5003T)
+//      SCD4x    258 CO2  259 T   260 RH
+//    Smart Citizen has no SHT4x entry (checked 24 Oct 2026), so the SHT4x goes
+//    on 79 / 80, its "External Sensirion SHT31" channels: the kits' own
+//    external T/RH probe, the same family one generation older.
+//
+//  * PLANETAI NODE FIRST, SMART CITIZEN SECOND. With a node set in the portal
+//    the device publishes there. If the node misses 3 connections in a row,
+//    the device publishes to Smart Citizen directly (same topic, same bytes)
+//    and tries the node again every 10 minutes. A portal box turns that
+//    fallback off, for a sensor whose readings should only ever reach the
+//    node. With no node set it publishes to Smart Citizen, exactly as before.
+//    The setup QR can now carry the node too: /t?token=..&host=..&port=..
+//    &user=..&pass=.. fills all five fields in one scan.
+//
+//  * IT UPDATES ITSELF. Once a day (first check 5 minutes after boot) the node
+//    reads the flash page's manifest.json over HTTPS, verified against the
+//    core's CA bundle, and if the build there is not the one it runs it
+//    downloads that chip's app.bin into the spare OTA slot and reboots. The
+//    new build has 30 minutes to fetch the manifest again; until it does, the
+//    bootloader keeps the old one, and a reboot in that window rolls back. A
+//    rolled-back build is remembered and not tried again. Builds from the IDE
+//    carry no build tag and never update themselves. A portal box turns
+//    updates off.
 //
 // ---------------------------------------------------------------------------
 // WHAT CHANGED vs v4
@@ -186,7 +229,11 @@
 #include <ArduinoJson.h>
 #include <ESPmDNS.h>
 #include <WebServer.h>
+#include <HTTPClient.h>
+#include <HTTPUpdate.h>
+#include <esp_ota_ops.h>
 #include <time.h>
+#include "decoders.h"   // PMS5003, SHT4x, SCD4x and the Sensirion CRC: tested off the board
 
 // HM3301 is read directly over I2C without the Seeed_HM330X library — the
 // Seeed library's u8/u16 typedefs don't compile against the modern
@@ -199,12 +246,20 @@
 const char* PORTAL_PASSWORD = "makingsense";   // AP join password
 const uint16_t PORTAL_TIMEOUT_S = 180;         // portal lifetime before reboot
 
+// PMS_RX_PIN is XIAO D7 on both XIAOs, the pin the PMS5003's TX goes to (and
+// RX on the C3 SuperMini). OTA_CHIP is the chipFamily name in the manifest.
 #if defined(CONFIG_IDF_TARGET_ESP32S3)
   const int BOOT_BTN_PIN = 0;
+  const int PMS_RX_PIN   = 44;
+  const char* OTA_CHIP   = "ESP32-S3";
 #elif defined(CONFIG_IDF_TARGET_ESP32C3)
   const int BOOT_BTN_PIN = 9;
+  const int PMS_RX_PIN   = 20;
+  const char* OTA_CHIP   = "ESP32-C3";
 #else
   const int BOOT_BTN_PIN = 0;
+  const int PMS_RX_PIN   = -1;
+  const char* OTA_CHIP   = "";
 #endif
 
 // Smart Citizen sensor IDs — SC global-catalog IDs for Bosch BME68X and
@@ -230,9 +285,49 @@ const int SC_ID_SEN_TEMP = 204;
 const int SC_ID_SEN_VOC  = 205;
 const int SC_ID_SEN_NOX  = 206;
 
+// Plantower PMS5003 — the IDs the SCK 2.x publishes its PM board on
+// (api.smartcitizen.me/v0/sensors: 86 "PMS5003_AVG" and its children).
+const int SC_ID_PMS_PM1  = 89;
+const int SC_ID_PMS_PM25 = 87;
+const int SC_ID_PMS_PM10 = 88;
+const int SC_ID_PMS_TEMP = 118;   // PMS5003T only: its own element, inside the sensor's case
+const int SC_ID_PMS_HUM  = 119;
+
+// Sensirion SCD4x — the IDs the SCK 2.3 publishes it on (Sensors.h).
+const int SC_ID_SCD_CO2  = 258;
+const int SC_ID_SCD_TEMP = 259;
+const int SC_ID_SCD_HUM  = 260;
+
+// Sensirion SHT4x — no SHT4x entry on Smart Citizen; "External Sensirion SHT31".
+// Change these two if the platform adds one.
+const int SC_ID_SHT_TEMP = 79;
+const int SC_ID_SHT_HUM  = 80;
+
 const char*    FW_VERSION = "v5";
 const char*    DEFAULT_MQTT_HOST = "mqtt.smartcitizen.me";   // Smart Citizen's broker: TLS, token as identity
 const uint16_t DEFAULT_MQTT_PORT = 8883;
+
+// The build's own tag, stamped by CI (-DFW_BUILD_TAG=v5-<sha>) and compared
+// with the manifest's "version". A build from the IDE has none, and a node
+// running one never updates itself: the published build would overwrite a
+// bench build within a day.
+#define XSTR_(x) #x
+#define XSTR(x) XSTR_(x)
+#ifdef FW_BUILD_TAG
+const char* FW_BUILD = XSTR(FW_BUILD_TAG);
+#else
+const char* FW_BUILD = "";
+#endif
+
+const char*    OTA_MANIFEST_URL       = "https://makingsense.fablabbali.com/flash/firmware/diy-node/manifest.json";
+const uint32_t OTA_FIRST_CHECK_MS     = 5UL * 60UL * 1000UL;
+const uint32_t OTA_INTERVAL_MS        = 24UL * 60UL * 60UL * 1000UL;
+const uint32_t OTA_VERIFY_RETRY_MS    = 60UL * 1000UL;        // a fresh build retries its first check this often
+const uint32_t OTA_VERIFY_DEADLINE_MS = 30UL * 60UL * 1000UL; // ... and is rolled back if none succeeds by then
+
+const uint32_t MQTT_RETRY_MS              = 10UL * 1000UL;
+const uint8_t  NODE_FAILS_BEFORE_FALLBACK = 3;
+const uint32_t NODE_RETRY_MS              = 10UL * 60UL * 1000UL;  // from Smart Citizen, try the node again
 
 const uint32_t PUBLISH_INTERVAL_MS     = 60UL * 1000UL;
 const uint32_t WIFI_RETRY_INTERVAL_MS  = 15UL * 1000UL;
@@ -275,6 +370,8 @@ constexpr uint8_t HM3301_SELECT_I2C_CMD = 0x88;
 constexpr uint8_t SEN5X_ADDR            = 0x69;
 constexpr uint8_t BME680_ADDR_A         = 0x76;
 constexpr uint8_t BME680_ADDR_B         = 0x77;
+constexpr uint8_t SHT4X_ADDR            = 0x44;
+constexpr uint8_t SCD4X_ADDR            = 0x62;
 
 // One SEN5x measurement. NAN = the sensor has no such channel (SEN50 has no
 // T/RH/VOC, SEN54 no NOx) or did not have a valid value yet.
@@ -299,11 +396,25 @@ String nodeSite;     // where it hangs, local only
 String nodeHeight;   // metres above ground, local only
 bool   nodeIndoor = false;   // published in `meta` to a PLANETAI node; never to Smart Citizen
 
-// --- where it publishes, from NVS (defaults = Smart Citizen, exactly as v3) ---
+// --- where it publishes, from NVS ---
+// brokerHost is the PLANETAI node; Smart Citizen's host (or nothing) means no node.
 String   brokerHost;
 uint16_t brokerPort = DEFAULT_MQTT_PORT;
 String   brokerUser;         // empty = the Smart Citizen way: token as username, no password
 String   brokerPass;
+bool     scFallback = true;  // publish to Smart Citizen while the node does not answer
+bool     otaEnabled = true;
+
+// --- where it is publishing right now ---
+bool     onNode        = false;   // the live connection is to the PLANETAI node
+uint8_t  nodeFails     = 0;
+uint32_t fallbackSince = 0;       // millis() the node was given up on; 0 = not falling back
+uint32_t lastMqttTry   = 0;
+
+// --- self-update ---
+bool     otaPendingVerify = false;   // this build arrived by OTA and has not proved itself yet
+uint32_t lastOtaCheck     = 0;
+String   otaStatus        = "not checked yet";
 
 uint32_t lastPublish   = 0;
 uint32_t lastWifiRetry = 0;
@@ -311,11 +422,18 @@ uint32_t lastWifiRetry = 0;
 bool g_bmeOnline = false;
 bool g_hmOnline  = false;
 bool g_senOnline = false;
+bool g_shtOnline = false;
+bool g_scdOnline = false;
+bool g_pmsOnline = false;
 
 // "Was fitted, then stopped answering" — the only sensor state that is a fault.
 bool g_bmeLost = false, g_hmLost = false, g_senLost = false;
-uint8_t bmeFails = 0, hmFails = 0, senFails = 0;
+bool g_shtLost = false, g_scdLost = false, g_pmsLost = false;
+uint8_t bmeFails = 0, hmFails = 0, senFails = 0, shtFails = 0, scdFails = 0, pmsFails = 0;
 uint32_t lastSensorScan = 0;
+
+bool     pmsIsT   = false;   // a PMS5003T, told apart by its frames (see PLANTOWER below)
+uint32_t pmsSince = 0;       // when it was found; nothing is published for its first 30 s
 
 char sen5xModel[17] = "";      // product name as the sensor reports it, e.g. "SEN55"
 
@@ -324,6 +442,10 @@ float  lastT = NAN, lastRH = NAN, lastP = NAN, lastGas = NAN, lastIAQ = NAN;
 uint16_t lastPM1 = 0, lastPM25 = 0, lastPM10 = 0;
 bool   lastBmeOk = false, lastHmOk = false, lastSenOk = false;
 Sen5xReading lastSen;
+float  lastShtT = NAN, lastShtRH = NAN;
+Scd4xReading lastScd;
+PmsReading   lastPms;
+bool   lastShtOk = false, lastScdOk = false, lastPmsOk = false;
 bool   lastPublishOk = false;
 String lastPublishAt = "never";
 uint32_t publishCount = 0, publishFailCount = 0;
@@ -539,6 +661,8 @@ void loadIdentity() {
   if (brokerPort == 0) brokerPort = DEFAULT_MQTT_PORT;
   brokerUser = prefs.getString("muser", "");
   brokerPass = prefs.getString("mpass", "");
+  scFallback = prefs.getBool("scfb", true);
+  otaEnabled = prefs.getBool("ota", true);
 }
 
 // Smart Citizen's broker, or somebody's own (a PLANETAI node, typically)?
@@ -550,8 +674,23 @@ bool localBroker() {
   return localBrokerHost(brokerHost);
 }
 
+String smartCitizenLabel() {
+  return String(DEFAULT_MQTT_HOST) + ":" + String(DEFAULT_MQTT_PORT) + " (Smart Citizen)";
+}
+
+// What is configured, in the order it is tried.
 String brokerLabel() {
-  return brokerHost + ":" + String(brokerPort) + (localBroker() ? " (local node)" : " (Smart Citizen)");
+  if (!localBroker()) return smartCitizenLabel();
+  String s = brokerHost + ":" + String(brokerPort) + " (PLANETAI node)";
+  if (scFallback) s += ", then " + smartCitizenLabel();
+  return s;
+}
+
+// Where the readings go right now.
+String destinationNow() {
+  if (!localBroker()) return smartCitizenLabel();
+  if (fallbackSince) return smartCitizenLabel() + ", the PLANETAI node is not answering";
+  return brokerHost + ":" + String(brokerPort) + " (PLANETAI node)";
 }
 
 void setupConfig(bool forcePortal) {
@@ -585,18 +724,25 @@ void setupConfig(bool forcePortal) {
 
   WiFiManagerParameter hdrBroker(
       "<p class='sec'>Where it publishes</p>"
-      "<p class='hint'><b>To a PLANETAI node:</b> on the machine running the "
+      "<p class='hint'><b>First, a PLANETAI node:</b> on the machine running the "
       "node, open a terminal and run <b>planetai broker</b>. It prints the four "
       "values below: the host (its name ending in .local, or its address), port "
       "1883, user <b>planetai</b> and a password. Type them in. The node keeps "
       "every reading and can pass it on to Smart Citizen for you.</p>"
-      "<p class='hint'><b>To Smart Citizen directly:</b> leave these as they are "
-      "(mqtt.smartcitizen.me, port 8883, no user).</p>");
-  String portStr = String(brokerPort);
-  WiFiManagerParameter hostParam("mhost", "Broker host", brokerHost.c_str(), HOST_FIELD_LEN);
-  WiFiManagerParameter portParam("mport", "Broker port (1883 = PLANETAI node, 8883 = Smart Citizen)", portStr.c_str(), 6);
-  WiFiManagerParameter userParam("muser", "Broker user (planetai on a PLANETAI node, blank for Smart Citizen)", brokerUser.c_str(), USER_FIELD_LEN);
-  WiFiManagerParameter passParam("mpass", "Broker password", brokerPass.c_str(), PASS_FIELD_LEN, "type='password'");
+      "<p class='hint'><b>Then Smart Citizen:</b> with the box below ticked, if the "
+      "PLANETAI node stops answering this sensor publishes to Smart Citizen "
+      "directly, and goes back to the node when it answers again. Leave the host "
+      "blank and it publishes to Smart Citizen only.</p>");
+  // The fields describe the PLANETAI node; Smart Citizen needs none of them.
+  String hostStr = localBroker() ? brokerHost : String("");
+  String portStr = String(localBroker() ? brokerPort : 1883);
+  String userStr = localBroker() ? brokerUser : String("planetai");
+  WiFiManagerParameter hostParam("mhost", "PLANETAI node host (blank = Smart Citizen only)", hostStr.c_str(), HOST_FIELD_LEN);
+  WiFiManagerParameter portParam("mport", "Port", portStr.c_str(), 6);
+  WiFiManagerParameter userParam("muser", "User", userStr.c_str(), USER_FIELD_LEN);
+  WiFiManagerParameter passParam("mpass", "Password", brokerPass.c_str(), PASS_FIELD_LEN, "type='password'");
+  WiFiManagerParameter fallbackParam("scfb", "If the PLANETAI node stops answering, publish to Smart Citizen", "T", 2,
+                                     scFallback ? "type='checkbox' checked" : "type='checkbox'", WFM_LABEL_AFTER);
 
   WiFiManagerParameter hdrLocal(
       "<p class='sec'>This node</p>"
@@ -612,6 +758,14 @@ void setupConfig(bool forcePortal) {
   WiFiManagerParameter indoorParam("indoor", "This node hangs indoors (a room, not the street)", "T", 2,
                                    nodeIndoor ? "type='checkbox' checked" : "type='checkbox'", WFM_LABEL_AFTER);
 
+  WiFiManagerParameter hdrUpdates(
+      "<p class='sec'>Updates</p>"
+      "<p class='hint'>Once a day the sensor checks for a newer Making Sense Bali "
+      "firmware and installs it. If a new firmware cannot get back online, the "
+      "sensor goes back to the one it had.</p>");
+  WiFiManagerParameter otaParam("ota", "Keep the firmware up to date", "T", 2,
+                                otaEnabled ? "type='checkbox' checked" : "type='checkbox'", WFM_LABEL_AFTER);
+
   wm.addParameter(&hdrToken);
   wm.addParameter(&tokenParam);
   wm.addParameter(&hdrBroker);
@@ -619,11 +773,14 @@ void setupConfig(bool forcePortal) {
   wm.addParameter(&portParam);
   wm.addParameter(&userParam);
   wm.addParameter(&passParam);
+  wm.addParameter(&fallbackParam);
   wm.addParameter(&hdrLocal);
   wm.addParameter(&nameParam);
   wm.addParameter(&siteParam);
   wm.addParameter(&heightParam);
   wm.addParameter(&indoorParam);
+  wm.addParameter(&hdrUpdates);
+  wm.addParameter(&otaParam);
 
   // Persist as soon as Save is pressed — even if the WiFi join then fails,
   // the values survive for the next attempt.
@@ -650,10 +807,15 @@ void setupConfig(bool forcePortal) {
     prefs.putUShort("mport", (uint16_t)port); brokerPort = (uint16_t)port;
     prefs.putString("muser", user);           brokerUser = user;
     prefs.putString("mpass", pass);           brokerPass = pass;
+    bool fb = String(fallbackParam.getValue()).length() > 0;
+    bool ota = String(otaParam.getValue()).length() > 0;
+    prefs.putBool("scfb", fb);  scFallback = fb;
+    prefs.putBool("ota", ota);  otaEnabled = ota;
 
-    Serial.printf("[config] saved — token %s · name '%s' · site '%s' · height '%s' · %s · broker %s:%d user '%s'\n",
+    Serial.printf("[config] saved — token %s · name '%s' · site '%s' · height '%s' · %s · broker %s:%d user '%s'"
+                  " · Smart Citizen fallback %s · updates %s\n",
                   t.length() ? "yes" : "NO", n.c_str(), s.c_str(), h.c_str(), indoor ? "indoor" : "outdoor",
-                  host.c_str(), port, user.c_str());
+                  host.c_str(), port, user.c_str(), fb ? "on" : "off", ota ? "on" : "off");
   });
 
   // QR hand-off. makingsense.fablabbali.com/setup.html registers the device on
@@ -673,11 +835,33 @@ void setupConfig(bool forcePortal) {
       scToken = t;
       tokenParam.setValue(t.c_str(), TOKEN_FIELD_LEN);   // prefill the portal field
       Serial.printf("[config] token saved via /t (%s)\n", maskedToken().c_str());
+      // A PLANETAI node's QR also carries its broker: host, and optionally port, user, pass.
+      String nodeLine;
+      String host = wm.server->arg("host"); host.trim();
+      if (host.length() && host.length() <= (unsigned)HOST_FIELD_LEN) {
+        int port = wm.server->arg("port").toInt();
+        if (port <= 0 || port > 65535) port = 1883;
+        String user = wm.server->arg("user"); user.trim();
+        String pass = wm.server->arg("pass");
+        if (user.length() > (unsigned)USER_FIELD_LEN) user = "";
+        if (pass.length() > (unsigned)PASS_FIELD_LEN) pass = "";
+        prefs.putString("mhost", host);           brokerHost = host;
+        prefs.putUShort("mport", (uint16_t)port); brokerPort = (uint16_t)port;
+        prefs.putString("muser", user);           brokerUser = user;
+        prefs.putString("mpass", pass);           brokerPass = pass;
+        String portStr = String(port);
+        hostParam.setValue(host.c_str(), HOST_FIELD_LEN);
+        portParam.setValue(portStr.c_str(), 6);
+        userParam.setValue(user.c_str(), USER_FIELD_LEN);
+        passParam.setValue(pass.c_str(), PASS_FIELD_LEN);
+        Serial.printf("[config] PLANETAI node saved via /t: %s:%d user '%s'\n", host.c_str(), port, user.c_str());
+        nodeLine = " to the PLANETAI node <span class='n'>" + htmlEscape(host) + "</span>";
+      }
       wm.server->send(200, "text/html; charset=utf-8",
         "<!doctype html><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>" +
         String(FPSTR(THEME_CSS)) + "<body><div class='wrap'>" + headerBand() +
         "<h1>Token saved</h1><p class='hint'>This node will publish as <span class='n'>" + maskedToken() +
-        "</span>. Now give it your WiFi.</p><form action='/wifi' method='get'><button>Choose WiFi &rarr;</button></form>" +
+        "</span>" + nodeLine + ". Now give it your WiFi.</p><form action='/wifi' method='get'><button>Choose WiFi &rarr;</button></form>" +
         footerLine() + "</div></body>");
     });
   });
@@ -805,8 +989,29 @@ void handleStatus() {
     if (!isnan(lastSen.voc))   h += row("VOC index", fmt(lastSen.voc, 0, ""));
     if (!isnan(lastSen.nox))   h += row("NOx index", fmt(lastSen.nox, 0, ""));
   }
+  if (g_pmsOnline || g_pmsLost) {
+    const char* pmsName = pmsIsT ? "PMS5003T" : "PMS5003";
+    String tag = (g_hmOnline || g_hmLost || g_senOnline || g_senLost) ? " (" + String(pmsName) + ")" : "";
+    if (g_pmsOnline && millis() - pmsSince < 30000) tag += " · warming up, not published yet";
+    h += row("PM1"   + tag, fmt(lastPmsOk ? lastPms.pm1  : NAN, 0, UG));
+    h += row("PM2.5" + tag, fmt(lastPmsOk ? lastPms.pm25 : NAN, 0, UG));
+    h += row("PM10"  + tag, fmt(lastPmsOk ? lastPms.pm10 : NAN, 0, UG));
+    if (pmsIsT) {
+      h += row("Temperature (" + String(pmsName) + ")", fmt(lastPmsOk ? lastPms.tempC : NAN, 1, "&deg;C"));
+      h += row("Humidity (" + String(pmsName) + ")",    fmt(lastPmsOk ? lastPms.rh : NAN, 1, "%"));
+    }
+  }
+  if (g_scdOnline || g_scdLost) {
+    h += row("CO&#8322;", fmt(lastScdOk ? lastScd.co2 : NAN, 0, "ppm"));
+    h += row("Temperature (SCD4x)", fmt(lastScdOk ? lastScd.tempC : NAN, 2, "&deg;C"));
+    h += row("Humidity (SCD4x)",    fmt(lastScdOk ? lastScd.rh : NAN, 2, "%"));
+  }
+  if (g_shtOnline || g_shtLost) {
+    h += row("Temperature (SHT4x)", fmt(lastShtOk ? lastShtT : NAN, 2, "&deg;C"));
+    h += row("Humidity (SHT4x)",    fmt(lastShtOk ? lastShtRH : NAN, 2, "%"));
+  }
   if (g_bmeOnline || g_bmeLost) {
-    String tag = (g_senOnline || g_senLost) ? " (BME680)" : "";
+    String tag = (g_senOnline || g_senLost || g_shtOnline || g_scdOnline) ? " (BME680)" : "";
     h += row("Temperature" + tag, fmt(lastT, 2, "&deg;C"));
     h += row("Humidity" + tag,    fmt(lastRH, 2, "%"));
     h += row("Pressure",    fmt(lastP, 3, "kPa"));
@@ -819,9 +1024,13 @@ void handleStatus() {
   h += row("HM3301", sensorStateHtml(g_hmOnline,  g_hmLost));
   h += row(senLabel, sensorStateHtml(g_senOnline, g_senLost));
   h += row("BME680", sensorStateHtml(g_bmeOnline, g_bmeLost));
+  h += row(pmsIsT ? "PMS5003T" : "PMS5003", sensorStateHtml(g_pmsOnline, g_pmsLost));
+  h += row("SHT4x",  sensorStateHtml(g_shtOnline, g_shtLost));
+  h += row("SCD4x",  sensorStateHtml(g_scdOnline, g_scdLost));
   h += row("Smart Citizen token", scToken.length() ? "<span class='n on'>" + maskedToken() + "</span>"
                                                    : "<span class='stop'>NOT SET — nothing is published</span>");
   h += row("Publishes to", "<span class='n'>" + htmlEscape(brokerLabel()) + "</span>");
+  if (localBroker()) h += row("Right now", "<span class='n'>" + htmlEscape(destinationNow()) + "</span>");
   h += row("MQTT", mqtt.connected() ? "<span class='on'>connected</span>" : "<span class='stop'>disconnected</span>");
   h += row("Last publish", String(lastPublishOk ? "<span class='mk'></span><span class='on'>left the node</span> at "
                                                  : "<span class='stop'>failed</span> at ") + "<span class='n'>" + htmlEscape(lastPublishAt) + "</span>");
@@ -835,12 +1044,14 @@ void handleStatus() {
   h += row("Also reachable at", "<span class='n'>http://" + mdnsHost() + ".local</span>");
   h += row("I2C pins", "<span class='n'>SDA " + String(I2C_SDA_PIN) + " · SCL " + String(I2C_SCL_PIN) + "</span>");
   h += row("Uptime", "<span class='n'>" + uptimeStr() + "</span>");
+  h += row("Firmware", "<span class='n'>" + htmlEscape(FW_BUILD[0] ? String(FW_BUILD) : String(FW_VERSION) + " (built by hand)") + "</span>");
+  h += row("Updates", htmlEscape(otaEnabled ? otaStatus : String("off")));
   h += "</table>";
 
   h += "<form method='POST' action='/setup' onsubmit=\"return confirm('Reboot into the setup portal? The node stops measuring until setup finishes.')\">";
   h += "<button type='submit'>Reopen setup</button></form>";
 
-  if (localBroker()) {
+  if (onNode) {
     h += "<p class='note'>Name, site, height and indoors are sent to the local node "
          "with every connection, so it knows what this sensor is and where it hangs. "
          "Whether the node also passes readings on to smartcitizen.me is set on the node. "
@@ -939,7 +1150,7 @@ String localClock() {
 // the moment it subscribes, even after a restart on its side. Never sent to Smart Citizen: the point of v4 is
 // that the Smart Citizen path stays exactly what v3 sent.
 bool publishMeta() {
-  if (!localBroker() || !mqtt.connected()) return false;
+  if (!onNode || !mqtt.connected()) return false;
   JsonDocument doc;
   doc["name"]     = nodeName;
   doc["site"]     = nodeSite;
@@ -953,6 +1164,9 @@ bool publishMeta() {
   if (g_hmOnline)  fitted.add("hm3301");
   if (g_senOnline) fitted.add(sen5xModel[0] ? sen5xModel : "sen5x");
   if (g_bmeOnline) fitted.add("bme680");
+  if (g_pmsOnline) fitted.add(pmsIsT ? "pms5003t" : "pms5003");
+  if (g_shtOnline) fitted.add("sht4x");
+  if (g_scdOnline) fitted.add("scd4x");
   doc["fw"]       = FW_VERSION;
   String json;
   serializeJson(doc, json);
@@ -962,41 +1176,73 @@ bool publishMeta() {
   return ok;
 }
 
+// Where the next connection goes: the PLANETAI node while it answers; Smart
+// Citizen when no node is set, or when the node has missed
+// NODE_FAILS_BEFORE_FALLBACK connections in a row and the fallback is on. From
+// Smart Citizen the node is tried again every NODE_RETRY_MS (see loop()).
+// The topic and the bytes are the same on both, so a reading published during
+// a fallback is a reading Smart Citizen would have had from the node anyway.
 void connectMQTT() {
   if (mqtt.connected()) return;
   if (WiFi.status() != WL_CONNECTED) return;
   if (scToken.length() == 0) return;
+  uint32_t now = millis();
+  if (lastMqttTry && now - lastMqttTry < MQTT_RETRY_MS) return;
+  lastMqttTry = now;
+
+  bool toNode = localBroker() && (!fallbackSince || now - fallbackSince >= NODE_RETRY_MS);
+  const char* host = toNode ? brokerHost.c_str() : DEFAULT_MQTT_HOST;
+  uint16_t    port = toNode ? brokerPort : DEFAULT_MQTT_PORT;
 
   // 8883 is TLS (Smart Citizen, or a node that terminates TLS itself); anything else is plain MQTT on the LAN.
-  if (brokerPort == 8883) {
+  if (port == 8883) {
     tlsNet.setInsecure();   // see v2 notes — fine for a workshop kit, not for policy data. A PLANETAI node
                             // forwarding to Smart Citizen verifies the platform's certificate on this device's behalf.
     mqtt.setClient(tlsNet);
   } else {
     mqtt.setClient(plainNet);
   }
-  mqtt.setServer(brokerHost.c_str(), brokerPort);
-  mqtt.setBufferSize(1024);   // HM3301 + SEN55 + BME680 is ~16 channels
+  mqtt.setServer(host, port);
+  mqtt.setBufferSize(1024);   // HM3301 + SEN55 + BME680 + PMS5003T + SHT4x + SCD4x is ~27 channels
 
-  Serial.printf("[mqtt] connecting to %s:%u ", brokerHost.c_str(), brokerPort);
+  Serial.printf("[mqtt] connecting to %s:%u%s ", host, port, toNode ? " (PLANETAI node)" : " (Smart Citizen)");
   // Smart Citizen's way is token as username and no password; a node's broker has its own user and password.
   // The client id stays the token on both, so a node can tell devices apart in its broker log.
-  bool ok = brokerUser.length()
+  bool withUser = toNode && brokerUser.length();
+  bool ok = withUser
       ? mqtt.connect(scToken.c_str(), brokerUser.c_str(), brokerPass.c_str())
       : mqtt.connect(scToken.c_str(), scToken.c_str(), "");
+  onNode = ok && toNode;
   if (ok) {
     Serial.println("ok");
-    publishMeta();
-  } else {
-    Serial.printf("failed (rc=%d) — will retry. rc=5 means %s\n", mqtt.state(),
-                  brokerUser.length() ? "the broker refused the user/password" : "BAD TOKEN");
+    if (toNode) {
+      if (fallbackSince) Serial.println("[mqtt] the PLANETAI node answers again, publishing there");
+      nodeFails = 0;
+      fallbackSince = 0;
+      publishMeta();
+    }
+    return;
+  }
+  Serial.printf("failed (rc=%d) — will retry. rc=5 means %s\n", mqtt.state(),
+                withUser ? "the broker refused the user/password" : "BAD TOKEN");
+  if (!toNode) return;
+  if (fallbackSince) { fallbackSince = now; return; }   // still down: another NODE_RETRY_MS on Smart Citizen
+  if (++nodeFails >= NODE_FAILS_BEFORE_FALLBACK && scFallback) {
+    Serial.printf("[mqtt] the PLANETAI node missed %u connections, publishing to Smart Citizen until it answers\n",
+                  (unsigned)nodeFails);
+    nodeFails = 0;
+    fallbackSince = now;
+    lastMqttTry = 0;   // straight on to Smart Citizen
   }
 }
 
 bool publishReadings(bool bmeOk, float tempC, float humRH, float pressureKPa,
                      float gasOhm, float iaq,
                      bool hmOk, uint16_t pm1, uint16_t pm25, uint16_t pm10,
-                     bool senOk, const Sen5xReading &sen) {
+                     bool senOk, const Sen5xReading &sen,
+                     bool pmsOk, const PmsReading &pms,
+                     bool shtOk, float shtT, float shtRH,
+                     bool scdOk, const Scd4xReading &scd) {
   if (!mqtt.connected()) return false;
 
   JsonDocument doc;
@@ -1035,6 +1281,22 @@ bool publishReadings(bool bmeOk, float tempC, float humRH, float pressureKPa,
     addSensor(SC_ID_SEN_TEMP, sen.tempC);
     addSensor(SC_ID_SEN_VOC,  sen.voc);
     addSensor(SC_ID_SEN_NOX,  sen.nox);
+  }
+  if (pmsOk) {
+    addSensor(SC_ID_PMS_PM1,  pms.pm1);
+    addSensor(SC_ID_PMS_PM25, pms.pm25);
+    addSensor(SC_ID_PMS_PM10, pms.pm10);
+    addSensor(SC_ID_PMS_TEMP, pms.tempC);   // NAN unless it is a PMS5003T
+    addSensor(SC_ID_PMS_HUM,  pms.rh);
+  }
+  if (shtOk) {
+    addSensor(SC_ID_SHT_TEMP, shtT);
+    addSensor(SC_ID_SHT_HUM,  shtRH);
+  }
+  if (scdOk) {
+    addSensor(SC_ID_SCD_CO2,  scd.co2);     // NAN between the SCD4x's 5 s measurements
+    addSensor(SC_ID_SCD_TEMP, scd.tempC);
+    addSensor(SC_ID_SCD_HUM,  scd.rh);
   }
 
   if (sensors.size() == 0) {
@@ -1131,19 +1393,8 @@ constexpr uint16_t SEN5X_CMD_READ_MEASURED_VALUES = 0x03C4;  // 8 words
 constexpr uint16_t SEN5X_CMD_GET_PRODUCT_NAME     = 0xD014;  // 16 words (32 chars)
 constexpr uint16_t SEN5X_CMD_DEVICE_RESET         = 0xD304;
 
-uint8_t sen5xCrc(const uint8_t* data, size_t len) {
-  uint8_t crc = 0xFF;
-  for (size_t i = 0; i < len; i++) {
-    crc ^= data[i];
-    for (uint8_t b = 0; b < 8; b++) {
-      crc = (crc & 0x80) ? (uint8_t)((crc << 1) ^ 0x31) : (uint8_t)(crc << 1);
-    }
-  }
-  return crc;
-}
-
-bool sen5xSendCommand(uint16_t cmd, uint16_t delayMs) {
-  Wire.beginTransmission(SEN5X_ADDR);
+bool sensirionCmd(uint8_t addr, uint16_t cmd, uint16_t delayMs) {
+  Wire.beginTransmission(addr);
   Wire.write((uint8_t)(cmd >> 8));
   Wire.write((uint8_t)(cmd & 0xFF));
   if (Wire.endTransmission() != 0) return false;
@@ -1151,10 +1402,10 @@ bool sen5xSendCommand(uint16_t cmd, uint16_t delayMs) {
   return true;
 }
 
-bool sen5xReadWords(uint16_t cmd, uint16_t* out, size_t count, uint16_t delayMs) {
-  if (!sen5xSendCommand(cmd, delayMs)) return false;
+// Read `count` words, 3 bytes each on the wire. Any bad CRC discards the lot.
+bool sensirionReadReply(uint8_t addr, uint16_t* out, size_t count) {
   const size_t wireBytes = count * 3;
-  size_t got = Wire.requestFrom(SEN5X_ADDR, (uint8_t)wireBytes);
+  size_t got = Wire.requestFrom(addr, (uint8_t)wireBytes);
   if (got != wireBytes) return false;
   for (size_t i = 0; i < count; i++) {
     uint8_t buf[3];
@@ -1162,10 +1413,14 @@ bool sen5xReadWords(uint16_t cmd, uint16_t* out, size_t count, uint16_t delayMs)
       if (!Wire.available()) return false;
       buf[b] = Wire.read();
     }
-    if (sen5xCrc(buf, 2) != buf[2]) return false;
+    if (sensirionCrc(buf, 2) != buf[2]) return false;
     out[i] = ((uint16_t)buf[0] << 8) | buf[1];
   }
   return true;
+}
+
+bool sensirionReadWords(uint8_t addr, uint16_t cmd, uint16_t* out, size_t count, uint16_t delayMs) {
+  return sensirionCmd(addr, cmd, delayMs) && sensirionReadReply(addr, out, count);
 }
 
 // Sensirion's "no value" sentinels: 0xFFFF unsigned, 0x7FFF signed.
@@ -1190,7 +1445,7 @@ void sen5xDecode(const uint16_t v[8], Sen5xReading &r) {
 
 bool sen5xReadModel() {
   uint16_t w[16];
-  if (!sen5xReadWords(SEN5X_CMD_GET_PRODUCT_NAME, w, 16, 50)) return false;
+  if (!sensirionReadWords(SEN5X_ADDR, SEN5X_CMD_GET_PRODUCT_NAME, w, 16, 50)) return false;
   size_t n = 0;
   for (size_t i = 0; i < 16 && n < sizeof(sen5xModel) - 2; i++) {
     char hi = (char)(w[i] >> 8), lo = (char)(w[i] & 0xFF);
@@ -1206,17 +1461,134 @@ bool sen5xReadModel() {
 // Reset first: if only the ESP32 rebooted, the SEN5x is still in measurement
 // mode and would refuse START. Reset puts it in idle whatever state it was in.
 bool sen5xBegin() {
-  sen5xSendCommand(SEN5X_CMD_DEVICE_RESET, 120);   // result ignored on purpose
+  sensirionCmd(SEN5X_ADDR, SEN5X_CMD_DEVICE_RESET, 120);   // result ignored on purpose
   if (!sen5xReadModel()) return false;
-  return sen5xSendCommand(SEN5X_CMD_START_MEASUREMENT, 50);
+  return sensirionCmd(SEN5X_ADDR, SEN5X_CMD_START_MEASUREMENT, 50);
 }
 
 bool readSEN5x(Sen5xReading &r) {
   uint16_t v[8];
-  if (!sen5xReadWords(SEN5X_CMD_READ_MEASURED_VALUES, v, 8, 20)) return false;
+  if (!sensirionReadWords(SEN5X_ADDR, SEN5X_CMD_READ_MEASURED_VALUES, v, 8, 20)) return false;
   sen5xDecode(v, r);
   // Right after START the PM words are 0xFFFF for about a second. That is
   // "not ready", not a failure — return true with NANs, publish nothing for it.
+  return true;
+}
+
+// ============================================================================
+// SHT4x — direct I2C. One-byte commands, two CRC'd words back (Sensirion SHT4x
+// datasheet). 0x89 reads the serial number: an SHT3x on the same address does
+// not answer a one-byte command, so this is also how an SHT4x is told apart.
+// ============================================================================
+
+constexpr uint8_t SHT4X_CMD_MEASURE_HIGH = 0xFD;   // high repeatability, 10 ms
+constexpr uint8_t SHT4X_CMD_READ_SERIAL  = 0x89;
+
+bool sht4xCommand(uint8_t cmd, uint16_t delayMs, uint16_t out[2]) {
+  Wire.beginTransmission(SHT4X_ADDR);
+  Wire.write(cmd);
+  if (Wire.endTransmission() != 0) return false;
+  delay(delayMs);
+  return sensirionReadReply(SHT4X_ADDR, out, 2);
+}
+
+bool sht4xBegin() {
+  uint16_t serial[2];
+  return sht4xCommand(SHT4X_CMD_READ_SERIAL, 2, serial);
+}
+
+bool readSHT4x(float &tempC, float &rh) {
+  uint16_t w[2];
+  if (!sht4xCommand(SHT4X_CMD_MEASURE_HIGH, 10, w)) return false;
+  sht4xDecode(w, tempC, rh);
+  return true;
+}
+
+// ============================================================================
+// SCD4x — direct I2C (Sensirion SCD4x datasheet). Periodic mode: a new CO2, T
+// and RH every 5 s. Self-calibration stays on, as shipped: it assumes the
+// sensor sees outdoor air (~400 ppm) at least once a week. A room that never
+// airs out will drift; that is the sensor's limit, not something to hide here.
+// ============================================================================
+
+constexpr uint16_t SCD4X_CMD_START_PERIODIC   = 0x21B1;
+constexpr uint16_t SCD4X_CMD_STOP_PERIODIC    = 0x3F86;   // 500 ms
+constexpr uint16_t SCD4X_CMD_GET_SERIAL       = 0x3682;   // 3 words
+constexpr uint16_t SCD4X_CMD_DATA_READY       = 0xE4B8;   // 1 word
+constexpr uint16_t SCD4X_CMD_READ_MEASUREMENT = 0xEC05;   // 3 words
+
+// Stop first: if only the ESP32 rebooted, the SCD4x is still measuring and
+// would ignore every command but stop.
+bool scd4xBegin() {
+  sensirionCmd(SCD4X_ADDR, SCD4X_CMD_STOP_PERIODIC, 500);   // result ignored on purpose
+  uint16_t serial[3];
+  if (!sensirionReadWords(SCD4X_ADDR, SCD4X_CMD_GET_SERIAL, serial, 3, 1)) return false;
+  return sensirionCmd(SCD4X_ADDR, SCD4X_CMD_START_PERIODIC, 0);
+}
+
+bool readSCD4x(Scd4xReading &r) {
+  uint16_t ready;
+  if (!sensirionReadWords(SCD4X_ADDR, SCD4X_CMD_DATA_READY, &ready, 1, 1)) return false;
+  if ((ready & 0x07FF) == 0) return true;   // between measurements: NANs, not a failure
+  uint16_t w[3];
+  if (!sensirionReadWords(SCD4X_ADDR, SCD4X_CMD_READ_MEASUREMENT, w, 3, 1)) return false;
+  scd4xDecode(w, r);
+  return true;
+}
+
+// ============================================================================
+// PLANTOWER PMS5003 / PMS5003T — UART, listen only
+//
+// The sensor streams a 32-byte frame about once a second at 9600 8N1 from the
+// moment it has power: 0x42 0x4D, frame length 28, 13 big-endian words, then
+// the 16-bit sum of bytes 0..29. Nothing has to be sent to it, so the node
+// opens RX on PMS_RX_PIN and attaches no TX: a board with something else on
+// that pin is never driven. A Plantower is fitted once a valid frame arrives.
+//
+// PMS5003 or PMS5003T: same frame; the T puts its temperature and humidity
+// (x10) in the words that carry the 5 um and 10 um counts on the plain one.
+// Those counts are cumulative ("particles beyond X um"), so on a PMS5003 they
+// never grow with size. A frame where they do is a PMS5003T, and that is
+// sticky. Until such a frame shows up nothing is published from those two
+// words, so a T taken for a plain PMS5003 loses a few minutes of T/RH and
+// never publishes a count as a temperature.
+// ============================================================================
+
+constexpr uint32_t PMS_WAIT_MS   = 3000;    // a frame every ~1 s, every ~2.3 s in clean air
+constexpr uint32_t PMS_WARMUP_MS = 30000;   // Plantower: readings settle 30 s after the fan starts
+
+// Drain what arrived since last time and keep the newest valid frame. With no
+// valid frame buffered, wait up to waitMs for one.
+bool pmsReadFrame(uint8_t out[PMS_FRAME_LEN], uint32_t waitMs) {
+  uint8_t f[PMS_FRAME_LEN];
+  uint8_t idx = 0;
+  bool got = false;
+  uint32_t start = millis();
+  while (true) {
+    if (!Serial1.available()) {
+      if (got || millis() - start >= waitMs) break;
+      delay(5);
+      continue;
+    }
+    uint8_t b = Serial1.read();
+    if (idx == 0 && b != 0x42) continue;
+    if (idx == 1 && b != 0x4D) { idx = (b == 0x42) ? 1 : 0; continue; }
+    f[idx++] = b;
+    if (idx < PMS_FRAME_LEN) continue;
+    idx = 0;
+    if (pmsFrameValid(f)) { memcpy(out, f, PMS_FRAME_LEN); got = true; }
+  }
+  return got;
+}
+
+bool readPMS(PmsReading &r) {
+  uint8_t f[PMS_FRAME_LEN];
+  if (!pmsReadFrame(f, PMS_WAIT_MS)) return false;
+  if (!pmsIsT && pmsLooksLikeT(f)) {
+    pmsIsT = true;
+    Serial.println("[sensors] the Plantower is a PMS5003T: its temperature and humidity are published too");
+  }
+  pmsDecode(f, pmsIsT, r);
   return true;
 }
 
@@ -1227,7 +1599,7 @@ bool readSEN5x(Sen5xReading &r) {
 // silent; only a sensor that was online and then stops answering is a fault.
 // ============================================================================
 
-const uint8_t KNOWN_ADDRS[] = {HM3301_I2C_ADDR, SEN5X_ADDR, BME680_ADDR_A, BME680_ADDR_B};
+const uint8_t KNOWN_ADDRS[] = {HM3301_I2C_ADDR, SEN5X_ADDR, BME680_ADDR_A, BME680_ADDR_B, SHT4X_ADDR, SCD4X_ADDR};
 const int KNOWN_ADDR_COUNT = sizeof(KNOWN_ADDRS) / sizeof(KNOWN_ADDRS[0]);
 
 bool i2cAnswers(uint8_t addr) {
@@ -1265,6 +1637,21 @@ bool startAnswering(bool announce) {
   if (!g_bmeOnline && (i2cAnswers(BME680_ADDR_A) || i2cAnswers(BME680_ADDR_B)) && startBME680()) {
     g_bmeOnline = true; g_bmeLost = false; bmeFails = 0; any = true;
   }
+  if (!g_shtOnline && i2cAnswers(SHT4X_ADDR) && sht4xBegin()) {
+    g_shtOnline = true; g_shtLost = false; shtFails = 0; any = true;
+  }
+  if (!g_scdOnline && i2cAnswers(SCD4X_ADDR) && scd4xBegin()) {
+    g_scdOnline = true; g_scdLost = false; scdFails = 0; any = true;
+  }
+  // The Plantower is not on the bus. Bytes in the UART buffer mean something is
+  // talking on PMS_RX_PIN; a full scan (announce) also waits for a first frame.
+  uint8_t frame[PMS_FRAME_LEN];
+  if (!g_pmsOnline && PMS_RX_PIN >= 0 && (announce || Serial1.available())
+      && pmsReadFrame(frame, PMS_WAIT_MS)) {
+    g_pmsOnline = true; g_pmsLost = false; pmsFails = 0; any = true;
+    pmsSince = millis();
+    if (pmsLooksLikeT(frame)) pmsIsT = true;
+  }
   if (announce || any) {
     String fitted, absent;
     auto add = [](String &s, const String &x) { if (s.length()) s += ", "; s += x; };
@@ -1272,6 +1659,10 @@ bool startAnswering(bool announce) {
     if (g_hmOnline) add(fitted, "HM3301 (0x40)");  else add(absent, "HM3301");
     if (g_senOnline) add(fitted, sen);             else add(absent, "SEN5x");
     if (g_bmeOnline) add(fitted, "BME680");        else add(absent, "BME680");
+    if (g_shtOnline) add(fitted, "SHT4x (0x44)");  else add(absent, "SHT4x");
+    if (g_scdOnline) add(fitted, "SCD4x (0x62)");  else add(absent, "SCD4x");
+    if (g_pmsOnline) add(fitted, String(pmsIsT ? "PMS5003T" : "PMS5003") + " (UART RX " + String(PMS_RX_PIN) + ")");
+    else             add(absent, "PMS5003");
     Serial.printf("[sensors] fitted: %s%s%s\n", fitted.length() ? fitted.c_str() : "none",
                   absent.length() ? "  ·  not fitted: " : "", absent.c_str());
   }
@@ -1324,8 +1715,9 @@ void bringUpSensors(const char* reason) {
     Wire.end();
     delay(5);
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN, 100000);
-    Serial.println("[sensors] no sensor answered. On the XIAO Grove shield only the two sockets");
+    Serial.println("[sensors] no I2C sensor answered. On the XIAO Grove shield only the two sockets");
     Serial.println("[sensors] marked I2C carry the bus. HM3301 and SEN5x need 5 V. Retrying every 5 min.");
+    startAnswering(true);   // a Plantower-only node has nothing on the bus
     return;
   }
 
@@ -1339,17 +1731,121 @@ void bringUpSensors(const char* reason) {
 }
 
 // ============================================================================
+// SELF-UPDATE from the flash page
+//
+// The manifest the flash page serves (ESP Web Tools format, written by
+// .github/workflows/firmware-build.yml) names the build and, per chip, the
+// app image at 0x10000. That image is all an update needs: bootloader and
+// partition table stay. Everything is fetched over HTTPS against the core's
+// CA bundle, and the image itself carries a SHA-256 the updater checks.
+//
+// The bootloader's rollback is the safety net. A build that arrived this way
+// boots on probation; it confirms itself only once it has read the manifest
+// again, which proves WiFi, DNS, TLS and the update path all still work, so
+// the fleet can always be reached with the next fix. A build that crashes, or
+// cannot get that far in OTA_VERIFY_DEADLINE_MS, is rolled back on reboot,
+// and the old build remembers not to fetch it again.
+// ============================================================================
+
+// Tells the core not to confirm an OTA build at boot; otaCheck() does it.
+// C linkage: the weak default lives in the core's esp32-hal-misc.c.
+extern "C" bool verifyRollbackLater() { return true; }
+
+void otaBootCheck() {
+  esp_ota_img_states_t st;
+  if (esp_ota_get_state_partition(esp_ota_get_running_partition(), &st) == ESP_OK &&
+      st == ESP_OTA_IMG_PENDING_VERIFY) {
+    otaPendingVerify = true;
+  }
+  if (otaPendingVerify && !FW_BUILD[0]) {   // a hand build cannot check itself against the manifest
+    esp_ota_mark_app_valid_cancel_rollback();
+    otaPendingVerify = false;
+  }
+  String tried = prefs.getString("otatry", "");
+  if (tried.length()) {
+    prefs.remove("otatry");
+    if (tried != FW_BUILD) {
+      prefs.putString("otabad", tried);
+      otaStatus = tried + " did not stay up and was rolled back; it will not be tried again";
+      Serial.printf("[ota] %s\n", otaStatus.c_str());
+    }
+  }
+  if (otaPendingVerify)
+    Serial.printf("[ota] %s is new on this node: on probation until it reads the manifest\n", FW_BUILD);
+}
+
+void otaCheck() {
+  lastOtaCheck = millis();
+  if (!otaEnabled && !otaPendingVerify) return;
+  if (WiFi.status() != WL_CONNECTED) return;
+  if (!FW_BUILD[0]) { otaStatus = "built by hand, does not update itself"; return; }
+
+  NetworkClientSecure tls;
+  tls.useBuiltinCACertBundle();
+  HTTPClient http;
+  http.setTimeout(10000);
+  if (!http.begin(tls, OTA_MANIFEST_URL)) { otaStatus = "could not open the flash page"; return; }
+  int code = http.GET();
+  if (code != 200) {
+    otaStatus = "the flash page answered " + String(code) + " at " + localClock();
+    http.end();
+    return;
+  }
+  JsonDocument doc;
+  DeserializationError err = deserializeJson(doc, http.getString());
+  http.end();
+  if (err) { otaStatus = String("the manifest did not parse: ") + err.c_str(); return; }
+
+  if (otaPendingVerify) {
+    esp_ota_mark_app_valid_cancel_rollback();
+    otaPendingVerify = false;
+    Serial.printf("[ota] %s read the manifest: it stays\n", FW_BUILD);
+  }
+
+  String version = doc["version"] | "";
+  String app;
+  for (JsonObject b : doc["builds"].as<JsonArray>()) {
+    if (String(b["chipFamily"] | "") != OTA_CHIP) continue;
+    for (JsonObject part : b["parts"].as<JsonArray>())
+      if ((part["offset"] | 0) == 0x10000) app = String(part["path"] | "");
+  }
+  if (!version.length() || !app.length()) { otaStatus = "the manifest has no build for " + String(OTA_CHIP); return; }
+  if (version == FW_BUILD) { otaStatus = "up to date, checked at " + localClock(); return; }
+  if (!otaEnabled) return;
+  if (version == prefs.getString("otabad", "")) {
+    otaStatus = version + " was rolled back here before; staying on " + String(FW_BUILD);
+    return;
+  }
+
+  String url = String(OTA_MANIFEST_URL);
+  url = url.substring(0, url.lastIndexOf('/') + 1) + app;
+  Serial.printf("[ota] %s -> %s: downloading %s\n", FW_BUILD, version.c_str(), url.c_str());
+  prefs.putString("otatry", version);
+  mqtt.disconnect();   // one TLS session at a time; it reconnects after the reboot, or below
+  NetworkClientSecure dl;
+  dl.useBuiltinCACertBundle();
+  httpUpdate.rebootOnUpdate(true);
+  httpUpdate.update(dl, url);
+  // Only a failed update gets here; a good one has already rebooted into the new build.
+  prefs.remove("otatry");
+  otaStatus = "update to " + version + " failed: " + httpUpdate.getLastErrorString();
+  Serial.printf("[ota] %s\n", otaStatus.c_str());
+}
+
+// ============================================================================
 // SETUP / LOOP
 // ============================================================================
 
 void setup() {
   Serial.begin(115200);
   delay(1500);
-  Serial.println("\n=== Making Sense Bali — DIY Node v5 (HM3301 / SEN5x / BME680, auto-detected) ===");
+  Serial.println("\n=== Making Sense Bali — DIY Node v5 (HM3301 / SEN5x / BME680 / PMS5003 / SHT4x / SCD4x, auto-detected) ===");
+  Serial.printf("[boot] firmware %s\n", FW_BUILD[0] ? FW_BUILD : "built by hand");
   Serial.printf("[boot] AP name if portal opens: %s  (password: %s)\n",
                 apName().c_str(), PORTAL_PASSWORD);
 
   prefs.begin("msb", false);
+  otaBootCheck();
 
   // The status page's "Reopen setup" button sets this flag and reboots. Consume
   // it here so the portal opens exactly once, then clear it — otherwise a node
@@ -1361,6 +1857,10 @@ void setup() {
   }
 
   bool forcePortal = flagged || bootButtonHeld();
+  if (PMS_RX_PIN >= 0) {
+    Serial1.setRxBufferSize(2048);   // a minute of Plantower frames, so the newest is always in there
+    Serial1.begin(9600, SERIAL_8N1, PMS_RX_PIN, -1);   // RX only: no TX pin is attached or driven
+  }
   bringUpSensors("boot");
   lastSensorScan = millis();
   setupConfig(forcePortal);
@@ -1373,6 +1873,26 @@ void loop() {
   connectMQTT();
   mqtt.loop();
   status.handleClient();
+
+  // On Smart Citizen because the node stopped answering: give the node another go.
+  if (mqtt.connected() && !onNode && localBroker() && fallbackSince &&
+      millis() - fallbackSince >= NODE_RETRY_MS) {
+    Serial.println("[mqtt] trying the PLANETAI node again");
+    mqtt.disconnect();
+    lastMqttTry = 0;
+  }
+
+  // Self-update: a build on probation checks every minute until it confirms
+  // itself, and gives up into a rollback at the deadline.
+  if (otaPendingVerify && millis() >= OTA_VERIFY_DEADLINE_MS) {
+    Serial.println("[ota] this build never reached the manifest: rebooting into the previous one");
+    delay(200);
+    ESP.restart();
+  }
+  uint32_t otaDue = otaPendingVerify ? OTA_VERIFY_RETRY_MS : (lastOtaCheck ? OTA_INTERVAL_MS : OTA_FIRST_CHECK_MS);
+  if ((otaEnabled || otaPendingVerify) && WiFi.status() == WL_CONNECTED && millis() - lastOtaCheck >= otaDue) {
+    otaCheck();
+  }
 
   if (reopenPortalRequested) {
     delay(400);                       // let the browser get the response first
@@ -1390,10 +1910,11 @@ void loop() {
     // back after a fault). With nothing fitted at all, redo the full pin scan.
     if (now - lastSensorScan >= SENSOR_RESCAN_MS) {
       lastSensorScan = now;
-      bool anyFitted = g_hmOnline || g_senOnline || g_bmeOnline;
-      if (!anyFitted && I2C_SDA_PIN >= 0 && !(g_hmLost || g_senLost || g_bmeLost)) {
+      bool anyFitted = g_hmOnline || g_senOnline || g_bmeOnline || g_shtOnline || g_scdOnline || g_pmsOnline;
+      bool anyLost   = g_hmLost || g_senLost || g_bmeLost || g_shtLost || g_scdLost || g_pmsLost;
+      if (!anyFitted && I2C_SDA_PIN >= 0 && !anyLost) {
         bringUpSensors("nothing fitted yet");
-      } else if (!(g_hmOnline && g_senOnline && g_bmeOnline)) {
+      } else if (!(g_hmOnline && g_senOnline && g_bmeOnline && g_shtOnline && g_scdOnline && g_pmsOnline)) {
         startAnswering(false);   // prints only if something new came up
       }
     }
@@ -1401,13 +1922,23 @@ void loop() {
     float tempC = NAN, humRH = NAN, pressureKPa = NAN, gasOhm = NAN;
     uint16_t pm1 = 0, pm25 = 0, pm10 = 0;
     Sen5xReading sen;
+    PmsReading pms;
+    Scd4xReading scd;
+    float shtT = NAN, shtRH = NAN;
 
     bool bmeOk = g_bmeOnline && readBME680(tempC, humRH, pressureKPa, gasOhm);
     bool hmOk  = g_hmOnline  && readHM3301(pm1, pm25, pm10);
     bool senOk = g_senOnline && readSEN5x(sen);
+    bool shtOk = g_shtOnline && readSHT4x(shtT, shtRH);
+    bool scdOk = g_scdOnline && readSCD4x(scd);
+    bool pmsOk = g_pmsOnline && readPMS(pms);
     if (g_bmeOnline) noteRead(bmeOk, g_bmeOnline, g_bmeLost, bmeFails, "BME680");
     if (g_hmOnline)  noteRead(hmOk,  g_hmOnline,  g_hmLost,  hmFails,  "HM3301");
     if (g_senOnline) noteRead(senOk, g_senOnline, g_senLost, senFails, sen5xModel[0] ? sen5xModel : "SEN5x");
+    if (g_shtOnline) noteRead(shtOk, g_shtOnline, g_shtLost, shtFails, "SHT4x");
+    if (g_scdOnline) noteRead(scdOk, g_scdOnline, g_scdLost, scdFails, "SCD4x");
+    if (g_pmsOnline) noteRead(pmsOk, g_pmsOnline, g_pmsLost, pmsFails, pmsIsT ? "PMS5003T" : "PMS5003");
+    bool pmsWarm = pmsOk && millis() - pmsSince >= PMS_WARMUP_MS;
     float iaq  = bmeOk ? computeIAQ(gasOhm, humRH) : NAN;
 
     // One line, only the sensors that are fitted.
@@ -1419,17 +1950,26 @@ void loop() {
                  line += b; }
     if (bmeOk) { snprintf(b, sizeof(b), "  BME680 T=%.2f RH=%.2f P=%.3f Gas=%.0f IAQ~%.0f",
                           tempC, humRH, pressureKPa, gasOhm, iaq); line += b; }
+    if (pmsOk) { snprintf(b, sizeof(b), "  %s PM1=%.0f PM2.5=%.0f PM10=%.0f%s", pmsIsT ? "PMS5003T" : "PMS5003",
+                          pms.pm1, pms.pm25, pms.pm10, pmsWarm ? "" : " (warming up)"); line += b;
+                 if (pmsIsT) { snprintf(b, sizeof(b), " T=%.1f RH=%.1f", pms.tempC, pms.rh); line += b; } }
+    if (shtOk) { snprintf(b, sizeof(b), "  SHT4x T=%.2f RH=%.2f", shtT, shtRH); line += b; }
+    if (scdOk) { snprintf(b, sizeof(b), "  SCD4x CO2=%.0f T=%.2f RH=%.2f", scd.co2, scd.tempC, scd.rh); line += b; }
     if (line.length() == 6) line += " no sensor read this cycle";
     Serial.println(line);
 
     bool ok = publishReadings(bmeOk, tempC, humRH, pressureKPa, gasOhm, iaq,
-                              hmOk, pm1, pm25, pm10, senOk, sen);
+                              hmOk, pm1, pm25, pm10, senOk, sen,
+                              pmsWarm, pms, shtOk, shtT, shtRH, scdOk, scd);
 
     // Snapshot for the status page.
     lastT = tempC; lastRH = humRH; lastP = pressureKPa; lastGas = gasOhm; lastIAQ = iaq;
     lastPM1 = pm1; lastPM25 = pm25; lastPM10 = pm10;
     lastBmeOk = bmeOk; lastHmOk = hmOk; lastSenOk = senOk;
     if (senOk) lastSen = sen;
+    lastShtOk = shtOk; lastShtT = shtT; lastShtRH = shtRH;
+    lastPmsOk = pmsOk; if (pmsOk) lastPms = pms;
+    lastScdOk = scdOk; if (scdOk && !isnan(scd.co2)) lastScd = scd;
     lastPublishOk = ok;
     lastPublishAt = localClock();
     if (ok) publishCount++; else publishFailCount++;
