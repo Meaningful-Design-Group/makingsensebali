@@ -1205,7 +1205,9 @@ void connectMQTT() {
   mqtt.setServer(host, port);
   mqtt.setBufferSize(1024);   // HM3301 + SEN55 + BME680 + PMS5003T + SHT4x + SCD4x is ~27 channels
 
-  Serial.printf("[mqtt] connecting to %s:%u%s ", host, port, toNode ? " (PLANETAI node)" : " (Smart Citizen)");
+  // Keep this line as "[mqtt] connecting to host:port ok" / "... failed (rc=N)": the Test step on
+  // planetai.fab.city/sensors reads the connection state from it. Which one it is shows in the host.
+  Serial.printf("[mqtt] connecting to %s:%u ", host, port);
   // Smart Citizen's way is token as username and no password; a node's broker has its own user and password.
   // The client id stays the token on both, so a node can tell devices apart in its broker log.
   bool withUser = toNode && brokerUser.length();
@@ -1663,8 +1665,10 @@ bool startAnswering(bool announce) {
     if (g_scdOnline) add(fitted, "SCD4x (0x62)");  else add(absent, "SCD4x");
     if (g_pmsOnline) add(fitted, String(pmsIsT ? "PMS5003T" : "PMS5003") + " (UART RX " + String(PMS_RX_PIN) + ")");
     else             add(absent, "PMS5003");
-    Serial.printf("[sensors] fitted: %s%s%s\n", fitted.length() ? fitted.c_str() : "none",
-                  absent.length() ? "  ·  not fitted: " : "", absent.c_str());
+    // Two lines: the Test step on planetai.fab.city/sensors splits "fitted:" on commas and dots,
+    // so absent sensors on the same line would read as fitted.
+    Serial.printf("[sensors] fitted: %s\n", fitted.length() ? fitted.c_str() : "none");
+    if (absent.length()) Serial.printf("[sensors] not fitted: %s\n", absent.c_str());
   }
   return any;
 }

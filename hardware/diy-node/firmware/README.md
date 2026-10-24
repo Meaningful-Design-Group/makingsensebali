@@ -67,7 +67,8 @@ that is outdoor air near 400 ppm. That is the factory setting and it stays on. I
 room that never airs out, the reading will drift.
 
 **A sensor that isn't plugged in is "not fitted", not an error.** It gets one line in
-the boot inventory (`[sensors] fitted: HM3301 (0x40), BME680 · not fitted: SEN5x`) and
+the boot inventory (`[sensors] fitted: HM3301 (0x40), BME680`, then
+`[sensors] not fitted: SEN5x, SHT4x, SCD4x, PMS5003` on its own line) and
 a grey row on the status page, and that's all. Every 5 minutes the node quietly looks
 for a sensor that wasn't there and brings it up if it now answers. The one state
 that *is* reported as a fault is a sensor that was online and then fails three reads
