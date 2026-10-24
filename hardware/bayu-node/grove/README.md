@@ -57,6 +57,12 @@ kit past USD 100.
 - **The 3V3 budget:** the XIAO's regulator feeds every socket. An Indoor node with an SCD41
   peaking around 200 mA and the WiFi radio transmitting is close to its limit.
 
+## Three PM sensors on one shield
+
+To compare the sensors in the field, Bayu v3 can carry a bare SEN54 and a PMS5003 next to
+its HM3301 on the same Grove Shield. The wiring, parts and build steps are in
+[Bayu v3 with three PM sensors](v3-three-pm/).
+
 ## What would make it all plug and play
 
 A Grove socket that can switch to 5 V, and a Grove cable for the Plantower. Both are in the

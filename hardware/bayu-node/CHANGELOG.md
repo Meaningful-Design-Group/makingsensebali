@@ -7,6 +7,9 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Added
 
+- `grove/v3-three-pm/`: Bayu v3 on the Grove Shield with a bare SEN54 and a PMS5003 next to
+  its HM3301, for comparing the three PM sensors in the field. Wiring drawing and its
+  generator, connections, parts and build steps.
 - `circuits/CONVENTIONS.md`: one Bayu Core with fixed designators J1 to J6, F1, CR1, JP1 and
   R1 to R3, one set of net names, schematic references U1 to U7 and one colour per net.
 - `circuits/draw_circuits.py`: the breadboard, Core and schematic sheets of all four
