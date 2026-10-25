@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="900" viewBox="0 0 1100 900" font-family="Helvetica, Arial, sans-serif">
+<rect width="1100" height="900" fill="#fbfaf6"/>
+<text x="30" y="44" font-size="24" fill="#1d2433" font-weight="bold" text-anchor="start">5 V on two Grove sockets of the XIAO boards Seeed already makes</text>
+<text x="30" y="70" font-size="14" fill="#5b6475" font-weight="normal" text-anchor="start">One solder jumper per socket, set to 3V3 out of the box. Highlighted: the sockets that get it.</text>
+<text x="40" y="120" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start">Grove Shield for XIAO</text>
+<rect x="40" y="135" width="300" height="200" rx="14" fill="#1f2b45"/>
+<rect x="350" y="135" width="150" height="200" rx="14" fill="#1f2b45"/>
+<rect x="60" y="175" width="120" height="120" rx="8" fill="#e9ecf2" stroke="#9aa3b5"/>
+<text x="120" y="240" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">XIAO</text>
+<rect x="195" y="150" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="225" y="180" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">D0</text>
+<text x="225" y="200" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="265" y="150" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="295" y="180" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">D1</text>
+<text x="295" y="200" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="195" y="250" width="60" height="70" rx="5" fill="#fbeed6" stroke="#9a5b00" stroke-width="3"/>
+<text x="225" y="280" font-size="14" fill="#9a5b00" font-weight="bold" text-anchor="middle">I2C</text>
+<text x="225" y="300" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3 / 5V</text>
+<rect x="265" y="250" width="60" height="70" rx="5" fill="#fbeed6" stroke="#9a5b00" stroke-width="3"/>
+<text x="295" y="280" font-size="14" fill="#9a5b00" font-weight="bold" text-anchor="middle">UART</text>
+<text x="295" y="300" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3 / 5V</text>
+<rect x="360" y="150" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="390" y="180" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">D2</text>
+<text x="390" y="200" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="430" y="150" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="460" y="180" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">I2C</text>
+<text x="460" y="200" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="360" y="250" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="390" y="280" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">D8</text>
+<text x="390" y="300" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="430" y="250" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="460" y="280" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">D9</text>
+<text x="460" y="300" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<text x="580" y="120" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start">Expansion Base for XIAO</text>
+<rect x="580" y="135" width="480" height="260" rx="20" fill="#1f2b45"/>
+<rect x="605" y="185" width="150" height="150" rx="8" fill="#e9ecf2" stroke="#9aa3b5"/>
+<text x="680" y="265" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="middle">XIAO</text>
+<rect x="790" y="215" width="100" height="100" rx="4" fill="#0b1020" stroke="#4a5873"/>
+<text x="840" y="270" font-size="13" fill="#c7cede" font-weight="normal" text-anchor="middle">OLED</text>
+<rect x="790" y="140" width="60" height="70" rx="5" fill="#fbeed6" stroke="#9a5b00" stroke-width="3"/>
+<text x="820" y="170" font-size="14" fill="#9a5b00" font-weight="bold" text-anchor="middle">I2C</text>
+<text x="820" y="190" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3 / 5V</text>
+<rect x="870" y="140" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="900" y="170" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">I2C</text>
+<text x="900" y="190" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="790" y="320" width="60" height="70" rx="5" fill="#3a4766" stroke="#d7d3c6" stroke-width="1"/>
+<text x="820" y="350" font-size="14" fill="#c7cede" font-weight="bold" text-anchor="middle">A0/D0</text>
+<text x="820" y="370" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">3V3</text>
+<rect x="870" y="320" width="60" height="70" rx="5" fill="#fbeed6" stroke="#9a5b00" stroke-width="3"/>
+<text x="900" y="350" font-size="14" fill="#9a5b00" font-weight="bold" text-anchor="middle">UART</text>
+<text x="900" y="370" font-size="12" fill="#9a5b00" font-weight="bold" text-anchor="middle">3V3 / 5V</text>
+<rect x="960" y="220" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="986" y="220" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="960" y="244" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="986" y="244" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="960" y="268" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="986" y="268" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="960" y="292" width="12" height="12" rx="2" fill="#d9b44a"/>
+<rect x="986" y="292" width="12" height="12" rx="2" fill="#d9b44a"/>
+<text x="980" y="330" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">5V header</text>
+<text x="980" y="200" font-size="12" fill="#c7cede" font-weight="normal" text-anchor="middle">RTC</text>
+<text x="40" y="460" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start">The jumper, on the back of each highlighted socket</text>
+<rect x="60" y="500" width="70" height="44" rx="6" fill="#d9b44a" stroke="#1d2433"/>
+<text x="95" y="570" font-size="13" fill="#ef7d00" font-weight="bold" text-anchor="middle">3V3</text>
+<rect x="150" y="500" width="70" height="44" rx="6" fill="#d9b44a" stroke="#1d2433"/>
+<text x="185" y="570" font-size="13" fill="#1d2433" font-weight="bold" text-anchor="middle">socket VCC</text>
+<rect x="240" y="500" width="70" height="44" rx="6" fill="#d9b44a" stroke="#1d2433"/>
+<text x="275" y="570" font-size="13" fill="#d0312d" font-weight="bold" text-anchor="middle">5V, USB</text>
+<rect x="122" y="514" width="36" height="16" fill="#8a6d3b"/>
+<text x="140" y="600" font-size="13" fill="#5b6475" font-weight="normal" text-anchor="middle">bridged to 3V3 as shipped</text>
+<text x="380" y="506" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">Only the supply pin changes. SDA, SCL, RX and TX stay at the XIAO's 3.3 V,</text>
+<text x="380" y="528" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">and the I2C pull-ups stay on 3V3.</text>
+<text x="380" y="550" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">With 5 V selected, a sensor's fan or laser runs from USB 5 V directly, with</text>
+<text x="380" y="572" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">no converter on the sensor board and no load on the XIAO's 3.3 V regulator.</text>
+<text x="380" y="594" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">Silkscreen next to the jumper: a module that pulls its I2C lines up to its own</text>
+<text x="380" y="616" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">VCC must not go in a socket set to 5 V. The ESP32 pins are not 5 V tolerant.</text>
+<text x="40" y="680" font-size="17" fill="#1d2433" font-weight="bold" text-anchor="start">What plugs in with it</text>
+<text x="40" y="712" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="start">Sensirion SEN54 or SEN55, bare</text>
+<text x="380" y="712" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">I2C socket set to 5 V, through its JST GH cable</text>
+<text x="40" y="742" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="start">Plantower PMS5003 or PMS5003T</text>
+<text x="380" y="742" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">UART socket set to 5 V, through a Grove to 1.25 mm 8-pin cable</text>
+<text x="40" y="772" font-size="14" fill="#1d2433" font-weight="bold" text-anchor="start">Every Grove module, as today</text>
+<text x="380" y="772" font-size="14" fill="#1d2433" font-weight="normal" text-anchor="start">any socket left on 3V3</text>
+<g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="848" width="1100" height="52" fill="#ffffff"/><line x1="0" y1="848" x2="1100" y2="848" stroke="#c9c4b6"/><text x="20" y="870" fill="#1d2433" font-weight="bold">Proposal to Seeed · 5 V on two Grove sockets · rev 2026-10-25</text><text x="20" y="889" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
+</svg>

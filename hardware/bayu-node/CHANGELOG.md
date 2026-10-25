@@ -7,6 +7,13 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Added
 
+- `expansion-base/`: Bayu on Seeed's Expansion Base for XIAO. Bayu v3 on two Grove cables,
+  and the three-PM node with no soldering, taking 5 V from the board's two 5V points. Pin
+  map against Bayu, other variants, and a drawing with its generator.
+- `seeed-proposal/`, replacing `grove-shield-mini/`: the Expansion Base already has the
+  clock, microSD and four sockets the Mini proposed, so the ask to Seeed is now one 3V3 or
+  5 V jumper on the UART socket and one I2C socket of the Grove Shield and the Expansion
+  Base. New drawing and generator; the Mini concept is in git history.
 - `grove/v3-three-pm/`, plug-in version: two Grove adapter leads with a 5 V module, a
   fixed buck-boost or an MT3608 from Tokopedia, so the bare SEN54 and the PMS5003 plug into
   Grove sockets, plus a Grove I2C hub for the third I2C sensor. Drawing and generator, parts,

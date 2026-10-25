@@ -151,9 +151,11 @@ SEN54 needs a second one.
 To compare PM sensors, Bayu v3 can also carry a bare SEN54 and a PMS5003 next to its
 HM3301 on the same shield: [Bayu v3 with three PM sensors](grove/v3-three-pm/).
 
-We are also proposing a smaller board to Seeed, with four sockets, a clock and a microSD
-slot, on which every variant plugs in:
-[Grove Shield Mini for XIAO](grove-shield-mini/).
+The same builds also run on Seeed's Expansion Base for XIAO, which adds a clock, a microSD
+slot and a screen, with no soldering: [Bayu on the Expansion Base](expansion-base/).
+
+We are asking Seeed for one change on both boards, a 3V3 or 5 V jumper on two Grove sockets,
+so the bare SEN54 and the PMS5003 plug in too: [the proposal to Seeed](seeed-proposal/).
 
 <a href="grove/grove-shield-map.svg"><img src="grove/grove-shield-map.svg" alt="Bayu on the Grove Shield: socket map per variant" width="920"></a>
 
@@ -187,7 +189,8 @@ bayu-node/
 ├── CHANGELOG.md    what changed and why, including what we got wrong
 ├── LICENSES/       CERN-OHL-W-2.0, CC-BY-SA-4.0, MIT
 ├── grove/          Bayu on the Seeed Grove Shield, socket map per variant, the three-PM build
-├── grove-shield-mini/  the board we are proposing to Seeed, and its generator
+├── expansion-base/  Bayu on the Seeed Expansion Base for XIAO
+├── seeed-proposal/  5 V on two Grove sockets, the ask to Seeed
 └── circuits/
     ├── anchor/     ┐
     ├── dense/      │ each: wiring-breadboard.svg, wiring-core.svg,
@@ -199,9 +202,9 @@ bayu-node/
 
 | What | Licence | SPDX |
 |---|---|---|
-| Drawings, board concepts and the bill of materials: `circuits/`, the SVGs in `grove/` and `grove-shield-mini/`, `bom.csv` | CERN Open Hardware Licence v2, weakly reciprocal | `CERN-OHL-W-2.0` |
+| Drawings, board concepts and the bill of materials: `circuits/`, the SVGs in `grove/`, `expansion-base/` and `seeed-proposal/`, `bom.csv` | CERN Open Hardware Licence v2, weakly reciprocal | `CERN-OHL-W-2.0` |
 | Documentation: every `.md` file | Creative Commons Attribution-ShareAlike 4.0 | `CC-BY-SA-4.0` |
-| Scripts that generate drawings: every `.py` file, `circuits/draw_circuits.py` and the ones next to the drawings in `grove/` and `grove-shield-mini/` | MIT | `MIT` |
+| Scripts that generate drawings: every `.py` file, `circuits/draw_circuits.py` and the ones next to the drawings in `grove/`, `expansion-base/` and `seeed-proposal/` | MIT | `MIT` |
 
 The full texts are in [`LICENSES/`](LICENSES/). Copyright 2026 Meaningful Design Group /
 Fab Lab Bali.

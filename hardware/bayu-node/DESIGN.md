@@ -14,7 +14,7 @@ LoRa mesh where WiFi is missing. Hard constraint: a complete kit under USD 100.
 
 Bayu v3 already fits the pin budget below unchanged: its BME680 and HM3301 sit on the same
 I2C bus the new variants use, so it runs on the Bayu Core board, on the Grove Shield, and on
-the proposed [Grove Shield Mini](grove-shield-mini/).
+the Expansion Base for XIAO, as laid out in [`expansion-base/`](expansion-base/).
 
 On the name: `bayu-vN` was retired as an *enclosure* numbering scheme (see
 [`../diy-node/enclosure/README.md`](../diy-node/enclosure/README.md)). Bayu names the node,
