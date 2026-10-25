@@ -66,27 +66,6 @@
       "exclusion_reason": "indoor_suspected"
     },
     {
-      "id": "sck-19651",
-      "rawId": 19651,
-      "source": "smartcitizen",
-      "sourceLabel": "Smart Citizen",
-      "name": "Bali DIY Node — Office",
-      "lat": -8.79314,
-      "lng": 115.14467,
-      "lastReading": "2026-06-15T02:48:20Z",
-      "reading": {
-        "pm25": 6.0,
-        "pm10": 6.0,
-        "temp": 27.68451,
-        "rh": 59.994,
-        "noise": null
-      },
-      "detailsUrl": "https://smartcitizen.me/kits/19651",
-      "pm25_corrected": false,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor"
-    },
-    {
       "id": "airgradient-77247",
       "rawId": 77247,
       "source": "airgradient",
