@@ -1,0 +1,164 @@
+# Bayu v3 with three PM sensors
+
+The Bayu v3 we have in the field, a XIAO ESP32-S3 on the Seeed Grove Shield with a Grove
+BME680 and a Grove HM3301, plus two more particulate sensors on the same board: a bare
+Sensirion SEN54 and a Plantower PMS5003. Three PM sensors breathing the same air, read by
+the same node.
+
+It is a comparison node. Put it next to a Smart Citizen Kit or a reference station and it
+shows how the HM3301 we deployed, the SEN54 and the PMS5003 read Bali's air side by side,
+through the rice-burning season and the wet months. That is the comparison we need before
+choosing the PM sensor for the next nodes.
+
+There are two ways to build it. The jumper version below takes 5 V straight from the
+shield's 5V pin. The [plug-in version](#plug-in-version-grove-adapter-leads) puts a small 5 V
+module on a Grove lead for each bare sensor, so everything plugs into a Grove socket.
+
+![Wiring of Bayu v3 with three PM sensors on the Grove Shield](wiring.svg)
+
+## Connections
+
+| From | To | Wire |
+|---|---|---|
+| Grove HM3301 | Grove Shield I2C socket, left half | Grove cable |
+| Grove BME680 | Grove Shield I2C socket, right half | Grove cable |
+| Shield 5V pin | breadboard 5V row | red jumper |
+| Shield GND pin | breadboard GND row | black jumper |
+| Breadboard 5V row | SEN54 pin 1 VDD | red jumper |
+| Breadboard GND row | SEN54 pin 2 GND | black jumper |
+| SEN54 pin 5 SEL | SEN54 pin 2 GND | bridged on the cable |
+| Shield D4 pin | SEN54 pin 3 SDA | blue jumper |
+| Shield D5 pin | SEN54 pin 4 SCL | yellow jumper |
+| Breadboard 5V row | PMS5003 pin 1 VCC | red jumper |
+| Breadboard GND row | PMS5003 pin 2 GND | black jumper |
+| Shield UART socket, yellow wire (D7) | PMS5003 pin 5 TXD | Grove to female jumper cable |
+| Shield UART socket, white wire (D6) | PMS5003 pin 4 RXD | same cable |
+| Shield D2 socket, yellow wire | PMS5003 pin 3 SET | optional, Meshtastic build only |
+
+The UART cable's red wire carries 3V3 and stays unconnected, because the PMS5003 fan needs
+5 V. Its black wire is not needed, since the PMS5003 already has ground from the
+breadboard. PMS5003 pins 6, 7 and 8 and SEN54 pin 6 stay open.
+
+## What you need
+
+On top of a Bayu v3 built on the Grove Shield:
+
+| Qty | Part | Notes |
+|---|---|---|
+| 1 | Sensirion SEN54, the bare module | With a 6-pin JST GH cable that ends in 2.54 mm female plugs. |
+| 1 | Plantower PMS5003 | With its 8-pin 1.25 mm cable and a 2.54 mm adapter board. |
+| 1 | Grove to 4-pin female jumper cable | For the UART socket. A second one if you wire SET. |
+| 1 | Mini breadboard, 170 holes | Used only as a 5 V and GND junction. |
+| 2 | 1 × 7 male header, 2.54 mm | Soldered into the shield's breakout holes. |
+| 8 | Male to female jumper wires, 10 cm | Keep the SEN54's I2C pair short. |
+| 1 | 5 V / 2 A USB-C supply | Not a laptop port. |
+
+Prices and sources for the SEN54 and the PMS5003 are in the [Bayu bill of
+materials](../../bom.csv).
+
+## Building it
+
+1. Solder a 1 × 7 male header into each row of holes beside the XIAO on the Grove Shield,
+   pins up. The top row gives you 5V and GND, the bottom row D4 and D5. Keep the shield
+   whole: the second I2C socket is on the half that snaps off.
+2. Plug in the Grove HM3301 and the Grove BME680 as on any Bayu v3.
+3. Push the mini breadboard next to the shield. Run 5V and GND from the header into its two
+   power rows.
+4. Wire the SEN54: VDD and GND from the breadboard, SDA to D4 and SCL to D5. Bridge SEL to
+   GND on the cable. Keep the SDA and SCL wires under 10 cm.
+5. Wire the PMS5003: VCC and GND from the breadboard, then the Grove to jumper cable from
+   the UART socket, yellow to TXD and white to RXD.
+6. You don't need extra I2C pull-ups. Seeed's [schematic](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/) for the Grove HM3301
+   puts 4.7 kΩ pull-ups on SDA and SCL, tied to the socket's 3V3, and the bare SEN54 shares
+   that bus. Keep the HM3301 plugged in whenever the SEN54 is. Without it, add 4.7 kΩ from
+   SDA and from SCL to 3V3 on the breadboard.
+7. Power it from the USB-C supply and open the node's status page. The boot inventory
+   should list BME680, HM3301, SEN54 and PMS5003.
+
+## Plug-in version: Grove adapter leads
+
+Seeed's Grove HM3301 runs from a 3V3 socket because it carries its own converters. The bare
+SEN54 and the PMS5003 don't, so here the converter goes on the lead: a Grove plug, a 5 V
+module and the sensor's own connector, soldered once and heat-shrunk. After that the lead
+plugs into any Grove socket like a Seeed module.
+
+![Plug-in version: Grove I2C hub and two adapter leads with a 5 V module](adapter-leads.svg)
+
+The shield has two I2C sockets and this node has three I2C sensors, so a Grove I2C hub goes
+in one socket and carries the HM3301, the BME680 and the SEN54 lead. The PMS5003 lead goes in
+the UART socket. That fits on the half of the shield that keeps the XIAO.
+
+### What you need for the leads
+
+| Qty | Part | Notes |
+|---|---|---|
+| 2 | 5 V module | A fixed-output automatic buck-boost, 3 to 15 V in, 5 V out, about Rp 19,000 on Tokopedia. Or an MT3608 step-up, 2 to 24 V in, adjustable, about Rp 8,000. |
+| 1 | Grove 4-pin cable, 20 cm | Cut in half: each half is the Grove end of one lead. |
+| 1 | Grove I2C hub | Seeed's 4-port or 6-port hub. |
+| 1 | SEN54 cable, JST GH 6-pin | With bare or 2.54 mm ends. |
+| | Heat-shrink tube | One piece wide enough for the module, thin pieces for each joint. |
+
+The PMS5003 lead uses the 8-pin cable that comes with the sensor. Don't use an XL6009
+module: its input starts around 3.8 V, above what a 3V3 socket gives.
+
+### Making a lead
+
+1. Cut the Grove cable in half. Strip the four wires of one half.
+2. Solder red to the module's IN+ and black to IN−.
+3. Set the output before any sensor is connected. Plug the lead into a Grove socket on a
+   powered node, nothing on the output, and measure OUT+ to OUT−. A fixed buck-boost should
+   read 5.0 V. An MT3608 comes set to anything: turn its trimmer to 5.0 V and seal it with a
+   drop of glue. Also check that IN− and OUT− are the same ground, as they are on most of
+   these modules.
+4. Unplug it. Solder OUT+ to the sensor's supply pin and OUT− to its ground. Solder white and
+   yellow straight to the data pins, as on the drawing. On the SEN54 lead, join pins 2 and 5.
+5. Heat-shrink the module and every joint, and label the lead "5 V · SEN54" or "5 V · PMS5003".
+
+Keep the SEN54 lead short. Sensirion asks for I2C wires under 10 cm, counted from the Grove
+plug to the sensor.
+
+### The 3V3 budget
+
+On the plug-in version every sensor runs from the XIAO's 3.3 V regulator, good for about
+700 mA. A step-up module draws more from 3V3 than the sensor uses at 5 V. Assuming
+about 85 % efficiency, here is roughly what each part takes from 3V3:
+
+| Part | At 5 V | From 3V3 |
+|---|---|---|
+| SEN54, on lead A | 70 mA typical, 100 mA maximum | about 125 to 180 mA |
+| PMS5003, on lead B | up to 100 mA | up to about 180 mA |
+| Grove HM3301 | about 80 mA at its peaks | about 140 mA |
+| Grove BME680 | | about 12 mA with its gas heater on |
+| XIAO ESP32-S3 | | about 100 mA on average, about 340 mA peaks while WiFi transmits |
+
+Typical draw comes to about 450 to 500 mA, which the regulator handles. Worst-case peaks add up
+to about 850 mA, which it does not. One bare sensor on a lead is comfortable. With both leads
+fitted, watch the first day: if the node resets when it connects to WiFi, feed lead B's module
+from the shield's 5V pin instead of its Grove red wire. That one wire takes the PMS5003 off the
+regulator.
+
+## Firmware
+
+The [Bayu firmware v5](../../../diy-node/firmware/diy_node_v5/) finds all four sensors at
+boot with no setting to change. It publishes each PM sensor on its own channels, so the
+three readings arrive side by side on the platform. It only listens to the PMS5003 on D7
+and never drives SET, so the PMS5003 fan runs all the time.
+
+The Meshtastic Bayu build also reads all three, and it can sleep the PMS5003 fan through
+the SET wire to the D2 socket.
+
+## Where to put it
+
+For a fair comparison, the three inlets sit at the same height, side by side, and none of
+them breathes another sensor's exhaust. The rules on the
+[Anchor placement sheet](../../circuits/anchor/placement.svg) apply. The node-v3.2
+enclosure only holds the HM3301, so for now this node needs its own housing.
+
+## Still to check
+
+- That the bus reads cleanly with three PM sensors on it. The SEN54 asks for short leads,
+  and the HM3301 and BME680 sit on Grove cables.
+- The 3V3 load. The HM3301 makes its own 5 V from the socket's 3V3, converting twice, so
+  with the BME680 and WiFi on the same regulator it is worth measuring once.
+- The 3V3 load on the plug-in version, with both leads fitted. See the budget above.
+- Nothing on this page has been built yet.

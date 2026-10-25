@@ -46,16 +46,27 @@ On Indoor, Seeed's Grove CO2 module is the SCD41, not the SCD40 in the design. I
 for USD 55 to 65 at retail against about 22 for an SCD40 breakout, which pushes the Indoor
 kit past USD 100.
 
+## The HM3301 on a 3V3 socket
+
+The deployed Bayu v3 nodes run the Grove HM3301 straight from a socket's 3V3, and that is
+right. Seeed's [schematic](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/) for the Grove HM3301, in the Eagle files under
+Resources, shows how: a step-down converter (ETA3410) brings the socket supply to 3.0 V, a
+step-up converter (ETA1038) lifts it to 5 V for the fan and laser, a 3.3 V regulator feeds
+the logic, and two transistors level-shift I2C, with 4.7 kΩ pull-ups on the Grove side. So
+the board runs the same on a 3.3 V or a 5 V socket. The node-v3.2 docs said it needed 5 V;
+they are corrected.
+
 ## Check on the bench first
 
-- **The HM3301 supply:** Seeed rates the Grove HM3301 at 3.3 or 5 V, and the deployed
-  nodes run it on the socket's 3V3, as the
-  [node-v3.2 breadboard drawing](../../diy-node/enclosure/node-v3.2/img/10-breadboard-grove-shield.png)
-  shows. The [node-v3.2 README](../../diy-node/enclosure/node-v3.2/README.md#wiring) says
-  it needs 5 V. One of the two is wrong. A side-by-side run of two units, one per supply,
-  settles it.
 - **The 3V3 budget:** the XIAO's regulator feeds every socket. An Indoor node with an SCD41
-  peaking around 200 mA and the WiFi radio transmitting is close to its limit.
+  peaking around 200 mA and the WiFi radio transmitting is close to its limit. The Grove
+  HM3301 adds more than its 5 V figure suggests, since it converts twice to get there.
+
+## Three PM sensors on one shield
+
+To compare the sensors in the field, Bayu v3 can carry a bare SEN54 and a PMS5003 next to
+its HM3301 on the same Grove Shield. The wiring, parts and build steps are in
+[Bayu v3 with three PM sensors](v3-three-pm/).
 
 ## What would make it all plug and play
 

@@ -176,7 +176,7 @@
 <text x="40" y="940" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >1.25 mm 8-pin cable, and its fan takes 5 V from the header. Leave SET out and the fan simply runs all the time.</text>
 <text x="40" y="962" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >* Seeed fitted the Grove SEN54 with a regulator for 3.3 V supply, according to one review. Not confirmed on our bench yet.</text>
 <text x="40" y="984" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >  A bare Sensirion SEN54 needs 5 V, which makes a second wire from the 5V header.</text>
-<text x="40" y="1006" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The Grove HM3301 is rated 3.3 or 5 V by Seeed, and the deployed nodes run it on the socket's 3V3.</text>
+<text x="40" y="1006" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The Grove HM3301 makes its own 5 V from the socket's 3V3, with a step-down and a step-up converter (Seeed's schematic).</text>
 <text x="40" y="1028" font-size="13" fill="#1d2433" font-weight="normal" text-anchor="start" >The D0 and D1 sockets take the Grove button and LED. With LoRa fitted, the D8 and D9 sockets are not usable.</text>
 <g font-family="Helvetica, Arial, sans-serif" font-size="13"><rect x="0" y="1060" width="1200" height="52" fill="#ffffff"/><line x1="0" y1="1060" x2="1200" y2="1060" stroke="#c9c4b6"/><text x="20" y="1082" fill="#1d2433" font-weight="bold">Bayu on the Seeed Grove Shield for XIAO · socket map · rev 2026-10-24</text><text x="20" y="1101" fill="#5b6475">CERN-OHL-W-2.0 · Meaningful Design Group / Fab Lab Bali · github.com/Meaningful-Design-Group/makingsensebali</text></g>
 </svg>

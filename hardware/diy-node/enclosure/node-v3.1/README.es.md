@@ -249,9 +249,10 @@ Idéntico en toda la generación V3. En vez de duplicarlo, ver
 **[v7 § Cableado](../node-v3.2/README.es.md)** — tres opciones de placa principal, con esquemáticos
 y vistas de protoboard.
 
-> Una corrección que se traslada allí: la tabla del Grove Shield del documento fuente da al HM3301
-> **3.3 V**, mientras que su propio esquemático da **5 V**. El esquemático es el correcto — el
-> ventilador y el láser del HM3301 no funcionan a 3.3 V.
+> Una corrección que se traslada allí: el HM3301 funciona con 3.3 V o con 5 V. La placa Grove
+> HM3301 de Seeed reduce su alimentación a 3.0 V y la vuelve a elevar a 5 V para el ventilador
+> y el láser ([esquema](https://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/)), así que los 3.3 V del conector Grove del documento fuente son
+> correctos. Una versión anterior de esta nota decía lo contrario.
 
 ## Ensamblaje
 
