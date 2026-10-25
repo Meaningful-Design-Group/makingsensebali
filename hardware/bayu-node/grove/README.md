@@ -71,4 +71,4 @@ its HM3301 on the same Grove Shield. The wiring, parts and build steps are in
 ## What would make it all plug and play
 
 A Grove socket that can switch to 5 V, and a Grove cable for the Plantower. Both are in the
-[Grove Shield Mini proposal](../grove-shield-mini/).
+[proposal to Seeed](../seeed-proposal/).
