@@ -34,12 +34,20 @@ scan every 5 minutes, because the OLED already told it where the bus is.
 ## Screen
 
 The Fab City logo alone for 2 s, then "Bayu", the firmware, the board and the sensors for
-3 s. After that a page every 5 s, skipping pages with nothing to show: PM2.5 (big number,
-ISPU category of the 15-minute mean, which sensor, PM10), all PM sensors side by side
-when there is more than one, climate (T and RH from SHT4x, else SEN5x, else BME680, else
-PMS5003T, with the source named; pressure, VOC index, IAQ), CO2 when an SCD4x is fitted,
-and status (WiFi, where it publishes, last success, microSD, time, firmware). The screen
-redraws once a second at most. The I2C bus stays at 100 kHz: U8g2 would otherwise set
+3 s. While the node joins its WiFi, the screen shows an animation: the WiFi arcs filling in,
+"joining WiFi" and the network name. Then "WiFi connected" with the IP, or "WiFi offline",
+for 2 seconds.
+
+After that two pages take turns, 15 seconds each:
+
+| Page | What it shows |
+|---|---|
+| Air | PM2.5 as a big number from the best sensor, its ISPU category on the 15-minute mean, and which sensor. The bottom line has every PM sensor's PM2.5 when there is more than one, PM10 otherwise. |
+| Climate | Temperature and humidity, naming the sensor (SHT4x, else SEN5x, else BME680, else PMS5003T). CO2 with "ventilate" from 1000 ppm when an SCD4x is fitted, otherwise pressure, VOC index and IAQ. |
+
+A short press on D1 steps through air, climate and status. The status page (WiFi, where it
+publishes, last success, microSD, time, firmware) only comes up that way and goes back to
+air after 15 seconds. The screen redraws once a second at most. The I2C bus stays at 100 kHz: U8g2 would otherwise set
 400 kHz before every frame, which is what the display build
 actually runs at.
 
@@ -140,7 +148,8 @@ to `LIBS`, and accepting that every v5 node moves to v6.
 
 1. Grove Shield node with the sensors it has in the field: same inventory and the same
    published bytes as v5, `[board] Grove Shield`, LED flashing once every 5 s.
-2. Expansion Base node on an S3: logo, info frame, pages rotating, `[board] Expansion
+2. Expansion Base node on an S3: logo, info frame, the WiFi animation, then air and
+   climate taking turns every 15 s, `[board] Expansion
    Base`, a file in `/bayu/` with one row a minute. Check the HM3301 reads cleanly at
    100 kHz with the OLED redrawing.
 3. Same node without a card: "no card" on screen and status page, everything else works.

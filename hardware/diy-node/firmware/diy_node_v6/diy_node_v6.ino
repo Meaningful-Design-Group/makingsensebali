@@ -66,16 +66,20 @@
 //    the buzzer are left alone after boot.
 //
 //  * SCREEN, whenever an OLED answers. Boot: the Fab City master logo alone
-//    for 2 s, then "Bayu", firmware, board and sensors for 3 s. Then a page
-//    every 5 s, pages with nothing to show skipped:
-//      PM2.5    big number from the best sensor, its ISPU category (15-min
-//               mean), which sensor, PM10
-//      PM all   HM3301 / SEN5x / PMS5003 side by side, when more than one
-//      climate  T and RH (SHT4x > SEN5x > BME680 > PMS5003T, labelled),
+//    for 2 s, then "Bayu", firmware, board and sensors for 3 s. While it joins
+//    WiFi, an animation (WiFi arcs filling in, the network name), drawn by a
+//    small task because WiFiManager blocks the loop; then "WiFi connected"
+//    with the IP, or "WiFi offline", for 2 s. Then two pages take turns,
+//    15 s each, a page with nothing to show skipped:
+//      air      PM2.5 big number from the best sensor, its ISPU category
+//               (15-min mean), which sensor; bottom line every PM sensor's
+//               PM2.5 when more than one, else PM10
+//      climate  T and RH (SHT4x > SEN5x > BME680 > PMS5003T, labelled), CO2
+//               with VENTILATE from 1000 ppm when an SCD4x is fitted, else
 //               pressure, VOC index, IAQ
-//      CO2      when an SCD4x is fitted; VENTILATE from 1000 ppm
-//      status   WiFi RSSI and IP or offline, publish target, last success,
-//               microSD, time and its source, firmware
+//    A short press of D1 steps air, climate, status. Status (WiFi, publish
+//    target, last success, microSD, time, firmware) only comes up that way and
+//    goes back to air after 15 s.
 //    Redrawn at 1 Hz at most: a full frame is ~92 ms on the 100 kHz bus.
 //    U8g2 would set 400 kHz for every frame (the SSD1306 default, which the
 //    display build inherited without saying); here it is held at 100 kHz.
@@ -511,7 +515,7 @@ const uint32_t SMOKE_SAVE_MS         = 15UL * 60UL * 1000UL;
 
 // v6 — screen and microSD
 const uint32_t SCREEN_REDRAW_MS      = 1000;   // a full frame is ~92 ms on the 100 kHz bus: 1 Hz at most
-const uint32_t SCREEN_PAGE_MS        = 5000;
+const uint32_t SCREEN_PAGE_MS        = 15000;   // each page in the rotation stays this long
 const uint32_t SD_RETRY_MS           = 5UL * 60UL * 1000UL;   // try a missing or failed card again
 
 // A Smart Citizen device token is six characters — verified against the SCK
@@ -692,8 +696,10 @@ enum LedMode : uint8_t { LED_OFF, LED_PORTAL, LED_CONNECTING, LED_ONLINE, LED_OF
 volatile uint8_t ledMode = LED_OFF;
 Ticker ledTicker;
 
-enum ScreenPage : uint8_t { PAGE_PM, PAGE_PM_ALL, PAGE_CLIMATE, PAGE_CO2, PAGE_STATUS, PAGE_COUNT };
-uint8_t  screenPage = PAGE_PM;
+// Two pages rotate: air and climate. Status only comes up on a short press of D1.
+enum ScreenPage : uint8_t { PAGE_AIR, PAGE_CLIMATE, PAGE_STATUS, PAGE_COUNT };
+uint8_t  screenPage = PAGE_AIR;
+void nextPage(uint32_t now, bool byButton);
 uint32_t lastPageChange = 0, lastRedraw = 0;
 bool     btnDown = false, btnLongFired = false;
 uint32_t btnDownAt = 0;
@@ -1118,6 +1124,7 @@ void setupConfig(bool forcePortal) {
   });
 
   bool ok;
+  if (!forcePortal) wifiAnimStart(wm.getWiFiSSID(true));
   if (forcePortal) {
     Serial.println("[config] portal opened on demand");
     ok = wm.startConfigPortal(apName().c_str(), PORTAL_PASSWORD);
@@ -1125,6 +1132,8 @@ void setupConfig(bool forcePortal) {
     ok = wm.autoConnect(apName().c_str(), PORTAL_PASSWORD);
   }
 
+  wifiAnimStop();
+  wifiResultScreen(ok);
   if (!ok && !hasOled) {
     Serial.println("[config] portal timed out / join failed — rebooting to retry saved WiFi");
     delay(1000);
@@ -2440,7 +2449,7 @@ void buttonService() {
     Serial.println("[ui] buzzer muted for 60 min");
   } else if (!pressed && btnDown) {
     btnDown = false;
-    if (!btnLongFired && now - btnDownAt >= 30) nextPage(now);   // 30 ms: contact bounce
+    if (!btnLongFired && now - btnDownAt >= 30) nextPage(now, true);   // 30 ms: contact bounce
   }
 }
 
@@ -2577,8 +2586,73 @@ void bootScreens() {
   delay(3000);
 }
 
+// ---- WiFi animation while the node joins its network at boot ------------------------------------------
+// WiFiManager blocks the loop while it connects, so a small task draws the frames. Nothing else touches
+// the OLED or the bus while it runs, and wifiAnimStop() waits for it to finish its frame before anyone
+// else draws: the portal callback and the end of setupConfig() both call it.
+volatile bool wifiAnimRun  = false;
+volatile bool wifiAnimDone = true;
+String        wifiAnimSsid;
+
+void wifiFrame(uint8_t f) {
+  oled.clearBuffer();
+  const int cx = 64, cy = 40;
+  oled.drawDisc(cx, cy, 2);
+  uint8_t arcs = f % 5;                                   // 0..3 arcs fill in, then one beat with all of them
+  if (arcs > 3) arcs = 3;
+  for (uint8_t i = 1; i <= arcs; i++) {
+    uint8_t r = (uint8_t)(6 + 7 * i);
+    oled.drawCircle(cx, cy, r, U8G2_DRAW_UPPER_LEFT | U8G2_DRAW_UPPER_RIGHT);
+    oled.drawCircle(cx, cy, r + 1, U8G2_DRAW_UPPER_LEFT | U8G2_DRAW_UPPER_RIGHT);
+  }
+  char l[40];
+  snprintf(l, sizeof(l), "joining WiFi%s", f % 4 == 0 ? "" : f % 4 == 1 ? "." : f % 4 == 2 ? ".." : "...");
+  oled.setFont(u8g2_font_5x7_tf);
+  oled.drawStr((128 - oled.getStrWidth("joining WiFi...")) / 2, 53, l);
+  const char* ssid = wifiAnimSsid.length() ? wifiAnimSsid.c_str() : "saved network";
+  oled.drawStr((128 - oled.getStrWidth(ssid)) / 2, 63, ssid);
+  oled.sendBuffer();
+}
+
+void wifiAnimTask(void*) {
+  uint8_t f = 0;
+  while (wifiAnimRun) {
+    wifiFrame(f++);
+    vTaskDelay(pdMS_TO_TICKS(250));
+  }
+  wifiAnimDone = true;
+  vTaskDelete(nullptr);
+}
+
+void wifiAnimStart(const String& ssid) {
+  if (!hasOled || wifiAnimRun) return;
+  wifiAnimSsid = ssid;
+  wifiAnimDone = false;
+  wifiAnimRun  = true;
+  if (xTaskCreate(wifiAnimTask, "wifianim", 4096, nullptr, 1, nullptr) != pdPASS) { wifiAnimRun = false; wifiAnimDone = true; }
+}
+
+void wifiAnimStop() {
+  if (!wifiAnimRun && wifiAnimDone) return;
+  wifiAnimRun = false;
+  for (uint16_t i = 0; i < 200 && !wifiAnimDone; i++) delay(5);   // at most one frame, about 30 ms at 100 kHz
+}
+
+void wifiResultScreen(bool ok) {
+  if (!hasOled) return;
+  if (ok) {
+    String ip = WiFi.localIP().toString();
+    String ssid = WiFi.SSID();
+    screenLines("WiFi connected", ssid.c_str(), ip.c_str(), "", "");
+  } else {
+    screenLines("WiFi offline", "carrying on without it:", "screen, alarms and log", "keep running", "retrying every 15 s");
+  }
+  delay(2000);
+}
+
 void portalScreen() {
   if (!hasOled) return;
+  wifiAnimStop();
   String ap = apName();
   String pw = String("password ") + PORTAL_PASSWORD;
   screenLines("Setup", "join the WiFi", ap.c_str(), pw.c_str(), "then 192.168.4.1");
@@ -2626,25 +2700,26 @@ uint8_t pmSensorCount() { return (uint8_t)(g_hmOnline + g_senOnline + g_pmsOnlin
 bool pageHasData(uint8_t p) {
   float t, rh;
   switch (p) {
-    case PAGE_PM:      return pmSensorCount() > 0;
-    case PAGE_PM_ALL:  return pmSensorCount() > 1;
-    case PAGE_CLIMATE: return climateSource(t, rh) != nullptr || lastBmeOk;
-    case PAGE_CO2:     return g_scdOnline;
+    case PAGE_AIR:     return pmSensorCount() > 0;
+    case PAGE_CLIMATE: return climateSource(t, rh) != nullptr || lastBmeOk || g_scdOnline;
     default:           return true;   // status
   }
 }
 
-void nextPage(uint32_t now) {
+// Automatic: air and climate take turns, and status falls back to air. Button: air, climate, status, in turn.
+void nextPage(uint32_t now, bool byButton) {
+  if (!byButton && screenPage == PAGE_STATUS) screenPage = PAGE_CLIMATE;   // so the loop below lands on air first
+  uint8_t pages = byButton ? PAGE_COUNT : PAGE_STATUS;
   for (uint8_t i = 0; i < PAGE_COUNT; i++) {
-    screenPage = (uint8_t)((screenPage + 1) % PAGE_COUNT);
+    screenPage = (uint8_t)((screenPage + 1) % pages);
     if (pageHasData(screenPage)) break;
   }
   lastPageChange = now;
   lastRedraw = 0;   // draw it now
 }
 
-void pagePM() {
-  char title[24], l[32];
+void pageAir() {
+  char title[24], l[48];
   snprintf(title, sizeof(title), "PM2.5 %s", pm25Source[0] ? pm25Source : "");
   bannerOrTitle(title);
   if (isnan(pm25Now)) snprintf(l, sizeof(l), "--"); else snprintf(l, sizeof(l), "%.0f", pm25Now);
@@ -2659,69 +2734,46 @@ void pagePM() {
   oled.setFont(u8g2_font_7x13B_tf);
   oled.drawStr(0, 51, ispuCat >= 0 ? ISPU_NAMES[ispuCat] : "ISPU: wait 15 min");
   oled.setFont(u8g2_font_5x7_tf);
-  if (isnan(pm10Now)) snprintf(l, sizeof(l), "PM10 --");
-  else                snprintf(l, sizeof(l), "PM10 %.0f ug/m3", pm10Now);
+  // Bottom line: every PM sensor's PM2.5 when there is more than one, PM10 otherwise.
+  if (pmSensorCount() > 1) {
+    l[0] = '\0';
+    char v[16];
+    if (g_hmOnline)  { if (lastHmOk) snprintf(v, sizeof(v), "HM %u ", (unsigned)lastPM25); else snprintf(v, sizeof(v), "HM -- "); strncat(l, v, sizeof(l) - strlen(l) - 1); }
+    if (g_senOnline) { if (lastSenOk && !isnan(lastSen.pm25)) snprintf(v, sizeof(v), "SEN %.0f ", lastSen.pm25); else snprintf(v, sizeof(v), "SEN -- "); strncat(l, v, sizeof(l) - strlen(l) - 1); }
+    if (g_pmsOnline) { if (lastPmsOk && !isnan(lastPms.pm25)) snprintf(v, sizeof(v), "PMS %.0f", lastPms.pm25); else snprintf(v, sizeof(v), "PMS --"); strncat(l, v, sizeof(l) - strlen(l) - 1); }
+  } else if (isnan(pm10Now)) snprintf(l, sizeof(l), "PM10 --");
+  else                       snprintf(l, sizeof(l), "PM10 %.0f ug/m3", pm10Now);
   oled.drawStr(0, 63, l);
-  oled.drawStr(128 - oled.getStrWidth("ISPU 15m"), 63, "ISPU 15m");
-}
-
-void pagePMAll() {
-  bannerOrTitle("PM2.5 per sensor");
-  struct { const char* name; bool ok; float pm25, pm10; } col[3];
-  uint8_t n = 0;
-  if (g_hmOnline)  col[n++] = {"HM3301", lastHmOk, (float)lastPM25, (float)lastPM10};
-  if (g_senOnline) col[n++] = {sen5xModel[0] ? sen5xModel : "SEN5x", lastSenOk, lastSen.pm25, lastSen.pm10};
-  if (g_pmsOnline) col[n++] = {pmsIsT ? "PMS5003T" : "PMS5003", lastPmsOk, lastPms.pm25, lastPms.pm10};
-  uint8_t cw = (uint8_t)(128 / (n ? n : 1));
-  char v[16];
-  for (uint8_t i = 0; i < n; i++) {
-    int x = i * cw;
-    oled.setFont(u8g2_font_5x7_tf);
-    oled.drawStr(x, 21, col[i].name);
-    oled.setFont(u8g2_font_7x13B_tf);
-    if (!col[i].ok || isnan(col[i].pm25)) snprintf(v, sizeof(v), "--"); else snprintf(v, sizeof(v), "%.0f", col[i].pm25);
-    oled.drawStr(x, 38, v);
-    oled.setFont(u8g2_font_5x7_tf);
-    if (!col[i].ok || isnan(col[i].pm10)) snprintf(v, sizeof(v), "PM10 --"); else snprintf(v, sizeof(v), "PM10 %.0f", col[i].pm10);
-    oled.drawStr(x, 50, v);
-  }
-  oled.drawStr(0, 63, "ug/m3, last reading");
 }
 
 void pageClimate() {
   bannerOrTitle("CLIMATE");
   float t = NAN, rh = NAN;
   const char* src = climateSource(t, rh);
-  char l[32];
+  char l[40];
   oled.setFont(u8g2_font_7x13B_tf);
-  if (isnan(t)) snprintf(l, sizeof(l), "T  --"); else snprintf(l, sizeof(l), "T  %.1f C", t);
-  oled.drawStr(0, 24, l);
-  if (isnan(rh)) snprintf(l, sizeof(l), "RH --"); else snprintf(l, sizeof(l), "RH %.0f %%", rh);
-  oled.drawStr(0, 38, l);
+  if (isnan(t) && isnan(rh)) snprintf(l, sizeof(l), "--");
+  else snprintf(l, sizeof(l), "%.1f C   %.0f %%", t, rh);
+  oled.drawStr(0, 25, l);
   oled.setFont(u8g2_font_5x7_tf);
-  snprintf(l, sizeof(l), "T/RH from %s", src ? src : "--");
-  oled.drawStr(0, 47, l);
-  if (lastBmeOk && !isnan(lastP)) { snprintf(l, sizeof(l), "pressure %.1f kPa", lastP); oled.drawStr(0, 55, l); }
-  l[0] = '\0';
-  if (lastSenOk && !isnan(lastSen.voc)) snprintf(l, sizeof(l), "VOC index %.0f", lastSen.voc);
-  if (lastBmeOk && !isnan(lastIAQ)) snprintf(l + strlen(l), sizeof(l) - strlen(l), "%sIAQ~%.0f", l[0] ? "  " : "", lastIAQ);
-  oled.drawStr(0, 63, l);
-}
-
-void pageCO2() {
-  bannerOrTitle("CO2 SCD4x");
-  char l[16];
-  float co2 = lastScd.co2;
-  if (isnan(co2)) snprintf(l, sizeof(l), "--"); else snprintf(l, sizeof(l), "%.0f", co2);
-  oled.setFont(u8g2_font_logisoso20_tf);
-  oled.drawStr(0, 38, l);
-  int w = oled.getStrWidth(l);
-  oled.setFont(u8g2_font_5x7_tf);
-  oled.drawStr(w + 5, 38, "ppm");
-  oled.setFont(u8g2_font_7x13B_tf);
-  if (!isnan(co2) && co2 >= CO2_ALARM_PPM)          oled.drawStr(0, 58, "VENTILATE NOW");
-  else if (!isnan(co2) && co2 >= CO2_VENTILATE_PPM) oled.drawStr(0, 58, "VENTILATE");
-  else if (!isnan(co2))                             oled.drawStr(0, 58, "ok");
+  snprintf(l, sizeof(l), "T and RH from %s", src ? src : "--");
+  oled.drawStr(0, 35, l);
+  if (g_scdOnline) {
+    float co2 = lastScd.co2;
+    oled.setFont(u8g2_font_7x13B_tf);
+    if (isnan(co2)) snprintf(l, sizeof(l), "CO2 --");
+    else snprintf(l, sizeof(l), "CO2 %.0f ppm", co2);
+    oled.drawStr(0, 51, l);
+    oled.setFont(u8g2_font_5x7_tf);
+    const char* note = isnan(co2) ? "" : co2 >= CO2_ALARM_PPM ? "VENTILATE NOW" : co2 >= CO2_VENTILATE_PPM ? "VENTILATE" : "air ok";
+    oled.drawStr(0, 63, note);
+  } else {
+    if (lastBmeOk && !isnan(lastP)) { snprintf(l, sizeof(l), "pressure %.1f kPa", lastP); oled.drawStr(0, 50, l); }
+    l[0] = '\0';
+    if (lastSenOk && !isnan(lastSen.voc)) snprintf(l, sizeof(l), "VOC index %.0f", lastSen.voc);
+    if (lastBmeOk && !isnan(lastIAQ)) snprintf(l + strlen(l), sizeof(l) - strlen(l), "%sIAQ~%.0f", l[0] ? "  " : "", lastIAQ);
+    oled.drawStr(0, 62, l);
+  }
 }
 
 void pageStatus() {
@@ -2758,15 +2810,13 @@ void pageStatus() {
 void screenService() {
   if (!hasOled) return;
   uint32_t now = millis();
-  if (now - lastPageChange >= SCREEN_PAGE_MS || !pageHasData(screenPage)) nextPage(now);
+  if (now - lastPageChange >= SCREEN_PAGE_MS || !pageHasData(screenPage)) nextPage(now, false);
   if (lastRedraw && now - lastRedraw < SCREEN_REDRAW_MS) return;
   lastRedraw = now ? now : 1;
   oled.clearBuffer();
   switch (screenPage) {
-    case PAGE_PM:      pagePM();      break;
-    case PAGE_PM_ALL:  pagePMAll();   break;
+    case PAGE_AIR:     pageAir();     break;
     case PAGE_CLIMATE: pageClimate(); break;
-    case PAGE_CO2:     pageCO2();     break;
     default:           pageStatus();  break;
   }
   oled.sendBuffer();
@@ -2813,7 +2863,6 @@ void setup() {
   lastSensorScan = millis();
   detectBoard();     // v6: after the scan, on the bus it chose
   bootScreens();
-  if (hasOled) screenLines("Bayu", "joining WiFi", "", "", "");
   setupConfig(forcePortal);
   ledMode = LED_CONNECTING;
   sntp_set_time_sync_notification_cb(onNtpSync);
