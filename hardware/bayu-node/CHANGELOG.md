@@ -7,6 +7,10 @@ What changed in the Bayu node design and documentation, newest first. The format
 
 ### Added
 
+- Bayu firmware v6, in `../diy-node/firmware/diy_node_v6/`: v5 plus automatic detection of
+  the Expansion Base, with the Fab City logo, readings and ISPU-based PM2.5 and CO2 alarms on
+  the screen and buzzer, a microSD log, the clock, and a status LED. Not published by CI and
+  not yet run on a board.
 - `expansion-base/`: Bayu on Seeed's Expansion Base for XIAO. Bayu v3 on two Grove cables,
   and the three-PM node with no soldering, taking 5 V from the board's two 5V points. Pin
   map against Bayu, other variants, and a drawing with its generator.

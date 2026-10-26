@@ -14,6 +14,7 @@ from the published build, so a node flashed once by cable keeps up from then on.
 
 | Sketch | What it's for |
 |---|---|
+| [`diy_node_v6/`](diy_node_v6/) | **On the bench, not yet flashed by CI.** v5 plus automatic detection of the Seeed Expansion Base for XIAO: on that board it adds the screen with the Fab City logo, readings and ISPU alarms, the buzzer, the button, a CSV log on the microSD and the clock. On a Grove Shield it behaves as v5. Status LED on the XIAO ESP32-S3. Compiled for both chips; has not run on a board. |
 | [`diy_node_v5/`](diy_node_v5/) | **The production candidate.** v4 plus sensor auto-detect: HM3301, Sensirion SEN5x, BME680, SHT4x, SCD4x and a Plantower PMS5003 or PMS5003T, in any combination. PLANETAI node first, Smart Citizen as fallback, daily self-update. Compiled for XIAO ESP32-S3 and ESP32-C3 on core 3.3.12; the self-update and the three new sensors have not run on a board yet. |
 | [`diy_node_v4/`](diy_node_v4/) | HM3301 + BME680 only. Publishes to Smart Citizen, or to a PLANETAI node on the LAN. |
 | [`diy_node_v3/`](diy_node_v3/) | The previous production sketch: Smart Citizen only. Kept until every fleet node is on v4 or later. |
