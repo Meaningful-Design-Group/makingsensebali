@@ -1155,7 +1155,7 @@ void setupConfig(bool forcePortal) {
     Serial.println("[config] *** NO TOKEN SAVED — node will read sensors but");
     Serial.println("[config] *** publish NOTHING. Reopen setup to add one.");
   } else {
-    Serial.printf("[config] token: %s · name: %s\n", scToken.c_str(),
+    Serial.printf("[config] token: %s · name: %s\n", maskedToken().c_str(),   // masked: the token is a write credential
                   nodeName.length() ? nodeName.c_str() : "(unnamed)");
   }
   Serial.printf("[config] publishes to %s\n", brokerLabel().c_str());
