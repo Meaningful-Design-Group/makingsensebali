@@ -1,0 +1,48 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "Same person, burns every day and night. Managed to talk to the person today but he showed no interest. Someone has to talk to him. Today he was hiding his plastic trash underneath a thin layer of grass to hide it. He already knows it’s not legal but he does it anyways.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20261024_bb5c6bab.json",
+  "latitude": -8.597675,
+  "longitude": 115.082096,
+  "geolocation": {
+    "lat": -8.597675,
+    "lon": 115.082096
+  },
+  "locality": "Pangkung Tibah",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-10-24T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "photo_path": "photos/AQ_20261024_bb5c6bab.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-10-24T00:00:00+00:00",
+    "reported_timestamp": "2026-10-24T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Pangkung Tibah",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}
