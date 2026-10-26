@@ -83,6 +83,15 @@ With the Wio-SX1262 on the XIAO, the microSD and the radio share the SPI bus on 
 chip selects. Solder the XIAO's header into the XIAO only and trim the stubs, as for every
 Bayu with LoRa.
 
+## Firmware
+
+The [Bayu firmware v6](../../diy-node/firmware/diy_node_v6/) finds this board on its own:
+the OLED answers at 0x3C and the clock at 0x51, which a Grove Shield never does. On the
+Expansion Base it shows the Fab City logo at boot, then the readings, sounds the buzzer when
+PM2.5 reaches Tidak Sehat on Indonesia's ISPU scale, logs every reading to the microSD and
+keeps time on the clock when offline. The same firmware on a Grove Shield behaves like v5.
+v6 is still on the bench; the flash page serves v5 until it has passed its bench test.
+
 ## Before you choose this board
 
 - It is bigger than the Grove Shield, about half a Raspberry Pi 4, and the node-v3.2
