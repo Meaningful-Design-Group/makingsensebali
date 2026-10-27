@@ -184,7 +184,8 @@ generates that QR yet, `planetai broker` could print one.
 
 A v5 node built by CI checks
 [`flash/firmware/diy-node/manifest.json`](../../../flash/firmware/diy-node/manifest.json)
-five minutes after it starts and then once a day, over HTTPS against the CA bundle
+(v6 and later check [`flash/firmware/bayu/manifest.json`](../../../flash/firmware/bayu/manifest.json),
+the channel the flasher serves) five minutes after it starts and then once a day, over HTTPS against the CA bundle
 in the core. When the manifest names a build other than the one it runs, it
 downloads that build's `app.bin` for its chip into the spare app slot and reboots.
 Bootloader and partition table are never touched, and the saved settings stay.
@@ -195,7 +196,7 @@ reachable for the next fix. If the new build crashes, or has not managed it afte
 30 minutes, the bootloader goes back to the old one on the next reboot, and the old
 one remembers not to try that build again.
 
-**Merging to `main` updates the fleet.** The `firmware-build` workflow stamps each
+**Merging a change to `diy_node_v5/` into `main` updates the fleet.** The `firmware-build` workflow stamps each
 build with its tag and refuses to publish an image that does not carry it, because
 a node that cannot recognise its own build would reinstall it every day. A build
 from the IDE carries no tag and never updates itself. The portal has a box to turn

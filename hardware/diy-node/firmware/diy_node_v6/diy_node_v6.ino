@@ -449,7 +449,9 @@ const char* FW_BUILD = XSTR(FW_BUILD_TAG);
 const char* FW_BUILD = "";
 #endif
 
-const char*    OTA_MANIFEST_URL       = "https://makingsense.fablabbali.com/flash/firmware/diy-node/manifest.json";
+// The "bayu" channel: CI fills it from the newest diy_node_vN folder, and the flasher on
+// planetai.fab.city/sensors reads the same manifest. The v5 fleet keeps its own, diy-node/.
+const char*    OTA_MANIFEST_URL       = "https://makingsense.fablabbali.com/flash/firmware/bayu/manifest.json";
 const uint32_t OTA_FIRST_CHECK_MS     = 5UL * 60UL * 1000UL;
 const uint32_t OTA_INTERVAL_MS        = 24UL * 60UL * 60UL * 1000UL;
 const uint32_t OTA_VERIFY_RETRY_MS    = 60UL * 1000UL;        // a fresh build retries its first check this often
@@ -2102,10 +2104,10 @@ void otaCheck() {
       if ((part["offset"] | 0) == 0x10000) app = String(part["path"] | "");
   }
   if (!version.length() || !app.length()) { otaStatus = "the manifest has no build for " + String(OTA_CHIP); return; }
-  // v6 installs v6 builds only. CI still publishes v5 for the fleet, and going back to it would drop the
-  // screen, the alarms and the log, so another major is reported and left alone, never installed.
-  if (!version.startsWith(String(FW_VERSION) + "-")) {
-    otaStatus = "the flash page serves " + version + ", not a " + String(FW_VERSION) + " build: not installed, staying on " +
+  // Forward only: a v6 build or any later major (the channel moves to v7 when that folder lands), never an
+  // older one, which would drop the screen, the alarms and the log. "v6-ab12cd3" -> 6; toInt stops at '-'.
+  if (!version.startsWith("v") || version.substring(1).toInt() < String(FW_VERSION).substring(1).toInt()) {
+    otaStatus = "the flash page serves " + version + ", older than " + String(FW_VERSION) + ": not installed, staying on " +
                 String(FW_BUILD) + " (checked at " + localClock() + ")";
     Serial.printf("[ota] %s\n", otaStatus.c_str());
     return;

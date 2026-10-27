@@ -107,10 +107,13 @@ the portal as v5 does.
 
 ## Self-update
 
-v6 only installs a manifest build whose version starts with `v6-`. The flash page
-manifest serves v5 today, so a v6 node reads it, writes on the status page that it is
-not a v6 build, and stays where it is. A build from the IDE has no build tag and never
-updates itself.
+v6 reads [`flash/firmware/bayu/manifest.json`](../../../../flash/firmware/bayu/manifest.json),
+the channel CI fills from the newest firmware folder. The flasher on
+planetai.fab.city/sensors serves the same manifest, so a board flashed there and a
+node updating itself end up on the same build. v6 installs a build of its own major
+or a later one, so a v7 folder reaches v6 nodes the day it is merged. It never
+installs an older major. A build from the IDE has no build tag and never updates
+itself.
 
 ## Flashing by hand
 
@@ -130,19 +133,21 @@ In the IDE: USB CDC On Boot enabled on both boards, and Minimal SPIFFS on the C3
 Built on 26 Oct 2026: S3 1,429,651 bytes of 3,342,336 (v5: 1,352,804), C3 1,582,863 of
 1,966,080 (v5: 1,497,363).
 
-To test the self-update refusal, give the build a tag so it checks the manifest:
+To test the self-update, give the build a tag so it checks the manifest:
 `--build-property "compiler.cpp.extra_flags=-DFW_BUILD_TAG=v6-bench"`.
 
 The alarm logic has a laptop check:
 `c++ -std=c++17 -Wall -Wextra -o /tmp/alarms_test test/alarms_test.cpp && /tmp/alarms_test`.
 
-## Why CI does not publish it
+## How CI publishes it
 
-`firmware-build` compiles `diy_node_v5/` and publishes it to the manifest every v5 node
-reads once a day. v5 installs any build that is not its own, so publishing v6 there sends
-it to the whole fleet the next day. v6 stays out of CI until it has passed the bench
-test below. Promoting it means pointing `SKETCH` at `diy_node_v6`, adding `U8g2@2.36.19`
-to `LIBS`, and accepting that every v5 node moves to v6.
+`firmware-build` has two channels since 27 Oct 2026. The fleet channel still builds
+`diy_node_v5/` into `flash/firmware/diy-node/`, which every v5 node reads once a day.
+The bayu channel builds the newest `diy_node_vN` folder, v6 today, into
+`flash/firmware/bayu/`, and that is what the flasher serves. v5 nodes never read the
+bayu channel, so v6 reaches the fleet only when a node is reflashed. Moving the fleet
+to v6 is a separate decision: point the fleet channel at `diy_node_v6` and every v5
+node moves the next day.
 
 ## Bench test
 
@@ -163,6 +168,7 @@ to `LIBS`, and accepting that every v5 node moves to v6.
 6. Quiet hours: set the clock or wait for 22:00. The banner stays, no sound.
 7. Long press D1 for 2 s: one low chirp, MUTE on the status page, no beeps for an hour.
    A short press changes the page.
-8. Self-update: flash a `v6-bench` build. The status page should say the flash page
-   serves a v5 build and it is not installed.
+8. Self-update: flash a `v6-bench` build. Within five minutes it should install the
+   published v6 build from the bayu channel, reboot, and show that build on the status
+   page.
 9. C3 SuperMini with an OLED: screen works, nothing driven on D1/D2/D3.

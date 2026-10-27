@@ -5,9 +5,9 @@ name: firmware-build
 #
 # Output, committed to the repo so GitHub Pages serves it from the same origin (the flasher fetches the
 # images with fetch(); a cross-origin host would need CORS headers GitHub releases do not send):
-#   flash/firmware/diy-node/manifest.json          the ESP Web Tools manifest, one build per chip
-#   flash/firmware/diy-node/<ver>/<chip>/*.bin      bootloader, partitions, boot_app0, app (four parts, no padded merged image)
-#   flash/firmware/diy-node/<ver>/SHA256SUMS
+#   flash/firmware/<channel>/manifest.json          the ESP Web Tools manifest, one build per chip
+#   flash/firmware/<channel>/<ver>/<chip>/*.bin      bootloader, partitions, boot_app0, app (four parts, no padded merged image)
+#   flash/firmware/<channel>/<ver>/SHA256SUMS        <channel> is diy-node (the v5 fleet) or bayu (the newest firmware)
 #
 # Board options are the ones hardware/diy-node/firmware/README.md tells the IDE user to set: USB CDC on boot ENABLED for
 # both boards (or Serial is silent; the option's value names differ per board, see the build step); the min_spiffs partition scheme on the C3, where a 1.35 MB app no longer fits the
@@ -22,17 +22,32 @@ name: firmware-build
 # Self-update (24 Oct 2026): nodes read manifest.json once a day and install the app.bin for their chip when the
 # manifest's "version" is not the build they run. Each build is stamped with that same tag (-DFW_BUILD_TAG=$TAG) and
 # the step below refuses to publish an image that does not carry it: a node that cannot recognise its own build would
-# reinstall it every day. Merging to main therefore updates the fleet; test on a board before merging.
+# reinstall it every day.
+#
+# Two channels since 27 Oct 2026, built one after the other:
+#   fleet  diy_node_v5 -> flash/firmware/diy-node/   the manifest every deployed v5 node updates from. Rebuilt only
+#          when diy_node_v5/, the shared decoder test or the core pin change: a new tag makes every node reinstall,
+#          so editing this workflow does NOT rebuild it (run it by hand with channel=fleet if that is ever wanted).
+#   bayu   the newest diy_node_vN folder -> flash/firmware/bayu/   what the flasher on planetai.fab.city/sensors
+#          serves, and what v6 and later nodes update from. Rebuilt when that folder or this workflow changes, so a
+#          new firmware version reaches the flasher without editing anything here.
+# Merging a change to diy_node_v5/ therefore updates the fleet: test on a board before merging.
 
 on:
   push:
     branches: [main]
     paths:
-      - "hardware/diy-node/firmware/diy_node_v5/**"
+      - "hardware/diy-node/firmware/diy_node_v*/**"
       - "hardware/diy-node/firmware/test/**"
       - ".github/workflows/firmware-build.yml"
       - "flash/firmware/VERSIONS"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Which channel to rebuild"
+        type: choice
+        options: [bayu, fleet, both]
+        default: bayu
 
 permissions:
   contents: write
@@ -42,8 +57,6 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SKETCH: hardware/diy-node/firmware/diy_node_v5
-  OUT: flash/firmware/diy-node
   # pinned libraries (hardware/diy-node/README.md lists them; versions chosen 16 Oct 2026, bump deliberately).
   # WiFiManager is NOT the 2.0.17 release: v5 calls setCustomBodyHeader/Footer, which exist only on tzapu's master
   # (added 12 Dec 2024, no tag since). The first CI run found this; the IDE's Library Manager 2.0.17 cannot build v5
@@ -54,18 +67,65 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1        # one channel at a time: both commit to main
+      fail-fast: false
+      matrix:
+        channel: [fleet, bayu]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: decoder checks
+      - name: what this channel builds, and whether it changed
+        id: pick
+        env:
+          CHANNEL: ${{ matrix.channel }}
+          EVENT: ${{ github.event_name }}
+          WANT: ${{ github.event.inputs.channel }}
+          BEFORE: ${{ github.event.before }}
         run: |
+          set -euo pipefail
+          FW=hardware/diy-node/firmware
+          if [ "$CHANNEL" = fleet ]; then
+            SKETCH="$FW/diy_node_v5"; OUT=flash/firmware/diy-node; NAME="Making Sense Bali · DIY node"; EXTRA=""
+            WATCH="^($SKETCH/|$FW/test/|flash/firmware/VERSIONS$)"
+          else
+            SKETCH="$(ls -d "$FW"/diy_node_v[0-9]* | sort -V | tail -1)"; OUT=flash/firmware/bayu; NAME="Bayu"; EXTRA=";U8g2@2.36.19"
+            WATCH="^($SKETCH/|$FW/test/|flash/firmware/VERSIONS$|\.github/workflows/firmware-build\.yml$)"
+          fi
+          BUILD=false
+          if [ "$EVENT" = workflow_dispatch ]; then
+            { [ "$WANT" = "$CHANNEL" ] || [ "$WANT" = both ]; } && BUILD=true
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = 0000000000000000000000000000000000000000 ]; then
+            BUILD=true
+          elif ! CHANGED="$(git diff --name-only "$BEFORE" "$GITHUB_SHA" 2>/dev/null)"; then
+            BUILD=true     # the old head is gone (a force push): build rather than guess
+          elif grep -qE "$WATCH" <<< "$CHANGED"; then
+            BUILD=true
+          fi
+          echo "$CHANNEL: $SKETCH -> $OUT, build=$BUILD"
+          { echo "SKETCH=$SKETCH"; echo "OUT=$OUT"; echo "NAME=$NAME"; echo "LIBS_ALL=$LIBS$EXTRA"; } >> "$GITHUB_ENV"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+
+      - name: logic checks
+        if: steps.pick.outputs.build == 'true'
+        run: |
+          set -euo pipefail
           c++ -std=c++17 -Wall -Wextra -o "$RUNNER_TEMP/decoders_test" hardware/diy-node/firmware/test/decoders_test.cpp
           "$RUNNER_TEMP/decoders_test"
+          for t in "$SKETCH"/test/*_test.cpp; do
+            [ -e "$t" ] || continue
+            c++ -std=c++17 -Wall -Wextra -o "$RUNNER_TEMP/sketch_test" "$t"
+            "$RUNNER_TEMP/sketch_test"
+          done
 
       - name: arduino-cli
+        if: steps.pick.outputs.build == 'true'
         uses: arduino/setup-arduino-cli@v2
 
       - name: core and libraries
+        if: steps.pick.outputs.build == 'true'
         run: |
           set -euo pipefail
           CORE="$(sed -n 's/^esp32-core=//p' flash/firmware/VERSIONS)"; [ -n "$CORE" ] || { echo "no esp32-core= in flash/firmware/VERSIONS"; exit 1; }
@@ -74,18 +134,21 @@ jobs:
           arduino-cli core install "esp32:esp32@$CORE"
           arduino-cli lib update-index
           # semicolon-separated because two of the names contain spaces
-          echo "$LIBS" | tr ';' '\n' | while read -r lib; do arduino-cli lib install "$lib"; done
+          echo "$LIBS_ALL" | tr ';' '\n' | while read -r lib; do arduino-cli lib install "$lib"; done
           arduino-cli config set library.enable_unsafe_install true
           arduino-cli lib install --git-url "$WIFIMANAGER_GIT"
           arduino-cli lib list
           echo "CORE=$CORE" >> "$GITHUB_ENV"
 
       - name: compile both boards
+        if: steps.pick.outputs.build == 'true'
         run: |
           set -euo pipefail
-          VER="$(sed -n 's/^const char\*\s*FW_VERSION\s*=\s*"\([^"]*\)".*/\1/p' "$SKETCH/diy_node_v5.ino")"; [ -n "$VER" ] || VER=v5
+          INO="$(basename "$SKETCH")"
+          VER="$(sed -n 's/^const char\*\s*FW_VERSION\s*=\s*"\([^"]*\)".*/\1/p' "$SKETCH/$INO.ino")"; [ -n "$VER" ] || { echo "no FW_VERSION in $SKETCH/$INO.ino"; exit 1; }
           SHA="$(git rev-parse --short HEAD)"; TAG="$VER-$SHA"
           echo "TAG=$TAG" >> "$GITHUB_ENV"
+          mkdir -p "$OUT"
           # one build in the tree at a time: the page serves the manifest's tag and nothing else, and every build
           # left behind is 2.6 MB of git history nobody reads
           find "$OUT" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
@@ -93,11 +156,11 @@ jobs:
             local chip="$1" fqbn="$2" bp="$RUNNER_TEMP/build-$1"
             arduino-cli compile --fqbn "$fqbn" --build-path "$bp" --warnings default \
               --build-property "compiler.cpp.extra_flags=-DFW_BUILD_TAG=$TAG" "$SKETCH"
-            grep -qaxF "$TAG" <(strings "$bp"/diy_node_v5.ino.bin) || { echo "$chip image does not carry $TAG"; exit 1; }
+            grep -qaxF "$TAG" <(strings "$bp/$INO.ino.bin") || { echo "$chip image does not carry $TAG"; exit 1; }
             mkdir -p "$OUT/$TAG/$chip"
-            cp "$bp"/diy_node_v5.ino.bin "$OUT/$TAG/$chip/app.bin"
-            cp "$bp"/diy_node_v5.ino.bootloader.bin "$OUT/$TAG/$chip/bootloader.bin"
-            cp "$bp"/diy_node_v5.ino.partitions.bin "$OUT/$TAG/$chip/partitions.bin"
+            cp "$bp/$INO.ino.bin" "$OUT/$TAG/$chip/app.bin"
+            cp "$bp/$INO.ino.bootloader.bin" "$OUT/$TAG/$chip/bootloader.bin"
+            cp "$bp/$INO.ino.partitions.bin" "$OUT/$TAG/$chip/partitions.bin"
             cp "$(arduino-cli config get directories.data)"/packages/esp32/hardware/esp32/"$CORE"/tools/partitions/boot_app0.bin "$OUT/$TAG/$chip/boot_app0.bin"
             # no merged.bin: the core pads it to the whole flash (8 MB on the S3, 4 MB on the C3) for a 1.3 MB app.
             # The four parts at their offsets are what esptool would write anyway, and a quarter of the download.
@@ -111,16 +174,17 @@ jobs:
           build esp32c3 "esp32:esp32:esp32c3:CDCOnBoot=cdc,PartitionScheme=min_spiffs"
 
       - name: manifest and checksums
+        if: steps.pick.outputs.build == 'true'
         run: |
           set -euo pipefail
-          python3 - "$OUT" "$TAG" "$CORE" "$LIBS;WiFiManager@git:$WIFIMANAGER_GIT" <<'EOF'
+          python3 - "$OUT" "$TAG" "$CORE" "$LIBS_ALL;WiFiManager@git:$WIFIMANAGER_GIT" "$NAME" <<'EOF'
           import json, os, sys, datetime
-          out, tag, core, libs = sys.argv[1:5]
+          out, tag, core, libs, name = sys.argv[1:6]
           def parts(chip):
               # S3 and C3 both boot from 0x0 (the classic ESP32 boots from 0x1000)
               return [{"path": f"{tag}/{chip}/bootloader.bin", "offset": 0x0}, {"path": f"{tag}/{chip}/partitions.bin", "offset": 0x8000},
                       {"path": f"{tag}/{chip}/boot_app0.bin", "offset": 0xE000}, {"path": f"{tag}/{chip}/app.bin", "offset": 0x10000}]
-          m = {"name": "Making Sense Bali · DIY node", "version": tag, "built": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+          m = {"name": name, "version": tag, "built": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
                "core": f"esp32:esp32@{core}", "libs": libs, "new_install_prompt_erase": False,
                "builds": [{"chipFamily": "ESP32-S3", "parts": parts("esp32s3")}, {"chipFamily": "ESP32-C3", "parts": parts("esp32c3")}]}
           json.dump(m, open(f"{out}/manifest.json", "w"), indent=2)
@@ -129,12 +193,16 @@ jobs:
           ( cd "$OUT/$TAG" && find . -name '*.bin' | sort | xargs sha256sum > SHA256SUMS )
 
       - name: commit
+        if: steps.pick.outputs.build == 'true'
         run: |
           set -euo pipefail
           git config user.name "firmware-build"; git config user.email "firmware-build@users.noreply.github.com"
           git add "$OUT"
           git diff --cached --quiet && { echo "nothing changed"; exit 0; }
-          git commit -m "flash: DIY node $TAG for XIAO ESP32-S3 and ESP32-C3 [skip ci]"
-          # the data-sync workflow commits to the same branch every quarter hour; rebase on whatever landed meanwhile
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git commit -m "flash: $NAME $TAG for XIAO ESP32-S3 and ESP32-C3 [skip ci]"
+          # the data-sync workflow and the other channel commit to the same branch; rebase on whatever landed meanwhile
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
