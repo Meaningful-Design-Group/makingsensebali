@@ -1,0 +1,52 @@
+{
+  "name": "Bayu",
+  "version": "v6-739e4f61",
+  "built": "2026-10-27T03:41:43+00:00",
+  "core": "esp32:esp32@3.3.12",
+  "libs": "PubSubClient@2.8;ArduinoJson@7.4.2;Adafruit BME680 Library@2.0.5;Adafruit Unified Sensor@1.1.15;U8g2@2.36.19;WiFiManager@git:https://github.com/tzapu/WiFiManager.git#4131fe617d01d746677e8b909379597162c2ca58",
+  "new_install_prompt_erase": false,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "v6-739e4f61/esp32s3/bootloader.bin",
+          "offset": 0
+        },
+        {
+          "path": "v6-739e4f61/esp32s3/partitions.bin",
+          "offset": 32768
+        },
+        {
+          "path": "v6-739e4f61/esp32s3/boot_app0.bin",
+          "offset": 57344
+        },
+        {
+          "path": "v6-739e4f61/esp32s3/app.bin",
+          "offset": 65536
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "path": "v6-739e4f61/esp32c3/bootloader.bin",
+          "offset": 0
+        },
+        {
+          "path": "v6-739e4f61/esp32c3/partitions.bin",
+          "offset": 32768
+        },
+        {
+          "path": "v6-739e4f61/esp32c3/boot_app0.bin",
+          "offset": 57344
+        },
+        {
+          "path": "v6-739e4f61/esp32c3/app.bin",
+          "offset": 65536
+        }
+      ]
+    }
+  ]
+}
