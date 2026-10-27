@@ -13,7 +13,7 @@
 # flash/ — the browser flasher
 
 `https://makingsense.fablabbali.com/flash/` puts firmware on a board over a USB cable from Chrome or Edge, with
-nothing installed on the laptop. Two targets: the DIY node (v5, XIAO ESP32-S3 and ESP32-C3 SuperMini) and the
+nothing installed on the laptop. Two targets: the DIY node (the newest Bayu firmware, XIAO ESP32-S3 and ESP32-C3 SuperMini) and the
 Meshtastic radios the PLANETAI nodes use (XIAO ESP32-S3 + Wio-SX1262 flashed from the page; Wio Tracker L1 and
 SenseCAP T1000-E as UF2 downloads, because nRF52 boards take a file on a drive, not a serial flash).
 
@@ -32,17 +32,19 @@ flash/index.html                      the page, in the site's style; strings in 
 (ESP Web Tools 10.4.0, Apache-2.0, is loaded pinned from unpkg, the CDN the site already uses for Leaflet; the comment in index.html says how to vendor it)
 flash/firmware/VERSIONS               the core pin: esp32-core=…
 flash/firmware/meshtastic/            frozen at 2.7.26.54e0d8d for older copies of the sensors page; the live copy is in fabcity/planetai
-flash/firmware/diy-node/              written by CI (firmware-build.yml): manifest.json and the images per chip, SHA256SUMS
+flash/firmware/diy-node/              written by CI (firmware-build.yml) from diy_node_v5: the manifest the v5 fleet updates from
+flash/firmware/bayu/                  written by CI from the newest diy_node_vN folder: what the flasher serves, and what v6 and later update from
 ```
 
-The page reads `firmware/diy-node/manifest.json` and `firmware/meshtastic/files.json` at load. When the DIY
+The page reads `firmware/bayu/manifest.json` and `firmware/meshtastic/files.json` at load. When the DIY
 manifest is missing (the build has not run yet) the button is hidden and a note says so; nothing else breaks.
 
 ## Bumping a version
 
 - **Meshtastic**: not here anymore, see `scripts/fetch_meshtastic.sh` in `fabcity/planetai`.
-- **DIY node**: a push that touches `hardware/diy-node/firmware/diy_node_v5/` rebuilds. The tag in the manifest
-  is `FW_VERSION-<short sha>`. The arduino-esp32 core is pinned in `VERSIONS`; libraries are pinned in the
+- **DIY node**: a push that touches the newest `hardware/diy-node/firmware/diy_node_vN/` rebuilds the bayu
+  channel, and a new `diy_node_v7/` folder takes over that channel with no edit to the workflow. A push that
+  touches `diy_node_v5/` rebuilds the fleet channel. The tag in the manifest is `FW_VERSION-<short sha>`. The arduino-esp32 core is pinned in `VERSIONS`; libraries are pinned in the
   workflow and recorded in the manifest.
 
 ## What a first run will tell you

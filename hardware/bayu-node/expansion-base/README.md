@@ -90,7 +90,7 @@ the OLED answers at 0x3C and the clock at 0x51, which a Grove Shield never does.
 Expansion Base it shows the Fab City logo at boot, then the readings, sounds the buzzer when
 PM2.5 reaches Tidak Sehat on Indonesia's ISPU scale, logs every reading to the microSD and
 keeps time on the clock when offline. The same firmware on a Grove Shield behaves like v5.
-v6 is still on the bench; the flash page serves v5 until it has passed its bench test.
+The flasher at planetai.fab.city/sensors installs it.
 
 ## Before you choose this board
 
