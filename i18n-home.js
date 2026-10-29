@@ -190,6 +190,7 @@ var STRINGS = {
     'c.fl.f3': 'Publishes to this map. Spends its first week next to a trusted sensor, and is marked DIY',
     'c.fl.f4': 'Build one in an afternoon at a Fab Lab Bali workshop',
     'c.fl.link_build': 'Build guide ↗',
+    'c.fl.link_setup': 'Set up your sensor',
     'c.fl.link_ws': 'Join a workshop ↗',
     'c.small': 'Already have an AirGradient or PurpleAir? Turn on public sharing and it appears here. Work somewhere with a reference-grade monitor, such as a university, a hospital or BMKG? <a href="mailto:fablabbali@gmail.com?subject=Co-location%20for%20Making%20Sense%20Bali">Write to us</a>. One week of a sensor sitting beside yours would let us check every reading in this network, and it is the biggest thing the network is missing.',
 
@@ -381,6 +382,7 @@ var STRINGS = {
     'c.fl.f3': 'Tampil di peta ini. Minggu pertama dipasang di samping sensor tepercaya, dan ditandai DIY',
     'c.fl.f4': 'Rakit sendiri dalam satu sore di lokakarya Fab Lab Bali',
     'c.fl.link_build': 'Panduan merakit ↗',
+    'c.fl.link_setup': 'Menyiapkan sensor Anda',
     'c.fl.link_ws': 'Ikut lokakarya ↗',
     'c.small': 'Sudah punya AirGradient atau PurpleAir? Aktifkan berbagi publik dan sensor Anda akan muncul di sini. Bekerja di tempat yang punya alat ukur standar referensi, seperti universitas, rumah sakit, atau BMKG? <a href="mailto:fablabbali@gmail.com?subject=Co-location%20for%20Making%20Sense%20Bali">Hubungi kami</a>. Satu minggu sensor kami di samping alat Anda membuat semua bacaan di jaringan ini bisa dicek, dan itulah hal terbesar yang masih kurang.',
 
@@ -571,6 +573,7 @@ var STRINGS = {
     'c.fl.f3': 'Publica en este mapa. Pasa su primera semana junto a un sensor de referencia y va marcado como DIY',
     'c.fl.f4': 'Constrúyelo en una tarde en un taller de Fab Lab Bali',
     'c.fl.link_build': 'Guía de montaje ↗',
+    'c.fl.link_setup': 'Configura tu sensor',
     'c.fl.link_ws': 'Apúntate a un taller ↗',
     'c.small': '¿Ya tienes un AirGradient o un PurpleAir? Activa el uso compartido público y aparecerá aquí. ¿Trabajas en un sitio con un monitor de referencia, como una universidad, un hospital o el BMKG? <a href="mailto:fablabbali@gmail.com?subject=Co-location%20for%20Making%20Sense%20Bali">Escríbenos</a>. Una semana con un sensor junto al tuyo nos permitiría comprobar cada lectura de esta red, y es lo que más le falta.',
 
