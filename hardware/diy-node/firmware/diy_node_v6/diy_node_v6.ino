@@ -364,6 +364,7 @@
 
 const char* PORTAL_PASSWORD = "makingsense";   // AP join password
 const uint16_t PORTAL_TIMEOUT_S = 180;         // portal lifetime before reboot
+const uint32_t PORTAL_READ_MS   = 10UL * 1000UL;  // while the portal is open, a [read] line this often over USB
 
 // PMS_RX_PIN is XIAO D7 on both XIAOs, the pin the PMS5003's TX goes to (and
 // RX on the C3 SuperMini). OTA_CHIP is the chipFamily name in the manifest.
@@ -620,6 +621,7 @@ uint32_t lastSensorScan = 0;
 
 bool     pmsIsT   = false;   // a PMS5003T, told apart by its frames (see PLANTOWER below)
 uint32_t pmsSince = 0;       // when it was found; nothing is published for its first 30 s
+constexpr uint32_t PMS_WARMUP_MS = 30000;   // Plantower: readings settle 30 s after the fan starts
 
 char sen5xModel[17] = "";      // product name as the sensor reports it, e.g. "SEN55"
 
@@ -635,6 +637,17 @@ bool   lastShtOk = false, lastScdOk = false, lastPmsOk = false;
 bool   lastPublishOk = false;
 String lastPublishAt = "never";
 uint32_t publishCount = 0, publishFailCount = 0;
+
+// One read of every fitted sensor: what loop() publishes, and what the portal task prints while setup blocks it.
+struct Cycle {
+  float tempC = NAN, humRH = NAN, pressureKPa = NAN, gasOhm = NAN, iaq = NAN;
+  uint16_t pm1 = 0, pm25 = 0, pm10 = 0;
+  Sen5xReading sen;
+  PmsReading pms;
+  Scd4xReading scd;
+  float shtT = NAN, shtRH = NAN;
+  bool bmeOk = false, hmOk = false, senOk = false, shtOk = false, scdOk = false, pmsOk = false, pmsWarm = false;
+};
 
 float gasBaselineOhm = 0.0f;
 volatile bool reopenPortalRequested = false;
@@ -946,6 +959,82 @@ String destinationNow() {
   return brokerHost + ":" + String(brokerPort) + " (PLANETAI node)";
 }
 
+// ---------------------------------------------------------------------------
+// READINGS OVER USB WHILE SETUP IS OPEN
+// ---------------------------------------------------------------------------
+// A node with no WiFi yet sits in the setup portal, and the portal blocks loop() for up to PORTAL_TIMEOUT_S; a board
+// without a screen then reboots into it again. Until 29 Oct that meant a board fresh from the flasher printed no
+// [read] line at all, and the workbench's Test tab stayed empty until someone set up WiFi. While the portal is open
+// this task reads the sensors every PORTAL_READ_MS and prints the same line. It publishes nothing and draws nothing.
+// It shares the bus with the portal screen and the WiFi animation; the core's Wire lock keeps each transaction whole.
+
+// Reads every fitted sensor into c and prints the [read] line. loop() and portalReadTask() both call it.
+void readCycle(Cycle &c) {
+  bool bmeOk = c.bmeOk = g_bmeOnline && readBME680(c.tempC, c.humRH, c.pressureKPa, c.gasOhm);
+  bool hmOk  = c.hmOk  = g_hmOnline  && readHM3301(c.pm1, c.pm25, c.pm10);
+  bool senOk = c.senOk = g_senOnline && readSEN5x(c.sen);
+  bool shtOk = c.shtOk = g_shtOnline && readSHT4x(c.shtT, c.shtRH);
+  bool scdOk = c.scdOk = g_scdOnline && readSCD4x(c.scd);
+  bool pmsOk = c.pmsOk = g_pmsOnline && readPMS(c.pms);
+  if (g_bmeOnline) noteRead(bmeOk, g_bmeOnline, g_bmeLost, bmeFails, "BME680");
+  if (g_hmOnline)  noteRead(hmOk,  g_hmOnline,  g_hmLost,  hmFails,  "HM3301");
+  if (g_senOnline) noteRead(senOk, g_senOnline, g_senLost, senFails, sen5xModel[0] ? sen5xModel : "SEN5x");
+  if (g_shtOnline) noteRead(shtOk, g_shtOnline, g_shtLost, shtFails, "SHT4x");
+  if (g_scdOnline) noteRead(scdOk, g_scdOnline, g_scdLost, scdFails, "SCD4x");
+  if (g_pmsOnline) noteRead(pmsOk, g_pmsOnline, g_pmsLost, pmsFails, pmsIsT ? "PMS5003T" : "PMS5003");
+  bool pmsWarm = c.pmsWarm = pmsOk && millis() - pmsSince >= PMS_WARMUP_MS;
+  float iaq = c.iaq = bmeOk ? computeIAQ(c.gasOhm, c.humRH) : NAN;
+  float tempC = c.tempC, humRH = c.humRH, pressureKPa = c.pressureKPa, gasOhm = c.gasOhm;
+  uint16_t pm1 = c.pm1, pm25 = c.pm25, pm10 = c.pm10;
+  const Sen5xReading &sen = c.sen;
+  const PmsReading &pms = c.pms;
+  const Scd4xReading &scd = c.scd;
+  float shtT = c.shtT, shtRH = c.shtRH;
+
+  // One line, only the sensors that are fitted.
+  String line = "[read]";
+  char b[96];
+  if (hmOk)  { snprintf(b, sizeof(b), "  HM3301 PM1=%u PM2.5=%u PM10=%u", pm1, pm25, pm10); line += b; }
+  if (senOk) { snprintf(b, sizeof(b), "  %s PM2.5=%.1f PM10=%.1f T=%.2f RH=%.1f VOC=%.0f NOx=%.0f",
+                        sen5xModel[0] ? sen5xModel : "SEN5x", sen.pm25, sen.pm10, sen.tempC, sen.rh, sen.voc, sen.nox);
+               line += b; }
+  if (bmeOk) { snprintf(b, sizeof(b), "  BME680 T=%.2f RH=%.2f P=%.3f Gas=%.0f IAQ~%.0f",
+                        tempC, humRH, pressureKPa, gasOhm, iaq); line += b; }
+  if (pmsOk) { snprintf(b, sizeof(b), "  %s PM1=%.0f PM2.5=%.0f PM10=%.0f%s", pmsIsT ? "PMS5003T" : "PMS5003",
+                        pms.pm1, pms.pm25, pms.pm10, pmsWarm ? "" : " (warming up)"); line += b;
+               if (pmsIsT) { snprintf(b, sizeof(b), " T=%.1f RH=%.1f", pms.tempC, pms.rh); line += b; } }
+  if (shtOk) { snprintf(b, sizeof(b), "  SHT4x T=%.2f RH=%.2f", shtT, shtRH); line += b; }
+  if (scdOk) { snprintf(b, sizeof(b), "  SCD4x CO2=%.0f T=%.2f RH=%.2f", scd.co2, scd.tempC, scd.rh); line += b; }
+  if (line.length() == 6) line += " no sensor read this cycle";
+  Serial.println(line);
+}
+
+volatile bool portalReadRun  = false;
+volatile bool portalReadDone = true;
+
+void portalReadTask(void*) {
+  while (portalReadRun) {
+    Cycle c;
+    readCycle(c);
+    for (uint32_t t = 0; t < PORTAL_READ_MS && portalReadRun; t += 50) vTaskDelay(pdMS_TO_TICKS(50));
+  }
+  portalReadDone = true;
+  vTaskDelete(nullptr);
+}
+
+void portalReadStart() {
+  if (portalReadRun) return;
+  portalReadDone = false;
+  portalReadRun  = true;
+  if (xTaskCreate(portalReadTask, "portalread", 8192, nullptr, 1, nullptr) != pdPASS) { portalReadRun = false; portalReadDone = true; return; }
+  Serial.printf("[config] setup portal open: reading the sensors every %lu s over USB until it closes\n", (unsigned long)(PORTAL_READ_MS / 1000));
+}
+
+void portalReadStop() {
+  portalReadRun = false;
+  for (uint16_t i = 0; i < 1000 && !portalReadDone; i++) delay(5);   // lets a read in progress finish, well under 5 s
+}
+
 void setupConfig(bool forcePortal) {
   loadIdentity();
 
@@ -1123,6 +1212,7 @@ void setupConfig(bool forcePortal) {
   wm.setAPCallback([](WiFiManager*) {
     ledMode = LED_PORTAL;
     portalScreen();
+    portalReadStart();
   });
 
   bool ok;
@@ -1134,6 +1224,7 @@ void setupConfig(bool forcePortal) {
     ok = wm.autoConnect(apName().c_str(), PORTAL_PASSWORD);
   }
 
+  portalReadStop();
   wifiAnimStop();
   wifiResultScreen(ok);
   if (!ok && !hasOled) {
@@ -1846,7 +1937,6 @@ bool readSCD4x(Scd4xReading &r) {
 // ============================================================================
 
 constexpr uint32_t PMS_WAIT_MS   = 3000;    // a frame every ~1 s, every ~2.3 s in clean air
-constexpr uint32_t PMS_WARMUP_MS = 30000;   // Plantower: readings settle 30 s after the fan starts
 
 // Drain what arrived since last time and keep the newest valid frame. With no
 // valid frame buffered, wait up to waitMs for one.
@@ -2929,44 +3019,15 @@ void loop() {
       }
     }
 
-    float tempC = NAN, humRH = NAN, pressureKPa = NAN, gasOhm = NAN;
-    uint16_t pm1 = 0, pm25 = 0, pm10 = 0;
-    Sen5xReading sen;
-    PmsReading pms;
-    Scd4xReading scd;
-    float shtT = NAN, shtRH = NAN;
-
-    bool bmeOk = g_bmeOnline && readBME680(tempC, humRH, pressureKPa, gasOhm);
-    bool hmOk  = g_hmOnline  && readHM3301(pm1, pm25, pm10);
-    bool senOk = g_senOnline && readSEN5x(sen);
-    bool shtOk = g_shtOnline && readSHT4x(shtT, shtRH);
-    bool scdOk = g_scdOnline && readSCD4x(scd);
-    bool pmsOk = g_pmsOnline && readPMS(pms);
-    if (g_bmeOnline) noteRead(bmeOk, g_bmeOnline, g_bmeLost, bmeFails, "BME680");
-    if (g_hmOnline)  noteRead(hmOk,  g_hmOnline,  g_hmLost,  hmFails,  "HM3301");
-    if (g_senOnline) noteRead(senOk, g_senOnline, g_senLost, senFails, sen5xModel[0] ? sen5xModel : "SEN5x");
-    if (g_shtOnline) noteRead(shtOk, g_shtOnline, g_shtLost, shtFails, "SHT4x");
-    if (g_scdOnline) noteRead(scdOk, g_scdOnline, g_scdLost, scdFails, "SCD4x");
-    if (g_pmsOnline) noteRead(pmsOk, g_pmsOnline, g_pmsLost, pmsFails, pmsIsT ? "PMS5003T" : "PMS5003");
-    bool pmsWarm = pmsOk && millis() - pmsSince >= PMS_WARMUP_MS;
-    float iaq  = bmeOk ? computeIAQ(gasOhm, humRH) : NAN;
-
-    // One line, only the sensors that are fitted.
-    String line = "[read]";
-    char b[96];
-    if (hmOk)  { snprintf(b, sizeof(b), "  HM3301 PM1=%u PM2.5=%u PM10=%u", pm1, pm25, pm10); line += b; }
-    if (senOk) { snprintf(b, sizeof(b), "  %s PM2.5=%.1f PM10=%.1f T=%.2f RH=%.1f VOC=%.0f NOx=%.0f",
-                          sen5xModel[0] ? sen5xModel : "SEN5x", sen.pm25, sen.pm10, sen.tempC, sen.rh, sen.voc, sen.nox);
-                 line += b; }
-    if (bmeOk) { snprintf(b, sizeof(b), "  BME680 T=%.2f RH=%.2f P=%.3f Gas=%.0f IAQ~%.0f",
-                          tempC, humRH, pressureKPa, gasOhm, iaq); line += b; }
-    if (pmsOk) { snprintf(b, sizeof(b), "  %s PM1=%.0f PM2.5=%.0f PM10=%.0f%s", pmsIsT ? "PMS5003T" : "PMS5003",
-                          pms.pm1, pms.pm25, pms.pm10, pmsWarm ? "" : " (warming up)"); line += b;
-                 if (pmsIsT) { snprintf(b, sizeof(b), " T=%.1f RH=%.1f", pms.tempC, pms.rh); line += b; } }
-    if (shtOk) { snprintf(b, sizeof(b), "  SHT4x T=%.2f RH=%.2f", shtT, shtRH); line += b; }
-    if (scdOk) { snprintf(b, sizeof(b), "  SCD4x CO2=%.0f T=%.2f RH=%.2f", scd.co2, scd.tempC, scd.rh); line += b; }
-    if (line.length() == 6) line += " no sensor read this cycle";
-    Serial.println(line);
+    Cycle c;
+    readCycle(c);
+    float &tempC = c.tempC, &humRH = c.humRH, &pressureKPa = c.pressureKPa, &gasOhm = c.gasOhm, &iaq = c.iaq;
+    uint16_t &pm1 = c.pm1, &pm25 = c.pm25, &pm10 = c.pm10;
+    Sen5xReading &sen = c.sen;
+    PmsReading &pms = c.pms;
+    Scd4xReading &scd = c.scd;
+    float &shtT = c.shtT, &shtRH = c.shtRH;
+    bool bmeOk = c.bmeOk, hmOk = c.hmOk, senOk = c.senOk, shtOk = c.shtOk, scdOk = c.scdOk, pmsOk = c.pmsOk, pmsWarm = c.pmsWarm;
 
     bool ok = publishReadings(bmeOk, tempC, humRH, pressureKPa, gasOhm, iaq,
                               hmOk, pm1, pm25, pm10, senOk, sen,
