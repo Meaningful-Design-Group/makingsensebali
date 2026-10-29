@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bayu sensor setup guide · Making Sense Bali</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23b5532f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column in the Making Sense Bali site style, numbered steps hang in a left gutter, the PLANETAI path sits on its own band */
+:root{
+  --paper:#f6efe1; --paper2:#efe6d2; --ink:#16171a; --ink-soft:#3a3a3e; --soft:#6a6454;
+  --accent:#b5532f; --rule:rgba(22,23,26,.14); --code:#e9dfc8;
+  --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,-apple-system,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#17161a; --paper2:#201e22; --ink:#efe6d2; --ink-soft:#cfc6b4; --soft:#9b9384;
+  --accent:#e08a5f; --rule:rgba(239,230,210,.14); --code:#2a272b; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#17161a; --paper2:#201e22; --ink:#efe6d2; --ink-soft:#cfc6b4; --soft:#9b9384;
+  --accent:#e08a5f; --rule:rgba(239,230,210,.14); --code:#2a272b; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.col{max-width:720px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+header .col{padding-block:56px 32px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,6vw,56px);line-height:1.05;letter-spacing:-.015em;margin:14px 0 0;text-wrap:balance}
+.lede{font-size:17px;color:var(--ink-soft);max-width:60ch;margin:20px 0 0}
+.byline{font-family:var(--mono);font-size:12px;color:var(--soft);margin-top:14px}
+h2{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:600;font-size:16px;margin:0}
+p{margin:0}
+.flow > * + *{margin-top:12px}
+code,.v{font-family:var(--mono);font-size:.88em;background:var(--code);padding:1px 6px;border-radius:3px;overflow-wrap:anywhere}
+.btn{font-family:var(--sans);font-size:.86em;font-weight:500;border:1px solid var(--rule);border-radius:4px;padding:1px 7px;white-space:nowrap}
+ul.bare{margin:0;padding-left:20px}
+ul.bare li + li{margin-top:6px}
+ol.do{margin:0;padding-left:20px}
+ol.do li + li{margin-top:10px}
+ol.do li::marker{font-family:var(--mono);font-size:13px;color:var(--soft)}
+.note{font-size:14.5px;color:var(--ink-soft);border-left:2px solid var(--accent);padding-left:14px}
+
+.need{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding-block:22px;margin-bottom:12px}
+.need h3{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+
+.step{display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 16px;padding-block:30px;border-bottom:1px solid var(--rule)}
+.step .n{font-family:var(--serif);font-weight:300;font-size:48px;line-height:.9;color:var(--accent);font-variant-numeric:tabular-nums}
+.step .skip{font-family:var(--mono);font-size:12px;color:var(--soft);margin-top:4px}
+@media (max-width:520px){ .step{grid-template-columns:40px minmax(0,1fr);gap:0 10px} .step .n{font-size:36px} }
+
+.band{background:var(--paper2);margin-top:48px}
+.band .col{padding-block:44px}
+pre{font-family:var(--mono);font-size:14px;background:var(--code);padding:12px 14px;border-radius:4px;overflow-x:auto;margin:0}
+.fields{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 18px;font-size:15px}
+.fields dt{font-family:var(--mono);font-size:13px;color:var(--soft);padding-top:2px}
+.fields dd{margin:0}
+
+.trouble{padding-block:44px}
+.trouble dl{margin:20px 0 0}
+.trouble dt{font-weight:600;margin-top:20px}
+.trouble dd{margin:4px 0 0;color:var(--ink-soft)}
+.about{padding-block:8px 44px}
+footer .col{padding-block:24px 48px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:12px;color:var(--soft)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px max(16px,5vw);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--rule)}
+.bar .brand{font-weight:600;color:var(--accent)}
+.bar a{color:var(--ink);opacity:.72;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="brand">Making Sense Bali</div>
+  <a href="setup.html">Node setup &rarr;</a>
+</div>
+<header><div class="col">
+  <div class="kicker">Making Sense Bali · Bayu sensor</div>
+  <h1>Setting up your Bayu sensor</h1>
+  <p class="lede">I set up a sensor over WhatsApp with someone who got one here in Bali, and realised the steps were spread across three websites and the sensor's own WiFi network. So here they are in one place, in order. It takes about 15 minutes, a bit more if you flash the sensor yourself.</p>
+  <p class="lede">The sensor can send its readings to <a href="https://smartcitizen.me">Smart Citizen</a>, where anyone can see them, to a PLANETAI node in your house or lab, or to both. Steps 1 to 6 get you on Smart Citizen, the part after them adds a PLANETAI node.</p>
+  <p class="byline">Tomas Diez · Fab Lab Bali · 29 Oct 2026</p>
+</div></header>
+
+<main>
+<div class="col">
+  <section class="need">
+    <h3>What you need</h3>
+    <ul class="bare">
+      <li>The sensor, and a USB-C cable that carries data (some cables only charge)</li>
+      <li>A 5 V / 2 A USB wall charger</li>
+      <li>A phone, and the name and password of a 2.4 GHz WiFi network</li>
+      <li>A laptop with Chrome or Edge, only if you need to flash the sensor</li>
+    </ul>
+  </section>
+
+  <section class="step" id="flash">
+    <div class="n">1</div>
+    <div class="flow">
+      <h2>Put the firmware on it</h2>
+      <p class="skip">Got your sensor from Fab Lab Bali? It already has the firmware, go to step 2.</p>
+      <p>You need this step if you built the sensor yourself, or want the newest version on it.</p>
+      <ol class="do">
+        <li>On a laptop, open <a href="https://planetai.fab.city/sensors/#flash">planetai.fab.city/sensors</a> in Chrome or Edge. Safari, Firefox and phones can't talk to a USB port.</li>
+        <li>Plug the sensor in with the data cable. Under <i>The Bayu sensor</i>, press <span class="btn">Connect and flash</span> and pick the port that says <span class="v">USB JTAG/serial</span> or <span class="v">usbmodem</span>. If no port shows up, unplug it, hold the BOOT button on the board and plug it in again.</li>
+        <li>Let it run, about a minute. The page finds the chip by itself, a XIAO ESP32-S3 or an ESP32-C3 SuperMini.</li>
+      </ol>
+      <p class="note">Flashing again keeps the WiFi, token and name the sensor already had. If you want to see it working before going on, the Test tab on the same page shows each of its sensors reading live over the cable.</p>
+    </div>
+  </section>
+
+  <section class="step" id="account">
+    <div class="n">2</div>
+    <div class="flow">
+      <h2>Make a Smart Citizen account</h2>
+      <p>Go to <a href="https://smartcitizen.me">smartcitizen.me</a> and sign up. Keep the username and password at hand, you use them again in the next step.</p>
+    </div>
+  </section>
+
+  <section class="step" id="register">
+    <div class="n">3</div>
+    <div class="flow">
+      <h2>Register the sensor</h2>
+      <p>On your phone, open <a href="setup.html">makingsense.fablabbali.com/setup.html</a>.</p>
+      <ol class="do">
+        <li>Sign in with the same Smart Citizen username and password.</li>
+        <li>Give the sensor a name people will recognise, like <i>Bayu · Banjar Kelod</i>, say where it hangs, and pick outdoor or indoor.</li>
+        <li>Drag the pin to the spot where the sensor will hang. <span class="btn">Use my position</span> works if you are standing there now.</li>
+        <li>Press <span class="btn">Create device</span>. The page creates the device on Smart Citizen and shows its token, six characters, with a QR code.</li>
+      </ol>
+      <p class="note">Keep this page open, you need it in the next step. Treat the token like a password, whoever has it can publish data as your sensor.</p>
+    </div>
+  </section>
+
+  <section class="step" id="wifi">
+    <div class="n">4</div>
+    <div class="flow">
+      <h2>Give the sensor its token and your WiFi</h2>
+      <ol class="do">
+        <li>Plug the sensor into the wall charger. A laptop port or a weak phone charger can't run the fan of the particle sensor, and it will keep restarting.</li>
+        <li>On your phone, open the WiFi settings. Within a minute a network called <span class="v">MSB-Node-</span> followed by six letters and numbers shows up (MSB is Making Sense Bali). Join it, the password is <span class="v">makingsense</span>. If the phone says there is no internet, stay connected.</li>
+        <li>Hand over the token. If the setup page from step 3 is on a laptop, scan its QR code with the phone camera. If it is on this same phone, go back to that tab and tap the link under the QR code, the one starting with <span class="v">http://192.168.4.1/t?token=</span>. The sensor answers <i>Token saved</i>.</li>
+        <li>Tap <span class="btn">Choose WiFi</span>, pick your network and type its password. It has to be 2.4 GHz, the sensor can't see 5 GHz networks. If your router shows two names, pick the one without "5G".</li>
+        <li>Further down you can give it a name, where it hangs and its height above ground. These stay on the sensor, Smart Citizen never sees them. Leave <i>Where it publishes</i> empty, unless you have a PLANETAI node (see below).</li>
+        <li>Press <span class="btn">Save</span>. The sensor joins your WiFi and the MSB-Node network disappears.</li>
+      </ol>
+      <p class="note">You have 3 minutes once the setup page opens. If it closes on you, unplug the sensor, plug it back in and start this step again, it keeps what you already saved. No setup page after joining? Open <span class="v">192.168.4.1</span> in the browser. Lost the QR? Type the token into the <i>Token</i> field by hand, and check it twice, this is where most setups go wrong.</p>
+    </div>
+  </section>
+
+  <section class="step" id="check">
+    <div class="n">5</div>
+    <div class="flow">
+      <h2>Wait for the first reading</h2>
+      <p>Put your phone back on your normal WiFi and go back to the setup page. Its last step waits for the first reading, the sensor publishes once a minute, then lists what it measures and links to your device page on Smart Citizen.</p>
+      <p>The sensor also has its own status page. Open <span class="v">http://your-sensor-name.local</span>, with the name you typed in lowercase and hyphens for spaces, so <i>Banjar Kelod</i> becomes <span class="v">banjar-kelod.local</span>. <i>Token</i> should show two characters and stars, and <i>Last publish</i> should say <i>ok</i>. Some Android phones can't open <span class="v">.local</span> addresses, in that case look for the sensor's IP address in your router's list of connected devices.</p>
+      <p>On a XIAO ESP32-S3 the small LED tells you the same thing. One short flash every 5 seconds means online and publishing, two flashes means it is offline or publishing fails, fast blinking means the setup page is open.</p>
+    </div>
+  </section>
+
+  <section class="step" id="hang">
+    <div class="n">6</div>
+    <div class="flow">
+      <h2>Hang it</h2>
+      <p>Outside in the shade, 1.5 to 3 m above the ground, with the underside open to the air, because the air goes in from below. Keep it away from anything that makes its own smoke or heat, like a kitchen vent, an AC exhaust, a generator or the spot where people smoke.</p>
+      <p>Put a label on the plug saying <i>Air sensor, do not unplug</i>. Someone borrowing the socket to charge a phone is the most common reason a sensor goes quiet. Then tell us in the WhatsApp community that yours is live.</p>
+    </div>
+  </section>
+</div>
+
+<section class="band" id="planetai"><div class="col flow">
+  <div class="kicker">Optional</div>
+  <h2>With your PLANETAI node</h2>
+  <p>If you run a PLANETAI node in the house or the lab, the sensor can publish to it over your own network. The node keeps every reading, also when the internet is down, and can pass them on to Smart Citizen for you. You do steps 1 to 6 as above, with one change in step 4.</p>
+  <ol class="do">
+    <li>On the machine running the node, open a terminal and run:
+      <pre>planetai broker</pre>
+      It prints what the sensor needs, and then waits 3 minutes for the first message, so go straight to the next step.</li>
+    <li>In the sensor's setup page, under <i>Where it publishes</i>, type what it printed:
+      <dl class="fields" style="margin-top:10px">
+        <dt>Host</dt><dd>the node's name ending in <span class="v">.local</span>, or its address</dd>
+        <dt>Port</dt><dd><span class="v">1883</span></dd>
+        <dt>User</dt><dd><span class="v">planetai</span></dd>
+        <dt>Password</dt><dd>the one <code>planetai broker</code> printed</dd>
+      </dl>
+      Tick <i>indoors</i> if the sensor hangs in a room.</li>
+    <li>For the token, use the one from step 3 if you want the sensor on Smart Citizen too. If the node is the only one reading it, any six characters will do.</li>
+    <li>Leave <i>If the PLANETAI node stops answering, publish to Smart Citizen</i> ticked. With a real token, the sensor then goes straight to Smart Citizen while the node is down, and back to the node when it answers again.</li>
+  </ol>
+  <p>To have the node pass the readings on to Smart Citizen, give it the sensor's token. Readings wait in a queue while the internet is down and go out when it comes back.</p>
+  <pre>planetai config set SC_FORWARD &lt;token&gt;</pre>
+  <p>Then add the sensor's Smart Citizen id, the number in its device page address, to <code>SC_EXCLUDE</code>, so the node doesn't read the same sensor a second time from the platform.</p>
+  <p class="note">Sensor already set up and running? Open its status page, tap <span class="btn">Reopen setup</span>, and join the MSB-Node network again within about 15 seconds. Everything you saved before is filled in, you only add the node.</p>
+</div></section>
+
+<div class="col">
+  <section class="trouble" id="help">
+    <h2>If something goes wrong</h2>
+    <dl>
+      <dt>The flasher shows no port.</dt>
+      <dd>The cable is probably charge-only, try another. If it still shows nothing, hold BOOT while plugging in.</dd>
+      <dt>The flasher says the port is busy.</dt>
+      <dd>Another program has it open. Close the Arduino IDE serial monitor and any other tab with a flasher, unplug the board, plug it back in and press the button again.</dd>
+      <dt>I can't see the MSB-Node network.</dt>
+      <dd>The sensor only opens it when it has no WiFi saved, or can't reach the one it has. Unplug it, wait 5 seconds, plug it in, and give it a minute.</dd>
+      <dt>I moved house, or changed my WiFi password.</dt>
+      <dd>Plug the sensor in at the new place. It won't find its old WiFi, so after about 20 seconds it opens the MSB-Node network again. Do step 4 again.</dd>
+      <dt>The status page says <i>Token NOT SET</i>, or <i>Last publish</i> says <i>failed</i>.</dt>
+      <dd>The token is missing or mistyped. Tap <span class="btn">Reopen setup</span> and type it again, character by character, from the Smart Citizen device page.</dd>
+      <dt>The sensor keeps restarting.</dt>
+      <dd>Almost always the power supply. Use a 5 V / 2 A wall charger.</dd>
+      <dt>Still stuck?</dt>
+      <dd>Ask in the WhatsApp community, with a photo of the status page.</dd>
+    </dl>
+  </section>
+
+  <section class="about flow" id="readings">
+    <h2>About the readings</h2>
+    <p>The temperature reads 1 to 3 °C high and the humidity a bit low, because the electronics warm up the box. We know about it and correct it later, in the data. PM2.5 is the number the campaign relies on. When a new sensor goes up, we compare it for a week with a reference sensor nearby before we lean on its numbers.</p>
+  </section>
+</div>
+</main>
+
+<footer><div class="col">Making Sense Bali · Fab Lab Bali · Fab City. The Bayu firmware is open source (MIT).</div></footer>
+
+</body>
+</html>
