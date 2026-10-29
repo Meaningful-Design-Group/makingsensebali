@@ -145,14 +145,43 @@ button.btn{font-family:var(--mono)}
 .install-card .install-now[hidden]{display:none}
 @media(min-width:720px){.install-sheet{align-items:center}}
 @media(max-width:260px){.install-btn{display:none!important}}
+
+/* ---------- burger: under 1200px the links wrapped onto two lines, and on a
+   phone they scrolled sideways under the brand. They now fold into a panel
+   that drops from the bar; brand, language and the burger stay on one row. */
+.burger{display:none}
+@media(max-width:1199px){
+  .bar{flex-wrap:nowrap}
+  .bar-right{display:flex;align-items:center;gap:10px}
+  .langtoggle{order:0}
+  .bar .live{display:none}
+  .burger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-10px;background:transparent;border:0;color:var(--ink);cursor:pointer}
+  .burger span,.burger span::before,.burger span::after{display:block;width:20px;height:1.5px;background:currentColor;transition:transform .2s,background .2s}
+  .burger span{position:relative}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-6px}
+  .burger span::after{top:6px}
+  .bar.open .burger span{background:transparent}
+  .bar.open .burger span::before{top:0;transform:rotate(45deg)}
+  .bar.open .burger span::after{top:0;transform:rotate(-45deg)}
+  .bar.open{background:rgba(246,239,225,.97);backdrop-filter:blur(10px)}
+  .bar-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;overflow:visible;
+    padding:4px 5vw 18px;background:var(--paper);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.07)}
+  .bar.open .bar-nav{display:flex}
+  .bar-nav a,.bar-nav a[aria-current="page"]{padding:15px 0;opacity:.85;white-space:normal;border-bottom:1px solid rgba(0,0,0,.07);font-size:12px}
+  .bar-nav a[aria-current="page"]{opacity:1;color:var(--aq)}
+  .bar-nav .install-btn{order:1;align-self:flex-start;margin-top:16px}
+}
+@media(prefers-reduced-motion:reduce){.burger span,.burger span::before,.burger span::after{transition:none}}
 </style>
 </head>
 <body>
 <div class="bar" id="bar">
   <a class="brand" href="index.html">Making Sense Bali</a>
   <div class="bar-right">
-    <nav class="bar-nav"><button type="button" class="install-btn" data-install hidden data-i18n="install.btn">+ Add to home screen</button><a href="index.html" data-i18n="nav.air">Air near you</a><a href="map.html" aria-current="page" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a></nav>
+    <nav class="bar-nav" id="bar-nav"><button type="button" class="install-btn" data-install hidden data-i18n="install.btn">+ Add to home screen</button><a href="index.html" data-i18n="nav.air">Air near you</a><a href="map.html" aria-current="page" data-i18n="nav.map">Map &amp; reports</a><a href="about.html" data-i18n="idx.nav.about">About</a><a href="dashboard/" data-i18n="idx.nav.data">The data</a><a href="setup-guide.html" data-i18n="nav.setup">Set up a sensor</a></nav>
     <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa Indonesia / English / Español"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></div>
+    <button type="button" class="burger" aria-expanded="false" aria-controls="bar-nav" aria-label="Menu"><span></span></button>
   </div>
 </div>
 
@@ -206,11 +235,11 @@ button.btn{font-family:var(--mono)}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <!-- ?v= is a cache buster; see index.html. Bump it whenever these files change. -->
-<script src="./data.js?v=20260926e"></script>
-<script src="./peaks.js?v=20260926e"></script>
-<script src="./near.js?v=20260926e"></script>
-<script src="./i18n.js?v=20260926e"></script>
-<script src="./i18n-home.js?v=20260926e"></script>
+<script src="./data.js?v=20261029a"></script>
+<script src="./peaks.js?v=20261029a"></script>
+<script src="./near.js?v=20261029a"></script>
+<script src="./i18n.js?v=20261029a"></script>
+<script src="./i18n-home.js?v=20261029a"></script>
 <script src="./install.js?v=20260926f"></script>
 <script>
 /* Map & reports. Moved here from the home page on 26 Sep 2026, when the home
@@ -491,6 +520,17 @@ function boot(){
 }
 if(document.readyState!=='loading'){ boot(); } else { addEventListener('DOMContentLoaded', boot); }
 
+</script>
+<script>
+(function(){
+  var bar=document.getElementById('bar'), b=bar&&bar.querySelector('.burger');
+  if(!b) return;
+  function set(open){ bar.classList.toggle('open',open); b.setAttribute('aria-expanded',open?'true':'false'); }
+  b.addEventListener('click',function(e){ e.stopPropagation(); set(!bar.classList.contains('open')); });
+  bar.querySelector('.bar-nav').addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
+  document.addEventListener('click',function(e){ if(!bar.contains(e.target)) set(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ set(false); } });
+})();
 </script>
 </body>
 </html>

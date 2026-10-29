@@ -17,6 +17,7 @@ var STRINGS = {
   en: {
     'nav.air': 'Air near you',
     'nav.map': 'Map & reports',
+    'nav.setup': 'Set up a sensor',
     'install.btn': '+ Add to home screen',
     'install.btn_long': '+ Keep this on your home screen',
     'install.title': 'Keep the air one tap away',
@@ -214,6 +215,7 @@ var STRINGS = {
   id: {
     'nav.air': 'Udara di sekitar Anda',
     'nav.map': 'Peta & laporan',
+    'nav.setup': 'Pasang sensor',
     'install.btn': '+ Tambah ke layar utama',
     'install.btn_long': '+ Simpan di layar utama ponsel Anda',
     'install.title': 'Udara di sekitar Anda, satu ketukan',
@@ -405,6 +407,7 @@ var STRINGS = {
   es: {
     'nav.air': 'El aire cerca de ti',
     'nav.map': 'Mapa y reportes',
+    'nav.setup': 'Instala un sensor',
     'install.btn': '+ Añadir a la pantalla de inicio',
     'install.btn_long': '+ Guárdalo en la pantalla de inicio',
     'install.title': 'El aire a un toque',
