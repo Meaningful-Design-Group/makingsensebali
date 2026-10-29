@@ -105,6 +105,10 @@ A node with a screen keeps working when the setup portal times out (screen, alar
 microSD) and retries the saved WiFi every 15 s. A Grove Shield node still reboots into
 the portal as v5 does.
 
+While the setup portal is open, the node reads its sensors every 10 s and prints the
+usual `[read]` line over USB. So a board fresh from the flasher shows its readings in the
+workbench's Test tab before anyone sets up WiFi. Nothing is published until it has WiFi.
+
 ## Self-update
 
 v6 reads [`flash/firmware/bayu/manifest.json`](../../../../flash/firmware/bayu/manifest.json),
