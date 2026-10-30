@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T13:27:01.846686+00:00",
+  "generated_at": "2026-10-30T13:45:39.837304+00:00",
   "count": 4,
   "sensors": [
     {
@@ -10,13 +10,13 @@
       "name": "Ungasan Kit - TEST",
       "lat": -8.81983,
       "lng": 115.16657,
-      "lastReading": "2026-10-30T13:16:44Z",
+      "lastReading": "2026-10-30T13:38:47Z",
       "reading": {
-        "pm25": 18.2,
-        "pm10": 19.6,
+        "pm25": 18.4,
+        "pm10": 18.6,
         "temp": 26.26,
-        "rh": 88.23,
-        "noise": 39.63
+        "rh": 88.17,
+        "noise": 42.73
       },
       "detailsUrl": "https://smartcitizen.me/kits/19236",
       "pm25_corrected": false,
