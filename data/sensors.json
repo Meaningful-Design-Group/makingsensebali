@@ -292,13 +292,13 @@
       "lat": -8.6322931,
       "lng": 115.1335655,
       "offline": false,
-      "lastReading": "2026-11-04T23:19:47.000Z",
+      "lastReading": "2026-11-04T23:34:47.000Z",
       "reading": {
-        "pm25": 12.7,
-        "pm10": 34.0,
-        "temp": 33.5,
-        "rh": 77,
-        "pm25_raw": 26.0
+        "pm25": 14.4,
+        "pm10": 29.0,
+        "temp": 33.8,
+        "rh": 76,
+        "pm25_raw": 29.0
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -1002,7 +1002,7 @@
         "pm10": 4.5,
         "temp": 29.2,
         "rh": 63,
-        "pm25_raw": 4.5
+        "pm25_raw": 5.7
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -1050,8 +1050,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     }
   ]
 }
