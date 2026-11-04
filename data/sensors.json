@@ -121,7 +121,7 @@
       "reading": {
         "pm25": 0.1,
         "pm10": 0.0,
-        "temp": 26.7,
+        "temp": 26.6,
         "rh": 66,
         "pm25_raw": 0.0
       },
@@ -193,8 +193,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-197980",
@@ -628,7 +628,7 @@
         "pm10": 22.7,
         "temp": 29.4,
         "rh": 64,
-        "pm25_raw": 21.7
+        "pm25_raw": 18.0
       },
       "detailsUrl": "https://snehankekre.com",
       "pm25_corrected": true,
@@ -746,6 +746,28 @@
       "exclusion_reason": null
     },
     {
+      "id": "airgradient-207928",
+      "rawId": 207928,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Seseh",
+      "lat": -8.636541912682373,
+      "lng": 115.12191890127745,
+      "offline": false,
+      "lastReading": "2026-11-04T17:59:07.000Z",
+      "reading": {
+        "pm25": 3.9,
+        "pm10": 12.3,
+        "temp": 25.4,
+        "rh": 80,
+        "pm25_raw": 9.7
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "pm25_corrected": true,
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
+    },
+    {
       "id": "airgradient-208036",
       "rawId": 208036,
       "source": "airgradient",
@@ -786,8 +808,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     },
     {
       "id": "airgradient-208245",
@@ -896,8 +918,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     },
     {
       "id": "airgradient-208658",
@@ -918,8 +940,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-208922",
