@@ -1,0 +1,58 @@
+name: pages
+
+# Same Jekyll build GitHub's branch deploy ran, plus one retry on the deploy.
+#
+# Why this exists: with ~100 data pushes a day, a few branch deploys a day got
+# stuck in "syncing_files" on GitHub's side and timed out after 10 minutes,
+# each one a failure email. A good deploy takes 15-30 s, so a stuck one is
+# cancelled after 3 minutes and tried once more. Only a second failure fails
+# the run.
+#
+# Needs Settings → Pages → Source set to "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  # makingsense-data-sync pushes with GITHUB_TOKEN, which doesn't fire `push`.
+  workflow_run:
+    workflows: [makingsense-data-sync]
+    types: [completed]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false   # never cut a deploy off mid-sync
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.retry.outputs.page_url || steps.first.outputs.page_url }}
+    steps:
+      - id: first
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          timeout: 180000
+      - id: retry
+        if: steps.first.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 300000
