@@ -1,0 +1,48 @@
+{
+  "linked_schemas": [
+    "environmental_observation-v1.0.0"
+  ],
+  "name": "Burning observation — Bali, Bali",
+  "description": "There is an active construction going on, the owner himself burnt lots of construction trash, third day in a row. Located at the main road where trash pick up wouldn’t cause any logistic problem. He was accompanied by his son but both didn’t want to have a conversation.",
+  "primary_url": "https://planetai.fab.city/bali/profiles/AQ_20261029_9bc048d3.json",
+  "latitude": -8.586286,
+  "longitude": 115.089587,
+  "geolocation": {
+    "lat": -8.586286,
+    "lon": 115.089587
+  },
+  "locality": "Bengkel",
+  "region": "Bali",
+  "country_name": "Indonesia",
+  "country_iso_3166": "ID",
+  "tags": [
+    "air_quality",
+    "environment",
+    "community_report",
+    "planet_ai",
+    "burning",
+    "source:web",
+    "severity:low",
+    "bioregion:indo_pacific_coral_triangle",
+    "bukit_pilot"
+  ],
+  "status": "active",
+  "date_added": "2026-10-29T00:00:00+00:00",
+  "observation_type": "photo",
+  "pollution_category": "burning",
+  "photo_path": "photos/AQ_20261029_9bc048d3.jpg",
+  "data_source": "web",
+  "planet_ai_node": "bali.fab.city",
+  "bioregion": "indo_pacific_coral_triangle",
+  "action_cycle": {
+    "observation_timestamp": "2026-10-29T00:00:00+00:00",
+    "reported_timestamp": "2026-10-29T00:00:00+00:00",
+    "response_status": "reported"
+  },
+  "location_precision": "administrative_area",
+  "admin_area": {
+    "desa": "Bengkel",
+    "kecamatan": "Kediri",
+    "kabupaten": "Tabanan"
+  }
+}
