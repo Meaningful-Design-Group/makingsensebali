@@ -167,7 +167,7 @@
         "pm10": 18.7,
         "temp": 26.6,
         "rh": 70,
-        "pm25_raw": 18.2
+        "pm25_raw": 21.3
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -193,8 +193,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-201082",
@@ -276,7 +276,7 @@
         "pm10": 19.0,
         "temp": 25.2,
         "rh": 95,
-        "pm25_raw": 19.0
+        "pm25_raw": 21.0
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -474,7 +474,7 @@
         "pm10": 0.7,
         "temp": 27.5,
         "rh": 64,
-        "pm25_raw": 0.0
+        "pm25_raw": 0.5
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -544,8 +544,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-206958",
@@ -654,8 +654,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-207087",
@@ -739,6 +739,28 @@
         "temp": 27.0,
         "rh": 67,
         "pm25_raw": 7.5
+      },
+      "detailsUrl": "https://www.airgradient.com/map/",
+      "pm25_corrected": true,
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
+    },
+    {
+      "id": "airgradient-208245",
+      "rawId": 208245,
+      "source": "airgradient",
+      "sourceLabel": "AirGradient",
+      "name": "Suluban",
+      "lat": -8.81882,
+      "lng": 115.08806,
+      "offline": false,
+      "lastReading": "2026-11-21T15:50:22.000Z",
+      "reading": {
+        "pm25": 3.7,
+        "pm10": 7.5,
+        "temp": 28.4,
+        "rh": 65,
+        "pm25_raw": 6.7
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -896,8 +918,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-212136",
@@ -918,8 +940,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-213842",
@@ -1050,8 +1072,8 @@
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
-      "excluded_from_avg": false,
-      "exclusion_reason": null
+      "excluded_from_avg": true,
+      "exclusion_reason": "indoor_suspected"
     }
   ]
 }
