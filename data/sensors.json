@@ -187,8 +187,8 @@
       "reading": {
         "pm25": 0.0,
         "pm10": 0.0,
-        "temp": 25.7,
-        "rh": 72,
+        "temp": 25.6,
+        "rh": 71,
         "pm25_raw": 0.0
       },
       "detailsUrl": "https://www.airgradient.com/map/",
@@ -342,7 +342,7 @@
         "pm10": 0.0,
         "temp": 26.7,
         "rh": 68,
-        "pm25_raw": 0.0
+        "pm25_raw": 0.7
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
@@ -448,7 +448,7 @@
       "offline": false,
       "lastReading": "2026-11-24T18:43:07.000Z",
       "reading": {
-        "pm25": 0.4,
+        "pm25": 0.3,
         "pm10": 0.0,
         "temp": 28.6,
         "rh": 62,
@@ -588,8 +588,8 @@
       },
       "detailsUrl": "https://snehankekre.com",
       "pm25_corrected": true,
-      "excluded_from_avg": true,
-      "exclusion_reason": "indoor_suspected"
+      "excluded_from_avg": false,
+      "exclusion_reason": null
     },
     {
       "id": "airgradient-206964",
@@ -976,11 +976,11 @@
       "offline": false,
       "lastReading": "2026-11-24T18:42:56.000Z",
       "reading": {
-        "pm25": 0.0,
-        "pm10": 0.0,
-        "temp": 27.3,
+        "pm25": 2.5,
+        "pm10": 5.2,
+        "temp": 27.2,
         "rh": 67,
-        "pm25_raw": 0.0
+        "pm25_raw": 4.8
       },
       "detailsUrl": "https://www.airgradient.com/map/",
       "pm25_corrected": true,
